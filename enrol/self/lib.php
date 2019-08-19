@@ -507,6 +507,159 @@ class enrol_self_plugin extends enrol_plugin {
     }
 
     /**
+     * {@inheritdoc}
+     *
+     * @param progress_trace $trace (accepts bool for backwards compatibility only)
+     */
+    public function send_expiry_notifications($trace) {
+        global $DB, $CFG;
+
+        // Get the name of the enrolment plugin.
+        $name = $this->get_name();
+
+        // Check if the enrolment plugin is enabled.
+        if (!enrol_is_enabled($name)) {
+            $trace->finished();
+            return;
+        }
+
+        // Set up time and memory limits for the potentially time-consuming process.
+        core_php_time_limit::raise();
+        raise_memory_limit(MEMORY_HUGE);
+
+        // Retrieve configuration settings.
+        $expirynotifylast = $this->get_config('expirynotifylast', 0);
+        $expirynotifyhour = $this->get_config('expirynotifyhour');
+        // Check if expirynotifyhour setting is available.
+        if (is_null($expirynotifyhour)) {
+            debugging("send_expiry_notifications() in $name enrolment plugin needs expirynotifyhour setting");
+            $trace->finished();
+            return;
+        }
+
+        // Check if the trace is an instance of progress_trace.
+        if (!($trace instanceof progress_trace)) {
+            $trace = $trace ? new text_progress_trace() : new null_progress_trace();
+            debugging(
+                'enrol_plugin::send_expiry_notifications() now expects progress_trace instance as parameter!',
+                DEBUG_DEVELOPER,
+            );
+        }
+
+        $timenow = time();
+        // Calculate the time to send notifications.
+        $notifytime = usergetmidnight($timenow, $CFG->timezone) + ($expirynotifyhour * 3600);
+
+        // Check if notifications were already sent today or if it's not yet time to send.
+        if ($expirynotifylast > $notifytime) {
+            $outputmessage = sprintf(
+                '%s enrolment expiry notifications were already sent today at %s.',
+                $name, userdate($expirynotifylast, '', $CFG->timezone)
+            );
+            $trace->output($outputmessage);
+            $trace->finished();
+            return;
+
+        } else if ($timenow < $notifytime) {
+            $trace->output($name.' enrolment expiry notifications will be sent at '.userdate($notifytime, '', $CFG->timezone).'.');
+            $trace->finished();
+            return;
+        }
+
+        $trace->output('Processing '.$name.' enrolment expiration notifications...');
+
+        /*
+         * Notify users responsible for enrolment once every day.
+         * Users may be notified by the expiration time of enrollment or unenrollment due to inactivity. The latter is checked in
+         * the last condition of the where clause:
+         * days of inactivity + number of days in advance to send the notification > days of inactivity allowed before unenrollment
+         */
+        $sql = "SELECT ue.*, e.expirynotify, e.notifyall, e.expirythreshold, e.courseid, c.fullname, e.customint2,
+                       COALESCE(ul.timeaccess, 0) AS timeaccess, ue.timestart
+                  FROM {user_enrolments} ue
+                  JOIN {enrol} e ON (e.id = ue.enrolid AND e.enrol = :name AND e.expirynotify > 0  AND e.status = :enabled)
+                  JOIN {course} c ON (c.id = e.courseid)
+                  JOIN {user} u ON (u.id = ue.userid AND u.deleted = 0 AND u.suspended = 0)
+                  LEFT JOIN {user_lastaccess} ul ON (ul.userid = u.id AND ul.courseid = c.id)
+                 WHERE ue.status = :active
+                       AND ((ue.timeend > 0 AND ue.timeend > :now1 AND ue.timeend < (e.expirythreshold + :now2))
+                            OR (e.customint2 > 0 AND (:now3 - COALESCE(ul.timeaccess, 0) + e.expirythreshold > e.customint2)))
+              ORDER BY ue.enrolid ASC, u.lastname ASC, u.firstname ASC, u.id ASC";
+        $params = [
+            'name' => $name,
+            'enabled' => ENROL_INSTANCE_ENABLED,
+            'active' => ENROL_USER_ACTIVE,
+            'now1' => $timenow,
+            'now2' => $timenow,
+            'now3' => $timenow,
+        ];
+
+        $rs = $DB->get_recordset_sql($sql, $params);
+
+        $lastenrollid = 0;
+        $users = [];
+
+        foreach ($rs as $ue) {
+            $expirycond = ($ue->timeend > 0) && ($ue->timeend > $timenow) && ($ue->timeend < ($ue->expirythreshold + $timenow));
+            $inactivitycond = ($ue->customint2 > 0) && (($timenow - $ue->timeaccess + $ue->expirythreshold) > $ue->customint2);
+
+            $user = $DB->get_record('user', ['id' => $ue->userid]);
+
+            if ($expirycond) {
+                if ($lastenrollid && $lastenrollid != $ue->enrolid) {
+                    $this->notify_expiry_enroller($lastenrollid, $users, $trace);
+                    $users = [];
+                }
+                $lastenrollid = $ue->enrolid;
+
+                $enroller = $this->get_enroller($ue->enrolid);
+                $context = context_course::instance($ue->courseid);
+
+                $users[] = [
+                    'fullname' => fullname($user, has_capability('moodle/site:viewfullnames', $context, $enroller)),
+                    'timeend' => $ue->timeend,
+                ];
+            }
+            // Notifications to inactive users only if inactive time limit is set.
+            if ($inactivitycond && $ue->notifyall) {
+                $ue->message = 'expiryinactivemessageenrolledbody';
+                $lastaccess = $ue->timeaccess;
+                if (is_null($lastaccess)) {
+                    $lastaccess = $ue->timestart;
+                }
+                $ue->inactivetime = floor(($timenow - $lastaccess) / DAYSECS);
+                $this->notify_expiry_enrolled($user, $ue, $trace);
+            }
+
+            if ($expirycond) {
+                if (!$ue->notifyall) {
+                    continue;
+                }
+
+                if ($ue->timeend - $ue->expirythreshold + 86400 < $timenow) {
+                    // Notify enrolled users only once at the start of the threshold.
+                    $trace->output("user $ue->userid was already notified that enrolment in course $ue->courseid expires on " .
+                        userdate($ue->timeend, '', $CFG->timezone), 1);
+                    continue;
+                }
+
+                $this->notify_expiry_enrolled($user, $ue, $trace);
+            }
+        }
+        $rs->close();
+
+        if ($lastenrollid && $users) {
+            $this->notify_expiry_enroller($lastenrollid, $users, $trace);
+        }
+
+        $trace->output('...notification processing finished.');
+        $trace->finished();
+
+        // Set the last expiry notification timestamp.
+        $this->set_config('expirynotifylast', $timenow);
+    }
+
+    /**
      * Returns the user who is responsible for self enrolments in given instance.
      *
      * Usually it is the first editing teacher - the person with "highest authority"
@@ -537,6 +690,76 @@ class enrol_self_plugin extends enrol_plugin {
         $this->lasternollerinstanceid = $instanceid;
 
         return $this->lasternoller;
+    }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @param stdClass $user
+     * @param stdClass $ue
+     * @param progress_trace $trace
+     */
+    protected function notify_expiry_enrolled($user, $ue, progress_trace $trace) {
+        global $CFG;
+
+        $name = $this->get_name();
+
+        $oldforcelang = force_current_language($user->lang);
+
+        $enroller = $this->get_enroller($ue->enrolid);
+        $context = context_course::instance($ue->courseid);
+
+        $a = new stdClass();
+        $a->course   = format_string($ue->fullname, true, ['context' => $context]);
+        $a->user     = fullname($user, true);
+        // If the enrolment duration is disabled, replace timeend with other data.
+        if ($ue->timeend == 0) {
+            $timenow = time();
+            $lastaccess = $ue->timeaccess > 0 ? $ue->timeaccess : $ue->timestart;
+            $ue->timeend = $timenow + ($ue->customint2 - ($timenow - $lastaccess));
+        }
+        $a->timeend  = userdate($ue->timeend, '', $user->timezone);
+        $a->enroller = fullname($enroller, has_capability('moodle/site:viewfullnames', $context, $user));
+        if (isset($ue->inactivetime)) {
+            $a->inactivetime = $ue->inactivetime;
+        }
+        if (isset($ue->customint2)) {
+            $a->inactiveafter = floor(($ue->customint2) / DAYSECS);
+        }
+        $a->url = new moodle_url('/course/view.php', ['id' => $ue->courseid]);
+
+        $subject = get_string('expirymessageenrolledsubject', 'enrol_'.$name, $a);
+        if (isset($ue->message)) {
+            $bodystr = $ue->message;
+        } else {
+            $bodystr = 'expirymessageenrolledbody';
+        }
+        $body = get_string($bodystr, 'enrol_' . $name, $a);
+
+        $message = new \core\message\message();
+        $message->courseid          = $ue->courseid;
+        $message->notification      = 1;
+        $message->component         = 'enrol_'.$name;
+        $message->name              = 'expiry_notification';
+        $message->userfrom          = $enroller;
+        $message->userto            = $user;
+        $message->subject           = $subject;
+        $message->fullmessage       = $body;
+        $message->fullmessageformat = FORMAT_MARKDOWN;
+        $message->fullmessagehtml   = markdown_to_html($body);
+        $message->smallmessage      = $subject;
+        $message->contexturlname    = $a->course;
+        $message->contexturl        = (string)new moodle_url('/course/view.php', ['id' => $ue->courseid]);
+
+        if (message_send($message)) {
+            $stringmessage = 'notifying user %s that enrolment in course %s expires on %s';
+        } else {
+            $stringmessage = 'error notifying user %s that enrolment in course %s expires on %s';
+        }
+        $outputmessage = sprintf($stringmessage, $ue->userid, $ue->courseid, userdate($ue->timeend, '', $CFG->timezone));
+        $trace->output($outputmessage, 1);
+
+        force_current_language($oldforcelang);
     }
 
     /**
@@ -925,7 +1148,7 @@ class enrol_self_plugin extends enrol_plugin {
             }
         }
 
-        if ($data['expirynotify'] > 0 and $data['expirythreshold'] < 86400) {
+        if (($data['expirynotify'] > 0 || $data['customint2']) && $data['expirythreshold'] < 86400) {
             $errors['expirythreshold'] = get_string('errorthresholdlow', 'core_enrol');
         }
 
