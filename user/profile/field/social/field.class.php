@@ -62,8 +62,11 @@ class profile_field_social extends profile_field_base {
         $network = $this->field->param1;
         $networkurls = profilefield_social\helper::get_network_urls();
 
+        $pattern = ['%%ENCODED%%', '%%PLAIN%%'];
+        $data = [rawurlencode($this->data), $this->data];
+
         if (array_key_exists($network, $networkurls)) {
-            return str_replace('%%DATA%%', $this->data, $networkurls[$network]);
+            return str_replace($pattern, $data, $networkurls[$network]);
         }
 
         return $this->data;
