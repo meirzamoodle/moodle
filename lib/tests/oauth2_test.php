@@ -21,6 +21,7 @@ use core\oauth2\api;
 use core\oauth2\endpoint;
 use core\oauth2\issuer;
 use core\oauth2\system_account;
+use \core\oauth2\user_field_mapping;
 
 /**
  * Tests for oauth2 apis (\core\oauth2\*).
@@ -441,5 +442,116 @@ class oauth2_test extends \advanced_testcase {
         api::delete_endpoint($endpoint->get('id'));
 
         $this->assertFalse($googleissuer->is_available_for_login());
+    }
+
+    /**
+     * Data provider for test_get_internalfield_list and test_get_internalfields.
+     *
+     * @return array
+     */
+    public function create_custom_profile_fields(): array {
+        return [
+            'data' => [
+                'categories' => [
+                    'Billing',
+                    'Payment'
+                ],
+                'profilefields' => [
+                    ['shortname' => 'billingaddress', 'name' => 'Billing Address'],
+                    ['shortname' => 'creditcardnumber', 'name' => 'Credit Card Number'],
+                ],
+                'expected' => [
+                    'profilefields' => [
+                        ['shortname' => 'billingaddress', 'name' => 'Billing Address'],
+                        ['shortname' => 'creditcardnumber', 'name' => 'Credit Card Number'],
+                    ],
+                ]
+            ]
+        ];
+    }
+
+    /**
+     * Test getting the list of internal fields.
+     *
+     * @dataProvider create_custom_profile_fields
+     * @covers ::get_internalfield_list
+     * @param array $categories Categories.
+     * @param array $profilefields Profile Fields.
+     * @param array $expected Expected value.
+     */
+    public function test_get_internalfield_list(array $categories, array $profilefields, array $expected): void {
+        $this->resetAfterTest();
+        self::generate_custom_profile_fields($categories, $profilefields);
+
+        $userfieldmapping = new user_field_mapping();
+        $internalfieldlist = $userfieldmapping->get_internalfield_list();
+
+        // Both custom profile fields must exist.
+        $this->assertNotEmpty($internalfieldlist[$categories[0]]);
+        $this->assertNotEmpty($internalfieldlist[$categories[1]]);
+
+        // Both categories must have the custom profile fields with expected value.
+        $this->assertEquals(
+            $internalfieldlist[$categories[0]][\core_user\fields::PROFILE_FIELD_PREFIX . $profilefields[0]['shortname']],
+            $expected['profilefields'][0]['name']
+        );
+        $this->assertEquals(
+            $internalfieldlist[$categories[1]][\core_user\fields::PROFILE_FIELD_PREFIX . $profilefields[1]['shortname']],
+            $expected['profilefields'][1]['name']
+        );
+    }
+
+    /**
+     * Test getting the list of internal fields with flat array.
+     *
+     * @dataProvider create_custom_profile_fields
+     * @covers ::get_internalfields
+     * @param array $categories Categories.
+     * @param array $profilefields Profile Fields.
+     * @param array $expected Expected value.
+     */
+    public function test_get_internalfields(array $categories, array $profilefields, array $expected): void {
+        $this->resetAfterTest();
+        self::generate_custom_profile_fields($categories, $profilefields);
+
+        // Both custom profile fields must exist..
+        $userfieldmapping = new user_field_mapping();
+        $internalfields = $userfieldmapping->get_internalfields();
+
+        $this->assertContains( \core_user\fields::PROFILE_FIELD_PREFIX . $profilefields[0]['shortname'], $internalfields );
+        $this->assertContains( \core_user\fields::PROFILE_FIELD_PREFIX . $profilefields[1]['shortname'], $internalfields );
+
+        // Field2 index must be greater than field1.
+        $field1index = array_search(
+            \core_user\fields::PROFILE_FIELD_PREFIX . $expected['profilefields'][0]['shortname'], $internalfields);
+        $field2index = array_search(
+            \core_user\fields::PROFILE_FIELD_PREFIX . $expected['profilefields'][1]['shortname'], $internalfields);
+        $this->assertLessThan($field2index, $field1index);
+    }
+
+    /**
+     * Generate data into DB for Testing getting user fields mapping.
+     *
+     * @param array $categories Categories.
+     * @param array $profilefields Profile Fields.
+     */
+    private function generate_custom_profile_fields(array $categories, array $profilefields): void {
+        // Create a profile category 1 and the profile fields.
+        $customprofilefieldcategory1 = ['name' => $categories[0], 'sortorder' => 1];
+        $category1 = $this->getDataGenerator()->create_custom_profile_field_category($customprofilefieldcategory1);
+        $this->getDataGenerator()->create_custom_profile_field(
+            ['shortname' => $profilefields[0]['shortname'],
+            'name' => $profilefields[0]['name'],
+            'categoryid' => $category1->id,
+            'required' => 1, 'visible' => 1, 'locked' => 0, 'datatype' => 'text', 'defaultdata' => null]);
+
+        // Create a profile category 2 and the profile fields.
+        $customprofilefieldcategory2 = ['name' => $categories[1], 'sortorder' => 2];
+        $category2 = $this->getDataGenerator()->create_custom_profile_field_category($customprofilefieldcategory2);
+        $this->getDataGenerator()->create_custom_profile_field(
+            ['shortname' => $profilefields[1]['shortname'],
+            'name' => $profilefields[1]['name'],
+            'categoryid' => $category2->id,
+            'required' => 1, 'visible' => 1, 'locked' => 0, 'datatype' => 'text', 'defaultdata' => null]);
     }
 }
