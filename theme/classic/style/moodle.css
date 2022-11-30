@@ -21810,6 +21810,10 @@ div.editor_atto_toolbar button .icon {
     .drawer-primary .drawercontent .list-group .list-group-item {
       border-left: 0;
       border-right: 0; }
+      .drawer-primary .drawercontent .list-group .list-group-item [role="menuitem"][aria-current="true"] {
+        color: #495057;
+        text-decoration: none;
+        background-color: #e9ecef; }
 
 .secondary-navigation {
   padding-bottom: 15px; }

@@ -32,6 +32,11 @@
         .list-group-item {
             border-left: 0;
             border-right: 0;
+            [role="menuitem"][aria-current="true"] {
+                color: $list-group-action-hover-color;
+                text-decoration: none;
+                background-color: $gray-200;
+            }
         }
     }
 }

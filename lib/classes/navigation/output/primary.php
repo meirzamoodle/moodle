@@ -57,7 +57,7 @@ class primary implements renderable, templatable {
 
         $menudata = (object) $this->merge_primary_and_custom($this->get_primary_nav(), $this->get_custom_menu($output));
         $moremenu = new \core\navigation\output\more_menu($menudata, 'navbar-nav', false);
-        $mobileprimarynav = array_merge($this->get_primary_nav(), $this->get_custom_menu($output));
+        $mobileprimarynav = $this->merge_primary_and_custom($this->get_primary_nav(), $this->get_custom_menu($output));
 
         $languagemenu = new \core\output\language_menu($this->page);
 
@@ -126,7 +126,6 @@ class primary implements renderable, templatable {
      * @return array
      */
     protected function merge_primary_and_custom(array $primary, array $custom): array {
-        global $PAGE;
         if (empty($custom)) {
             return $primary; // No custom nav, nothing to merge.
         }
