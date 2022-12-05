@@ -8973,11 +8973,13 @@ class assign {
     protected function add_attempt($userid) {
         require_capability('mod/assign:grade', $this->context);
 
-        if ($this->get_instance()->attemptreopenmethod == ASSIGN_ATTEMPT_REOPEN_METHOD_NONE) {
+        $instance = $this->get_instance();
+
+        if ($instance->attemptreopenmethod == ASSIGN_ATTEMPT_REOPEN_METHOD_NONE) {
             return false;
         }
 
-        if ($this->get_instance()->teamsubmission) {
+        if ($instance->teamsubmission) {
             $oldsubmission = $this->get_group_submission($userid, 0, false);
         } else {
             $oldsubmission = $this->get_user_submission($userid, false);
@@ -8988,13 +8990,13 @@ class assign {
         }
 
         // No more than max attempts allowed.
-        if ($this->get_instance()->maxattempts != ASSIGN_UNLIMITED_ATTEMPTS &&
-            $oldsubmission->attemptnumber >= ($this->get_instance()->maxattempts - 1)) {
+        if ($instance->maxattempts != ASSIGN_UNLIMITED_ATTEMPTS &&
+            $oldsubmission->attemptnumber >= ($instance->maxattempts - 1)) {
             return false;
         }
 
         // Create the new submission record for the group/user.
-        if ($this->get_instance()->teamsubmission) {
+        if ($instance->teamsubmission) {
             if (isset($this->mostrecentteamsubmission)) {
                 // Team submissions can end up in this function for each user (via save_grade). We don't want to create
                 // more than one attempt for the whole team.
@@ -9022,11 +9024,19 @@ class assign {
             }
         }
 
-        $this->update_submission($newsubmission, $userid, false, $this->get_instance()->teamsubmission);
+        $this->update_submission($newsubmission, $userid, false, $instance->teamsubmission);
         $flags = $this->get_user_flags($userid, false);
         if (isset($flags->locked) && $flags->locked) { // May not exist.
             $this->process_unlock_submission($userid);
         }
+
+        // If submission status is reopened, then set completion status to incomplete.
+        $completion = new completion_info($this->get_course());
+        if ($completion->is_enabled($this->get_course_module()) &&
+                $instance->completionsubmit) {
+            $completion->update_state($this->get_course_module(), COMPLETION_INCOMPLETE, $userid);
+        }
+
         return true;
     }
 
