@@ -659,9 +659,9 @@ class core_course_management_renderer extends plugin_renderer_base {
         $html .= html_writer::link(
             $viewcourseurl, $text, array('class' => 'text-break col pl-0 mb-2 coursename aalink')
         );
-        $html .= html_writer::start_div('flex-shrink-0 ml-auto');
+        $html .= html_writer::start_div('flex-shrink-1 ml-auto text-right');
         if ($course->idnumber) {
-            $html .= html_writer::tag('span', s($course->idnumber), array('class' => 'text-muted idnumber'));
+            $html .= html_writer::tag('span', s($course->idnumber), array('class' => 'text-muted text-break idnumber mr-0'));
         }
         $html .= $this->course_listitem_actions($category, $course);
         $html .= html_writer::end_div();
@@ -768,7 +768,7 @@ class core_course_management_renderer extends plugin_renderer_base {
             $action['attributes']['role'] = 'button';
             $actionshtml[] = $this->output->action_icon($action['url'], $action['icon'], null, $action['attributes']);
         }
-        return html_writer::span(join('', $actionshtml), 'course-item-actions item-actions mr-0');
+        return html_writer::span(join('', $actionshtml), 'course-item-actions item-actions mr-0 ml-2');
     }
 
     /**
