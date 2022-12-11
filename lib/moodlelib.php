@@ -5774,8 +5774,6 @@ function get_mailer($action='get') {
     }
 
     if ($action == 'get') {
-        $prevkeepalive = false;
-
         if (isset($mailer) and $mailer->Mailer == 'smtp') {
             if ($counter < $CFG->smtpmaxbulk and !$mailer->isError()) {
                 $counter++;
@@ -5798,8 +5796,6 @@ function get_mailer($action='get') {
                 $mailer->clearCustomHeaders();
                 return $mailer;
             }
-
-            $prevkeepalive = $mailer->SMTPKeepAlive;
             get_mailer('flush');
         }
 
@@ -5826,8 +5822,9 @@ function get_mailer($action='get') {
             $mailer->Host          = $CFG->smtphosts;
             // Specify secure connection protocol.
             $mailer->SMTPSecure    = $CFG->smtpsecure;
-            // Use previous keepalive.
-            $mailer->SMTPKeepAlive = $prevkeepalive;
+            // Specify keepalive connection to true, it reduces SMTP overhead.
+            // SMTP connection remains open until $counter exceeds $smtpmaxbulk.
+            $mailer->SMTPKeepAlive = true;
 
             if ($CFG->smtpuser) {
                 // Use SMTP authentication.
