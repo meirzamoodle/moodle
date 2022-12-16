@@ -70,6 +70,9 @@ $CFG->dboptions = array(
                                 // can be removed for MySQL (by default it will
                                 // use 'utf8mb4_unicode_ci'. This option should
                                 // be removed for all other databases.
+    'sqlsrvinfo' => [],         // PHP driver for SQL Server has a lot of connection options.
+                                // You can use it to meet the database environments,
+                                // and allows the user to alter and override any connection options.
     // 'fetchbuffersize' => 100000, // On PostgreSQL, this option sets a limit
                                 // on the number of rows that are fetched into
                                 // memory when doing a large recordset query
