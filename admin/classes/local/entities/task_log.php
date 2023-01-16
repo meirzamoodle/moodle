@@ -295,7 +295,7 @@ class task_log extends base {
             'duration',
             new lang_string('task_duration', 'admin'),
             $this->get_entity_name(),
-            "${tablealias}.timeend - {$tablealias}.timestart"
+            "{$tablealias}.timeend - {$tablealias}.timestart"
         ))
             ->add_joins($this->get_joins());
 

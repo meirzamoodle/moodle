@@ -93,7 +93,7 @@ class gradereport_singleview extends grade_report {
         //  The setup_group method is used to validate group mode and permissions and define the currentgroup value.
         $this->setup_groups();
 
-        $screenclass = "\\gradereport_singleview\\local\\screen\\${itemtype}";
+        $screenclass = "\\gradereport_singleview\\local\\screen\\{$itemtype}";
 
         $this->screen = new $screenclass($courseid, $itemid, $this->currentgroup);
 
