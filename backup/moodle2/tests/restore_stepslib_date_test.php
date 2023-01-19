@@ -34,6 +34,9 @@ require_once($CFG->dirroot . '/mod/assign/tests/base_test.php');
  */
 class restore_stepslib_date_test extends \restore_date_testcase {
 
+    /** @var bool|int true or new id. */
+    protected $badgeid;
+
     /**
      * Restoring a manual grade item does not result in the timecreated or
      * timemodified dates being changed.

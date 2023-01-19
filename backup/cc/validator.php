@@ -199,6 +199,9 @@ class cc_validate_type {
      */
     protected $location = null;
 
+    /** @var mixed */
+    protected $last_error;
+
     public function __construct($type, $location){
         $this->type = $type;
         $this->location = $location;

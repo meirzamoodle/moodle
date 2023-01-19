@@ -36,6 +36,9 @@ class cc_version11 extends cc_version1 {
     const weblink            = 'imswl_xmlv1p1';
     const basiclti           = 'imsbasiclti_xmlv1p0';
 
+    /** @var array */
+    protected array $ccnsnames = [];
+
     public static $checker = array(self::webcontent,
                                    self::assessment,
                                    self::associatedcontent,

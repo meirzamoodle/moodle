@@ -94,6 +94,7 @@ class cc2moodle {
     public static $instances = array();
     public static $manifest;
     public static $path_to_manifest_folder;
+    public static $path_to_tmp_folder;
 
     public static $namespaces = array('imscc'    => 'http://www.imsglobal.org/xsd/imscc/imscp_v1p1',
                                       'lomimscc' => 'http://ltsc.ieee.org/xsd/imscc/LOM',

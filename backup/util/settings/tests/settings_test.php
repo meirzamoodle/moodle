@@ -449,6 +449,19 @@ class settings_test extends \basic_testcase {
  * helper extended base_setting class that makes some methods public for testing
  */
 class mock_base_setting extends base_setting {
+
+    /** @var int */
+    protected $ui_type;
+
+    /** @var string */
+    protected $ui_label;
+
+    /** @var array */
+    protected array $ui_values = [];
+
+    /** @var array */
+    protected array $ui_options = [];
+
     public function get_vtype() {
         return $this->vtype;
     }
