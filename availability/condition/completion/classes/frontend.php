@@ -35,7 +35,7 @@ defined('MOODLE_INTERNAL') || die();
  */
 class frontend extends \core_availability\frontend {
     /**
-     * @var array Cached init parameters
+     * @var array Cached parameters
      */
     protected $cacheparams = [];
 
@@ -43,6 +43,9 @@ class frontend extends \core_availability\frontend {
      * @var string IDs of course, cm, and section for cache (if any)
      */
     protected $cachekey = '';
+
+    /** @var array Cached init parameters. */
+    protected array $cacheinitparams = [];
 
     protected function get_javascript_strings() {
         return ['option_complete', 'option_fail', 'option_incomplete', 'option_pass',
