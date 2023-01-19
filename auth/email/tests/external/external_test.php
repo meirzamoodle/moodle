@@ -46,6 +46,12 @@ require_once($CFG->dirroot . '/webservice/tests/helpers.php');
 class external_test extends externallib_advanced_testcase {
 
     /**
+     * @var \stdClass $field1 Database object from the user_info_field table.
+     * @var \stdClass $field2 Database object from the user_info_field table.
+     */
+    protected $field1, $field2;
+
+    /**
      * Set up for every test
      */
     public function setUp(): void {
