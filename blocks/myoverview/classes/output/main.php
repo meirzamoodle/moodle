@@ -152,6 +152,9 @@ class main implements renderable, templatable {
      */
     private $customfieldvalue;
 
+    /** @var bool */
+    protected bool $displaygroupingselector = false;
+
     /**
      * main constructor.
      * Initialize the user preferences

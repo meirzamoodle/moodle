@@ -32,6 +32,22 @@ require_once($CFG->dirroot . '/mod/assign/tests/generator.php');
 class observer_test extends \advanced_testcase {
     use \mod_assign_test_generator;
 
+    /** @var string Table name. */
+    protected $table;
+
+    /**
+     * @var \stdClass|null $course
+     * @var \stdClass|null $student
+     * @var \stdClass|null $teacher
+     * @var \stdClass|null $studentrole
+     * @var \stdClass|null $teacherrole
+     * @var \stdClass|null $forum
+     * @var \stdClass|null $glossary
+     * @var \stdClass|null $chat
+     */
+    protected ?\stdClass $course, $student, $teacher, $studentrole,
+        $teacherrole, $forum, $glossary, $chat = null;
+
     /**
      * Set up for every test
      */

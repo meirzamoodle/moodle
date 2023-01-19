@@ -106,6 +106,12 @@ class block_base {
 
     var $cron          = NULL;
 
+    /**
+     * Course data.
+     * @var stdClass $course
+     */
+    public $course;
+
 /// Class Functions
 
     /**
@@ -832,6 +838,9 @@ class block_tree extends block_list {
      * {@link tree_item}s.
      */
     public $content_type = BLOCK_TYPE_TREE;
+
+    /** @var string */
+    protected $id;
 
     /**
      * Make the formatted HTML ouput.
