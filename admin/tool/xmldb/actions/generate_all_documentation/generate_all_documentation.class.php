@@ -30,6 +30,9 @@
  */
 class generate_all_documentation extends XMLDBAction {
 
+    /** @var string Store the doc string. */
+    protected string $docs = '';
+
     /**
      * Init method, every subclass will have its own
      */

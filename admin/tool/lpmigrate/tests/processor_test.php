@@ -29,6 +29,27 @@ use core_competency\course_module_competency;
 class processor_test extends \advanced_testcase {
 
     /**
+     * @var \core_competency\competency_framework|null $f1
+     * @var \core_competency\competency_framework|null $f2
+     */
+    protected $f1, $f2 = null;
+
+    /**
+     * @var object|null $c1 course instance.
+     * @var object|null $c2 course instance.
+     */
+    protected ?object $c1, $c2 = null;
+
+    /**
+     * @var array $f1comps
+     * @var array $f2comps
+     * @var array $cms
+     * @var array $ccs
+     * @var array $cmcs
+     */
+    protected array $f1comps, $f2comps, $cms, $ccs, $cmcs = [];
+
+    /**
      * This sets up a few things, and assign class variables.
      *
      * We create 2 frameworks, each with 2 matching competencies and 1 foreign.

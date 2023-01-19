@@ -25,6 +25,9 @@ namespace tool_uploaduser;
  */
 class cli_test extends \advanced_testcase {
 
+    /** @var \stdClass Database object from the user_info_field table. */
+    protected $field1;
+
     /**
      * Generate cli_helper and mock $_SERVER['argv']
      *

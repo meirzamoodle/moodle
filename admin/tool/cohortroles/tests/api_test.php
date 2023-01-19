@@ -36,6 +36,9 @@ class api_test extends \advanced_testcase {
     /** @var \stdClass $role */
     protected $role = null;
 
+    /** @var int|\coding_exception id or dml_exception. */
+    protected $roleid;
+
     /**
      * Setup function- we will create a course and add an assign instance to it.
      */

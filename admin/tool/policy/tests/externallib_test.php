@@ -36,6 +36,21 @@ require_once($CFG->dirroot . '/user/externallib.php');
 class externallib_test extends externallib_advanced_testcase {
 
     /**
+     * @var \tool_policy\policy_version $policy1 Policy document 1.
+     * @var \tool_policy\policy_version $policy2 Policy document 2.
+     * @var \tool_policy\policy_version $policy3 Policy document 3.
+     */
+    protected $policy1, $policy2, $policy3;
+
+    /**
+     * @var \stdClass $child user record.
+     * @var \stdClass $parent user record.
+     * @var \stdClass $adult user record.
+     */
+    protected $child, $parent, $adult;
+
+
+    /**
      * Setup function- we will create some policy docs.
      */
     public function setUp(): void {
