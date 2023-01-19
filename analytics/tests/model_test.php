@@ -43,6 +43,13 @@ require_once(__DIR__ . '/fixtures/test_analysis.php');
  */
 class model_test extends \advanced_testcase {
 
+    /** @var \core_analytics\model Store Model. */
+    protected $model;
+
+    /** @var \stdClass Store get Model. */
+    protected $modelobj;
+
+
     public function setUp(): void {
 
         $this->setAdminUser();

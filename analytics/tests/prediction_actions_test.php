@@ -30,6 +30,28 @@ require_once(__DIR__ . '/fixtures/test_target_shortname.php');
  */
 class prediction_actions_test extends \advanced_testcase {
 
+    /** @var \core_analytics\model Store Model. */
+    protected $model;
+
+    /** @var \stdClass Store get Model. */
+    protected $modelobj;
+
+    /**
+     * @var \stdClass $course1 Course 1 record.
+     * @var \stdClass $course2 Course 2 record.
+     */
+    protected $course1, $course2;
+
+    /** @var \context_course Store Model. */
+    protected $context;
+
+    /**
+     * @var \stdClass $teacher1 Teacher 1 user record.
+     * @var \stdClass $teacher2 Teacher 2 user record.
+     * @var \stdClass $teacher3 Teacher 3 user record.
+     */
+    protected $teacher1, $teacher2, $teacher3;
+
     /**
      * Common startup tasks
      */
