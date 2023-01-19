@@ -59,6 +59,9 @@ class cachestore_dummy extends cache_store {
      */
     protected $store = array();
 
+    /** @var cache_definition|null  */
+    protected ?cache_definition $definition = null;
+
     /**
      * Constructs a dummy store instance.
      * @param string $name

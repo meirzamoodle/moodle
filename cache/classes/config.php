@@ -65,6 +65,9 @@ class cache_config {
      */
     protected $configdefinitionmappings = array();
 
+    /** @var array The locking mappings that have been configured. */
+    protected array $configlockmappings = [];
+
     /**
      * An array of configured cache lock instances.
      * @var array
