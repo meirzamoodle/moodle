@@ -48,6 +48,9 @@ class external_test extends \advanced_testcase {
     private $tagid;
     private $postid;
 
+    /** @var string */
+    protected string $publishstate = '';
+
     protected function setUp(): void {
         global $DB, $CFG;
         parent::setUp();

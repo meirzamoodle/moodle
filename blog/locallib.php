@@ -38,7 +38,7 @@ require_once($CFG->libdir . '/filelib.php');
  * @copyright  2009 Nicolas Connault
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class blog_entry implements renderable {
+class blog_entry extends \stdClass implements renderable {
     // Public Database fields.
     public $id;
     public $userid;
