@@ -42,6 +42,9 @@ use table_sql;
  */
 class external_backpacks_table extends table_sql {
 
+    /** @var \context_system|null context instance. */
+    protected ?\context_system $context = null;
+
     /**
      * Sets up the table.
      */

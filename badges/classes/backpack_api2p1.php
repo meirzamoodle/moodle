@@ -64,6 +64,9 @@ class backpack_api2p1 {
     /** @var null api URL of the backpack. */
     protected $backpackapiurl = '';
 
+    /** @var mixed */
+    protected $get_clientid;
+
     /**
      * backpack_api2p1 constructor.
      *

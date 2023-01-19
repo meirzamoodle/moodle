@@ -47,7 +47,7 @@ use stdClass;
  * @copyright  2012 onwards Totara Learning Solutions Ltd {@link http://www.totaralms.com/}
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class badge {
+class badge extends \stdClass {
     /** @var int Badge id */
     public $id;
 
@@ -241,6 +241,8 @@ class badge {
             $fordb->{$k} = $v;
         }
         unset($fordb->criteria);
+        unset($fordb->awards);
+        unset($fordb->statstring);
 
         $fordb->timemodified = time();
         if ($DB->update_record_raw('badge', $fordb)) {

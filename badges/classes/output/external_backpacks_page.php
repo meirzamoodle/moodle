@@ -39,6 +39,12 @@ use core_badges\external\backpack_exporter;
  */
 class external_backpacks_page implements \renderable {
 
+    /** @var \moodle_url */
+    protected $url;
+
+    /** @var array List the backpacks at site level. */
+    protected array $backpacks = [];
+
     /**
      * Constructor.
      * @param \moodle_url $url

@@ -128,6 +128,15 @@ abstract class award_criteria {
      */
     public $params = array();
 
+    /** @var string */
+    public $criteriatype;
+
+    /** @var string */
+    public $required_param;
+
+    /** @var string */
+    public $optional_params;
+
     /**
      * The base constructor
      *
