@@ -97,6 +97,9 @@ class comment {
     /** @var string comment itemid component in non-javascript UI */
     private static $comment_component = null;
 
+    /** @var \stdClass|null */
+    protected ?\stdClass $comment_param = null;
+
     /**
      * Construct function of comment class, initialise
      * class members
