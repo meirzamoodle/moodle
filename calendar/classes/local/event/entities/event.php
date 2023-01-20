@@ -112,6 +112,9 @@ class event implements event_interface {
      */
     protected $subscription;
 
+    /** @var string */
+    public $testattribute;
+
     /**
      * Constructor.
      *

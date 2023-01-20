@@ -1066,6 +1066,16 @@ class calendar_information {
     /** @var string The calendar's view mode. */
     protected $viewmode;
 
+    /** @var \stdClass|null */
+    public ?\stdClass $course = null;
+
+    /**
+     * @var int $day
+     * @var int $month
+     * @var int $year
+     */
+    protected int $month, $day, $year = 0;
+
     /**
      * Creates a new instance
      *
