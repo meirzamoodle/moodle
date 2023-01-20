@@ -41,6 +41,7 @@ class course extends \core_search\base {
      */
     protected static $levels = [CONTEXT_COURSE];
 
+
     /**
      * Returns recordset containing required data for indexing courses.
      *
