@@ -29,6 +29,9 @@ class admin_setting_configtext_trim_lower extends admin_setting_configtext {
     /* @var boolean whether to lowercase the value or not before writing in to the db */
     private $lowercase;
 
+    /**  @var bool To store enable/disabled status of the input field. */
+    protected bool $enabled = true;
+
     /**
      * Constructor: uses parent::__construct
      *
