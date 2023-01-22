@@ -174,7 +174,7 @@ class user extends grade_report {
     /**
      * @var array
      */
-    public $showtotalsifcontainhidden;
+    public array $showtotalsifcontainhidden = [];
 
     /**
      * @var string

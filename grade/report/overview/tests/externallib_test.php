@@ -37,6 +37,22 @@ require_once($CFG->dirroot . '/webservice/tests/helpers.php');
 class externallib_test extends externallib_advanced_testcase {
 
     /**
+     * @var \stdClass $course1 Course 1 record.
+     * @var \stdClass $course2 Course 2 record.
+     */
+    protected $course1, $course2;
+
+    /**
+     * @var \stdClass $student1 To store student user record.
+     * @var \stdClass $student2 To store student user record.
+     * @var \stdClass $teacher To store Teacher user record.
+     */
+    protected $student1, $student2, $teacher;
+
+    /** @var array */
+    protected array $student1grade1, $student1grade2, $student2grade = [];
+
+    /**
      * Set up for every test
      */
     public function setUp(): void {

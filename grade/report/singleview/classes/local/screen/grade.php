@@ -62,6 +62,9 @@ class grade extends tablelike implements selectable_items, filterable_items {
      */
     private $requirespaging = true;
 
+    /** @var mixed To store a grade_item min/max range value. */
+    protected $range;
+
     /**
      * True if $CFG->grade_overridecat is true
      *

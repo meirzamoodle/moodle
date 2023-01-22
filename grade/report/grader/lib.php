@@ -115,6 +115,15 @@ class grade_report_grader extends grade_report {
      */
     protected $overridecat;
 
+    /** @var array of objects, or empty array if no records were found. */
+    protected array $users = [];
+
+    /** @var array */
+    protected array $userselect_params = [];
+
+    /** @var array */
+    public $user_prefs;
+
     /**
      * Constructor. Sets local copies of user preferences and initialises grade_tree.
      * @param int $courseid

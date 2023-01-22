@@ -69,6 +69,9 @@ class tablelog extends \table_sql implements \renderable {
      */
     protected $defaultdecimalpoints;
 
+    /** @var int To store the current page being displayed. */
+    protected int $page = 0;
+
     /**
      * Sets up the table_log parameters.
      *

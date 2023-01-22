@@ -60,6 +60,12 @@ abstract class tablelike extends screen implements be_readonly {
      */
     protected $definition = [];
 
+    /** @var int */
+    protected int $total = 0;
+
+    /** @var mixed To store course data. */
+    protected int $index = 0;
+
     /**
      * Format a row of the table
      *

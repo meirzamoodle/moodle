@@ -154,6 +154,15 @@ abstract class grade_report {
      */
     protected $userwheresql_params = array();
 
+    /** @var \stdClass To store user data. */
+    protected $user;
+
+    /** @var array */
+    public array $showtotalsifcontainhidden = [];
+
+    /** @var string To store a link to preferences page */
+    protected $preferences_page;
+
     /**
      * Constructor. Sets local copies of user preferences and initialises grade_tree.
      * @param int $courseid

@@ -58,8 +58,9 @@ class grade_report_overview extends grade_report {
 
     /**
      * show course/category totals if they contain hidden items
+     * @var showtotalsifcontainhidden $studentcourseids
      */
-    var $showtotalsifcontainhidden;
+    public array $showtotalsifcontainhidden = [];
 
     /**
      * An array of course ids that the user is a student in.
