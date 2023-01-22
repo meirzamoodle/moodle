@@ -10,6 +10,9 @@
         var $temp_dir;
         var $error;
 
+        /** @var bool To store value of supported_platform. */
+        protected bool $supported_platform = false;
+
         /**
          * Constructor - create temporary directories and build paths to
          * external 'helper' binaries.
@@ -180,6 +183,3 @@
         }
 
     }
-
-
-
