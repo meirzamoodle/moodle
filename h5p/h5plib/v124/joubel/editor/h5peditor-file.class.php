@@ -11,6 +11,9 @@ class H5peditorFile {
   private $result, $field, $interface;
   public $type, $name, $path, $mime, $size;
 
+  /** @var string|array To store information about extension of a file */
+  protected $extension;
+
   /**
    * Constructor. Process data for file uploaded through the editor.
    */

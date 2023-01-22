@@ -778,6 +778,9 @@ class H5PValidator {
     ),
   );
 
+  /** @var H5PContentValidator */
+  protected ?H5PContentValidator $h5pCV = null;
+
   /**
    * Constructor for the H5PValidator
    *
@@ -2133,6 +2136,21 @@ class H5PCore {
     self::DISABLE_EMBED => self::DISPLAY_OPTION_EMBED,
     self::DISABLE_COPYRIGHT => self::DISPLAY_OPTION_COPYRIGHT
   );
+
+  /** @var string */
+  public $url;
+
+  /** @var int */
+  public int $development_mode = 0;
+
+  /** @var bool */
+  public bool $aggregateAssets = true;
+
+  /** @var string */
+  public $fullPluginPath;
+
+  /** @var string */
+  public $relativePathRegExp;
 
   /**
    * Constructor for the H5PCore
@@ -4154,6 +4172,9 @@ class H5PContentValidator {
   public $h5pC;
   private $typeMap, $libraries, $dependencies, $nextWeight;
   private static $allowed_styleable_tags = array('span', 'p', 'div','h1','h2','h3', 'td');
+
+  /** @var array|bool|object */
+  protected $allowedStyles;
 
   /**
    * Constructor for the H5PContentValidator
