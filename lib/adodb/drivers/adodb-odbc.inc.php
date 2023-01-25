@@ -57,11 +57,14 @@ class ADODB_odbc extends ADOConnection {
 	var $_autocommit = true;
 	var $_lastAffectedRows = 0;
 	var $uCaseTables = true; // for meta* functions, uppercase table names
-	
+
 	/*
 	 * Tells the metaColumns feature whether to return actual or meta type
 	 */
 	public $metaColumnsReturnType = METACOLUMNS_RETURNS_ACTUAL;
+
+	/** @var string SQL statement to execute. */
+	var $connectStmt;
 
 	function __construct() {}
 

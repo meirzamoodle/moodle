@@ -27,3 +27,4 @@ Added:
 Notes:
  * 2023-02-10 Applied patch https://github.com/ADOdb/ADOdb/pull/928 to avoid PHP 8.2 deprecations.
    See MDL-76413 for more details.
+ * Applied patch https://github.com/ADOdb/ADOdb/pull/926

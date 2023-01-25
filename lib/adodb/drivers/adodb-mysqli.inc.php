@@ -92,6 +92,9 @@ class ADODB_mysqli extends ADOConnection {
 	 */
 	private $isSelectStatement = false;
 
+	/** @var string Holds the current database name. */
+	var $databaseName = '';
+
 	/**
 	 * ADODB_mysqli constructor.
 	 */

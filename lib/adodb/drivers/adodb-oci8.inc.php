@@ -122,6 +122,9 @@ END;
 	 */
 	public $seqPrefix = 'SEQ_';
 
+	/** @var mixed */
+	var $seqField;
+
 	/*  function MetaColumns($table, $normalize=true) added by smondino@users.sourceforge.net*/
 	function MetaColumns($table, $normalize=true)
 	{
@@ -1603,6 +1606,9 @@ class ADORecordset_oci8 extends ADORecordSet {
 	var $databaseType = 'oci8';
 	var $bind=false;
 	var $_fieldobjs;
+
+	/** @var mixed */
+	var $_refcursor;
 
 	function __construct($queryID,$mode=false)
 	{
