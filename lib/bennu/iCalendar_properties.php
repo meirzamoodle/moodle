@@ -25,6 +25,12 @@ class iCalendar_property {
     var $val_multi        = false;
     var $val_default      = NULL;
 
+    /** @var mixed */
+    protected $val_type;
+
+    /** @var string */
+    protected $name;
+
     function __construct() {
         $this->parameters = array();
     }
