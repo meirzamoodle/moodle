@@ -4,7 +4,7 @@
  *
  * @package MCManager.utils
  * @author Moxiecode
- * @copyright Copyright © 2007, Moxiecode Systems AB, All rights reserved.
+ * @copyright Copyright ï¿½ 2007, Moxiecode Systems AB, All rights reserved.
  */
 
 define('JSON_BOOL', 1);
@@ -28,6 +28,9 @@ class Moxiecode_JSONReader {
 	var $_value, $_token;
 	var $_location, $_lastLocations;
 	var $_needProp;
+
+	/** @var array configuration name/value array. */
+	public array $_lastLocation = [];
 
 	public function __construct($data) {
 		$this->_data = $data;
@@ -370,6 +373,16 @@ class Moxiecode_JSONReader {
  * @package MCManager.utils
  */
 class Moxiecode_JSON {
+
+	/** @var array */
+	protected array $data = [];
+
+	/** @var array */
+	protected array $parents = [];
+
+	/** @var array */
+	protected array $cur = [];
+
 	public function __construct() {
 	}
 

@@ -49,6 +49,12 @@ class loader {
     /** @var string The mimetype to send */
     protected $mimetype = null;
 
+    /** @var array|null the shifted value, or null if array is empty or is not an array. */
+    protected ?array $component = null;
+
+    /** @var string Language file name. */
+    public $candidatefile;
+
     /**
      * Initialise the class, parse the request and serve the content.
      */
