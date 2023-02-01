@@ -45,6 +45,9 @@ class dml_read_slave_test extends \base_testcase {
     /** @var float */
     static private $dbreadonlylatency = 0.8;
 
+    /** @var bool */
+    private bool $_called = false;
+
     /**
      * Instantiates a test database interface object.
      *

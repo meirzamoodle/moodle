@@ -44,6 +44,9 @@ class read_slave_moodle_database extends test_moodle_database {
     /** @var string */
     protected $handle;
 
+    /** @var string */
+    protected $txnhandle;
+
     /**
      * Does not connect to the database. Sets handle property to $dbhost
      * @param string $dbhost
