@@ -50,6 +50,9 @@ class lang {
     /** @var bool Whether Moodle is fully loaded or not */
     protected $fullyloaded = false;
 
+    /** @var string Language file name. */
+    public $candidatefile;
+
     /**
      * Constructor to load and serve the langfile.
      */
