@@ -461,6 +461,8 @@ class Google_Service_Dataflow_ApproximateProgress extends Google_Model
   protected $positionDataType = '';
   public $remainingTime;
 
+  /** @var Google_Service_Dataflow_Position */
+  protected $position;
 
   public function setPercentComplete($percentComplete)
   {
@@ -531,6 +533,17 @@ class Google_Service_Dataflow_ComputationTopology extends Google_Collection
   public $systemStageName;
   public $userStageName;
 
+  /** @var Google_Service_Dataflow_StreamLocation[] */
+  protected $inputs;
+
+  /** @var Google_Service_Dataflow_KeyRangeLocation[] */
+  protected $keyRanges;
+
+  /** @var Google_Service_Dataflow_StreamLocation[] */
+  protected $outputs;
+
+  /** @var Google_Service_Dataflow_StateFamilyConfig[] */
+  protected $stateFamilies;
 
   public function setComputationId($computationId)
   {
@@ -598,6 +611,8 @@ class Google_Service_Dataflow_ConcatPosition extends Google_Model
   protected $positionType = 'Google_Service_Dataflow_Position';
   protected $positionDataType = '';
 
+  /** @var Google_Service_Dataflow_Position */
+  protected $position;
 
   public function setIndex($index)
   {
@@ -669,6 +684,8 @@ class Google_Service_Dataflow_DerivedSource extends Google_Model
   protected $sourceType = 'Google_Service_Dataflow_Source';
   protected $sourceDataType = '';
 
+  /** @var Google_Service_Dataflow_Source */
+  protected $source;
 
   public function setDerivationMode($derivationMode)
   {
@@ -732,6 +749,11 @@ class Google_Service_Dataflow_DynamicSourceSplit extends Google_Model
   protected $residualType = 'Google_Service_Dataflow_DerivedSource';
   protected $residualDataType = '';
 
+  /** @var Google_Service_Dataflow_DerivedSource */
+  protected $primary;
+
+  /** @var Google_Service_Dataflow_DerivedSource */
+  protected $residual;
 
   public function setPrimary(Google_Service_Dataflow_DerivedSource $primary)
   {
@@ -767,6 +789,8 @@ class Google_Service_Dataflow_Environment extends Google_Collection
   protected $workerPoolsType = 'Google_Service_Dataflow_WorkerPool';
   protected $workerPoolsDataType = 'array';
 
+  /** @var Google_Service_Dataflow_WorkerPool[] */
+  protected $workerPools;
 
   public function setClusterManagerApiService($clusterManagerApiService)
   {
@@ -866,6 +890,8 @@ class Google_Service_Dataflow_FlattenInstruction extends Google_Collection
   protected $inputsType = 'Google_Service_Dataflow_InstructionInput';
   protected $inputsDataType = 'array';
 
+  /** @var Google_Service_Dataflow_InstructionInput[] */
+  protected $inputs;
 
   public function setInputs($inputs)
   {
@@ -966,6 +992,14 @@ class Google_Service_Dataflow_Job extends Google_Collection
   public $transformNameMapping;
   public $type;
 
+  /** @var Google_Service_Dataflow_Environment */
+  protected $environment;
+
+  /** @var Google_Service_Dataflow_JobExecutionInfo */
+  protected $executionInfo;
+
+  /** @var Google_Service_Dataflow_Step[] */
+  protected $steps;
 
   public function setClientRequestId($clientRequestId)
   {
@@ -1096,6 +1130,8 @@ class Google_Service_Dataflow_JobExecutionInfo extends Google_Model
   protected $stagesType = 'Google_Service_Dataflow_JobExecutionStageInfo';
   protected $stagesDataType = 'map';
 
+  /** @var Google_Service_Dataflow_JobExecutionStageInfo[] */
+  protected $stages;
 
   public function setStages($stages)
   {
@@ -1182,6 +1218,8 @@ class Google_Service_Dataflow_JobMetrics extends Google_Collection
   protected $metricsType = 'Google_Service_Dataflow_MetricUpdate';
   protected $metricsDataType = 'array';
 
+  /** @var Google_Service_Dataflow_MetricUpdate[] */
+  protected $metrics;
 
   public function setMetricTime($metricTime)
   {
@@ -1355,6 +1393,8 @@ class Google_Service_Dataflow_LeaseWorkItemResponse extends Google_Collection
   protected $workItemsType = 'Google_Service_Dataflow_WorkItem';
   protected $workItemsDataType = 'array';
 
+  /** @var Google_Service_Dataflow_WorkItem[] */
+  protected $workItems;
 
   public function setWorkItems($workItems)
   {
@@ -1375,6 +1415,8 @@ class Google_Service_Dataflow_ListJobMessagesResponse extends Google_Collection
   protected $jobMessagesDataType = 'array';
   public $nextPageToken;
 
+  /** @var Google_Service_Dataflow_JobMessage[] */
+  protected $jobMessages;
 
   public function setJobMessages($jobMessages)
   {
@@ -1403,6 +1445,8 @@ class Google_Service_Dataflow_ListJobsResponse extends Google_Collection
   protected $jobsDataType = 'array';
   public $nextPageToken;
 
+  /** @var Google_Service_Dataflow_Job[] */
+  protected $jobs;
 
   public function setJobs($jobs)
   {
@@ -1432,6 +1476,8 @@ class Google_Service_Dataflow_MapTask extends Google_Collection
   public $stageName;
   public $systemName;
 
+  /** @var Google_Service_Dataflow_ParallelInstruction[] */
+  protected $instructions;
 
   public function setInstructions($instructions)
   {
@@ -1513,6 +1559,8 @@ class Google_Service_Dataflow_MetricUpdate extends Google_Model
   public $set;
   public $updateTime;
 
+  /** @var Google_Service_Dataflow_MetricStructuredName */
+  protected $name;
 
   public function setCumulative($cumulative)
   {
@@ -1662,6 +1710,14 @@ class Google_Service_Dataflow_ParDoInstruction extends Google_Collection
   protected $sideInputsDataType = 'array';
   public $userFn;
 
+  /** @var Google_Service_Dataflow_InstructionInput */
+  protected $input;
+
+  /** @var Google_Service_Dataflow_MultiOutputInfo[] */
+  protected $multiOutputInfos;
+
+  /** @var Google_Service_Dataflow_SideInputInfo[] */
+  protected $sideInputs;
 
   public function setInput(Google_Service_Dataflow_InstructionInput $input)
   {
@@ -1729,6 +1785,23 @@ class Google_Service_Dataflow_ParallelInstruction extends Google_Collection
   protected $writeType = 'Google_Service_Dataflow_WriteInstruction';
   protected $writeDataType = '';
 
+  /** @var Google_Service_Dataflow_FlattenInstruction */
+  protected $flatten;
+
+  /** @var Google_Service_Dataflow_InstructionOutput[] */
+  protected $outputs;
+
+  /** @var Google_Service_Dataflow_ParDoInstruction */
+  protected $parDo;
+
+  /** @var Google_Service_Dataflow_PartialGroupByKeyInstruction */
+  protected $partialGroupByKey;
+
+  /** @var Google_Service_Dataflow_ReadInstruction */
+  protected $read;
+
+  /** @var Google_Service_Dataflow_WriteInstruction */
+  protected $write;
 
   public function setFlatten(Google_Service_Dataflow_FlattenInstruction $flatten)
   {
@@ -1805,6 +1878,8 @@ class Google_Service_Dataflow_PartialGroupByKeyInstruction extends Google_Model
   public $inputElementCodec;
   public $valueCombiningFn;
 
+  /** @var Google_Service_Dataflow_InstructionInput */
+  protected $input;
 
   public function setInput(Google_Service_Dataflow_InstructionInput $input)
   {
@@ -1852,6 +1927,8 @@ class Google_Service_Dataflow_Position extends Google_Model
   public $recordIndex;
   public $shufflePosition;
 
+  /** @var Google_Service_Dataflow_ConcatPosition */
+  protected $concatPosition;
 
   public function setByteOffset($byteOffset)
   {
@@ -1972,6 +2049,8 @@ class Google_Service_Dataflow_ReadInstruction extends Google_Model
   protected $sourceType = 'Google_Service_Dataflow_Source';
   protected $sourceDataType = '';
 
+  /** @var Google_Service_Dataflow_Source */
+  protected $source;
 
   public function setSource(Google_Service_Dataflow_Source $source)
   {
@@ -1993,6 +2072,8 @@ class Google_Service_Dataflow_ReportWorkItemStatusRequest extends Google_Collect
   protected $workItemStatusesDataType = 'array';
   public $workerId;
 
+  /** @var Google_Service_Dataflow_WorkItemStatus[] */
+  protected $workItemStatuses;
 
   public function setCurrentWorkerTime($currentWorkerTime)
   {
@@ -2028,6 +2109,8 @@ class Google_Service_Dataflow_ReportWorkItemStatusResponse extends Google_Collec
   protected $workItemServiceStatesType = 'Google_Service_Dataflow_WorkItemServiceState';
   protected $workItemServiceStatesDataType = 'array';
 
+  /** @var Google_Service_Dataflow_WorkItemServiceState[] */
+  protected $workItemServiceStates;
 
   public function setWorkItemServiceStates($workItemServiceStates)
   {
@@ -2053,6 +2136,11 @@ class Google_Service_Dataflow_SeqMapTask extends Google_Collection
   public $systemName;
   public $userFn;
 
+  /** @var Google_Service_Dataflow_SideInputInfo[] */
+  protected $inputs;
+
+  /** @var Google_Service_Dataflow_SeqMapTaskOutputInfo[] */
+  protected $outputInfos;
 
   public function setInputs($inputs)
   {
@@ -2112,6 +2200,8 @@ class Google_Service_Dataflow_SeqMapTaskOutputInfo extends Google_Model
   protected $sinkDataType = '';
   public $tag;
 
+  /** @var Google_Service_Dataflow_Sink */
+  protected $sink;
 
   public function setSink(Google_Service_Dataflow_Sink $sink)
   {
@@ -2171,6 +2261,8 @@ class Google_Service_Dataflow_SideInputInfo extends Google_Collection
   protected $sourcesDataType = 'array';
   public $tag;
 
+  /** @var Google_Service_Dataflow_Source[] */
+  protected $sources;
 
   public function setKind($kind)
   {
@@ -2248,6 +2340,8 @@ class Google_Service_Dataflow_Source extends Google_Collection
   protected $metadataDataType = '';
   public $spec;
 
+  /** @var Google_Service_Dataflow_SourceMetadata */
+  protected $metadata;
 
   public function setBaseSpecs($baseSpecs)
   {
@@ -2312,6 +2406,17 @@ class Google_Service_Dataflow_SourceFork extends Google_Model
   protected $residualSourceType = 'Google_Service_Dataflow_DerivedSource';
   protected $residualSourceDataType = '';
 
+  /** @var Google_Service_Dataflow_SourceSplitShard */
+  protected $primary;
+
+  /** @var Google_Service_Dataflow_DerivedSource */
+  protected $primarySource;
+
+  /** @var Google_Service_Dataflow_SourceSplitShard */
+  protected $residual;
+
+  /** @var Google_Service_Dataflow_DerivedSource */
+  protected $residualSource;
 
   public function setPrimary(Google_Service_Dataflow_SourceSplitShard $primary)
   {
@@ -2354,6 +2459,8 @@ class Google_Service_Dataflow_SourceGetMetadataRequest extends Google_Model
   protected $sourceType = 'Google_Service_Dataflow_Source';
   protected $sourceDataType = '';
 
+  /** @var Google_Service_Dataflow_Source */
+  protected $source;
 
   public function setSource(Google_Service_Dataflow_Source $source)
   {
@@ -2372,6 +2479,8 @@ class Google_Service_Dataflow_SourceGetMetadataResponse extends Google_Model
   protected $metadataType = 'Google_Service_Dataflow_SourceMetadata';
   protected $metadataDataType = '';
 
+  /** @var Google_Service_Dataflow_SourceMetadata */
+  protected $metadata;
 
   public function setMetadata(Google_Service_Dataflow_SourceMetadata $metadata)
   {
@@ -2427,6 +2536,11 @@ class Google_Service_Dataflow_SourceOperationRequest extends Google_Model
   protected $splitType = 'Google_Service_Dataflow_SourceSplitRequest';
   protected $splitDataType = '';
 
+  /** @var Google_Service_Dataflow_SourceGetMetadataRequest */
+  protected $getMetadata;
+
+  /** @var Google_Service_Dataflow_SourceSplitRequest */
+  protected $split;
 
   public function setGetMetadata(Google_Service_Dataflow_SourceGetMetadataRequest $getMetadata)
   {
@@ -2455,6 +2569,11 @@ class Google_Service_Dataflow_SourceOperationResponse extends Google_Model
   protected $splitType = 'Google_Service_Dataflow_SourceSplitResponse';
   protected $splitDataType = '';
 
+  /** @var Google_Service_Dataflow_SourceGetMetadataResponse */
+  protected $getMetadata;
+
+  /** @var Google_Service_Dataflow_SourceSplitResponse */
+  protected $split;
 
   public function setGetMetadata(Google_Service_Dataflow_SourceGetMetadataResponse $getMetadata)
   {
@@ -2513,6 +2632,11 @@ class Google_Service_Dataflow_SourceSplitRequest extends Google_Model
   protected $sourceType = 'Google_Service_Dataflow_Source';
   protected $sourceDataType = '';
 
+  /** @var Google_Service_Dataflow_SourceSplitOptions */
+  protected $options;
+
+  /** @var Google_Service_Dataflow_Source */
+  protected $source;
 
   public function setOptions(Google_Service_Dataflow_SourceSplitOptions $options)
   {
@@ -2543,6 +2667,11 @@ class Google_Service_Dataflow_SourceSplitResponse extends Google_Collection
   protected $shardsType = 'Google_Service_Dataflow_SourceSplitShard';
   protected $shardsDataType = 'array';
 
+  /** @var Google_Service_Dataflow_DerivedSource[] */
+  protected $bundles;
+
+  /** @var Google_Service_Dataflow_SourceSplitShard[] */
+  protected $shards;
 
   public function setBundles($bundles)
   {
@@ -2578,6 +2707,8 @@ class Google_Service_Dataflow_SourceSplitShard extends Google_Model
   protected $sourceType = 'Google_Service_Dataflow_Source';
   protected $sourceDataType = '';
 
+  /** @var Google_Service_Dataflow_Source */
+  protected $source;
 
   public function setDerivationMode($derivationMode)
   {
@@ -2715,6 +2846,17 @@ class Google_Service_Dataflow_StreamLocation extends Google_Model
   protected $streamingStageLocationType = 'Google_Service_Dataflow_StreamingStageLocation';
   protected $streamingStageLocationDataType = '';
 
+  /** @var Google_Service_Dataflow_CustomSourceLocation */
+  protected $customSourceLocation;
+
+  /** @var Google_Service_Dataflow_PubsubLocation */
+  protected $pubsubLocation;
+
+  /** @var Google_Service_Dataflow_StreamingSideInputLocation */
+  protected $sideInputLocation;
+
+  /** @var Google_Service_Dataflow_StreamingStageLocation */
+  protected $streamingStageLocation;
 
   public function setCustomSourceLocation(Google_Service_Dataflow_CustomSourceLocation $customSourceLocation)
   {
@@ -2759,6 +2901,8 @@ class Google_Service_Dataflow_StreamingComputationRanges extends Google_Collecti
   protected $rangeAssignmentsType = 'Google_Service_Dataflow_KeyRangeDataDiskAssignment';
   protected $rangeAssignmentsDataType = 'array';
 
+  /** @var Google_Service_Dataflow_KeyRangeDataDiskAssignment[] */
+  protected $rangeAssignments;
 
   public function setComputationId($computationId)
   {
@@ -2789,6 +2933,11 @@ class Google_Service_Dataflow_StreamingComputationTask extends Google_Collection
   protected $dataDisksDataType = 'array';
   public $taskType;
 
+  /** @var Google_Service_Dataflow_StreamingComputationRanges[] */
+  protected $computationRanges;
+
+  /** @var Google_Service_Dataflow_MountedDataDisk[] */
+  protected $dataDisks;
 
   public function setComputationRanges($computationRanges)
   {
@@ -2825,6 +2974,8 @@ class Google_Service_Dataflow_StreamingSetupTask extends Google_Model
   protected $streamingComputationTopologyDataType = '';
   public $workerHarnessPort;
 
+  /** @var Google_Service_Dataflow_TopologyConfig */
+  protected $streamingComputationTopology;
 
   public function setReceiveWorkPort($receiveWorkPort)
   {
@@ -2921,6 +3072,8 @@ class Google_Service_Dataflow_TaskRunnerSettings extends Google_Collection
   public $vmId;
   public $workflowFileName;
 
+  /** @var Google_Service_Dataflow_WorkerSettings */
+  protected $parallelWorkerSettings;
 
   public function setAlsologtostderr($alsologtostderr)
   {
@@ -3087,6 +3240,11 @@ class Google_Service_Dataflow_TopologyConfig extends Google_Collection
   protected $dataDiskAssignmentsDataType = 'array';
   public $userStageToComputationNameMap;
 
+  /** @var Google_Service_Dataflow_ComputationTopology[] */
+  protected $computations;
+
+  /** @var Google_Service_Dataflow_DataDiskAssignment[] */
+  protected $dataDiskAssignments;
 
   public function setComputations($computations)
   {
@@ -3145,6 +3303,26 @@ class Google_Service_Dataflow_WorkItem extends Google_Collection
   protected $streamingSetupTaskType = 'Google_Service_Dataflow_StreamingSetupTask';
   protected $streamingSetupTaskDataType = '';
 
+  /** @var Google_Service_Dataflow_MapTask */
+  protected $mapTask;
+
+  /** @var Google_Service_Dataflow_Package[] */
+  protected $packages;
+
+  /** @var Google_Service_Dataflow_SeqMapTask */
+  protected $seqMapTask;
+
+  /** @var Google_Service_Dataflow_ShellTask */
+  protected $shellTask;
+
+  /** @var Google_Service_Dataflow_SourceOperationRequest */
+  protected $sourceOperationTask;
+
+  /** @var Google_Service_Dataflow_StreamingComputationTask */
+  protected $streamingComputationTask;
+
+  /** @var Google_Service_Dataflow_StreamingSetupTask */
+  protected $streamingSetupTask;
 
   public function setConfiguration($configuration)
   {
@@ -3273,6 +3451,11 @@ class Google_Service_Dataflow_WorkItemServiceState extends Google_Model
   protected $suggestedStopPositionType = 'Google_Service_Dataflow_Position';
   protected $suggestedStopPositionDataType = '';
 
+  /** @var Google_Service_Dataflow_ApproximateProgress */
+  protected $suggestedStopPoint;
+
+  /** @var Google_Service_Dataflow_Position */
+  protected $suggestedStopPosition;
 
   public function setHarnessData($harnessData)
   {
@@ -3352,6 +3535,26 @@ class Google_Service_Dataflow_WorkItemStatus extends Google_Collection
   protected $stopPositionDataType = '';
   public $workItemId;
 
+  /** @var Google_Service_Dataflow_DynamicSourceSplit */
+  protected $dynamicSourceSplit;
+
+  /** @var Google_Service_Dataflow_Status[] */
+  protected $errors;
+
+  /** @var Google_Service_Dataflow_MetricUpdate[] */
+  protected $metricUpdates;
+
+  /** @var Google_Service_Dataflow_ApproximateProgress */
+  protected $progress;
+
+  /** @var Google_Service_Dataflow_SourceFork */
+  protected $sourceFork;
+
+  /** @var Google_Service_Dataflow_SourceOperationResponse */
+  protected $sourceOperationResponse;
+
+  /** @var Google_Service_Dataflow_Position */
+  protected $stopPosition;
 
   public function setCompleted($completed)
   {
@@ -3470,6 +3673,17 @@ class Google_Service_Dataflow_WorkerPool extends Google_Collection
   public $teardownPolicy;
   public $zone;
 
+  /** @var Google_Service_Dataflow_AutoscalingSettings */
+  protected $autoscalingSettings;
+
+  /** @var Google_Service_Dataflow_Disk[] */
+  protected $dataDisks;
+
+  /** @var Google_Service_Dataflow_Package[] */
+  protected $packages;
+
+  /** @var Google_Service_Dataflow_TaskRunnerSettings */
+  protected $taskrunnerSettings;
 
   public function setAutoscalingSettings(Google_Service_Dataflow_AutoscalingSettings $autoscalingSettings)
   {
@@ -3688,6 +3902,11 @@ class Google_Service_Dataflow_WriteInstruction extends Google_Model
   protected $sinkType = 'Google_Service_Dataflow_Sink';
   protected $sinkDataType = '';
 
+  /** @var Google_Service_Dataflow_InstructionInput */
+  protected $input;
+
+  /** @var Google_Service_Dataflow_Sink */
+  protected $sink;
 
   public function setInput(Google_Service_Dataflow_InstructionInput $input)
   {

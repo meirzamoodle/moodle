@@ -449,6 +449,8 @@ class Google_Service_Reports_Activities extends Google_Collection
   public $kind;
   public $nextPageToken;
 
+  /** @var Google_Service_Reports_Activity[] */
+  protected $items;
 
   public function setEtag($etag)
   {
@@ -500,6 +502,14 @@ class Google_Service_Reports_Activity extends Google_Collection
   public $kind;
   public $ownerDomain;
 
+  /** @var Google_Service_Reports_ActivityActor */
+  protected $actor;
+
+  /** @var Google_Service_Reports_ActivityEvents[] */
+  protected $events;
+
+  /** @var Google_Service_Reports_ActivityId */
+  protected $id;
 
   public function setActor(Google_Service_Reports_ActivityActor $actor)
   {
@@ -613,6 +623,8 @@ class Google_Service_Reports_ActivityEvents extends Google_Collection
   protected $parametersDataType = 'array';
   public $type;
 
+  /** @var Google_Service_Reports_ActivityEventsParameters[] */
+  protected $parameters;
 
   public function setName($name)
   {
@@ -862,6 +874,11 @@ class Google_Service_Reports_UsageReport extends Google_Collection
   protected $parametersType = 'Google_Service_Reports_UsageReportParameters';
   protected $parametersDataType = 'array';
 
+  /** @var Google_Service_Reports_UsageReportEntity */
+  protected $entity;
+
+  /** @var Google_Service_Reports_UsageReportParameters[] */
+  protected $parameters;
 
   public function setDate($date)
   {
@@ -1029,6 +1046,11 @@ class Google_Service_Reports_UsageReports extends Google_Collection
   protected $warningsType = 'Google_Service_Reports_UsageReportsWarnings';
   protected $warningsDataType = 'array';
 
+  /** @var Google_Service_Reports_UsageReport[] */
+  protected $usageReports;
+
+  /** @var Google_Service_Reports_UsageReportsWarnings[] */
+  protected $warnings;
 
   public function setEtag($etag)
   {
@@ -1082,6 +1104,8 @@ class Google_Service_Reports_UsageReportsWarnings extends Google_Collection
   protected $dataDataType = 'array';
   public $message;
 
+  /** @var Google_Service_Reports_UsageReportsWarningsData[] */
+  protected $data;
 
   public function setCode($code)
   {

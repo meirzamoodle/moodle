@@ -4554,6 +4554,11 @@ class Google_Service_YouTube_Activity extends Google_Model
   protected $snippetType = 'Google_Service_YouTube_ActivitySnippet';
   protected $snippetDataType = '';
 
+  /** @var Google_Service_YouTube_ActivityContentDetails */
+  protected $contentDetails;
+
+  /** @var Google_Service_YouTube_ActivitySnippet */
+  protected $snippet;
 
   public function setContentDetails(Google_Service_YouTube_ActivityContentDetails $contentDetails)
   {
@@ -4624,6 +4629,38 @@ class Google_Service_YouTube_ActivityContentDetails extends Google_Model
   protected $uploadType = 'Google_Service_YouTube_ActivityContentDetailsUpload';
   protected $uploadDataType = '';
 
+  /** @var Google_Service_YouTube_ActivityContentDetailsBulletin */
+  protected $bulletin;
+
+  /** @var Google_Service_YouTube_ActivityContentDetailsChannelItem */
+  protected $channelItem;
+
+  /** @var Google_Service_YouTube_ActivityContentDetailsComment */
+  protected $comment;
+
+  /** @var Google_Service_YouTube_ActivityContentDetailsFavorite */
+  protected $favorite;
+
+  /** @var Google_Service_YouTube_ActivityContentDetailsLike */
+  protected $like;
+
+  /** @var Google_Service_YouTube_ActivityContentDetailsPlaylistItem */
+  protected $playlistItem;
+
+  /** @var Google_Service_YouTube_ActivityContentDetailsPromotedItem */
+  protected $promotedItem;
+
+  /** @var Google_Service_YouTube_ActivityContentDetailsRecommendation */
+  protected $recommendation;
+
+  /** @var Google_Service_YouTube_ActivityContentDetailsSocial */
+  protected $social;
+
+  /** @var Google_Service_YouTube_ActivityContentDetailsSubscription */
+  protected $subscription;
+
+  /** @var Google_Service_YouTube_ActivityContentDetailsUpload */
+  protected $upload;
 
   public function setBulletin(Google_Service_YouTube_ActivityContentDetailsBulletin $bulletin)
   {
@@ -4722,6 +4759,8 @@ class Google_Service_YouTube_ActivityContentDetailsBulletin extends Google_Model
   protected $resourceIdType = 'Google_Service_YouTube_ResourceId';
   protected $resourceIdDataType = '';
 
+  /** @var Google_Service_YouTube_ResourceId */
+  protected $resourceId;
 
   public function setResourceId(Google_Service_YouTube_ResourceId $resourceId)
   {
@@ -4740,6 +4779,8 @@ class Google_Service_YouTube_ActivityContentDetailsChannelItem extends Google_Mo
   protected $resourceIdType = 'Google_Service_YouTube_ResourceId';
   protected $resourceIdDataType = '';
 
+  /** @var Google_Service_YouTube_ResourceId */
+  protected $resourceId;
 
   public function setResourceId(Google_Service_YouTube_ResourceId $resourceId)
   {
@@ -4758,6 +4799,8 @@ class Google_Service_YouTube_ActivityContentDetailsComment extends Google_Model
   protected $resourceIdType = 'Google_Service_YouTube_ResourceId';
   protected $resourceIdDataType = '';
 
+  /** @var Google_Service_YouTube_ResourceId */
+  protected $resourceId;
 
   public function setResourceId(Google_Service_YouTube_ResourceId $resourceId)
   {
@@ -4776,6 +4819,8 @@ class Google_Service_YouTube_ActivityContentDetailsFavorite extends Google_Model
   protected $resourceIdType = 'Google_Service_YouTube_ResourceId';
   protected $resourceIdDataType = '';
 
+  /** @var Google_Service_YouTube_ResourceId */
+  protected $resourceId;
 
   public function setResourceId(Google_Service_YouTube_ResourceId $resourceId)
   {
@@ -4794,6 +4839,8 @@ class Google_Service_YouTube_ActivityContentDetailsLike extends Google_Model
   protected $resourceIdType = 'Google_Service_YouTube_ResourceId';
   protected $resourceIdDataType = '';
 
+  /** @var Google_Service_YouTube_ResourceId */
+  protected $resourceId;
 
   public function setResourceId(Google_Service_YouTube_ResourceId $resourceId)
   {
@@ -4814,6 +4861,8 @@ class Google_Service_YouTube_ActivityContentDetailsPlaylistItem extends Google_M
   protected $resourceIdType = 'Google_Service_YouTube_ResourceId';
   protected $resourceIdDataType = '';
 
+  /** @var Google_Service_YouTube_ResourceId */
+  protected $resourceId;
 
   public function setPlaylistId($playlistId)
   {
@@ -4950,6 +4999,11 @@ class Google_Service_YouTube_ActivityContentDetailsRecommendation extends Google
   protected $seedResourceIdType = 'Google_Service_YouTube_ResourceId';
   protected $seedResourceIdDataType = '';
 
+  /** @var Google_Service_YouTube_ResourceId */
+  protected $resourceId;
+
+  /** @var Google_Service_YouTube_ResourceId */
+  protected $seedResourceId;
 
   public function setReason($reason)
   {
@@ -4988,6 +5042,8 @@ class Google_Service_YouTube_ActivityContentDetailsSocial extends Google_Model
   protected $resourceIdDataType = '';
   public $type;
 
+  /** @var Google_Service_YouTube_ResourceId */
+  protected $resourceId;
 
   public function setAuthor($author)
   {
@@ -5038,6 +5094,8 @@ class Google_Service_YouTube_ActivityContentDetailsSubscription extends Google_M
   protected $resourceIdType = 'Google_Service_YouTube_ResourceId';
   protected $resourceIdDataType = '';
 
+  /** @var Google_Service_YouTube_ResourceId */
+  protected $resourceId;
 
   public function setResourceId(Google_Service_YouTube_ResourceId $resourceId)
   {
@@ -5084,6 +5142,14 @@ class Google_Service_YouTube_ActivityListResponse extends Google_Collection
   protected $tokenPaginationDataType = '';
   public $visitorId;
 
+  /** @var Google_Service_YouTube_Activity[] */
+  protected $items;
+
+  /** @var Google_Service_YouTube_PageInfo */
+  protected $pageInfo;
+
+  /** @var Google_Service_YouTube_TokenPagination */
+  protected $tokenPagination;
 
   public function setEtag($etag)
   {
@@ -5173,6 +5239,8 @@ class Google_Service_YouTube_ActivitySnippet extends Google_Model
   public $title;
   public $type;
 
+  /** @var Google_Service_YouTube_ThumbnailDetails */
+  protected $thumbnails;
 
   public function setChannelId($channelId)
   {
@@ -5250,6 +5318,8 @@ class Google_Service_YouTube_Caption extends Google_Model
   protected $snippetType = 'Google_Service_YouTube_CaptionSnippet';
   protected $snippetDataType = '';
 
+  /** @var Google_Service_YouTube_CaptionSnippet */
+  protected $snippet;
 
   public function setEtag($etag)
   {
@@ -5297,6 +5367,8 @@ class Google_Service_YouTube_CaptionListResponse extends Google_Collection
   public $kind;
   public $visitorId;
 
+  /** @var Google_Service_YouTube_Caption[] */
+  protected $items;
 
   public function setEtag($etag)
   {
@@ -5474,6 +5546,8 @@ class Google_Service_YouTube_CdnSettings extends Google_Model
   protected $ingestionInfoDataType = '';
   public $ingestionType;
 
+  /** @var Google_Service_YouTube_IngestionInfo */
+  protected $ingestionInfo;
 
   public function setFormat($format)
   {
@@ -5531,6 +5605,38 @@ class Google_Service_YouTube_Channel extends Google_Model
   protected $topicDetailsType = 'Google_Service_YouTube_ChannelTopicDetails';
   protected $topicDetailsDataType = '';
 
+  /** @var Google_Service_YouTube_ChannelAuditDetails */
+  protected $auditDetails;
+
+  /** @var Google_Service_YouTube_ChannelBrandingSettings */
+  protected $brandingSettings;
+
+  /** @var Google_Service_YouTube_ChannelContentDetails */
+  protected $contentDetails;
+
+  /** @var Google_Service_YouTube_ChannelContentOwnerDetails */
+  protected $contentOwnerDetails;
+
+  /** @var Google_Service_YouTube_ChannelConversionPings */
+  protected $conversionPings;
+
+  /** @var Google_Service_YouTube_InvideoPromotion */
+  protected $invideoPromotion;
+
+  /** @var Google_Service_YouTube_ChannelLocalization[] */
+  protected $localizations;
+
+  /** @var Google_Service_YouTube_ChannelSnippet */
+  protected $snippet;
+
+  /** @var Google_Service_YouTube_ChannelStatistics */
+  protected $statistics;
+
+  /** @var Google_Service_YouTube_ChannelStatus */
+  protected $status;
+
+  /** @var Google_Service_YouTube_ChannelTopicDetails */
+  protected $topicDetails;
 
   public function setAuditDetails(Google_Service_YouTube_ChannelAuditDetails $auditDetails)
   {
@@ -5739,6 +5845,17 @@ class Google_Service_YouTube_ChannelBrandingSettings extends Google_Collection
   protected $watchType = 'Google_Service_YouTube_WatchSettings';
   protected $watchDataType = '';
 
+  /** @var Google_Service_YouTube_ChannelSettings */
+  protected $channel;
+
+  /** @var Google_Service_YouTube_PropertyValue[] */
+  protected $hints;
+
+  /** @var Google_Service_YouTube_ImageSettings */
+  protected $image;
+
+  /** @var Google_Service_YouTube_WatchSettings */
+  protected $watch;
 
   public function setChannel(Google_Service_YouTube_ChannelSettings $channel)
   {
@@ -5782,6 +5899,8 @@ class Google_Service_YouTube_ChannelContentDetails extends Google_Model
   protected $relatedPlaylistsType = 'Google_Service_YouTube_ChannelContentDetailsRelatedPlaylists';
   protected $relatedPlaylistsDataType = '';
 
+  /** @var Google_Service_YouTube_ChannelContentDetailsRelatedPlaylists */
+  protected $relatedPlaylists;
 
   public function setGooglePlusUserId($googlePlusUserId)
   {
@@ -5914,6 +6033,8 @@ class Google_Service_YouTube_ChannelConversionPings extends Google_Collection
   protected $pingsType = 'Google_Service_YouTube_ChannelConversionPing';
   protected $pingsDataType = 'array';
 
+  /** @var Google_Service_YouTube_ChannelConversionPing[] */
+  protected $pings;
 
   public function setPings($pings)
   {
@@ -5960,6 +6081,14 @@ class Google_Service_YouTube_ChannelListResponse extends Google_Collection
   protected $tokenPaginationDataType = '';
   public $visitorId;
 
+  /** @var Google_Service_YouTube_Channel[] */
+  protected $items;
+
+  /** @var Google_Service_YouTube_PageInfo */
+  protected $pageInfo;
+
+  /** @var Google_Service_YouTube_TokenPagination */
+  protected $tokenPagination;
 
   public function setEtag($etag)
   {
@@ -6081,6 +6210,17 @@ class Google_Service_YouTube_ChannelSection extends Google_Model
   protected $targetingType = 'Google_Service_YouTube_ChannelSectionTargeting';
   protected $targetingDataType = '';
 
+  /** @var Google_Service_YouTube_ChannelSectionContentDetails */
+  protected $contentDetails;
+
+  /** @var Google_Service_YouTube_ChannelSectionLocalization[] */
+  protected $localizations;
+
+  /** @var Google_Service_YouTube_ChannelSectionSnippet */
+  protected $snippet;
+
+  /** @var Google_Service_YouTube_ChannelSectionTargeting */
+  protected $targeting;
 
   public function setContentDetails(Google_Service_YouTube_ChannelSectionContentDetails $contentDetails)
   {
@@ -6179,6 +6319,8 @@ class Google_Service_YouTube_ChannelSectionListResponse extends Google_Collectio
   public $kind;
   public $visitorId;
 
+  /** @var Google_Service_YouTube_ChannelSection[] */
+  protected $items;
 
   public function setEtag($etag)
   {
@@ -6256,6 +6398,8 @@ class Google_Service_YouTube_ChannelSectionSnippet extends Google_Model
   public $title;
   public $type;
 
+  /** @var Google_Service_YouTube_ChannelSectionLocalization */
+  protected $localized;
 
   public function setChannelId($channelId)
   {
@@ -6500,6 +6644,11 @@ class Google_Service_YouTube_ChannelSnippet extends Google_Model
   protected $thumbnailsDataType = '';
   public $title;
 
+  /** @var Google_Service_YouTube_ChannelLocalization */
+  protected $localized;
+
+  /** @var Google_Service_YouTube_ThumbnailDetails */
+  protected $thumbnails;
 
   public function setCountry($country)
   {
@@ -6675,6 +6824,8 @@ class Google_Service_YouTube_Comment extends Google_Model
   protected $snippetType = 'Google_Service_YouTube_CommentSnippet';
   protected $snippetDataType = '';
 
+  /** @var Google_Service_YouTube_CommentSnippet */
+  protected $snippet;
 
   public function setEtag($etag)
   {
@@ -6727,6 +6878,14 @@ class Google_Service_YouTube_CommentListResponse extends Google_Collection
   protected $tokenPaginationDataType = '';
   public $visitorId;
 
+  /** @var Google_Service_YouTube_Comment[] */
+  protected $items;
+
+  /** @var Google_Service_YouTube_PageInfo */
+  protected $pageInfo;
+
+  /** @var Google_Service_YouTube_TokenPagination */
+  protected $tokenPagination;
 
   public function setEtag($etag)
   {
@@ -6816,6 +6975,8 @@ class Google_Service_YouTube_CommentSnippet extends Google_Model
   public $videoId;
   public $viewerRating;
 
+  /** @var Google_Service_YouTube_ChannelId */
+  protected $authorChannelId;
 
   public function setAuthorChannelId(Google_Service_YouTube_ChannelId $authorChannelId)
   {
@@ -6959,6 +7120,11 @@ class Google_Service_YouTube_CommentThread extends Google_Model
   protected $snippetType = 'Google_Service_YouTube_CommentThreadSnippet';
   protected $snippetDataType = '';
 
+  /** @var Google_Service_YouTube_CommentThreadReplies */
+  protected $replies;
+
+  /** @var Google_Service_YouTube_CommentThreadSnippet */
+  protected $snippet;
 
   public function setEtag($etag)
   {
@@ -7019,6 +7185,14 @@ class Google_Service_YouTube_CommentThreadListResponse extends Google_Collection
   protected $tokenPaginationDataType = '';
   public $visitorId;
 
+  /** @var Google_Service_YouTube_CommentThread[] */
+  protected $items;
+
+  /** @var Google_Service_YouTube_PageInfo */
+  protected $pageInfo;
+
+  /** @var Google_Service_YouTube_TokenPagination */
+  protected $tokenPagination;
 
   public function setEtag($etag)
   {
@@ -7094,6 +7268,8 @@ class Google_Service_YouTube_CommentThreadReplies extends Google_Collection
   protected $commentsType = 'Google_Service_YouTube_Comment';
   protected $commentsDataType = 'array';
 
+  /** @var Google_Service_YouTube_Comment[] */
+  protected $comments;
 
   public function setComments($comments)
   {
@@ -7117,6 +7293,8 @@ class Google_Service_YouTube_CommentThreadSnippet extends Google_Model
   public $totalReplyCount;
   public $videoId;
 
+  /** @var Google_Service_YouTube_Comment */
+  protected $topLevelComment;
 
   public function setCanReply($canReply)
   {
@@ -7807,6 +7985,8 @@ class Google_Service_YouTube_GuideCategory extends Google_Model
   protected $snippetType = 'Google_Service_YouTube_GuideCategorySnippet';
   protected $snippetDataType = '';
 
+  /** @var Google_Service_YouTube_GuideCategorySnippet */
+  protected $snippet;
 
   public function setEtag($etag)
   {
@@ -7860,6 +8040,14 @@ class Google_Service_YouTube_GuideCategoryListResponse extends Google_Collection
   protected $tokenPaginationDataType = '';
   public $visitorId;
 
+  /** @var Google_Service_YouTube_GuideCategory[] */
+  protected $items;
+
+  /** @var Google_Service_YouTube_PageInfo */
+  protected $pageInfo;
+
+  /** @var Google_Service_YouTube_TokenPagination */
+  protected $tokenPagination;
 
   public function setEtag($etag)
   {
@@ -7971,6 +8159,8 @@ class Google_Service_YouTube_I18nLanguage extends Google_Model
   protected $snippetType = 'Google_Service_YouTube_I18nLanguageSnippet';
   protected $snippetDataType = '';
 
+  /** @var Google_Service_YouTube_I18nLanguageSnippet */
+  protected $snippet;
 
   public function setEtag($etag)
   {
@@ -8018,6 +8208,8 @@ class Google_Service_YouTube_I18nLanguageListResponse extends Google_Collection
   public $kind;
   public $visitorId;
 
+  /** @var Google_Service_YouTube_I18nLanguage[] */
+  protected $items;
 
   public function setEtag($etag)
   {
@@ -8097,6 +8289,8 @@ class Google_Service_YouTube_I18nRegion extends Google_Model
   protected $snippetType = 'Google_Service_YouTube_I18nRegionSnippet';
   protected $snippetDataType = '';
 
+  /** @var Google_Service_YouTube_I18nRegionSnippet */
+  protected $snippet;
 
   public function setEtag($etag)
   {
@@ -8144,6 +8338,8 @@ class Google_Service_YouTube_I18nRegionListResponse extends Google_Collection
   public $kind;
   public $visitorId;
 
+  /** @var Google_Service_YouTube_I18nRegion[] */
+  protected $items;
 
   public function setEtag($etag)
   {
@@ -8245,6 +8441,20 @@ class Google_Service_YouTube_ImageSettings extends Google_Model
   public $trackingImageUrl;
   public $watchIconImageUrl;
 
+  /** @var Google_Service_YouTube_LocalizedProperty */
+  protected $backgroundImageUrl;
+
+  /** @var Google_Service_YouTube_LocalizedProperty */
+  protected $largeBrandedBannerImageImapScript;
+
+  /** @var Google_Service_YouTube_LocalizedProperty */
+  protected $largeBrandedBannerImageUrl;
+
+  /** @var Google_Service_YouTube_LocalizedProperty */
+  protected $smallBrandedBannerImageImapScript;
+
+  /** @var Google_Service_YouTube_LocalizedProperty */
+  protected $smallBrandedBannerImageUrl;
 
   public function setBackgroundImageUrl(Google_Service_YouTube_LocalizedProperty $backgroundImageUrl)
   {
@@ -8471,6 +8681,11 @@ class Google_Service_YouTube_InvideoBranding extends Google_Model
   protected $timingType = 'Google_Service_YouTube_InvideoTiming';
   protected $timingDataType = '';
 
+  /** @var Google_Service_YouTube_InvideoPosition */
+  protected $position;
+
+  /** @var Google_Service_YouTube_InvideoTiming */
+  protected $timing;
 
   public function setImageBytes($imageBytes)
   {
@@ -8553,6 +8768,14 @@ class Google_Service_YouTube_InvideoPromotion extends Google_Collection
   protected $positionDataType = '';
   public $useSmartTiming;
 
+  /** @var Google_Service_YouTube_InvideoTiming */
+  protected $defaultTiming;
+
+  /** @var Google_Service_YouTube_PromotedItem[] */
+  protected $items;
+
+  /** @var Google_Service_YouTube_InvideoPosition */
+  protected $position;
 
   public function setDefaultTiming(Google_Service_YouTube_InvideoTiming $defaultTiming)
   {
@@ -8658,6 +8881,20 @@ class Google_Service_YouTube_LiveBroadcast extends Google_Model
   protected $topicDetailsType = 'Google_Service_YouTube_LiveBroadcastTopicDetails';
   protected $topicDetailsDataType = '';
 
+  /** @var Google_Service_YouTube_LiveBroadcastContentDetails */
+  protected $contentDetails;
+
+  /** @var Google_Service_YouTube_LiveBroadcastSnippet */
+  protected $snippet;
+
+  /** @var Google_Service_YouTube_LiveBroadcastStatistics */
+  protected $statistics;
+
+  /** @var Google_Service_YouTube_LiveBroadcastStatus */
+  protected $status;
+
+  /** @var Google_Service_YouTube_LiveBroadcastTopicDetails */
+  protected $topicDetails;
 
   public function setContentDetails(Google_Service_YouTube_LiveBroadcastContentDetails $contentDetails)
   {
@@ -8740,6 +8977,8 @@ class Google_Service_YouTube_LiveBroadcastContentDetails extends Google_Model
   public $recordFromStart;
   public $startWithSlate;
 
+  /** @var Google_Service_YouTube_MonitorStreamInfo */
+  protected $monitorStream;
 
   public function setBoundStreamId($boundStreamId)
   {
@@ -8833,6 +9072,14 @@ class Google_Service_YouTube_LiveBroadcastListResponse extends Google_Collection
   protected $tokenPaginationDataType = '';
   public $visitorId;
 
+  /** @var Google_Service_YouTube_LiveBroadcast[] */
+  protected $items;
+
+  /** @var Google_Service_YouTube_PageInfo */
+  protected $pageInfo;
+
+  /** @var Google_Service_YouTube_TokenPagination */
+  protected $tokenPagination;
 
   public function setEtag($etag)
   {
@@ -8925,6 +9172,8 @@ class Google_Service_YouTube_LiveBroadcastSnippet extends Google_Model
   protected $thumbnailsDataType = '';
   public $title;
 
+  /** @var Google_Service_YouTube_ThumbnailDetails */
+  protected $thumbnails;
 
   public function setActualEndTime($actualEndTime)
   {
@@ -9095,6 +9344,8 @@ class Google_Service_YouTube_LiveBroadcastTopic extends Google_Model
   public $type;
   public $unmatched;
 
+  /** @var Google_Service_YouTube_LiveBroadcastTopicSnippet */
+  protected $snippet;
 
   public function setSnippet(Google_Service_YouTube_LiveBroadcastTopicSnippet $snippet)
   {
@@ -9130,6 +9381,8 @@ class Google_Service_YouTube_LiveBroadcastTopicDetails extends Google_Collection
   protected $topicsType = 'Google_Service_YouTube_LiveBroadcastTopic';
   protected $topicsDataType = 'array';
 
+  /** @var Google_Service_YouTube_LiveBroadcastTopic[] */
+  protected $topics;
 
   public function setTopics($topics)
   {
@@ -9183,6 +9436,17 @@ class Google_Service_YouTube_LiveStream extends Google_Model
   protected $statusType = 'Google_Service_YouTube_LiveStreamStatus';
   protected $statusDataType = '';
 
+  /** @var Google_Service_YouTube_CdnSettings */
+  protected $cdn;
+
+  /** @var Google_Service_YouTube_LiveStreamContentDetails */
+  protected $contentDetails;
+
+  /** @var Google_Service_YouTube_LiveStreamSnippet */
+  protected $snippet;
+
+  /** @var Google_Service_YouTube_LiveStreamStatus */
+  protected $status;
 
   public function setCdn(Google_Service_YouTube_CdnSettings $cdn)
   {
@@ -9322,6 +9586,8 @@ class Google_Service_YouTube_LiveStreamHealthStatus extends Google_Collection
   public $lastUpdateTimeSeconds;
   public $status;
 
+  /** @var Google_Service_YouTube_LiveStreamConfigurationIssue[] */
+  protected $configurationIssues;
 
   public function setConfigurationIssues($configurationIssues)
   {
@@ -9367,6 +9633,14 @@ class Google_Service_YouTube_LiveStreamListResponse extends Google_Collection
   protected $tokenPaginationDataType = '';
   public $visitorId;
 
+  /** @var Google_Service_YouTube_LiveStream[] */
+  protected $items;
+
+  /** @var Google_Service_YouTube_PageInfo */
+  protected $pageInfo;
+
+  /** @var Google_Service_YouTube_TokenPagination */
+  protected $tokenPagination;
 
   public function setEtag($etag)
   {
@@ -9503,6 +9777,8 @@ class Google_Service_YouTube_LiveStreamStatus extends Google_Model
   protected $healthStatusDataType = '';
   public $streamStatus;
 
+  /** @var Google_Service_YouTube_LiveStreamHealthStatus */
+  protected $healthStatus;
 
   public function setHealthStatus(Google_Service_YouTube_LiveStreamHealthStatus $healthStatus)
   {
@@ -9533,6 +9809,11 @@ class Google_Service_YouTube_LocalizedProperty extends Google_Collection
   protected $localizedType = 'Google_Service_YouTube_LocalizedString';
   protected $localizedDataType = 'array';
 
+  /** @var Google_Service_YouTube_LanguageTag */
+  protected $defaultLanguage;
+
+  /** @var Google_Service_YouTube_LocalizedString[] */
+  protected $localized;
 
   public function setDefault($default)
   {
@@ -9665,6 +9946,20 @@ class Google_Service_YouTube_Playlist extends Google_Model
   protected $statusType = 'Google_Service_YouTube_PlaylistStatus';
   protected $statusDataType = '';
 
+  /** @var Google_Service_YouTube_PlaylistContentDetails */
+  protected $contentDetails;
+
+  /** @var Google_Service_YouTube_PlaylistLocalization[] */
+  protected $localizations;
+
+  /** @var Google_Service_YouTube_PlaylistPlayer */
+  protected $player;
+
+  /** @var Google_Service_YouTube_PlaylistSnippet */
+  protected $snippet;
+
+  /** @var Google_Service_YouTube_PlaylistStatus */
+  protected $status;
 
   public function setContentDetails(Google_Service_YouTube_PlaylistContentDetails $contentDetails)
   {
@@ -9763,6 +10058,14 @@ class Google_Service_YouTube_PlaylistItem extends Google_Model
   protected $statusType = 'Google_Service_YouTube_PlaylistItemStatus';
   protected $statusDataType = '';
 
+  /** @var Google_Service_YouTube_PlaylistItemContentDetails */
+  protected $contentDetails;
+
+  /** @var Google_Service_YouTube_PlaylistItemSnippet */
+  protected $snippet;
+
+  /** @var Google_Service_YouTube_PlaylistItemStatus */
+  protected $status;
 
   public function setContentDetails(Google_Service_YouTube_PlaylistItemContentDetails $contentDetails)
   {
@@ -9876,6 +10179,14 @@ class Google_Service_YouTube_PlaylistItemListResponse extends Google_Collection
   protected $tokenPaginationDataType = '';
   public $visitorId;
 
+  /** @var Google_Service_YouTube_PlaylistItem[] */
+  protected $items;
+
+  /** @var Google_Service_YouTube_PageInfo */
+  protected $pageInfo;
+
+  /** @var Google_Service_YouTube_TokenPagination */
+  protected $tokenPagination;
 
   public function setEtag($etag)
   {
@@ -9967,6 +10278,11 @@ class Google_Service_YouTube_PlaylistItemSnippet extends Google_Model
   protected $thumbnailsDataType = '';
   public $title;
 
+  /** @var Google_Service_YouTube_ResourceId */
+  protected $resourceId;
+
+  /** @var Google_Service_YouTube_ThumbnailDetails */
+  protected $thumbnails;
 
   public function setChannelId($channelId)
   {
@@ -10077,6 +10393,14 @@ class Google_Service_YouTube_PlaylistListResponse extends Google_Collection
   protected $tokenPaginationDataType = '';
   public $visitorId;
 
+  /** @var Google_Service_YouTube_Playlist[] */
+  protected $items;
+
+  /** @var Google_Service_YouTube_PageInfo */
+  protected $pageInfo;
+
+  /** @var Google_Service_YouTube_TokenPagination */
+  protected $tokenPagination;
 
   public function setEtag($etag)
   {
@@ -10216,6 +10540,11 @@ class Google_Service_YouTube_PlaylistSnippet extends Google_Collection
   protected $thumbnailsDataType = '';
   public $title;
 
+  /** @var Google_Service_YouTube_PlaylistLocalization */
+  protected $localized;
+
+  /** @var Google_Service_YouTube_ThumbnailDetails */
+  protected $thumbnails;
 
   public function setChannelId($channelId)
   {
@@ -10319,6 +10648,11 @@ class Google_Service_YouTube_PromotedItem extends Google_Model
   protected $timingType = 'Google_Service_YouTube_InvideoTiming';
   protected $timingDataType = '';
 
+  /** @var Google_Service_YouTube_PromotedItemId */
+  protected $id;
+
+  /** @var Google_Service_YouTube_InvideoTiming */
+  protected $timing;
 
   public function setCustomMessage($customMessage)
   {
@@ -10486,6 +10820,14 @@ class Google_Service_YouTube_SearchListResponse extends Google_Collection
   protected $tokenPaginationDataType = '';
   public $visitorId;
 
+  /** @var Google_Service_YouTube_SearchResult[] */
+  protected $items;
+
+  /** @var Google_Service_YouTube_PageInfo */
+  protected $pageInfo;
+
+  /** @var Google_Service_YouTube_TokenPagination */
+  protected $tokenPagination;
 
   public function setEtag($etag)
   {
@@ -10572,6 +10914,11 @@ class Google_Service_YouTube_SearchResult extends Google_Model
   protected $snippetType = 'Google_Service_YouTube_SearchResultSnippet';
   protected $snippetDataType = '';
 
+  /** @var Google_Service_YouTube_ResourceId */
+  protected $id;
+
+  /** @var Google_Service_YouTube_SearchResultSnippet */
+  protected $snippet;
 
   public function setEtag($etag)
   {
@@ -10620,6 +10967,8 @@ class Google_Service_YouTube_SearchResultSnippet extends Google_Model
   protected $thumbnailsDataType = '';
   public $title;
 
+  /** @var Google_Service_YouTube_ThumbnailDetails */
+  protected $thumbnails;
 
   public function setChannelId($channelId)
   {
@@ -10693,6 +11042,14 @@ class Google_Service_YouTube_Subscription extends Google_Model
   protected $subscriberSnippetType = 'Google_Service_YouTube_SubscriptionSubscriberSnippet';
   protected $subscriberSnippetDataType = '';
 
+  /** @var Google_Service_YouTube_SubscriptionContentDetails */
+  protected $contentDetails;
+
+  /** @var Google_Service_YouTube_SubscriptionSnippet */
+  protected $snippet;
+
+  /** @var Google_Service_YouTube_SubscriptionSubscriberSnippet */
+  protected $subscriberSnippet;
 
   public function setContentDetails(Google_Service_YouTube_SubscriptionContentDetails $contentDetails)
   {
@@ -10797,6 +11154,14 @@ class Google_Service_YouTube_SubscriptionListResponse extends Google_Collection
   protected $tokenPaginationDataType = '';
   public $visitorId;
 
+  /** @var Google_Service_YouTube_Subscription[] */
+  protected $items;
+
+  /** @var Google_Service_YouTube_PageInfo */
+  protected $pageInfo;
+
+  /** @var Google_Service_YouTube_TokenPagination */
+  protected $tokenPagination;
 
   public function setEtag($etag)
   {
@@ -10886,6 +11251,11 @@ class Google_Service_YouTube_SubscriptionSnippet extends Google_Model
   protected $thumbnailsDataType = '';
   public $title;
 
+  /** @var Google_Service_YouTube_ResourceId */
+  protected $resourceId;
+
+  /** @var Google_Service_YouTube_ThumbnailDetails */
+  protected $thumbnails;
 
   public function setChannelId($channelId)
   {
@@ -10955,6 +11325,8 @@ class Google_Service_YouTube_SubscriptionSubscriberSnippet extends Google_Model
   protected $thumbnailsDataType = '';
   public $title;
 
+  /** @var Google_Service_YouTube_ThumbnailDetails */
+  protected $thumbnails;
 
   public function setChannelId($channelId)
   {
@@ -11040,6 +11412,20 @@ class Google_Service_YouTube_ThumbnailDetails extends Google_Model
   protected $standardType = 'Google_Service_YouTube_Thumbnail';
   protected $standardDataType = '';
 
+  /** @var Google_Service_YouTube_Thumbnail */
+  protected $default;
+
+  /** @var Google_Service_YouTube_Thumbnail */
+  protected $high;
+
+  /** @var Google_Service_YouTube_Thumbnail */
+  protected $maxres;
+
+  /** @var Google_Service_YouTube_Thumbnail */
+  protected $medium;
+
+  /** @var Google_Service_YouTube_Thumbnail */
+  protected $standard;
 
   public function setDefault(Google_Service_YouTube_Thumbnail $default)
   {
@@ -11095,6 +11481,8 @@ class Google_Service_YouTube_ThumbnailSetResponse extends Google_Collection
   public $kind;
   public $visitorId;
 
+  /** @var Google_Service_YouTube_ThumbnailDetails[] */
+  protected $items;
 
   public function setEtag($etag)
   {
@@ -11182,6 +11570,53 @@ class Google_Service_YouTube_Video extends Google_Model
   protected $topicDetailsType = 'Google_Service_YouTube_VideoTopicDetails';
   protected $topicDetailsDataType = '';
 
+  /** @var Google_Service_YouTube_VideoAgeGating */
+  protected $ageGating;
+
+  /** @var Google_Service_YouTube_VideoContentDetails */
+  protected $contentDetails;
+
+  /** @var Google_Service_YouTube_VideoConversionPings */
+  protected $conversionPings;
+
+  /** @var Google_Service_YouTube_VideoFileDetails */
+  protected $fileDetails;
+
+  /** @var Google_Service_YouTube_VideoLiveStreamingDetails */
+  protected $liveStreamingDetails;
+
+  /** @var Google_Service_YouTube_VideoLocalization[] */
+  protected $localizations;
+
+  /** @var Google_Service_YouTube_VideoMonetizationDetails */
+  protected $monetizationDetails;
+
+  /** @var Google_Service_YouTube_VideoPlayer */
+  protected $player;
+
+  /** @var Google_Service_YouTube_VideoProcessingDetails */
+  protected $processingDetails;
+
+  /** @var Google_Service_YouTube_VideoProjectDetails */
+  protected $projectDetails;
+
+  /** @var Google_Service_YouTube_VideoRecordingDetails */
+  protected $recordingDetails;
+
+  /** @var Google_Service_YouTube_VideoSnippet */
+  protected $snippet;
+
+  /** @var Google_Service_YouTube_VideoStatistics */
+  protected $statistics;
+
+  /** @var Google_Service_YouTube_VideoStatus */
+  protected $status;
+
+  /** @var Google_Service_YouTube_VideoSuggestions */
+  protected $suggestions;
+
+  /** @var Google_Service_YouTube_VideoTopicDetails */
+  protected $topicDetails;
 
   public function setAgeGating(Google_Service_YouTube_VideoAgeGating $ageGating)
   {
@@ -11400,6 +11835,8 @@ class Google_Service_YouTube_VideoAbuseReportReason extends Google_Model
   protected $snippetType = 'Google_Service_YouTube_VideoAbuseReportReasonSnippet';
   protected $snippetDataType = '';
 
+  /** @var Google_Service_YouTube_VideoAbuseReportReasonSnippet */
+  protected $snippet;
 
   public function setEtag($etag)
   {
@@ -11447,6 +11884,8 @@ class Google_Service_YouTube_VideoAbuseReportReasonListResponse extends Google_C
   public $kind;
   public $visitorId;
 
+  /** @var Google_Service_YouTube_VideoAbuseReportReason[] */
+  protected $items;
 
   public function setEtag($etag)
   {
@@ -11499,6 +11938,8 @@ class Google_Service_YouTube_VideoAbuseReportReasonSnippet extends Google_Collec
   protected $secondaryReasonsType = 'Google_Service_YouTube_VideoAbuseReportSecondaryReason';
   protected $secondaryReasonsDataType = 'array';
 
+  /** @var Google_Service_YouTube_VideoAbuseReportSecondaryReason[] */
+  protected $secondaryReasons;
 
   public function setLabel($label)
   {
@@ -11589,6 +12030,8 @@ class Google_Service_YouTube_VideoCategory extends Google_Model
   protected $snippetType = 'Google_Service_YouTube_VideoCategorySnippet';
   protected $snippetDataType = '';
 
+  /** @var Google_Service_YouTube_VideoCategorySnippet */
+  protected $snippet;
 
   public function setEtag($etag)
   {
@@ -11642,6 +12085,14 @@ class Google_Service_YouTube_VideoCategoryListResponse extends Google_Collection
   protected $tokenPaginationDataType = '';
   public $visitorId;
 
+  /** @var Google_Service_YouTube_VideoCategory[] */
+  protected $items;
+
+  /** @var Google_Service_YouTube_PageInfo */
+  protected $pageInfo;
+
+  /** @var Google_Service_YouTube_TokenPagination */
+  protected $tokenPagination;
 
   public function setEtag($etag)
   {
@@ -11768,6 +12219,14 @@ class Google_Service_YouTube_VideoContentDetails extends Google_Model
   protected $regionRestrictionType = 'Google_Service_YouTube_VideoContentDetailsRegionRestriction';
   protected $regionRestrictionDataType = '';
 
+  /** @var Google_Service_YouTube_ContentRating */
+  protected $contentRating;
+
+  /** @var Google_Service_YouTube_AccessPolicy */
+  protected $countryRestriction;
+
+  /** @var Google_Service_YouTube_VideoContentDetailsRegionRestriction */
+  protected $regionRestriction;
 
   public function setCaption($caption)
   {
@@ -11896,6 +12355,8 @@ class Google_Service_YouTube_VideoConversionPings extends Google_Collection
   protected $pingsType = 'Google_Service_YouTube_VideoConversionPing';
   protected $pingsDataType = 'array';
 
+  /** @var Google_Service_YouTube_VideoConversionPing[] */
+  protected $pings;
 
   public function setPings($pings)
   {
@@ -11926,6 +12387,14 @@ class Google_Service_YouTube_VideoFileDetails extends Google_Collection
   protected $videoStreamsType = 'Google_Service_YouTube_VideoFileDetailsVideoStream';
   protected $videoStreamsDataType = 'array';
 
+  /** @var Google_Service_YouTube_VideoFileDetailsAudioStream[] */
+  protected $audioStreams;
+
+  /** @var Google_Service_YouTube_GeoPoint */
+  protected $recordingLocation;
+
+  /** @var Google_Service_YouTube_VideoFileDetailsVideoStream[] */
+  protected $videoStreams;
 
   public function setAudioStreams($audioStreams)
   {
@@ -12145,6 +12614,8 @@ class Google_Service_YouTube_VideoGetRatingResponse extends Google_Collection
   public $kind;
   public $visitorId;
 
+  /** @var Google_Service_YouTube_VideoRating[] */
+  protected $items;
 
   public function setEtag($etag)
   {
@@ -12206,6 +12677,14 @@ class Google_Service_YouTube_VideoListResponse extends Google_Collection
   protected $tokenPaginationDataType = '';
   public $visitorId;
 
+  /** @var Google_Service_YouTube_Video[] */
+  protected $items;
+
+  /** @var Google_Service_YouTube_PageInfo */
+  protected $pageInfo;
+
+  /** @var Google_Service_YouTube_TokenPagination */
+  protected $tokenPagination;
 
   public function setEtag($etag)
   {
@@ -12371,6 +12850,8 @@ class Google_Service_YouTube_VideoMonetizationDetails extends Google_Model
   protected $accessType = 'Google_Service_YouTube_AccessPolicy';
   protected $accessDataType = '';
 
+  /** @var Google_Service_YouTube_AccessPolicy */
+  protected $access;
 
   public function setAccess(Google_Service_YouTube_AccessPolicy $access)
   {
@@ -12413,6 +12894,8 @@ class Google_Service_YouTube_VideoProcessingDetails extends Google_Model
   public $tagSuggestionsAvailability;
   public $thumbnailsAvailability;
 
+  /** @var Google_Service_YouTube_VideoProcessingDetailsProcessingProgress */
+  protected $processingProgress;
 
   public function setEditorSuggestionsAvailability($editorSuggestionsAvailability)
   {
@@ -12568,6 +13051,8 @@ class Google_Service_YouTube_VideoRecordingDetails extends Google_Model
   public $locationDescription;
   public $recordingDate;
 
+  /** @var Google_Service_YouTube_GeoPoint */
+  protected $location;
 
   public function setLocation(Google_Service_YouTube_GeoPoint $location)
   {
@@ -12615,6 +13100,11 @@ class Google_Service_YouTube_VideoSnippet extends Google_Collection
   protected $thumbnailsDataType = '';
   public $title;
 
+  /** @var Google_Service_YouTube_VideoLocalization */
+  protected $localized;
+
+  /** @var Google_Service_YouTube_ThumbnailDetails */
+  protected $thumbnails;
 
   public function setCategoryId($categoryId)
   {
@@ -12859,6 +13349,8 @@ class Google_Service_YouTube_VideoSuggestions extends Google_Collection
   protected $tagSuggestionsType = 'Google_Service_YouTube_VideoSuggestionsTagSuggestion';
   protected $tagSuggestionsDataType = 'array';
 
+  /** @var Google_Service_YouTube_VideoSuggestionsTagSuggestion[] */
+  protected $tagSuggestions;
 
   public function setEditorSuggestions($editorSuggestions)
   {

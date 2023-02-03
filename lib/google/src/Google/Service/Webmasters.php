@@ -706,6 +706,8 @@ class Google_Service_Webmasters_ApiDimensionFilterGroup extends Google_Collectio
   protected $filtersDataType = 'array';
   public $groupType;
 
+  /** @var Google_Service_Webmasters_ApiDimensionFilter[] */
+  protected $filters;
 
   public function setFilters($filters)
   {
@@ -739,6 +741,8 @@ class Google_Service_Webmasters_SearchAnalyticsQueryRequest extends Google_Colle
   public $searchType;
   public $startDate;
 
+  /** @var Google_Service_Webmasters_ApiDimensionFilterGroup[] */
+  protected $dimensionFilterGroups;
 
   public function setAggregationType($aggregationType)
   {
@@ -807,6 +811,8 @@ class Google_Service_Webmasters_SearchAnalyticsQueryResponse extends Google_Coll
   protected $rowsType = 'Google_Service_Webmasters_ApiDataRow';
   protected $rowsDataType = 'array';
 
+  /** @var Google_Service_Webmasters_ApiDataRow[] */
+  protected $rows;
 
   public function setResponseAggregationType($responseAggregationType)
   {
@@ -834,6 +840,8 @@ class Google_Service_Webmasters_SitemapsListResponse extends Google_Collection
   protected $sitemapType = 'Google_Service_Webmasters_WmxSitemap';
   protected $sitemapDataType = 'array';
 
+  /** @var Google_Service_Webmasters_WmxSitemap[] */
+  protected $sitemap;
 
   public function setSitemap($sitemap)
   {
@@ -853,6 +861,8 @@ class Google_Service_Webmasters_SitesListResponse extends Google_Collection
   protected $siteEntryType = 'Google_Service_Webmasters_WmxSite';
   protected $siteEntryDataType = 'array';
 
+  /** @var Google_Service_Webmasters_WmxSite[] */
+  protected $siteEntry;
 
   public function setSiteEntry($siteEntry)
   {
@@ -900,6 +910,8 @@ class Google_Service_Webmasters_UrlCrawlErrorCountsPerType extends Google_Collec
   protected $entriesDataType = 'array';
   public $platform;
 
+  /** @var Google_Service_Webmasters_UrlCrawlErrorCount[] */
+  protected $entries;
 
   public function setCategory($category)
   {
@@ -935,6 +947,8 @@ class Google_Service_Webmasters_UrlCrawlErrorsCountsQueryResponse extends Google
   protected $countPerTypesType = 'Google_Service_Webmasters_UrlCrawlErrorCountsPerType';
   protected $countPerTypesDataType = 'array';
 
+  /** @var Google_Service_Webmasters_UrlCrawlErrorCountsPerType[] */
+  protected $countPerTypes;
 
   public function setCountPerTypes($countPerTypes)
   {
@@ -959,6 +973,8 @@ class Google_Service_Webmasters_UrlCrawlErrorsSample extends Google_Model
   protected $urlDetailsType = 'Google_Service_Webmasters_UrlSampleDetails';
   protected $urlDetailsDataType = '';
 
+  /** @var Google_Service_Webmasters_UrlSampleDetails */
+  protected $urlDetails;
 
   public function setFirstDetected($firstDetected)
   {
@@ -1010,6 +1026,8 @@ class Google_Service_Webmasters_UrlCrawlErrorsSamplesListResponse extends Google
   protected $urlCrawlErrorSampleType = 'Google_Service_Webmasters_UrlCrawlErrorsSample';
   protected $urlCrawlErrorSampleDataType = 'array';
 
+  /** @var Google_Service_Webmasters_UrlCrawlErrorsSample[] */
+  protected $urlCrawlErrorSample;
 
   public function setUrlCrawlErrorSample($urlCrawlErrorSample)
   {
@@ -1090,6 +1108,8 @@ class Google_Service_Webmasters_WmxSitemap extends Google_Collection
   public $type;
   public $warnings;
 
+  /** @var Google_Service_Webmasters_WmxSitemapContent[] */
+  protected $contents;
 
   public function setContents($contents)
   {

@@ -1122,6 +1122,8 @@ class Google_Service_Playmoviespartner_ListAvailsResponse extends Google_Collect
   protected $availsDataType = 'array';
   public $nextPageToken;
 
+  /** @var Google_Service_Playmoviespartner_Avail[] */
+  protected $avails;
 
   public function setAvails($avails)
   {
@@ -1150,6 +1152,8 @@ class Google_Service_Playmoviespartner_ListExperienceLocalesResponse extends Goo
   protected $experienceLocalesDataType = 'array';
   public $nextPageToken;
 
+  /** @var Google_Service_Playmoviespartner_ExperienceLocale[] */
+  protected $experienceLocales;
 
   public function setExperienceLocales($experienceLocales)
   {
@@ -1178,6 +1182,8 @@ class Google_Service_Playmoviespartner_ListOrdersResponse extends Google_Collect
   protected $ordersType = 'Google_Service_Playmoviespartner_Order';
   protected $ordersDataType = 'array';
 
+  /** @var Google_Service_Playmoviespartner_Order[] */
+  protected $orders;
 
   public function setNextPageToken($nextPageToken)
   {
@@ -1206,6 +1212,8 @@ class Google_Service_Playmoviespartner_ListStoreInfosResponse extends Google_Col
   protected $storeInfosType = 'Google_Service_Playmoviespartner_StoreInfo';
   protected $storeInfosDataType = 'array';
 
+  /** @var CLASGoogle_Service_Playmoviespartner_StoreInfo[SNAME */
+  protected $storeInfos;
 
   public function setNextPageToken($nextPageToken)
   {

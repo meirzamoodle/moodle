@@ -1275,6 +1275,8 @@ class Google_Service_AdSenseHost_Accounts extends Google_Collection
   protected $itemsDataType = 'array';
   public $kind;
 
+  /** @var Google_Service_AdSenseHost_Account[] */
+  protected $items;
 
   public function setEtag($etag)
   {
@@ -1366,6 +1368,8 @@ class Google_Service_AdSenseHost_AdClients extends Google_Collection
   public $kind;
   public $nextPageToken;
 
+  /** @var Google_Service_AdSenseHost_AdClient[] */
+  protected $items;
 
   public function setEtag($etag)
   {
@@ -1438,6 +1442,11 @@ class Google_Service_AdSenseHost_AdStyle extends Google_Model
   protected $fontDataType = '';
   public $kind;
 
+  /** @var Google_Service_AdSenseHost_AdStyleColors */
+  protected $colors;
+
+  /** @var Google_Service_AdSenseHost_AdStyleFont */
+  protected $font;
 
   public function setColors(Google_Service_AdSenseHost_AdStyleColors $colors)
   {
@@ -1568,6 +1577,14 @@ class Google_Service_AdSenseHost_AdUnit extends Google_Model
   public $name;
   public $status;
 
+  /** @var Google_Service_AdSenseHost_AdUnitContentAdsSettings */
+  protected $contentAdsSettings;
+
+  /** @var Google_Service_AdSenseHost_AdStyle */
+  protected $customStyle;
+
+  /** @var Google_Service_AdSenseHost_AdUnitMobileContentAdsSettings */
+  protected $mobileContentAdsSettings;
 
   public function setCode($code)
   {
@@ -1644,6 +1661,8 @@ class Google_Service_AdSenseHost_AdUnitContentAdsSettings extends Google_Model
   public $size;
   public $type;
 
+  /** @var Google_Service_AdSenseHost_AdUnitContentAdsSettingsBackupOption */
+  protected $backupOption;
 
   public function setBackupOption(Google_Service_AdSenseHost_AdUnitContentAdsSettingsBackupOption $backupOption)
   {
@@ -1761,6 +1780,8 @@ class Google_Service_AdSenseHost_AdUnits extends Google_Collection
   public $kind;
   public $nextPageToken;
 
+  /** @var Google_Service_AdSenseHost_AdUnits[] */
+  protected $items;
 
   public function setEtag($etag)
   {
@@ -1941,6 +1962,8 @@ class Google_Service_AdSenseHost_CustomChannels extends Google_Collection
   public $kind;
   public $nextPageToken;
 
+  /** @var Google_Service_AdSenseHost_CustomChannel[] */
+  protected $items;
 
   public function setEtag($etag)
   {
@@ -1990,6 +2013,8 @@ class Google_Service_AdSenseHost_Report extends Google_Collection
   public $totals;
   public $warnings;
 
+  /** @var Google_Service_AdSenseHost_ReportHeaders[] */
+  protected $headers;
 
   public function setAverages($averages)
   {
@@ -2130,6 +2155,8 @@ class Google_Service_AdSenseHost_UrlChannels extends Google_Collection
   public $kind;
   public $nextPageToken;
 
+  /** @var Google_Service_AdSenseHost_UrlChannel[] */
+  protected $items;
 
   public function setEtag($etag)
   {

@@ -618,6 +618,8 @@ class Google_Service_Cloudresourcemanager_ListOrganizationsResponse extends Goog
   protected $organizationsType = 'Google_Service_Cloudresourcemanager_Organization';
   protected $organizationsDataType = 'array';
 
+  /** @var Google_Service_Cloudresourcemanager_Organization[] */
+  protected $organizations;
 
   public function setNextPageToken($nextPageToken)
   {
@@ -646,6 +648,8 @@ class Google_Service_Cloudresourcemanager_ListProjectsResponse extends Google_Co
   protected $projectsType = 'Google_Service_Cloudresourcemanager_Project';
   protected $projectsDataType = 'array';
 
+  /** @var Google_Service_Cloudresourcemanager_Project[] */
+  protected $projects;
 
   public function setNextPageToken($nextPageToken)
   {
@@ -674,6 +678,8 @@ class Google_Service_Cloudresourcemanager_Organization extends Google_Model
   protected $ownerType = 'Google_Service_Cloudresourcemanager_OrganizationOwner';
   protected $ownerDataType = '';
 
+  /** @var Google_Service_Cloudresourcemanager_OrganizationOwner */
+  protected $owner;
 
   public function setDisplayName($displayName)
   {
@@ -728,6 +734,8 @@ class Google_Service_Cloudresourcemanager_Policy extends Google_Collection
   public $etag;
   public $version;
 
+  /** @var Google_Service_Cloudresourcemanager_Binding[] */
+  protected $bindings;
 
   public function setBindings($bindings)
   {
@@ -768,6 +776,8 @@ class Google_Service_Cloudresourcemanager_Project extends Google_Model
   public $projectId;
   public $projectNumber;
 
+  /** @var Google_Service_Cloudresourcemanager_ResourceId */
+  protected $parent;
 
   public function setCreateTime($createTime)
   {
@@ -864,6 +874,8 @@ class Google_Service_Cloudresourcemanager_SetIamPolicyRequest extends Google_Mod
   protected $policyType = 'Google_Service_Cloudresourcemanager_Policy';
   protected $policyDataType = '';
 
+  /** @var Google_Service_Cloudresourcemanager_Policy */
+  protected $policy;
 
   public function setPolicy(Google_Service_Cloudresourcemanager_Policy $policy)
   {

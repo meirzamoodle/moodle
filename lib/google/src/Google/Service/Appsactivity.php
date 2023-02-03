@@ -166,6 +166,11 @@ class Google_Service_Appsactivity_Activity extends Google_Collection
   protected $singleEventsType = 'Google_Service_Appsactivity_Event';
   protected $singleEventsDataType = 'array';
 
+  /** @var Google_Service_Appsactivity_Event */
+  protected $combinedEvent;
+
+  /** @var Google_Service_Appsactivity_Event[] */
+  protected $singleEvents;
 
   public function setCombinedEvent(Google_Service_Appsactivity_Event $combinedEvent)
   {
@@ -205,6 +210,20 @@ class Google_Service_Appsactivity_Event extends Google_Collection
   protected $userType = 'Google_Service_Appsactivity_User';
   protected $userDataType = '';
 
+  /** @var Google_Service_Appsactivity_Move */
+  protected $move;
+
+  /** @var Google_Service_Appsactivity_PermissionChange[] */
+  protected $permissionChanges;
+
+  /** @var Google_Service_Appsactivity_Rename */
+  protected $rename;
+
+  /** @var Google_Service_Appsactivity_Target */
+  protected $target;
+
+  /** @var Google_Service_Appsactivity_User */
+  protected $user;
 
   public function setAdditionalEventTypes($additionalEventTypes)
   {
@@ -289,6 +308,8 @@ class Google_Service_Appsactivity_ListActivitiesResponse extends Google_Collecti
   protected $activitiesDataType = 'array';
   public $nextPageToken;
 
+  /** @var Google_Service_Appsactivity_Activity[] */
+  protected $activities;
 
   public function setActivities($activities)
   {
@@ -318,6 +339,11 @@ class Google_Service_Appsactivity_Move extends Google_Collection
   protected $removedParentsType = 'Google_Service_Appsactivity_Parent';
   protected $removedParentsDataType = 'array';
 
+  /** @var Google_Service_Appsactivity_Parent */
+  protected $addedParents;
+
+  /** @var Google_Service_Appsactivity_Parent */
+  protected $removedParents;
 
   public function setAddedParents($addedParents)
   {
@@ -384,6 +410,8 @@ class Google_Service_Appsactivity_Permission extends Google_Model
   protected $userDataType = '';
   public $withLink;
 
+  /** @var Google_Service_Appsactivity_User */
+  protected $user;
 
   public function setName($name)
   {
@@ -445,6 +473,11 @@ class Google_Service_Appsactivity_PermissionChange extends Google_Collection
   protected $removedPermissionsType = 'Google_Service_Appsactivity_Permission';
   protected $removedPermissionsDataType = 'array';
 
+  /** @var Google_Service_Appsactivity_Permission[] */
+  protected $addedPermissions;
+
+  /** @var Google_Service_Appsactivity_Permission[] */
+  protected $removedPermissions;
 
   public function setAddedPermissions($addedPermissions)
   {
@@ -550,6 +583,8 @@ class Google_Service_Appsactivity_User extends Google_Model
   protected $photoType = 'Google_Service_Appsactivity_Photo';
   protected $photoDataType = '';
 
+  /** @var Google_Service_Appsactivity_Photo */
+  protected $photo;
 
   public function setName($name)
   {

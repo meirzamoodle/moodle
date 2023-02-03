@@ -2000,6 +2000,29 @@ class Google_Service_Storage_Bucket extends Google_Collection
   protected $websiteType = 'Google_Service_Storage_BucketWebsite';
   protected $websiteDataType = '';
 
+  /** @var Google_Service_Storage_BucketAccessControl[] */
+  protected $acl;
+
+  /** @var Google_Service_Storage_BucketCors[] */
+  protected $cors;
+
+  /** @var Google_Service_Storage_ObjectAccessControl[] */
+  protected $defaultObjectAcl;
+
+  /** @var Google_Service_Storage_BucketLifecycle */
+  protected $lifecycle;
+
+  /** @var Google_Service_Storage_BucketLogging */
+  protected $logging;
+
+  /** @var Google_Service_Storage_BucketOwner */
+  protected $owner;
+
+  /** @var Google_Service_Storage_BucketVersioning */
+  protected $versioning;
+
+  /** @var Google_Service_Storage_BucketWebsite */
+  protected $website;
 
   public function setAcl($acl)
   {
@@ -2172,6 +2195,8 @@ class Google_Service_Storage_BucketAccessControl extends Google_Model
   public $role;
   public $selfLink;
 
+  /** @var Google_Service_Storage_BucketAccessControlProjectTeam */
+  protected $projectTeam;
 
   public function setBucket($bucket)
   {
@@ -2298,6 +2323,8 @@ class Google_Service_Storage_BucketAccessControls extends Google_Collection
   protected $itemsDataType = 'array';
   public $kind;
 
+  /** @var Google_Service_Storage_BucketAccessControl[] */
+  protected $items;
 
   public function setItems($items)
   {
@@ -2370,6 +2397,8 @@ class Google_Service_Storage_BucketLifecycle extends Google_Collection
   protected $ruleType = 'Google_Service_Storage_BucketLifecycleRule';
   protected $ruleDataType = 'array';
 
+  /** @var Google_Service_Storage_BucketLifecycleRule[] */
+  protected $rule;
 
   public function setRule($rule)
   {
@@ -2390,6 +2419,11 @@ class Google_Service_Storage_BucketLifecycleRule extends Google_Model
   protected $conditionType = 'Google_Service_Storage_BucketLifecycleRuleCondition';
   protected $conditionDataType = '';
 
+  /** @var Google_Service_Storage_BucketLifecycleRuleAction */
+  protected $action;
+
+  /** @var Google_Service_Storage_BucketLifecycleRuleCondition */
+  protected $condition;
 
   public function setAction(Google_Service_Storage_BucketLifecycleRuleAction $action)
   {
@@ -2575,6 +2609,8 @@ class Google_Service_Storage_Buckets extends Google_Collection
   public $kind;
   public $nextPageToken;
 
+  /** @var Google_Service_Storage_Bucket[] */
+  protected $items;
 
   public function setItems($items)
   {
@@ -2715,6 +2751,11 @@ class Google_Service_Storage_ComposeRequest extends Google_Collection
   protected $sourceObjectsType = 'Google_Service_Storage_ComposeRequestSourceObjects';
   protected $sourceObjectsDataType = 'array';
 
+  /** @var Google_Service_Storage_StorageObject */
+  protected $destination;
+
+  /** @var Google_Service_Storage_ComposeRequestSourceObjects[] */
+  protected $sourceObjects;
 
   public function setDestination(Google_Service_Storage_StorageObject $destination)
   {
@@ -2751,6 +2792,8 @@ class Google_Service_Storage_ComposeRequestSourceObjects extends Google_Model
   protected $objectPreconditionsType = 'Google_Service_Storage_ComposeRequestSourceObjectsObjectPreconditions';
   protected $objectPreconditionsDataType = '';
 
+  /** @var Google_Service_Storage_ComposeRequestSourceObjectsObjectPreconditions */
+  protected $objectPreconditions;
 
   public function setGeneration($generation)
   {
@@ -2814,6 +2857,8 @@ class Google_Service_Storage_ObjectAccessControl extends Google_Model
   public $role;
   public $selfLink;
 
+  /** @var Google_Service_Storage_ObjectAccessControlProjectTeam */
+  protected $projectTeam;
 
   public function setBucket($bucket)
   {
@@ -2985,6 +3030,8 @@ class Google_Service_Storage_Objects extends Google_Collection
   public $nextPageToken;
   public $prefixes;
 
+  /** @var Google_Service_Storage_StorageObject[] */
+  protected $items;
 
   public function setItems($items)
   {
@@ -3032,6 +3079,8 @@ class Google_Service_Storage_RewriteResponse extends Google_Model
   public $rewriteToken;
   public $totalBytesRewritten;
 
+  /** @var Google_Service_Storage_StorageObject */
+  protected $resource;
 
   public function setDone($done)
   {
@@ -3116,6 +3165,11 @@ class Google_Service_Storage_StorageObject extends Google_Collection
   public $timeDeleted;
   public $updated;
 
+  /** @var Google_Service_Storage_ObjectAccessControl[] */
+  protected $acl;
+
+  /** @var Google_Service_Storage_StorageObjectOwner */
+  protected $owner;
 
   public function setAcl($acl)
   {

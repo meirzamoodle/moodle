@@ -533,6 +533,8 @@ class Google_Service_Storagetransfer_AwsS3Data extends Google_Model
   protected $awsAccessKeyDataType = '';
   public $bucketName;
 
+  /** @var Google_Service_Storagetransfer_AwsAccessKey */
+  protected $awsAccessKey;
 
   public function setAwsAccessKey(Google_Service_Storagetransfer_AwsAccessKey $awsAccessKey)
   {
@@ -628,6 +630,8 @@ class Google_Service_Storagetransfer_ErrorSummary extends Google_Collection
   protected $errorLogEntriesType = 'Google_Service_Storagetransfer_ErrorLogEntry';
   protected $errorLogEntriesDataType = 'array';
 
+  /** @var Google_Service_Storagetransfer_ErrorLogEntry[] */
+  protected $errorLogEntries;
 
   public function setErrorCode($errorCode)
   {
@@ -715,6 +719,8 @@ class Google_Service_Storagetransfer_ListOperationsResponse extends Google_Colle
   protected $operationsType = 'Google_Service_Storagetransfer_Operation';
   protected $operationsDataType = 'array';
 
+  /** @var Google_Service_Storagetransfer_Operation[] */
+  protected $operations;
 
   public function setNextPageToken($nextPageToken)
   {
@@ -743,6 +749,8 @@ class Google_Service_Storagetransfer_ListTransferJobsResponse extends Google_Col
   protected $transferJobsType = 'Google_Service_Storagetransfer_TransferJob';
   protected $transferJobsDataType = 'array';
 
+  /** @var Google_Service_Storagetransfer_TransferJob[] */
+  protected $transferJobs;
 
   public function setNextPageToken($nextPageToken)
   {
@@ -818,6 +826,8 @@ class Google_Service_Storagetransfer_Operation extends Google_Model
   public $name;
   public $response;
 
+  /** @var Google_Service_Storagetransfer_Status */
+  protected $error;
 
   public function setDone($done)
   {
@@ -888,6 +898,14 @@ class Google_Service_Storagetransfer_Schedule extends Google_Model
   protected $startTimeOfDayType = 'Google_Service_Storagetransfer_TimeOfDay';
   protected $startTimeOfDayDataType = '';
 
+  /** @var Google_Service_Storagetransfer_Date */
+  protected $scheduleEndDate;
+
+  /** @var Google_Service_Storagetransfer_Date */
+  protected $scheduleStartDate;
+
+  /** @var Google_Service_Storagetransfer_TimeOfDay */
+  protected $startTimeOfDay;
 
   public function setScheduleEndDate(Google_Service_Storagetransfer_Date $scheduleEndDate)
   {
@@ -1167,6 +1185,11 @@ class Google_Service_Storagetransfer_TransferJob extends Google_Model
   protected $transferSpecType = 'Google_Service_Storagetransfer_TransferSpec';
   protected $transferSpecDataType = '';
 
+  /** @var Google_Service_Storagetransfer_Schedule */
+  protected $schedule;
+
+  /** @var Google_Service_Storagetransfer_TransferSpec */
+  protected $transferSpec;
 
   public function setCreationTime($creationTime)
   {
@@ -1260,6 +1283,14 @@ class Google_Service_Storagetransfer_TransferOperation extends Google_Collection
   protected $transferSpecType = 'Google_Service_Storagetransfer_TransferSpec';
   protected $transferSpecDataType = '';
 
+  /** @var Google_Service_Storagetransfer_TransferCounters */
+  protected $counters;
+
+  /** @var Google_Service_Storagetransfer_ErrorSummary[] */
+  protected $errorBreakdowns;
+
+  /** @var Google_Service_Storagetransfer_TransferSpec */
+  protected $transferSpec;
 
   public function setCounters(Google_Service_Storagetransfer_TransferCounters $counters)
   {
@@ -1387,6 +1418,23 @@ class Google_Service_Storagetransfer_TransferSpec extends Google_Model
   protected $transferOptionsType = 'Google_Service_Storagetransfer_TransferOptions';
   protected $transferOptionsDataType = '';
 
+  /** @var Google_Service_Storagetransfer_AwsS3Data */
+  protected $awsS3DataSource;
+
+  /** @var Google_Service_Storagetransfer_GcsData */
+  protected $gcsDataSink;
+
+  /** @var Google_Service_Storagetransfer_GcsData */
+  protected $gcsDataSource;
+
+  /** @var Google_Service_Storagetransfer_HttpData */
+  protected $httpDataSource;
+
+  /** @var Google_Service_Storagetransfer_ObjectConditions */
+  protected $objectConditions;
+
+  /** @var Google_Service_Storagetransfer_TransferOptions */
+  protected $transferOptions;
 
   public function setAwsS3DataSource(Google_Service_Storagetransfer_AwsS3Data $awsS3DataSource)
   {
@@ -1447,6 +1495,8 @@ class Google_Service_Storagetransfer_UpdateTransferJobRequest extends Google_Mod
   protected $transferJobDataType = '';
   public $updateTransferJobFieldMask;
 
+  /** @var Google_Service_Storagetransfer_TransferJob */
+  protected $transferJob;
 
   public function setProjectId($projectId)
   {

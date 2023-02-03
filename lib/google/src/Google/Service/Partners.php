@@ -612,6 +612,8 @@ class Google_Service_Partners_CertificationStatus extends Google_Collection
   public $isCertified;
   public $type;
 
+  /** @var Google_Service_Partners_CertificationExamStatus[] */
+  protected $examStatuses;
 
   public function setExamStatuses($examStatuses)
   {
@@ -664,6 +666,26 @@ class Google_Service_Partners_Company extends Google_Collection
   public $services;
   public $websiteUrl;
 
+  /** @var Google_Service_Partners_CertificationStatus[] */
+  protected $certificationStatuses;
+
+  /** @var Google_Service_Partners_Money */
+  protected $convertedMinMonthlyBudget;
+
+  /** @var Google_Service_Partners_LocalizedCompanyInfo[] */
+  protected $localizedInfos;
+
+  /** @var Google_Service_Partners_Location[] */
+  protected $locations;
+
+  /** @var Google_Service_Partners_Money */
+  protected $originalMinMonthlyBudget;
+
+  /** @var Google_Service_Partners_PublicProfile */
+  protected $publicProfile;
+
+  /** @var Google_Service_Partners_Rank[] */
+  protected $ranks;
 
   public function setCertificationStatuses($certificationStatuses)
   {
@@ -774,6 +796,14 @@ class Google_Service_Partners_CreateLeadRequest extends Google_Model
   protected $requestMetadataType = 'Google_Service_Partners_RequestMetadata';
   protected $requestMetadataDataType = '';
 
+  /** @var Google_Service_Partners_Lead */
+  protected $lead;
+
+  /** @var Google_Service_Partners_RecaptchaChallenge */
+  protected $recaptchaChallenge;
+
+  /** @var Google_Service_Partners_RequestMetadata */
+  protected $requestMetadata;
 
   public function setLead(Google_Service_Partners_Lead $lead)
   {
@@ -811,6 +841,11 @@ class Google_Service_Partners_CreateLeadResponse extends Google_Model
   protected $responseMetadataType = 'Google_Service_Partners_ResponseMetadata';
   protected $responseMetadataDataType = '';
 
+  /** @var Google_Service_Partners_Lead */
+  protected $lead;
+
+  /** @var Google_Service_Partners_ResponseMetadata */
+  protected $responseMetadata;
 
   public function setLead(Google_Service_Partners_Lead $lead)
   {
@@ -909,6 +944,11 @@ class Google_Service_Partners_GetCompanyResponse extends Google_Model
   protected $responseMetadataType = 'Google_Service_Partners_ResponseMetadata';
   protected $responseMetadataDataType = '';
 
+  /** @var Google_Service_Partners_Company */
+  protected $company;
+
+  /** @var Google_Service_Partners_ResponseMetadata */
+  protected $responseMetadata;
 
   public function setCompany(Google_Service_Partners_Company $company)
   {
@@ -971,6 +1011,8 @@ class Google_Service_Partners_Lead extends Google_Collection
   public $type;
   public $websiteUrl;
 
+  /** @var Google_Service_Partners_Money */
+  protected $minMonthlyBudget;
 
   public function setComments($comments)
   {
@@ -1065,6 +1107,11 @@ class Google_Service_Partners_ListCompaniesResponse extends Google_Collection
   protected $responseMetadataType = 'Google_Service_Partners_ResponseMetadata';
   protected $responseMetadataDataType = '';
 
+  /** @var Google_Service_Partners_Company[] */
+  protected $companies;
+
+  /** @var Google_Service_Partners_ResponseMetadata */
+  protected $responseMetadata;
 
   public function setCompanies($companies)
   {
@@ -1101,6 +1148,8 @@ class Google_Service_Partners_ListUserStatesResponse extends Google_Collection
   protected $responseMetadataDataType = '';
   public $userStates;
 
+  /** @var Google_Service_Partners_ResponseMetadata */
+  protected $responseMetadata;
 
   public function setResponseMetadata(Google_Service_Partners_ResponseMetadata $responseMetadata)
   {
@@ -1173,6 +1222,8 @@ class Google_Service_Partners_Location extends Google_Model
   protected $latLngType = 'Google_Service_Partners_LatLng';
   protected $latLngDataType = '';
 
+  /** @var Google_Service_Partners_LatLng */
+  protected $latLng;
 
   public function setAddress($address)
   {
@@ -1202,6 +1253,8 @@ class Google_Service_Partners_LogMessageRequest extends Google_Model
   protected $requestMetadataType = 'Google_Service_Partners_RequestMetadata';
   protected $requestMetadataDataType = '';
 
+  /** @var Google_Service_Partners_RequestMetadata */
+  protected $requestMetadata;
 
   public function setClientInfo($clientInfo)
   {
@@ -1248,6 +1301,8 @@ class Google_Service_Partners_LogMessageResponse extends Google_Model
   protected $responseMetadataType = 'Google_Service_Partners_ResponseMetadata';
   protected $responseMetadataDataType = '';
 
+  /** @var Google_Service_Partners_ResponseMetadata */
+  protected $responseMetadata;
 
   public function setResponseMetadata(Google_Service_Partners_ResponseMetadata $responseMetadata)
   {
@@ -1275,6 +1330,14 @@ class Google_Service_Partners_LogUserEventRequest extends Google_Collection
   protected $requestMetadataDataType = '';
   public $url;
 
+  /** @var Google_Service_Partners_EventData[] */
+  protected $eventDatas;
+
+  /** @var Google_Service_Partners_Lead */
+  protected $lead;
+
+  /** @var Google_Service_Partners_RequestMetadata */
+  protected $requestMetadata;
 
   public function setEventAction($eventAction)
   {
@@ -1341,6 +1404,8 @@ class Google_Service_Partners_LogUserEventResponse extends Google_Model
   protected $responseMetadataType = 'Google_Service_Partners_ResponseMetadata';
   protected $responseMetadataDataType = '';
 
+  /** @var Google_Service_Partners_ResponseMetadata */
+  protected $responseMetadata;
 
   public function setResponseMetadata(Google_Service_Partners_ResponseMetadata $responseMetadata)
   {
@@ -1496,6 +1561,11 @@ class Google_Service_Partners_RequestMetadata extends Google_Collection
   protected $userOverridesType = 'Google_Service_Partners_UserOverrides';
   protected $userOverridesDataType = '';
 
+  /** @var Google_Service_Partners_TrafficSource */
+  protected $trafficSource;
+
+  /** @var Google_Service_Partners_UserOverrides */
+  protected $userOverrides;
 
   public function setExperimentIds($experimentIds)
   {
@@ -1546,6 +1616,8 @@ class Google_Service_Partners_ResponseMetadata extends Google_Model
   protected $debugInfoType = 'Google_Service_Partners_DebugInfo';
   protected $debugInfoDataType = '';
 
+  /** @var Google_Service_Partners_DebugInfo */
+  protected $debugInfo;
 
   public function setDebugInfo(Google_Service_Partners_DebugInfo $debugInfo)
   {

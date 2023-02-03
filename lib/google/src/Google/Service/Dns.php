@@ -512,6 +512,11 @@ class Google_Service_Dns_Change extends Google_Collection
   public $startTime;
   public $status;
 
+  /** @var Google_Service_Dns_ResourceRecordSet[] */
+  protected $additions;
+
+  /** @var Google_Service_Dns_ResourceRecordSet[] */
+  protected $deletions;
 
   public function setAdditions($additions)
   {
@@ -573,6 +578,8 @@ class Google_Service_Dns_ChangesListResponse extends Google_Collection
   public $kind;
   public $nextPageToken;
 
+  /** @var Google_Service_Dns_Change[] */
+  protected $changes;
 
   public function setChanges($changes)
   {
@@ -691,6 +698,8 @@ class Google_Service_Dns_ManagedZonesListResponse extends Google_Collection
   protected $managedZonesDataType = 'array';
   public $nextPageToken;
 
+  /** @var Google_Service_Dns_ManagedZone[] */
+  protected $managedZones;
 
   public function setKind($kind)
   {
@@ -728,6 +737,8 @@ class Google_Service_Dns_Project extends Google_Model
   protected $quotaType = 'Google_Service_Dns_Quota';
   protected $quotaDataType = '';
 
+  /** @var Google_Service_Dns_Quota */
+  protected $quota;
 
   public function setId($id)
   {
@@ -898,6 +909,8 @@ class Google_Service_Dns_ResourceRecordSetsListResponse extends Google_Collectio
   protected $rrsetsType = 'Google_Service_Dns_ResourceRecordSet';
   protected $rrsetsDataType = 'array';
 
+  /** @var Google_Service_Dns_ResourceRecordSet[] */
+  protected $rrsets;
 
   public function setKind($kind)
   {

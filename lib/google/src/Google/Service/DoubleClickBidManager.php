@@ -388,6 +388,8 @@ class Google_Service_DoubleClickBidManager_ListQueriesResponse extends Google_Co
   protected $queriesType = 'Google_Service_DoubleClickBidManager_Query';
   protected $queriesDataType = 'array';
 
+  /** @var Google_Service_DoubleClickBidManager_Query[] */
+  protected $queries;
 
   public function setKind($kind)
   {
@@ -416,6 +418,8 @@ class Google_Service_DoubleClickBidManager_ListReportsResponse extends Google_Co
   protected $reportsType = 'Google_Service_DoubleClickBidManager_Report';
   protected $reportsDataType = 'array';
 
+  /** @var Google_Service_DoubleClickBidManager_Report[] */
+  protected $reports;
 
   public function setKind($kind)
   {
@@ -447,6 +451,8 @@ class Google_Service_DoubleClickBidManager_Parameters extends Google_Collection
   public $metrics;
   public $type;
 
+  /** @var Google_Service_DoubleClickBidManager_FilterPair[] */
+  protected $filters;
 
   public function setFilters($filters)
   {
@@ -506,6 +512,14 @@ class Google_Service_DoubleClickBidManager_Query extends Google_Model
   protected $scheduleDataType = '';
   public $timezoneCode;
 
+  /** @var Google_Service_DoubleClickBidManager_QueryMetadata */
+  protected $metadata;
+
+  /** @var Google_Service_DoubleClickBidManager_Parameters */
+  protected $params;
+
+  /** @var Google_Service_DoubleClickBidManager_QuerySchedule */
+  protected $schedule;
 
   public function setKind($kind)
   {
@@ -736,6 +750,14 @@ class Google_Service_DoubleClickBidManager_Report extends Google_Model
   protected $paramsType = 'Google_Service_DoubleClickBidManager_Parameters';
   protected $paramsDataType = '';
 
+  /** @var Google_Service_DoubleClickBidManager_ReportKey */
+  protected $key;
+
+  /** @var Google_Service_DoubleClickBidManager_ReportMetadata */
+  protected $metadata;
+
+  /** @var Google_Service_DoubleClickBidManager_Parameters */
+  protected $params;
 
   public function setKey(Google_Service_DoubleClickBidManager_ReportKey $key)
   {
@@ -816,6 +838,8 @@ class Google_Service_DoubleClickBidManager_ReportMetadata extends Google_Model
   protected $statusType = 'Google_Service_DoubleClickBidManager_ReportStatus';
   protected $statusDataType = '';
 
+  /** @var Google_Service_DoubleClickBidManager_ReportStatus */
+  protected $status;
 
   public function setGoogleCloudStoragePath($googleCloudStoragePath)
   {
@@ -861,6 +885,8 @@ class Google_Service_DoubleClickBidManager_ReportStatus extends Google_Model
   public $format;
   public $state;
 
+  /** @var Google_Service_DoubleClickBidManager_ReportFailure */
+  protected $failure;
 
   public function setFailure(Google_Service_DoubleClickBidManager_ReportFailure $failure)
   {
@@ -1045,6 +1071,8 @@ class Google_Service_DoubleClickBidManager_UploadLineItemsResponse extends Googl
   protected $uploadStatusType = 'Google_Service_DoubleClickBidManager_UploadStatus';
   protected $uploadStatusDataType = '';
 
+  /** @var Google_Service_DoubleClickBidManager_UploadStatus */
+  protected $uploadStatus;
 
   public function setUploadStatus(Google_Service_DoubleClickBidManager_UploadStatus $uploadStatus)
   {
@@ -1065,6 +1093,8 @@ class Google_Service_DoubleClickBidManager_UploadStatus extends Google_Collectio
   protected $rowStatusType = 'Google_Service_DoubleClickBidManager_RowStatus';
   protected $rowStatusDataType = 'array';
 
+  /** @var Google_Service_DoubleClickBidManager_RowStatus[] */
+  protected $rowStatus;
 
   public function setErrors($errors)
   {

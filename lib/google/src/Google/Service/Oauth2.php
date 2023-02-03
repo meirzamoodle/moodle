@@ -224,6 +224,8 @@ class Google_Service_Oauth2_Jwk extends Google_Collection
   protected $keysType = 'Google_Service_Oauth2_JwkKeys';
   protected $keysDataType = 'array';
 
+  /** @var Google_Service_Oauth2_JwkKeys[] */
+  protected $keys;
 
   public function setKeys($keys)
   {

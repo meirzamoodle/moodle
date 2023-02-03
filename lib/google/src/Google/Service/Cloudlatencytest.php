@@ -123,6 +123,8 @@ class Google_Service_Cloudlatencytest_AggregatedStats extends Google_Collection
   protected $statsType = 'Google_Service_Cloudlatencytest_Stats';
   protected $statsDataType = 'array';
 
+  /** @var Google_Service_Cloudlatencytest_Stats[] */
+  protected $stats;
 
   public function setStats($stats)
   {
@@ -216,6 +218,14 @@ class Google_Service_Cloudlatencytest_Stats extends Google_Collection
   protected $stringValuesDataType = 'array';
   public $time;
 
+  /** @var Google_Service_Cloudlatencytest_DoubleValue[] */
+  protected $doubleValues;
+
+  /** @var Google_Service_Cloudlatencytest_IntValue[] */
+  protected $intValues;
+
+  /** @var Google_Service_Cloudlatencytest_StringValue[] */
+  protected $stringValues;
 
   public function setDoubleValues($doubleValues)
   {

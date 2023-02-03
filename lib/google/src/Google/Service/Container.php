@@ -463,6 +463,11 @@ class Google_Service_Container_Cluster extends Google_Collection
   public $statusMessage;
   public $zone;
 
+  /** @var Google_Service_Container_MasterAuth */
+  protected $masterAuth;
+
+  /** @var Google_Service_Container_NodeConfig */
+  protected $nodeConfig;
 
   public function setClusterIpv4Cidr($clusterIpv4Cidr)
   {
@@ -658,6 +663,8 @@ class Google_Service_Container_CreateClusterRequest extends Google_Model
   protected $clusterType = 'Google_Service_Container_Cluster';
   protected $clusterDataType = '';
 
+  /** @var Google_Service_Container_Cluster */
+  protected $cluster;
 
   public function setCluster(Google_Service_Container_Cluster $cluster)
   {
@@ -677,6 +684,8 @@ class Google_Service_Container_ListClustersResponse extends Google_Collection
   protected $clustersType = 'Google_Service_Container_Cluster';
   protected $clustersDataType = 'array';
 
+  /** @var Google_Service_Container_Cluster[] */
+  protected $clusters;
 
   public function setClusters($clusters)
   {
@@ -696,6 +705,8 @@ class Google_Service_Container_ListOperationsResponse extends Google_Collection
   protected $operationsType = 'Google_Service_Container_Operation';
   protected $operationsDataType = 'array';
 
+  /** @var Google_Service_Container_Operation[] */
+  protected $operations;
 
   public function setOperations($operations)
   {
@@ -901,6 +912,8 @@ class Google_Service_Container_UpdateClusterRequest extends Google_Model
   protected $updateType = 'Google_Service_Container_ClusterUpdate';
   protected $updateDataType = '';
 
+  /** @var Google_Service_Container_ClusterUpdate */
+  protected $update;
 
   public function setUpdate(Google_Service_Container_ClusterUpdate $update)
   {

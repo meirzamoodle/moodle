@@ -28,6 +28,9 @@ class Google_Auth_Simple extends Google_Auth_Abstract
 {
   private $client;
 
+  /** @var Google_IO_Abstract */
+  public $io;
+
   public function __construct(Google_Client $client, $config = null)
   {
     $this->client = $client;

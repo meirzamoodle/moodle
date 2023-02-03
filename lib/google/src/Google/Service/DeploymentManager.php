@@ -880,6 +880,14 @@ class Google_Service_DeploymentManager_Deployment extends Google_Model
   protected $updateType = 'Google_Service_DeploymentManager_DeploymentUpdate';
   protected $updateDataType = '';
 
+  /** @var Google_Service_DeploymentManager_Operation */
+  protected $operation;
+
+  /** @var Google_Service_DeploymentManager_TargetConfiguration */
+  protected $target;
+
+  /** @var Google_Service_DeploymentManager_DeploymentUpdate */
+  protected $update;
 
   public function setDescription($description)
   {
@@ -991,6 +999,11 @@ class Google_Service_DeploymentManager_DeploymentmanagerResource extends Google_
   protected $warningsType = 'Google_Service_DeploymentManager_DeploymentmanagerResourceWarnings';
   protected $warningsDataType = 'array';
 
+  /** @var Google_Service_DeploymentManager_ResourceUpdate */
+  protected $update;
+
+  /** @var Google_Service_DeploymentManager_DeploymentmanagerResourceWarnings[] */
+  protected $warnings;
 
   public function setFinalProperties($finalProperties)
   {
@@ -1092,6 +1105,8 @@ class Google_Service_DeploymentManager_DeploymentmanagerResourceWarnings extends
   protected $dataDataType = 'array';
   public $message;
 
+  /** @var Google_Service_DeploymentManager_DeploymentmanagerResourceWarningsData */
+  protected $data;
 
   public function setCode($code)
   {
@@ -1171,6 +1186,8 @@ class Google_Service_DeploymentManager_DeploymentsListResponse extends Google_Co
   protected $deploymentsDataType = 'array';
   public $nextPageToken;
 
+  /** @var Google_Service_DeploymentManager_Deployment[] */
+  protected $deployments;
 
   public function setDeployments($deployments)
   {
@@ -1249,6 +1266,11 @@ class Google_Service_DeploymentManager_Manifest extends Google_Collection
   public $name;
   public $selfLink;
 
+  /** @var Google_Service_DeploymentManager_ConfigFile */
+  protected $config;
+
+  /** @var Google_Service_DeploymentManager_ImportFile[] */
+  protected $imports;
 
   public function setConfig(Google_Service_DeploymentManager_ConfigFile $config)
   {
@@ -1325,6 +1347,8 @@ class Google_Service_DeploymentManager_ManifestsListResponse extends Google_Coll
   protected $manifestsDataType = 'array';
   public $nextPageToken;
 
+  /** @var Google_Service_DeploymentManager_Manifest[] */
+  protected $manifests;
 
   public function setManifests($manifests)
   {
@@ -1374,6 +1398,11 @@ class Google_Service_DeploymentManager_Operation extends Google_Collection
   protected $warningsDataType = 'array';
   public $zone;
 
+  /** @var Google_Service_DeploymentManager_OperationError */
+  protected $error;
+
+  /** @var Google_Service_DeploymentManager_OperationWarnings[] */
+  protected $warnings;
 
   public function setClientOperationId($clientOperationId)
   {
@@ -1561,6 +1590,8 @@ class Google_Service_DeploymentManager_OperationError extends Google_Collection
   protected $errorsType = 'Google_Service_DeploymentManager_OperationErrorErrors';
   protected $errorsDataType = 'array';
 
+  /** @var Google_Service_DeploymentManager_OperationErrorErrors[] */
+  protected $errors;
 
   public function setErrors($errors)
   {
@@ -1617,6 +1648,8 @@ class Google_Service_DeploymentManager_OperationWarnings extends Google_Collecti
   protected $dataDataType = 'array';
   public $message;
 
+  /** @var Google_Service_DeploymentManager_OperationWarningsData[] */
+  protected $data;
 
   public function setCode($code)
   {
@@ -1679,6 +1712,8 @@ class Google_Service_DeploymentManager_OperationsListResponse extends Google_Col
   protected $operationsType = 'Google_Service_DeploymentManager_Operation';
   protected $operationsDataType = 'array';
 
+  /** @var Google_Service_DeploymentManager_Operation[] */
+  protected $operations;
 
   public function setNextPageToken($nextPageToken)
   {
@@ -1713,6 +1748,11 @@ class Google_Service_DeploymentManager_ResourceUpdate extends Google_Collection
   protected $warningsType = 'Google_Service_DeploymentManager_ResourceUpdateWarnings';
   protected $warningsDataType = 'array';
 
+  /** @var Google_Service_DeploymentManager_ResourceUpdateError */
+  protected $error;
+
+  /** @var Google_Service_DeploymentManager_ResourceUpdateWarnings[] */
+  protected $warnings;
 
   public function setError(Google_Service_DeploymentManager_ResourceUpdateError $error)
   {
@@ -1780,6 +1820,8 @@ class Google_Service_DeploymentManager_ResourceUpdateError extends Google_Collec
   protected $errorsType = 'Google_Service_DeploymentManager_ResourceUpdateErrorErrors';
   protected $errorsDataType = 'array';
 
+  /** @var Google_Service_DeploymentManager_ResourceUpdateErrorErrors[] */
+  protected $errors;
 
   public function setErrors($errors)
   {
@@ -1836,6 +1878,8 @@ class Google_Service_DeploymentManager_ResourceUpdateWarnings extends Google_Col
   protected $dataDataType = 'array';
   public $message;
 
+  /** @var Google_Service_DeploymentManager_ResourceUpdateWarningsData[] */
+  protected $data;
 
   public function setCode($code)
   {
@@ -1898,6 +1942,8 @@ class Google_Service_DeploymentManager_ResourcesListResponse extends Google_Coll
   protected $resourcesType = 'Google_Service_DeploymentManager_DeploymentmanagerResource';
   protected $resourcesDataType = 'array';
 
+  /** @var Google_Service_DeploymentManager_DeploymentmanagerResource[] */
+  protected $resources;
 
   public function setNextPageToken($nextPageToken)
   {
@@ -1927,6 +1973,11 @@ class Google_Service_DeploymentManager_TargetConfiguration extends Google_Collec
   protected $importsType = 'Google_Service_DeploymentManager_ImportFile';
   protected $importsDataType = 'array';
 
+  /** @var Google_Service_DeploymentManager_ConfigFile */
+  protected $config;
+
+  /** @var Google_Service_DeploymentManager_ImportFile[] */
+  protected $imports;
 
   public function setConfig(Google_Service_DeploymentManager_ConfigFile $config)
   {
@@ -1999,6 +2050,8 @@ class Google_Service_DeploymentManager_TypesListResponse extends Google_Collecti
   protected $typesType = 'Google_Service_DeploymentManager_Type';
   protected $typesDataType = 'array';
 
+  /** @var Google_Service_DeploymentManager_Type[] */
+  protected $types;
 
   public function setNextPageToken($nextPageToken)
   {

@@ -875,6 +875,8 @@ class Google_Service_AdExchangeSeller_Accounts extends Google_Collection
   public $kind;
   public $nextPageToken;
 
+  /** @var Google_Service_AdExchangeSeller_Account[] */
+  protected $items;
 
   public function setEtag($etag)
   {
@@ -974,6 +976,8 @@ class Google_Service_AdExchangeSeller_AdClients extends Google_Collection
   public $kind;
   public $nextPageToken;
 
+  /** @var Google_Service_AdExchangeSeller_AdClient[] */
+  protected $items;
 
   public function setEtag($etag)
   {
@@ -1071,6 +1075,8 @@ class Google_Service_AdExchangeSeller_Alerts extends Google_Collection
   protected $itemsDataType = 'array';
   public $kind;
 
+  /** @var Google_Service_AdExchangeSeller_Alert[] */
+  protected $items;
 
   public function setItems($items)
   {
@@ -1101,6 +1107,8 @@ class Google_Service_AdExchangeSeller_CustomChannel extends Google_Model
   protected $targetingInfoType = 'Google_Service_AdExchangeSeller_CustomChannelTargetingInfo';
   protected $targetingInfoDataType = '';
 
+  /** @var Google_Service_AdExchangeSeller_CustomChannelTargetingInfo */
+  protected $targetingInfo;
 
   public function setCode($code)
   {
@@ -1199,6 +1207,8 @@ class Google_Service_AdExchangeSeller_CustomChannels extends Google_Collection
   public $kind;
   public $nextPageToken;
 
+  /** @var Google_Service_AdExchangeSeller_CustomChannel[] */
+  protected $items;
 
   public function setEtag($etag)
   {
@@ -1243,6 +1253,8 @@ class Google_Service_AdExchangeSeller_Metadata extends Google_Collection
   protected $itemsDataType = 'array';
   public $kind;
 
+  /** @var Google_Service_AdExchangeSeller_ReportingMetadataEntry[] */
+  protected $items;
 
   public function setItems($items)
   {
@@ -1351,6 +1363,8 @@ class Google_Service_AdExchangeSeller_PreferredDeals extends Google_Collection
   protected $itemsDataType = 'array';
   public $kind;
 
+  /** @var Google_Service_AdExchangeSeller_PreferredDeal[] */
+  protected $items;
 
   public function setItems($items)
   {
@@ -1384,6 +1398,8 @@ class Google_Service_AdExchangeSeller_Report extends Google_Collection
   public $totals;
   public $warnings;
 
+  /** @var Google_Service_AdExchangeSeller_ReportHeaders[] */
+  protected $headers;
 
   public function setAverages($averages)
   {
@@ -1596,6 +1612,8 @@ class Google_Service_AdExchangeSeller_SavedReports extends Google_Collection
   public $kind;
   public $nextPageToken;
 
+  /** @var Google_Service_AdExchangeSeller_SavedReport[] */
+  protected $items;
 
   public function setEtag($etag)
   {
@@ -1677,6 +1695,8 @@ class Google_Service_AdExchangeSeller_UrlChannels extends Google_Collection
   public $kind;
   public $nextPageToken;
 
+  /** @var Google_Service_AdExchangeSeller_UrlChannel[] */
+  protected $items;
 
   public function setEtag($etag)
   {

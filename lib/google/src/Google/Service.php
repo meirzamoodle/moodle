@@ -25,6 +25,9 @@ class Google_Service
   public $resource;
   private $client;
 
+  /** @var string service name. */
+  public $serviceName;
+
   public function __construct(Google_Client $client)
   {
     $this->client = $client;

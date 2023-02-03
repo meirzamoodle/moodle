@@ -1367,6 +1367,8 @@ class Google_Service_Fusiontables_Column extends Google_Collection
   public $validValues;
   public $validateData;
 
+  /** @var Google_Service_Fusiontables_ColumnBaseColumn */
+  protected $baseColumn;
 
   public function setBaseColumn(Google_Service_Fusiontables_ColumnBaseColumn $baseColumn)
   {
@@ -1503,6 +1505,8 @@ class Google_Service_Fusiontables_ColumnList extends Google_Collection
   public $nextPageToken;
   public $totalItems;
 
+  /** @var Google_Service_Fusiontables_Column[] */
+  protected $items;
 
   public function setItems($items)
   {
@@ -1639,6 +1643,11 @@ class Google_Service_Fusiontables_LineStyle extends Google_Model
   protected $strokeWeightStylerType = 'Google_Service_Fusiontables_StyleFunction';
   protected $strokeWeightStylerDataType = '';
 
+  /** @var Google_Service_Fusiontables_StyleFunction */
+  protected $strokeColorStyler;
+
+  /** @var Google_Service_Fusiontables_StyleFunction */
+  protected $strokeWeightStyler;
 
   public function setStrokeColor($strokeColor)
   {
@@ -1717,6 +1726,8 @@ class Google_Service_Fusiontables_PointStyle extends Google_Model
   protected $iconStylerType = 'Google_Service_Fusiontables_StyleFunction';
   protected $iconStylerDataType = '';
 
+  /** @var Google_Service_Fusiontables_StyleFunction */
+  protected $iconStyler;
 
   public function setIconName($iconName)
   {
@@ -1779,6 +1790,14 @@ class Google_Service_Fusiontables_PolygonStyle extends Google_Model
   protected $strokeWeightStylerType = 'Google_Service_Fusiontables_StyleFunction';
   protected $strokeWeightStylerDataType = '';
 
+  /** @var Google_Service_Fusiontables_StyleFunction */
+  protected $fillColorStyler;
+
+  /** @var Google_Service_Fusiontables_StyleFunction */
+  protected $strokeColorStyler;
+
+  /** @var Google_Service_Fusiontables_StyleFunction */
+  protected $strokeWeightStyler;
 
   public function setFillColor($fillColor)
   {
@@ -1894,6 +1913,11 @@ class Google_Service_Fusiontables_StyleFunction extends Google_Collection
   protected $gradientDataType = '';
   public $kind;
 
+  /** @var Google_Service_Fusiontables_Bucket[] */
+  protected $buckets;
+
+  /** @var Google_Service_Fusiontables_StyleFunctionGradient */
+  protected $gradient;
 
   public function setBuckets($buckets)
   {
@@ -1939,6 +1963,8 @@ class Google_Service_Fusiontables_StyleFunctionGradient extends Google_Collectio
   public $max;
   public $min;
 
+  /** @var Google_Service_Fusiontables_StyleFunctionGradientColors[] */
+  protected $colors;
 
   public function setColors($colors)
   {
@@ -2007,6 +2033,14 @@ class Google_Service_Fusiontables_StyleSetting extends Google_Model
   public $styleId;
   public $tableId;
 
+  /** @var Google_Service_Fusiontables_PointStyle */
+  protected $markerOptions;
+
+  /** @var Google_Service_Fusiontables_PolygonStyle */
+  protected $polygonOptions;
+
+  /** @var Google_Service_Fusiontables_LineStyle */
+  protected $polylineOptions;
 
   public function setKind($kind)
   {
@@ -2077,6 +2111,8 @@ class Google_Service_Fusiontables_StyleSettingList extends Google_Collection
   public $nextPageToken;
   public $totalItems;
 
+  /** @var Google_Service_Fusiontables_StyleSetting[] */
+  protected $items;
 
   public function setItems($items)
   {
@@ -2132,6 +2168,8 @@ class Google_Service_Fusiontables_Table extends Google_Collection
   public $tablePropertiesJson;
   public $tablePropertiesJsonSchema;
 
+  /** @var Google_Service_Fusiontables_Column[] */
+  protected $columns;
 
   public function setAttribution($attribution)
   {
@@ -2249,6 +2287,8 @@ class Google_Service_Fusiontables_TableList extends Google_Collection
   public $kind;
   public $nextPageToken;
 
+  /** @var Google_Service_Fusiontables_Table[] */
+  protected $items;
 
   public function setItems($items)
   {
@@ -2340,6 +2380,8 @@ class Google_Service_Fusiontables_TaskList extends Google_Collection
   public $nextPageToken;
   public $totalItems;
 
+  /** @var Google_Service_Fusiontables_Task[] */
+  protected $items;
 
   public function setItems($items)
   {
@@ -2449,6 +2491,8 @@ class Google_Service_Fusiontables_TemplateList extends Google_Collection
   public $nextPageToken;
   public $totalItems;
 
+  /** @var Google_Service_Fusiontables_Template[] */
+  protected $items;
 
   public function setItems($items)
   {

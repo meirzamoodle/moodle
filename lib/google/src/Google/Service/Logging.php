@@ -66,6 +66,8 @@ class Google_Service_Logging_LogLine extends Google_Model
   protected $sourceLocationDataType = '';
   public $time;
 
+  /** @var Google_Service_Logging_SourceLocation */
+  protected $sourceLocation;
 
   public function setLogMessage($logMessage)
   {
@@ -140,6 +142,11 @@ class Google_Service_Logging_RequestLog extends Google_Collection
   public $versionId;
   public $wasLoadingRequest;
 
+  /** @var Google_Service_Logging_LogLine[] */
+  protected $line;
+
+  /** @var Google_Service_Logging_SourceReference[] */
+  protected $sourceReference;
 
   public function setAppEngineRelease($appEngineRelease)
   {

@@ -143,6 +143,8 @@ class Google_Service_Pagespeedonline_PagespeedApiFormatStringV2 extends Google_C
   protected $argsDataType = 'array';
   public $format;
 
+  /** @var Google_Service_Pagespeedonline_PagespeedApiFormatStringV2Args[] */
+  protected $args;
 
   public function setArgs($args)
   {
@@ -176,6 +178,11 @@ class Google_Service_Pagespeedonline_PagespeedApiFormatStringV2Args extends Goog
   public $type;
   public $value;
 
+  /** @var Google_Service_Pagespeedonline_PagespeedApiFormatStringV2ArgsRects[] */
+  protected $rects;
+
+  /** @var Google_Service_Pagespeedonline_PagespeedApiFormatStringV2ArgsSecondaryRects[] */
+  protected $secondaryRects;
 
   public function setKey($key)
   {
@@ -321,6 +328,8 @@ class Google_Service_Pagespeedonline_PagespeedApiImageV2 extends Google_Model
   protected $pageRectDataType = '';
   public $width;
 
+  /** @var Google_Service_Pagespeedonline_PagespeedApiImageV2PageRect */
+  protected $pageRect;
 
   public function setData($data)
   {
@@ -437,6 +446,20 @@ class Google_Service_Pagespeedonline_Result extends Google_Collection
   protected $versionType = 'Google_Service_Pagespeedonline_ResultVersion';
   protected $versionDataType = '';
 
+  /** @var Google_Service_Pagespeedonline_ResultFormattedResults */
+  protected $formattedResults;
+
+  /** @var Google_Service_Pagespeedonline_ResultPageStats */
+  protected $pageStats;
+
+  /** @var Google_Service_Pagespeedonline_ResultRuleGroupsElement[] */
+  protected $ruleGroups;
+
+  /** @var Google_Service_Pagespeedonline_PagespeedApiImageV2 */
+  protected $screenshot;
+
+  /** @var Google_Service_Pagespeedonline_ResultVersion */
+  protected $version;
 
   public function setFormattedResults(Google_Service_Pagespeedonline_ResultFormattedResults $formattedResults)
   {
@@ -528,6 +551,8 @@ class Google_Service_Pagespeedonline_ResultFormattedResults extends Google_Model
   protected $ruleResultsType = 'Google_Service_Pagespeedonline_ResultFormattedResultsRuleResultsElement';
   protected $ruleResultsDataType = 'map';
 
+  /** @var Google_Service_Pagespeedonline_ResultFormattedResultsRuleResultsElement[] */
+  protected $ruleResults;
 
   public function setLocale($locale)
   {
@@ -564,6 +589,11 @@ class Google_Service_Pagespeedonline_ResultFormattedResultsRuleResultsElement ex
   protected $urlBlocksType = 'Google_Service_Pagespeedonline_ResultFormattedResultsRuleResultsElementUrlBlocks';
   protected $urlBlocksDataType = 'array';
 
+  /** @var Google_Service_Pagespeedonline_PagespeedApiFormatStringV2 */
+  protected $summary;
+
+  /** @var Google_Service_Pagespeedonline_ResultFormattedResultsRuleResultsElementUrlBlocks[] */
+  protected $urlBlocks;
 
   public function setGroups($groups)
   {
@@ -617,6 +647,11 @@ class Google_Service_Pagespeedonline_ResultFormattedResultsRuleResultsElementUrl
   protected $urlsType = 'Google_Service_Pagespeedonline_ResultFormattedResultsRuleResultsElementUrlBlocksUrls';
   protected $urlsDataType = 'array';
 
+  /** @var Google_Service_Pagespeedonline_PagespeedApiFormatStringV2 */
+  protected $header;
+
+  /** @var Google_Service_Pagespeedonline_ResultFormattedResultsRuleResultsElementUrlBlocksUrls[] */
+  protected $urls;
 
   public function setHeader(Google_Service_Pagespeedonline_PagespeedApiFormatStringV2 $header)
   {
@@ -646,6 +681,11 @@ class Google_Service_Pagespeedonline_ResultFormattedResultsRuleResultsElementUrl
   protected $resultType = 'Google_Service_Pagespeedonline_PagespeedApiFormatStringV2';
   protected $resultDataType = '';
 
+  /** @var Google_Service_Pagespeedonline_PagespeedApiFormatStringV2[] */
+  protected $details;
+
+  /** @var Google_Service_Pagespeedonline_PagespeedApiFormatStringV2 */
+  protected $result;
 
   public function setDetails($details)
   {

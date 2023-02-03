@@ -173,6 +173,17 @@ class Google_Service_Urlshortener_AnalyticsSnapshot extends Google_Collection
   protected $referrersDataType = 'array';
   public $shortUrlClicks;
 
+  /** @var Google_Service_Urlshortener_StringCount[] */
+  protected $browsers;
+
+  /** @var Google_Service_Urlshortener_StringCount[] */
+  protected $countries;
+
+  /** @var Google_Service_Urlshortener_StringCount[] */
+  protected $platforms;
+
+  /** @var Google_Service_Urlshortener_StringCount[] */
+  protected $referrers;
 
   public function setBrowsers($browsers)
   {
@@ -239,6 +250,20 @@ class Google_Service_Urlshortener_AnalyticsSummary extends Google_Model
   protected $weekType = 'Google_Service_Urlshortener_AnalyticsSnapshot';
   protected $weekDataType = '';
 
+  /** @var Google_Service_Urlshortener_AnalyticsSnapshot */
+  protected $allTime;
+
+  /** @var Google_Service_Urlshortener_AnalyticsSnapshot */
+  protected $day;
+
+  /** @var Google_Service_Urlshortener_AnalyticsSnapshot */
+  protected $month;
+
+  /** @var Google_Service_Urlshortener_AnalyticsSnapshot */
+  protected $twoHours;
+
+  /** @var Google_Service_Urlshortener_AnalyticsSnapshot */
+  protected $week;
 
   public function setAllTime(Google_Service_Urlshortener_AnalyticsSnapshot $allTime)
   {
@@ -320,6 +345,8 @@ class Google_Service_Urlshortener_Url extends Google_Model
   public $longUrl;
   public $status;
 
+  /** @var Google_Service_Urlshortener_AnalyticsSummary */
+  protected $analytics;
 
   public function setAnalytics(Google_Service_Urlshortener_AnalyticsSummary $analytics)
   {
@@ -383,6 +410,8 @@ class Google_Service_Urlshortener_UrlHistory extends Google_Collection
   public $nextPageToken;
   public $totalItems;
 
+  /** @var Google_Service_Urlshortener_Url[] */
+  protected $items;
 
   public function setItems($items)
   {

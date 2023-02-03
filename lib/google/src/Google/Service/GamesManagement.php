@@ -857,6 +857,8 @@ class Google_Service_GamesManagement_AchievementResetAllResponse extends Google_
   protected $resultsType = 'Google_Service_GamesManagement_AchievementResetResponse';
   protected $resultsDataType = 'array';
 
+  /** @var Google_Service_GamesManagement_AchievementResetResponse[] */
+  protected $results;
 
   public function setKind($kind)
   {
@@ -1013,6 +1015,11 @@ class Google_Service_GamesManagement_GamesPlayerExperienceInfoResource extends G
   protected $nextLevelType = 'Google_Service_GamesManagement_GamesPlayerLevelResource';
   protected $nextLevelDataType = '';
 
+  /** @var CLASSGoogle_Service_GamesManagement_GamesPlayerLevelResourceNAME */
+  protected $currentLevel;
+
+  /** @var Google_Service_GamesManagement_GamesPlayerLevelResource */
+  protected $nextLevel;
 
   public function setCurrentExperiencePoints($currentExperiencePoints)
   {
@@ -1092,6 +1099,8 @@ class Google_Service_GamesManagement_HiddenPlayer extends Google_Model
   protected $playerType = 'Google_Service_GamesManagement_Player';
   protected $playerDataType = '';
 
+  /** @var Google_Service_GamesManagement_Player */
+  protected $player;
 
   public function setHiddenTimeMillis($hiddenTimeMillis)
   {
@@ -1129,6 +1138,8 @@ class Google_Service_GamesManagement_HiddenPlayerList extends Google_Collection
   public $kind;
   public $nextPageToken;
 
+  /** @var Google_Service_GamesManagement_HiddenPlayer[] */
+  protected $items;
 
   public function setItems($items)
   {
@@ -1174,6 +1185,14 @@ class Google_Service_GamesManagement_Player extends Google_Model
   public $playerId;
   public $title;
 
+  /** @var Google_Service_GamesManagement_GamesPlayerExperienceInfoResource */
+  protected $experienceInfo;
+
+  /** @var Google_Service_GamesManagement_GamesPlayedResource */
+  protected $lastPlayedWith;
+
+  /** @var Google_Service_GamesManagement_PlayerName */
+  protected $name;
 
   public function setAvatarImageUrl($avatarImageUrl)
   {
@@ -1292,6 +1311,8 @@ class Google_Service_GamesManagement_PlayerScoreResetAllResponse extends Google_
   protected $resultsType = 'Google_Service_GamesManagement_PlayerScoreResetResponse';
   protected $resultsDataType = 'array';
 
+  /** @var Google_Service_GamesManagement_PlayerScoreResetResponse[] */
+  protected $results;
 
   public function setKind($kind)
   {

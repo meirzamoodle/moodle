@@ -8587,6 +8587,8 @@ class Google_Service_Compute_AddressAggregatedList extends Google_Model
   public $nextPageToken;
   public $selfLink;
 
+  /** @var Google_Service_Compute_AddressesScopedList[] */
+  protected $items;
 
   public function setId($id)
   {
@@ -8646,6 +8648,8 @@ class Google_Service_Compute_AddressList extends Google_Collection
   public $nextPageToken;
   public $selfLink;
 
+  /** @var Google_Service_Compute_Address[] */
+  protected $items;
 
   public function setId($id)
   {
@@ -8699,6 +8703,11 @@ class Google_Service_Compute_AddressesScopedList extends Google_Collection
   protected $warningType = 'Google_Service_Compute_AddressesScopedListWarning';
   protected $warningDataType = '';
 
+  /** @var Google_Service_Compute_Address[] */
+  protected $addresses;
+
+  /** @var Google_Service_Compute_AddressesScopedListWarning */
+  protected $warning;
 
   public function setAddresses($addresses)
   {
@@ -8728,6 +8737,8 @@ class Google_Service_Compute_AddressesScopedListWarning extends Google_Collectio
   protected $dataDataType = 'array';
   public $message;
 
+  /** @var Google_Service_Compute_AddressesScopedListWarningData[] */
+  protected $data;
 
   public function setCode($code)
   {
@@ -8799,6 +8810,8 @@ class Google_Service_Compute_AttachedDisk extends Google_Collection
   public $source;
   public $type;
 
+  /** @var Google_Service_Compute_AttachedDiskInitializeParams */
+  protected $initializeParams;
 
   public function setAutoDelete($autoDelete)
   {
@@ -8949,6 +8962,8 @@ class Google_Service_Compute_Autoscaler extends Google_Model
   public $target;
   public $zone;
 
+  /** @var Google_Service_Compute_AutoscalingPolicy */
+  protected $autoscalingPolicy;
 
   public function setAutoscalingPolicy(Google_Service_Compute_AutoscalingPolicy $autoscalingPolicy)
   {
@@ -9035,6 +9050,8 @@ class Google_Service_Compute_AutoscalerAggregatedList extends Google_Model
   public $nextPageToken;
   public $selfLink;
 
+  /** @var Google_Service_Compute_AutoscalersScopedList[] */
+  protected $items;
 
   public function setId($id)
   {
@@ -9094,6 +9111,8 @@ class Google_Service_Compute_AutoscalerList extends Google_Collection
   public $nextPageToken;
   public $selfLink;
 
+  /** @var Google_Service_Compute_Autoscaler[] */
+  protected $items;
 
   public function setId($id)
   {
@@ -9147,6 +9166,11 @@ class Google_Service_Compute_AutoscalersScopedList extends Google_Collection
   protected $warningType = 'Google_Service_Compute_AutoscalersScopedListWarning';
   protected $warningDataType = '';
 
+  /** @var Google_Service_Compute_Autoscaler[] */
+  protected $autoscalers;
+
+  /** @var Google_Service_Compute_AutoscalersScopedListWarning */
+  protected $warning;
 
   public function setAutoscalers($autoscalers)
   {
@@ -9176,6 +9200,8 @@ class Google_Service_Compute_AutoscalersScopedListWarning extends Google_Collect
   protected $dataDataType = 'array';
   public $message;
 
+  /** @var Google_Service_Compute_AutoscalersScopedListWarningData[] */
+  protected $data;
 
   public function setCode($code)
   {
@@ -9244,6 +9270,14 @@ class Google_Service_Compute_AutoscalingPolicy extends Google_Collection
   public $maxNumReplicas;
   public $minNumReplicas;
 
+  /** @var Google_Service_Compute_AutoscalingPolicyCpuUtilization */
+  protected $cpuUtilization;
+
+  /** @var Google_Service_Compute_AutoscalingPolicyCustomMetricUtilization[] */
+  protected $customMetricUtilizations;
+
+  /** @var Google_Service_Compute_AutoscalingPolicyLoadBalancingUtilization */
+  protected $loadBalancingUtilization;
 
   public function setCoolDownPeriodSec($coolDownPeriodSec)
   {
@@ -9455,6 +9489,8 @@ class Google_Service_Compute_BackendService extends Google_Collection
   public $selfLink;
   public $timeoutSec;
 
+  /** @var Google_Service_Compute_Backend[] */
+  protected $backends;
 
   public function setBackends($backends)
   {
@@ -9571,6 +9607,8 @@ class Google_Service_Compute_BackendServiceGroupHealth extends Google_Collection
   protected $healthStatusDataType = 'array';
   public $kind;
 
+  /** @var Google_Service_Compute_HealthStatus[] */
+  protected $healthStatus;
 
   public function setHealthStatus($healthStatus)
   {
@@ -9602,6 +9640,8 @@ class Google_Service_Compute_BackendServiceList extends Google_Collection
   public $nextPageToken;
   public $selfLink;
 
+  /** @var Google_Service_Compute_BackendService[] */
+  protected $items;
 
   public function setId($id)
   {
@@ -9889,6 +9929,8 @@ class Google_Service_Compute_DiskAggregatedList extends Google_Model
   public $nextPageToken;
   public $selfLink;
 
+  /** @var Google_Service_Compute_DisksScopedList[] */
+  protected $items;
 
   public function setId($id)
   {
@@ -9948,6 +9990,8 @@ class Google_Service_Compute_DiskList extends Google_Collection
   public $nextPageToken;
   public $selfLink;
 
+  /** @var Google_Service_Compute_Disk[] */
+  protected $items;
 
   public function setId($id)
   {
@@ -10033,6 +10077,8 @@ class Google_Service_Compute_DiskType extends Google_Model
   public $validDiskSize;
   public $zone;
 
+  /** @var Google_Service_Compute_DeprecationStatus */
+  protected $deprecated;
 
   public function setCreationTimestamp($creationTimestamp)
   {
@@ -10127,6 +10173,8 @@ class Google_Service_Compute_DiskTypeAggregatedList extends Google_Model
   public $nextPageToken;
   public $selfLink;
 
+  /** @var Google_Service_Compute_DiskTypesScopedList[] */
+  protected $items;
 
   public function setId($id)
   {
@@ -10186,6 +10234,8 @@ class Google_Service_Compute_DiskTypeList extends Google_Collection
   public $nextPageToken;
   public $selfLink;
 
+  /** @var Google_Service_Compute_DiskType[] */
+  protected $items;
 
   public function setId($id)
   {
@@ -10239,6 +10289,11 @@ class Google_Service_Compute_DiskTypesScopedList extends Google_Collection
   protected $warningType = 'Google_Service_Compute_DiskTypesScopedListWarning';
   protected $warningDataType = '';
 
+  /** @var Google_Service_Compute_DiskType[] */
+  protected $diskTypes;
+
+  /** @var Google_Service_Compute_DiskTypesScopedListWarning */
+  protected $warning;
 
   public function setDiskTypes($diskTypes)
   {
@@ -10268,6 +10323,8 @@ class Google_Service_Compute_DiskTypesScopedListWarning extends Google_Collectio
   protected $dataDataType = 'array';
   public $message;
 
+  /** @var Google_Service_Compute_DiskTypesScopedListWarningData[] */
+  protected $data;
 
   public function setCode($code)
   {
@@ -10331,6 +10388,11 @@ class Google_Service_Compute_DisksScopedList extends Google_Collection
   protected $warningType = 'Google_Service_Compute_DisksScopedListWarning';
   protected $warningDataType = '';
 
+  /** @var Google_Service_Compute_Disk[] */
+  protected $disks;
+
+  /** @var Google_Service_Compute_DisksScopedListWarning */
+  protected $warning;
 
   public function setDisks($disks)
   {
@@ -10360,6 +10422,8 @@ class Google_Service_Compute_DisksScopedListWarning extends Google_Collection
   protected $dataDataType = 'array';
   public $message;
 
+  /** @var Google_Service_Compute_DisksScopedListWarningData[] */
+  protected $data;
 
   public function setCode($code)
   {
@@ -10431,6 +10495,8 @@ class Google_Service_Compute_Firewall extends Google_Collection
   public $sourceTags;
   public $targetTags;
 
+  /** @var Google_Service_Compute_FirewallAllowed[] */
+  protected $allowed;
 
   public function setAllowed($allowed)
   {
@@ -10562,6 +10628,8 @@ class Google_Service_Compute_FirewallList extends Google_Collection
   public $nextPageToken;
   public $selfLink;
 
+  /** @var Google_Service_Compute_Firewall[] */
+  protected $items;
 
   public function setId($id)
   {
@@ -10725,6 +10793,8 @@ class Google_Service_Compute_ForwardingRuleAggregatedList extends Google_Model
   public $nextPageToken;
   public $selfLink;
 
+  /** @var Google_Service_Compute_ForwardingRulesScopedList[] */
+  protected $items;
 
   public function setId($id)
   {
@@ -10784,6 +10854,8 @@ class Google_Service_Compute_ForwardingRuleList extends Google_Collection
   public $nextPageToken;
   public $selfLink;
 
+  /** @var Google_Service_Compute_ForwardingRule[] */
+  protected $items;
 
   public function setId($id)
   {
@@ -10837,6 +10909,11 @@ class Google_Service_Compute_ForwardingRulesScopedList extends Google_Collection
   protected $warningType = 'Google_Service_Compute_ForwardingRulesScopedListWarning';
   protected $warningDataType = '';
 
+  /** @var Google_Service_Compute_ForwardingRule[] */
+  protected $forwardingRules;
+
+  /** @var Google_Service_Compute_ForwardingRulesScopedListWarning */
+  protected $warning;
 
   public function setForwardingRules($forwardingRules)
   {
@@ -10866,6 +10943,8 @@ class Google_Service_Compute_ForwardingRulesScopedListWarning extends Google_Col
   protected $dataDataType = 'array';
   public $message;
 
+  /** @var Google_Service_Compute_ForwardingRulesScopedListWarningData[] */
+  protected $data;
 
   public function setCode($code)
   {
@@ -11153,6 +11232,8 @@ class Google_Service_Compute_HttpHealthCheckList extends Google_Collection
   public $nextPageToken;
   public $selfLink;
 
+  /** @var Google_Service_Compute_HttpHealthCheck[] */
+  protected $items;
 
   public function setId($id)
   {
@@ -11333,6 +11414,8 @@ class Google_Service_Compute_HttpsHealthCheckList extends Google_Collection
   public $nextPageToken;
   public $selfLink;
 
+  /** @var Google_Service_Compute_HttpsHealthCheck[] */
+  protected $items;
 
   public function setId($id)
   {
@@ -11399,6 +11482,11 @@ class Google_Service_Compute_Image extends Google_Collection
   public $sourceType;
   public $status;
 
+  /** @var Google_Service_Compute_DeprecationStatus */
+  protected $deprecated;
+
+  /** @var Google_Service_Compute_ImageRawDisk */
+  protected $rawDisk;
 
   public function setArchiveSizeBytes($archiveSizeBytes)
   {
@@ -11534,6 +11622,8 @@ class Google_Service_Compute_ImageList extends Google_Collection
   public $nextPageToken;
   public $selfLink;
 
+  /** @var Google_Service_Compute_Image[] */
+  protected $items;
 
   public function setId($id)
   {
@@ -11642,6 +11732,23 @@ class Google_Service_Compute_Instance extends Google_Collection
   protected $tagsDataType = '';
   public $zone;
 
+  /** @var Google_Service_Compute_AttachedDisk[] */
+  protected $disks;
+
+  /** @var Google_Service_Compute_Metadata */
+  protected $metadata;
+
+  /** @var Google_Service_Compute_NetworkInterface[] */
+  protected $networkInterfaces;
+
+  /** @var Google_Service_Compute_Scheduling */
+  protected $scheduling;
+
+  /** @var Google_Service_Compute_ServiceAccount[] */
+  protected $serviceAccounts;
+
+  /** @var Google_Service_Compute_Tags */
+  protected $tags;
 
   public function setCanIpForward($canIpForward)
   {
@@ -11800,6 +11907,8 @@ class Google_Service_Compute_InstanceAggregatedList extends Google_Model
   public $nextPageToken;
   public $selfLink;
 
+  /** @var Google_Service_Compute_InstancesScopedList[] */
+  protected $items;
 
   public function setId($id)
   {
@@ -11865,6 +11974,8 @@ class Google_Service_Compute_InstanceGroup extends Google_Collection
   public $size;
   public $zone;
 
+  /** @var Google_Service_Compute_NamedPort[] */
+  protected $namedPorts;
 
   public function setCreationTimestamp($creationTimestamp)
   {
@@ -11967,6 +12078,8 @@ class Google_Service_Compute_InstanceGroupAggregatedList extends Google_Model
   public $nextPageToken;
   public $selfLink;
 
+  /** @var Google_Service_Compute_InstanceGroupsScopedList[] */
+  protected $items;
 
   public function setId($id)
   {
@@ -12026,6 +12139,8 @@ class Google_Service_Compute_InstanceGroupList extends Google_Collection
   public $nextPageToken;
   public $selfLink;
 
+  /** @var Google_Service_Compute_InstanceGroup[] */
+  protected $items;
 
   public function setId($id)
   {
@@ -12090,6 +12205,8 @@ class Google_Service_Compute_InstanceGroupManager extends Google_Collection
   public $targetSize;
   public $zone;
 
+  /** @var Google_Service_Compute_InstanceGroupManagerActionsSummary */
+  protected $currentActions;
 
   public function setBaseInstanceName($baseInstanceName)
   {
@@ -12287,6 +12404,8 @@ class Google_Service_Compute_InstanceGroupManagerAggregatedList extends Google_M
   public $nextPageToken;
   public $selfLink;
 
+  /** @var Google_Service_Compute_InstanceGroupManagersScopedList[] */
+  protected $items;
 
   public function setId($id)
   {
@@ -12346,6 +12465,8 @@ class Google_Service_Compute_InstanceGroupManagerList extends Google_Collection
   public $nextPageToken;
   public $selfLink;
 
+  /** @var Google_Service_Compute_InstanceGroupManager[] */
+  protected $items;
 
   public function setId($id)
   {
@@ -12433,6 +12554,8 @@ class Google_Service_Compute_InstanceGroupManagersListManagedInstancesResponse e
   protected $managedInstancesType = 'Google_Service_Compute_ManagedInstance';
   protected $managedInstancesDataType = 'array';
 
+  /** @var Google_Service_Compute_ManagedInstance[] */
+  protected $managedInstances;
 
   public function setManagedInstances($managedInstances)
   {
@@ -12472,6 +12595,11 @@ class Google_Service_Compute_InstanceGroupManagersScopedList extends Google_Coll
   protected $warningType = 'Google_Service_Compute_InstanceGroupManagersScopedListWarning';
   protected $warningDataType = '';
 
+  /** @var Google_Service_Compute_InstanceGroupManager[] */
+  protected $instanceGroupManagers;
+
+  /** @var Google_Service_Compute_InstanceGroupManagersScopedListWarning */
+  protected $warning;
 
   public function setInstanceGroupManagers($instanceGroupManagers)
   {
@@ -12501,6 +12629,8 @@ class Google_Service_Compute_InstanceGroupManagersScopedListWarning extends Goog
   protected $dataDataType = 'array';
   public $message;
 
+  /** @var Google_Service_Compute_InstanceGroupManagersScopedListWarningData[] */
+  protected $data;
 
   public function setCode($code)
   {
@@ -12606,6 +12736,8 @@ class Google_Service_Compute_InstanceGroupsAddInstancesRequest extends Google_Co
   protected $instancesType = 'Google_Service_Compute_InstanceReference';
   protected $instancesDataType = 'array';
 
+  /** @var Google_Service_Compute_InstanceReferencep[] */
+  protected $instances;
 
   public function setInstances($instances)
   {
@@ -12629,6 +12761,8 @@ class Google_Service_Compute_InstanceGroupsListInstances extends Google_Collecti
   public $nextPageToken;
   public $selfLink;
 
+  /** @var Google_Service_Compute_InstanceWithNamedPorts[] */
+  protected $items;
 
   public function setId($id)
   {
@@ -12697,6 +12831,8 @@ class Google_Service_Compute_InstanceGroupsRemoveInstancesRequest extends Google
   protected $instancesType = 'Google_Service_Compute_InstanceReference';
   protected $instancesDataType = 'array';
 
+  /** @var Google_Service_Compute_InstanceReference[] */
+  protected $instances;
 
   public function setInstances($instances)
   {
@@ -12718,6 +12854,11 @@ class Google_Service_Compute_InstanceGroupsScopedList extends Google_Collection
   protected $warningType = 'Google_Service_Compute_InstanceGroupsScopedListWarning';
   protected $warningDataType = '';
 
+  /** @var Google_Service_Compute_InstanceGroup[] */
+  protected $instanceGroups;
+
+  /** @var Google_Service_Compute_InstanceGroupsScopedListWarning */
+  protected $warning;
 
   public function setInstanceGroups($instanceGroups)
   {
@@ -12747,6 +12888,8 @@ class Google_Service_Compute_InstanceGroupsScopedListWarning extends Google_Coll
   protected $dataDataType = 'array';
   public $message;
 
+  /** @var Google_Service_Compute_InstanceGroupsScopedListWarningData[] */
+  protected $data;
 
   public function setCode($code)
   {
@@ -12809,6 +12952,8 @@ class Google_Service_Compute_InstanceGroupsSetNamedPortsRequest extends Google_C
   protected $namedPortsType = 'Google_Service_Compute_NamedPort';
   protected $namedPortsDataType = 'array';
 
+  /** @var Google_Service_Compute_NamedPort[] */
+  protected $namedPorts;
 
   public function setFingerprint($fingerprint)
   {
@@ -12840,6 +12985,8 @@ class Google_Service_Compute_InstanceList extends Google_Collection
   public $nextPageToken;
   public $selfLink;
 
+  /** @var Google_Service_Compute_Instance[] */
+  protected $items;
 
   public function setId($id)
   {
@@ -12930,6 +13077,23 @@ class Google_Service_Compute_InstanceProperties extends Google_Collection
   protected $tagsType = 'Google_Service_Compute_Tags';
   protected $tagsDataType = '';
 
+  /** @var Google_Service_Compute_AttachedDisk[] */
+  protected $disks;
+
+  /** @var Google_Service_Compute_Metadata */
+  protected $metadata;
+
+  /** @var Google_Service_Compute_NetworkInterface[] */
+  protected $networkInterfaces;
+
+  /** @var Google_Service_Compute_Scheduling */
+  protected $scheduling;
+
+  /** @var Google_Service_Compute_ServiceAccount[] */
+  protected $serviceAccounts;
+
+  /** @var Google_Service_Compute_Tags */
+  protected $tags;
 
   public function setCanIpForward($canIpForward)
   {
@@ -13035,6 +13199,8 @@ class Google_Service_Compute_InstanceTemplate extends Google_Model
   protected $propertiesDataType = '';
   public $selfLink;
 
+  /** @var Google_Service_Compute_InstanceProperties */
+  protected $properties;
 
   public function setCreationTimestamp($creationTimestamp)
   {
@@ -13106,6 +13272,8 @@ class Google_Service_Compute_InstanceTemplateList extends Google_Collection
   public $nextPageToken;
   public $selfLink;
 
+  /** @var Google_Service_Compute_InstanceTemplate[] */
+  protected $items;
 
   public function setId($id)
   {
@@ -13159,6 +13327,8 @@ class Google_Service_Compute_InstanceWithNamedPorts extends Google_Collection
   protected $namedPortsDataType = 'array';
   public $status;
 
+  /** @var Google_Service_Compute_NamedPort[] */
+  protected $namedPorts;
 
   public function setInstance($instance)
   {
@@ -13196,6 +13366,11 @@ class Google_Service_Compute_InstancesScopedList extends Google_Collection
   protected $warningType = 'Google_Service_Compute_InstancesScopedListWarning';
   protected $warningDataType = '';
 
+  /** @var Google_Service_Compute_Instance[] */
+  protected $instances;
+
+  /** @var Google_Service_Compute_InstancesScopedListWarning */
+  protected $warning;
 
   public function setInstances($instances)
   {
@@ -13225,6 +13400,8 @@ class Google_Service_Compute_InstancesScopedListWarning extends Google_Collectio
   protected $dataDataType = 'array';
   public $message;
 
+  /** @var Google_Service_Compute_InstancesScopedListWarningData[] */
+  protected $data;
 
   public function setCode($code)
   {
@@ -13344,6 +13521,11 @@ class Google_Service_Compute_MachineType extends Google_Collection
   public $selfLink;
   public $zone;
 
+  /** @var Google_Service_Compute_DeprecationStatus */
+  protected $deprecated;
+
+  /** @var Google_Service_Compute_MachineTypeScratchDisks[] */
+  protected $scratchDisks;
 
   public function setCreationTimestamp($creationTimestamp)
   {
@@ -13470,6 +13652,8 @@ class Google_Service_Compute_MachineTypeAggregatedList extends Google_Model
   public $nextPageToken;
   public $selfLink;
 
+  /** @var Google_Service_Compute_MachineTypesScopedList[] */
+  protected $items;
 
   public function setId($id)
   {
@@ -13529,6 +13713,8 @@ class Google_Service_Compute_MachineTypeList extends Google_Collection
   public $nextPageToken;
   public $selfLink;
 
+  /** @var Google_Service_Compute_MachineType[] */
+  protected $items;
 
   public function setId($id)
   {
@@ -13599,6 +13785,11 @@ class Google_Service_Compute_MachineTypesScopedList extends Google_Collection
   protected $warningType = 'Google_Service_Compute_MachineTypesScopedListWarning';
   protected $warningDataType = '';
 
+  /** @var Google_Service_Compute_MachineType[] */
+  protected $machineTypes;
+
+  /** @var Google_Service_Compute_MachineTypesScopedListWarning */
+  protected $warning;
 
   public function setMachineTypes($machineTypes)
   {
@@ -13628,6 +13819,8 @@ class Google_Service_Compute_MachineTypesScopedListWarning extends Google_Collec
   protected $dataDataType = 'array';
   public $message;
 
+  /** @var Google_Service_Compute_MachineTypesScopedListWarningData[] */
+  protected $data;
 
   public function setCode($code)
   {
@@ -13692,6 +13885,8 @@ class Google_Service_Compute_ManagedInstance extends Google_Model
   protected $lastAttemptType = 'Google_Service_Compute_ManagedInstanceLastAttempt';
   protected $lastAttemptDataType = '';
 
+  /** @var Google_Service_Compute_ManagedInstanceLastAttempt */
+  protected $lastAttempt;
 
   public function setCurrentAction($currentAction)
   {
@@ -13742,6 +13937,8 @@ class Google_Service_Compute_ManagedInstanceLastAttempt extends Google_Model
   protected $errorsType = 'Google_Service_Compute_ManagedInstanceLastAttemptErrors';
   protected $errorsDataType = '';
 
+  /** @var Google_Service_Compute_ManagedInstanceLastAttemptErrors */
+  protected $errors;
 
   public function setErrors(Google_Service_Compute_ManagedInstanceLastAttemptErrors $errors)
   {
@@ -13761,6 +13958,8 @@ class Google_Service_Compute_ManagedInstanceLastAttemptErrors extends Google_Col
   protected $errorsType = 'Google_Service_Compute_ManagedInstanceLastAttemptErrorsErrors';
   protected $errorsDataType = 'array';
 
+  /** @var Google_Service_Compute_ManagedInstanceLastAttemptErrorsErrors[] */
+  protected $errors;
 
   public function setErrors($errors)
   {
@@ -13817,6 +14016,8 @@ class Google_Service_Compute_Metadata extends Google_Collection
   protected $itemsDataType = 'array';
   public $kind;
 
+  /** @var Google_Service_Compute_MetadataItems[] */
+  protected $items;
 
   public function setFingerprint($fingerprint)
   {
@@ -13988,6 +14189,8 @@ class Google_Service_Compute_NetworkInterface extends Google_Collection
   public $network;
   public $networkIP;
 
+  /** @var Google_Service_Compute_AccessConfig[] */
+  protected $accessConfigs;
 
   public function setAccessConfigs($accessConfigs)
   {
@@ -14035,6 +14238,8 @@ class Google_Service_Compute_NetworkList extends Google_Collection
   public $nextPageToken;
   public $selfLink;
 
+  /** @var Google_Service_Compute_Network[] */
+  protected $items;
 
   public function setId($id)
   {
@@ -14108,6 +14313,11 @@ class Google_Service_Compute_Operation extends Google_Collection
   protected $warningsDataType = 'array';
   public $zone;
 
+  /** @var Google_Service_Compute_OperationError */
+  protected $error;
+
+  /** @var Google_Service_Compute_OperationWarnings[] */
+  protected $warnings;
 
   public function setClientOperationId($clientOperationId)
   {
@@ -14298,6 +14508,8 @@ class Google_Service_Compute_OperationAggregatedList extends Google_Model
   public $nextPageToken;
   public $selfLink;
 
+  /** @var Google_Service_Compute_OperationsScopedList[] */
+  protected $items;
 
   public function setId($id)
   {
@@ -14353,6 +14565,8 @@ class Google_Service_Compute_OperationError extends Google_Collection
   protected $errorsType = 'Google_Service_Compute_OperationErrorErrors';
   protected $errorsDataType = 'array';
 
+  /** @var Google_Service_Compute_OperationErrorErrors[] */
+  protected $errors;
 
   public function setErrors($errors)
   {
@@ -14411,6 +14625,8 @@ class Google_Service_Compute_OperationList extends Google_Collection
   public $nextPageToken;
   public $selfLink;
 
+  /** @var Google_Service_Compute_Operation[] */
+  protected $items;
 
   public function setId($id)
   {
@@ -14464,6 +14680,8 @@ class Google_Service_Compute_OperationWarnings extends Google_Collection
   protected $dataDataType = 'array';
   public $message;
 
+  /** @var Google_Service_Compute_OperationWarningsData[] */
+  protected $data;
 
   public function setCode($code)
   {
@@ -14527,6 +14745,11 @@ class Google_Service_Compute_OperationsScopedList extends Google_Collection
   protected $warningType = 'Google_Service_Compute_OperationsScopedListWarning';
   protected $warningDataType = '';
 
+  /** @var Google_Service_Compute_Operation[] */
+  protected $operations;
+
+  /** @var Google_Service_Compute_OperationsScopedListWarning */
+  protected $warning;
 
   public function setOperations($operations)
   {
@@ -14556,6 +14779,8 @@ class Google_Service_Compute_OperationsScopedListWarning extends Google_Collecti
   protected $dataDataType = 'array';
   public $message;
 
+  /** @var Google_Service_Compute_OperationsScopedListWarningData[] */
+  protected $data;
 
   public function setCode($code)
   {
@@ -14620,6 +14845,8 @@ class Google_Service_Compute_PathMatcher extends Google_Collection
   protected $pathRulesType = 'Google_Service_Compute_PathRule';
   protected $pathRulesDataType = 'array';
 
+  /** @var Google_Service_Compute_PathRule[] */
+  protected $pathRules;
 
   public function setDefaultService($defaultService)
   {
@@ -14701,6 +14928,14 @@ class Google_Service_Compute_Project extends Google_Collection
   protected $usageExportLocationType = 'Google_Service_Compute_UsageExportLocation';
   protected $usageExportLocationDataType = '';
 
+  /** @var Google_Service_Compute_Metadata */
+  protected $commonInstanceMetadata;
+
+  /** @var Google_Service_Compute_Quota[] */
+  protected $quotas;
+
+  /** @var Google_Service_Compute_UsageExportLocation */
+  protected $usageExportLocation;
 
   public function setCommonInstanceMetadata(Google_Service_Compute_Metadata $commonInstanceMetadata)
   {
@@ -14837,6 +15072,11 @@ class Google_Service_Compute_Region extends Google_Collection
   public $status;
   public $zones;
 
+  /** @var Google_Service_Compute_DeprecationStatus */
+  protected $deprecated;
+
+  /** @var Google_Service_Compute_Quota[] */
+  protected $quotas;
 
   public function setCreationTimestamp($creationTimestamp)
   {
@@ -14932,6 +15172,8 @@ class Google_Service_Compute_RegionList extends Google_Collection
   public $nextPageToken;
   public $selfLink;
 
+  /** @var Google_Service_Compute_Region[] */
+  protected $items;
 
   public function setId($id)
   {
@@ -15015,6 +15257,8 @@ class Google_Service_Compute_Route extends Google_Collection
   protected $warningsType = 'Google_Service_Compute_RouteWarnings';
   protected $warningsDataType = 'array';
 
+  /** @var Google_Service_Compute_RouteWarnings[] */
+  protected $warnings;
 
   public function setCreationTimestamp($creationTimestamp)
   {
@@ -15158,6 +15402,8 @@ class Google_Service_Compute_RouteList extends Google_Collection
   public $nextPageToken;
   public $selfLink;
 
+  /** @var Google_Service_Compute_Route[] */
+  protected $items;
 
   public function setId($id)
   {
@@ -15211,6 +15457,8 @@ class Google_Service_Compute_RouteWarnings extends Google_Collection
   protected $dataDataType = 'array';
   public $message;
 
+  /** @var Google_Service_Compute_RouteWarningsData[] */
+  protected $data;
 
   public function setCode($code)
   {
@@ -15499,6 +15747,8 @@ class Google_Service_Compute_SnapshotList extends Google_Collection
   public $nextPageToken;
   public $selfLink;
 
+  /** @var Google_Service_Compute_Snapshot[] */
+  protected $items;
 
   public function setId($id)
   {
@@ -15634,6 +15884,8 @@ class Google_Service_Compute_SslCertificateList extends Google_Collection
   public $nextPageToken;
   public $selfLink;
 
+  /** @var Google_Service_Compute_SslCertificate[] */
+  protected $items;
 
   public function setId($id)
   {
@@ -15787,6 +16039,8 @@ class Google_Service_Compute_TargetHttpProxyList extends Google_Collection
   public $nextPageToken;
   public $selfLink;
 
+  /** @var Google_Service_Compute_TargetHttpProxy[] */
+  protected $items;
 
   public function setId($id)
   {
@@ -15941,6 +16195,8 @@ class Google_Service_Compute_TargetHttpsProxyList extends Google_Collection
   public $nextPageToken;
   public $selfLink;
 
+  /** @var Google_Service_Compute_TargetHttpsProxy[] */
+  protected $items;
 
   public function setId($id)
   {
@@ -16084,6 +16340,8 @@ class Google_Service_Compute_TargetInstanceAggregatedList extends Google_Model
   public $nextPageToken;
   public $selfLink;
 
+  /** @var Google_Service_Compute_TargetInstancesScopedList[] */
+  protected $items;
 
   public function setId($id)
   {
@@ -16143,6 +16401,8 @@ class Google_Service_Compute_TargetInstanceList extends Google_Collection
   public $nextPageToken;
   public $selfLink;
 
+  /** @var Google_Service_Compute_TargetInstance[] */
+  protected $items;
 
   public function setId($id)
   {
@@ -16196,6 +16456,11 @@ class Google_Service_Compute_TargetInstancesScopedList extends Google_Collection
   protected $warningType = 'Google_Service_Compute_TargetInstancesScopedListWarning';
   protected $warningDataType = '';
 
+  /** @var Google_Service_Compute_TargetInstance[] */
+  protected $targetInstances;
+
+  /** @var Google_Service_Compute_TargetInstancesScopedListWarning */
+  protected $warning;
 
   public function setTargetInstances($targetInstances)
   {
@@ -16225,6 +16490,8 @@ class Google_Service_Compute_TargetInstancesScopedListWarning extends Google_Col
   protected $dataDataType = 'array';
   public $message;
 
+  /** @var Google_Service_Compute_TargetInstancesScopedListWarningData[] */
+  protected $data;
 
   public function setCode($code)
   {
@@ -16406,6 +16673,8 @@ class Google_Service_Compute_TargetPoolAggregatedList extends Google_Model
   public $nextPageToken;
   public $selfLink;
 
+  /** @var Google_Service_Compute_TargetPoolsScopedList[] */
+  protected $items;
 
   public function setId($id)
   {
@@ -16462,6 +16731,8 @@ class Google_Service_Compute_TargetPoolInstanceHealth extends Google_Collection
   protected $healthStatusDataType = 'array';
   public $kind;
 
+  /** @var Google_Service_Compute_HealthStatus[] */
+  protected $healthStatus;
 
   public function setHealthStatus($healthStatus)
   {
@@ -16493,6 +16764,8 @@ class Google_Service_Compute_TargetPoolList extends Google_Collection
   public $nextPageToken;
   public $selfLink;
 
+  /** @var Google_Service_Compute_TargetPool[] */
+  protected $items;
 
   public function setId($id)
   {
@@ -16544,6 +16817,8 @@ class Google_Service_Compute_TargetPoolsAddHealthCheckRequest extends Google_Col
   protected $healthChecksType = 'Google_Service_Compute_HealthCheckReference';
   protected $healthChecksDataType = 'array';
 
+  /** @var Google_Service_Compute_HealthCheckReference[] */
+  protected $healthChecks;
 
   public function setHealthChecks($healthChecks)
   {
@@ -16563,6 +16838,8 @@ class Google_Service_Compute_TargetPoolsAddInstanceRequest extends Google_Collec
   protected $instancesType = 'Google_Service_Compute_InstanceReference';
   protected $instancesDataType = 'array';
 
+  /** @var Google_Service_Compute_InstanceReference[] */
+  protected $instances;
 
   public function setInstances($instances)
   {
@@ -16582,6 +16859,8 @@ class Google_Service_Compute_TargetPoolsRemoveHealthCheckRequest extends Google_
   protected $healthChecksType = 'Google_Service_Compute_HealthCheckReference';
   protected $healthChecksDataType = 'array';
 
+  /** @var Google_Service_Compute_HealthCheckReference[] */
+  protected $healthChecks;
 
   public function setHealthChecks($healthChecks)
   {
@@ -16601,6 +16880,8 @@ class Google_Service_Compute_TargetPoolsRemoveInstanceRequest extends Google_Col
   protected $instancesType = 'Google_Service_Compute_InstanceReference';
   protected $instancesDataType = 'array';
 
+  /** @var Google_Service_Compute_InstanceReference[] */
+  protected $instances;
 
   public function setInstances($instances)
   {
@@ -16622,6 +16903,11 @@ class Google_Service_Compute_TargetPoolsScopedList extends Google_Collection
   protected $warningType = 'Google_Service_Compute_TargetPoolsScopedListWarning';
   protected $warningDataType = '';
 
+  /** @var Google_Service_Compute_TargetPool[] */
+  protected $targetPools;
+
+  /** @var Google_Service_Compute_TargetPoolsScopedListWarning */
+  protected $warning;
 
   public function setTargetPools($targetPools)
   {
@@ -16651,6 +16937,8 @@ class Google_Service_Compute_TargetPoolsScopedListWarning extends Google_Collect
   protected $dataDataType = 'array';
   public $message;
 
+  /** @var Google_Service_Compute_TargetPoolsScopedListWarningData[] */
+  protected $data;
 
   public function setCode($code)
   {
@@ -16840,6 +17128,8 @@ class Google_Service_Compute_TargetVpnGatewayAggregatedList extends Google_Model
   public $nextPageToken;
   public $selfLink;
 
+  /** @var Google_Service_Compute_TargetVpnGatewaysScopedList[] */
+  protected $items;
 
   public function setId($id)
   {
@@ -16899,6 +17189,8 @@ class Google_Service_Compute_TargetVpnGatewayList extends Google_Collection
   public $nextPageToken;
   public $selfLink;
 
+  /** @var Google_Service_Compute_TargetVpnGateway[] */
+  protected $items;
 
   public function setId($id)
   {
@@ -16952,6 +17244,11 @@ class Google_Service_Compute_TargetVpnGatewaysScopedList extends Google_Collecti
   protected $warningType = 'Google_Service_Compute_TargetVpnGatewaysScopedListWarning';
   protected $warningDataType = '';
 
+  /** @var Google_Service_Compute_TargetVpnGateway[] */
+  protected $targetVpnGateways;
+
+  /** @var Google_Service_Compute_TargetVpnGatewaysScopedListWarning */
+  protected $warning;
 
   public function setTargetVpnGateways($targetVpnGateways)
   {
@@ -16981,6 +17278,8 @@ class Google_Service_Compute_TargetVpnGatewaysScopedListWarning extends Google_C
   protected $dataDataType = 'array';
   public $message;
 
+  /** @var Google_Service_Compute_TargetVpnGatewaysScopedListWarningData[] */
+  protected $data;
 
   public function setCode($code)
   {
@@ -17098,6 +17397,14 @@ class Google_Service_Compute_UrlMap extends Google_Collection
   protected $testsType = 'Google_Service_Compute_UrlMapTest';
   protected $testsDataType = 'array';
 
+  /** @var Google_Service_Compute_HostRule[] */
+  protected $hostRules;
+
+  /** @var Google_Service_Compute_PathMatcher[] */
+  protected $pathMatchers;
+
+  /** @var Google_Service_Compute_UrlMapTest[] */
+  protected $tests;
 
   public function setCreationTimestamp($creationTimestamp)
   {
@@ -17201,6 +17508,8 @@ class Google_Service_Compute_UrlMapList extends Google_Collection
   public $nextPageToken;
   public $selfLink;
 
+  /** @var Google_Service_Compute_UrlMap[] */
+  protected $items;
 
   public function setId($id)
   {
@@ -17316,6 +17625,8 @@ class Google_Service_Compute_UrlMapValidationResult extends Google_Collection
   protected $testFailuresDataType = 'array';
   public $testPassed;
 
+  /** @var Google_Service_Compute_TestFailure[] */
+  protected $testFailures;
 
   public function setLoadErrors($loadErrors)
   {
@@ -17358,6 +17669,8 @@ class Google_Service_Compute_UrlMapsValidateRequest extends Google_Model
   protected $resourceType = 'Google_Service_Compute_UrlMap';
   protected $resourceDataType = '';
 
+  /** @var Google_Service_Compute_UrlMap */
+  protected $resource;
 
   public function setResource(Google_Service_Compute_UrlMap $resource)
   {
@@ -17376,6 +17689,8 @@ class Google_Service_Compute_UrlMapsValidateResponse extends Google_Model
   protected $resultType = 'Google_Service_Compute_UrlMapValidationResult';
   protected $resultDataType = '';
 
+  /** @var Google_Service_Compute_UrlMapValidationResult */
+  protected $result;
 
   public function setResult(Google_Service_Compute_UrlMapValidationResult $result)
   {
@@ -17558,6 +17873,8 @@ class Google_Service_Compute_VpnTunnelAggregatedList extends Google_Model
   public $nextPageToken;
   public $selfLink;
 
+  /** @var Google_Service_Compute_VpnTunnelsScopedList[] */
+  protected $items;
 
   public function setId($id)
   {
@@ -17617,6 +17934,8 @@ class Google_Service_Compute_VpnTunnelList extends Google_Collection
   public $nextPageToken;
   public $selfLink;
 
+  /** @var Google_Service_Compute_VpnTunnel[] */
+  protected $items;
 
   public function setId($id)
   {
@@ -17670,6 +17989,11 @@ class Google_Service_Compute_VpnTunnelsScopedList extends Google_Collection
   protected $warningType = 'Google_Service_Compute_VpnTunnelsScopedListWarning';
   protected $warningDataType = '';
 
+  /** @var Google_Service_Compute_VpnTunnel[] */
+  protected $vpnTunnels;
+
+  /** @var Google_Service_Compute_VpnTunnelsScopedListWarning */
+  protected $warning;
 
   public function setVpnTunnels($vpnTunnels)
   {
@@ -17699,6 +18023,8 @@ class Google_Service_Compute_VpnTunnelsScopedListWarning extends Google_Collecti
   protected $dataDataType = 'array';
   public $message;
 
+  /** @var Google_Service_Compute_VpnTunnelsScopedListWarningData]\ */
+  protected $data;
 
   public function setCode($code)
   {
@@ -17770,6 +18096,11 @@ class Google_Service_Compute_Zone extends Google_Collection
   public $selfLink;
   public $status;
 
+  /** @var Google_Service_Compute_DeprecationStatus */
+  protected $deprecated;
+
+  /** @var Google_Service_Compute_ZoneMaintenanceWindows[] */
+  protected $maintenanceWindows;
 
   public function setCreationTimestamp($creationTimestamp)
   {
@@ -17865,6 +18196,8 @@ class Google_Service_Compute_ZoneList extends Google_Collection
   public $nextPageToken;
   public $selfLink;
 
+  /** @var Google_Service_Compute_Zone[] */
+  protected $items;
 
   public function setId($id)
   {

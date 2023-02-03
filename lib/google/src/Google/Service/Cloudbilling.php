@@ -354,6 +354,8 @@ class Google_Service_Cloudbilling_ListBillingAccountsResponse extends Google_Col
   protected $billingAccountsDataType = 'array';
   public $nextPageToken;
 
+  /** @var Google_Service_Cloudbilling_BillingAccount[] */
+  protected $billingAccounts;
 
   public function setBillingAccounts($billingAccounts)
   {
@@ -382,6 +384,8 @@ class Google_Service_Cloudbilling_ListProjectBillingInfoResponse extends Google_
   protected $projectBillingInfoType = 'Google_Service_Cloudbilling_ProjectBillingInfo';
   protected $projectBillingInfoDataType = 'array';
 
+  /** @var Google_Service_Cloudbilling_ProjectBillingInfo[] */
+  protected $projectBillingInfo;
 
   public function setNextPageToken($nextPageToken)
   {

@@ -857,6 +857,8 @@ class Google_Service_Computeaccounts_GroupList extends Google_Collection
   public $nextPageToken;
   public $selfLink;
 
+  /** @var Google_Service_Computeaccounts_Group[] */
+  protected $items;
 
   public function setId($id)
   {
@@ -947,6 +949,11 @@ class Google_Service_Computeaccounts_LinuxAccountViews extends Google_Collection
   protected $userViewsType = 'Google_Service_Computeaccounts_LinuxUserView';
   protected $userViewsDataType = 'array';
 
+  /** @var Google_Service_Computeaccounts_LinuxGroupView[] */
+  protected $groupViews;
+
+  /** @var Google_Service_Computeaccounts_LinuxUserView[] */
+  protected $userViews;
 
   public function setGroupViews($groupViews)
   {
@@ -981,6 +988,8 @@ class Google_Service_Computeaccounts_LinuxGetAuthorizedKeysViewResponse extends 
   protected $resourceType = 'Google_Service_Computeaccounts_AuthorizedKeysView';
   protected $resourceDataType = '';
 
+  /** @var Google_Service_Computeaccounts_AuthorizedKeysView */
+  protected $resource;
 
   public function setResource(Google_Service_Computeaccounts_AuthorizedKeysView $resource)
   {
@@ -999,6 +1008,8 @@ class Google_Service_Computeaccounts_LinuxGetLinuxAccountViewsResponse extends G
   protected $resourceType = 'Google_Service_Computeaccounts_LinuxAccountViews';
   protected $resourceDataType = '';
 
+  /** @var Google_Service_Computeaccounts_LinuxAccountViews */
+  protected $resource;
 
   public function setResource(Google_Service_Computeaccounts_LinuxAccountViews $resource)
   {
@@ -1138,6 +1149,11 @@ class Google_Service_Computeaccounts_Operation extends Google_Collection
   protected $warningsDataType = 'array';
   public $zone;
 
+  /** @var Google_Service_Computeaccounts_OperationError */
+  protected $error;
+
+  /** @var Google_Service_Computeaccounts_OperationWarnings[] */
+  protected $warnings;
 
   public function setClientOperationId($clientOperationId)
   {
@@ -1325,6 +1341,8 @@ class Google_Service_Computeaccounts_OperationError extends Google_Collection
   protected $errorsType = 'Google_Service_Computeaccounts_OperationErrorErrors';
   protected $errorsDataType = 'array';
 
+  /** @var Google_Service_Computeaccounts_OperationErrorErrors[] */
+  protected $errors;
 
   public function setErrors($errors)
   {
@@ -1383,6 +1401,8 @@ class Google_Service_Computeaccounts_OperationList extends Google_Collection
   public $nextPageToken;
   public $selfLink;
 
+  /** @var Google_Service_Computeaccounts_Operation[] */
+  protected $items;
 
   public function setId($id)
   {
@@ -1436,6 +1456,8 @@ class Google_Service_Computeaccounts_OperationWarnings extends Google_Collection
   protected $dataDataType = 'array';
   public $message;
 
+  /** @var Google_Service_Computeaccounts_OperationWarningsData[] */
+  protected $data;
 
   public function setCode($code)
   {
@@ -1558,6 +1580,8 @@ class Google_Service_Computeaccounts_User extends Google_Collection
   protected $publicKeysDataType = 'array';
   public $selfLink;
 
+  /** @var Google_Service_Computeaccounts_PublicKey[] */
+  protected $publicKeys;
 
   public function setCreationTimestamp($creationTimestamp)
   {
@@ -1645,6 +1669,8 @@ class Google_Service_Computeaccounts_UserList extends Google_Collection
   public $nextPageToken;
   public $selfLink;
 
+  /** @var Google_Service_Computeaccounts_User[] */
+  protected $items;
 
   public function setId($id)
   {

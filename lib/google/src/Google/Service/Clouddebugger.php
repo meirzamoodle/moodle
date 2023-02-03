@@ -487,6 +487,20 @@ class Google_Service_Clouddebugger_Breakpoint extends Google_Collection
   protected $variableTableType = 'Google_Service_Clouddebugger_Variable';
   protected $variableTableDataType = 'array';
 
+  /** @var Google_Service_Clouddebugger_Variable[] */
+  protected $evaluatedExpressions;
+
+  /** @var Google_Service_Clouddebugger_SourceLocation */
+  protected $location;
+
+  /** @var Google_Service_Clouddebugger_StackFrame[] */
+  protected $stackFrames;
+
+  /** @var Google_Service_Clouddebugger_StatusMessage */
+  protected $status;
+
+  /** @var Google_Service_Clouddebugger_Variable[] */
+  protected $variableTable;
 
   public function setAction($action)
   {
@@ -619,6 +633,8 @@ class Google_Service_Clouddebugger_CloudRepoSourceContext extends Google_Model
   protected $repoIdDataType = '';
   public $revisionId;
 
+  /** @var Google_Service_Clouddebugger_RepoId */
+  protected $repoId;
 
   public function setAliasName($aliasName)
   {
@@ -654,6 +670,8 @@ class Google_Service_Clouddebugger_CloudWorkspaceId extends Google_Model
   protected $repoIdType = 'Google_Service_Clouddebugger_RepoId';
   protected $repoIdDataType = '';
 
+  /** @var Google_Service_Clouddebugger_RepoId */
+  protected $repoId;
 
   public function setName($name)
   {
@@ -681,6 +699,8 @@ class Google_Service_Clouddebugger_CloudWorkspaceSourceContext extends Google_Mo
   protected $workspaceIdType = 'Google_Service_Clouddebugger_CloudWorkspaceId';
   protected $workspaceIdDataType = '';
 
+  /** @var Google_Service_Clouddebugger_CloudWorkspaceId */
+  protected $workspaceId;
 
   public function setSnapshotId($snapshotId)
   {
@@ -718,6 +738,11 @@ class Google_Service_Clouddebugger_Debuggee extends Google_Collection
   protected $statusDataType = '';
   public $uniquifier;
 
+  /** @var Google_Service_Clouddebugger_SourceContext[] */
+  protected $sourceContexts;
+
+  /** @var Google_Service_Clouddebugger_StatusMessage */
+  protected $status;
 
   public function setAgentVersion($agentVersion)
   {
@@ -887,6 +912,8 @@ class Google_Service_Clouddebugger_GetBreakpointResponse extends Google_Model
   protected $breakpointType = 'Google_Service_Clouddebugger_Breakpoint';
   protected $breakpointDataType = '';
 
+  /** @var Google_Service_Clouddebugger_Breakpoint */
+  protected $breakpoint;
 
   public function setBreakpoint(Google_Service_Clouddebugger_Breakpoint $breakpoint)
   {
@@ -933,6 +960,8 @@ class Google_Service_Clouddebugger_ListActiveBreakpointsResponse extends Google_
   protected $breakpointsDataType = 'array';
   public $nextWaitToken;
 
+  /** @var Google_Service_Clouddebugger_Breakpoint[] */
+  protected $breakpoints;
 
   public function setBreakpoints($breakpoints)
   {
@@ -961,6 +990,8 @@ class Google_Service_Clouddebugger_ListBreakpointsResponse extends Google_Collec
   protected $breakpointsDataType = 'array';
   public $nextWaitToken;
 
+  /** @var Google_Service_Clouddebugger_Breakpoint[] */
+  protected $breakpoints;
 
   public function setBreakpoints($breakpoints)
   {
@@ -988,6 +1019,8 @@ class Google_Service_Clouddebugger_ListDebuggeesResponse extends Google_Collecti
   protected $debuggeesType = 'Google_Service_Clouddebugger_Debuggee';
   protected $debuggeesDataType = 'array';
 
+  /** @var Google_Service_Clouddebugger_Debuggee[] */
+  protected $debuggees;
 
   public function setDebuggees($debuggees)
   {
@@ -1032,6 +1065,8 @@ class Google_Service_Clouddebugger_RegisterDebuggeeRequest extends Google_Model
   protected $debuggeeType = 'Google_Service_Clouddebugger_Debuggee';
   protected $debuggeeDataType = '';
 
+  /** @var Google_Service_Clouddebugger_Debuggee */
+  protected $debuggee;
 
   public function setDebuggee(Google_Service_Clouddebugger_Debuggee $debuggee)
   {
@@ -1050,6 +1085,8 @@ class Google_Service_Clouddebugger_RegisterDebuggeeResponse extends Google_Model
   protected $debuggeeType = 'Google_Service_Clouddebugger_Debuggee';
   protected $debuggeeDataType = '';
 
+  /** @var Google_Service_Clouddebugger_Debuggee */
+  protected $debuggee;
 
   public function setDebuggee(Google_Service_Clouddebugger_Debuggee $debuggee)
   {
@@ -1069,6 +1106,8 @@ class Google_Service_Clouddebugger_RepoId extends Google_Model
   protected $projectRepoIdDataType = '';
   public $uid;
 
+  /** @var Google_Service_Clouddebugger_ProjectRepoId */
+  protected $projectRepoId;
 
   public function setProjectRepoId(Google_Service_Clouddebugger_ProjectRepoId $projectRepoId)
   {
@@ -1095,6 +1134,8 @@ class Google_Service_Clouddebugger_SetBreakpointResponse extends Google_Model
   protected $breakpointType = 'Google_Service_Clouddebugger_Breakpoint';
   protected $breakpointDataType = '';
 
+  /** @var Google_Service_Clouddebugger_Breakpoint */
+  protected $breakpoint;
 
   public function setBreakpoint(Google_Service_Clouddebugger_Breakpoint $breakpoint)
   {
@@ -1119,6 +1160,17 @@ class Google_Service_Clouddebugger_SourceContext extends Google_Model
   protected $gitType = 'Google_Service_Clouddebugger_GitSourceContext';
   protected $gitDataType = '';
 
+  /** @var Google_Service_Clouddebugger_CloudRepoSourceContext */
+  protected $cloudRepo;
+
+  /** @var Google_Service_Clouddebugger_CloudWorkspaceSourceContext */
+  protected $cloudWorkspace;
+
+  /** @var Google_Service_Clouddebugger_GerritSourceContext */
+  protected $gerrit;
+
+  /** @var Google_Service_Clouddebugger_GitSourceContext */
+  protected $git;
 
   public function setCloudRepo(Google_Service_Clouddebugger_CloudRepoSourceContext $cloudRepo)
   {
@@ -1193,6 +1245,14 @@ class Google_Service_Clouddebugger_StackFrame extends Google_Collection
   protected $locationType = 'Google_Service_Clouddebugger_SourceLocation';
   protected $locationDataType = '';
 
+  /** @var Google_Service_Clouddebugger_Variable[] */
+  protected $arguments;
+
+  /** @var Google_Service_Clouddebugger_Variable[] */
+  protected $locals;
+
+  /** @var Google_Service_Clouddebugger_SourceLocation */
+  protected $location;
 
   public function setArguments($arguments)
   {
@@ -1237,6 +1297,8 @@ class Google_Service_Clouddebugger_StatusMessage extends Google_Model
   public $isError;
   public $refersTo;
 
+  /** @var Google_Service_Clouddebugger_FormatMessage */
+  protected $description;
 
   public function setDescription(Google_Service_Clouddebugger_FormatMessage $description)
   {
@@ -1271,6 +1333,8 @@ class Google_Service_Clouddebugger_UpdateActiveBreakpointRequest extends Google_
   protected $breakpointType = 'Google_Service_Clouddebugger_Breakpoint';
   protected $breakpointDataType = '';
 
+  /** @var Google_Service_Clouddebugger_Breakpoint */
+  protected $breakpoint;
 
   public function setBreakpoint(Google_Service_Clouddebugger_Breakpoint $breakpoint)
   {
@@ -1299,6 +1363,11 @@ class Google_Service_Clouddebugger_Variable extends Google_Collection
   public $value;
   public $varTableIndex;
 
+  /** @var Google_Service_Clouddebugger_Variable[] */
+  protected $members;
+
+  /** @var Google_Service_Clouddebugger_StatusMessage */
+  protected $status;
 
   public function setMembers($members)
   {

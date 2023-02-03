@@ -1953,6 +1953,8 @@ class Google_Service_Calendar_Acl extends Google_Collection
   public $nextPageToken;
   public $nextSyncToken;
 
+  /** @var Google_Service_Calendar_AclRule[] */
+  protected $items;
 
   public function setEtag($etag)
   {
@@ -2007,6 +2009,8 @@ class Google_Service_Calendar_AclRule extends Google_Model
   protected $scopeType = 'Google_Service_Calendar_AclRuleScope';
   protected $scopeDataType = '';
 
+  /** @var Google_Service_Calendar_AclRuleScope */
+  protected $scope;
 
   public function setEtag($etag)
   {
@@ -2159,6 +2163,8 @@ class Google_Service_Calendar_CalendarList extends Google_Collection
   public $nextPageToken;
   public $nextSyncToken;
 
+  /** @var Google_Service_Calendar_CalendarListEntry[] */
+  protected $items;
 
   public function setEtag($etag)
   {
@@ -2228,6 +2234,11 @@ class Google_Service_Calendar_CalendarListEntry extends Google_Collection
   public $summaryOverride;
   public $timeZone;
 
+  /** @var Google_Service_Calendar_EventReminder[] */
+  protected $defaultReminders;
+
+  /** @var Google_Service_Calendar_CalendarListEntryNotificationSettings */
+  protected $notificationSettings;
 
   public function setAccessRole($accessRole)
   {
@@ -2383,6 +2394,8 @@ class Google_Service_Calendar_CalendarListEntryNotificationSettings extends Goog
   protected $notificationsType = 'Google_Service_Calendar_CalendarNotification';
   protected $notificationsDataType = 'array';
 
+  /** @var Google_Service_Calendar_CalendarNotification[] */
+  protected $notifications;
 
   public function setNotifications($notifications)
   {
@@ -2559,6 +2572,11 @@ class Google_Service_Calendar_Colors extends Google_Model
   public $kind;
   public $updated;
 
+  /** @var Google_Service_Calendar_ColorDefinition[] */
+  protected $calendar;
+
+  /** @var Google_Service_Calendar_ColorDefinition[] */
+  protected $event;
 
   public function setCalendar($calendar)
   {
@@ -2682,6 +2700,38 @@ class Google_Service_Calendar_Event extends Google_Collection
   public $updated;
   public $visibility;
 
+  /** @var Google_Service_Calendar_EventAttachment[] */
+  protected $attachments;
+
+  /** @var Google_Service_Calendar_EventAttendee[] */
+  protected $attendees;
+
+  /** @var Google_Service_Calendar_EventCreator */
+  protected $creator;
+
+  /** @var Google_Service_Calendar_EventDateTime */
+  protected $end;
+
+  /** @var Google_Service_Calendar_EventExtendedProperties */
+  protected $extendedProperties;
+
+  /** @var Google_Service_Calendar_EventGadget */
+  protected $gadget;
+
+  /** @var Google_Service_Calendar_EventOrganizer */
+  protected $organizer;
+
+  /** @var Google_Service_Calendar_EventDateTime */
+  protected $originalStartTime;
+
+  /** @var Google_Service_Calendar_EventReminders */
+  protected $reminders;
+
+  /** @var Google_Service_Calendar_EventSource */
+  protected $source;
+
+  /** @var Google_Service_Calendar_EventDateTime */
+  protected $start;
 
   public function setAnyoneCanAddSelf($anyoneCanAddSelf)
   {
@@ -3408,6 +3458,8 @@ class Google_Service_Calendar_EventReminders extends Google_Collection
   protected $overridesDataType = 'array';
   public $useDefault;
 
+  /** @var Google_Service_Calendar_EventReminder[] */
+  protected $overrides;
 
   public function setOverrides($overrides)
   {
@@ -3472,6 +3524,11 @@ class Google_Service_Calendar_Events extends Google_Collection
   public $timeZone;
   public $updated;
 
+  /** @var Google_Service_Calendar_EventReminder[] */
+  protected $defaultReminders;
+
+  /** @var Google_Service_Calendar_Event[] */
+  protected $items;
 
   public function setAccessRole($accessRole)
   {
@@ -3573,6 +3630,11 @@ class Google_Service_Calendar_FreeBusyCalendar extends Google_Collection
   protected $errorsType = 'Google_Service_Calendar_Error';
   protected $errorsDataType = 'array';
 
+  /** @var Google_Service_Calendar_TimePeriod[] */
+  protected $busy;
+
+  /** @var Google_Service_Calendar_Error[] */
+  protected $errors;
 
   public function setBusy($busy)
   {
@@ -3601,6 +3663,8 @@ class Google_Service_Calendar_FreeBusyGroup extends Google_Collection
   protected $errorsType = 'Google_Service_Calendar_Error';
   protected $errorsDataType = 'array';
 
+  /** @var Google_Service_Calendar_Error[] */
+  protected $errors;
 
   public function setCalendars($calendars)
   {
@@ -3633,6 +3697,8 @@ class Google_Service_Calendar_FreeBusyRequest extends Google_Collection
   public $timeMin;
   public $timeZone;
 
+  /** @var Google_Service_Calendar_FreeBusyRequestItem[] */
+  protected $items;
 
   public function setCalendarExpansionMax($calendarExpansionMax)
   {
@@ -3713,6 +3779,11 @@ class Google_Service_Calendar_FreeBusyResponse extends Google_Model
   public $timeMax;
   public $timeMin;
 
+  /** @var Google_Service_Calendar_FreeBusyCalendar[] */
+  protected $calendars;
+
+  /** @var Google_Service_Calendar_FreeBusyGroup[] */
+  protected $groups;
 
   public function setCalendars($calendars)
   {
@@ -3820,6 +3891,8 @@ class Google_Service_Calendar_Settings extends Google_Collection
   public $nextPageToken;
   public $nextSyncToken;
 
+  /** @var Google_Service_Calendar_Setting[] */
+  protected $items;
 
   public function setEtag($etag)
   {

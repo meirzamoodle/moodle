@@ -2636,6 +2636,26 @@ class Google_Service_Drive_About extends Google_Collection
   protected $userType = 'Google_Service_Drive_User';
   protected $userDataType = '';
 
+  /** @var Google_Service_Drive_AboutAdditionalRoleInfo[] */
+  protected $additionalRoleInfo;
+
+  /** @var Google_Service_Drive_AboutExportFormats[] */
+  protected $exportFormats;
+
+  /** @var Google_Service_Drive_AboutFeatures[] */
+  protected $features;
+
+  /** @var Google_Service_Drive_AboutImportFormats[] */
+  protected $importFormats;
+
+  /** @var Google_Service_Drive_AboutMaxUploadSizes[] */
+  protected $maxUploadSizes;
+
+  /** @var Google_Service_Drive_AboutQuotaBytesByService[] */
+  protected $quotaBytesByService;
+
+  /** @var Google_Service_Drive_User */
+  protected $user;
 
   public function setAdditionalRoleInfo($additionalRoleInfo)
   {
@@ -2840,6 +2860,8 @@ class Google_Service_Drive_AboutAdditionalRoleInfo extends Google_Collection
   protected $roleSetsDataType = 'array';
   public $type;
 
+  /** @var Google_Service_Drive_AboutAdditionalRoleInfoRoleSets[] */
+  protected $roleSets;
 
   public function setRoleSets($roleSets)
   {
@@ -3049,6 +3071,8 @@ class Google_Service_Drive_App extends Google_Collection
   public $supportsOfflineCreate;
   public $useByDefault;
 
+  /** @var Google_Service_Drive_AppIcons[] */
+  protected $icons;
 
   public function setAuthorized($authorized)
   {
@@ -3291,6 +3315,8 @@ class Google_Service_Drive_AppList extends Google_Collection
   public $kind;
   public $selfLink;
 
+  /** @var Google_Service_Drive_App[] */
+  protected $items;
 
   public function setDefaultAppIds($defaultAppIds)
   {
@@ -3347,6 +3373,8 @@ class Google_Service_Drive_Change extends Google_Model
   public $modificationDate;
   public $selfLink;
 
+  /** @var Google_Service_Drive_DriveFile */
+  protected $file;
 
   public function setDeleted($deleted)
   {
@@ -3420,6 +3448,8 @@ class Google_Service_Drive_ChangeList extends Google_Collection
   public $nextPageToken;
   public $selfLink;
 
+  /** @var Google_Service_Drive_Change[] */
+  protected $items;
 
   public function setEtag($etag)
   {
@@ -3594,6 +3624,8 @@ class Google_Service_Drive_ChildList extends Google_Collection
   public $nextPageToken;
   public $selfLink;
 
+  /** @var Google_Service_Drive_ChildReference[] */
+  protected $items;
 
   public function setEtag($etag)
   {
@@ -3713,6 +3745,14 @@ class Google_Service_Drive_Comment extends Google_Collection
   public $selfLink;
   public $status;
 
+  /** @var Google_Service_Drive_User */
+  protected $author;
+
+  /** @var Google_Service_Drive_CommentContext */
+  protected $context;
+
+  /** @var Google_Service_Drive_CommentReply[] */
+  protected $replies;
 
   public function setAnchor($anchor)
   {
@@ -3874,6 +3914,8 @@ class Google_Service_Drive_CommentList extends Google_Collection
   public $nextPageToken;
   public $selfLink;
 
+  /** @var Google_Service_Drive_Comment[] */
+  protected $items;
 
   public function setItems($items)
   {
@@ -3932,6 +3974,8 @@ class Google_Service_Drive_CommentReply extends Google_Model
   public $replyId;
   public $verb;
 
+  /** @var Google_Service_Drive_User */
+  protected $author;
 
   public function setAuthor(Google_Service_Drive_User $author)
   {
@@ -4019,6 +4063,8 @@ class Google_Service_Drive_CommentReplyList extends Google_Collection
   public $nextPageToken;
   public $selfLink;
 
+  /** @var Google_Service_Drive_CommentReply[] */
+  protected $items;
 
   public function setItems($items)
   {
@@ -4136,6 +4182,41 @@ class Google_Service_Drive_DriveFile extends Google_Collection
   public $webViewLink;
   public $writersCanShare;
 
+  /** @var Google_Service_Drive_DriveFileImageMediaMetadata */
+  protected $imageMediaMetadata;
+
+  /** @var Google_Service_Drive_DriveFileIndexableText */
+  protected $indexableText;
+
+  /** @var Google_Service_Drive_DriveFileLabels */
+  protected $labels;
+
+  /** @var Google_Service_Drive_User */
+  protected $lastModifyingUser;
+
+  /** @var Google_Service_Drive_User[] */
+  protected $owners;
+
+  /** @var Google_Service_Drive_ParentReference[] */
+  protected $parents;
+
+  /** @var Google_Service_Drive_Permission[] */
+  protected $permissions;
+
+  /** @var Google_Service_Drive_Property[] */
+  protected $properties;
+
+  /** @var Google_Service_Drive_User */
+  protected $sharingUser;
+
+  /** @var Google_Service_Drive_DriveFileThumbnail */
+  protected $thumbnail;
+
+  /** @var Google_Service_Drive_Permission */
+  protected $userPermission;
+
+  /** @var Google_Service_Drive_DriveFileVideoMediaMetadata */
+  protected $videoMediaMetadata;
 
   public function setAlternateLink($alternateLink)
   {
@@ -4618,6 +4699,8 @@ class Google_Service_Drive_DriveFileImageMediaMetadata extends Google_Model
   public $whiteBalance;
   public $width;
 
+  /** @var Google_Service_Drive_DriveFileImageMediaMetadataLocation */
+  protected $location;
 
   public function setAperture($aperture)
   {
@@ -4972,6 +5055,8 @@ class Google_Service_Drive_FileList extends Google_Collection
   public $nextPageToken;
   public $selfLink;
 
+  /** @var Google_Service_Drive_DriveFile[] */
+  protected $items;
 
   public function setEtag($etag)
   {
@@ -5070,6 +5155,8 @@ class Google_Service_Drive_ParentList extends Google_Collection
   public $kind;
   public $selfLink;
 
+  /** @var Google_Service_Drive_ParentReference[] */
+  protected $items;
 
   public function setEtag($etag)
   {
@@ -5330,6 +5417,8 @@ class Google_Service_Drive_PermissionList extends Google_Collection
   public $kind;
   public $selfLink;
 
+  /** @var Google_Service_Drive_Permission[] */
+  protected $items;
 
   public function setEtag($etag)
   {
@@ -5438,6 +5527,8 @@ class Google_Service_Drive_PropertyList extends Google_Collection
   public $kind;
   public $selfLink;
 
+  /** @var Google_Service_Drive_Property[] */
+  protected $items;
 
   public function setEtag($etag)
   {
@@ -5497,6 +5588,8 @@ class Google_Service_Drive_Revision extends Google_Model
   public $publishedOutsideDomain;
   public $selfLink;
 
+  /** @var Google_Service_Drive_User */
+  protected $lastModifyingUser;
 
   public function setDownloadUrl($downloadUrl)
   {
@@ -5659,6 +5752,8 @@ class Google_Service_Drive_RevisionList extends Google_Collection
   public $kind;
   public $selfLink;
 
+  /** @var Google_Service_Drive_Revision[] */
+  protected $items;
 
   public function setEtag($etag)
   {
@@ -5706,6 +5801,8 @@ class Google_Service_Drive_User extends Google_Model
   protected $pictureType = 'Google_Service_Drive_UserPicture';
   protected $pictureDataType = '';
 
+  /** @var Google_Service_Drive_UserPicture */
+  protected $picture;
 
   public function setDisplayName($displayName)
   {

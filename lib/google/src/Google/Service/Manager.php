@@ -609,6 +609,14 @@ class Google_Service_Manager_Deployment extends Google_Collection
   protected $stateDataType = '';
   public $templateName;
 
+  /** @var Google_Service_Manager_ModuleStatus[] */
+  protected $modules;
+
+  /** @var Google_Service_Manager_ParamOverride[] */
+  protected $overrides;
+
+  /** @var Google_Service_Manager_DeployState */
+  protected $state;
 
   public function setCreationDate($creationDate)
   {
@@ -681,6 +689,8 @@ class Google_Service_Manager_DeploymentsListResponse extends Google_Collection
   protected $resourcesType = 'Google_Service_Manager_Deployment';
   protected $resourcesDataType = 'array';
 
+  /** @var Google_Service_Manager_Deployment[] */
+  protected $resources;
 
   public function setNextPageToken($nextPageToken)
   {
@@ -760,6 +770,8 @@ class Google_Service_Manager_ExistingDisk extends Google_Model
   protected $attachmentDataType = '';
   public $source;
 
+  /** @var Google_Service_Manager_DiskAttachment */
+  protected $attachment;
 
   public function setAttachment(Google_Service_Manager_DiskAttachment $attachment)
   {
@@ -792,6 +804,8 @@ class Google_Service_Manager_FirewallModule extends Google_Collection
   public $sourceTags;
   public $targetTags;
 
+  /** @var Google_Service_Manager_AllowedRule[] */
+  protected $allowed;
 
   public function setAllowed($allowed)
   {
@@ -1064,6 +1078,8 @@ class Google_Service_Manager_Metadata extends Google_Collection
   protected $itemsType = 'Google_Service_Manager_MetadataItem';
   protected $itemsDataType = 'array';
 
+  /** @var Google_Service_Manager_MetadataItem[] */
+  protected $items;
 
   public function setFingerPrint($fingerPrint)
   {
@@ -1127,6 +1143,23 @@ class Google_Service_Manager_Module extends Google_Model
   protected $replicaPoolModuleDataType = '';
   public $type;
 
+  /** @var Google_Service_Manager_AutoscalingModule */
+  protected $autoscalingModule;
+
+  /** @var Google_Service_Manager_FirewallModule */
+  protected $firewallModule;
+
+  /** @var Google_Service_Manager_HealthCheckModule */
+  protected $healthCheckModule;
+
+  /** @var Google_Service_Manager_LbModule */
+  protected $lbModule;
+
+  /** @var Google_Service_Manager_NetworkModule */
+  protected $networkModule;
+
+  /** @var Google_Service_Manager_ReplicaPoolModule */
+  protected $replicaPoolModule;
 
   public function setAutoscalingModule(Google_Service_Manager_AutoscalingModule $autoscalingModule)
   {
@@ -1206,6 +1239,26 @@ class Google_Service_Manager_ModuleStatus extends Google_Model
   protected $stateDataType = '';
   public $type;
 
+  /** @var Google_Service_Manager_AutoscalingModuleStatus */
+  protected $autoscalingModuleStatus;
+
+  /** @var Google_Service_Manager_FirewallModuleStatus */
+  protected $firewallModuleStatus;
+
+  /** @var Google_Service_Manager_HealthCheckModuleStatus */
+  protected $healthCheckModuleStatus;
+
+  /** @var Google_Service_Manager_LbModuleStatus */
+  protected $lbModuleStatus;
+
+  /** @var Google_Service_Manager_NetworkModuleStatus */
+  protected $networkModuleStatus;
+
+  /** @var Google_Service_Manager_ReplicaPoolModuleStatus */
+  protected $replicaPoolModuleStatus;
+
+  /** @var Google_Service_Manager_DeployState */
+  protected $state;
 
   public function setAutoscalingModuleStatus(Google_Service_Manager_AutoscalingModuleStatus $autoscalingModuleStatus)
   {
@@ -1284,6 +1337,8 @@ class Google_Service_Manager_NetworkInterface extends Google_Collection
   public $network;
   public $networkIp;
 
+  /** @var Google_Service_Manager_AccessConfig[] */
+  protected $accessConfigs;
 
   public function setAccessConfigs($accessConfigs)
   {
@@ -1383,6 +1438,11 @@ class Google_Service_Manager_NewDisk extends Google_Model
   protected $initializeParamsType = 'Google_Service_Manager_NewDiskInitializeParams';
   protected $initializeParamsDataType = '';
 
+  /** @var Google_Service_Manager_DiskAttachment */
+  protected $attachment;
+
+  /** @var Google_Service_Manager_NewDiskInitializeParams */
+  protected $initializeParams;
 
   public function setAttachment(Google_Service_Manager_DiskAttachment $attachment)
   {
@@ -1492,6 +1552,11 @@ class Google_Service_Manager_ReplicaPoolModule extends Google_Collection
   protected $replicaPoolParamsDataType = '';
   public $resourceView;
 
+  /** @var Google_Service_Manager_EnvVariable[] */
+  protected $envVariables;
+
+  /** @var Google_Service_Manager_ReplicaPoolParams */
+  protected $replicaPoolParams;
 
   public function setEnvVariables($envVariables)
   {
@@ -1572,6 +1637,8 @@ class Google_Service_Manager_ReplicaPoolParams extends Google_Model
   protected $v1beta1Type = 'Google_Service_Manager_ReplicaPoolParamsV1Beta1';
   protected $v1beta1DataType = '';
 
+  /** @var Google_Service_Manager_ReplicaPoolParamsV1Beta1 */
+  protected $v1beta1;
 
   public function setV1beta1(Google_Service_Manager_ReplicaPoolParamsV1Beta1 $v1beta1)
   {
@@ -1609,6 +1676,23 @@ class Google_Service_Manager_ReplicaPoolParamsV1Beta1 extends Google_Collection
   protected $tagsDataType = '';
   public $zone;
 
+  /** @var Google_Service_Manager_ExistingDisk[] */
+  protected $disksToAttach;
+
+  /** @var Google_Service_Manager_NewDisk[] */
+  protected $disksToCreate;
+
+  /** @var Google_Service_Manager_Metadata */
+  protected $metadata;
+
+  /** @var Google_Service_Manager_NetworkInterface[] */
+  protected $networkInterfaces;
+
+  /** @var Google_Service_Manager_ServiceAccount[] */
+  protected $serviceAccounts;
+
+  /** @var Google_Service_Manager_Tag */
+  protected $tags;
 
   public function setAutoRestart($autoRestart)
   {
@@ -1789,6 +1873,11 @@ class Google_Service_Manager_Template extends Google_Model
   protected $modulesDataType = 'map';
   public $name;
 
+  /** @var Google_Service_Manager_Action[] */
+  protected $actions;
+
+  /** @var Google_Service_Manager_Module[] */
+  protected $modules;
 
   public function setActions($actions)
   {
@@ -1841,6 +1930,8 @@ class Google_Service_Manager_TemplatesListResponse extends Google_Collection
   protected $resourcesType = 'Google_Service_Manager_Template';
   protected $resourcesDataType = 'array';
 
+  /** @var Google_Service_Manager_Template[] */
+  protected $resources;
 
   public function setNextPageToken($nextPageToken)
   {

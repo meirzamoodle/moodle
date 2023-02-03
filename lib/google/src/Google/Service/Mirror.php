@@ -845,6 +845,11 @@ class Google_Service_Mirror_Account extends Google_Collection
   protected $userDataType = 'Google_Service_Mirror_UserData';
   protected $userDataDataType = 'array';
 
+  /** @var Google_Service_Mirror_AuthToken[] */
+  protected $authTokens;
+
+  /** @var Google_Service_Mirror_UserData[] */
+  protected $userData;
 
   public function setAuthTokens($authTokens)
   {
@@ -933,6 +938,8 @@ class Google_Service_Mirror_AttachmentsListResponse extends Google_Collection
   protected $itemsDataType = 'array';
   public $kind;
 
+  /** @var Google_Service_Mirror_Attachment[] */
+  protected $items;
 
   public function setItems($items)
   {
@@ -1014,6 +1021,8 @@ class Google_Service_Mirror_Contact extends Google_Collection
   public $speakableName;
   public $type;
 
+  /** @var Google_Service_Mirror_Command[] */
+  protected $acceptCommands;
 
   public function setAcceptCommands($acceptCommands)
   {
@@ -1122,6 +1131,8 @@ class Google_Service_Mirror_ContactsListResponse extends Google_Collection
   protected $itemsDataType = 'array';
   public $kind;
 
+  /** @var Google_Service_Mirror_Contact[] */
+  protected $items;
 
   public function setItems($items)
   {
@@ -1230,6 +1241,8 @@ class Google_Service_Mirror_LocationsListResponse extends Google_Collection
   protected $itemsDataType = 'array';
   public $kind;
 
+  /** @var Google_Service_Mirror_Location[] */
+  protected $items;
 
   public function setItems($items)
   {
@@ -1263,6 +1276,8 @@ class Google_Service_Mirror_MenuItem extends Google_Collection
   protected $valuesType = 'Google_Service_Mirror_MenuValue';
   protected $valuesDataType = 'array';
 
+  /** @var Google_Service_Mirror_MenuValue[] */
+  protected $values;
 
   public function setAction($action)
   {
@@ -1362,6 +1377,8 @@ class Google_Service_Mirror_Notification extends Google_Collection
   public $userToken;
   public $verifyToken;
 
+  /** @var Google_Service_Mirror_UserAction[] */
+  protected $userActions;
 
   public function setCollection($collection)
   {
@@ -1490,6 +1507,8 @@ class Google_Service_Mirror_Subscription extends Google_Collection
   public $userToken;
   public $verifyToken;
 
+  /** @var Google_Service_Mirror_Notification */
+  protected $notification;
 
   public function setCallbackUrl($callbackUrl)
   {
@@ -1574,6 +1593,8 @@ class Google_Service_Mirror_SubscriptionsListResponse extends Google_Collection
   protected $itemsDataType = 'array';
   public $kind;
 
+  /** @var Google_Service_Mirror_Subscription[] */
+  protected $items;
 
   public function setItems($items)
   {
@@ -1631,6 +1652,23 @@ class Google_Service_Mirror_TimelineItem extends Google_Collection
   public $title;
   public $updated;
 
+  /** @var Google_Service_Mirror_Attachment[] */
+  protected $attachments;
+
+  /** @var Google_Service_Mirror_Contact */
+  protected $creator;
+
+  /** @var Google_Service_Mirror_Location */
+  protected $location;
+
+  /** @var Google_Service_Mirror_MenuItem[] */
+  protected $menuItems;
+
+  /** @var Google_Service_Mirror_NotificationConfig */
+  protected $notification;
+
+  /** @var Google_Service_Mirror_Contact[] */
+  protected $recipients;
 
   public function setAttachments($attachments)
   {
@@ -1852,6 +1890,8 @@ class Google_Service_Mirror_TimelineListResponse extends Google_Collection
   public $kind;
   public $nextPageToken;
 
+  /** @var Google_Service_Mirror_TimelineItem[] */
+  protected $items;
 
   public function setItems($items)
   {

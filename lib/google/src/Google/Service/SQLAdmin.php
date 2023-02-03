@@ -1658,6 +1658,8 @@ class Google_Service_SQLAdmin_BackupRun extends Google_Model
   public $status;
   public $windowStartTime;
 
+  /** @var Google_Service_SQLAdmin_OperationError */
+  protected $error;
 
   public function setEndTime($endTime)
   {
@@ -1751,6 +1753,8 @@ class Google_Service_SQLAdmin_BackupRunsListResponse extends Google_Collection
   public $kind;
   public $nextPageToken;
 
+  /** @var Google_Service_SQLAdmin_BackupRun[] */
+  protected $items;
 
   public function setItems($items)
   {
@@ -1822,6 +1826,8 @@ class Google_Service_SQLAdmin_CloneContext extends Google_Model
   public $destinationInstanceName;
   public $kind;
 
+  /** @var Google_Service_SQLAdmin_BinLogCoordinates */
+  protected $binLogCoordinates;
 
   public function setBinLogCoordinates(Google_Service_SQLAdmin_BinLogCoordinates $binLogCoordinates)
   {
@@ -1986,6 +1992,20 @@ class Google_Service_SQLAdmin_DatabaseInstance extends Google_Collection
   protected $settingsDataType = '';
   public $state;
 
+  /** @var Google_Service_SQLAdmin_IpMapping[] */
+  protected $ipAddresses;
+
+  /** @var Google_Service_SQLAdmin_OnPremisesConfiguration */
+  protected $onPremisesConfiguration;
+
+  /** @var Google_Service_SQLAdmin_ReplicaConfiguration */
+  protected $replicaConfiguration;
+
+  /** @var Google_Service_SQLAdmin_SslCert */
+  protected $serverCaCert;
+
+  /** @var Google_Service_SQLAdmin_Settings */
+  protected $settings;
 
   public function setCurrentDiskSize($currentDiskSize)
   {
@@ -2158,6 +2178,8 @@ class Google_Service_SQLAdmin_DatabasesListResponse extends Google_Collection
   protected $itemsDataType = 'array';
   public $kind;
 
+  /** @var Google_Service_SQLAdmin_Database[] */
+  protected $items;
 
   public function setItems($items)
   {
@@ -2191,6 +2213,11 @@ class Google_Service_SQLAdmin_ExportContext extends Google_Collection
   protected $sqlExportOptionsDataType = '';
   public $uri;
 
+  /** @var Google_Service_SQLAdmin_ExportContextCsvExportOptions */
+  protected $csvExportOptions;
+
+  /** @var Google_Service_SQLAdmin_ExportContextSqlExportOptions */
+  protected $sqlExportOptions;
 
   public function setCsvExportOptions(Google_Service_SQLAdmin_ExportContextCsvExportOptions $csvExportOptions)
   {
@@ -2393,6 +2420,8 @@ class Google_Service_SQLAdmin_FlagsListResponse extends Google_Collection
   protected $itemsDataType = 'array';
   public $kind;
 
+  /** @var Google_Service_SQLAdmin_Flag[] */
+  protected $items;
 
   public function setItems($items)
   {
@@ -2423,6 +2452,8 @@ class Google_Service_SQLAdmin_ImportContext extends Google_Model
   public $kind;
   public $uri;
 
+  /** @var Google_Service_SQLAdmin_ImportContextCsvImportOptions */
+  protected $csvImportOptions;
 
   public function setCsvImportOptions(Google_Service_SQLAdmin_ImportContextCsvImportOptions $csvImportOptions)
   {
@@ -2500,6 +2531,8 @@ class Google_Service_SQLAdmin_InstancesCloneRequest extends Google_Model
   protected $cloneContextType = 'Google_Service_SQLAdmin_CloneContext';
   protected $cloneContextDataType = '';
 
+  /** @var Google_Service_SQLAdmin_CloneContext */
+  protected $cloneContext;
 
   public function setCloneContext(Google_Service_SQLAdmin_CloneContext $cloneContext)
   {
@@ -2518,6 +2551,8 @@ class Google_Service_SQLAdmin_InstancesExportRequest extends Google_Model
   protected $exportContextType = 'Google_Service_SQLAdmin_ExportContext';
   protected $exportContextDataType = '';
 
+  /** @var Google_Service_SQLAdmin_ExportContext */
+  protected $exportContext;
 
   public function setExportContext(Google_Service_SQLAdmin_ExportContext $exportContext)
   {
@@ -2536,6 +2571,8 @@ class Google_Service_SQLAdmin_InstancesFailoverRequest extends Google_Model
   protected $failoverContextType = 'Google_Service_SQLAdmin_FailoverContext';
   protected $failoverContextDataType = '';
 
+  /** @var Google_Service_SQLAdmin_FailoverContext */
+  protected $failoverContext;
 
   public function setFailoverContext(Google_Service_SQLAdmin_FailoverContext $failoverContext)
   {
@@ -2554,6 +2591,8 @@ class Google_Service_SQLAdmin_InstancesImportRequest extends Google_Model
   protected $importContextType = 'Google_Service_SQLAdmin_ImportContext';
   protected $importContextDataType = '';
 
+  /** @var Google_Service_SQLAdmin_ImportContext */
+  protected $importContext;
 
   public function setImportContext(Google_Service_SQLAdmin_ImportContext $importContext)
   {
@@ -2575,6 +2614,8 @@ class Google_Service_SQLAdmin_InstancesListResponse extends Google_Collection
   public $kind;
   public $nextPageToken;
 
+  /** @var Google_Service_SQLAdmin_DatabaseInstance[] */
+  protected $items;
 
   public function setItems($items)
   {
@@ -2609,6 +2650,8 @@ class Google_Service_SQLAdmin_InstancesRestoreBackupRequest extends Google_Model
   protected $restoreBackupContextType = 'Google_Service_SQLAdmin_RestoreBackupContext';
   protected $restoreBackupContextDataType = '';
 
+  /** @var Google_Service_SQLAdmin_RestoreBackupContext */
+  protected $restoreBackupContext;
 
   public function setRestoreBackupContext(Google_Service_SQLAdmin_RestoreBackupContext $restoreBackupContext)
   {
@@ -2630,6 +2673,8 @@ class Google_Service_SQLAdmin_IpConfiguration extends Google_Collection
   public $ipv4Enabled;
   public $requireSsl;
 
+  /** @var Google_Service_SQLAdmin_AclEntry[] */
+  protected $authorizedNetworks;
 
   public function setAuthorizedNetworks($authorizedNetworks)
   {
@@ -2874,6 +2919,14 @@ class Google_Service_SQLAdmin_Operation extends Google_Model
   public $targetProject;
   public $user;
 
+  /** @var Google_Service_SQLAdmin_OperationErrors */
+  protected $error;
+
+  /** @var Google_Service_SQLAdmin_ExportContext */
+  protected $exportContext;
+
+  /** @var Google_Service_SQLAdmin_ImportContext */
+  protected $importContext;
 
   public function setEndTime($endTime)
   {
@@ -3041,6 +3094,8 @@ class Google_Service_SQLAdmin_OperationErrors extends Google_Collection
   protected $errorsDataType = 'array';
   public $kind;
 
+  /** @var Google_Service_SQLAdmin_OperationError[] */
+  protected $errors;
 
   public function setErrors($errors)
   {
@@ -3070,6 +3125,8 @@ class Google_Service_SQLAdmin_OperationsListResponse extends Google_Collection
   public $kind;
   public $nextPageToken;
 
+  /** @var Google_Service_SQLAdmin_Operation[] */
+  protected $items;
 
   public function setItems($items)
   {
@@ -3106,6 +3163,8 @@ class Google_Service_SQLAdmin_ReplicaConfiguration extends Google_Model
   protected $mysqlReplicaConfigurationType = 'Google_Service_SQLAdmin_MySqlReplicaConfiguration';
   protected $mysqlReplicaConfigurationDataType = '';
 
+  /** @var Google_Service_SQLAdmin_MySqlReplicaConfiguration */
+  protected $mysqlReplicaConfiguration;
 
   public function setFailoverTarget($failoverTarget)
   {
@@ -3192,6 +3251,17 @@ class Google_Service_SQLAdmin_Settings extends Google_Collection
   public $settingsVersion;
   public $tier;
 
+  /** @var Google_Service_SQLAdmin_BackupConfiguration */
+  protected $backupConfiguration;
+
+  /** @var Google_Service_SQLAdmin_DatabaseFlags[] */
+  protected $databaseFlags;
+
+  /** @var Google_Service_SQLAdmin_IpConfiguration */
+  protected $ipConfiguration;
+
+  /** @var Google_Service_SQLAdmin_LocationPreference */
+  protected $locationPreference;
 
   public function setActivationPolicy($activationPolicy)
   {
@@ -3404,6 +3474,8 @@ class Google_Service_SQLAdmin_SslCertDetail extends Google_Model
   protected $certInfoDataType = '';
   public $certPrivateKey;
 
+  /** @var Google_Service_SQLAdmin_SslCert */
+  protected $certInfo;
 
   public function setCertInfo(Google_Service_SQLAdmin_SslCert $certInfo)
   {
@@ -3468,6 +3540,11 @@ class Google_Service_SQLAdmin_SslCertsInsertResponse extends Google_Model
   protected $serverCaCertType = 'Google_Service_SQLAdmin_SslCert';
   protected $serverCaCertDataType = '';
 
+  /** @var Google_Service_SQLAdmin_SslCertDetail */
+  protected $clientCert;
+
+  /** @var Google_Service_SQLAdmin_SslCert */
+  protected $serverCaCert;
 
   public function setClientCert(Google_Service_SQLAdmin_SslCertDetail $clientCert)
   {
@@ -3504,6 +3581,8 @@ class Google_Service_SQLAdmin_SslCertsListResponse extends Google_Collection
   protected $itemsDataType = 'array';
   public $kind;
 
+  /** @var Google_Service_SQLAdmin_SslCert[] */
+  protected $items;
 
   public function setItems($items)
   {
@@ -3588,6 +3667,8 @@ class Google_Service_SQLAdmin_TiersListResponse extends Google_Collection
   protected $itemsDataType = 'array';
   public $kind;
 
+  /** @var Google_Service_SQLAdmin_Tier[] */
+  protected $items;
 
   public function setItems($items)
   {
@@ -3688,6 +3769,8 @@ class Google_Service_SQLAdmin_UsersListResponse extends Google_Collection
   public $kind;
   public $nextPageToken;
 
+  /** @var Google_Service_SQLAdmin_User[] */
+  protected $items;
 
   public function setItems($items)
   {

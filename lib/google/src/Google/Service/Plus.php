@@ -626,6 +626,8 @@ class Google_Service_Plus_Acl extends Google_Collection
   protected $itemsDataType = 'array';
   public $kind;
 
+  /** @var Google_Service_Plus_PlusAclentryResource[] */
+  protected $items;
 
   public function setDescription($description)
   {
@@ -683,6 +685,20 @@ class Google_Service_Plus_Activity extends Google_Model
   public $url;
   public $verb;
 
+  /** @var Google_Service_Plus_Acl */
+  protected $access;
+
+  /** @var Google_Service_Plus_ActivityActor */
+  protected $actor;
+
+  /** @var Google_Service_Plus_Place */
+  protected $location;
+
+  /** @var Google_Service_Plus_ActivityObject */
+  protected $object;
+
+  /** @var Google_Service_Plus_ActivityProvider */
+  protected $provider;
 
   public function setAccess(Google_Service_Plus_Acl $access)
   {
@@ -862,6 +878,17 @@ class Google_Service_Plus_ActivityActor extends Google_Model
   protected $verificationType = 'Google_Service_Plus_ActivityActorVerification';
   protected $verificationDataType = '';
 
+  /** @var Google_Service_Plus_ActivityActorClientSpecificActorInfo */
+  protected $clientSpecificActorInfo;
+
+  /** @var Google_Service_Plus_ActivityActorImage */
+  protected $image;
+
+  /** @var Google_Service_Plus_ActivityActorName */
+  protected $name;
+
+  /** @var Google_Service_Plus_ActivityActorVerification */
+  protected $verification;
 
   public function setClientSpecificActorInfo(Google_Service_Plus_ActivityActorClientSpecificActorInfo $clientSpecificActorInfo)
   {
@@ -928,6 +955,8 @@ class Google_Service_Plus_ActivityActorClientSpecificActorInfo extends Google_Mo
   protected $youtubeActorInfoType = 'Google_Service_Plus_ActivityActorClientSpecificActorInfoYoutubeActorInfo';
   protected $youtubeActorInfoDataType = '';
 
+  /** @var Google_Service_Plus_ActivityActorClientSpecificActorInfoYoutubeActorInfo */
+  protected $youtubeActorInfo;
 
   public function setYoutubeActorInfo(Google_Service_Plus_ActivityActorClientSpecificActorInfoYoutubeActorInfo $youtubeActorInfo)
   {
@@ -1032,6 +1061,8 @@ class Google_Service_Plus_ActivityFeed extends Google_Collection
   public $title;
   public $updated;
 
+  /** @var Google_Service_Plus_Activity[] */
+  protected $items;
 
   public function setEtag($etag)
   {
@@ -1128,6 +1159,20 @@ class Google_Service_Plus_ActivityObject extends Google_Collection
   protected $resharersDataType = '';
   public $url;
 
+  /** @var Google_Service_Plus_ActivityObjectActor */
+  protected $actor;
+
+  /** @var Google_Service_Plus_ActivityObjectAttachments[] */
+  protected $attachments;
+
+  /** @var Google_Service_Plus_ActivityObjectPlusoners */
+  protected $plusoners;
+
+  /** @var Google_Service_Plus_ActivityObjectReplies */
+  protected $replies;
+
+  /** @var Google_Service_Plus_ActivityObjectResharers */
+  protected $resharers;
 
   public function setActor(Google_Service_Plus_ActivityObjectActor $actor)
   {
@@ -1225,6 +1270,14 @@ class Google_Service_Plus_ActivityObjectActor extends Google_Model
   protected $verificationType = 'Google_Service_Plus_ActivityObjectActorVerification';
   protected $verificationDataType = '';
 
+  /** @var Google_Service_Plus_ActivityObjectActorClientSpecificActorInfo */
+  protected $clientSpecificActorInfo;
+
+  /** @var Google_Service_Plus_ActivityObjectActorImage */
+  protected $image;
+
+  /** @var Google_Service_Plus_ActivityObjectActorVerification */
+  protected $verification;
 
   public function setClientSpecificActorInfo(Google_Service_Plus_ActivityObjectActorClientSpecificActorInfo $clientSpecificActorInfo)
   {
@@ -1283,6 +1336,8 @@ class Google_Service_Plus_ActivityObjectActorClientSpecificActorInfo extends Goo
   protected $youtubeActorInfoType = 'Google_Service_Plus_ActivityObjectActorClientSpecificActorInfoYoutubeActorInfo';
   protected $youtubeActorInfoDataType = '';
 
+  /** @var Google_Service_Plus_ActivityObjectActorClientSpecificActorInfoYoutubeActorInfo */
+  protected $youtubeActorInfo;
 
   public function setYoutubeActorInfo(Google_Service_Plus_ActivityObjectActorClientSpecificActorInfoYoutubeActorInfo $youtubeActorInfo)
   {
@@ -1364,6 +1419,17 @@ class Google_Service_Plus_ActivityObjectAttachments extends Google_Collection
   protected $thumbnailsDataType = 'array';
   public $url;
 
+  /** @var Google_Service_Plus_ActivityObjectAttachmentsEmbed */
+  protected $embed;
+
+  /** @var Google_Service_Plus_ActivityObjectAttachmentsFullImage */
+  protected $fullImage;
+
+  /** @var Google_Service_Plus_ActivityObjectAttachmentsImage */
+  protected $image;
+
+  /** @var Google_Service_Plus_ActivityObjectAttachmentsThumbnails[] */
+  protected $thumbnails;
 
   public function setContent($content)
   {
@@ -1562,6 +1628,8 @@ class Google_Service_Plus_ActivityObjectAttachmentsThumbnails extends Google_Mod
   protected $imageDataType = '';
   public $url;
 
+  /** @var Google_Service_Plus_ActivityObjectAttachmentsThumbnailsImage */
+  protected $image;
 
   public function setDescription($description)
   {
@@ -1749,6 +1817,17 @@ class Google_Service_Plus_Comment extends Google_Collection
   public $updated;
   public $verb;
 
+  /** @var Google_Service_Plus_CommentActor */
+  protected $actor;
+
+  /** @var Google_Service_Plus_CommentInReplyTo[] */
+  protected $inReplyTo;
+
+  /** @var Google_Service_Plus_CommentObject */
+  protected $object;
+
+  /** @var Google_Service_Plus_CommentPlusoners */
+  protected $plusoners;
 
   public function setActor(Google_Service_Plus_CommentActor $actor)
   {
@@ -1854,6 +1933,14 @@ class Google_Service_Plus_CommentActor extends Google_Model
   protected $verificationType = 'Google_Service_Plus_CommentActorVerification';
   protected $verificationDataType = '';
 
+  /** @var Google_Service_Plus_CommentActorClientSpecificActorInfo */
+  protected $clientSpecificActorInfo;
+
+  /** @var Google_Service_Plus_CommentActorImage */
+  protected $image;
+
+  /** @var Google_Service_Plus_CommentActorVerification */
+  protected $verification;
 
   public function setClientSpecificActorInfo(Google_Service_Plus_CommentActorClientSpecificActorInfo $clientSpecificActorInfo)
   {
@@ -1912,6 +1999,8 @@ class Google_Service_Plus_CommentActorClientSpecificActorInfo extends Google_Mod
   protected $youtubeActorInfoType = 'Google_Service_Plus_CommentActorClientSpecificActorInfoYoutubeActorInfo';
   protected $youtubeActorInfoDataType = '';
 
+  /** @var Google_Service_Plus_CommentActorClientSpecificActorInfoYoutubeActorInfo */
+  protected $youtubeActorInfo;
 
   public function setYoutubeActorInfo(Google_Service_Plus_CommentActorClientSpecificActorInfoYoutubeActorInfo $youtubeActorInfo)
   {
@@ -1989,6 +2078,8 @@ class Google_Service_Plus_CommentFeed extends Google_Collection
   public $title;
   public $updated;
 
+  /** @var Google_Service_Plus_Comment[] */
+  protected $items;
 
   public function setEtag($etag)
   {
@@ -2211,6 +2302,50 @@ class Google_Service_Plus_ItemScope extends Google_Collection
   public $width;
   public $worstRating;
 
+  /** @var Google_Service_Plus_ItemScope */
+  protected $about;
+
+  /** @var Google_Service_Plus_ItemScope */
+  protected $address;
+
+  /** @var Google_Service_Plus_ItemScope[] */
+  protected $associatedMedia;
+
+  /** @var Google_Service_Plus_ItemScope[] */
+  protected $attendees;
+
+  /** @var Google_Service_Plus_ItemScope */
+  protected $audio;
+
+  /** @var Google_Service_Plus_ItemScope[] */
+  protected $author;
+
+  /** @var Google_Service_Plus_ItemScope */
+  protected $byArtist;
+
+  /** @var Google_Service_Plus_ItemScope[] */
+  protected $contributor;
+
+  /** @var Google_Service_Plus_ItemScope */
+  protected $geo;
+
+  /** @var Google_Service_Plus_ItemScope */
+  protected $inAlbum;
+
+  /** @var Google_Service_Plus_ItemScope */
+  protected $location;
+
+  /** @var Google_Service_Plus_ItemScope */
+  protected $partOfTVSeries;
+
+  /** @var Google_Service_Plus_ItemScope[] */
+  protected $performers;
+
+  /** @var Google_Service_Plus_ItemScope */
+  protected $reviewRating;
+
+  /** @var Google_Service_Plus_ItemScope */
+  protected $thumbnail;
 
   public function setAbout(Google_Service_Plus_ItemScope $about)
   {
@@ -2669,6 +2804,14 @@ class Google_Service_Plus_Moment extends Google_Model
   protected $targetDataType = '';
   public $type;
 
+  /** @var Google_Service_Plus_ItemScope */
+  protected $object;
+
+  /** @var Google_Service_Plus_ItemScope */
+  protected $result;
+
+  /** @var Google_Service_Plus_ItemScope */
+  protected $target;
 
   public function setId($id)
   {
@@ -2743,6 +2886,8 @@ class Google_Service_Plus_MomentsFeed extends Google_Collection
   public $title;
   public $updated;
 
+  /** @var Google_Service_Plus_Moment[] */
+  protected $items;
 
   public function setEtag($etag)
   {
@@ -2824,6 +2969,8 @@ class Google_Service_Plus_PeopleFeed extends Google_Collection
   public $title;
   public $totalItems;
 
+  /** @var Google_Service_Plus_Person[] */
+  protected $items;
 
   public function setEtag($etag)
   {
@@ -2927,6 +3074,29 @@ class Google_Service_Plus_Person extends Google_Collection
   protected $urlsDataType = 'array';
   public $verified;
 
+  /** @var Google_Service_Plus_PersonAgeRange */
+  protected $ageRange;
+
+  /** @var Google_Service_Plus_PersonCover */
+  protected $cover;
+
+  /** @var Google_Service_Plus_PersonEmails[] */
+  protected $emails;
+
+  /** @var Google_Service_Plus_PersonImage */
+  protected $image;
+
+  /** @var Google_Service_Plus_PersonName */
+  protected $name;
+
+  /** @var Google_Service_Plus_PersonOrganizations[] */
+  protected $organizations;
+
+  /** @var Google_Service_Plus_PersonPlacesLived[] */
+  protected $placesLived;
+
+  /** @var Google_Service_Plus_PersonUrls[] */
+  protected $urls;
 
   public function setAboutMe($aboutMe)
   {
@@ -3206,6 +3376,11 @@ class Google_Service_Plus_PersonCover extends Google_Model
   protected $coverPhotoDataType = '';
   public $layout;
 
+  /** @var Google_Service_Plus_PersonCoverCoverInfo */
+  protected $coverInfo;
+
+  /** @var Google_Service_Plus_PersonCoverCoverPhoto */
+  protected $coverPhoto;
 
   public function setCoverInfo(Google_Service_Plus_PersonCoverCoverInfo $coverInfo)
   {
@@ -3570,6 +3745,11 @@ class Google_Service_Plus_Place extends Google_Model
   protected $positionType = 'Google_Service_Plus_PlacePosition';
   protected $positionDataType = '';
 
+  /** @var Google_Service_Plus_PlaceAddress */
+  protected $address;
+
+  /** @var Google_Service_Plus_PlacePosition */
+  protected $position;
 
   public function setAddress(Google_Service_Plus_PlaceAddress $address)
   {

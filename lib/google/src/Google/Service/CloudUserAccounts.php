@@ -1252,6 +1252,8 @@ class Google_Service_CloudUserAccounts_GroupList extends Google_Collection
   public $nextPageToken;
   public $selfLink;
 
+  /** @var Google_Service_CloudUserAccounts_Group[] */
+  protected $items;
 
   public function setId($id)
   {
@@ -1342,6 +1344,11 @@ class Google_Service_CloudUserAccounts_LinuxAccountViews extends Google_Collecti
   protected $userViewsType = 'Google_Service_CloudUserAccounts_LinuxUserView';
   protected $userViewsDataType = 'array';
 
+  /** @var Google_Service_CloudUserAccounts_LinuxGroupView[] */
+  protected $groupViews;
+
+  /** @var Google_Service_CloudUserAccounts_LinuxUserView[] */
+  protected $userViews;
 
   public function setGroupViews($groupViews)
   {
@@ -1376,6 +1383,8 @@ class Google_Service_CloudUserAccounts_LinuxGetAuthorizedKeysViewResponse extend
   protected $resourceType = 'Google_Service_CloudUserAccounts_AuthorizedKeysView';
   protected $resourceDataType = '';
 
+  /** @var Google_Service_CloudUserAccounts_AuthorizedKeysView */
+  protected $resource;
 
   public function setResource(Google_Service_CloudUserAccounts_AuthorizedKeysView $resource)
   {
@@ -1394,6 +1403,8 @@ class Google_Service_CloudUserAccounts_LinuxGetLinuxAccountViewsResponse extends
   protected $resourceType = 'Google_Service_CloudUserAccounts_LinuxAccountViews';
   protected $resourceDataType = '';
 
+  /** @var Google_Service_CloudUserAccounts_LinuxAccountViews */
+  protected $resource;
 
   public function setResource(Google_Service_CloudUserAccounts_LinuxAccountViews $resource)
   {
@@ -1510,6 +1521,8 @@ class Google_Service_CloudUserAccounts_LogConfig extends Google_Model
   protected $counterType = 'Google_Service_CloudUserAccounts_LogConfigCounterOptions';
   protected $counterDataType = '';
 
+  /** @var Google_Service_CloudUserAccounts_LogConfigCounterOptions */
+  protected $counter;
 
   public function setCounter(Google_Service_CloudUserAccounts_LogConfigCounterOptions $counter)
   {
@@ -1577,6 +1590,11 @@ class Google_Service_CloudUserAccounts_Operation extends Google_Collection
   protected $warningsDataType = 'array';
   public $zone;
 
+  /** @var Google_Service_CloudUserAccounts_OperationError */
+  protected $error;
+
+  /** @var Google_Service_CloudUserAccounts_OperationWarnings[] */
+  protected $warnings;
 
   public function setClientOperationId($clientOperationId)
   {
@@ -1764,6 +1782,8 @@ class Google_Service_CloudUserAccounts_OperationError extends Google_Collection
   protected $errorsType = 'Google_Service_CloudUserAccounts_OperationErrorErrors';
   protected $errorsDataType = 'array';
 
+  /** @var Google_Service_CloudUserAccounts_OperationErrorErrors[] */
+  protected $errors;
 
   public function setErrors($errors)
   {
@@ -1822,6 +1842,8 @@ class Google_Service_CloudUserAccounts_OperationList extends Google_Collection
   public $nextPageToken;
   public $selfLink;
 
+  /** @var Google_Service_CloudUserAccounts_Operation[] */
+  protected $items;
 
   public function setId($id)
   {
@@ -1875,6 +1897,8 @@ class Google_Service_CloudUserAccounts_OperationWarnings extends Google_Collecti
   protected $dataDataType = 'array';
   public $message;
 
+  /** @var Google_Service_CloudUserAccounts_OperationWarningsData[] */
+  protected $data;
 
   public function setCode($code)
   {
@@ -1940,6 +1964,11 @@ class Google_Service_CloudUserAccounts_Policy extends Google_Collection
   protected $rulesDataType = 'array';
   public $version;
 
+  /** @var Google_Service_CloudUserAccounts_Binding[] */
+  protected $bindings;
+
+  /** @var Google_Service_CloudUserAccounts_Rule[] */
+  protected $rules;
 
   public function setBindings($bindings)
   {
@@ -2043,6 +2072,11 @@ class Google_Service_CloudUserAccounts_Rule extends Google_Collection
   public $notIns;
   public $permissions;
 
+  /** @var Google_Service_CloudUserAccounts_Condition[] */
+  protected $conditions;
+
+  /** @var Google_Service_CloudUserAccounts_LogConfig[] */
+  protected $logConfigs;
 
   public function setAction($action)
   {
@@ -2154,6 +2188,8 @@ class Google_Service_CloudUserAccounts_User extends Google_Collection
   protected $publicKeysDataType = 'array';
   public $selfLink;
 
+  /** @var Google_Service_CloudUserAccounts_PublicKey[] */
+  protected $publicKeys;
 
   public function setCreationTimestamp($creationTimestamp)
   {
@@ -2241,6 +2277,8 @@ class Google_Service_CloudUserAccounts_UserList extends Google_Collection
   public $nextPageToken;
   public $selfLink;
 
+  /** @var Google_Service_CloudUserAccounts_User */
+  protected $items;
 
   public function setId($id)
   {

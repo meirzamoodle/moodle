@@ -1668,6 +1668,8 @@ class Google_Service_Genomics_CoverageBucket extends Google_Model
   protected $rangeType = 'Google_Service_Genomics_Range';
   protected $rangeDataType = '';
 
+  /** @var Google_Service_Genomics_Range */
+  protected $range;
 
   public function setMeanCoverage($meanCoverage)
   {
@@ -2010,6 +2012,11 @@ class Google_Service_Genomics_LinearAlignment extends Google_Collection
   protected $positionType = 'Google_Service_Genomics_Position';
   protected $positionDataType = '';
 
+  /** @var Google_Service_Genomics_CigarUnit[] */
+  protected $cigar;
+
+  /** @var Google_Service_Genomics_Position */
+  protected $position;
 
   public function setCigar($cigar)
   {
@@ -2082,6 +2089,8 @@ class Google_Service_Genomics_ListCoverageBucketsResponse extends Google_Collect
   protected $coverageBucketsDataType = 'array';
   public $nextPageToken;
 
+  /** @var Google_Service_Genomics_CoverageBucket[] */
+  protected $coverageBuckets;
 
   public function setBucketWidth($bucketWidth)
   {
@@ -2118,6 +2127,8 @@ class Google_Service_Genomics_ListDatasetsResponse extends Google_Collection
   protected $datasetsDataType = 'array';
   public $nextPageToken;
 
+  /** @var Google_Service_Genomics_Dataset[] */
+  protected $datasets;
 
   public function setDatasets($datasets)
   {
@@ -2146,6 +2157,8 @@ class Google_Service_Genomics_ListOperationsResponse extends Google_Collection
   protected $operationsType = 'Google_Service_Genomics_Operation';
   protected $operationsDataType = 'array';
 
+  /** @var Google_Service_Genomics_Operation[] */
+  protected $operations;
 
   public function setNextPageToken($nextPageToken)
   {
@@ -2176,6 +2189,8 @@ class Google_Service_Genomics_Operation extends Google_Model
   public $name;
   public $response;
 
+  /** @var Google_Service_Genomics_Status */
+  protected $error;
 
   public function setDone($done)
   {
@@ -2247,6 +2262,8 @@ class Google_Service_Genomics_OperationMetadata extends Google_Collection
   public $projectId;
   public $request;
 
+  /** @var Google_Service_Genomics_OperationEvent[] */
+  protected $events;
 
   public function setCreateTime($createTime)
   {
@@ -2300,6 +2317,8 @@ class Google_Service_Genomics_Policy extends Google_Collection
   public $etag;
   public $version;
 
+  /** @var Google_Service_Genomics_Binding[] */
+  protected $bindings;
 
   public function setBindings($bindings)
   {
@@ -2475,6 +2494,11 @@ class Google_Service_Genomics_Read extends Google_Collection
   public $secondaryAlignment;
   public $supplementaryAlignment;
 
+  /** @var Google_Service_Genomics_LinearAlignment */
+  protected $alignment;
+
+  /** @var Google_Service_Genomics_Position */
+  protected $nextMatePosition;
 
   public function setAlignedQuality($alignedQuality)
   {
@@ -2632,6 +2656,11 @@ class Google_Service_Genomics_ReadGroup extends Google_Collection
   public $referenceSetId;
   public $sampleId;
 
+  /** @var Google_Service_Genomics_Experiment */
+  protected $experiment;
+
+  /** @var Google_Service_Genomics_Program[] */
+  protected $programs;
 
   public function setDatasetId($datasetId)
   {
@@ -2733,6 +2762,8 @@ class Google_Service_Genomics_ReadGroupSet extends Google_Collection
   protected $readGroupsDataType = 'array';
   public $referenceSetId;
 
+  /** @var Google_Service_Genomics_ReadGroup[] */
+  protected $readGroups;
 
   public function setDatasetId($datasetId)
   {
@@ -3033,6 +3064,8 @@ class Google_Service_Genomics_SearchCallSetsResponse extends Google_Collection
   protected $callSetsDataType = 'array';
   public $nextPageToken;
 
+  /** @var Google_Service_Genomics_CallSet[] */
+  protected $callSets;
 
   public function setCallSets($callSets)
   {
@@ -3106,6 +3139,8 @@ class Google_Service_Genomics_SearchReadGroupSetsResponse extends Google_Collect
   protected $readGroupSetsType = 'Google_Service_Genomics_ReadGroupSet';
   protected $readGroupSetsDataType = 'array';
 
+  /** @var Google_Service_Genomics_ReadGroupSet[] */
+  protected $readGroupSets;
 
   public function setNextPageToken($nextPageToken)
   {
@@ -3206,6 +3241,8 @@ class Google_Service_Genomics_SearchReadsResponse extends Google_Collection
   protected $alignmentsDataType = 'array';
   public $nextPageToken;
 
+  /** @var Google_Service_Genomics_Read[] */
+  protected $alignments;
 
   public function setAlignments($alignments)
   {
@@ -3288,6 +3325,8 @@ class Google_Service_Genomics_SearchReferenceSetsResponse extends Google_Collect
   protected $referenceSetsType = 'Google_Service_Genomics_ReferenceSet';
   protected $referenceSetsDataType = 'array';
 
+  /** @var Google_Service_Genomics_ReferenceSet[] */
+  protected $referenceSets;
 
   public function setNextPageToken($nextPageToken)
   {
@@ -3370,6 +3409,8 @@ class Google_Service_Genomics_SearchReferencesResponse extends Google_Collection
   protected $referencesType = 'Google_Service_Genomics_Reference';
   protected $referencesDataType = 'array';
 
+  /** @var Google_Service_Genomics_Reference[] */
+  protected $references;
 
   public function setNextPageToken($nextPageToken)
   {
@@ -3434,6 +3475,8 @@ class Google_Service_Genomics_SearchVariantSetsResponse extends Google_Collectio
   protected $variantSetsType = 'Google_Service_Genomics_VariantSet';
   protected $variantSetsDataType = 'array';
 
+  /** @var Google_Service_Genomics_VariantSet[] */
+  protected $variantSets;
 
   public function setNextPageToken($nextPageToken)
   {
@@ -3552,6 +3595,8 @@ class Google_Service_Genomics_SearchVariantsResponse extends Google_Collection
   protected $variantsType = 'Google_Service_Genomics_Variant';
   protected $variantsDataType = 'array';
 
+  /** @var Google_Service_Genomics_Variant[] */
+  protected $variants;
 
   public function setNextPageToken($nextPageToken)
   {
@@ -3578,6 +3623,8 @@ class Google_Service_Genomics_SetIamPolicyRequest extends Google_Model
   protected $policyType = 'Google_Service_Genomics_Policy';
   protected $policyDataType = '';
 
+  /** @var Google_Service_Genomics_Policy */
+  protected $policy;
 
   public function setPolicy(Google_Service_Genomics_Policy $policy)
   {
@@ -3689,6 +3736,8 @@ class Google_Service_Genomics_Variant extends Google_Collection
   public $start;
   public $variantSetId;
 
+  /** @var Google_Service_Genomics_VariantCall[] */
+  protected $calls;
 
   public function setAlternateBases($alternateBases)
   {
@@ -3879,6 +3928,11 @@ class Google_Service_Genomics_VariantSet extends Google_Collection
   protected $referenceBoundsType = 'Google_Service_Genomics_ReferenceBound';
   protected $referenceBoundsDataType = 'array';
 
+  /** @var Google_Service_Genomics_VariantSetMetadata[] */
+  protected $metadata;
+
+  /** @var Google_Service_Genomics_ReferenceBound[] */
+  protected $referenceBounds;
 
   public function setDatasetId($datasetId)
   {

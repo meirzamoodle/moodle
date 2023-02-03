@@ -45,6 +45,8 @@ Local changes (to reapply until upstream upgrades contain them):
       we are using here.
     * MDL-76355 php81 compliance. Class methods require overriding methods to declare a
       compatible return type.
+    * MDL-76411 php 8.2 compliance. Added missing class properties that still need to be declared
+      to avoid dynamic properties deprecated error warning.
 
 Information
 -----------

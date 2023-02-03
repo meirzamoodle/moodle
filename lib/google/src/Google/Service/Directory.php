@@ -3452,6 +3452,8 @@ class Google_Service_Directory_Aliases extends Google_Collection
   public $etag;
   public $kind;
 
+  /** @var Google_Service_Directory_Alias[] */
+  protected $aliases;
 
   public function setAliases($aliases)
   {
@@ -3560,6 +3562,8 @@ class Google_Service_Directory_Asps extends Google_Collection
   protected $itemsDataType = 'array';
   public $kind;
 
+  /** @var Google_Service_Directory_Asp[] */
+  protected $items;
 
   public function setEtag($etag)
   {
@@ -3722,6 +3726,11 @@ class Google_Service_Directory_ChromeOsDevice extends Google_Collection
   public $supportEndDate;
   public $willAutoRenew;
 
+  /** @var Google_Service_Directory_ChromeOsDeviceActiveTimeRanges[] */
+  protected $activeTimeRanges;
+
+  /** @var Google_Service_Directory_ChromeOsDeviceRecentUsers[] */
+  protected $recentUsers;
 
   public function setActiveTimeRanges($activeTimeRanges)
   {
@@ -3988,6 +3997,8 @@ class Google_Service_Directory_ChromeOsDevices extends Google_Collection
   public $kind;
   public $nextPageToken;
 
+  /** @var Google_Service_Directory_ChromeOsDevice */
+  protected $chromeosdevices;
 
   public function setChromeosdevices($chromeosdevices)
   {
@@ -4038,6 +4049,8 @@ class Google_Service_Directory_Customer extends Google_Model
   protected $postalAddressType = 'Google_Service_Directory_CustomerPostalAddress';
   protected $postalAddressDataType = '';
 
+  /** @var Google_Service_Directory_CustomerPostalAddress */
+  protected $postalAddress;
 
   public function setAlternateEmail($alternateEmail)
   {
@@ -4274,6 +4287,8 @@ class Google_Service_Directory_DomainAliases extends Google_Collection
   public $etag;
   public $kind;
 
+  /** @var Google_Service_Directory_DomainAlias[] */
+  protected $domainAliases;
 
   public function setDomainAliases($domainAliases)
   {
@@ -4315,6 +4330,8 @@ class Google_Service_Directory_Domains extends Google_Collection
   public $kind;
   public $verified;
 
+  /** @var Google_Service_Directory_DomainAlias[] */
+  protected $domainAliases;
 
   public function setCreationTime($creationTime)
   {
@@ -4384,6 +4401,8 @@ class Google_Service_Directory_Domains2 extends Google_Collection
   public $etag;
   public $kind;
 
+  /** @var Google_Service_Directory_Domains[] */
+  protected $domains;
 
   public function setDomains($domains)
   {
@@ -4521,6 +4540,8 @@ class Google_Service_Directory_Groups extends Google_Collection
   public $kind;
   public $nextPageToken;
 
+  /** @var Google_Service_Directory_Group[] */
+  protected $groups;
 
   public function setEtag($etag)
   {
@@ -4629,6 +4650,8 @@ class Google_Service_Directory_Members extends Google_Collection
   protected $membersDataType = 'array';
   public $nextPageToken;
 
+  /** @var Google_Service_Directory_Member[] */
+  protected $members;
 
   public function setEtag($etag)
   {
@@ -4702,6 +4725,8 @@ class Google_Service_Directory_MobileDevice extends Google_Collection
   public $userAgent;
   public $wifiMacAddress;
 
+  /** @var Google_Service_Directory_MobileDeviceApplications[] */
+  protected $applications;
 
   public function setAdbStatus($adbStatus)
   {
@@ -5035,6 +5060,8 @@ class Google_Service_Directory_MobileDevices extends Google_Collection
   protected $mobiledevicesDataType = 'array';
   public $nextPageToken;
 
+  /** @var Google_Service_Directory_MobileDevice[] */
+  protected $mobiledevices;
 
   public function setEtag($etag)
   {
@@ -5162,6 +5189,8 @@ class Google_Service_Directory_Notifications extends Google_Collection
   public $nextPageToken;
   public $unreadNotificationsCount;
 
+  /** @var Google_Service_Directory_Notification[] */
+  protected $items;
 
   public function setEtag($etag)
   {
@@ -5304,6 +5333,8 @@ class Google_Service_Directory_OrgUnits extends Google_Collection
   protected $organizationUnitsType = 'Google_Service_Directory_OrgUnit';
   protected $organizationUnitsDataType = 'array';
 
+  /** @var Google_Service_Directory_OrgUnit[] */
+  protected $organizationUnits;
 
   public function setEtag($etag)
   {
@@ -5345,6 +5376,8 @@ class Google_Service_Directory_Privilege extends Google_Collection
   public $serviceId;
   public $serviceName;
 
+  /** @var Google_Service_Directory_Privilege */
+  protected $childPrivileges;
 
   public function setChildPrivileges($childPrivileges)
   {
@@ -5414,6 +5447,8 @@ class Google_Service_Directory_Privileges extends Google_Collection
   protected $itemsDataType = 'array';
   public $kind;
 
+  /** @var Google_Service_Directory_Privilege[] */
+  protected $items;
 
   public function setEtag($etag)
   {
@@ -5456,6 +5491,8 @@ class Google_Service_Directory_Role extends Google_Collection
   protected $rolePrivilegesType = 'Google_Service_Directory_RoleRolePrivileges';
   protected $rolePrivilegesDataType = 'array';
 
+  /** @var Google_Service_Directory_RoleRolePrivileges[] */
+  protected $rolePrivileges;
 
   public function setEtag($etag)
   {
@@ -5605,6 +5642,8 @@ class Google_Service_Directory_RoleAssignments extends Google_Collection
   public $kind;
   public $nextPageToken;
 
+  /** @var Google_Service_Directory_RoleAssignment[] */
+  protected $items;
 
   public function setEtag($etag)
   {
@@ -5677,6 +5716,8 @@ class Google_Service_Directory_Roles extends Google_Collection
   public $kind;
   public $nextPageToken;
 
+  /** @var Google_Service_Directory_Role[] */
+  protected $items;
 
   public function setEtag($etag)
   {
@@ -5724,6 +5765,8 @@ class Google_Service_Directory_Schema extends Google_Collection
   public $schemaId;
   public $schemaName;
 
+  /** @var Google_Service_Directory_SchemaFieldSpec[] */
+  protected $fields;
 
   public function setEtag($etag)
   {
@@ -5782,6 +5825,8 @@ class Google_Service_Directory_SchemaFieldSpec extends Google_Model
   protected $numericIndexingSpecDataType = '';
   public $readAccessType;
 
+  /** @var Google_Service_Directory_SchemaFieldSpecNumericIndexingSpec */
+  protected $numericIndexingSpec;
 
   public function setEtag($etag)
   {
@@ -5893,6 +5938,8 @@ class Google_Service_Directory_Schemas extends Google_Collection
   protected $schemasType = 'Google_Service_Directory_Schema';
   protected $schemasDataType = 'array';
 
+  /** @var Google_Service_Directory_Schema[] */
+  protected $schemas;
 
   public function setEtag($etag)
   {
@@ -6011,6 +6058,8 @@ class Google_Service_Directory_Tokens extends Google_Collection
   protected $itemsDataType = 'array';
   public $kind;
 
+  /** @var Google_Service_Directory_Token[] */
+  protected $items;
 
   public function setEtag($etag)
   {
@@ -6080,6 +6129,8 @@ class Google_Service_Directory_User extends Google_Collection
   public $thumbnailPhotoUrl;
   public $websites;
 
+  /** @var Google_Service_Directory_UserName */
+  protected $name;
 
   public function setAddresses($addresses)
   {
@@ -7055,6 +7106,8 @@ class Google_Service_Directory_Users extends Google_Collection
   protected $usersType = 'Google_Service_Directory_User';
   protected $usersDataType = 'array';
 
+  /** @var Google_Service_Directory_User[] */
+  protected $users;
 
   public function setEtag($etag)
   {
@@ -7152,6 +7205,8 @@ class Google_Service_Directory_VerificationCodes extends Google_Collection
   protected $itemsDataType = 'array';
   public $kind;
 
+  /** @var Google_Service_Directory_VerificationCode[] */
+  protected $items;
 
   public function setEtag($etag)
   {

@@ -3473,6 +3473,8 @@ class Google_Service_MapsEngine_AssetsListResponse extends Google_Collection
   protected $assetsDataType = 'array';
   public $nextPageToken;
 
+  /** @var Google_Service_MapsEngine_Asset[] */
+  protected $assets;
 
   public function setAssets($assets)
   {
@@ -3587,6 +3589,20 @@ class Google_Service_MapsEngine_DisplayRule extends Google_Collection
   protected $zoomLevelsType = 'Google_Service_MapsEngine_ZoomLevels';
   protected $zoomLevelsDataType = '';
 
+  /** @var Google_Service_MapsEngine_Filter[] */
+  protected $filters;
+
+  /** @var Google_Service_MapsEngine_LineStyle */
+  protected $lineOptions;
+
+  /** @var Google_Service_MapsEngine_PointStyle */
+  protected $pointOptions;
+
+  /** @var Google_Service_MapsEngine_PolygonStyle */
+  protected $polygonOptions;
+
+  /** @var Google_Service_MapsEngine_ZoomLevels */
+  protected $zoomLevels;
 
   public function setFilters($filters)
   {
@@ -3647,6 +3663,8 @@ class Google_Service_MapsEngine_Feature extends Google_Model
   public $properties;
   public $type;
 
+  /** @var Google_Service_MapsEngine_GeoJsonGeometry */
+  protected $geometry;
 
   public function setGeometry(Google_Service_MapsEngine_GeoJsonGeometry $geometry)
   {
@@ -3728,6 +3746,8 @@ class Google_Service_MapsEngine_FeaturesBatchInsertRequest extends Google_Collec
   protected $featuresDataType = 'array';
   public $normalizeGeometries;
 
+  /** @var Google_Service_MapsEngine_Feature[] */
+  protected $features;
 
   public function setFeatures($features)
   {
@@ -3756,6 +3776,8 @@ class Google_Service_MapsEngine_FeaturesBatchPatchRequest extends Google_Collect
   protected $featuresDataType = 'array';
   public $normalizeGeometries;
 
+  /** @var Google_Service_MapsEngine_Feature[] */
+  protected $features;
 
   public function setFeatures($features)
   {
@@ -3788,6 +3810,11 @@ class Google_Service_MapsEngine_FeaturesListResponse extends Google_Collection
   protected $schemaDataType = '';
   public $type;
 
+  /** @var Google_Service_MapsEngine_Feature[] */
+  protected $features;
+
+  /** @var Google_Service_MapsEngine_Schema */
+  protected $schema;
 
   public function setAllowedQueriesPerSecond($allowedQueriesPerSecond)
   {
@@ -3890,6 +3917,10 @@ class Google_Service_MapsEngine_GeoJsonGeometryCollection extends Google_Service
   );
   protected $geometriesType = 'Google_Service_MapsEngine_GeoJsonGeometry';
   protected $geometriesDataType = 'array';
+
+  /** @var Google_Service_MapsEngine_GeoJsonGeometry[] */
+  protected $geometries;
+
   protected function gapiInit()
   {
     $this->type = 'GeometryCollection';
@@ -4081,6 +4112,11 @@ class Google_Service_MapsEngine_IconStyle extends Google_Model
   protected $scalingFunctionType = 'Google_Service_MapsEngine_ScalingFunction';
   protected $scalingFunctionDataType = '';
 
+  /** @var Google_Service_MapsEngine_ScaledShape */
+  protected $scaledShape;
+
+  /** @var Google_Service_MapsEngine_ScalingFunction */
+  protected $scalingFunction;
 
   public function setId($id)
   {
@@ -4125,6 +4161,8 @@ class Google_Service_MapsEngine_IconsListResponse extends Google_Collection
   protected $iconsDataType = 'array';
   public $nextPageToken;
 
+  /** @var Google_Service_MapsEngine_Icon[] */
+  protected $icons;
 
   public function setIcons($icons)
   {
@@ -4157,6 +4195,8 @@ class Google_Service_MapsEngine_LabelStyle extends Google_Model
   protected $outlineDataType = '';
   public $size;
 
+  /** @var Google_Service_MapsEngine_Color */
+  protected $outline;
 
   public function setColor($color)
   {
@@ -4244,6 +4284,11 @@ class Google_Service_MapsEngine_Layer extends Google_Collection
   public $tags;
   public $writersCanEditPermissions;
 
+  /** @var Google_Service_MapsEngine_Datasource[] */
+  protected $datasources;
+
+  /** @var Google_Service_MapsEngine_VectorStyle */
+  protected $style;
 
   public function setBbox($bbox)
   {
@@ -4416,6 +4461,8 @@ class Google_Service_MapsEngine_LayersListResponse extends Google_Collection
   protected $layersDataType = 'array';
   public $nextPageToken;
 
+  /** @var Google_Service_MapsEngine_Layer[] */
+  protected $layers;
 
   public function setLayers($layers)
   {
@@ -4448,6 +4495,14 @@ class Google_Service_MapsEngine_LineStyle extends Google_Collection
   protected $strokeType = 'Google_Service_MapsEngine_LineStyleStroke';
   protected $strokeDataType = '';
 
+  /** @var Google_Service_MapsEngine_Border */
+  protected $border;
+
+  /** @var Google_Service_MapsEngine_LabelStyle */
+  protected $label;
+
+  /** @var Google_Service_MapsEngine_LineStyleStroke */
+  protected $stroke;
 
   public function setBorder(Google_Service_MapsEngine_Border $border)
   {
@@ -4544,6 +4599,8 @@ class Google_Service_MapsEngine_Map extends Google_Collection
   public $versions;
   public $writersCanEditPermissions;
 
+  /** @var Google_Service_MapsEngine_MapItem */
+  protected $contents;
 
   public function setBbox($bbox)
   {
@@ -4711,6 +4768,10 @@ class Google_Service_MapsEngine_MapFolder extends Google_Service_MapsEngine_MapI
   public $key;
   public $name;
   public $visibility;
+
+  /** @var Google_Service_MapsEngine_MapItem[] */
+  protected $contents;
+
   protected function gapiInit()
   {
     $this->type = 'folder';
@@ -4897,6 +4958,8 @@ class Google_Service_MapsEngine_MapsListResponse extends Google_Collection
   protected $mapsDataType = 'array';
   public $nextPageToken;
 
+  /** @var Google_Service_MapsEngine_Map[] */
+  protected $maps;
 
   public function setMaps($maps)
   {
@@ -4977,6 +5040,8 @@ class Google_Service_MapsEngine_ParentsListResponse extends Google_Collection
   protected $parentsType = 'Google_Service_MapsEngine_Parent';
   protected $parentsDataType = 'array';
 
+  /** @var Google_Service_MapsEngine_Parent[] */
+  protected $parents;
 
   public function setNextPageToken($nextPageToken)
   {
@@ -5070,6 +5135,8 @@ class Google_Service_MapsEngine_PermissionsBatchUpdateRequest extends Google_Col
   protected $permissionsType = 'Google_Service_MapsEngine_Permission';
   protected $permissionsDataType = 'array';
 
+  /** @var Google_Service_MapsEngine_Permission[] */
+  protected $permissions;
 
   public function setPermissions($permissions)
   {
@@ -5093,6 +5160,8 @@ class Google_Service_MapsEngine_PermissionsListResponse extends Google_Collectio
   protected $permissionsType = 'Google_Service_MapsEngine_Permission';
   protected $permissionsDataType = 'array';
 
+  /** @var Google_Service_MapsEngine_Permission[] */
+  protected $permissions;
 
   public function setPermissions($permissions)
   {
@@ -5113,6 +5182,11 @@ class Google_Service_MapsEngine_PointStyle extends Google_Model
   protected $labelType = 'Google_Service_MapsEngine_LabelStyle';
   protected $labelDataType = '';
 
+  /** @var Google_Service_MapsEngine_IconStyle */
+  protected $icon;
+
+  /** @var Google_Service_MapsEngine_LabelStyle */
+  protected $label;
 
   public function setIcon(Google_Service_MapsEngine_IconStyle $icon)
   {
@@ -5143,6 +5217,14 @@ class Google_Service_MapsEngine_PolygonStyle extends Google_Model
   protected $strokeType = 'Google_Service_MapsEngine_Border';
   protected $strokeDataType = '';
 
+  /** @var Google_Service_MapsEngine_Color */
+  protected $fill;
+
+  /** @var Google_Service_MapsEngine_LabelStyle */
+  protected $label;
+
+  /** @var Google_Service_MapsEngine_Border */
+  protected $stroke;
 
   public function setFill(Google_Service_MapsEngine_Color $fill)
   {
@@ -5208,6 +5290,8 @@ class Google_Service_MapsEngine_ProjectsListResponse extends Google_Collection
   protected $projectsType = 'Google_Service_MapsEngine_Project';
   protected $projectsDataType = 'array';
 
+  /** @var Google_Service_MapsEngine_Project[] */
+  protected $projects;
 
   public function setProjects($projects)
   {
@@ -5285,6 +5369,8 @@ class Google_Service_MapsEngine_PublishedLayersListResponse extends Google_Colle
   protected $layersDataType = 'array';
   public $nextPageToken;
 
+  /** @var Google_Service_MapsEngine_PublishedLayer[] */
+  protected $layers;
 
   public function setLayers($layers)
   {
@@ -5316,6 +5402,8 @@ class Google_Service_MapsEngine_PublishedMap extends Google_Model
   public $name;
   public $projectId;
 
+  /** @var Google_Service_MapsEngine_MapItem */
+  protected $contents;
 
   public function setContents(Google_Service_MapsEngine_MapItem $contents)
   {
@@ -5376,6 +5464,8 @@ class Google_Service_MapsEngine_PublishedMapsListResponse extends Google_Collect
   protected $mapsDataType = 'array';
   public $nextPageToken;
 
+  /** @var Google_Service_MapsEngine_PublishedMap[] */
+  protected $maps;
 
   public function setMaps($maps)
   {
@@ -5422,6 +5512,11 @@ class Google_Service_MapsEngine_Raster extends Google_Collection
   public $tags;
   public $writersCanEditPermissions;
 
+  /** @var Google_Service_MapsEngine_AcquisitionTime */
+  protected $acquisitionTime;
+
+  /** @var Google_Service_MapsEngine_MapsengineFile[] */
+  protected $files;
 
   public function setAcquisitionTime(Google_Service_MapsEngine_AcquisitionTime $acquisitionTime)
   {
@@ -5748,6 +5843,8 @@ class Google_Service_MapsEngine_RasterCollectionsListResponse extends Google_Col
   protected $rasterCollectionsType = 'Google_Service_MapsEngine_RasterCollection';
   protected $rasterCollectionsDataType = 'array';
 
+  /** @var Google_Service_MapsEngine_RasterCollection[] */
+  protected $rasterCollections;
 
   public function setNextPageToken($nextPageToken)
   {
@@ -5910,6 +6007,8 @@ class Google_Service_MapsEngine_RasterCollectionsRastersListResponse extends Goo
   protected $rastersType = 'Google_Service_MapsEngine_RasterCollectionsRaster';
   protected $rastersDataType = 'array';
 
+  /** @var Google_Service_MapsEngine_RasterCollectionsRaster[] */
+  protected $rasters;
 
   public function setNextPageToken($nextPageToken)
   {
@@ -5938,6 +6037,8 @@ class Google_Service_MapsEngine_RastersListResponse extends Google_Collection
   protected $rastersType = 'Google_Service_MapsEngine_Raster';
   protected $rastersDataType = 'array';
 
+  /** @var Google_Service_MapsEngine_Raster[] */
+  protected $rasters;
 
   public function setNextPageToken($nextPageToken)
   {
@@ -5967,6 +6068,11 @@ class Google_Service_MapsEngine_ScaledShape extends Google_Model
   protected $fillDataType = '';
   public $shape;
 
+  /** @var Google_Service_MapsEngine_Border */
+  protected $border;
+
+  /** @var Google_Service_MapsEngine_Color */
+  protected $fill;
 
   public function setBorder(Google_Service_MapsEngine_Border $border)
   {
@@ -6005,6 +6111,11 @@ class Google_Service_MapsEngine_ScalingFunction extends Google_Model
   protected $valueRangeType = 'Google_Service_MapsEngine_ValueRange';
   protected $valueRangeDataType = '';
 
+  /** @var Google_Service_MapsEngine_SizeRange */
+  protected $sizeRange;
+
+  /** @var Google_Service_MapsEngine_ValueRange */
+  protected $valueRange;
 
   public function setColumn($column)
   {
@@ -6050,6 +6161,8 @@ class Google_Service_MapsEngine_Schema extends Google_Collection
   public $primaryGeometry;
   public $primaryKey;
 
+  /** @var Google_Service_MapsEngine_TableColumn[] */
+  protected $columns;
 
   public function setColumns($columns)
   {
@@ -6129,6 +6242,11 @@ class Google_Service_MapsEngine_Table extends Google_Collection
   public $tags;
   public $writersCanEditPermissions;
 
+  /** @var Google_Service_MapsEngine_MapsengineFile[] */
+  protected $files;
+
+  /** @var Google_Service_MapsEngine_Schema */
+  protected $schema;
 
   public function setBbox($bbox)
   {
@@ -6311,6 +6429,8 @@ class Google_Service_MapsEngine_TablesListResponse extends Google_Collection
   protected $tablesType = 'Google_Service_MapsEngine_Table';
   protected $tablesDataType = 'array';
 
+  /** @var Google_Service_MapsEngine_Table[] */
+  protected $tables;
 
   public function setNextPageToken($nextPageToken)
   {
@@ -6367,6 +6487,11 @@ class Google_Service_MapsEngine_VectorStyle extends Google_Collection
   protected $featureInfoDataType = '';
   public $type;
 
+  /** @var Google_Service_MapsEngine_DisplayRule[] */
+  protected $displayRules;
+
+  /** @var Google_Service_MapsEngine_FeatureInfo */
+  protected $featureInfo;
 
   public function setDisplayRules($displayRules)
   {

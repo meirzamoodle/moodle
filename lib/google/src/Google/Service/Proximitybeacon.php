@@ -698,6 +698,14 @@ class Google_Service_Proximitybeacon_Beacon extends Google_Model
   public $properties;
   public $status;
 
+  /** @var Google_Service_Proximitybeacon_AdvertisedId */
+  protected $advertisedId;
+
+  /** @var Google_Service_Proximitybeacon_IndoorLevel */
+  protected $indoorLevel;
+
+  /** @var Google_Service_Proximitybeacon_LatLng */
+  protected $latLng;
 
   public function setAdvertisedId(Google_Service_Proximitybeacon_AdvertisedId $advertisedId)
   {
@@ -820,6 +828,11 @@ class Google_Service_Proximitybeacon_BeaconInfo extends Google_Collection
   public $beaconName;
   public $description;
 
+  /** @var Google_Service_Proximitybeacon_AdvertisedId */
+  protected $advertisedId;
+
+  /** @var Google_Service_Proximitybeacon_AttachmentInfo[] */
+  protected $attachments;
 
   public function setAdvertisedId(Google_Service_Proximitybeacon_AdvertisedId $advertisedId)
   {
@@ -921,6 +934,8 @@ class Google_Service_Proximitybeacon_Diagnostics extends Google_Collection
   protected $estimatedLowBatteryDateType = 'Google_Service_Proximitybeacon_Date';
   protected $estimatedLowBatteryDateDataType = '';
 
+  /** @var Google_Service_Proximitybeacon_Date */
+  protected $estimatedLowBatteryDate;
 
   public function setAlerts($alerts)
   {
@@ -961,6 +976,8 @@ class Google_Service_Proximitybeacon_GetInfoForObservedBeaconsRequest extends Go
   protected $observationsType = 'Google_Service_Proximitybeacon_Observation';
   protected $observationsDataType = 'array';
 
+  /** @var Google_Service_Proximitybeacon_Observation[] */
+  protected $observations;
 
   public function setNamespacedTypes($namespacedTypes)
   {
@@ -988,6 +1005,8 @@ class Google_Service_Proximitybeacon_GetInfoForObservedBeaconsResponse extends G
   protected $beaconsType = 'Google_Service_Proximitybeacon_BeaconInfo';
   protected $beaconsDataType = 'array';
 
+  /** @var Google_Service_Proximitybeacon_BeaconInfo[] */
+  protected $beacons;
 
   public function setBeacons($beacons)
   {
@@ -1050,6 +1069,8 @@ class Google_Service_Proximitybeacon_ListBeaconAttachmentsResponse extends Googl
   protected $attachmentsType = 'Google_Service_Proximitybeacon_BeaconAttachment';
   protected $attachmentsDataType = 'array';
 
+  /** @var Google_Service_Proximitybeacon_BeaconAttachment[] */
+  protected $attachments;
 
   public function setAttachments($attachments)
   {
@@ -1071,6 +1092,8 @@ class Google_Service_Proximitybeacon_ListBeaconsResponse extends Google_Collecti
   public $nextPageToken;
   public $totalCount;
 
+  /** @var Google_Service_Proximitybeacon_Beacon[] */
+  protected $beacons;
 
   public function setBeacons($beacons)
   {
@@ -1107,6 +1130,8 @@ class Google_Service_Proximitybeacon_ListDiagnosticsResponse extends Google_Coll
   protected $diagnosticsDataType = 'array';
   public $nextPageToken;
 
+  /** @var Google_Service_Proximitybeacon_Diagnostics[] */
+  protected $diagnostics;
 
   public function setDiagnostics($diagnostics)
   {
@@ -1134,6 +1159,8 @@ class Google_Service_Proximitybeacon_ListNamespacesResponse extends Google_Colle
   protected $namespacesType = 'Google_Service_Proximitybeacon_ProximitybeaconNamespace';
   protected $namespacesDataType = 'array';
 
+  /** @var Google_Service_Proximitybeacon_ProximitybeaconNamespace[] */
+  protected $namespaces;
 
   public function setNamespaces($namespaces)
   {
@@ -1154,6 +1181,8 @@ class Google_Service_Proximitybeacon_Observation extends Google_Model
   public $telemetry;
   public $timestampMs;
 
+  /** @var Google_Service_Proximitybeacon_AdvertisedId */
+  protected $advertisedId;
 
   public function setAdvertisedId(Google_Service_Proximitybeacon_AdvertisedId $advertisedId)
   {

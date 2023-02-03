@@ -171,6 +171,8 @@ class Google_Service_Audit_Activities extends Google_Collection
   public $kind;
   public $next;
 
+  /** @var Google_Service_Audit_Activity[] */
+  protected $items;
 
   public function setItems($items)
   {
@@ -213,6 +215,14 @@ class Google_Service_Audit_Activity extends Google_Collection
   public $kind;
   public $ownerDomain;
 
+  /** @var Google_Service_Audit_ActivityActor */
+  protected $actor;
+
+  /** @var Google_Service_Audit_ActivityEvents[] */
+  protected $events;
+
+  /** @var Google_Service_Audit_ActivityId */
+  protected $id;
 
   public function setActor(Google_Service_Audit_ActivityActor $actor)
   {
@@ -318,6 +328,8 @@ class Google_Service_Audit_ActivityEvents extends Google_Collection
   protected $parametersType = 'Google_Service_Audit_ActivityEventsParameters';
   protected $parametersDataType = 'array';
 
+  /** @var Google_Service_Audit_ActivityEventsParameters[] */
+  protected $parameters;
 
   public function setEventType($eventType)
   {

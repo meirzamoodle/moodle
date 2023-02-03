@@ -637,6 +637,8 @@ class Google_Service_Replicapool_InstanceGroupManager extends Google_Collection
   public $targetPools;
   public $targetSize;
 
+  /** @var Google_Service_Replicapool_ReplicaPoolAutoHealingPolicy[] */
+  protected $autoHealingPolicies;
 
   public function setAutoHealingPolicies($autoHealingPolicies)
   {
@@ -764,6 +766,8 @@ class Google_Service_Replicapool_InstanceGroupManagerList extends Google_Collect
   public $nextPageToken;
   public $selfLink;
 
+  /** @var Google_Service_Replicapool_InstanceGroupManager[] */
+  protected $items;
 
   public function setId($id)
   {
@@ -935,6 +939,11 @@ class Google_Service_Replicapool_Operation extends Google_Collection
   protected $warningsDataType = 'array';
   public $zone;
 
+  /** @var Google_Service_Replicapool_OperationError */
+  protected $error;
+
+  /** @var Google_Service_Replicapool_OperationWarnings[] */
+  protected $warnings;
 
   public function setClientOperationId($clientOperationId)
   {
@@ -1122,6 +1131,8 @@ class Google_Service_Replicapool_OperationError extends Google_Collection
   protected $errorsType = 'Google_Service_Replicapool_OperationErrorErrors';
   protected $errorsDataType = 'array';
 
+  /** @var Google_Service_Replicapool_OperationErrorErrors[] */
+  protected $errors;
 
   public function setErrors($errors)
   {
@@ -1180,6 +1191,8 @@ class Google_Service_Replicapool_OperationList extends Google_Collection
   public $nextPageToken;
   public $selfLink;
 
+  /** @var Google_Service_Replicapool_Operation[] */
+  protected $items;
 
   public function setId($id)
   {
@@ -1233,6 +1246,8 @@ class Google_Service_Replicapool_OperationWarnings extends Google_Collection
   protected $dataDataType = 'array';
   public $message;
 
+  /** @var Google_Service_Replicapool_OperationWarningsData[] */
+  protected $data;
 
   public function setCode($code)
   {

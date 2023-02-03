@@ -726,6 +726,11 @@ class Google_Service_Fitness_AggregateBucket extends Google_Collection
   public $startTimeMillis;
   public $type;
 
+  /** @var Google_Service_Fitness_Dataset[] */
+  protected $dataset;
+
+  /** @var Google_Service_Fitness_Session */
+  protected $session;
 
   public function setActivity($activity)
   {
@@ -821,6 +826,20 @@ class Google_Service_Fitness_AggregateRequest extends Google_Collection
   public $endTimeMillis;
   public $startTimeMillis;
 
+  /** @var Google_Service_Fitness_AggregateBy[] */
+  protected $aggregateBy;
+
+  /** @var Google_Service_Fitness_BucketByActivity */
+  protected $bucketByActivitySegment;
+
+  /** @var Google_Service_Fitness_BucketByActivity */
+  protected $bucketByActivityType;
+
+  /** @var Google_Service_Fitness_BucketBySession */
+  protected $bucketBySession;
+
+  /** @var Google_Service_Fitness_BucketByTime */
+  protected $bucketByTime;
 
   public function setAggregateBy($aggregateBy)
   {
@@ -888,6 +907,8 @@ class Google_Service_Fitness_AggregateResponse extends Google_Collection
   protected $bucketType = 'Google_Service_Fitness_AggregateBucket';
   protected $bucketDataType = 'array';
 
+  /** @var Google_Service_Fitness_AggregateBucket[] */
+  protected $bucket;
 
   public function setBucket($bucket)
   {
@@ -1018,6 +1039,8 @@ class Google_Service_Fitness_DataPoint extends Google_Collection
   protected $valueType = 'Google_Service_Fitness_Value';
   protected $valueDataType = 'array';
 
+  /** @var Google_Service_Fitness_Value[] */
+  protected $value;
 
   public function setComputationTimeMillis($computationTimeMillis)
   {
@@ -1100,6 +1123,14 @@ class Google_Service_Fitness_DataSource extends Google_Model
   public $name;
   public $type;
 
+  /** @var Google_Service_Fitness_Application */
+  protected $application;
+
+  /** @var Google_Service_Fitness_DataType */
+  protected $dataType;
+
+  /** @var Google_Service_Fitness_Device */
+  protected $device;
 
   public function setApplication(Google_Service_Fitness_Application $application)
   {
@@ -1168,6 +1199,8 @@ class Google_Service_Fitness_DataType extends Google_Collection
   protected $fieldDataType = 'array';
   public $name;
 
+  /** @var Google_Service_Fitness_DataTypeField[] */
+  protected $field;
 
   public function setField($field)
   {
@@ -1234,6 +1267,8 @@ class Google_Service_Fitness_Dataset extends Google_Collection
   protected $pointType = 'Google_Service_Fitness_DataPoint';
   protected $pointDataType = 'array';
 
+  /** @var Google_Service_Fitness_DataPoint[] */
+  protected $point;
 
   public function setDataSourceId($dataSourceId)
   {
@@ -1338,6 +1373,8 @@ class Google_Service_Fitness_ListDataSourcesResponse extends Google_Collection
   protected $dataSourceType = 'Google_Service_Fitness_DataSource';
   protected $dataSourceDataType = 'array';
 
+  /** @var Google_Service_Fitness_DataSource[] */
+  protected $dataSource;
 
   public function setDataSource($dataSource)
   {
@@ -1360,6 +1397,11 @@ class Google_Service_Fitness_ListSessionsResponse extends Google_Collection
   protected $sessionType = 'Google_Service_Fitness_Session';
   protected $sessionDataType = 'array';
 
+  /** @var Google_Service_Fitness_Session[] */
+  protected $deletedSession;
+
+  /** @var Google_Service_Fitness_Session[] */
+  protected $session;
 
   public function setDeletedSession($deletedSession)
   {
@@ -1419,6 +1461,8 @@ class Google_Service_Fitness_Session extends Google_Model
   public $name;
   public $startTimeMillis;
 
+  /** @var Google_Service_Fitness_Application */
+  protected $application;
 
   public function setActiveTimeMillis($activeTimeMillis)
   {
@@ -1505,6 +1549,8 @@ class Google_Service_Fitness_Value extends Google_Collection
   protected $mapValDataType = 'array';
   public $stringVal;
 
+  /** @var Google_Service_Fitness_ValueMapValEntry[] */
+  protected $mapVal;
 
   public function setFpVal($fpVal)
   {
@@ -1548,6 +1594,8 @@ class Google_Service_Fitness_ValueMapValEntry extends Google_Model
   protected $valueType = 'Google_Service_Fitness_MapValue';
   protected $valueDataType = '';
 
+  /** @var Google_Service_Fitness_MapValue */
+  protected $value;
 
   public function setKey($key)
   {

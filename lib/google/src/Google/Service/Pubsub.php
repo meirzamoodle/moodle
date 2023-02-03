@@ -530,6 +530,8 @@ class Google_Service_Pubsub_ListSubscriptionsResponse extends Google_Collection
   protected $subscriptionType = 'Google_Service_Pubsub_Subscription';
   protected $subscriptionDataType = 'array';
 
+  /** @var Google_Service_Pubsub_Subscription[] */
+  protected $subscription;
 
   public function setNextPageToken($nextPageToken)
   {
@@ -558,6 +560,8 @@ class Google_Service_Pubsub_ListTopicsResponse extends Google_Collection
   protected $topicType = 'Google_Service_Pubsub_Topic';
   protected $topicDataType = 'array';
 
+  /** @var Google_Service_Pubsub_Topic[] */
+  protected $topic;
 
   public function setNextPageToken($nextPageToken)
   {
@@ -630,6 +634,8 @@ class Google_Service_Pubsub_ModifyPushConfigRequest extends Google_Model
   protected $pushConfigDataType = '';
   public $subscription;
 
+  /** @var Google_Service_Pubsub_PushConfig */
+  protected $pushConfig;
 
   public function setPushConfig(Google_Service_Pubsub_PushConfig $pushConfig)
   {
@@ -658,6 +664,8 @@ class Google_Service_Pubsub_PublishBatchRequest extends Google_Collection
   protected $messagesDataType = 'array';
   public $topic;
 
+  /** @var Google_Service_Pubsub_PubsubMessage[] */
+  protected $messages;
 
   public function setMessages($messages)
   {
@@ -703,6 +711,8 @@ class Google_Service_Pubsub_PublishRequest extends Google_Model
   protected $messageDataType = '';
   public $topic;
 
+  /** @var Google_Service_Pubsub_PubsubMessage */
+  protected $message;
 
   public function setMessage(Google_Service_Pubsub_PubsubMessage $message)
   {
@@ -732,6 +742,8 @@ class Google_Service_Pubsub_PubsubEvent extends Google_Model
   public $subscription;
   public $truncated;
 
+  /** @var Google_Service_Pubsub_PubsubMessage */
+  protected $message;
 
   public function setDeleted($deleted)
   {
@@ -777,6 +789,8 @@ class Google_Service_Pubsub_PubsubMessage extends Google_Collection
   protected $labelDataType = 'array';
   public $messageId;
 
+  /** @var Google_Service_Pubsub_Label[] */
+  protected $label;
 
   public function setData($data)
   {
@@ -847,6 +861,8 @@ class Google_Service_Pubsub_PullBatchResponse extends Google_Collection
   protected $pullResponsesType = 'Google_Service_Pubsub_PullResponse';
   protected $pullResponsesDataType = 'array';
 
+  /** @var Google_Service_Pubsub_PullResponse[] */
+  protected $pullResponses;
 
   public function setPullResponses($pullResponses)
   {
@@ -892,6 +908,8 @@ class Google_Service_Pubsub_PullResponse extends Google_Model
   protected $pubsubEventType = 'Google_Service_Pubsub_PubsubEvent';
   protected $pubsubEventDataType = '';
 
+  /** @var Google_Service_Pubsub_PubsubEvent */
+  protected $pubsubEvent;
 
   public function setAckId($ackId)
   {
@@ -938,6 +956,8 @@ class Google_Service_Pubsub_Subscription extends Google_Model
   protected $pushConfigDataType = '';
   public $topic;
 
+  /** @var Google_Service_Pubsub_PushConfig */
+  protected $pushConfig;
 
   public function setAckDeadlineSeconds($ackDeadlineSeconds)
   {

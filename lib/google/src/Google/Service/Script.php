@@ -150,6 +150,8 @@ class Google_Service_Script_ExecutionError extends Google_Collection
   protected $scriptStackTraceElementsType = 'Google_Service_Script_ScriptStackTraceElement';
   protected $scriptStackTraceElementsDataType = 'array';
 
+  /** @var Google_Service_Script_ScriptStackTraceElement[] */
+  protected $scriptStackTraceElements;
 
   public function setErrorMessage($errorMessage)
   {
@@ -250,6 +252,8 @@ class Google_Service_Script_Operation extends Google_Model
   public $name;
   public $response;
 
+  /** @var Google_Service_Script_Status */
+  protected $error;
 
   public function setDone($done)
   {

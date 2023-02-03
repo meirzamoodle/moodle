@@ -857,6 +857,8 @@ class Google_Service_Coordinate_CustomFieldDef extends Google_Collection
   public $requiredForCheckout;
   public $type;
 
+  /** @var Google_Service_Coordinate_EnumItemDef[] */
+  protected $enumitems;
 
   public function setEnabled($enabled)
   {
@@ -925,6 +927,8 @@ class Google_Service_Coordinate_CustomFieldDefListResponse extends Google_Collec
   protected $itemsDataType = 'array';
   public $kind;
 
+  /** @var Google_Service_Coordinate_CustomFieldDef[] */
+  protected $items;
 
   public function setItems($items)
   {
@@ -953,6 +957,8 @@ class Google_Service_Coordinate_CustomFields extends Google_Collection
   protected $customFieldDataType = 'array';
   public $kind;
 
+  /** @var Google_Service_Coordinate_CustomField[] */
+  protected $customField;
 
   public function setCustomField($customField)
   {
@@ -1019,6 +1025,11 @@ class Google_Service_Coordinate_Job extends Google_Collection
   protected $stateType = 'Google_Service_Coordinate_JobState';
   protected $stateDataType = '';
 
+  /** @var Google_Service_Coordinate_JobChange[] */
+  protected $jobChange;
+
+  /** @var Google_Service_Coordinate_JobState */
+  protected $state;
 
   public function setId($id)
   {
@@ -1063,6 +1074,8 @@ class Google_Service_Coordinate_JobChange extends Google_Model
   protected $stateDataType = '';
   public $timestamp;
 
+  /** @var Google_Service_Coordinate_JobState */
+  protected $state;
 
   public function setKind($kind)
   {
@@ -1100,6 +1113,8 @@ class Google_Service_Coordinate_JobListResponse extends Google_Collection
   public $kind;
   public $nextPageToken;
 
+  /** @var Google_Service_Coordinate_Job[] */
+  protected $items;
 
   public function setItems($items)
   {
@@ -1144,6 +1159,11 @@ class Google_Service_Coordinate_JobState extends Google_Collection
   public $progress;
   public $title;
 
+  /** @var Google_Service_Coordinate_CustomFields */
+  protected $customFields;
+
+  /** @var Google_Service_Coordinate_Location */
+  protected $location;
 
   public function setAssignee($assignee)
   {
@@ -1276,6 +1296,11 @@ class Google_Service_Coordinate_LocationListResponse extends Google_Collection
   protected $tokenPaginationType = 'Google_Service_Coordinate_TokenPagination';
   protected $tokenPaginationDataType = '';
 
+  /** @var Google_Service_Coordinate_LocationRecord[] */
+  protected $items;
+
+  /** @var Google_Service_Coordinate_TokenPagination */
+  protected $tokenPagination;
 
   public function setItems($items)
   {
@@ -1461,6 +1486,8 @@ class Google_Service_Coordinate_TeamListResponse extends Google_Collection
   protected $itemsDataType = 'array';
   public $kind;
 
+  /** @var Google_Service_Coordinate_Team[] */
+  protected $items;
 
   public function setItems($items)
   {
@@ -1550,6 +1577,8 @@ class Google_Service_Coordinate_WorkerListResponse extends Google_Collection
   protected $itemsDataType = 'array';
   public $kind;
 
+  /** @var Google_Service_Coordinate_Worker[] */
+  protected $items;
 
   public function setItems($items)
   {

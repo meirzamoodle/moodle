@@ -642,6 +642,11 @@ class Google_Service_YouTubeAnalytics_BatchReport extends Google_Collection
   protected $timeSpanDataType = '';
   public $timeUpdated;
 
+  /** @var Google_Service_YouTubeAnalytics_BatchReportOutputs[] */
+  protected $outputs;
+
+  /** @var Google_Service_YouTubeAnalytics_BatchReportTimeSpan */
+  protected $timeSpan;
 
   public function setId($id)
   {
@@ -755,6 +760,8 @@ class Google_Service_YouTubeAnalytics_BatchReportDefinitionList extends Google_C
   protected $itemsDataType = 'array';
   public $kind;
 
+  /** @var Google_Service_YouTubeAnalytics_BatchReportDefinition[] */
+  protected $items;
 
   public function setItems($items)
   {
@@ -783,6 +790,8 @@ class Google_Service_YouTubeAnalytics_BatchReportList extends Google_Collection
   protected $itemsDataType = 'array';
   public $kind;
 
+  /** @var Google_Service_YouTubeAnalytics_BatchReport[] */
+  protected $items;
 
   public function setItems($items)
   {
@@ -875,6 +884,11 @@ class Google_Service_YouTubeAnalytics_Group extends Google_Model
   protected $snippetType = 'Google_Service_YouTubeAnalytics_GroupSnippet';
   protected $snippetDataType = '';
 
+  /** @var Google_Service_YouTubeAnalytics_GroupContentDetails */
+  protected $contentDetails;
+
+  /** @var Google_Service_YouTubeAnalytics_GroupSnippet */
+  protected $snippet;
 
   public function setContentDetails(Google_Service_YouTubeAnalytics_GroupContentDetails $contentDetails)
   {
@@ -955,6 +969,8 @@ class Google_Service_YouTubeAnalytics_GroupItem extends Google_Model
   protected $resourceType = 'Google_Service_YouTubeAnalytics_GroupItemResource';
   protected $resourceDataType = '';
 
+  /** @var Google_Service_YouTubeAnalytics_GroupItemResource */
+  protected $resource;
 
   public function setEtag($etag)
   {
@@ -1008,6 +1024,8 @@ class Google_Service_YouTubeAnalytics_GroupItemListResponse extends Google_Colle
   protected $itemsDataType = 'array';
   public $kind;
 
+  /** @var Google_Service_YouTubeAnalytics_GroupItem[] */
+  protected $items;
 
   public function setEtag($etag)
   {
@@ -1071,6 +1089,8 @@ class Google_Service_YouTubeAnalytics_GroupListResponse extends Google_Collectio
   protected $itemsDataType = 'array';
   public $kind;
 
+  /** @var Google_Service_YouTubeAnalytics_Group[] */
+  protected $items;
 
   public function setEtag($etag)
   {
@@ -1134,6 +1154,8 @@ class Google_Service_YouTubeAnalytics_ResultTable extends Google_Collection
   public $kind;
   public $rows;
 
+  /** @var Google_Service_YouTubeAnalytics_ResultTableColumnHeaders[] */
+  protected $columnHeaders;
 
   public function setColumnHeaders($columnHeaders)
   {

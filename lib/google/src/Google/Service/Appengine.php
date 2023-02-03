@@ -647,6 +647,8 @@ class Google_Service_Appengine_Application extends Google_Collection
   public $location;
   public $name;
 
+  /** @var Google_Service_Appengine_UrlDispatchRule[] */
+  protected $dispatchRules;
 
   public function setCodeBucket($codeBucket)
   {
@@ -705,6 +707,8 @@ class Google_Service_Appengine_AutomaticScaling extends Google_Model
   public $minPendingLatency;
   public $minTotalInstances;
 
+  /** @var Google_Service_Appengine_CpuUtilization */
+  protected $cpuUtilization;
 
   public function setCoolDownPeriod($coolDownPeriod)
   {
@@ -861,6 +865,14 @@ class Google_Service_Appengine_Deployment extends Google_Collection
   protected $sourceReferencesType = 'Google_Service_Appengine_SourceReference';
   protected $sourceReferencesDataType = 'array';
 
+  /** @var Google_Service_Appengine_ContainerInfo */
+  protected $container;
+
+  /** @var Google_Service_Appengine_FileInfo[] */
+  protected $files;
+
+  /** @var Google_Service_Appengine_SourceReference[] */
+  protected $sourceReferences;
 
   public function setContainer(Google_Service_Appengine_ContainerInfo $container)
   {
@@ -1068,6 +1080,8 @@ class Google_Service_Appengine_ListModulesResponse extends Google_Collection
   protected $modulesDataType = 'array';
   public $nextPageToken;
 
+  /** @var Google_Service_Appengine_Module[] */
+  protected $modules;
 
   public function setModules($modules)
   {
@@ -1096,6 +1110,8 @@ class Google_Service_Appengine_ListOperationsResponse extends Google_Collection
   protected $operationsType = 'Google_Service_Appengine_Operation';
   protected $operationsDataType = 'array';
 
+  /** @var Google_Service_Appengine_Operation[] */
+  protected $operations;
 
   public function setNextPageToken($nextPageToken)
   {
@@ -1124,6 +1140,8 @@ class Google_Service_Appengine_ListVersionsResponse extends Google_Collection
   protected $versionsType = 'Google_Service_Appengine_Version';
   protected $versionsDataType = 'array';
 
+  /** @var Google_Service_Appengine_Version[] */
+  protected $versions;
 
   public function setNextPageToken($nextPageToken)
   {
@@ -1169,6 +1187,8 @@ class Google_Service_Appengine_Module extends Google_Model
   protected $splitType = 'Google_Service_Appengine_TrafficSplit';
   protected $splitDataType = '';
 
+  /** @var Google_Service_Appengine_TrafficSplit */
+  protected $split;
 
   public function setId($id)
   {
@@ -1243,6 +1263,8 @@ class Google_Service_Appengine_Operation extends Google_Model
   public $name;
   public $response;
 
+  /** @var Google_Service_Appengine_Status */
+  protected $error;
 
   public function setDone($done)
   {
@@ -1694,6 +1716,17 @@ class Google_Service_Appengine_UrlMap extends Google_Model
   protected $staticFilesDataType = '';
   public $urlRegex;
 
+  /** @var Google_Service_Appengine_ApiEndpointHandler */
+  protected $apiEndpoint;
+
+  /** @var Google_Service_Appengine_ScriptHandler */
+  protected $script;
+
+  /** @var Google_Service_Appengine_StaticDirectoryHandler */
+  protected $staticDirectory;
+
+  /** @var Google_Service_Appengine_StaticFilesHandler */
+  protected $staticFiles;
 
   public function setApiEndpoint(Google_Service_Appengine_ApiEndpointHandler $apiEndpoint)
   {
@@ -1812,6 +1845,38 @@ class Google_Service_Appengine_Version extends Google_Collection
   public $threadsafe;
   public $vm;
 
+  /** @var Google_Service_Appengine_ApiConfigHandler */
+  protected $apiConfig;
+
+  /** @var Google_Service_Appengine_AutomaticScaling */
+  protected $automaticScaling;
+
+  /** @var Google_Service_Appengine_BasicScaling */
+  protected $basicScaling;
+
+  /** @var Google_Service_Appengine_Deployment */
+  protected $deployment;
+
+  /** @var Google_Service_Appengine_ErrorHandler[] */
+  protected $errorHandlers;
+
+  /** @var Google_Service_Appengine_UrlMap[] */
+  protected $handlers;
+
+  /** @var Google_Service_Appengine_HealthCheck */
+  protected $healthCheck;
+
+  /** @var Google_Service_Appengine_Library[] */
+  protected $libraries;
+
+  /** @var Google_Service_Appengine_ManualScaling */
+  protected $manualScaling;
+
+  /** @var Google_Service_Appengine_Network */
+  protected $network;
+
+  /** @var Google_Service_Appengine_Resources */
+  protected $resources;
 
   public function setApiConfig(Google_Service_Appengine_ApiConfigHandler $apiConfig)
   {

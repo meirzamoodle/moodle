@@ -323,6 +323,14 @@ class Google_Service_CivicInfo_AdministrationRegion extends Google_Collection
   protected $sourcesType = 'Google_Service_CivicInfo_Source';
   protected $sourcesDataType = 'array';
 
+  /** @var Google_Service_CivicInfo_AdministrativeBody */
+  protected $electionAdministrationBody;
+
+  /** @var Google_Service_CivicInfo_AdministrationRegion */
+  protected $localJurisdiction;
+
+  /** @var Google_Service_CivicInfo_Source */
+  protected $sources;
 
   public function setElectionAdministrationBody(Google_Service_CivicInfo_AdministrativeBody $electionAdministrationBody)
   {
@@ -389,6 +397,14 @@ class Google_Service_CivicInfo_AdministrativeBody extends Google_Collection
   public $voterServices;
   public $votingLocationFinderUrl;
 
+  /** @var Google_Service_CivicInfo_SimpleAddressType */
+  protected $correspondenceAddress;
+
+  /** @var Google_Service_CivicInfo_ElectionOfficial[] */
+  protected $electionOfficials;
+
+  /** @var Google_Service_CivicInfo_SimpleAddressType */
+  protected $physicalAddress;
 
   public function setAbsenteeVotingInfoUrl($absenteeVotingInfoUrl)
   {
@@ -511,6 +527,8 @@ class Google_Service_CivicInfo_Candidate extends Google_Collection
   public $phone;
   public $photoUrl;
 
+  /** @var Google_Service_CivicInfo_Channel[] */
+  protected $channels;
 
   public function setCandidateUrl($candidateUrl)
   {
@@ -637,6 +655,14 @@ class Google_Service_CivicInfo_Contest extends Google_Collection
   public $special;
   public $type;
 
+  /** @var Google_Service_CivicInfo_Candidate[] */
+  protected $candidates;
+
+  /** @var Google_Service_CivicInfo_ElectoralDistrict */
+  protected $district;
+
+  /** @var Google_Service_CivicInfo_Source[] */
+  protected $sources;
 
   public function setBallotPlacement($ballotPlacement)
   {
@@ -841,6 +867,8 @@ class Google_Service_CivicInfo_DivisionSearchResponse extends Google_Collection
   protected $resultsType = 'Google_Service_CivicInfo_DivisionSearchResult';
   protected $resultsDataType = 'array';
 
+  /** @var Google_Service_CivicInfo_DivisionSearchResult[] */
+  protected $results;
 
   public function setKind($kind)
   {
@@ -1002,6 +1030,8 @@ class Google_Service_CivicInfo_ElectionsQueryResponse extends Google_Collection
   protected $electionsDataType = 'array';
   public $kind;
 
+  /** @var Google_Service_CivicInfo_Election[] */
+  protected $elections;
 
   public function setElections($elections)
   {
@@ -1105,6 +1135,8 @@ class Google_Service_CivicInfo_Office extends Google_Collection
   protected $sourcesType = 'Google_Service_CivicInfo_Source';
   protected $sourcesDataType = 'array';
 
+  /** @var Google_Service_CivicInfo_Source[] */
+  protected $sources;
 
   public function setDivisionId($divisionId)
   {
@@ -1172,6 +1204,11 @@ class Google_Service_CivicInfo_Official extends Google_Collection
   public $photoUrl;
   public $urls;
 
+  /** @var Google_Service_CivicInfo_SimpleAddressType[] */
+  protected $address;
+
+  /** @var Google_Service_CivicInfo_Channel[] */
+  protected $channels;
 
   public function setAddress($address)
   {
@@ -1256,6 +1293,11 @@ class Google_Service_CivicInfo_PollingLocation extends Google_Collection
   public $startDate;
   public $voterServices;
 
+  /** @var Google_Service_CivicInfo_SimpleAddressType */
+  protected $address;
+
+  /** @var Google_Service_CivicInfo_Source[] */
+  protected $sources;
 
   public function setAddress(Google_Service_CivicInfo_SimpleAddressType $address)
   {
@@ -1343,6 +1385,14 @@ class Google_Service_CivicInfo_RepresentativeInfoData extends Google_Collection
   protected $officialsType = 'Google_Service_CivicInfo_Official';
   protected $officialsDataType = 'array';
 
+  /** @var Google_Service_CivicInfo_GeographicDivision[] */
+  protected $divisions;
+
+  /** @var Google_Service_CivicInfo_Office[] */
+  protected $offices;
+
+  /** @var Google_Service_CivicInfo_Official[] */
+  protected $officials;
 
   public function setDivisions($divisions)
   {
@@ -1389,6 +1439,17 @@ class Google_Service_CivicInfo_RepresentativeInfoResponse extends Google_Collect
   protected $officialsType = 'Google_Service_CivicInfo_Official';
   protected $officialsDataType = 'array';
 
+  /** @var Google_Service_CivicInfo_GeographicDivision[] */
+  protected $divisions;
+
+  /** @var Google_Service_CivicInfo_SimpleAddressType */
+  protected $normalizedInput;
+
+  /** @var Google_Service_CivicInfo_Office[] */
+  protected $offices;
+
+  /** @var Google_Service_CivicInfo_Official[] */
+  protected $officials;
 
   public function setDivisions($divisions)
   {
@@ -1558,6 +1619,29 @@ class Google_Service_CivicInfo_VoterInfoResponse extends Google_Collection
   protected $stateType = 'Google_Service_CivicInfo_AdministrationRegion';
   protected $stateDataType = 'array';
 
+  /** @var Google_Service_CivicInfo_Contest[] */
+  protected $contests;
+
+  /** @var Google_Service_CivicInfo_PollingLocation[] */
+  protected $dropOffLocations;
+
+  /** @var Google_Service_CivicInfo_PollingLocation[] */
+  protected $earlyVoteSites;
+
+  /** @var Google_Service_CivicInfo_Election */
+  protected $election;
+
+  /** @var Google_Service_CivicInfo_SimpleAddressType */
+  protected $normalizedInput;
+
+  /** @var Google_Service_CivicInfo_Election[] */
+  protected $otherElections;
+
+  /** @var Google_Service_CivicInfo_PollingLocation[] */
+  protected $pollingLocations;
+
+  /** @var Google_Service_CivicInfo_AdministrationRegion[] */
+  protected $state;
 
   public function setContests($contests)
   {

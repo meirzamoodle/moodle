@@ -1831,6 +1831,8 @@ class Google_Service_TagManager_Condition extends Google_Collection
   protected $parameterDataType = 'array';
   public $type;
 
+  /** @var Google_Service_TagManager_Parameter[] */
+  protected $parameter;
 
   public function setParameter($parameter)
   {
@@ -2012,6 +2014,26 @@ class Google_Service_TagManager_ContainerVersion extends Google_Collection
   protected $variableType = 'Google_Service_TagManager_Variable';
   protected $variableDataType = 'array';
 
+  /** @var Google_Service_TagManager_Container */
+  protected $container;
+
+  /** @var Google_Service_TagManager_Folder[] */
+  protected $folder;
+
+  /** @var Google_Service_TagManager_Macro[] */
+  protected $macro;
+
+  /** @var Google_Service_TagManager_Rule[] */
+  protected $rule;
+
+  /** @var Google_Service_TagManager_Tag[] */
+  protected $tag;
+
+  /** @var Google_Service_TagManager_Trigger[] */
+  protected $trigger;
+
+  /** @var Google_Service_TagManager_Variable[] */
+  protected $variable;
 
   public function setAccountId($accountId)
   {
@@ -2268,6 +2290,8 @@ class Google_Service_TagManager_CreateContainerVersionResponse extends Google_Mo
   protected $containerVersionType = 'Google_Service_TagManager_ContainerVersion';
   protected $containerVersionDataType = '';
 
+  /** @var Google_Service_TagManager_ContainerVersion */
+  protected $containerVersion;
 
   public function setCompilerError($compilerError)
   {
@@ -2352,6 +2376,14 @@ class Google_Service_TagManager_FolderEntities extends Google_Collection
   protected $variableType = 'Google_Service_TagManager_Variable';
   protected $variableDataType = 'array';
 
+  /** @var Google_Service_TagManager_Tag[] */
+  protected $tag;
+
+  /** @var Google_Service_TagManager_Trigger[] */
+  protected $trigger;
+
+  /** @var Google_Service_TagManager_Variable[] */
+  protected $variable;
 
   public function setTag($tag)
   {
@@ -2387,6 +2419,8 @@ class Google_Service_TagManager_ListAccountUsersResponse extends Google_Collecti
   protected $userAccessType = 'Google_Service_TagManager_UserAccess';
   protected $userAccessDataType = 'array';
 
+  /** @var Google_Service_TagManager_UserAccess[] */
+  protected $userAccess;
 
   public function setUserAccess($userAccess)
   {
@@ -2406,6 +2440,8 @@ class Google_Service_TagManager_ListAccountsResponse extends Google_Collection
   protected $accountsType = 'Google_Service_TagManager_Account';
   protected $accountsDataType = 'array';
 
+  /** @var Google_Service_TagManager_Account[] */
+  protected $accounts;
 
   public function setAccounts($accounts)
   {
@@ -2427,6 +2463,11 @@ class Google_Service_TagManager_ListContainerVersionsResponse extends Google_Col
   protected $containerVersionHeaderType = 'Google_Service_TagManager_ContainerVersionHeader';
   protected $containerVersionHeaderDataType = 'array';
 
+  /** @var Google_Service_TagManager_ContainerVersion[] */
+  protected $containerVersion;
+
+  /** @var Google_Service_TagManager_ContainerVersionHeader[] */
+  protected $containerVersionHeader;
 
   public function setContainerVersion($containerVersion)
   {
@@ -2454,6 +2495,8 @@ class Google_Service_TagManager_ListContainersResponse extends Google_Collection
   protected $containersType = 'Google_Service_TagManager_Container';
   protected $containersDataType = 'array';
 
+  /** @var Google_Service_TagManager_Container[] */
+  protected $containers;
 
   public function setContainers($containers)
   {
@@ -2473,6 +2516,8 @@ class Google_Service_TagManager_ListFoldersResponse extends Google_Collection
   protected $foldersType = 'Google_Service_TagManager_Folder';
   protected $foldersDataType = 'array';
 
+  /** @var Google_Service_TagManager_Folder[] */
+  protected $folders;
 
   public function setFolders($folders)
   {
@@ -2492,6 +2537,8 @@ class Google_Service_TagManager_ListTagsResponse extends Google_Collection
   protected $tagsType = 'Google_Service_TagManager_Tag';
   protected $tagsDataType = 'array';
 
+  /** @var Google_Service_TagManager_Tag[] */
+  protected $tags;
 
   public function setTags($tags)
   {
@@ -2511,6 +2558,8 @@ class Google_Service_TagManager_ListTriggersResponse extends Google_Collection
   protected $triggersType = 'Google_Service_TagManager_Trigger';
   protected $triggersDataType = 'array';
 
+  /** @var Google_Service_TagManager_Trigger[] */
+  protected $triggers;
 
   public function setTriggers($triggers)
   {
@@ -2530,6 +2579,8 @@ class Google_Service_TagManager_ListVariablesResponse extends Google_Collection
   protected $variablesType = 'Google_Service_TagManager_Variable';
   protected $variablesDataType = 'array';
 
+  /** @var Google_Service_TagManager_Variable[] */
+  protected $variables;
 
   public function setVariables($variables)
   {
@@ -2561,6 +2612,8 @@ class Google_Service_TagManager_Macro extends Google_Collection
   public $scheduleStartMs;
   public $type;
 
+  /** @var Google_Service_TagManager_Parameter[] */
+  protected $parameter;
 
   public function setAccountId($accountId)
   {
@@ -2681,6 +2734,11 @@ class Google_Service_TagManager_Parameter extends Google_Collection
   public $type;
   public $value;
 
+  /** @var Google_Service_TagManager_Parameter[] */
+  protected $list;
+
+  /** @var Google_Service_TagManager_Parameter[] */
+  protected $map;
 
   public function setKey($key)
   {
@@ -2732,6 +2790,8 @@ class Google_Service_TagManager_PublishContainerVersionResponse extends Google_M
   protected $containerVersionType = 'Google_Service_TagManager_ContainerVersion';
   protected $containerVersionDataType = '';
 
+  /** @var Google_Service_TagManager_ContainerVersion */
+  protected $containerVersion;
 
   public function setCompilerError($compilerError)
   {
@@ -2765,6 +2825,8 @@ class Google_Service_TagManager_Rule extends Google_Collection
   public $notes;
   public $ruleId;
 
+  /** @var Google_Service_TagManager_Condition[] */
+  protected $condition;
 
   public function setAccountId($accountId)
   {
@@ -2880,6 +2942,17 @@ class Google_Service_TagManager_Tag extends Google_Collection
   protected $teardownTagDataType = 'array';
   public $type;
 
+  /** @var Google_Service_TagManager_Parameter[] */
+  protected $parameter;
+
+  /** @var Google_Service_TagManager_Parameter */
+  protected $priority;
+
+  /** @var Google_Service_TagManager_SetupTag[] */
+  protected $setupTag;
+
+  /** @var Google_Service_TagManager_TeardownTag[] */
+  protected $teardownTag;
 
   public function setAccountId($accountId)
   {
@@ -3106,6 +3179,41 @@ class Google_Service_TagManager_Trigger extends Google_Collection
   protected $waitForTagsTimeoutType = 'Google_Service_TagManager_Parameter';
   protected $waitForTagsTimeoutDataType = '';
 
+  /** @var Google_Service_TagManager_Condition[] */
+  protected $autoEventFilter;
+
+  /** @var Google_Service_TagManager_Parameter */
+  protected $checkValidation;
+
+  /** @var Google_Service_TagManager_Condition[] */
+  protected $customEventFilter;
+
+  /** @var Google_Service_TagManager_Parameter */
+  protected $enableAllVideos;
+
+  /** @var Google_Service_TagManager_Parameter */
+  protected $eventName;
+
+  /** @var Google_Service_TagManager_Condition[] */
+  protected $filter;
+
+  /** @var Google_Service_TagManager_Parameter */
+  protected $interval;
+
+  /** @var Google_Service_TagManager_Parameter */
+  protected $limit;
+
+  /** @var Google_Service_TagManager_Parameter */
+  protected $uniqueTriggerId;
+
+  /** @var Google_Service_TagManager_Parameter */
+  protected $videoPercentageList;
+
+  /** @var Google_Service_TagManager_Parameter */
+  protected $waitForTags;
+
+  /** @var Google_Service_TagManager_Parameter */
+  protected $waitForTagsTimeout;
 
   public function setAccountId($accountId)
   {
@@ -3274,6 +3382,11 @@ class Google_Service_TagManager_UserAccess extends Google_Collection
   public $emailAddress;
   public $permissionId;
 
+  /** @var Google_Service_TagManager_AccountAccess */
+  protected $accountAccess;
+
+  /** @var Google_Service_TagManager_ContainerAccess[] */
+  protected $containerAccess;
 
   public function setAccountAccess(Google_Service_TagManager_AccountAccess $accountAccess)
   {
@@ -3337,6 +3450,8 @@ class Google_Service_TagManager_Variable extends Google_Collection
   public $type;
   public $variableId;
 
+  /** @var Google_Service_TagManager_Parameter[] */
+  protected $parameter;
 
   public function setAccountId($accountId)
   {

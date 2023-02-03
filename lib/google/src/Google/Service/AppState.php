@@ -280,6 +280,8 @@ class Google_Service_AppState_ListResponse extends Google_Collection
   public $kind;
   public $maximumKeyCount;
 
+  /** @var Google_Service_AppState_GetResponse[] */
+  protected $items;
 
   public function setItems($items)
   {

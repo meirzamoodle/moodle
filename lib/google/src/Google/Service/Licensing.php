@@ -443,6 +443,8 @@ class Google_Service_Licensing_LicenseAssignmentList extends Google_Collection
   public $kind;
   public $nextPageToken;
 
+  /** @var Google_Service_Licensing_LicenseAssignment[] */
+  protected $items;
 
   public function setEtag($etag)
   {

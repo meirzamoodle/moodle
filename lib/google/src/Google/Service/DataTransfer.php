@@ -272,6 +272,8 @@ class Google_Service_DataTransfer_Application extends Google_Collection
   protected $transferParamsType = 'Google_Service_DataTransfer_ApplicationTransferParam';
   protected $transferParamsDataType = 'array';
 
+  /** @var Google_Service_DataTransfer_ApplicationTransferParam[] */
+  protected $transferParams;
 
   public function setEtag($etag)
   {
@@ -325,6 +327,8 @@ class Google_Service_DataTransfer_ApplicationDataTransfer extends Google_Collect
   protected $applicationTransferParamsDataType = 'array';
   public $applicationTransferStatus;
 
+  /** @var Google_Service_DataTransfer_ApplicationTransferParam[] */
+  protected $applicationTransferParams;
 
   public function setApplicationId($applicationId)
   {
@@ -390,6 +394,8 @@ class Google_Service_DataTransfer_ApplicationsListResponse extends Google_Collec
   public $kind;
   public $nextPageToken;
 
+  /** @var Google_Service_DataTransfer_Application[] */
+  protected $applications;
 
   public function setApplications($applications)
   {
@@ -440,6 +446,8 @@ class Google_Service_DataTransfer_DataTransfer extends Google_Collection
   public $overallTransferStatusCode;
   public $requestTime;
 
+  /** @var applicationDataTransfers[] */
+  protected $applicationDataTransfers;
 
   public function setApplicationDataTransfers($applicationDataTransfers)
   {
@@ -518,6 +526,8 @@ class Google_Service_DataTransfer_DataTransfersListResponse extends Google_Colle
   public $kind;
   public $nextPageToken;
 
+  /** @var Google_Service_DataTransfer_DataTransfer[] */
+  protected $dataTransfers;
 
   public function setDataTransfers($dataTransfers)
   {

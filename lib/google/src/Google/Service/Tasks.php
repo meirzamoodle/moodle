@@ -595,6 +595,8 @@ class Google_Service_Tasks_Task extends Google_Collection
   public $title;
   public $updated;
 
+  /** @var Google_Service_Tasks_TaskLinks[] */
+  protected $links;
 
   public function setCompleted($completed)
   {
@@ -826,6 +828,8 @@ class Google_Service_Tasks_TaskLists extends Google_Collection
   public $kind;
   public $nextPageToken;
 
+  /** @var Google_Service_Tasks_TaskList[] */
+  protected $items;
 
   public function setEtag($etag)
   {
@@ -872,6 +876,8 @@ class Google_Service_Tasks_Tasks extends Google_Collection
   public $kind;
   public $nextPageToken;
 
+  /** @var Google_Service_Tasks_Task[] */
+  protected $items;
 
   public function setEtag($etag)
   {

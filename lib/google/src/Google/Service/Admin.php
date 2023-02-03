@@ -36,6 +36,8 @@ class Google_Service_Admin extends Google_Service
 
   public $mail;
   
+  /** @var string service name. */
+  public $serviceName;
 
   /**
    * Constructs the internal representation of the Admin service.

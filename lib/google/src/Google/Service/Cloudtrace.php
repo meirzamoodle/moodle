@@ -309,6 +309,8 @@ class Google_Service_Cloudtrace_ListTracesResponse extends Google_Collection
   protected $tracesType = 'Google_Service_Cloudtrace_Trace';
   protected $tracesDataType = 'array';
 
+  /** @var Google_Service_Cloudtrace_Trace[] */
+  protected $traces;
 
   public function setNextPageToken($nextPageToken)
   {
@@ -338,6 +340,8 @@ class Google_Service_Cloudtrace_Trace extends Google_Collection
   protected $spansDataType = 'array';
   public $traceId;
 
+  /** @var Google_Service_Cloudtrace_TraceSpan */
+  protected $spans;
 
   public function setProjectId($projectId)
   {
@@ -448,6 +452,8 @@ class Google_Service_Cloudtrace_Traces extends Google_Collection
   protected $tracesType = 'Google_Service_Cloudtrace_Trace';
   protected $tracesDataType = 'array';
 
+  /** @var Google_Service_Cloudtrace_Trace[] */
+  protected $traces;
 
   public function setTraces($traces)
   {

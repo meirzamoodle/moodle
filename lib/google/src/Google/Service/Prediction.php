@@ -370,6 +370,11 @@ class Google_Service_Prediction_Analyze extends Google_Collection
   protected $modelDescriptionDataType = '';
   public $selfLink;
 
+  /** @var Google_Service_Prediction_AnalyzeDataDescription */
+  protected $dataDescription;
+
+  /** @var Google_Service_Prediction_AnalyzeModelDescription */
+  protected $modelDescription;
 
   public function setDataDescription(Google_Service_Prediction_AnalyzeDataDescription $dataDescription)
   {
@@ -431,6 +436,11 @@ class Google_Service_Prediction_AnalyzeDataDescription extends Google_Collection
   protected $outputFeatureType = 'Google_Service_Prediction_AnalyzeDataDescriptionOutputFeature';
   protected $outputFeatureDataType = '';
 
+  /** @var Google_Service_Prediction_AnalyzeDataDescriptionFeatures[] */
+  protected $features;
+
+  /** @var Google_Service_Prediction_AnalyzeDataDescriptionOutputFeature */
+  protected $outputFeature;
 
   public function setFeatures($features)
   {
@@ -462,6 +472,14 @@ class Google_Service_Prediction_AnalyzeDataDescriptionFeatures extends Google_Mo
   protected $textType = 'Google_Service_Prediction_AnalyzeDataDescriptionFeaturesText';
   protected $textDataType = '';
 
+  /** @var Google_Service_Prediction_AnalyzeDataDescriptionFeaturesCategorical */
+  protected $categorical;
+
+  /** @var Google_Service_Prediction_AnalyzeDataDescriptionFeaturesNumeric */
+  protected $numeric;
+
+  /** @var Google_Service_Prediction_AnalyzeDataDescriptionFeaturesText */
+  protected $text;
 
   public function setCategorical(Google_Service_Prediction_AnalyzeDataDescriptionFeaturesCategorical $categorical)
   {
@@ -506,6 +524,8 @@ class Google_Service_Prediction_AnalyzeDataDescriptionFeaturesCategorical extend
   protected $valuesType = 'Google_Service_Prediction_AnalyzeDataDescriptionFeaturesCategoricalValues';
   protected $valuesDataType = 'array';
 
+  /** @var Google_Service_Prediction_AnalyzeDataDescriptionFeaturesCategoricalValues[] */
+  protected $values;
 
   public function setCount($count)
   {
@@ -613,6 +633,11 @@ class Google_Service_Prediction_AnalyzeDataDescriptionOutputFeature extends Goog
   protected $textType = 'Google_Service_Prediction_AnalyzeDataDescriptionOutputFeatureText';
   protected $textDataType = 'array';
 
+  /** @var Google_Service_Prediction_AnalyzeDataDescriptionOutputFeatureNumeric */
+  protected $numeric;
+
+  /** @var Google_Service_Prediction_AnalyzeDataDescriptionOutputFeatureText[] */
+  protected $text;
 
   public function setNumeric(Google_Service_Prediction_AnalyzeDataDescriptionOutputFeatureNumeric $numeric)
   {
@@ -706,6 +731,8 @@ class Google_Service_Prediction_AnalyzeModelDescription extends Google_Model
   protected $modelinfoType = 'Google_Service_Prediction_Insert2';
   protected $modelinfoDataType = '';
 
+  /** @var Google_Service_Prediction_Insert2 */
+  protected $modelinfo;
 
   public function setConfusionMatrix($confusionMatrix)
   {
@@ -752,6 +779,8 @@ class Google_Service_Prediction_Input extends Google_Model
   protected $inputType = 'Google_Service_Prediction_InputInput';
   protected $inputDataType = '';
 
+  /** @var Google_Service_Prediction_InputInput */
+  protected $input;
 
   public function setInput(Google_Service_Prediction_InputInput $input)
   {
@@ -796,6 +825,8 @@ class Google_Service_Prediction_Insert extends Google_Collection
   protected $trainingInstancesDataType = 'array';
   public $utility;
 
+  /** @var Google_Service_Prediction_InsertTrainingInstances[] */
+  protected $trainingInstances;
 
   public function setId($id)
   {
@@ -880,6 +911,8 @@ class Google_Service_Prediction_Insert2 extends Google_Model
   public $trainingComplete;
   public $trainingStatus;
 
+  /** @var Google_Service_Prediction_Insert2ModelInfo */
+  protected $modelInfo;
 
   public function setCreated($created)
   {
@@ -1077,6 +1110,8 @@ class Google_Service_Prediction_Output extends Google_Collection
   public $outputValue;
   public $selfLink;
 
+  /** @var Google_Service_Prediction_OutputOutputMulti[] */
+  protected $outputMulti;
 
   public function setId($id)
   {
@@ -1165,6 +1200,8 @@ class Google_Service_Prediction_PredictionList extends Google_Collection
   public $nextPageToken;
   public $selfLink;
 
+  /** @var Google_Service_Prediction_Insert2[] */
+  protected $items;
 
   public function setItems($items)
   {

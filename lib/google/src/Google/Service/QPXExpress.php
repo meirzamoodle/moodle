@@ -325,6 +325,20 @@ class Google_Service_QPXExpress_Data extends Google_Collection
   protected $taxType = 'Google_Service_QPXExpress_TaxData';
   protected $taxDataType = 'array';
 
+  /** @var Google_Service_QPXExpress_AircraftData[] */
+  protected $aircraft;
+
+  /** @var Google_Service_QPXExpress_AirportData[] */
+  protected $airport;
+
+  /** @var Google_Service_QPXExpress_CarrierData[] */
+  protected $carrier;
+
+  /** @var Google_Service_QPXExpress_CityData[] */
+  protected $city;
+
+  /** @var Google_Service_QPXExpress_TaxData[] */
+  protected $tax;
 
   public function setAircraft($aircraft)
   {
@@ -486,6 +500,8 @@ class Google_Service_QPXExpress_FreeBaggageAllowance extends Google_Collection
   public $pieces;
   public $pounds;
 
+  /** @var Google_Service_QPXExpress_BagDescriptor[] */
+  protected $bagDescriptor;
 
   public function setBagDescriptor($bagDescriptor)
   {
@@ -783,6 +799,17 @@ class Google_Service_QPXExpress_PricingInfo extends Google_Collection
   protected $taxType = 'Google_Service_QPXExpress_TaxInfo';
   protected $taxDataType = 'array';
 
+  /** @var Google_Service_QPXExpress_FareInfo[] */
+  protected $fare;
+
+  /** @var Google_Service_QPXExpress_PassengerCounts */
+  protected $passengers;
+
+  /** @var Google_Service_QPXExpress_SegmentPricing[] */
+  protected $segmentPricing;
+
+  /** @var Google_Service_QPXExpress_TaxInfo[] */
+  protected $tax;
 
   public function setBaseFareTotal($baseFareTotal)
   {
@@ -909,6 +936,11 @@ class Google_Service_QPXExpress_SegmentInfo extends Google_Collection
   public $marriedSegmentGroup;
   public $subjectToGovernmentApproval;
 
+  /** @var Google_Service_QPXExpress_FlightInfo */
+  protected $flight;
+
+  /** @var Google_Service_QPXExpress_LegInfo[] */
+  protected $leg;
 
   public function setBookingCode($bookingCode)
   {
@@ -1011,6 +1043,8 @@ class Google_Service_QPXExpress_SegmentPricing extends Google_Collection
   public $kind;
   public $segmentId;
 
+  /** @var Google_Service_QPXExpress_FreeBaggageAllowance[] */
+  protected $freeBaggageOption;
 
   public function setFareId($fareId)
   {
@@ -1056,6 +1090,8 @@ class Google_Service_QPXExpress_SliceInfo extends Google_Collection
   protected $segmentType = 'Google_Service_QPXExpress_SegmentInfo';
   protected $segmentDataType = 'array';
 
+  /** @var Google_Service_QPXExpress_SegmentInfo[] */
+  protected $segment;
 
   public function setDuration($duration)
   {
@@ -1101,6 +1137,8 @@ class Google_Service_QPXExpress_SliceInput extends Google_Collection
   public $preferredCabin;
   public $prohibitedCarrier;
 
+  /** @var Google_Service_QPXExpress_TimeOfDayRange */
+  protected $permittedDepartureTime;
 
   public function setAlliance($alliance)
   {
@@ -1337,6 +1375,11 @@ class Google_Service_QPXExpress_TripOption extends Google_Collection
   protected $sliceType = 'Google_Service_QPXExpress_SliceInfo';
   protected $sliceDataType = 'array';
 
+  /** @var Google_Service_QPXExpress_PricingInfo[] */
+  protected $pricing;
+
+  /** @var Google_Service_QPXExpress_SliceInfo[] */
+  protected $slice;
 
   public function setId($id)
   {
@@ -1394,6 +1437,11 @@ class Google_Service_QPXExpress_TripOptionsRequest extends Google_Collection
   protected $sliceDataType = 'array';
   public $solutions;
 
+  /** @var Google_Service_QPXExpress_PassengerCounts */
+  protected $passengers;
+
+  /** @var Google_Service_QPXExpress_SliceInput[] */
+  protected $slice;
 
   public function setMaxPrice($maxPrice)
   {
@@ -1457,6 +1505,11 @@ class Google_Service_QPXExpress_TripOptionsResponse extends Google_Collection
   protected $tripOptionType = 'Google_Service_QPXExpress_TripOption';
   protected $tripOptionDataType = 'array';
 
+  /** @var Google_Service_QPXExpress_Data */
+  protected $data;
+
+  /** @var Google_Service_QPXExpress_TripOption[] */
+  protected $tripOption;
 
   public function setData(Google_Service_QPXExpress_Data $data)
   {
@@ -1499,6 +1552,8 @@ class Google_Service_QPXExpress_TripsSearchRequest extends Google_Model
   protected $requestType = 'Google_Service_QPXExpress_TripOptionsRequest';
   protected $requestDataType = '';
 
+  /** @var Google_Service_QPXExpress_TripOptionsRequest */
+  protected $request;
 
   public function setRequest(Google_Service_QPXExpress_TripOptionsRequest $request)
   {
@@ -1518,6 +1573,8 @@ class Google_Service_QPXExpress_TripsSearchResponse extends Google_Model
   protected $tripsType = 'Google_Service_QPXExpress_TripOptionsResponse';
   protected $tripsDataType = '';
 
+  /** @var Google_Service_QPXExpress_TripOptionsResponse */
+  protected $trips;
 
   public function setKind($kind)
   {

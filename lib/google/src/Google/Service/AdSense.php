@@ -2130,6 +2130,8 @@ class Google_Service_AdSense_Account extends Google_Collection
   protected $subAccountsDataType = 'array';
   public $timezone;
 
+  /** @var Google_Service_AdSense_Account[] */
+  protected $subAccounts;
 
   public function setCreationTime($creationTime)
   {
@@ -2200,6 +2202,8 @@ class Google_Service_AdSense_Accounts extends Google_Collection
   public $kind;
   public $nextPageToken;
 
+  /** @var Google_Service_AdSense_Account[] */
+  protected $items;
 
   public function setEtag($etag)
   {
@@ -2308,6 +2312,8 @@ class Google_Service_AdSense_AdClients extends Google_Collection
   public $kind;
   public $nextPageToken;
 
+  /** @var Google_Service_AdSense_AdClients[] */
+  protected $items;
 
   public function setEtag($etag)
   {
@@ -2380,6 +2386,11 @@ class Google_Service_AdSense_AdStyle extends Google_Model
   protected $fontDataType = '';
   public $kind;
 
+  /** @var Google_Service_AdSense_AdStyleColors */
+  protected $colors;
+
+  /** @var Google_Service_AdSense_AdStyleFont */
+  protected $font;
 
   public function setColors(Google_Service_AdSense_AdStyleColors $colors)
   {
@@ -2513,6 +2524,17 @@ class Google_Service_AdSense_AdUnit extends Google_Model
   public $savedStyleId;
   public $status;
 
+  /** @var Google_Service_AdSense_AdUnitContentAdsSettings */
+  protected $contentAdsSettings;
+
+  /** @var Google_Service_AdSense_AdStyle */
+  protected $customStyle;
+
+  /** @var Google_Service_AdSense_AdUnitFeedAdsSettings */
+  protected $feedAdsSettings;
+
+  /** @var Google_Service_AdSense_AdUnitMobileContentAdsSettings */
+  protected $mobileContentAdsSettings;
 
   public function setCode($code)
   {
@@ -2605,6 +2627,8 @@ class Google_Service_AdSense_AdUnitContentAdsSettings extends Google_Model
   public $size;
   public $type;
 
+  /** @var Google_Service_AdSense_AdUnitContentAdsSettingsBackupOption */
+  protected $backupOption;
 
   public function setBackupOption(Google_Service_AdSense_AdUnitContentAdsSettingsBackupOption $backupOption)
   {
@@ -2766,6 +2790,8 @@ class Google_Service_AdSense_AdUnits extends Google_Collection
   public $kind;
   public $nextPageToken;
 
+  /** @var Google_Service_AdSense_AdUnit[] */
+  protected $items;
 
   public function setEtag($etag)
   {
@@ -2817,6 +2843,8 @@ class Google_Service_AdSense_AdsenseReportsGenerateResponse extends Google_Colle
   public $totals;
   public $warnings;
 
+  /** @var Google_Service_AdSense_AdsenseReportsGenerateResponseHeaders[] */
+  protected $headers;
 
   public function setAverages($averages)
   {
@@ -2998,6 +3026,8 @@ class Google_Service_AdSense_Alerts extends Google_Collection
   protected $itemsDataType = 'array';
   public $kind;
 
+  /** @var Google_Service_AdSense_Alert[] */
+  protected $items;
 
   public function setItems($items)
   {
@@ -3028,6 +3058,8 @@ class Google_Service_AdSense_CustomChannel extends Google_Model
   protected $targetingInfoType = 'Google_Service_AdSense_CustomChannelTargetingInfo';
   protected $targetingInfoDataType = '';
 
+  /** @var Google_Service_AdSense_CustomChannelTargetingInfo */
+  protected $targetingInfo;
 
   public function setCode($code)
   {
@@ -3126,6 +3158,8 @@ class Google_Service_AdSense_CustomChannels extends Google_Collection
   public $kind;
   public $nextPageToken;
 
+  /** @var Google_Service_AdSense_CustomChannel[] */
+  protected $items;
 
   public function setEtag($etag)
   {
@@ -3170,6 +3204,8 @@ class Google_Service_AdSense_Metadata extends Google_Collection
   protected $itemsDataType = 'array';
   public $kind;
 
+  /** @var Google_Service_AdSense_ReportingMetadataEntry[] */
+  protected $items;
 
   public function setItems($items)
   {
@@ -3251,6 +3287,8 @@ class Google_Service_AdSense_Payments extends Google_Collection
   protected $itemsDataType = 'array';
   public $kind;
 
+  /** @var Google_Service_AdSense_Payment[] */
+  protected $items;
 
   public function setItems($items)
   {
@@ -3352,6 +3390,8 @@ class Google_Service_AdSense_SavedAdStyle extends Google_Model
   public $kind;
   public $name;
 
+  /** @var Google_Service_AdSense_AdStyle */
+  protected $adStyle;
 
   public function setAdStyle(Google_Service_AdSense_AdStyle $adStyle)
   {
@@ -3398,6 +3438,8 @@ class Google_Service_AdSense_SavedAdStyles extends Google_Collection
   public $kind;
   public $nextPageToken;
 
+  /** @var Google_Service_AdSense_SavedAdStyle[] */
+  protected $items;
 
   public function setEtag($etag)
   {
@@ -3479,6 +3521,8 @@ class Google_Service_AdSense_SavedReports extends Google_Collection
   public $kind;
   public $nextPageToken;
 
+  /** @var Google_Service_AdSense_SavedReport[] */
+  protected $items;
 
   public function setEtag($etag)
   {
@@ -3560,6 +3604,8 @@ class Google_Service_AdSense_UrlChannels extends Google_Collection
   public $kind;
   public $nextPageToken;
 
+  /** @var Google_Service_AdSense_UrlChannel[] */
+  protected $items;
 
   public function setEtag($etag)
   {

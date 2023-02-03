@@ -1355,6 +1355,8 @@ class Google_Service_Gmail_Draft extends Google_Model
   protected $messageType = 'Google_Service_Gmail_Message';
   protected $messageDataType = '';
 
+  /** @var Google_Service_Gmail_Message */
+  protected $message;
 
   public function setId($id)
   {
@@ -1391,6 +1393,20 @@ class Google_Service_Gmail_History extends Google_Collection
   protected $messagesDeletedType = 'Google_Service_Gmail_HistoryMessageDeleted';
   protected $messagesDeletedDataType = 'array';
 
+  /** @var Google_Service_Gmail_HistoryLabelAdded[] */
+  protected $labelsAdded;
+
+  /** @var Google_Service_Gmail_HistoryLabelRemoved[] */
+  protected $labelsRemoved;
+
+  /** @var Google_Service_Gmail_Message[] */
+  protected $messages;
+
+  /** @var Google_Service_Gmail_HistoryMessageAdded[] */
+  protected $messagesAdded;
+
+  /** @var Google_Service_Gmail_HistoryMessageDeleted[] */
+  protected $messagesDeleted;
 
   public function setId($id)
   {
@@ -1451,6 +1467,8 @@ class Google_Service_Gmail_HistoryLabelAdded extends Google_Collection
   protected $messageType = 'Google_Service_Gmail_Message';
   protected $messageDataType = '';
 
+  /** @var Google_Service_Gmail_Message */
+  protected $message;
 
   public function setLabelIds($labelIds)
   {
@@ -1479,6 +1497,8 @@ class Google_Service_Gmail_HistoryLabelRemoved extends Google_Collection
   protected $messageType = 'Google_Service_Gmail_Message';
   protected $messageDataType = '';
 
+  /** @var Google_Service_Gmail_Message */
+  protected $message;
 
   public function setLabelIds($labelIds)
   {
@@ -1505,6 +1525,8 @@ class Google_Service_Gmail_HistoryMessageAdded extends Google_Model
   protected $messageType = 'Google_Service_Gmail_Message';
   protected $messageDataType = '';
 
+  /** @var Google_Service_Gmail_Message */
+  protected $message;
 
   public function setMessage(Google_Service_Gmail_Message $message)
   {
@@ -1523,6 +1545,8 @@ class Google_Service_Gmail_HistoryMessageDeleted extends Google_Model
   protected $messageType = 'Google_Service_Gmail_Message';
   protected $messageDataType = '';
 
+  /** @var Google_Service_Gmail_Message */
+  protected $message;
 
   public function setMessage(Google_Service_Gmail_Message $message)
   {
@@ -1633,6 +1657,8 @@ class Google_Service_Gmail_ListDraftsResponse extends Google_Collection
   public $nextPageToken;
   public $resultSizeEstimate;
 
+  /** @var Google_Service_Gmail_Draft[] */
+  protected $drafts;
 
   public function setDrafts($drafts)
   {
@@ -1670,6 +1696,8 @@ class Google_Service_Gmail_ListHistoryResponse extends Google_Collection
   public $historyId;
   public $nextPageToken;
 
+  /** @var Google_Service_Gmail_History[] */
+  protected $history;
 
   public function setHistory($history)
   {
@@ -1705,6 +1733,8 @@ class Google_Service_Gmail_ListLabelsResponse extends Google_Collection
   protected $labelsType = 'Google_Service_Gmail_Label';
   protected $labelsDataType = 'array';
 
+  /** @var Google_Service_Gmail_Label[] */
+  protected $labels;
 
   public function setLabels($labels)
   {
@@ -1726,6 +1756,8 @@ class Google_Service_Gmail_ListMessagesResponse extends Google_Collection
   public $nextPageToken;
   public $resultSizeEstimate;
 
+  /** @var Google_Service_Gmail_Message[] */
+  protected $messages;
 
   public function setMessages($messages)
   {
@@ -1763,6 +1795,8 @@ class Google_Service_Gmail_ListThreadsResponse extends Google_Collection
   protected $threadsType = 'Google_Service_Gmail_Thread';
   protected $threadsDataType = 'array';
 
+  /** @var Google_Service_Gmail_Thread[] */
+  protected $threads;
 
   public function setNextPageToken($nextPageToken)
   {
@@ -1806,6 +1840,8 @@ class Google_Service_Gmail_Message extends Google_Collection
   public $snippet;
   public $threadId;
 
+  /** @var Google_Service_Gmail_MessagePart */
+  protected $payload;
 
   public function setHistoryId($historyId)
   {
@@ -1896,6 +1932,14 @@ class Google_Service_Gmail_MessagePart extends Google_Collection
   protected $partsType = 'Google_Service_Gmail_MessagePart';
   protected $partsDataType = 'array';
 
+  /** @var Google_Service_Gmail_MessagePartBody */
+  protected $body;
+
+  /** @var Google_Service_Gmail_MessagePartHeader[] */
+  protected $headers;
+
+  /** @var Google_Service_Gmail_MessagePart[] */
+  protected $parts;
 
   public function setBody(Google_Service_Gmail_MessagePartBody $body)
   {
@@ -2117,6 +2161,8 @@ class Google_Service_Gmail_Thread extends Google_Collection
   protected $messagesDataType = 'array';
   public $snippet;
 
+  /** @var Google_Service_Gmail_Message[] */
+  protected $messages;
 
   public function setHistoryId($historyId)
   {

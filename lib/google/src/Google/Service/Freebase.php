@@ -273,6 +273,8 @@ class Google_Service_Freebase_ReconcileCandidate extends Google_Model
   protected $notableType = 'Google_Service_Freebase_ReconcileCandidateNotable';
   protected $notableDataType = '';
 
+  /** @var Google_Service_Freebase_ReconcileCandidateNotable */
+  protected $notable;
 
   public function setConfidence($confidence)
   {
@@ -356,6 +358,17 @@ class Google_Service_Freebase_ReconcileGet extends Google_Collection
   protected $warningType = 'Google_Service_Freebase_ReconcileGetWarning';
   protected $warningDataType = 'array';
 
+  /** @var Google_Service_Freebase_ReconcileCandidate[] */
+  protected $candidate;
+
+  /** @var Google_Service_Freebase_ReconcileGetCosts */
+  protected $costs;
+
+  /** @var Google_Service_Freebase_ReconcileCandidate */
+  protected $match;
+
+  /** @var Google_Service_Freebase_ReconcileGetWarning[] */
+  protected $warning;
 
   public function setCandidate($candidate)
   {

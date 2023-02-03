@@ -1238,6 +1238,8 @@ class Google_Service_Classroom_ListCourseAliasesResponse extends Google_Collecti
   protected $aliasesDataType = 'array';
   public $nextPageToken;
 
+  /** @var Google_Service_Classroom_CourseAlias[] */
+  protected $aliases;
 
   public function setAliases($aliases)
   {
@@ -1266,6 +1268,8 @@ class Google_Service_Classroom_ListCoursesResponse extends Google_Collection
   protected $coursesDataType = 'array';
   public $nextPageToken;
 
+  /** @var Google_Service_Classroom_Course[] */
+  protected $courses;
 
   public function setCourses($courses)
   {
@@ -1294,6 +1298,8 @@ class Google_Service_Classroom_ListInvitationsResponse extends Google_Collection
   protected $invitationsDataType = 'array';
   public $nextPageToken;
 
+  /** @var Google_Service_Classroom_Invitation[] */
+  protected $invitations;
 
   public function setInvitations($invitations)
   {
@@ -1322,6 +1328,8 @@ class Google_Service_Classroom_ListStudentsResponse extends Google_Collection
   protected $studentsType = 'Google_Service_Classroom_Student';
   protected $studentsDataType = 'array';
 
+  /** @var Google_Service_Classroom_Student[] */
+  protected $students;
 
   public function setNextPageToken($nextPageToken)
   {
@@ -1350,6 +1358,8 @@ class Google_Service_Classroom_ListTeachersResponse extends Google_Collection
   protected $teachersType = 'Google_Service_Classroom_Teacher';
   protected $teachersDataType = 'array';
 
+  /** @var Google_Service_Classroom_Teacher[] */
+  protected $teachers;
 
   public function setNextPageToken($nextPageToken)
   {
@@ -1413,6 +1423,8 @@ class Google_Service_Classroom_Student extends Google_Model
   protected $profileDataType = '';
   public $userId;
 
+  /** @var Google_Service_Classroom_UserProfile */
+  protected $profile;
 
   public function setCourseId($courseId)
   {
@@ -1449,6 +1461,8 @@ class Google_Service_Classroom_Teacher extends Google_Model
   protected $profileDataType = '';
   public $userId;
 
+  /** @var Google_Service_Classroom_UserProfile */
+  protected $profile;
 
   public function setCourseId($courseId)
   {
@@ -1489,6 +1503,11 @@ class Google_Service_Classroom_UserProfile extends Google_Collection
   protected $permissionsDataType = 'array';
   public $photoUrl;
 
+  /** @var Google_Service_Classroom_Name */
+  protected $name;
+
+   /** @var Google_Service_Classroom_GlobalPermission[] */
+   protected $permissions;
 
   public function setEmailAddress($emailAddress)
   {

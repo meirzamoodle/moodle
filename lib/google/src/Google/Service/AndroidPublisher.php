@@ -2362,6 +2362,8 @@ class Google_Service_AndroidPublisher_Apk extends Google_Model
   protected $binaryDataType = '';
   public $versionCode;
 
+  /** @var Google_Service_AndroidPublisher_ApkBinary */
+  protected $binary;
 
   public function setBinary(Google_Service_AndroidPublisher_ApkBinary $binary)
   {
@@ -2433,6 +2435,8 @@ class Google_Service_AndroidPublisher_ApkListingsListResponse extends Google_Col
   protected $listingsType = 'Google_Service_AndroidPublisher_ApkListing';
   protected $listingsDataType = 'array';
 
+  /** @var Google_Service_AndroidPublisher_ApkListing[] */
+  protected $listings;
 
   public function setKind($kind)
   {
@@ -2459,6 +2463,8 @@ class Google_Service_AndroidPublisher_ApksAddExternallyHostedRequest extends Goo
   protected $externallyHostedApkType = 'Google_Service_AndroidPublisher_ExternallyHostedApk';
   protected $externallyHostedApkDataType = '';
 
+  /** @var Google_Service_AndroidPublisher_ExternallyHostedApk */
+  protected $externallyHostedApk;
 
   public function setExternallyHostedApk(Google_Service_AndroidPublisher_ExternallyHostedApk $externallyHostedApk)
   {
@@ -2477,6 +2483,8 @@ class Google_Service_AndroidPublisher_ApksAddExternallyHostedResponse extends Go
   protected $externallyHostedApkType = 'Google_Service_AndroidPublisher_ExternallyHostedApk';
   protected $externallyHostedApkDataType = '';
 
+  /** @var Google_Service_AndroidPublisher_ExternallyHostedApk */
+  protected $externallyHostedApk;
 
   public function setExternallyHostedApk(Google_Service_AndroidPublisher_ExternallyHostedApk $externallyHostedApk)
   {
@@ -2497,6 +2505,8 @@ class Google_Service_AndroidPublisher_ApksListResponse extends Google_Collection
   protected $apksDataType = 'array';
   public $kind;
 
+  /** @var Google_Service_AndroidPublisher_Apk[] */
+  protected $apks;
 
   public function setApks($apks)
   {
@@ -2642,6 +2652,14 @@ class Google_Service_AndroidPublisher_EntitlementsListResponse extends Google_Co
   protected $tokenPaginationType = 'Google_Service_AndroidPublisher_TokenPagination';
   protected $tokenPaginationDataType = '';
 
+  /** @var Google_Service_AndroidPublisher_PageInfo */
+  protected $pageInfo;
+
+  /** @var Google_Service_AndroidPublisher_Entitlement[] */
+  protected $resources;
+
+  /** @var Google_Service_AndroidPublisher_TokenPagination */
+  protected $tokenPagination;
 
   public function setPageInfo(Google_Service_AndroidPublisher_PageInfo $pageInfo)
   {
@@ -2702,6 +2720,8 @@ class Google_Service_AndroidPublisher_ExpansionFilesUploadResponse extends Googl
   protected $expansionFileType = 'Google_Service_AndroidPublisher_ExpansionFile';
   protected $expansionFileDataType = '';
 
+  /** @var Google_Service_AndroidPublisher_ExpansionFile */
+  protected $expansionFile;
 
   public function setExpansionFile(Google_Service_AndroidPublisher_ExpansionFile $expansionFile)
   {
@@ -2735,6 +2755,8 @@ class Google_Service_AndroidPublisher_ExternallyHostedApk extends Google_Collect
   public $versionCode;
   public $versionName;
 
+  /** @var Google_Service_AndroidPublisher_ExternallyHostedApkUsesPermission[] */
+  protected $usesPermissions;
 
   public function setApplicationLabel($applicationLabel)
   {
@@ -2927,6 +2949,8 @@ class Google_Service_AndroidPublisher_ImagesDeleteAllResponse extends Google_Col
   protected $deletedType = 'Google_Service_AndroidPublisher_Image';
   protected $deletedDataType = 'array';
 
+  /** @var Google_Service_AndroidPublisher_Image[] */
+  protected $deleted;
 
   public function setDeleted($deleted)
   {
@@ -2946,6 +2970,8 @@ class Google_Service_AndroidPublisher_ImagesListResponse extends Google_Collecti
   protected $imagesType = 'Google_Service_AndroidPublisher_Image';
   protected $imagesDataType = 'array';
 
+  /** @var Google_Service_AndroidPublisher_Image[] */
+  protected $images;
 
   public function setImages($images)
   {
@@ -2964,6 +2990,8 @@ class Google_Service_AndroidPublisher_ImagesUploadResponse extends Google_Model
   protected $imageType = 'Google_Service_AndroidPublisher_Image';
   protected $imageDataType = '';
 
+  /** @var Google_Service_AndroidPublisher_Image */
+  protected $image;
 
   public function setImage(Google_Service_AndroidPublisher_Image $image)
   {
@@ -2995,6 +3023,17 @@ class Google_Service_AndroidPublisher_InAppProduct extends Google_Model
   public $subscriptionPeriod;
   public $trialPeriod;
 
+  /** @var Google_Service_AndroidPublisher_Price */
+  protected $defaultPrice;
+
+  /** @var Google_Service_AndroidPublisher_InAppProductListing[] */
+  protected $listings;
+
+  /** @var Google_Service_AndroidPublisher_Price[] */
+  protected $prices;
+
+  /** @var Google_Service_AndroidPublisher_Season */
+  protected $season;
 
   public function setDefaultLanguage($defaultLanguage)
   {
@@ -3128,6 +3167,8 @@ class Google_Service_AndroidPublisher_InappproductsBatchRequest extends Google_C
   protected $entrysType = 'Google_Service_AndroidPublisher_InappproductsBatchRequestEntry';
   protected $entrysDataType = 'array';
 
+  /** @var Google_Service_AndroidPublisher_InappproductsBatchRequestEntry[] */
+  protected $entrys;
 
   public function setEntrys($entrys)
   {
@@ -3150,6 +3191,11 @@ class Google_Service_AndroidPublisher_InappproductsBatchRequestEntry extends Goo
   protected $inappproductsupdaterequestDataType = '';
   public $methodName;
 
+  /** @var Google_Service_AndroidPublisher_InappproductsInsertRequest */
+  protected $inappproductsinsertrequest;
+
+  /** @var Google_Service_AndroidPublisher_InappproductsUpdateRequest */
+  protected $inappproductsupdaterequest;
 
   public function setBatchId($batchId)
   {
@@ -3194,6 +3240,8 @@ class Google_Service_AndroidPublisher_InappproductsBatchResponse extends Google_
   protected $entrysDataType = 'array';
   public $kind;
 
+  /** @var Google_Service_AndroidPublisher_InappproductsBatchResponseEntry[] */
+  protected $entrys;
 
   public function setEntrys($entrys)
   {
@@ -3223,6 +3271,11 @@ class Google_Service_AndroidPublisher_InappproductsBatchResponseEntry extends Go
   protected $inappproductsupdateresponseType = 'Google_Service_AndroidPublisher_InappproductsUpdateResponse';
   protected $inappproductsupdateresponseDataType = '';
 
+  /** @var Google_Service_AndroidPublisher_InappproductsInsertResponse */
+  protected $inappproductsinsertresponse;
+
+  /** @var Google_Service_AndroidPublisher_InappproductsUpdateResponse */
+  protected $inappproductsupdateresponse;
 
   public function setBatchId($batchId)
   {
@@ -3257,6 +3310,8 @@ class Google_Service_AndroidPublisher_InappproductsInsertRequest extends Google_
   protected $inappproductType = 'Google_Service_AndroidPublisher_InAppProduct';
   protected $inappproductDataType = '';
 
+  /** @var Google_Service_AndroidPublisher_InAppProduct */
+  protected $inappproduct;
 
   public function setInappproduct(Google_Service_AndroidPublisher_InAppProduct $inappproduct)
   {
@@ -3275,6 +3330,8 @@ class Google_Service_AndroidPublisher_InappproductsInsertResponse extends Google
   protected $inappproductType = 'Google_Service_AndroidPublisher_InAppProduct';
   protected $inappproductDataType = '';
 
+  /** @var Google_Service_AndroidPublisher_InAppProduct */
+  protected $inappproduct;
 
   public function setInappproduct(Google_Service_AndroidPublisher_InAppProduct $inappproduct)
   {
@@ -3299,6 +3356,14 @@ class Google_Service_AndroidPublisher_InappproductsListResponse extends Google_C
   protected $tokenPaginationType = 'Google_Service_AndroidPublisher_TokenPagination';
   protected $tokenPaginationDataType = '';
 
+  /** @var Google_Service_AndroidPublisher_InAppProduct[] */
+  protected $inappproduct;
+
+  /** @var Google_Service_AndroidPublisher_PageInfo */
+  protected $pageInfo;
+
+  /** @var Google_Service_AndroidPublisher_TokenPagination */
+  protected $tokenPagination;
 
   public function setInappproduct($inappproduct)
   {
@@ -3341,6 +3406,8 @@ class Google_Service_AndroidPublisher_InappproductsUpdateRequest extends Google_
   protected $inappproductType = 'Google_Service_AndroidPublisher_InAppProduct';
   protected $inappproductDataType = '';
 
+  /** @var Google_Service_AndroidPublisher_InAppProduct */
+  protected $inappproduct;
 
   public function setInappproduct(Google_Service_AndroidPublisher_InAppProduct $inappproduct)
   {
@@ -3359,6 +3426,8 @@ class Google_Service_AndroidPublisher_InappproductsUpdateResponse extends Google
   protected $inappproductType = 'Google_Service_AndroidPublisher_InAppProduct';
   protected $inappproductDataType = '';
 
+  /** @var Google_Service_AndroidPublisher_InAppProduct */
+  protected $inappproduct;
 
   public function setInappproduct(Google_Service_AndroidPublisher_InAppProduct $inappproduct)
   {
@@ -3432,6 +3501,8 @@ class Google_Service_AndroidPublisher_ListingsListResponse extends Google_Collec
   protected $listingsType = 'Google_Service_AndroidPublisher_Listing';
   protected $listingsDataType = 'array';
 
+  /** @var Google_Service_AndroidPublisher_Listing[] */
+  protected $listings;
 
   public function setKind($kind)
   {
@@ -3600,6 +3671,11 @@ class Google_Service_AndroidPublisher_Season extends Google_Model
   protected $startType = 'Google_Service_AndroidPublisher_MonthDay';
   protected $startDataType = '';
 
+  /** @var Google_Service_AndroidPublisher_MonthDay */
+  protected $end;
+
+  /** @var Google_Service_AndroidPublisher_MonthDay */
+  protected $start;
 
   public function setEnd(Google_Service_AndroidPublisher_MonthDay $end)
   {
@@ -3696,6 +3772,8 @@ class Google_Service_AndroidPublisher_SubscriptionPurchasesDeferRequest extends 
   protected $deferralInfoType = 'Google_Service_AndroidPublisher_SubscriptionDeferralInfo';
   protected $deferralInfoDataType = '';
 
+  /** @var Google_Service_AndroidPublisher_SubscriptionDeferralInfo */
+  protected $deferralInfo;
 
   public function setDeferralInfo(Google_Service_AndroidPublisher_SubscriptionDeferralInfo $deferralInfo)
   {
@@ -3822,6 +3900,8 @@ class Google_Service_AndroidPublisher_TracksListResponse extends Google_Collecti
   protected $tracksType = 'Google_Service_AndroidPublisher_Track';
   protected $tracksDataType = 'array';
 
+  /** @var Google_Service_AndroidPublisher_Track[] */
+  protected $tracks;
 
   public function setKind($kind)
   {

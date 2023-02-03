@@ -527,6 +527,8 @@ class Google_Service_Autoscaler_Autoscaler extends Google_Model
   public $selfLink;
   public $target;
 
+  /** @var Google_Service_Autoscaler_AutoscalingPolicy */
+  protected $autoscalingPolicy;
 
   public function setAutoscalingPolicy(Google_Service_Autoscaler_AutoscalingPolicy $autoscalingPolicy)
   {
@@ -604,6 +606,8 @@ class Google_Service_Autoscaler_AutoscalerListResponse extends Google_Collection
   public $kind;
   public $nextPageToken;
 
+  /** @var Google_Service_Autoscaler_Autoscaler[] */
+  protected $items;
 
   public function setItems($items)
   {
@@ -646,6 +650,14 @@ class Google_Service_Autoscaler_AutoscalingPolicy extends Google_Collection
   public $maxNumReplicas;
   public $minNumReplicas;
 
+  /** @var Google_Service_Autoscaler_AutoscalingPolicyCpuUtilization */
+  protected $cpuUtilization;
+
+  /** @var Google_Service_Autoscaler_AutoscalingPolicyCustomMetricUtilization[] */
+  protected $customMetricUtilizations;
+
+  /** @var Google_Service_Autoscaler_AutoscalingPolicyLoadBalancingUtilization */
+  protected $loadBalancingUtilization;
 
   public function setCoolDownPeriodSec($coolDownPeriodSec)
   {
@@ -849,6 +861,11 @@ class Google_Service_Autoscaler_Operation extends Google_Collection
   protected $warningsDataType = 'array';
   public $zone;
 
+  /** @var Google_Service_Autoscaler_OperationError */
+  protected $error;
+
+  /** @var Google_Service_Autoscaler_OperationWarnings[] */
+  protected $warnings;
 
   public function setClientOperationId($clientOperationId)
   {
@@ -1036,6 +1053,8 @@ class Google_Service_Autoscaler_OperationError extends Google_Collection
   protected $errorsType = 'Google_Service_Autoscaler_OperationErrorErrors';
   protected $errorsDataType = 'array';
 
+  /** @var Google_Service_Autoscaler_OperationErrorErrors[] */
+  protected $errors;
 
   public function setErrors($errors)
   {
@@ -1094,6 +1113,8 @@ class Google_Service_Autoscaler_OperationList extends Google_Collection
   public $nextPageToken;
   public $selfLink;
 
+  /** @var Google_Service_Autoscaler_Operation[] */
+  protected $items;
 
   public function setId($id)
   {
@@ -1147,6 +1168,8 @@ class Google_Service_Autoscaler_OperationWarnings extends Google_Collection
   protected $dataDataType = 'array';
   public $message;
 
+  /** @var Google_Service_Autoscaler_OperationWarningsData[] */
+  protected $data;
 
   public function setCode($code)
   {
@@ -1218,6 +1241,11 @@ class Google_Service_Autoscaler_Zone extends Google_Collection
   public $selfLink;
   public $status;
 
+  /** @var Google_Service_Autoscaler_DeprecationStatus */
+  protected $deprecated;
+
+  /** @var Google_Service_Autoscaler_ZoneMaintenanceWindows[] */
+  protected $maintenanceWindows;
 
   public function setCreationTimestamp($creationTimestamp)
   {
@@ -1313,6 +1341,8 @@ class Google_Service_Autoscaler_ZoneList extends Google_Collection
   public $nextPageToken;
   public $selfLink;
 
+  /** @var Google_Service_Autoscaler_Zone[] */
+  protected $items;
 
   public function setId($id)
   {

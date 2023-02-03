@@ -3786,6 +3786,11 @@ class Google_Service_Analytics_Account extends Google_Model
   public $selfLink;
   public $updated;
 
+  /** @var Google_Service_Analytics_AccountChildLink */
+  protected $childLink;
+
+  /** @var Google_Service_Analytics_AccountPermissions */
+  protected $permissions;
 
   public function setChildLink(Google_Service_Analytics_AccountChildLink $childLink)
   {
@@ -3956,6 +3961,8 @@ class Google_Service_Analytics_AccountSummaries extends Google_Collection
   public $totalResults;
   public $username;
 
+  /** @var Google_Service_Analytics_AccountSummary[] */
+  protected $items;
 
   public function setItems($items)
   {
@@ -4034,6 +4041,8 @@ class Google_Service_Analytics_AccountSummary extends Google_Collection
   protected $webPropertiesType = 'Google_Service_Analytics_WebPropertySummary';
   protected $webPropertiesDataType = 'array';
 
+  /** @var Google_Service_Analytics_WebPropertySummary[] */
+  protected $webProperties;
 
   public function setId($id)
   {
@@ -4083,6 +4092,14 @@ class Google_Service_Analytics_AccountTicket extends Google_Model
   protected $webpropertyType = 'Google_Service_Analytics_Webproperty';
   protected $webpropertyDataType = '';
 
+  /** @var Google_Service_Analytics_Account */
+  protected $account;
+
+  /** @var Google_Service_Analytics_Profile */
+  protected $profile;
+
+  /** @var Google_Service_Analytics_Webproperty */
+  protected $webproperty;
 
   public function setAccount(Google_Service_Analytics_Account $account)
   {
@@ -4149,6 +4166,8 @@ class Google_Service_Analytics_Accounts extends Google_Collection
   public $totalResults;
   public $username;
 
+  /** @var Google_Service_Analytics_Account[] */
+  protected $items;
 
   public function setItems($items)
   {
@@ -4320,6 +4339,8 @@ class Google_Service_Analytics_Columns extends Google_Collection
   public $kind;
   public $totalResults;
 
+  /** @var Google_Service_Analytics_Column[] */
+  protected $items;
 
   public function setAttributeNames($attributeNames)
   {
@@ -4386,6 +4407,11 @@ class Google_Service_Analytics_CustomDataSource extends Google_Collection
   public $uploadType;
   public $webPropertyId;
 
+  /** @var Google_Service_Analytics_CustomDataSourceChildLink */
+  protected $childLink;
+
+  /** @var Google_Service_Analytics_CustomDataSourceParentLink */
+  protected $parentLink;
 
   public function setAccountId($accountId)
   {
@@ -4576,6 +4602,8 @@ class Google_Service_Analytics_CustomDataSources extends Google_Collection
   public $totalResults;
   public $username;
 
+  /** @var Google_Service_Analytics_CustomDataSource[] */
+  protected $items;
 
   public function setItems($items)
   {
@@ -4661,6 +4689,8 @@ class Google_Service_Analytics_CustomDimension extends Google_Model
   public $updated;
   public $webPropertyId;
 
+  /** @var Google_Service_Analytics_CustomDimensionParentLink */
+  protected $parentLink;
 
   public function setAccountId($accountId)
   {
@@ -4801,6 +4831,8 @@ class Google_Service_Analytics_CustomDimensions extends Google_Collection
   public $totalResults;
   public $username;
 
+  /** @var Google_Service_Analytics_CustomDimensions[] */
+  protected $items;
 
   public function setItems($items)
   {
@@ -4891,6 +4923,8 @@ class Google_Service_Analytics_CustomMetric extends Google_Model
   public $updated;
   public $webPropertyId;
 
+  /** @var Google_Service_Analytics_CustomMetricParentLink */
+  protected $parentLink;
 
   public function setAccountId($accountId)
   {
@@ -5055,6 +5089,8 @@ class Google_Service_Analytics_CustomMetrics extends Google_Collection
   public $totalResults;
   public $username;
 
+  /** @var Google_Service_Analytics_CustomMetric[] */
+  protected $items;
 
   public function setItems($items)
   {
@@ -5137,6 +5173,11 @@ class Google_Service_Analytics_EntityAdWordsLink extends Google_Collection
   public $profileIds;
   public $selfLink;
 
+  /** @var Google_Service_Analytics_AdWordsAccount[] */
+  protected $adWordsAccounts;
+
+  /** @var Google_Service_Analytics_EntityAdWordsLinkEntity */
+  protected $entity;
 
   public function setAdWordsAccounts($adWordsAccounts)
   {
@@ -5203,6 +5244,8 @@ class Google_Service_Analytics_EntityAdWordsLinkEntity extends Google_Model
   protected $webPropertyRefType = 'Google_Service_Analytics_WebPropertyRef';
   protected $webPropertyRefDataType = '';
 
+  /** @var Google_Service_Analytics_WebPropertyRef */
+  protected $webPropertyRef;
 
   public function setWebPropertyRef(Google_Service_Analytics_WebPropertyRef $webPropertyRef)
   {
@@ -5228,6 +5271,8 @@ class Google_Service_Analytics_EntityAdWordsLinks extends Google_Collection
   public $startIndex;
   public $totalResults;
 
+  /** @var Google_Service_Analytics_EntityAdWordsLink[] */
+  protected $items;
 
   public function setItems($items)
   {
@@ -5301,6 +5346,14 @@ class Google_Service_Analytics_EntityUserLink extends Google_Model
   protected $userRefType = 'Google_Service_Analytics_UserRef';
   protected $userRefDataType = '';
 
+  /** @var Google_Service_Analytics_EntityUserLinkEntity */
+  protected $entity;
+
+  /** @var Google_Service_Analytics_EntityUserLinkPermissions */
+  protected $permissions;
+
+  /** @var Google_Service_Analytics_UserRef */
+  protected $userRef;
 
   public function setEntity(Google_Service_Analytics_EntityUserLinkEntity $entity)
   {
@@ -5363,6 +5416,14 @@ class Google_Service_Analytics_EntityUserLinkEntity extends Google_Model
   protected $webPropertyRefType = 'Google_Service_Analytics_WebPropertyRef';
   protected $webPropertyRefDataType = '';
 
+  /** @var Google_Service_Analytics_AccountRef */
+  protected $accountRef;
+
+  /** @var Google_Service_Analytics_ProfileRef */
+  protected $profileRef;
+
+  /** @var Google_Service_Analytics_WebPropertyRef */
+  protected $webPropertyRef;
 
   public function setAccountRef(Google_Service_Analytics_AccountRef $accountRef)
   {
@@ -5431,6 +5492,8 @@ class Google_Service_Analytics_EntityUserLinks extends Google_Collection
   public $startIndex;
   public $totalResults;
 
+  /** @var Google_Service_Analytics_EntityUserLink[] */
+  protected $items;
 
   public function setItems($items)
   {
@@ -5526,6 +5589,11 @@ class Google_Service_Analytics_Experiment extends Google_Collection
   public $winnerConfidenceLevel;
   public $winnerFound;
 
+  /** @var Google_Service_Analytics_ExperimentParentLink */
+  protected $parentLink;
+
+  /** @var Google_Service_Analytics_ExperimentVariations[] */
+  protected $variations;
 
   public function setAccountId($accountId)
   {
@@ -5847,6 +5915,8 @@ class Google_Service_Analytics_Experiments extends Google_Collection
   public $totalResults;
   public $username;
 
+  /** @var Google_Service_Analytics_Experiment[] */
+  protected $items;
 
   public function setItems($items)
   {
@@ -5941,6 +6011,26 @@ class Google_Service_Analytics_Filter extends Google_Model
   protected $uppercaseDetailsType = 'Google_Service_Analytics_FilterUppercaseDetails';
   protected $uppercaseDetailsDataType = '';
 
+  /** @var Google_Service_Analytics_FilterAdvancedDetails */
+  protected $advancedDetails;
+
+  /** @var Google_Service_Analytics_FilterExpression */
+  protected $excludeDetails;
+
+  /** @var Google_Service_Analytics_FilterExpression */
+  protected $includeDetails;
+
+  /** @var Google_Service_Analytics_FilterLowercaseDetails */
+  protected $lowercaseDetails;
+
+  /** @var Google_Service_Analytics_FilterParentLink */
+  protected $parentLink;
+
+  /** @var Google_Service_Analytics_FilterSearchAndReplaceDetails */
+  protected $searchAndReplaceDetails;
+
+  /** @var Google_Service_Analytics_FilterUppercaseDetails */
+  protected $uppercaseDetails;
 
   public function setAccountId($accountId)
   {
@@ -6450,6 +6540,8 @@ class Google_Service_Analytics_Filters extends Google_Collection
   public $totalResults;
   public $username;
 
+  /** @var Google_Service_Analytics_Filters */
+  protected $items;
 
   public function setItems($items)
   {
@@ -6543,6 +6635,17 @@ class Google_Service_Analytics_GaData extends Google_Collection
   public $totalResults;
   public $totalsForAllResults;
 
+  /** @var Google_Service_Analytics_GaDataColumnHeaders[] */
+  protected $columnHeaders;
+
+  /** @var Google_Service_Analytics_GaDataDataTable */
+  protected $dataTable;
+
+  /** @var Google_Service_Analytics_GaDataProfileInfo */
+  protected $profileInfo;
+
+  /** @var Google_Service_Analytics_GaDataQuery */
+  protected $query;
 
   public function setColumnHeaders($columnHeaders)
   {
@@ -6719,6 +6822,11 @@ class Google_Service_Analytics_GaDataDataTable extends Google_Collection
   protected $rowsType = 'Google_Service_Analytics_GaDataDataTableRows';
   protected $rowsDataType = 'array';
 
+  /** @var Google_Service_Analytics_GaDataDataTableCols[] */
+  protected $cols;
+
+  /** @var Google_Service_Analytics_GaDataDataTableRows[] */
+  protected $rows;
 
   public function setCols($cols)
   {
@@ -6781,6 +6889,8 @@ class Google_Service_Analytics_GaDataDataTableRows extends Google_Collection
   protected $cType = 'Google_Service_Analytics_GaDataDataTableRowsC';
   protected $cDataType = 'array';
 
+  /** @var Google_Service_Analytics_GaDataDataTableRowsC[] */
+  protected $c;
 
   public function setC($c)
   {
@@ -7015,6 +7125,20 @@ class Google_Service_Analytics_Goal extends Google_Model
   protected $visitTimeOnSiteDetailsDataType = '';
   public $webPropertyId;
 
+  /** @var Google_Service_Analytics_GoalEventDetails */
+  protected $eventDetails;
+
+  /** @var Google_Service_Analytics_GoalParentLink */
+  protected $parentLink;
+
+  /** @var Google_Service_Analytics_GoalUrlDestinationDetails */
+  protected $urlDestinationDetails;
+
+  /** @var Google_Service_Analytics_GoalVisitNumPagesDetails */
+  protected $visitNumPagesDetails;
+
+  /** @var Google_Service_Analytics_GoalVisitTimeOnSiteDetails */
+  protected $visitTimeOnSiteDetails;
 
   public function setAccountId($accountId)
   {
@@ -7171,6 +7295,8 @@ class Google_Service_Analytics_GoalEventDetails extends Google_Collection
   protected $eventConditionsDataType = 'array';
   public $useEventValue;
 
+  /** @var Google_Service_Analytics_GoalEventDetailsEventConditions[] */
+  protected $eventConditions;
 
   public function setEventConditions($eventConditions)
   {
@@ -7281,6 +7407,8 @@ class Google_Service_Analytics_GoalUrlDestinationDetails extends Google_Collecti
   protected $stepsDataType = 'array';
   public $url;
 
+  /** @var Google_Service_Analytics_GoalUrlDestinationDetailsSteps[] */
+  protected $steps;
 
   public function setCaseSensitive($caseSensitive)
   {
@@ -7426,6 +7554,8 @@ class Google_Service_Analytics_Goals extends Google_Collection
   public $totalResults;
   public $username;
 
+  /** @var Google_Service_Analytics_Goal[] */
+  protected $items;
 
   public function setItems($items)
   {
@@ -7518,6 +7648,17 @@ class Google_Service_Analytics_McfData extends Google_Collection
   public $totalResults;
   public $totalsForAllResults;
 
+  /** @var Google_Service_Analytics_McfDataColumnHeaders[] */
+  protected $columnHeaders;
+
+  /** @var Google_Service_Analytics_McfDataProfileInfo */
+  protected $profileInfo;
+
+  /** @var Google_Service_Analytics_McfDataQuery */
+  protected $query;
+
+  /** @var Google_Service_Analytics_McfDataRows */
+  protected $rows;
 
   public function setColumnHeaders($columnHeaders)
   {
@@ -7859,6 +8000,8 @@ class Google_Service_Analytics_McfDataRows extends Google_Collection
   protected $conversionPathValueDataType = 'array';
   public $primitiveValue;
 
+  /** @var Google_Service_Analytics_McfDataRowsConversionPathValue[] */
+  protected $conversionPathValue;
 
   public function setConversionPathValue($conversionPathValue)
   {
@@ -7940,6 +8083,14 @@ class Google_Service_Analytics_Profile extends Google_Model
   public $webPropertyId;
   public $websiteUrl;
 
+  /** @var Google_Service_Analytics_ProfileChildLink */
+  protected $childLink;
+
+  /** @var Google_Service_Analytics_ProfileParentLink */
+  protected $parentLink;
+
+  /** @var Google_Service_Analytics_ProfilePermissions */
+  protected $permissions;
 
   public function setAccountId($accountId)
   {
@@ -8174,6 +8325,11 @@ class Google_Service_Analytics_ProfileFilterLink extends Google_Model
   public $rank;
   public $selfLink;
 
+  /** @var Google_Service_Analytics_FilterRef */
+  protected $filterRef;
+
+  /** @var Google_Service_Analytics_ProfileRef */
+  protected $profileRef;
 
   public function setFilterRef(Google_Service_Analytics_FilterRef $filterRef)
   {
@@ -8240,6 +8396,8 @@ class Google_Service_Analytics_ProfileFilterLinks extends Google_Collection
   public $totalResults;
   public $username;
 
+  /** @var Google_Service_Analytics_ProfileFilterLink[] */
+  protected $items;
 
   public function setItems($items)
   {
@@ -8481,6 +8639,8 @@ class Google_Service_Analytics_Profiles extends Google_Collection
   public $totalResults;
   public $username;
 
+  /** @var Google_Service_Analytics_Profile[] */
+  protected $items;
 
   public function setItems($items)
   {
@@ -8566,6 +8726,14 @@ class Google_Service_Analytics_RealtimeData extends Google_Collection
   public $totalResults;
   public $totalsForAllResults;
 
+  /** @var Google_Service_Analytics_RealtimeDataColumnHeaders[] */
+  protected $columnHeaders;
+
+  /** @var Google_Service_Analytics_RealtimeDataProfileInfo */
+  protected $profileInfo;
+
+  /** @var Google_Service_Analytics_RealtimeDataQuery */
+  protected $query;
 
   public function setColumnHeaders($columnHeaders)
   {
@@ -8910,6 +9078,8 @@ class Google_Service_Analytics_Segments extends Google_Collection
   public $totalResults;
   public $username;
 
+  /** @var Google_Service_Analytics_Segment[] */
+  protected $items;
 
   public function setItems($items)
   {
@@ -9005,6 +9175,11 @@ class Google_Service_Analytics_UnsampledReport extends Google_Model
   public $updated;
   public $webPropertyId;
 
+  /** @var mixed */
+  protected $cloudStorageDownloadDetails;
+
+  /** @var mixed */
+  protected $driveDownloadDetails;
 
   public function setAccountId($accountId)
   {
@@ -9218,6 +9393,8 @@ class Google_Service_Analytics_UnsampledReports extends Google_Collection
   public $totalResults;
   public $username;
 
+  /** @var Google_Service_Analytics_UnsampledReport[] */
+  protected $items;
 
   public function setItems($items)
   {
@@ -9362,6 +9539,8 @@ class Google_Service_Analytics_Uploads extends Google_Collection
   public $startIndex;
   public $totalResults;
 
+  /** @var Google_Service_Analytics_Upload[] */
+  protected $items;
 
   public function setItems($items)
   {
@@ -9532,6 +9711,8 @@ class Google_Service_Analytics_WebPropertySummary extends Google_Collection
   protected $profilesDataType = 'array';
   public $websiteUrl;
 
+  /** @var Google_Service_Analytics_ProfileSummary[] */
+  protected $profiles;
 
   public function setId($id)
   {
@@ -9606,6 +9787,8 @@ class Google_Service_Analytics_Webproperties extends Google_Collection
   public $totalResults;
   public $username;
 
+  /** @var Google_Service_Analytics_Webproperty[] */
+  protected $items;
 
   public function setItems($items)
   {
@@ -9697,6 +9880,14 @@ class Google_Service_Analytics_Webproperty extends Google_Model
   public $updated;
   public $websiteUrl;
 
+  /** @var Google_Service_Analytics_WebpropertyChildLink */
+  protected $childLink;
+
+  /** @var Google_Service_Analytics_WebpropertyParentLink */
+  protected $parentLink;
+
+  /** @var Google_Service_Analytics_WebpropertyPermissions */
+  protected $permissions;
 
   public function setAccountId($accountId)
   {

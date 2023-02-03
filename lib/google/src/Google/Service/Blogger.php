@@ -1722,6 +1722,14 @@ class Google_Service_Blogger_Blog extends Google_Model
   public $updated;
   public $url;
 
+  /** @var Google_Service_Blogger_BlogLocale */
+  protected $locale;
+
+  /** @var Google_Service_Blogger_BlogPages */
+  protected $pages;
+
+  /** @var Google_Service_Blogger_BlogPosts */
+  protected $posts;
 
   public function setCustomMetaData($customMetaData)
   {
@@ -1840,6 +1848,11 @@ class Google_Service_Blogger_BlogList extends Google_Collection
   protected $itemsDataType = 'array';
   public $kind;
 
+  /** @var Google_Service_Blogger_BlogUserInfo[] */
+  protected $blogUserInfos;
+
+  /** @var Google_Service_Blogger_Blog[] */
+  protected $items;
 
   public function setBlogUserInfos($blogUserInfos)
   {
@@ -2000,6 +2013,8 @@ class Google_Service_Blogger_BlogPosts extends Google_Collection
   public $selfLink;
   public $totalItems;
 
+  /** @var Google_Service_Blogger_Post[] */
+  protected $items;
 
   public function setItems($items)
   {
@@ -2038,6 +2053,11 @@ class Google_Service_Blogger_BlogUserInfo extends Google_Model
   protected $blogUserInfoDataType = '';
   public $kind;
 
+  /** @var Google_Service_Blogger_Blog */
+  protected $blog;
+
+  /** @var Google_Service_Blogger_BlogPerUserInfo */
+  protected $blogUserInfo;
 
   public function setBlog(Google_Service_Blogger_Blog $blog)
   {
@@ -2085,6 +2105,17 @@ class Google_Service_Blogger_Comment extends Google_Model
   public $status;
   public $updated;
 
+  /** @var Google_Service_Blogger_CommentAuthor */
+  protected $author;
+
+  /** @var Google_Service_Blogger_CommentBlog */
+  protected $blog;
+
+  /** @var Google_Service_Blogger_CommentInReplyTo */
+  protected $inReplyTo;
+
+  /** @var Google_Service_Blogger_CommentPost */
+  protected $post;
 
   public function setAuthor(Google_Service_Blogger_CommentAuthor $author)
   {
@@ -2186,6 +2217,8 @@ class Google_Service_Blogger_CommentAuthor extends Google_Model
   protected $imageDataType = '';
   public $url;
 
+  /** @var Google_Service_Blogger_CommentAuthorImage */
+  protected $image;
 
   public function setDisplayName($displayName)
   {
@@ -2284,6 +2317,8 @@ class Google_Service_Blogger_CommentList extends Google_Collection
   public $nextPageToken;
   public $prevPageToken;
 
+  /** @var Google_Service_Blogger_Comment[] */
+  protected $items;
 
   public function setEtag($etag)
   {
@@ -2363,6 +2398,11 @@ class Google_Service_Blogger_Page extends Google_Model
   public $updated;
   public $url;
 
+  /** @var Google_Service_Blogger_PageAuthor */
+  protected $author;
+
+  /** @var Google_Service_Blogger_PageBlog */
+  protected $blog;
 
   public function setAuthor(Google_Service_Blogger_PageAuthor $author)
   {
@@ -2472,6 +2512,8 @@ class Google_Service_Blogger_PageAuthor extends Google_Model
   protected $imageDataType = '';
   public $url;
 
+  /** @var Google_Service_Blogger_PageAuthorImage */
+  protected $image;
 
   public function setDisplayName($displayName)
   {
@@ -2552,6 +2594,8 @@ class Google_Service_Blogger_PageList extends Google_Collection
   public $kind;
   public $nextPageToken;
 
+  /** @var Google_Service_Blogger_Page[] */
+  protected $items;
 
   public function setEtag($etag)
   {
@@ -2597,6 +2641,8 @@ class Google_Service_Blogger_Pageviews extends Google_Collection
   protected $countsDataType = 'array';
   public $kind;
 
+  /** @var Google_Service_Blogger_PageviewsCounts[] */
+  protected $counts;
 
   public function setBlogId($blogId)
   {
@@ -2680,6 +2726,20 @@ class Google_Service_Blogger_Post extends Google_Collection
   public $updated;
   public $url;
 
+  /** @var Google_Service_Blogger_PostAuthor */
+  protected $author;
+
+  /** @var Google_Service_Blogger_PostBlog */
+  protected $blog;
+
+  /** @var Google_Service_Blogger_PostImages[] */
+  protected $images;
+
+  /** @var Google_Service_Blogger_PostLocation */
+  protected $location;
+
+  /** @var Google_Service_Blogger_PostReplies */
+  protected $replies;
 
   public function setAuthor(Google_Service_Blogger_PostAuthor $author)
   {
@@ -2845,6 +2905,8 @@ class Google_Service_Blogger_PostAuthor extends Google_Model
   protected $imageDataType = '';
   public $url;
 
+  /** @var Google_Service_Blogger_PostAuthorImage */
+  protected $image;
 
   public function setDisplayName($displayName)
   {
@@ -2942,6 +3004,8 @@ class Google_Service_Blogger_PostList extends Google_Collection
   public $kind;
   public $nextPageToken;
 
+  /** @var Google_Service_Blogger_Post[] */
+  protected $items;
 
   public function setEtag($etag)
   {
@@ -3084,6 +3148,8 @@ class Google_Service_Blogger_PostReplies extends Google_Collection
   public $selfLink;
   public $totalItems;
 
+  /** @var Google_Service_Blogger_Comment[] */
+  protected $items;
 
   public function setItems($items)
   {
@@ -3122,6 +3188,11 @@ class Google_Service_Blogger_PostUserInfo extends Google_Model
   protected $postUserInfoType = 'Google_Service_Blogger_PostPerUserInfo';
   protected $postUserInfoDataType = '';
 
+  /** @var Google_Service_Blogger_Post */
+  protected $post;
+
+  /** @var Google_Service_Blogger_PostPerUserInfo */
+  protected $postUserInfo;
 
   public function setKind($kind)
   {
@@ -3159,6 +3230,8 @@ class Google_Service_Blogger_PostUserInfosList extends Google_Collection
   public $kind;
   public $nextPageToken;
 
+  /** @var Google_Service_Blogger_PostUserInfo[] */
+  protected $items;
 
   public function setItems($items)
   {
@@ -3201,6 +3274,12 @@ class Google_Service_Blogger_User extends Google_Model
   protected $localeDataType = '';
   public $selfLink;
   public $url;
+
+  /** @var Google_Service_Blogger_UserBlogs */
+  protected $blogs;
+
+  /** @var Google_Service_Blogger_UserLocale */
+  protected $locale;
 
 
   public function setAbout($about)

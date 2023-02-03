@@ -1673,6 +1673,8 @@ class Google_Service_AdExchangeBuyer_Account extends Google_Collection
   public $maximumTotalQps;
   public $numberActiveCreatives;
 
+  /** @var Google_Service_AdExchangeBuyer_AccountBidderLocation[] */
+  public $bidderLocation;
 
   public function setBidderLocation($bidderLocation)
   {
@@ -1784,6 +1786,8 @@ class Google_Service_AdExchangeBuyer_AccountsList extends Google_Collection
   protected $itemsDataType = 'array';
   public $kind;
 
+  /** @var Google_Service_AdExchangeBuyer_Account[] */
+  protected $items;
 
   public function setItems($items)
   {
@@ -1901,6 +1905,8 @@ class Google_Service_AdExchangeBuyer_AddOrderDealsRequest extends Google_Collect
   public $orderRevisionNumber;
   public $updateAction;
 
+  /** @var Google_Service_AdExchangeBuyer_MarketplaceDeal[] */
+  protected $deals;
 
   public function setDeals($deals)
   {
@@ -1937,6 +1943,8 @@ class Google_Service_AdExchangeBuyer_AddOrderDealsResponse extends Google_Collec
   protected $dealsDataType = 'array';
   public $orderRevisionNumber;
 
+  /** @var Google_Service_AdExchangeBuyer_MarketplaceDeal[] */
+  protected $deals;
 
   public function setDeals($deals)
   {
@@ -1964,6 +1972,8 @@ class Google_Service_AdExchangeBuyer_AddOrderNotesRequest extends Google_Collect
   protected $notesType = 'Google_Service_AdExchangeBuyer_MarketplaceNote';
   protected $notesDataType = 'array';
 
+  /** @var Google_Service_AdExchangeBuyer_MarketplaceNote[] */
+  protected $notes;
 
   public function setNotes($notes)
   {
@@ -1983,6 +1993,8 @@ class Google_Service_AdExchangeBuyer_AddOrderNotesResponse extends Google_Collec
   protected $notesType = 'Google_Service_AdExchangeBuyer_MarketplaceNote';
   protected $notesDataType = 'array';
 
+  /** @var Google_Service_AdExchangeBuyer_MarketplaceNote[] */
+  protected $notes;
 
   public function setNotes($notes)
   {
@@ -2005,6 +2017,8 @@ class Google_Service_AdExchangeBuyer_AdvertiserDto extends Google_Collection
   public $name;
   public $status;
 
+  /** @var Google_Service_AdExchangeBuyer_BrandDto[] */
+  protected $brands;
 
   public function setBrands($brands)
   {
@@ -2138,6 +2152,8 @@ class Google_Service_AdExchangeBuyer_BillingInfoList extends Google_Collection
   protected $itemsDataType = 'array';
   public $kind;
 
+  /** @var Google_Service_AdExchangeBuyer_BillingInfo[] */
+  protected $items;
 
   public function setItems($items)
   {
@@ -2404,6 +2420,8 @@ class Google_Service_AdExchangeBuyer_CreateOrdersRequest extends Google_Collecti
   protected $ordersDataType = 'array';
   public $webPropertyCode;
 
+  /** @var Google_Service_AdExchangeBuyer_MarketplaceOrder[] */
+  protected $orders;
 
   public function setOrders($orders)
   {
@@ -2431,6 +2449,8 @@ class Google_Service_AdExchangeBuyer_CreateOrdersResponse extends Google_Collect
   protected $ordersType = 'Google_Service_AdExchangeBuyer_MarketplaceOrder';
   protected $ordersDataType = 'array';
 
+  /** @var Google_Service_AdExchangeBuyer_MarketplaceOrder[] */
+  protected $orders;
 
   public function setOrders($orders)
   {
@@ -2479,6 +2499,17 @@ class Google_Service_AdExchangeBuyer_Creative extends Google_Collection
   public $videoURL;
   public $width;
 
+  /** @var Google_Service_AdExchangeBuyer_CreativeCorrections[] */
+  protected $corrections;
+
+  /** @var Google_Service_AdExchangeBuyer_CreativeFilteringReasons */
+  protected $filteringReasons;
+
+  /** @var Google_Service_AdExchangeBuyer_CreativeNativeAd */
+  protected $nativeAd;
+
+  /** @var Google_Service_AdExchangeBuyer_CreativeServingRestrictions[] */
+  protected $servingRestrictions;
 
   public function setHTMLSnippet($hTMLSnippet)
   {
@@ -2718,6 +2749,8 @@ class Google_Service_AdExchangeBuyer_CreativeFilteringReasons extends Google_Col
   protected $reasonsType = 'Google_Service_AdExchangeBuyer_CreativeFilteringReasonsReasons';
   protected $reasonsDataType = 'array';
 
+  /** @var Google_Service_AdExchangeBuyer_CreativeFilteringReasonsReasons[] */
+  protected $reasons;
 
   public function setDate($date)
   {
@@ -2784,6 +2817,14 @@ class Google_Service_AdExchangeBuyer_CreativeNativeAd extends Google_Collection
   public $starRating;
   public $store;
 
+  /** @var Google_Service_AdExchangeBuyer_CreativeNativeAdAppIcon */
+  protected $appIcon;
+
+  /** @var Google_Service_AdExchangeBuyer_CreativeNativeAdImage */
+  protected $image;
+
+  /** @var Google_Service_AdExchangeBuyer_CreativeNativeAdLogo */
+  protected $logo;
 
   public function setAdvertiser($advertiser)
   {
@@ -2999,6 +3040,11 @@ class Google_Service_AdExchangeBuyer_CreativeServingRestrictions extends Google_
   protected $disapprovalReasonsDataType = 'array';
   public $reason;
 
+  /** @var Google_Service_AdExchangeBuyer_CreativeServingRestrictionsContexts[] */
+  protected $contexts;
+
+  /** @var Google_Service_AdExchangeBuyer_CreativeServingRestrictionsDisapprovalReasons[] */
+  protected $disapprovalReasons;
 
   public function setContexts($contexts)
   {
@@ -3108,6 +3154,8 @@ class Google_Service_AdExchangeBuyer_CreativesList extends Google_Collection
   public $kind;
   public $nextPageToken;
 
+  /** @var Google_Service_AdExchangeBuyer_Creative[] */
+  protected $items;
 
   public function setItems($items)
   {
@@ -3218,6 +3266,11 @@ class Google_Service_AdExchangeBuyer_DealPartyDto extends Google_Model
   protected $webPropertyType = 'Google_Service_AdExchangeBuyer_WebPropertyDto';
   protected $webPropertyDataType = '';
 
+  /** @var Google_Service_AdExchangeBuyer_BuyerDto */
+  protected $buyer;
+
+  /** @var Google_Service_AdExchangeBuyer_WebPropertyDto */
+  protected $webProperty;
 
   public function setBuyer(Google_Service_AdExchangeBuyer_BuyerDto $buyer)
   {
@@ -3273,6 +3326,14 @@ class Google_Service_AdExchangeBuyer_DealTerms extends Google_Model
   protected $nonGuaranteedFixedPriceTermsType = 'Google_Service_AdExchangeBuyer_DealTermsNonGuaranteedFixedPriceTerms';
   protected $nonGuaranteedFixedPriceTermsDataType = '';
 
+  /** @var Google_Service_AdExchangeBuyer_DealTermsGuaranteedFixedPriceTerms */
+  protected $guaranteedFixedPriceTerms;
+
+  /** @var Google_Service_AdExchangeBuyer_DealTermsNonGuaranteedAuctionTerms */
+  protected $nonGuaranteedAuctionTerms;
+
+  /** @var Google_Service_AdExchangeBuyer_DealTermsNonGuaranteedFixedPriceTerms */
+  protected $nonGuaranteedFixedPriceTerms;
 
   public function setDescription($description)
   {
@@ -3318,6 +3379,8 @@ class Google_Service_AdExchangeBuyer_DealTermsGuaranteedFixedPriceTerms extends 
   public $guaranteedImpressions;
   public $guaranteedLooks;
 
+  /** @var Google_Service_AdExchangeBuyer_PricePerBuyer[] */
+  protected $fixedPrices;
 
   public function setFixedPrices($fixedPrices)
   {
@@ -3354,6 +3417,8 @@ class Google_Service_AdExchangeBuyer_DealTermsNonGuaranteedAuctionTerms extends 
   protected $reservePricePerBuyersType = 'Google_Service_AdExchangeBuyer_PricePerBuyer';
   protected $reservePricePerBuyersDataType = 'array';
 
+  /** @var Google_Service_AdExchangeBuyer_PricePerBuyer[] */
+  protected $reservePricePerBuyers;
 
   public function setPrivateAuctionId($privateAuctionId)
   {
@@ -3381,6 +3446,8 @@ class Google_Service_AdExchangeBuyer_DealTermsNonGuaranteedFixedPriceTerms exten
   protected $fixedPricesType = 'Google_Service_AdExchangeBuyer_PricePerBuyer';
   protected $fixedPricesDataType = 'array';
 
+  /** @var Google_Service_AdExchangeBuyer_PricePerBuyer[] */
+  protected $fixedPrices;
 
   public function setFixedPrices($fixedPrices)
   {
@@ -3437,6 +3504,8 @@ class Google_Service_AdExchangeBuyer_DeleteOrderDealsResponse extends Google_Col
   protected $dealsDataType = 'array';
   public $orderRevisionNumber;
 
+  /** @var Google_Service_AdExchangeBuyer_MarketplaceDeal[] */
+  protected $deals;
 
   public function setDeals($deals)
   {
@@ -3465,6 +3534,8 @@ class Google_Service_AdExchangeBuyer_DeliveryControl extends Google_Collection
   protected $frequencyCapsType = 'Google_Service_AdExchangeBuyer_DeliveryControlFrequencyCap';
   protected $frequencyCapsDataType = 'array';
 
+  /** @var Google_Service_AdExchangeBuyer_DeliveryControlFrequencyCap[] */
+  protected $frequencyCaps;
 
   public function setDeliveryRateType($deliveryRateType)
   {
@@ -3531,6 +3602,11 @@ class Google_Service_AdExchangeBuyer_EditAllOrderDealsRequest extends Google_Col
   public $orderRevisionNumber;
   public $updateAction;
 
+  /** @var Google_Service_AdExchangeBuyer_MarketplaceDeal[] */
+  protected $deals;
+
+  /** @var Google_Service_AdExchangeBuyer_MarketplaceOrder */
+  protected $order;
 
   public function setDeals($deals)
   {
@@ -3574,6 +3650,8 @@ class Google_Service_AdExchangeBuyer_EditAllOrderDealsResponse extends Google_Co
   protected $dealsType = 'Google_Service_AdExchangeBuyer_MarketplaceDeal';
   protected $dealsDataType = 'array';
 
+  /** @var Google_Service_AdExchangeBuyer_MarketplaceDeal[] */
+  protected $deals;
 
   public function setDeals($deals)
   {
@@ -3707,6 +3785,8 @@ class Google_Service_AdExchangeBuyer_GetNegotiationsResponse extends Google_Coll
   protected $negotiationsType = 'Google_Service_AdExchangeBuyer_NegotiationDto';
   protected $negotiationsDataType = 'array';
 
+  /** @var Google_Service_AdExchangeBuyer_NegotiationDto[] */
+  protected $negotiations;
 
   public function setKind($kind)
   {
@@ -3734,6 +3814,8 @@ class Google_Service_AdExchangeBuyer_GetOffersResponse extends Google_Collection
   protected $offersType = 'Google_Service_AdExchangeBuyer_MarketplaceOffer';
   protected $offersDataType = 'array';
 
+  /** @var Google_Service_AdExchangeBuyer_MarketplaceOffer[] */
+  protected $offers;
 
   public function setOffers($offers)
   {
@@ -3753,6 +3835,8 @@ class Google_Service_AdExchangeBuyer_GetOrderDealsResponse extends Google_Collec
   protected $dealsType = 'Google_Service_AdExchangeBuyer_MarketplaceDeal';
   protected $dealsDataType = 'array';
 
+  /** @var Google_Service_AdExchangeBuyer_MarketplaceDeal[] */
+  protected $deals;
 
   public function setDeals($deals)
   {
@@ -3772,6 +3856,8 @@ class Google_Service_AdExchangeBuyer_GetOrderNotesResponse extends Google_Collec
   protected $notesType = 'Google_Service_AdExchangeBuyer_MarketplaceNote';
   protected $notesDataType = 'array';
 
+  /** @var Google_Service_AdExchangeBuyer_MarketplaceNote[] */
+  protected $notes;
 
   public function setNotes($notes)
   {
@@ -3791,6 +3877,8 @@ class Google_Service_AdExchangeBuyer_GetOrdersResponse extends Google_Collection
   protected $ordersType = 'Google_Service_AdExchangeBuyer_MarketplaceOrder';
   protected $ordersDataType = 'array';
 
+  /** @var Google_Service_AdExchangeBuyer_MarketplaceOrder[] */
+  protected $orders;
 
   public function setOrders($orders)
   {
@@ -3848,6 +3936,17 @@ class Google_Service_AdExchangeBuyer_InventorySegmentTargeting extends Google_Co
   public $positiveXfpAdSlots;
   public $positiveXfpPlacements;
 
+  /** @var Google_Service_AdExchangeBuyer_AdSize[] */
+  protected $negativeAdSizes;
+
+  /** @var Google_Service_AdExchangeBuyer_RuleKeyValuePair[] */
+  protected $negativeKeyValues;
+
+  /** @var Google_Service_AdExchangeBuyer_AdSize */
+  protected $positiveAdSizes;
+
+  /** @var Google_Service_AdExchangeBuyer_RuleKeyValuePair[] */
+  protected $positiveKeyValues;
 
   public function setNegativeAdSizes($negativeAdSizes)
   {
@@ -4164,6 +4263,8 @@ class Google_Service_AdExchangeBuyer_ListClientAccessCapabilitiesResponse extend
   protected $clientAccessPermissionsType = 'Google_Service_AdExchangeBuyer_ClientAccessCapabilities';
   protected $clientAccessPermissionsDataType = 'array';
 
+  /** @var Google_Service_AdExchangeBuyer_ClientAccessCapabilities[] */
+  protected $clientAccessPermissions;
 
   public function setClientAccessPermissions($clientAccessPermissions)
   {
@@ -4201,6 +4302,8 @@ class Google_Service_AdExchangeBuyer_ListOffersResponse extends Google_Collectio
   protected $offersType = 'Google_Service_AdExchangeBuyer_OfferDto';
   protected $offersDataType = 'array';
 
+  /** @var Google_Service_AdExchangeBuyer_OfferDto[] */
+  protected $offers;
 
   public function setKind($kind)
   {
@@ -4250,6 +4353,20 @@ class Google_Service_AdExchangeBuyer_MarketplaceDeal extends Google_Collection
   protected $termsDataType = '';
   public $webPropertyCode;
 
+  /** @var Google_Service_AdExchangeBuyer_PrivateData */
+  protected $buyerPrivateData;
+
+  /** @var Google_Service_AdExchangeBuyer_DeliveryControl */
+  protected $deliveryControl;
+
+  /** @var Google_Service_AdExchangeBuyer_ContactInformation[] */
+  protected $sellerContacts;
+
+  /** @var Google_Service_AdExchangeBuyer_SharedTargeting[] */
+  protected $sharedTargetings;
+
+  /** @var Google_Service_AdExchangeBuyer_DealTerms */
+  protected $terms;
 
   public function setBuyerPrivateData(Google_Service_AdExchangeBuyer_PrivateData $buyerPrivateData)
   {
@@ -4414,6 +4531,11 @@ class Google_Service_AdExchangeBuyer_MarketplaceDealParty extends Google_Model
   protected $sellerType = 'Google_Service_AdExchangeBuyer_Seller';
   protected $sellerDataType = '';
 
+  /** @var Google_Service_AdExchangeBuyer_Buyer */
+  protected $buyer;
+
+  /** @var Google_Service_AdExchangeBuyer_Seller */
+  protected $seller;
 
   public function setBuyer(Google_Service_AdExchangeBuyer_Buyer $buyer)
   {
@@ -4443,6 +4565,8 @@ class Google_Service_AdExchangeBuyer_MarketplaceLabel extends Google_Model
   protected $deprecatedMarketplaceDealPartyDataType = '';
   public $label;
 
+  /** @var Google_Service_AdExchangeBuyer_MarketplaceDealParty */
+  protected $deprecatedMarketplaceDealParty;
 
   public function setAccountId($accountId)
   {
@@ -4586,6 +4710,20 @@ class Google_Service_AdExchangeBuyer_MarketplaceOffer extends Google_Collection
   protected $termsDataType = '';
   public $webPropertyCode;
 
+  /** @var Google_Service_AdExchangeBuyer_ContactInformation[] */
+  protected $creatorContacts;
+
+  /** @var Google_Service_AdExchangeBuyer_MarketplaceLabel[] */
+  protected $labels;
+
+  /** @var Google_Service_AdExchangeBuyer_Seller */
+  protected $seller;
+
+  /** @var Google_Service_AdExchangeBuyer_SharedTargeting[] */
+  protected $sharedTargetings;
+
+  /** @var Google_Service_AdExchangeBuyer_DealTerms */
+  protected $terms;
 
   public function setCreationTimeMs($creationTimeMs)
   {
@@ -4758,6 +4896,26 @@ class Google_Service_AdExchangeBuyer_MarketplaceOrder extends Google_Collection
   protected $sellerContactsType = 'Google_Service_AdExchangeBuyer_ContactInformation';
   protected $sellerContactsDataType = 'array';
 
+  /** @var Google_Service_AdExchangeBuyer_Buyer */
+  protected $billedBuyer;
+
+  /** @var Google_Service_AdExchangeBuyer_Buyer */
+  protected $buyer;
+
+  /** @var Google_Service_AdExchangeBuyer_ContactInformation[] */
+  protected $buyerContacts;
+
+  /** @var Google_Service_AdExchangeBuyer_PrivateData */
+  protected $buyerPrivateData;
+
+  /** @var Google_Service_AdExchangeBuyer_MarketplaceLabel[] */
+  protected $labels;
+
+  /** @var Google_Service_AdExchangeBuyer_Seller */
+  protected $seller;
+
+  /** @var Google_Service_AdExchangeBuyer_ContactInformation[] */
+  protected $sellerContacts;
 
   public function setBilledBuyer(Google_Service_AdExchangeBuyer_Buyer $billedBuyer)
   {
@@ -4973,6 +5131,20 @@ class Google_Service_AdExchangeBuyer_NegotiationDto extends Google_Collection
   protected $statsDataType = '';
   public $status;
 
+  /** @var Google_Service_AdExchangeBuyer_DealPartyDto */
+  protected $billedBuyer;
+
+  /** @var Google_Service_AdExchangeBuyer_DealPartyDto */
+  protected $buyer;
+
+  /** @var Google_Service_AdExchangeBuyer_NegotiationRoundDto[] */
+  protected $negotiationRounds;
+
+  /** @var Google_Service_AdExchangeBuyer_DealPartyDto */
+  protected $seller;
+
+  /** @var Google_Service_AdExchangeBuyer_StatsDto */
+  protected $stats;
 
   public function setBilledBuyer(Google_Service_AdExchangeBuyer_DealPartyDto $billedBuyer)
   {
@@ -5112,6 +5284,11 @@ class Google_Service_AdExchangeBuyer_NegotiationRoundDto extends Google_Model
   protected $termsType = 'Google_Service_AdExchangeBuyer_TermsDto';
   protected $termsDataType = '';
 
+  /** @var Google_Service_AdExchangeBuyer_EditHistoryDto */
+  protected $editHistory;
+
+  /** @var Google_Service_AdExchangeBuyer_TermsDto */
+  protected $terms;
 
   public function setAction($action)
   {
@@ -5211,6 +5388,21 @@ class Google_Service_AdExchangeBuyer_OfferDto extends Google_Collection
   public $status;
   protected $termsType = 'Google_Service_AdExchangeBuyer_TermsDto';
   protected $termsDataType = '';
+
+  /** @var Google_Service_AdExchangeBuyer_DealPartyDto */
+  protected $billedBuyer;
+
+  /** @var Google_Service_AdExchangeBuyer_DealPartyDto[] */
+  protected $closedToDealParties;
+
+  /** @var Google_Service_AdExchangeBuyer_DealPartyDto */
+  protected $creator;
+
+  /** @var Google_Service_AdExchangeBuyer_DealPartyDto[] */
+  protected $openToDealParties;
+
+  /** @var Google_Service_AdExchangeBuyer_TermsDto */
+  protected $terms;
 
 
   public function setAnonymous($anonymous)
@@ -5543,6 +5735,8 @@ class Google_Service_AdExchangeBuyer_PerformanceReportList extends Google_Collec
   protected $performanceReportType = 'Google_Service_AdExchangeBuyer_PerformanceReport';
   protected $performanceReportDataType = 'array';
 
+  /** @var Google_Service_AdExchangeBuyer_PerformanceReport[] */
+  protected $performanceReport;
 
   public function setKind($kind)
   {
@@ -5594,6 +5788,14 @@ class Google_Service_AdExchangeBuyer_PretargetingConfig extends Google_Collectio
   public $vendorTypes;
   public $verticals;
 
+  /** @var Google_Service_AdExchangeBuyer_PretargetingConfigDimensions[] */
+  protected $dimensions;
+
+  /** @var Google_Service_AdExchangeBuyer_PretargetingConfigExcludedPlacements[] */
+  protected $excludedPlacements;
+
+  /** @var Google_Service_AdExchangeBuyer_PretargetingConfigPlacements[] */
+  protected $placements;
 
   public function setBillingId($billingId)
   {
@@ -5842,6 +6044,8 @@ class Google_Service_AdExchangeBuyer_PretargetingConfigList extends Google_Colle
   protected $itemsDataType = 'array';
   public $kind;
 
+  /** @var Google_Service_AdExchangeBuyer_PretargetingConfig[] */
+  protected $items;
 
   public function setItems($items)
   {
@@ -5922,6 +6126,11 @@ class Google_Service_AdExchangeBuyer_PricePerBuyer extends Google_Model
   protected $priceType = 'Google_Service_AdExchangeBuyer_Price';
   protected $priceDataType = '';
 
+  /** @var Google_Service_AdExchangeBuyer_Buyer */
+  protected $buyer;
+
+  /** @var Google_Service_AdExchangeBuyer_Price */
+  protected $price;
 
   public function setBuyer(Google_Service_AdExchangeBuyer_Buyer $buyer)
   {
@@ -6030,6 +6239,11 @@ class Google_Service_AdExchangeBuyer_SharedTargeting extends Google_Collection
   protected $inclusionsDataType = 'array';
   public $key;
 
+  /** @var Google_Service_AdExchangeBuyer_TargetingValue[] */
+  protected $exclusions;
+
+  /** @var Google_Service_AdExchangeBuyer_TargetingValue[] */
+  protected $inclusions;
 
   public function setExclusions($exclusions)
   {
@@ -6070,6 +6284,11 @@ class Google_Service_AdExchangeBuyer_StatsDto extends Google_Model
   protected $spendType = 'Google_Service_AdExchangeBuyer_MoneyDto';
   protected $spendDataType = '';
 
+  /** @var Google_Service_AdExchangeBuyer_MoneyDto */
+  protected $revenue;
+
+  /** @var Google_Service_AdExchangeBuyer_MoneyDto */
+  protected $spend;
 
   public function setBids($bids)
   {
@@ -6132,6 +6351,12 @@ class Google_Service_AdExchangeBuyer_TargetingValue extends Google_Model
   public $longValue;
   public $stringValue;
 
+  /** @var Google_Service_AdExchangeBuyer_TargetingValueCreativeSize */
+  protected $creativeSizeValue;
+
+  /** @var Google_Service_AdExchangeBuyer_TargetingValueDayPartTargeting */
+  protected $dayPartTargetingValue;
+
 
   public function setCreativeSizeValue(Google_Service_AdExchangeBuyer_TargetingValueCreativeSize $creativeSizeValue)
   {
@@ -6178,6 +6403,11 @@ class Google_Service_AdExchangeBuyer_TargetingValueCreativeSize extends Google_C
   protected $sizeType = 'Google_Service_AdExchangeBuyer_TargetingValueSize';
   protected $sizeDataType = '';
 
+  /** @var Google_Service_AdExchangeBuyer_TargetingValueSize[] */
+  protected $companionSizes;
+
+  /** @var Google_Service_AdExchangeBuyer_TargetingValueSize */
+  protected $size;
 
   public function setCompanionSizes($companionSizes)
   {
@@ -6214,6 +6444,8 @@ class Google_Service_AdExchangeBuyer_TargetingValueDayPartTargeting extends Goog
   protected $dayPartsDataType = 'array';
   public $timeZoneType;
 
+  /** @var Google_Service_AdExchangeBuyer_TargetingValueDayPartTargetingDayPart[] */
+  protected $dayParts;
 
   public function setDayParts($dayParts)
   {
@@ -6354,6 +6586,32 @@ class Google_Service_AdExchangeBuyer_TermsDto extends Google_Collection
   public $termsAttributes;
   public $urls;
 
+  /** @var Google_Service_AdExchangeBuyer_AdSlotDto[] */
+  protected $adSlots;
+
+  /** @var Google_Service_AdExchangeBuyer_AdvertiserDto[] */
+  protected $advertisers;
+
+  /** @var Google_Service_AdExchangeBuyer_AudienceSegment */
+  protected $audienceSegment;
+
+  /** @var Google_Service_AdExchangeBuyer_MoneyDto */
+  protected $cpm;
+
+  /** @var Google_Service_AdExchangeBuyer_MoneyDto */
+  protected $dealPremium;
+
+  /** @var Google_Service_AdExchangeBuyer_DateTime */
+  protected $endDate;
+
+  /** @var Google_Service_AdExchangeBuyer_MoneyDto */
+  protected $estimatedSpend;
+
+  /** @var Google_Service_AdExchangeBuyer_InventorySegmentTargeting */
+  protected $inventorySegmentTargeting;
+
+  /** @var Google_Service_AdExchangeBuyer_DateTime */
+  protected $startDate;
 
   public function setAdSlots($adSlots)
   {

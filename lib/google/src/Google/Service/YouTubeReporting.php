@@ -493,6 +493,8 @@ class Google_Service_YouTubeReporting_ListJobsResponse extends Google_Collection
   protected $jobsDataType = 'array';
   public $nextPageToken;
 
+  /** @var Google_Service_YouTubeReporting_Job[] */
+  protected $jobs;
 
   public function setJobs($jobs)
   {
@@ -521,6 +523,8 @@ class Google_Service_YouTubeReporting_ListReportTypesResponse extends Google_Col
   protected $reportTypesType = 'Google_Service_YouTubeReporting_ReportType';
   protected $reportTypesDataType = 'array';
 
+  /** @var Google_Service_YouTubeReporting_ReportType[] */
+  protected $reportTypes;
 
   public function setNextPageToken($nextPageToken)
   {
@@ -549,6 +553,8 @@ class Google_Service_YouTubeReporting_ListReportsResponse extends Google_Collect
   protected $reportsType = 'Google_Service_YouTubeReporting_Report';
   protected $reportsDataType = 'array';
 
+  /** @var Google_Service_YouTubeReporting_Report[] */
+  protected $reports;
 
   public function setNextPageToken($nextPageToken)
   {

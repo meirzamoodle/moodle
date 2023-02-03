@@ -1967,6 +1967,8 @@ class Google_Service_AndroidEnterprise_AppRestrictionsSchema extends Google_Coll
   protected $restrictionsType = 'Google_Service_AndroidEnterprise_AppRestrictionsSchemaRestriction';
   protected $restrictionsDataType = 'array';
 
+  /** @var Google_Service_AndroidEnterprise_AppRestrictionsSchemaRestriction[] */
+  protected $restrictions;
 
   public function setKind($kind)
   {
@@ -2000,6 +2002,8 @@ class Google_Service_AndroidEnterprise_AppRestrictionsSchemaRestriction extends 
   public $restrictionType;
   public $title;
 
+  /** @var Google_Service_AndroidEnterprise_AppRestrictionsSchemaRestrictionRestrictionValue */
+  protected $defaultValue;
 
   public function setDefaultValue(Google_Service_AndroidEnterprise_AppRestrictionsSchemaRestrictionRestrictionValue $defaultValue)
   {
@@ -2228,6 +2232,8 @@ class Google_Service_AndroidEnterprise_CollectionViewersListResponse extends Goo
   protected $userType = 'Google_Service_AndroidEnterprise_User';
   protected $userDataType = 'array';
 
+  /** @var Google_Service_AndroidEnterprise_User[] */
+  protected $user;
 
   public function setKind($kind)
   {
@@ -2256,6 +2262,8 @@ class Google_Service_AndroidEnterprise_CollectionsListResponse extends Google_Co
   protected $collectionDataType = 'array';
   public $kind;
 
+  /** @var Google_Service_AndroidEnterprise_Collection[] */
+  protected $collection;
 
   public function setCollection($collection)
   {
@@ -2345,6 +2353,8 @@ class Google_Service_AndroidEnterprise_DevicesListResponse extends Google_Collec
   protected $deviceDataType = 'array';
   public $kind;
 
+  /** @var Google_Service_AndroidEnterprise_Device[] */
+  protected $device;
 
   public function setDevice($device)
   {
@@ -2443,6 +2453,8 @@ class Google_Service_AndroidEnterprise_EnterprisesListResponse extends Google_Co
   protected $enterpriseDataType = 'array';
   public $kind;
 
+  /** @var Google_Service_AndroidEnterprise_Enterprise[] */
+  protected $enterprise;
 
   public function setEnterprise($enterprise)
   {
@@ -2532,6 +2544,8 @@ class Google_Service_AndroidEnterprise_EntitlementsListResponse extends Google_C
   protected $entitlementDataType = 'array';
   public $kind;
 
+  /** @var Google_Service_AndroidEnterprise_Entitlement[] */
+  protected $entitlement;
 
   public function setEntitlement($entitlement)
   {
@@ -2622,6 +2636,8 @@ class Google_Service_AndroidEnterprise_GroupLicenseUsersListResponse extends Goo
   protected $userType = 'Google_Service_AndroidEnterprise_User';
   protected $userDataType = 'array';
 
+  /** @var Google_Service_AndroidEnterprise_User[] */
+  protected $user;
 
   public function setKind($kind)
   {
@@ -2650,6 +2666,8 @@ class Google_Service_AndroidEnterprise_GroupLicensesListResponse extends Google_
   protected $groupLicenseDataType = 'array';
   public $kind;
 
+  /** @var Google_Service_AndroidEnterprise_GroupLicense[] */
+  protected $groupLicense;
 
   public function setGroupLicense($groupLicense)
   {
@@ -2722,6 +2740,8 @@ class Google_Service_AndroidEnterprise_InstallsListResponse extends Google_Colle
   protected $installDataType = 'array';
   public $kind;
 
+  /** @var Google_Service_AndroidEnterprise_Install[] */
+  protected $install;
 
   public function setInstall($install)
   {
@@ -2802,6 +2822,8 @@ class Google_Service_AndroidEnterprise_Product extends Google_Collection
   public $title;
   public $workDetailsUrl;
 
+  /** @var Google_Service_AndroidEnterprise_AppVersion[] */
+  protected $appVersion;
 
   public function setAppVersion($appVersion)
   {
@@ -2921,6 +2943,8 @@ class Google_Service_AndroidEnterprise_ProductPermissions extends Google_Collect
   protected $permissionDataType = 'array';
   public $productId;
 
+  /** @var Google_Service_AndroidEnterprise_ProductPermission[] */
+  protected $permission;
 
   public function setKind($kind)
   {
@@ -2982,6 +3006,8 @@ class Google_Service_AndroidEnterprise_ProductsApproveRequest extends Google_Mod
   protected $approvalUrlInfoType = 'Google_Service_AndroidEnterprise_ApprovalUrlInfo';
   protected $approvalUrlInfoDataType = '';
 
+  /** @var Google_Service_AndroidEnterprise_ApprovalUrlInfo */
+  protected $approvalUrlInfo;
 
   public function setApprovalUrlInfo(Google_Service_AndroidEnterprise_ApprovalUrlInfo $approvalUrlInfo)
   {
@@ -3089,6 +3115,8 @@ class Google_Service_AndroidEnterprise_UsersListResponse extends Google_Collecti
   protected $userType = 'Google_Service_AndroidEnterprise_User';
   protected $userDataType = 'array';
 
+  /** @var Google_Service_AndroidEnterprise_User[] */
+  protected $user;
 
   public function setKind($kind)
   {

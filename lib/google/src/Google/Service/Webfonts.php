@@ -196,6 +196,8 @@ class Google_Service_Webfonts_WebfontList extends Google_Collection
   protected $itemsDataType = 'array';
   public $kind;
 
+  /** @var Google_Service_Webfonts_Webfont[] */
+  protected $items;
 
   public function setItems($items)
   {

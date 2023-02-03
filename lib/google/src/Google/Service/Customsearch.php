@@ -287,6 +287,8 @@ class Google_Service_Customsearch_Context extends Google_Collection
   protected $facetsDataType = 'array';
   public $title;
 
+  /** @var Google_Service_Customsearch_ContextFacets[] */
+  protected $facets;
 
   public function setFacets($facets)
   {
@@ -356,6 +358,11 @@ class Google_Service_Customsearch_Promotion extends Google_Collection
   public $link;
   public $title;
 
+  /** @var Google_Service_Customsearch_PromotionBodyLines[] */
+  protected $bodyLines;
+
+  /** @var Google_Service_Customsearch_PromotionImage */
+  protected $image;
 
   public function setBodyLines($bodyLines)
   {
@@ -850,6 +857,11 @@ class Google_Service_Customsearch_Result extends Google_Collection
   public $snippet;
   public $title;
 
+  /** @var Google_Service_Customsearch_ResultImage */
+  protected $image;
+
+  /** @var Google_Service_Customsearch_ResultLabels[] */
+  protected $labels;
 
   public function setCacheId($cacheId)
   {
@@ -1109,6 +1121,26 @@ class Google_Service_Customsearch_Search extends Google_Collection
   protected $urlType = 'Google_Service_Customsearch_SearchUrl';
   protected $urlDataType = '';
 
+  /** @var Google_Service_Customsearch_Context */
+  protected $context;
+
+  /** @var Google_Service_Customsearch_Result[] */
+  protected $items;
+
+  /** @var Google_Service_Customsearch_Promotion[] */
+  protected $promotions;
+
+  /** @var Google_Service_Customsearch_Query[] */
+  protected $queries;
+
+  /** @var Google_Service_Customsearch_SearchSearchInformation */
+  protected $searchInformation;
+
+  /** @var Google_Service_Customsearch_SearchSpelling */
+  protected $spelling;
+
+  /** @var Google_Service_Customsearch_SearchUrl */
+  protected $url;
 
   public function setContext(Google_Service_Customsearch_Context $context)
   {

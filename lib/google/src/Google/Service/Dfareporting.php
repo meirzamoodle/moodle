@@ -8903,6 +8903,8 @@ class Google_Service_Dfareporting_Account extends Google_Collection
   protected $reportsConfigurationDataType = '';
   public $teaserSizeLimit;
 
+  /** @var Google_Service_Dfareporting_ReportsConfiguration */
+  protected $reportsConfiguration;
 
   public function setAccountPermissionIds($accountPermissionIds)
   {
@@ -9218,6 +9220,8 @@ class Google_Service_Dfareporting_AccountPermissionGroupsListResponse extends Go
   protected $accountPermissionGroupsDataType = 'array';
   public $kind;
 
+  /** @var Google_Service_Dfareporting_AccountPermissionGroup[] */
+  protected $accountPermissionGroups;
 
   public function setAccountPermissionGroups($accountPermissionGroups)
   {
@@ -9246,6 +9250,8 @@ class Google_Service_Dfareporting_AccountPermissionsListResponse extends Google_
   protected $accountPermissionsDataType = 'array';
   public $kind;
 
+  /** @var Google_Service_Dfareporting_AccountPermission[] */
+  protected $accountPermissions;
 
   public function setAccountPermissions($accountPermissions)
   {
@@ -9290,6 +9296,17 @@ class Google_Service_Dfareporting_AccountUserProfile extends Google_Model
   protected $userRoleFilterDataType = '';
   public $userRoleId;
 
+  /** @var Google_Service_Dfareporting_ObjectFilter */
+  protected $advertiserFilter;
+
+  /** @var Google_Service_Dfareporting_ObjectFilter */
+  protected $campaignFilter;
+
+  /** @var Google_Service_Dfareporting_ObjectFilter */
+  protected $siteFilter;
+
+  /** @var Google_Service_Dfareporting_ObjectFilter */
+  protected $userRoleFilter;
 
   public function setAccountId($accountId)
   {
@@ -9431,6 +9448,8 @@ class Google_Service_Dfareporting_AccountUserProfilesListResponse extends Google
   public $kind;
   public $nextPageToken;
 
+  /** @var Google_Service_Dfareporting_AccountUserProfile[] */
+  protected $accountUserProfiles;
 
   public function setAccountUserProfiles($accountUserProfiles)
   {
@@ -9468,6 +9487,8 @@ class Google_Service_Dfareporting_AccountsListResponse extends Google_Collection
   public $kind;
   public $nextPageToken;
 
+  /** @var Google_Service_Dfareporting_Account[] */
+  protected $accounts;
 
   public function setAccounts($accounts)
   {
@@ -9505,6 +9526,8 @@ class Google_Service_Dfareporting_Activities extends Google_Collection
   public $kind;
   public $metricNames;
 
+  /** @var Google_Service_Dfareporting_DimensionValue[] */
+  protected $filters;
 
   public function setFilters($filters)
   {
@@ -9595,6 +9618,62 @@ class Google_Service_Dfareporting_Ad extends Google_Collection
   protected $technologyTargetingDataType = '';
   public $type;
 
+  /** @var Google_Service_Dfareporting_DimensionValue */
+  protected $advertiserIdDimensionValue;
+
+  /** @var Google_Service_Dfareporting_DimensionValue */
+  protected $campaignIdDimensionValue;
+
+  /** @var Google_Service_Dfareporting_ClickThroughUrl */
+  protected $clickThroughUrl;
+
+  /** @var Google_Service_Dfareporting_ClickThroughUrlSuffixProperties */
+  protected $clickThroughUrlSuffixProperties;
+
+  /** @var Google_Service_Dfareporting_LastModifiedInfo */
+  protected $createInfo;
+
+  /** @var Google_Service_Dfareporting_CreativeGroupAssignment[] */
+  protected $creativeGroupAssignments;
+
+  /** @var Google_Service_Dfareporting_CreativeRotation */
+  protected $creativeRotation;
+
+  /** @var Google_Service_Dfareporting_DayPartTargeting */
+  protected $dayPartTargeting;
+
+  /** @var Google_Service_Dfareporting_DefaultClickThroughEventTagProperties */
+  protected $defaultClickThroughEventTagProperties;
+
+  /** @var Google_Service_Dfareporting_DeliverySchedule */
+  protected $deliverySchedule;
+
+  /** @var Google_Service_Dfareporting_EventTagOverride[] */
+  protected $eventTagOverrides;
+
+  /** @var Google_Service_Dfareporting_GeoTargeting */
+  protected $geoTargeting;
+
+  /** @var Google_Service_Dfareporting_DimensionValue */
+  protected $idDimensionValue;
+
+  /** @var Google_Service_Dfareporting_KeyValueTargetingExpression */
+  protected $keyValueTargetingExpression;
+
+  /** @var Google_Service_Dfareporting_LastModifiedInfo */
+  protected $lastModifiedInfo;
+
+  /** @var Google_Service_Dfareporting_PlacementAssignment[] */
+  protected $placementAssignments;
+
+  /** @var Google_Service_Dfareporting_ListTargetingExpression */
+  protected $remarketingListExpression;
+
+  /** @var Google_Service_Dfareporting_Size */
+  protected $size;
+
+  /** @var Google_Service_Dfareporting_TechnologyTargeting */
+  protected $technologyTargeting;
 
   public function setAccountId($accountId)
   {
@@ -9984,6 +10063,8 @@ class Google_Service_Dfareporting_AdsListResponse extends Google_Collection
   public $kind;
   public $nextPageToken;
 
+  /** @var Google_Service_Dfareporting_Ad[] */
+  protected $ads;
 
   public function setAds($ads)
   {
@@ -10032,6 +10113,11 @@ class Google_Service_Dfareporting_Advertiser extends Google_Model
   public $status;
   public $subaccountId;
 
+  /** @var Google_Service_Dfareporting_DimensionValue */
+  protected $floodlightConfigurationIdDimensionValue;
+
+  /** @var Google_Service_Dfareporting_DimensionValue */
+  protected $idDimensionValue;
 
   public function setAccountId($accountId)
   {
@@ -10201,6 +10287,8 @@ class Google_Service_Dfareporting_AdvertiserGroupsListResponse extends Google_Co
   public $kind;
   public $nextPageToken;
 
+  /** @var Google_Service_Dfareporting_AdvertiserGroup[] */
+  protected $advertiserGroups;
 
   public function setAdvertiserGroups($advertiserGroups)
   {
@@ -10238,6 +10326,8 @@ class Google_Service_Dfareporting_AdvertisersListResponse extends Google_Collect
   public $kind;
   public $nextPageToken;
 
+  /** @var Google_Service_Dfareporting_Advertiser */
+  protected $advertisers;
 
   public function setAdvertisers($advertisers)
   {
@@ -10310,6 +10400,8 @@ class Google_Service_Dfareporting_AudienceSegmentGroup extends Google_Collection
   public $id;
   public $name;
 
+  /** @var Google_Service_Dfareporting_AudienceSegment */
+  protected $audienceSegments;
 
   public function setAudienceSegments($audienceSegments)
   {
@@ -10408,6 +10500,8 @@ class Google_Service_Dfareporting_BrowsersListResponse extends Google_Collection
   protected $browsersDataType = 'array';
   public $kind;
 
+  /** @var Google_Service_Dfareporting_Browser[] */
+  protected $browsers;
 
   public function setBrowsers($browsers)
   {
@@ -10472,6 +10566,38 @@ class Google_Service_Dfareporting_Campaign extends Google_Collection
   public $subaccountId;
   public $traffickerEmails;
 
+  /** @var Google_Service_Dfareporting_CreativeOptimizationConfiguration[] */
+  protected $additionalCreativeOptimizationConfigurations;
+
+  /** @var Google_Service_Dfareporting_DimensionValue */
+  protected $advertiserIdDimensionValue;
+
+  /** @var Google_Service_Dfareporting_AudienceSegmentGroup[] */
+  protected $audienceSegmentGroups;
+
+  /** @var Google_Service_Dfareporting_ClickThroughUrlSuffixProperties */
+  protected $clickThroughUrlSuffixProperties;
+
+  /** @var Google_Service_Dfareporting_LastModifiedInfo */
+  protected $createInfo;
+
+  /** @var Google_Service_Dfareporting_CreativeOptimizationConfiguration */
+  protected $creativeOptimizationConfiguration;
+
+  /** @var Google_Service_Dfareporting_DefaultClickThroughEventTagProperties */
+  protected $defaultClickThroughEventTagProperties;
+
+  /** @var Google_Service_Dfareporting_EventTagOverride[] */
+  protected $eventTagOverrides;
+
+  /** @var Google_Service_Dfareporting_DimensionValue */
+  protected $idDimensionValue;
+
+  /** @var Google_Service_Dfareporting_LastModifiedInfo */
+  protected $lastModifiedInfo;
+
+  /** @var Google_Service_Dfareporting_LookbackConfiguration */
+  protected $lookbackConfiguration;
 
   public function setAccountId($accountId)
   {
@@ -10735,6 +10861,8 @@ class Google_Service_Dfareporting_CampaignCreativeAssociationsListResponse exten
   public $kind;
   public $nextPageToken;
 
+  /** @var Google_Service_Dfareporting_CampaignCreativeAssociation[] */
+  protected $campaignCreativeAssociations;
 
   public function setCampaignCreativeAssociations($campaignCreativeAssociations)
   {
@@ -10772,6 +10900,8 @@ class Google_Service_Dfareporting_CampaignsListResponse extends Google_Collectio
   public $kind;
   public $nextPageToken;
 
+  /** @var Google_Service_Dfareporting_Campaign[] */
+  protected $campaigns;
 
   public function setCampaigns($campaigns)
   {
@@ -10943,6 +11073,8 @@ class Google_Service_Dfareporting_ChangeLogsListResponse extends Google_Collecti
   public $kind;
   public $nextPageToken;
 
+  /** @var Google_Service_Dfareporting_ChangeLog[] */
+  protected $changeLogs;
 
   public function setChangeLogs($changeLogs)
   {
@@ -10979,6 +11111,8 @@ class Google_Service_Dfareporting_CitiesListResponse extends Google_Collection
   protected $citiesDataType = 'array';
   public $kind;
 
+  /** @var Google_Service_Dfareporting_City[] */
+  protected $cities;
 
   public function setCities($cities)
   {
@@ -11191,6 +11325,8 @@ class Google_Service_Dfareporting_CompanionClickThroughOverride extends Google_M
   protected $clickThroughUrlDataType = '';
   public $creativeId;
 
+  /** @var Google_Service_Dfareporting_ClickThroughUrl */
+  protected $clickThroughUrl;
 
   public function setClickThroughUrl(Google_Service_Dfareporting_ClickThroughUrl $clickThroughUrl)
   {
@@ -11226,6 +11362,20 @@ class Google_Service_Dfareporting_CompatibleFields extends Google_Model
   protected $reportCompatibleFieldsType = 'Google_Service_Dfareporting_ReportCompatibleFields';
   protected $reportCompatibleFieldsDataType = '';
 
+  /** @var Google_Service_Dfareporting_CrossDimensionReachReportCompatibleFields */
+  protected $crossDimensionReachReportCompatibleFields;
+
+  /** @var Google_Service_Dfareporting_FloodlightReportCompatibleFields */
+  protected $floodlightReportCompatibleFields;
+
+  /** @var Google_Service_Dfareporting_PathToConversionReportCompatibleFields */
+  protected $pathToConversionReportCompatibleFields;
+
+  /** @var Google_Service_Dfareporting_ReachReportCompatibleFields */
+  protected $reachReportCompatibleFields;
+
+  /** @var Google_Service_Dfareporting_ReportCompatibleFields */
+  protected $reportCompatibleFields;
 
   public function setCrossDimensionReachReportCompatibleFields(Google_Service_Dfareporting_CrossDimensionReachReportCompatibleFields $crossDimensionReachReportCompatibleFields)
   {
@@ -11321,6 +11471,8 @@ class Google_Service_Dfareporting_ConnectionTypesListResponse extends Google_Col
   protected $connectionTypesDataType = 'array';
   public $kind;
 
+  /** @var Google_Service_Dfareporting_ConnectionType[] */
+  protected $connectionTypes;
 
   public function setConnectionTypes($connectionTypes)
   {
@@ -11350,6 +11502,8 @@ class Google_Service_Dfareporting_ContentCategoriesListResponse extends Google_C
   public $kind;
   public $nextPageToken;
 
+  /** @var Google_Service_Dfareporting_ContentCategory[] */
+  protected $contentCategories;
 
   public function setContentCategories($contentCategories)
   {
@@ -11430,6 +11584,8 @@ class Google_Service_Dfareporting_CountriesListResponse extends Google_Collectio
   protected $countriesDataType = 'array';
   public $kind;
 
+  /** @var Google_Service_Dfareporting_Country */
+  protected $countries;
 
   public function setCountries($countries)
   {
@@ -11578,6 +11734,44 @@ class Google_Service_Dfareporting_Creative extends Google_Collection
   public $videoDescription;
   public $videoDuration;
 
+  /** @var Google_Service_Dfareporting_TargetWindow */
+  protected $backupImageTargetWindow;
+
+  /** @var Google_Service_Dfareporting_ClickTag[] */
+  protected $clickTags;
+
+  /** @var Google_Service_Dfareporting_CreativeCustomEvent[] */
+  protected $counterCustomEvents;
+
+  /** @var Google_Service_Dfareporting_CreativeAsset[] */
+  protected $creativeAssets;
+
+  /** @var Google_Service_Dfareporting_CreativeFieldAssignment[] */
+  protected $creativeFieldAssignments;
+
+  /** @var Google_Service_Dfareporting_CreativeCustomEvent[] */
+  protected $exitCustomEvents;
+
+  /** @var Google_Service_Dfareporting_FsCommand */
+  protected $fsCommand;
+
+  /** @var Google_Service_Dfareporting_DimensionValue */
+  protected $idDimensionValue;
+
+  /** @var Google_Service_Dfareporting_LastModifiedInfo */
+  protected $lastModifiedInfo;
+
+  /** @var Google_Service_Dfareporting_DimensionValue */
+  protected $renderingIdDimensionValue;
+
+  /** @var Google_Service_Dfareporting_Size */
+  protected $size;
+
+  /** @var Google_Service_Dfareporting_ThirdPartyTrackingUrl[] */
+  protected $thirdPartyUrls;
+
+  /** @var Google_Service_Dfareporting_CreativeCustomEvent[] */
+  protected $timerCustomEvents;
 
   public function setAccountId($accountId)
   {
@@ -12084,6 +12278,26 @@ class Google_Service_Dfareporting_CreativeAsset extends Google_Collection
   public $zipFilename;
   public $zipFilesize;
 
+  /** @var Google_Service_Dfareporting_CreativeAssetId */
+  protected $assetIdentifier;
+
+  /** @var Google_Service_Dfareporting_CreativeCustomEvent */
+  protected $backupImageExit;
+
+  /** @var Google_Service_Dfareporting_Size */
+  protected $collapsedSize;
+
+  /** @var Google_Service_Dfareporting_Size */
+  protected $expandedDimension;
+
+  /** @var Google_Service_Dfareporting_OffsetPosition */
+  protected $offset;
+
+  /** @var Google_Service_Dfareporting_OffsetPosition */
+  protected $position;
+
+  /** @var Google_Service_Dfareporting_Size */
+  protected $size;
 
   public function setActionScript3($actionScript3)
   {
@@ -12462,6 +12676,11 @@ class Google_Service_Dfareporting_CreativeAssetMetadata extends Google_Collectio
   public $kind;
   public $warnedValidationRules;
 
+  /** @var Google_Service_Dfareporting_CreativeAssetId */
+  protected $assetIdentifier;
+
+  /** @var Google_Service_Dfareporting_ClickTag[] */
+  protected $clickTags;
 
   public function setAssetIdentifier(Google_Service_Dfareporting_CreativeAssetId $assetIdentifier)
   {
@@ -12529,6 +12748,20 @@ class Google_Service_Dfareporting_CreativeAssignment extends Google_Collection
   public $startTime;
   public $weight;
 
+  /** @var Google_Service_Dfareporting_ClickThroughUrl */
+  protected $clickThroughUrl;
+
+  /** @var Google_Service_Dfareporting_CompanionClickThroughOverride[] */
+  protected $companionCreativeOverrides;
+
+  /** @var Google_Service_Dfareporting_CreativeGroupAssignment */
+  protected $creativeGroupAssignments;
+
+  /** @var Google_Service_Dfareporting_DimensionValue */
+  protected $creativeIdDimensionValue;
+
+  /** @var Google_Service_Dfareporting_RichMediaExitOverride[] */
+  protected $richMediaExitOverrides;
 
   public function setActive($active)
   {
@@ -12652,6 +12885,8 @@ class Google_Service_Dfareporting_CreativeCustomEvent extends Google_Model
   public $targetType;
   public $videoReportingId;
 
+  /** @var Google_Service_Dfareporting_PopupWindowProperties */
+  protected $popupWindowProperties;
 
   public function setActive($active)
   {
@@ -12748,6 +12983,8 @@ class Google_Service_Dfareporting_CreativeField extends Google_Model
   public $name;
   public $subaccountId;
 
+  /** @var Google_Service_Dfareporting_DimensionValue */
+  protected $advertiserIdDimensionValue;
 
   public function setAccountId($accountId)
   {
@@ -12878,6 +13115,8 @@ class Google_Service_Dfareporting_CreativeFieldValuesListResponse extends Google
   public $kind;
   public $nextPageToken;
 
+  /** @var Google_Service_Dfareporting_CreativeFieldValue[] */
+  protected $creativeFieldValues;
 
   public function setCreativeFieldValues($creativeFieldValues)
   {
@@ -12915,6 +13154,8 @@ class Google_Service_Dfareporting_CreativeFieldsListResponse extends Google_Coll
   public $kind;
   public $nextPageToken;
 
+  /** @var Google_Service_Dfareporting_CreativeField[] */
+  protected $creativeFields;
 
   public function setCreativeFields($creativeFields)
   {
@@ -12956,6 +13197,8 @@ class Google_Service_Dfareporting_CreativeGroup extends Google_Model
   public $name;
   public $subaccountId;
 
+  /** @var Google_Service_Dfareporting_DimensionValue */
+  protected $advertiserIdDimensionValue;
 
   public function setAccountId($accountId)
   {
@@ -13059,6 +13302,8 @@ class Google_Service_Dfareporting_CreativeGroupsListResponse extends Google_Coll
   public $kind;
   public $nextPageToken;
 
+  /** @var Google_Service_Dfareporting_CreativeGroup[] */
+  protected $creativeGroups;
 
   public function setCreativeGroups($creativeGroups)
   {
@@ -13097,6 +13342,8 @@ class Google_Service_Dfareporting_CreativeOptimizationConfiguration extends Goog
   protected $optimizationActivitysDataType = 'array';
   public $optimizationModel;
 
+  /** @var Google_Service_Dfareporting_OptimizationActivity[] */
+  protected $optimizationActivitys;
 
   public function setId($id)
   {
@@ -13143,6 +13390,8 @@ class Google_Service_Dfareporting_CreativeRotation extends Google_Collection
   public $type;
   public $weightCalculationStrategy;
 
+  /** @var Google_Service_Dfareporting_CreativeAssignment[] */
+  protected $creativeAssignments;
 
   public function setCreativeAssignments($creativeAssignments)
   {
@@ -13214,6 +13463,8 @@ class Google_Service_Dfareporting_CreativesListResponse extends Google_Collectio
   public $kind;
   public $nextPageToken;
 
+  /** @var Google_Service_Dfareporting_Creative[] */
+  protected $creatives;
 
   public function setCreatives($creatives)
   {
@@ -13256,6 +13507,17 @@ class Google_Service_Dfareporting_CrossDimensionReachReportCompatibleFields exte
   protected $overlapMetricsType = 'Google_Service_Dfareporting_Metric';
   protected $overlapMetricsDataType = 'array';
 
+  /** @var Google_Service_Dfareporting_Dimension[] */
+  protected $breakdown;
+
+  /** @var Google_Service_Dfareporting_Dimension[] */
+  protected $dimensionFilters;
+
+  /** @var Google_Service_Dfareporting_Metric[] */
+  protected $metrics;
+
+  /** @var Google_Service_Dfareporting_Metric[] */
+  protected $overlapMetrics;
 
   public function setBreakdown($breakdown)
   {
@@ -13308,6 +13570,8 @@ class Google_Service_Dfareporting_CustomRichMediaEvents extends Google_Collectio
   protected $filteredEventIdsDataType = 'array';
   public $kind;
 
+  /** @var Google_Service_Dfareporting_DimensionValue[] */
+  protected $filteredEventIds;
 
   public function setFilteredEventIds($filteredEventIds)
   {
@@ -13443,6 +13707,8 @@ class Google_Service_Dfareporting_DeliverySchedule extends Google_Model
   public $impressionRatio;
   public $priority;
 
+  /** @var Google_Service_Dfareporting_FrequencyCap */
+  protected $frequencyCap;
 
   public function setFrequencyCap(Google_Service_Dfareporting_FrequencyCap $frequencyCap)
   {
@@ -13495,6 +13761,11 @@ class Google_Service_Dfareporting_DfareportingFile extends Google_Model
   protected $urlsType = 'Google_Service_Dfareporting_DfareportingFileUrls';
   protected $urlsDataType = '';
 
+  /** @var Google_Service_Dfareporting_DateRange */
+  protected $dateRange;
+
+  /** @var Google_Service_Dfareporting_DfareportingFileUrls */
+  protected $urls;
 
   public function setDateRange(Google_Service_Dfareporting_DateRange $dateRange)
   {
@@ -13793,6 +14064,8 @@ class Google_Service_Dfareporting_DimensionValueList extends Google_Collection
   public $kind;
   public $nextPageToken;
 
+  /** @var Google_Service_Dfareporting_DimensionValue[] */
+  protected $items;
 
   public function setEtag($etag)
   {
@@ -13840,6 +14113,8 @@ class Google_Service_Dfareporting_DimensionValueRequest extends Google_Collectio
   public $kind;
   public $startDate;
 
+  /** @var Google_Service_Dfareporting_DimensionFilter */
+  protected $filters;
 
   public function setDimensionName($dimensionName)
   {
@@ -13906,6 +14181,14 @@ class Google_Service_Dfareporting_DirectorySite extends Google_Collection
   protected $settingsDataType = '';
   public $url;
 
+  /** @var Google_Service_Dfareporting_DirectorySiteContactAssignment[] */
+  protected $contactAssignments;
+
+  /** @var Google_Service_Dfareporting_DimensionValue */
+  protected $idDimensionValue;
+
+  /** @var Google_Service_Dfareporting_DirectorySiteSettings */
+  protected $settings;
 
   public function setActive($active)
   {
@@ -14155,6 +14438,8 @@ class Google_Service_Dfareporting_DirectorySiteContactsListResponse extends Goog
   public $kind;
   public $nextPageToken;
 
+  /** @var Google_Service_Dfareporting_DirectorySiteContact[] */
+  protected $directorySiteContacts;
 
   public function setDirectorySiteContacts($directorySiteContacts)
   {
@@ -14197,6 +14482,8 @@ class Google_Service_Dfareporting_DirectorySiteSettings extends Google_Model
   public $verificationTagOptOut;
   public $videoActiveViewOptOut;
 
+  /** @var Google_Service_Dfareporting_DfpSettings */
+  protected $dfpSettings;
 
   public function setActiveViewOptOut($activeViewOptOut)
   {
@@ -14266,6 +14553,8 @@ class Google_Service_Dfareporting_DirectorySitesListResponse extends Google_Coll
   public $kind;
   public $nextPageToken;
 
+  /** @var Google_Service_Dfareporting_DirectorySite[] */
+  protected $directorySites;
 
   public function setDirectorySites($directorySites)
   {
@@ -14318,6 +14607,11 @@ class Google_Service_Dfareporting_EventTag extends Google_Collection
   public $url;
   public $urlEscapeLevels;
 
+  /** @var Google_Service_Dfareporting_DimensionValue */
+  protected $advertiserIdDimensionValue;
+
+  /** @var Google_Service_Dfareporting_DimensionValue */
+  protected $campaignIdDimensionValue;
 
   public function setAccountId($accountId)
   {
@@ -14492,6 +14786,8 @@ class Google_Service_Dfareporting_EventTagsListResponse extends Google_Collectio
   protected $eventTagsDataType = 'array';
   public $kind;
 
+  /** @var Google_Service_Dfareporting_EventTag[] */
+  protected $eventTags;
 
   public function setEventTags($eventTags)
   {
@@ -14522,6 +14818,8 @@ class Google_Service_Dfareporting_FileList extends Google_Collection
   public $kind;
   public $nextPageToken;
 
+  /** @var Google_Service_Dfareporting_DfareportingFile[] */
+  protected $items;
 
   public function setEtag($etag)
   {
@@ -14637,6 +14935,8 @@ class Google_Service_Dfareporting_FloodlightActivitiesListResponse extends Googl
   public $kind;
   public $nextPageToken;
 
+  /** @var Google_Service_Dfareporting_FloodlightActivity[] */
+  protected $floodlightActivities;
 
   public function setFloodlightActivities($floodlightActivities)
   {
@@ -14703,6 +15003,20 @@ class Google_Service_Dfareporting_FloodlightActivity extends Google_Collection
   public $tagString;
   public $userDefinedVariableTypes;
 
+  /** @var Google_Service_Dfareporting_DimensionValue */
+  protected $advertiserIdDimensionValue;
+
+  /** @var Google_Service_Dfareporting_FloodlightActivityDynamicTag[] */
+  protected $defaultTags;
+
+  /** @var Google_Service_Dfareporting_DimensionValue */
+  protected $floodlightConfigurationIdDimensionValue;
+
+  /** @var Google_Service_Dfareporting_DimensionValue */
+  protected $idDimensionValue;
+
+  /** @var Google_Service_Dfareporting_FloodlightActivityPublisherDynamicTag[] */
+  protected $publisherTags;
 
   public function setAccountId($accountId)
   {
@@ -14985,6 +15299,14 @@ class Google_Service_Dfareporting_FloodlightActivityGroup extends Google_Model
   public $tagString;
   public $type;
 
+  /** @var Google_Service_Dfareporting_DimensionValue */
+  protected $advertiserIdDimensionValue;
+
+  /** @var Google_Service_Dfareporting_DimensionValue */
+  protected $floodlightConfigurationIdDimensionValue;
+
+  /** @var Google_Service_Dfareporting_DimensionValue */
+  protected $idDimensionValue;
 
   public function setAccountId($accountId)
   {
@@ -15094,6 +15416,8 @@ class Google_Service_Dfareporting_FloodlightActivityGroupsListResponse extends G
   public $kind;
   public $nextPageToken;
 
+  /** @var Google_Service_Dfareporting_FloodlightActivityGroup[] */
+  protected $floodlightActivityGroups;
 
   public function setFloodlightActivityGroups($floodlightActivityGroups)
   {
@@ -15134,6 +15458,11 @@ class Google_Service_Dfareporting_FloodlightActivityPublisherDynamicTag extends 
   protected $siteIdDimensionValueDataType = '';
   public $viewThrough;
 
+  /** @var Google_Service_Dfareporting_FloodlightActivityDynamicTag */
+  protected $dynamicTag;
+
+  /** @var Google_Service_Dfareporting_DimensionValue */
+  protected $siteIdDimensionValue;
 
   public function setClickThrough($clickThrough)
   {
@@ -15214,6 +15543,23 @@ class Google_Service_Dfareporting_FloodlightConfiguration extends Google_Collect
   protected $userDefinedVariableConfigurationsType = 'Google_Service_Dfareporting_UserDefinedVariableConfiguration';
   protected $userDefinedVariableConfigurationsDataType = 'array';
 
+  /** @var Google_Service_Dfareporting_DimensionValue */
+  protected $advertiserIdDimensionValue;
+
+  /** @var Google_Service_Dfareporting_DimensionValue */
+  protected $idDimensionValue;
+
+  /** @var Google_Service_Dfareporting_LookbackConfiguration */
+  protected $lookbackConfiguration;
+
+  /** @var Google_Service_Dfareporting_OmnitureSettings */
+  protected $omnitureSettings;
+
+  /** @var Google_Service_Dfareporting_TagSettings */
+  protected $tagSettings;
+
+  /** @var Google_Service_Dfareporting_UserDefinedVariableConfiguration */
+  protected $userDefinedVariableConfigurations;
 
   public function setAccountId($accountId)
   {
@@ -15362,6 +15708,8 @@ class Google_Service_Dfareporting_FloodlightConfigurationsListResponse extends G
   protected $floodlightConfigurationsDataType = 'array';
   public $kind;
 
+  /** @var Google_Service_Dfareporting_FloodlightConfiguration[] */
+  protected $floodlightConfigurations;
 
   public function setFloodlightConfigurations($floodlightConfigurations)
   {
@@ -15394,6 +15742,14 @@ class Google_Service_Dfareporting_FloodlightReportCompatibleFields extends Googl
   protected $metricsType = 'Google_Service_Dfareporting_Metric';
   protected $metricsDataType = 'array';
 
+  /** @var Google_Service_Dfareporting_Dimension[] */
+  protected $dimensionFilters;
+
+  /** @var Google_Service_Dfareporting_Dimension[] */
+  protected $dimensions;
+
+  /** @var Google_Service_Dfareporting_Metric[] */
+  protected $metrics;
 
   public function setDimensionFilters($dimensionFilters)
   {
@@ -15525,6 +15881,20 @@ class Google_Service_Dfareporting_GeoTargeting extends Google_Collection
   protected $regionsType = 'Google_Service_Dfareporting_Region';
   protected $regionsDataType = 'array';
 
+  /** @var Google_Service_Dfareporting_City[] */
+  protected $cities;
+
+  /** @var Google_Service_Dfareporting_Country[] */
+  protected $countries;
+
+  /** @var Google_Service_Dfareporting_Metro[] */
+  protected $metros;
+
+  /** @var Google_Service_Dfareporting_PostalCode[] */
+  protected $postalCodes;
+
+  /** @var Google_Service_Dfareporting_Region[] */
+  protected $regions;
 
   public function setCities($cities)
   {
@@ -15604,6 +15974,14 @@ class Google_Service_Dfareporting_InventoryItem extends Google_Collection
   public $siteId;
   public $subaccountId;
 
+  /** @var Google_Service_Dfareporting_AdSlot[] */
+  protected $adSlots;
+
+  /** @var Google_Service_Dfareporting_LastModifiedInfo */
+  protected $lastModifiedInfo;
+
+  /** @var Google_Service_Dfareporting_Pricing */
+  protected $pricing;
 
   public function setAccountId($accountId)
   {
@@ -15769,6 +16147,8 @@ class Google_Service_Dfareporting_InventoryItemsListResponse extends Google_Coll
   public $kind;
   public $nextPageToken;
 
+  /** @var Google_Service_Dfareporting_InventoryItem[] */
+  protected $inventoryItems;
 
   public function setInventoryItems($inventoryItems)
   {
@@ -15875,6 +16255,8 @@ class Google_Service_Dfareporting_LandingPagesListResponse extends Google_Collec
   protected $landingPagesType = 'Google_Service_Dfareporting_LandingPage';
   protected $landingPagesDataType = 'array';
 
+  /** @var Google_Service_Dfareporting_LandingPage[] */
+  protected $landingPages;
 
   public function setKind($kind)
   {
@@ -15919,6 +16301,8 @@ class Google_Service_Dfareporting_ListPopulationClause extends Google_Collection
   protected $termsType = 'Google_Service_Dfareporting_ListPopulationTerm';
   protected $termsDataType = 'array';
 
+  /** @var Google_Service_Dfareporting_ListPopulationTerm[] */
+  protected $terms;
 
   public function setTerms($terms)
   {
@@ -15940,6 +16324,8 @@ class Google_Service_Dfareporting_ListPopulationRule extends Google_Collection
   protected $listPopulationClausesType = 'Google_Service_Dfareporting_ListPopulationClause';
   protected $listPopulationClausesDataType = 'array';
 
+  /** @var Google_Service_Dfareporting_ListPopulationClause[] */
+  protected $listPopulationClauses;
 
   public function setFloodlightActivityId($floodlightActivityId)
   {
@@ -16196,6 +16582,8 @@ class Google_Service_Dfareporting_MetrosListResponse extends Google_Collection
   protected $metrosType = 'Google_Service_Dfareporting_Metro';
   protected $metrosDataType = 'array';
 
+  /** @var Google_Service_Dfareporting_Metro[] */
+  protected $metros;
 
   public function setKind($kind)
   {
@@ -16277,6 +16665,8 @@ class Google_Service_Dfareporting_MobileCarriersListResponse extends Google_Coll
   protected $mobileCarriersType = 'Google_Service_Dfareporting_MobileCarrier';
   protected $mobileCarriersDataType = 'array';
 
+  /** @var Google_Service_Dfareporting_MobileCarrier[] */
+  protected $mobileCarriers;
 
   public function setKind($kind)
   {
@@ -16449,6 +16839,8 @@ class Google_Service_Dfareporting_OperatingSystemVersion extends Google_Model
   protected $operatingSystemType = 'Google_Service_Dfareporting_OperatingSystem';
   protected $operatingSystemDataType = '';
 
+  /** @var Google_Service_Dfareporting_OperatingSystem */
+  protected $operatingSystem;
 
   public function setId($id)
   {
@@ -16509,6 +16901,8 @@ class Google_Service_Dfareporting_OperatingSystemVersionsListResponse extends Go
   protected $operatingSystemVersionsType = 'Google_Service_Dfareporting_OperatingSystemVersion';
   protected $operatingSystemVersionsDataType = 'array';
 
+  /** @var Google_Service_Dfareporting_OperatingSystemVersion[] */
+  protected $operatingSystemVersions;
 
   public function setKind($kind)
   {
@@ -16537,6 +16931,8 @@ class Google_Service_Dfareporting_OperatingSystemsListResponse extends Google_Co
   protected $operatingSystemsType = 'Google_Service_Dfareporting_OperatingSystem';
   protected $operatingSystemsDataType = 'array';
 
+  /** @var Google_Service_Dfareporting_OperatingSystem[] */
+  protected $operatingSystems;
 
   public function setKind($kind)
   {
@@ -16565,6 +16961,8 @@ class Google_Service_Dfareporting_OptimizationActivity extends Google_Model
   protected $floodlightActivityIdDimensionValueDataType = '';
   public $weight;
 
+  /** @var Google_Service_Dfareporting_DimensionValue */
+  protected $floodlightActivityIdDimensionValue;
 
   public function setFloodlightActivityId($floodlightActivityId)
   {
@@ -16620,6 +17018,11 @@ class Google_Service_Dfareporting_Order extends Google_Collection
   public $subaccountId;
   public $termsAndConditions;
 
+  /** @var Google_Service_Dfareporting_OrderContact[] */
+  protected $contacts;
+
+  /** @var Google_Service_Dfareporting_LastModifiedInfo */
+  protected $lastModifiedInfo;
 
   public function setAccountId($accountId)
   {
@@ -16858,6 +17261,8 @@ class Google_Service_Dfareporting_OrderDocument extends Google_Collection
   public $title;
   public $type;
 
+  /** @var Google_Service_Dfareporting_LastModifiedInfo */
+  protected $createdInfo;
 
   public function setAccountId($accountId)
   {
@@ -16991,6 +17396,8 @@ class Google_Service_Dfareporting_OrderDocumentsListResponse extends Google_Coll
   protected $orderDocumentsType = 'Google_Service_Dfareporting_OrderDocument';
   protected $orderDocumentsDataType = 'array';
 
+  /** @var Google_Service_Dfareporting_OrderDocument[] */
+  protected $orderDocuments;
 
   public function setKind($kind)
   {
@@ -17028,6 +17435,8 @@ class Google_Service_Dfareporting_OrdersListResponse extends Google_Collection
   protected $ordersType = 'Google_Service_Dfareporting_Order';
   protected $ordersDataType = 'array';
 
+  /** @var Google_Service_Dfareporting_Order[] */
+  protected $orders;
 
   public function setKind($kind)
   {
@@ -17070,6 +17479,17 @@ class Google_Service_Dfareporting_PathToConversionReportCompatibleFields extends
   protected $perInteractionDimensionsType = 'Google_Service_Dfareporting_Dimension';
   protected $perInteractionDimensionsDataType = 'array';
 
+  /** @var Google_Service_Dfareporting_Dimension[] */
+  protected $conversionDimensions;
+
+  /** @var Google_Service_Dfareporting_Dimension[] */
+  protected $customFloodlightVariables;
+
+  /** @var Google_Service_Dfareporting_Metric[] */
+  protected $metrics;
+
+  /** @var Google_Service_Dfareporting_Dimension[] */
+  protected $perInteractionDimensions;
 
   public function setConversionDimensions($conversionDimensions)
   {
@@ -17168,6 +17588,44 @@ class Google_Service_Dfareporting_Placement extends Google_Collection
   protected $tagSettingType = 'Google_Service_Dfareporting_TagSetting';
   protected $tagSettingDataType = '';
 
+  /** @var Google_Service_Dfareporting_DimensionValue */
+  protected $advertiserIdDimensionValue;
+
+  /** @var Google_Service_Dfareporting_DimensionValue */
+  protected $campaignIdDimensionValue;
+
+  /** @var Google_Service_Dfareporting_LastModifiedInfo */
+  protected $createInfo;
+
+  /** @var Google_Service_Dfareporting_DimensionValue */
+  protected $directorySiteIdDimensionValue;
+
+  /** @var Google_Service_Dfareporting_DimensionValue */
+  protected $idDimensionValue;
+
+  /** @var Google_Service_Dfareporting_LastModifiedInfo */
+  protected $lastModifiedInfo;
+
+  /** @var Google_Service_Dfareporting_LookbackConfiguration */
+  protected $lookbackConfiguration;
+
+  /** @var Google_Service_Dfareporting_DimensionValue */
+  protected $placementGroupIdDimensionValue;
+
+  /** @var Google_Service_Dfareporting_PricingSchedule */
+  protected $pricingSchedule;
+
+  /** @var Google_Service_Dfareporting_LastModifiedInfo */
+  protected $publisherUpdateInfo;
+
+  /** @var Google_Service_Dfareporting_DimensionValue */
+  protected $siteIdDimensionValue;
+
+  /** @var Google_Service_Dfareporting_Size */
+  protected $size;
+
+  /** @var Google_Service_Dfareporting_TagSetting */
+  protected $tagSetting;
 
   public function setAccountId($accountId)
   {
@@ -17469,6 +17927,8 @@ class Google_Service_Dfareporting_PlacementAssignment extends Google_Model
   protected $placementIdDimensionValueDataType = '';
   public $sslRequired;
 
+  /** @var Google_Service_Dfareporting_DimensionValue */
+  protected $placementIdDimensionValue;
 
   public function setActive($active)
   {
@@ -17547,6 +18007,35 @@ class Google_Service_Dfareporting_PlacementGroup extends Google_Collection
   protected $siteIdDimensionValueDataType = '';
   public $subaccountId;
 
+  /** @var Google_Service_Dfareporting_DimensionValue */
+  protected $advertiserIdDimensionValue;
+
+  /** @var Google_Service_Dfareporting_DimensionValue */
+  protected $campaignIdDimensionValue;
+
+  /** @var Google_Service_Dfareporting_LastModifiedInfo */
+  protected $createInfo;
+
+  /** @var Google_Service_Dfareporting_DimensionValue */
+  protected $directorySiteIdDimensionValue;
+
+  /** @var Google_Service_Dfareporting_DimensionValue */
+  protected $idDimensionValue;
+
+  /** @var Google_Service_Dfareporting_LastModifiedInfo */
+  protected $lastModifiedInfo;
+
+  /** @var Google_Service_Dfareporting_PricingSchedule */
+  protected $pricingSchedule;
+
+  /** @var Google_Service_Dfareporting_DimensionValue */
+  protected $primaryPlacementIdDimensionValue;
+
+  /** @var Google_Service_Dfareporting_ProgrammaticSetting */
+  protected $programmaticSetting;
+
+  /** @var Google_Service_Dfareporting_DimensionValue */
+  protected $siteIdDimensionValue;
 
   public function setAccountId($accountId)
   {
@@ -17776,6 +18265,8 @@ class Google_Service_Dfareporting_PlacementGroupsListResponse extends Google_Col
   protected $placementGroupsType = 'Google_Service_Dfareporting_PlacementGroup';
   protected $placementGroupsDataType = 'array';
 
+  /** @var Google_Service_Dfareporting_PlacementGroup[] */
+  protected $placementGroups;
 
   public function setKind($kind)
   {
@@ -17813,6 +18304,8 @@ class Google_Service_Dfareporting_PlacementStrategiesListResponse extends Google
   protected $placementStrategiesType = 'Google_Service_Dfareporting_PlacementStrategy';
   protected $placementStrategiesDataType = 'array';
 
+  /** @var Google_Service_Dfareporting_PlacementStrategy[] */
+  protected $placementStrategies;
 
   public function setKind($kind)
   {
@@ -17893,6 +18386,8 @@ class Google_Service_Dfareporting_PlacementTag extends Google_Collection
   protected $tagDatasType = 'Google_Service_Dfareporting_TagData';
   protected $tagDatasDataType = 'array';
 
+  /** @var Google_Service_Dfareporting_TagData[] */
+  protected $tagDatas;
 
   public function setPlacementId($placementId)
   {
@@ -17921,6 +18416,8 @@ class Google_Service_Dfareporting_PlacementsGenerateTagsResponse extends Google_
   protected $placementTagsType = 'Google_Service_Dfareporting_PlacementTag';
   protected $placementTagsDataType = 'array';
 
+  /** @var Google_Service_Dfareporting_PlacementTag[] */
+  protected $placementTags;
 
   public function setKind($kind)
   {
@@ -17950,6 +18447,8 @@ class Google_Service_Dfareporting_PlacementsListResponse extends Google_Collecti
   protected $placementsType = 'Google_Service_Dfareporting_Placement';
   protected $placementsDataType = 'array';
 
+  /** @var Google_Service_Dfareporting_Placement[] */
+  protected $placements;
 
   public function setKind($kind)
   {
@@ -18021,6 +18520,8 @@ class Google_Service_Dfareporting_PlatformTypesListResponse extends Google_Colle
   protected $platformTypesType = 'Google_Service_Dfareporting_PlatformType';
   protected $platformTypesDataType = 'array';
 
+  /** @var Google_Service_Dfareporting_PlatformType[] */
+  protected $platformTypes;
 
   public function setKind($kind)
   {
@@ -18056,6 +18557,11 @@ class Google_Service_Dfareporting_PopupWindowProperties extends Google_Model
   public $showToolBar;
   public $title;
 
+  /** @var Google_Service_Dfareporting_Size */
+  protected $dimension;
+
+  /** @var Google_Service_Dfareporting_OffsetPosition */
+  protected $offset;
 
   public function setDimension(Google_Service_Dfareporting_Size $dimension)
   {
@@ -18193,6 +18699,8 @@ class Google_Service_Dfareporting_PostalCodesListResponse extends Google_Collect
   protected $postalCodesType = 'Google_Service_Dfareporting_PostalCode';
   protected $postalCodesDataType = 'array';
 
+  /** @var Google_Service_Dfareporting_PostalCode[] */
+  protected $postalCodes;
 
   public function setKind($kind)
   {
@@ -18225,6 +18733,8 @@ class Google_Service_Dfareporting_Pricing extends Google_Collection
   public $pricingType;
   public $startDate;
 
+  /** @var Google_Service_Dfareporting_Flight[] */
+  protected $flights;
 
   public function setCapCostType($capCostType)
   {
@@ -18292,6 +18802,8 @@ class Google_Service_Dfareporting_PricingSchedule extends Google_Collection
   public $startDate;
   public $testingStartDate;
 
+  /** @var Google_Service_Dfareporting_PricingSchedulePricingPeriod[] */
+  protected $pricingPeriods;
 
   public function setCapCostOption($capCostOption)
   {
@@ -18510,6 +19022,8 @@ class Google_Service_Dfareporting_Project extends Google_Model
   public $targetCpmNanos;
   public $targetImpressions;
 
+  /** @var Google_Service_Dfareporting_LastModifiedInfo */
+  protected $lastModifiedInfo;
 
   public function setAccountId($accountId)
   {
@@ -18691,6 +19205,8 @@ class Google_Service_Dfareporting_ProjectsListResponse extends Google_Collection
   protected $projectsType = 'Google_Service_Dfareporting_Project';
   protected $projectsDataType = 'array';
 
+  /** @var Google_Service_Dfareporting_Project[] */
+  protected $projects;
 
   public function setKind($kind)
   {
@@ -18735,6 +19251,20 @@ class Google_Service_Dfareporting_ReachReportCompatibleFields extends Google_Col
   protected $reachByFrequencyMetricsType = 'Google_Service_Dfareporting_Metric';
   protected $reachByFrequencyMetricsDataType = 'array';
 
+  /** @var Google_Service_Dfareporting_Dimension[] */
+  protected $dimensionFilters;
+
+  /** @var Google_Service_Dfareporting_Dimension[] */
+  protected $dimensions;
+
+  /** @var Google_Service_Dfareporting_Metric[] */
+  protected $metrics;
+
+  /** @var Google_Service_Dfareporting_Metric[] */
+  protected $pivotedActivityMetrics;
+
+  /** @var Google_Service_Dfareporting_Metric[] */
+  protected $reachByFrequencyMetrics;
 
   public function setDimensionFilters($dimensionFilters)
   {
@@ -18892,6 +19422,8 @@ class Google_Service_Dfareporting_RegionsListResponse extends Google_Collection
   protected $regionsType = 'Google_Service_Dfareporting_Region';
   protected $regionsDataType = 'array';
 
+  /** @var Google_Service_Dfareporting_Region[] */
+  protected $regions;
 
   public function setKind($kind)
   {
@@ -18931,6 +19463,11 @@ class Google_Service_Dfareporting_RemarketingList extends Google_Model
   public $name;
   public $subaccountId;
 
+  /** @var Google_Service_Dfareporting_DimensionValue */
+  protected $advertiserIdDimensionValue;
+
+  /** @var Google_Service_Dfareporting_ListPopulationRule */
+  protected $listPopulationRule;
 
   public function setAccountId($accountId)
   {
@@ -19093,6 +19630,8 @@ class Google_Service_Dfareporting_RemarketingListsListResponse extends Google_Co
   protected $remarketingListsType = 'Google_Service_Dfareporting_RemarketingList';
   protected $remarketingListsDataType = 'array';
 
+  /** @var Google_Service_Dfareporting_RemarketingList[] */
+  protected $remarketingLists;
 
   public function setKind($kind)
   {
@@ -19150,6 +19689,26 @@ class Google_Service_Dfareporting_Report extends Google_Model
   public $subAccountId;
   public $type;
 
+  /** @var Google_Service_Dfareporting_ReportCriteria */
+  protected $criteria;
+
+  /** @var Google_Service_Dfareporting_ReportCrossDimensionReachCriteria */
+  protected $crossDimensionReachCriteria;
+
+  /** @var Google_Service_Dfareporting_ReportDelivery */
+  protected $delivery;
+
+  /** @var Google_Service_Dfareporting_ReportFloodlightCriteria */
+  protected $floodlightCriteria;
+
+  /** @var Google_Service_Dfareporting_ReportPathToConversionCriteria */
+  protected $pathToConversionCriteria;
+
+  /** @var Google_Service_Dfareporting_ReportReachCriteria */
+  protected $reachCriteria;
+
+  /** @var Google_Service_Dfareporting_ReportSchedule */
+  protected $schedule;
 
   public function setAccountId($accountId)
   {
@@ -19312,6 +19871,17 @@ class Google_Service_Dfareporting_ReportCompatibleFields extends Google_Collecti
   protected $pivotedActivityMetricsType = 'Google_Service_Dfareporting_Metric';
   protected $pivotedActivityMetricsDataType = 'array';
 
+  /** @var Google_Service_Dfareporting_Dimension[] */
+  protected $dimensionFilters;
+
+  /** @var Google_Service_Dfareporting_Dimension[] */
+  protected $dimensions;
+
+  /** @var Google_Service_Dfareporting_Metric[] */
+  protected $metrics;
+
+  /** @var Google_Service_Dfareporting_Metric[] */
+  protected $pivotedActivityMetrics;
 
   public function setDimensionFilters($dimensionFilters)
   {
@@ -19372,6 +19942,20 @@ class Google_Service_Dfareporting_ReportCriteria extends Google_Collection
   protected $dimensionsDataType = 'array';
   public $metricNames;
 
+  /** @var Google_Service_Dfareporting_Activities */
+  protected $activities;
+
+  /** @var Google_Service_Dfareporting_CustomRichMediaEvents */
+  protected $customRichMediaEvents;
+
+  /** @var Google_Service_Dfareporting_DateRange */
+  protected $dateRange;
+
+  /** @var Google_Service_Dfareporting_DimensionValue[] */
+  protected $dimensionFilters;
+
+  /** @var Google_Service_Dfareporting_SortedDimension[] */
+  protected $dimensions;
 
   public function setActivities(Google_Service_Dfareporting_Activities $activities)
   {
@@ -19439,6 +20023,14 @@ class Google_Service_Dfareporting_ReportCrossDimensionReachCriteria extends Goog
   public $overlapMetricNames;
   public $pivoted;
 
+  /** @var Google_Service_Dfareporting_SortedDimension[] */
+  protected $breakdown;
+
+  /** @var Google_Service_Dfareporting_DateRange */
+  protected $dateRange;
+
+  /** @var Google_Service_Dfareporting_DimensionValue */
+  protected $dimensionFilters;
 
   public function setBreakdown($breakdown)
   {
@@ -19509,6 +20101,8 @@ class Google_Service_Dfareporting_ReportDelivery extends Google_Collection
   protected $recipientsType = 'Google_Service_Dfareporting_Recipient';
   protected $recipientsDataType = 'array';
 
+  /** @var Google_Service_Dfareporting_Recipient[] */
+  protected $recipients;
 
   public function setEmailOwner($emailOwner)
   {
@@ -19563,6 +20157,23 @@ class Google_Service_Dfareporting_ReportFloodlightCriteria extends Google_Collec
   protected $reportPropertiesType = 'Google_Service_Dfareporting_ReportFloodlightCriteriaReportProperties';
   protected $reportPropertiesDataType = '';
 
+  /** @var Google_Service_Dfareporting_DimensionValue[] */
+  protected $customRichMediaEvents;
+
+  /** @var Google_Service_Dfareporting_DateRange */
+  protected $dateRange;
+
+  /** @var Google_Service_Dfareporting_DimensionValue[] */
+  protected $dimensionFilters;
+
+  /** @var Google_Service_Dfareporting_SortedDimension[] */
+  protected $dimensions;
+
+  /** @var Google_Service_Dfareporting_DimensionValue */
+  protected $floodlightConfigId;
+
+  /** @var Google_Service_Dfareporting_ReportFloodlightCriteriaReportProperties */
+  protected $reportProperties;
 
   public function setCustomRichMediaEvents($customRichMediaEvents)
   {
@@ -19668,6 +20279,8 @@ class Google_Service_Dfareporting_ReportList extends Google_Collection
   public $kind;
   public $nextPageToken;
 
+  /** @var Google_Service_Dfareporting_Report[] */
+  protected $items;
 
   public function setEtag($etag)
   {
@@ -19726,6 +20339,29 @@ class Google_Service_Dfareporting_ReportPathToConversionCriteria extends Google_
   protected $reportPropertiesType = 'Google_Service_Dfareporting_ReportPathToConversionCriteriaReportProperties';
   protected $reportPropertiesDataType = '';
 
+  /** @var Google_Service_Dfareporting_DimensionValue[] */
+  protected $activityFilters;
+
+  /** @var Google_Service_Dfareporting_SortedDimension[] */
+  protected $conversionDimensions;
+
+  /** @var Google_Service_Dfareporting_SortedDimension[] */
+  protected $customFloodlightVariables;
+
+  /** @var Google_Service_Dfareporting_DimensionValue[] */
+  protected $customRichMediaEvents;
+
+  /** @var Google_Service_Dfareporting_DateRange */
+  protected $dateRange;
+
+  /** @var Google_Service_Dfareporting_DimensionValue */
+  protected $floodlightConfigId;
+
+  /** @var Google_Service_Dfareporting_SortedDimension[] */
+  protected $perInteractionDimensions;
+
+  /** @var Google_Service_Dfareporting_ReportPathToConversionCriteriaReportProperties */
+  protected $reportProperties;
 
   public function setActivityFilters($activityFilters)
   {
@@ -19909,6 +20545,20 @@ class Google_Service_Dfareporting_ReportReachCriteria extends Google_Collection
   public $metricNames;
   public $reachByFrequencyMetricNames;
 
+  /** @var Google_Service_Dfareporting_Activities */
+  protected $activities;
+
+  /** @var Google_Service_Dfareporting_CustomRichMediaEvents */
+  protected $customRichMediaEvents;
+
+  /** @var Google_Service_Dfareporting_DateRange */
+  protected $dateRange;
+
+  /** @var Google_Service_Dfareporting_DimensionValue[] */
+  protected $dimensionFilters;
+
+  /** @var Google_Service_Dfareporting_SortedDimension[] */
+  protected $dimensions;
 
   public function setActivities(Google_Service_Dfareporting_Activities $activities)
   {
@@ -20057,6 +20707,8 @@ class Google_Service_Dfareporting_ReportsConfiguration extends Google_Model
   protected $lookbackConfigurationDataType = '';
   public $reportGenerationTimeZoneId;
 
+  /** @var Google_Service_Dfareporting_LookbackConfiguration */
+  protected $lookbackConfiguration;
 
   public function setExposureToConversionEnabled($exposureToConversionEnabled)
   {
@@ -20141,6 +20793,17 @@ class Google_Service_Dfareporting_Site extends Google_Collection
   protected $siteSettingsDataType = '';
   public $subaccountId;
 
+  /** @var Google_Service_Dfareporting_DimensionValue */
+  protected $directorySiteIdDimensionValue;
+
+  /** @var Google_Service_Dfareporting_DimensionValue */
+  protected $idDimensionValue;
+
+  /** @var Google_Service_Dfareporting_SiteContact[] */
+  protected $siteContacts;
+
+  /** @var Google_Service_Dfareporting_SiteSettings */
+  protected $siteSettings;
 
   public function setAccountId($accountId)
   {
@@ -20334,6 +20997,14 @@ class Google_Service_Dfareporting_SiteSettings extends Google_Model
   protected $tagSettingType = 'Google_Service_Dfareporting_TagSetting';
   protected $tagSettingDataType = '';
 
+  /** @var Google_Service_Dfareporting_CreativeSettings */
+  protected $creativeSettings;
+
+  /** @var Google_Service_Dfareporting_LookbackConfiguration */
+  protected $lookbackConfiguration;
+
+  /** @var Google_Service_Dfareporting_TagSetting */
+  protected $tagSetting;
 
   public function setActiveViewOptOut($activeViewOptOut)
   {
@@ -20395,6 +21066,8 @@ class Google_Service_Dfareporting_SitesListResponse extends Google_Collection
   protected $sitesType = 'Google_Service_Dfareporting_Site';
   protected $sitesDataType = 'array';
 
+  /** @var Google_Service_Dfareporting_Site[] */
+  protected $sites;
 
   public function setKind($kind)
   {
@@ -20484,6 +21157,8 @@ class Google_Service_Dfareporting_SizesListResponse extends Google_Collection
   protected $sizesType = 'Google_Service_Dfareporting_Size';
   protected $sizesDataType = 'array';
 
+  /** @var Google_Service_Dfareporting_Size[] */
+  protected $sizes;
 
   public function setKind($kind)
   {
@@ -20602,6 +21277,8 @@ class Google_Service_Dfareporting_SubaccountsListResponse extends Google_Collect
   protected $subaccountsType = 'Google_Service_Dfareporting_Subaccount';
   protected $subaccountsDataType = 'array';
 
+  /** @var Google_Service_Dfareporting_Subaccount[] */
+  protected $subaccounts;
 
   public function setKind($kind)
   {
@@ -20796,6 +21473,8 @@ class Google_Service_Dfareporting_TargetableRemarketingList extends Google_Model
   public $name;
   public $subaccountId;
 
+  /** @var Google_Service_Dfareporting_DimensionValue */
+  protected $advertiserIdDimensionValue;
 
   public function setAccountId($accountId)
   {
@@ -20905,6 +21584,8 @@ class Google_Service_Dfareporting_TargetableRemarketingListsListResponse extends
   protected $targetableRemarketingListsType = 'Google_Service_Dfareporting_TargetableRemarketingList';
   protected $targetableRemarketingListsDataType = 'array';
 
+  /** @var Google_Service_Dfareporting_TargetableRemarketingList[] */
+  protected $targetableRemarketingLists;
 
   public function setKind($kind)
   {
@@ -20950,6 +21631,23 @@ class Google_Service_Dfareporting_TechnologyTargeting extends Google_Collection
   protected $platformTypesType = 'Google_Service_Dfareporting_PlatformType';
   protected $platformTypesDataType = 'array';
 
+  /** @var Google_Service_Dfareporting_Browser[] */
+  protected $browsers;
+
+  /** @var Google_Service_Dfareporting_ConnectionType[] */
+  protected $connectionTypes;
+
+  /** @var Google_Service_Dfareporting_MobileCarrier[] */
+  protected $mobileCarriers;
+
+  /** @var Google_Service_Dfareporting_OperatingSystemVersion[] */
+  protected $operatingSystemVersions;
+
+  /** @var Google_Service_Dfareporting_OperatingSystem[] */
+  protected $operatingSystems;
+
+  /** @var Google_Service_Dfareporting_PlatformType[] */
+  protected $platformTypes;
 
   public function setBrowsers($browsers)
   {
@@ -21152,6 +21850,8 @@ class Google_Service_Dfareporting_UserProfileList extends Google_Collection
   protected $itemsDataType = 'array';
   public $kind;
 
+  /** @var Google_Service_Dfareporting_UserProfile[] */
+  protected $items;
 
   public function setEtag($etag)
   {
@@ -21194,6 +21894,8 @@ class Google_Service_Dfareporting_UserRole extends Google_Collection
   protected $permissionsDataType = 'array';
   public $subaccountId;
 
+  /** @var Google_Service_Dfareporting_UserRolePermission[] */
+  protected $permissions;
 
   public function setAccountId($accountId)
   {
@@ -21358,6 +22060,8 @@ class Google_Service_Dfareporting_UserRolePermissionGroupsListResponse extends G
   protected $userRolePermissionGroupsType = 'Google_Service_Dfareporting_UserRolePermissionGroup';
   protected $userRolePermissionGroupsDataType = 'array';
 
+  /** @var Google_Service_Dfareporting_UserRolePermissionGroup[] */
+  protected $userRolePermissionGroups;
 
   public function setKind($kind)
   {
@@ -21386,6 +22090,8 @@ class Google_Service_Dfareporting_UserRolePermissionsListResponse extends Google
   protected $userRolePermissionsType = 'Google_Service_Dfareporting_UserRolePermission';
   protected $userRolePermissionsDataType = 'array';
 
+  /** @var Google_Service_Dfareporting_UserRolePermission[] */
+  protected $userRolePermissions;
 
   public function setKind($kind)
   {
@@ -21415,6 +22121,8 @@ class Google_Service_Dfareporting_UserRolesListResponse extends Google_Collectio
   protected $userRolesType = 'Google_Service_Dfareporting_UserRole';
   protected $userRolesDataType = 'array';
 
+  /** @var Google_Service_Dfareporting_UserRole[] */
+  protected $userRoles;
 
   public function setKind($kind)
   {

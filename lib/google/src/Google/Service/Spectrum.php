@@ -265,6 +265,8 @@ class Google_Service_Spectrum_DbUpdateSpec extends Google_Collection
   protected $databasesType = 'Google_Service_Spectrum_DatabaseSpec';
   protected $databasesDataType = 'array';
 
+  /** @var Google_Service_Spectrum_DatabaseSpec[] */
+  protected $databases;
 
   public function setDatabases($databases)
   {
@@ -284,6 +286,8 @@ class Google_Service_Spectrum_DeviceCapabilities extends Google_Collection
   protected $frequencyRangesType = 'Google_Service_Spectrum_FrequencyRange';
   protected $frequencyRangesDataType = 'array';
 
+  /** @var Google_Service_Spectrum_FrequencyRange[] */
+  protected $frequencyRanges;
 
   public function setFrequencyRanges($frequencyRanges)
   {
@@ -403,6 +407,11 @@ class Google_Service_Spectrum_DeviceOwner extends Google_Model
   protected $ownerType = 'Google_Service_Spectrum_Vcard';
   protected $ownerDataType = '';
 
+  /** @var Google_Service_Spectrum_Vcard */
+  protected $operator;
+
+  /** @var Google_Service_Spectrum_Vcard */
+  protected $owner;
 
   public function setOperator(Google_Service_Spectrum_Vcard $operator)
   {
@@ -431,6 +440,8 @@ class Google_Service_Spectrum_DeviceValidity extends Google_Model
   public $isValid;
   public $reason;
 
+  /** @var Google_Service_Spectrum_DeviceDescriptor */
+  protected $deviceDesc;
 
   public function setDeviceDesc(Google_Service_Spectrum_DeviceDescriptor $deviceDesc)
   {
@@ -538,6 +549,11 @@ class Google_Service_Spectrum_GeoLocation extends Google_Model
   protected $regionType = 'Google_Service_Spectrum_GeoLocationPolygon';
   protected $regionDataType = '';
 
+  /** @var Google_Service_Spectrum_GeoLocationEllipse */
+  protected $point;
+
+  /** @var Google_Service_Spectrum_GeoLocationPolygon */
+  protected $region;
 
   public function setConfidence($confidence)
   {
@@ -575,6 +591,8 @@ class Google_Service_Spectrum_GeoLocationEllipse extends Google_Model
   public $semiMajorAxis;
   public $semiMinorAxis;
 
+  /** @var Google_Service_Spectrum_GeoLocationPoint */
+  protected $center;
 
   public function setCenter(Google_Service_Spectrum_GeoLocationPoint $center)
   {
@@ -644,6 +662,8 @@ class Google_Service_Spectrum_GeoLocationPolygon extends Google_Collection
   protected $exteriorType = 'Google_Service_Spectrum_GeoLocationPoint';
   protected $exteriorDataType = 'array';
 
+  /** @var Google_Service_Spectrum_GeoLocationPoint[] */
+  protected $exterior;
 
   public function setExterior($exterior)
   {
@@ -665,6 +685,11 @@ class Google_Service_Spectrum_GeoSpectrumSchedule extends Google_Collection
   protected $spectrumSchedulesType = 'Google_Service_Spectrum_SpectrumSchedule';
   protected $spectrumSchedulesDataType = 'array';
 
+  /** @var Google_Service_Spectrum_GeoLocation */
+  protected $location;
+
+  /** @var Google_Service_Spectrum_SpectrumSchedule[] */
+  protected $spectrumSchedules;
 
   public function setLocation(Google_Service_Spectrum_GeoLocation $location)
   {
@@ -705,6 +730,23 @@ class Google_Service_Spectrum_PawsGetSpectrumBatchRequest extends Google_Collect
   public $type;
   public $version;
 
+  /** @var Google_Service_Spectrum_AntennaCharacteristics */
+  protected $antenna;
+
+  /** @var Google_Service_Spectrum_DeviceCapabilities */
+  protected $capabilities;
+
+  /** @var Google_Service_Spectrum_DeviceDescriptor */
+  protected $deviceDesc;
+
+  /** @var Google_Service_Spectrum_GeoLocation[] */
+  protected $locations;
+
+  /** @var Google_Service_Spectrum_DeviceDescriptor */
+  protected $masterDeviceDesc;
+
+  /** @var Google_Service_Spectrum_DeviceOwner */
+  protected $owner;
 
   public function setAntenna(Google_Service_Spectrum_AntennaCharacteristics $antenna)
   {
@@ -801,6 +843,17 @@ class Google_Service_Spectrum_PawsGetSpectrumBatchResponse extends Google_Collec
   public $type;
   public $version;
 
+  /** @var Google_Service_Spectrum_DbUpdateSpec */
+  protected $databaseChange;
+
+  /** @var Google_Service_Spectrum_DeviceDescriptor */
+  protected $deviceDesc;
+
+  /** @var Google_Service_Spectrum_GeoSpectrumSchedule[] */
+  protected $geoSpectrumSchedules;
+
+  /** @var Google_Service_Spectrum_RulesetInfo */
+  protected $rulesetInfo;
 
   public function setDatabaseChange(Google_Service_Spectrum_DbUpdateSpec $databaseChange)
   {
@@ -912,6 +965,23 @@ class Google_Service_Spectrum_PawsGetSpectrumRequest extends Google_Model
   public $type;
   public $version;
 
+  /** @var Google_Service_Spectrum_AntennaCharacteristics */
+  protected $antenna;
+
+  /** @var Google_Service_Spectrum_DeviceCapabilities */
+  protected $capabilities;
+
+  /** @var Google_Service_Spectrum_DeviceDescriptor */
+  protected $deviceDesc;
+
+  /** @var Google_Service_Spectrum_GeoLocation */
+  protected $location;
+
+  /** @var Google_Service_Spectrum_DeviceDescriptor */
+  protected $masterDeviceDesc;
+
+  /** @var Google_Service_Spectrum_DeviceOwner */
+  protected $owner;
 
   public function setAntenna(Google_Service_Spectrum_AntennaCharacteristics $antenna)
   {
@@ -1008,6 +1078,17 @@ class Google_Service_Spectrum_PawsGetSpectrumResponse extends Google_Collection
   public $type;
   public $version;
 
+  /** @var Google_Service_Spectrum_DbUpdateSpec */
+  protected $databaseChange;
+
+  /** @var Google_Service_Spectrum_DeviceDescriptor */
+  protected $deviceDesc;
+
+  /** @var Google_Service_Spectrum_RulesetInfo */
+  protected $rulesetInfo;
+
+  /** @var Google_Service_Spectrum_SpectrumSchedule[] */
+  protected $spectrumSchedules;
 
   public function setDatabaseChange(Google_Service_Spectrum_DbUpdateSpec $databaseChange)
   {
@@ -1110,6 +1191,11 @@ class Google_Service_Spectrum_PawsInitRequest extends Google_Model
   public $type;
   public $version;
 
+  /** @var Google_Service_Spectrum_DeviceDescriptor */
+  protected $deviceDesc;
+
+  /** @var Google_Service_Spectrum_GeoLocation */
+  protected $location;
 
   public function setDeviceDesc(Google_Service_Spectrum_DeviceDescriptor $deviceDesc)
   {
@@ -1157,6 +1243,11 @@ class Google_Service_Spectrum_PawsInitResponse extends Google_Model
   public $type;
   public $version;
 
+  /** @var Google_Service_Spectrum_DbUpdateSpec */
+  protected $databaseChange;
+
+  /** @var Google_Service_Spectrum_RulesetInfo */
+  protected $rulesetInfo;
 
   public function setDatabaseChange(Google_Service_Spectrum_DbUpdateSpec $databaseChange)
   {
@@ -1214,6 +1305,14 @@ class Google_Service_Spectrum_PawsNotifySpectrumUseRequest extends Google_Collec
   public $type;
   public $version;
 
+  /** @var Google_Service_Spectrum_DeviceDescriptor */
+  protected $deviceDesc;
+
+  /** @var Google_Service_Spectrum_GeoLocation */
+  protected $location;
+
+  /** @var Google_Service_Spectrum_SpectrumMessage[] */
+  protected $spectra;
 
   public function setDeviceDesc(Google_Service_Spectrum_DeviceDescriptor $deviceDesc)
   {
@@ -1307,6 +1406,17 @@ class Google_Service_Spectrum_PawsRegisterRequest extends Google_Model
   public $type;
   public $version;
 
+  /** @var Google_Service_Spectrum_AntennaCharacteristics */
+  protected $antenna;
+
+  /** @var Google_Service_Spectrum_DeviceDescriptor */
+  protected $deviceDesc;
+
+  /** @var Google_Service_Spectrum_DeviceOwner */
+  protected $deviceOwner;
+
+  /** @var Google_Service_Spectrum_GeoLocation */
+  protected $location;
 
   public function setAntenna(Google_Service_Spectrum_AntennaCharacteristics $antenna)
   {
@@ -1368,6 +1478,8 @@ class Google_Service_Spectrum_PawsRegisterResponse extends Google_Model
   public $type;
   public $version;
 
+  /** @var Google_Service_Spectrum_DbUpdateSpec */
+  protected $databaseChange;
 
   public function setDatabaseChange(Google_Service_Spectrum_DbUpdateSpec $databaseChange)
   {
@@ -1413,6 +1525,8 @@ class Google_Service_Spectrum_PawsVerifyDeviceRequest extends Google_Collection
   public $type;
   public $version;
 
+  /** @var Google_Service_Spectrum_DeviceDescriptor[] */
+  protected $deviceDescs;
 
   public function setDeviceDescs($deviceDescs)
   {
@@ -1453,6 +1567,11 @@ class Google_Service_Spectrum_PawsVerifyDeviceResponse extends Google_Collection
   public $type;
   public $version;
 
+  /** @var Google_Service_Spectrum_DbUpdateSpec */
+  protected $databaseChange;
+
+  /** @var Google_Service_Spectrum_DeviceValidity[] */
+  protected $deviceValidities;
 
   public function setDatabaseChange(Google_Service_Spectrum_DbUpdateSpec $databaseChange)
   {
@@ -1550,6 +1669,8 @@ class Google_Service_Spectrum_SpectrumMessage extends Google_Collection
   protected $frequencyRangesType = 'Google_Service_Spectrum_FrequencyRange';
   protected $frequencyRangesDataType = 'array';
 
+  /** @var Google_Service_Spectrum_FrequencyRange[] */
+  protected $frequencyRanges;
 
   public function setBandwidth($bandwidth)
   {
@@ -1579,6 +1700,11 @@ class Google_Service_Spectrum_SpectrumSchedule extends Google_Collection
   protected $spectraType = 'Google_Service_Spectrum_SpectrumMessage';
   protected $spectraDataType = 'array';
 
+  /** @var Google_Service_Spectrum_EventTime */
+  protected $eventTime;
+
+  /** @var Google_Service_Spectrum_SpectrumMessage[] */
+  protected $spectra;
 
   public function setEventTime(Google_Service_Spectrum_EventTime $eventTime)
   {
@@ -1612,6 +1738,17 @@ class Google_Service_Spectrum_Vcard extends Google_Model
   protected $telType = 'Google_Service_Spectrum_VcardTelephone';
   protected $telDataType = '';
 
+  /** @var Google_Service_Spectrum_VcardAddress */
+  protected $adr;
+
+  /** @var Google_Service_Spectrum_VcardTypedText */
+  protected $email;
+
+  /** @var Google_Service_Spectrum_VcardTypedText */
+  protected $org;
+
+  /** @var Google_Service_Spectrum_VcardTelephone */
+  protected $tel;
 
   public function setAdr(Google_Service_Spectrum_VcardAddress $adr)
   {

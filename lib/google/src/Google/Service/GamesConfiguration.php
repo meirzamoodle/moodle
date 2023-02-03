@@ -505,6 +505,11 @@ class Google_Service_GamesConfiguration_AchievementConfiguration extends Google_
   public $stepsToUnlock;
   public $token;
 
+  /** @var Google_Service_GamesConfiguration_AchievementConfigurationDetail */
+  protected $draft;
+
+  /** @var Google_Service_GamesConfiguration_AchievementConfigurationDetail */
+  protected $published;
 
   public function setAchievementType($achievementType)
   {
@@ -585,6 +590,11 @@ class Google_Service_GamesConfiguration_AchievementConfigurationDetail extends G
   public $pointValue;
   public $sortRank;
 
+  /** @var Google_Service_GamesConfiguration_LocalizedStringBundle */
+  protected $description;
+
+  /** @var Google_Service_GamesConfiguration_LocalizedStringBundle */
+  protected $name;
 
   public function setDescription(Google_Service_GamesConfiguration_LocalizedStringBundle $description)
   {
@@ -646,6 +656,8 @@ class Google_Service_GamesConfiguration_AchievementConfigurationListResponse ext
   public $kind;
   public $nextPageToken;
 
+  /** @var Google_Service_GamesConfiguration_AchievementConfiguration[] */
+  protected $items;
 
   public function setItems($items)
   {
@@ -690,6 +702,23 @@ class Google_Service_GamesConfiguration_GamesNumberAffixConfiguration extends Go
   protected $zeroType = 'Google_Service_GamesConfiguration_LocalizedStringBundle';
   protected $zeroDataType = '';
 
+  /** @var Google_Service_GamesConfiguration_LocalizedStringBundle */
+  protected $few;
+
+  /** @var Google_Service_GamesConfiguration_LocalizedStringBundle */
+  protected $many;
+
+  /** @var Google_Service_GamesConfiguration_LocalizedStringBundle */
+  protected $one;
+
+  /** @var Google_Service_GamesConfiguration_LocalizedStringBundle */
+  protected $other;
+
+  /** @var Google_Service_GamesConfiguration_LocalizedStringBundle */
+  protected $two;
+
+  /** @var Google_Service_GamesConfiguration_LocalizedStringBundle */
+  protected $zero;
 
   public function setFew(Google_Service_GamesConfiguration_LocalizedStringBundle $few)
   {
@@ -751,6 +780,8 @@ class Google_Service_GamesConfiguration_GamesNumberFormatConfiguration extends G
   protected $suffixType = 'Google_Service_GamesConfiguration_GamesNumberAffixConfiguration';
   protected $suffixDataType = '';
 
+  /** @var Google_Service_GamesConfiguration_GamesNumberAffixConfiguration */
+  protected $suffix;
 
   public function setCurrencyCode($currencyCode)
   {
@@ -845,6 +876,11 @@ class Google_Service_GamesConfiguration_LeaderboardConfiguration extends Google_
   public $scoreOrder;
   public $token;
 
+  /** @var Google_Service_GamesConfiguration_LeaderboardConfigurationDetail */
+  protected $draft;
+
+  /** @var Google_Service_GamesConfiguration_LeaderboardConfigurationDetail */
+  protected $published;
 
   public function setDraft(Google_Service_GamesConfiguration_LeaderboardConfigurationDetail $draft)
   {
@@ -924,6 +960,11 @@ class Google_Service_GamesConfiguration_LeaderboardConfigurationDetail extends G
   protected $scoreFormatDataType = '';
   public $sortRank;
 
+  /** @var Google_Service_GamesConfiguration_LocalizedStringBundle */
+  protected $name;
+
+  /** @var Google_Service_GamesConfiguration_GamesNumberFormatConfiguration */
+  protected $scoreFormat;
 
   public function setIconUrl($iconUrl)
   {
@@ -977,6 +1018,8 @@ class Google_Service_GamesConfiguration_LeaderboardConfigurationListResponse ext
   public $kind;
   public $nextPageToken;
 
+  /** @var Google_Service_GamesConfiguration_LeaderboardConfiguration[] */
+  protected $items;
 
   public function setItems($items)
   {
@@ -1048,6 +1091,8 @@ class Google_Service_GamesConfiguration_LocalizedStringBundle extends Google_Col
   protected $translationsType = 'Google_Service_GamesConfiguration_LocalizedString';
   protected $translationsDataType = 'array';
 
+  /** @var Google_Service_GamesConfiguration_LocalizedString[] */
+  protected $translations;
 
   public function setKind($kind)
   {

@@ -664,6 +664,11 @@ class Google_Service_Resourceviews_Operation extends Google_Collection
   protected $warningsDataType = 'array';
   public $zone;
 
+  /** @var Google_Service_Resourceviews_OperationError */
+  protected $error;
+
+  /** @var Google_Service_Resourceviews_OperationWarnings[] */
+  protected $warnings;
 
   public function setClientOperationId($clientOperationId)
   {
@@ -851,6 +856,8 @@ class Google_Service_Resourceviews_OperationError extends Google_Collection
   protected $errorsType = 'Google_Service_Resourceviews_OperationErrorErrors';
   protected $errorsDataType = 'array';
 
+  /** @var Google_Service_Resourceviews_OperationErrorErrors[] */
+  protected $errors;
 
   public function setErrors($errors)
   {
@@ -909,6 +916,8 @@ class Google_Service_Resourceviews_OperationList extends Google_Collection
   public $nextPageToken;
   public $selfLink;
 
+  /** @var Google_Service_Resourceviews_Operation[] */
+  protected $items;
 
   public function setId($id)
   {
@@ -962,6 +971,8 @@ class Google_Service_Resourceviews_OperationWarnings extends Google_Collection
   protected $dataDataType = 'array';
   public $message;
 
+  /** @var Google_Service_Resourceviews_OperationWarningsData[] */
+  protected $data;
 
   public function setCode($code)
   {
@@ -1035,6 +1046,11 @@ class Google_Service_Resourceviews_ResourceView extends Google_Collection
   public $selfLink;
   public $size;
 
+  /** @var Google_Service_Resourceviews_ServiceEndpoint[] */
+  protected $endpoints;
+
+  /** @var Google_Service_Resourceviews_Label[] */
+  protected $labels;
 
   public function setCreationTimestamp($creationTimestamp)
   {
@@ -1187,6 +1203,8 @@ class Google_Service_Resourceviews_ZoneViewsGetServiceResponse extends Google_Co
   protected $endpointsDataType = 'array';
   public $fingerprint;
 
+  /** @var Google_Service_Resourceviews_ServiceEndpoint[] */
+  protected $endpoints;
 
   public function setEndpoints($endpoints)
   {
@@ -1217,6 +1235,8 @@ class Google_Service_Resourceviews_ZoneViewsList extends Google_Collection
   public $nextPageToken;
   public $selfLink;
 
+  /** @var Google_Service_Resourceviews_ResourceView[] */
+  protected $items;
 
   public function setItems($items)
   {
@@ -1262,6 +1282,8 @@ class Google_Service_Resourceviews_ZoneViewsListResourcesResponse extends Google
   public $network;
   public $nextPageToken;
 
+  /** @var Google_Service_Resourceviews_ListResourceResponseItem[] */
+  protected $items;
 
   public function setItems($items)
   {
@@ -1317,6 +1339,8 @@ class Google_Service_Resourceviews_ZoneViewsSetServiceRequest extends Google_Col
   public $fingerprint;
   public $resourceName;
 
+  /** @var Google_Service_Resourceviews_ServiceEndpoint[] */
+  protected $endpoints;
 
   public function setEndpoints($endpoints)
   {

@@ -2395,6 +2395,8 @@ class Google_Service_Games_AchievementDefinitionsListResponse extends Google_Col
   public $kind;
   public $nextPageToken;
 
+  /** @var Google_Service_Games_AchievementDefinition[] */
+  protected $items;
 
   public function setItems($items)
   {
@@ -2553,6 +2555,8 @@ class Google_Service_Games_AchievementUpdateMultipleRequest extends Google_Colle
   protected $updatesType = 'Google_Service_Games_AchievementUpdateRequest';
   protected $updatesDataType = 'array';
 
+  /** @var Google_Service_Games_AchievementUpdateRequest[] */
+  protected $updates;
 
   public function setKind($kind)
   {
@@ -2581,6 +2585,8 @@ class Google_Service_Games_AchievementUpdateMultipleResponse extends Google_Coll
   protected $updatedAchievementsType = 'Google_Service_Games_AchievementUpdateResponse';
   protected $updatedAchievementsDataType = 'array';
 
+  /** @var Google_Service_Games_AchievementUpdateResponse[] */
+  protected $updatedAchievements;
 
   public function setKind($kind)
   {
@@ -2612,6 +2618,11 @@ class Google_Service_Games_AchievementUpdateRequest extends Google_Model
   protected $setStepsAtLeastPayloadDataType = '';
   public $updateType;
 
+  /** @var Google_Service_Games_GamesAchievementIncrement */
+  protected $incrementPayload;
+
+  /** @var Google_Service_Games_GamesAchievementSetStepsAtLeast */
+  protected $setStepsAtLeastPayload;
 
   public function setAchievementId($achievementId)
   {
@@ -2829,6 +2840,14 @@ class Google_Service_Games_Application extends Google_Collection
   public $name;
   public $themeColor;
 
+  /** @var Google_Service_Games_ImageAsset[] */
+  protected $assets;
+
+  /** @var Google_Service_Games_ApplicationCategory */
+  protected $category;
+
+  /** @var Google_Service_Games_Instance[] */
+  protected $instances;
 
   public function setAchievementCount($achievementCount)
   {
@@ -3016,6 +3035,8 @@ class Google_Service_Games_CategoryListResponse extends Google_Collection
   public $kind;
   public $nextPageToken;
 
+  /** @var Google_Service_Games_Category[] */
+  protected $items;
 
   public function setItems($items)
   {
@@ -3052,6 +3073,8 @@ class Google_Service_Games_EventBatchRecordFailure extends Google_Model
   protected $rangeType = 'Google_Service_Games_EventPeriodRange';
   protected $rangeDataType = '';
 
+  /** @var Google_Service_Games_EventPeriodRange */
+  protected $range;
 
   public function setFailureCause($failureCause)
   {
@@ -3120,6 +3143,8 @@ class Google_Service_Games_EventDefinition extends Google_Collection
   public $kind;
   public $visibility;
 
+  /** @var Google_Service_Games_EventChild[] */
+  protected $childEvents;
 
   public function setChildEvents($childEvents)
   {
@@ -3197,6 +3222,8 @@ class Google_Service_Games_EventDefinitionListResponse extends Google_Collection
   public $kind;
   public $nextPageToken;
 
+  /** @var Google_Service_Games_EventDefinition[] */
+  protected $items;
 
   public function setItems($items)
   {
@@ -3270,6 +3297,11 @@ class Google_Service_Games_EventPeriodUpdate extends Google_Collection
   protected $updatesType = 'Google_Service_Games_EventUpdateRequest';
   protected $updatesDataType = 'array';
 
+  /** @var Google_Service_Games_EventPeriodRange */
+  protected $timePeriod;
+
+  /** @var Google_Service_Games_EventUpdateRequest[] */
+  protected $updates;
 
   public function setKind($kind)
   {
@@ -3343,6 +3375,8 @@ class Google_Service_Games_EventRecordRequest extends Google_Collection
   protected $timePeriodsType = 'Google_Service_Games_EventPeriodUpdate';
   protected $timePeriodsDataType = 'array';
 
+  /** @var Google_Service_Games_EventPeriodUpdate[] */
+  protected $timePeriods;
 
   public function setCurrentTimeMillis($currentTimeMillis)
   {
@@ -3426,6 +3460,14 @@ class Google_Service_Games_EventUpdateResponse extends Google_Collection
   protected $playerEventsType = 'Google_Service_Games_PlayerEvent';
   protected $playerEventsDataType = 'array';
 
+  /** @var Google_Service_Games_EventBatchRecordFailure[] */
+  protected $batchFailures;
+
+  /** @var Google_Service_Games_EventRecordFailure[] */
+  protected $eventFailures;
+
+  /** @var Google_Service_Games_PlayerEvent[] */
+  protected $playerEvents;
 
   public function setBatchFailures($batchFailures)
   {
@@ -3592,6 +3634,14 @@ class Google_Service_Games_Instance extends Google_Model
   protected $webInstanceType = 'Google_Service_Games_InstanceWebDetails';
   protected $webInstanceDataType = '';
 
+  /** @var Google_Service_Games_InstanceAndroidDetails */
+  protected $androidInstance;
+
+  /** @var Google_Service_Games_InstanceIosDetails */
+  protected $iosInstance;
+
+  /** @var Google_Service_Games_InstanceWebDetails */
+  protected $webInstance;
 
   public function setAcquisitionUri($acquisitionUri)
   {
@@ -3894,6 +3944,8 @@ class Google_Service_Games_LeaderboardEntry extends Google_Model
   public $timeSpan;
   public $writeTimestampMillis;
 
+  /** @var Google_Service_Games_Player */
+  protected $player;
 
   public function setFormattedScore($formattedScore)
   {
@@ -3979,6 +4031,8 @@ class Google_Service_Games_LeaderboardListResponse extends Google_Collection
   public $kind;
   public $nextPageToken;
 
+  /** @var Google_Service_Games_Leaderboard[] */
+  protected $items;
 
   public function setItems($items)
   {
@@ -4073,6 +4127,11 @@ class Google_Service_Games_LeaderboardScores extends Google_Collection
   protected $playerScoreDataType = '';
   public $prevPageToken;
 
+  /** @var Google_Service_Games_LeaderboardEntry[] */
+  protected $items;
+
+  /** @var Google_Service_Games_LeaderboardEntry */
+  protected $playerScore;
 
   public function setItems($items)
   {
@@ -4134,6 +4193,8 @@ class Google_Service_Games_MetagameConfig extends Google_Collection
   protected $playerLevelsType = 'Google_Service_Games_PlayerLevel';
   protected $playerLevelsDataType = 'array';
 
+  /** @var Google_Service_Games_PlayerLevel[] */
+  protected $playerLevels;
 
   public function setCurrentVersion($currentVersion)
   {
@@ -4292,6 +4353,14 @@ class Google_Service_Games_PeerChannelDiagnostics extends Google_Model
   protected $roundtripLatencyMillisType = 'Google_Service_Games_AggregateStats';
   protected $roundtripLatencyMillisDataType = '';
 
+  /** @var Google_Service_Games_AggregateStats */
+  protected $bytesReceived;
+
+  /** @var Google_Service_Games_AggregateStats */
+  protected $bytesSent;
+
+  /** @var Google_Service_Games_AggregateStats */
+  protected $roundtripLatencyMillis;
 
   public function setBytesReceived(Google_Service_Games_AggregateStats $bytesReceived)
   {
@@ -4371,6 +4440,11 @@ class Google_Service_Games_PeerSessionDiagnostics extends Google_Model
   protected $unreliableChannelType = 'Google_Service_Games_PeerChannelDiagnostics';
   protected $unreliableChannelDataType = '';
 
+  /** @var Google_Service_Games_PeerChannelDiagnostics */
+  protected $reliableChannel;
+
+  /** @var Google_Service_Games_PeerChannelDiagnostics */
+  protected $unreliableChannel;
 
   public function setConnectedTimestampMillis($connectedTimestampMillis)
   {
@@ -4467,6 +4541,14 @@ class Google_Service_Games_Player extends Google_Model
   public $playerId;
   public $title;
 
+  /** @var Google_Service_Games_PlayerExperienceInfo */
+  protected $experienceInfo;
+
+  /** @var Google_Service_Games_Played */
+  protected $lastPlayedWith;
+
+  /** @var Google_Service_Games_PlayerName */
+  protected $name;
 
   public function setAvatarImageUrl($avatarImageUrl)
   {
@@ -4631,6 +4713,8 @@ class Google_Service_Games_PlayerAchievementListResponse extends Google_Collecti
   public $kind;
   public $nextPageToken;
 
+  /** @var Google_Service_Games_PlayerAchievement[] */
+  protected $items;
 
   public function setItems($items)
   {
@@ -4721,6 +4805,8 @@ class Google_Service_Games_PlayerEventListResponse extends Google_Collection
   public $kind;
   public $nextPageToken;
 
+  /** @var Google_Service_Games_PlayerEvent[] */
+  protected $items;
 
   public function setItems($items)
   {
@@ -4760,6 +4846,11 @@ class Google_Service_Games_PlayerExperienceInfo extends Google_Model
   protected $nextLevelType = 'Google_Service_Games_PlayerLevel';
   protected $nextLevelDataType = '';
 
+  /** @var Google_Service_Games_PlayerLevel */
+  protected $currentLevel;
+
+  /** @var Google_Service_Games_PlayerLevel */
+  protected $nextLevel;
 
   public function setCurrentExperiencePoints($currentExperiencePoints)
   {
@@ -4820,6 +4911,11 @@ class Google_Service_Games_PlayerLeaderboardScore extends Google_Model
   public $timeSpan;
   public $writeTimestamp;
 
+  /** @var Google_Service_Games_LeaderboardScoreRank */
+  protected $publicRank;
+
+  /** @var Google_Service_Games_LeaderboardScoreRank */
+  protected $socialRank;
 
   public function setKind($kind)
   {
@@ -4907,6 +5003,11 @@ class Google_Service_Games_PlayerLeaderboardScoreListResponse extends Google_Col
   protected $playerType = 'Google_Service_Games_Player';
   protected $playerDataType = '';
 
+  /** @var Google_Service_Games_PlayerLeaderboardScore[] */
+  protected $items;
+
+  /** @var Google_Service_Games_Player */
+  protected $player;
 
   public function setItems($items)
   {
@@ -4996,6 +5097,8 @@ class Google_Service_Games_PlayerListResponse extends Google_Collection
   public $kind;
   public $nextPageToken;
 
+  /** @var Google_Service_Games_Player[] */
+  protected $items;
 
   public function setItems($items)
   {
@@ -5111,6 +5214,8 @@ class Google_Service_Games_PlayerScoreListResponse extends Google_Collection
   protected $submittedScoresType = 'Google_Service_Games_PlayerScoreResponse';
   protected $submittedScoresDataType = 'array';
 
+  /** @var Google_Service_Games_PlayerScoreResponse[] */
+  protected $submittedScores;
 
   public function setKind($kind)
   {
@@ -5143,6 +5248,8 @@ class Google_Service_Games_PlayerScoreResponse extends Google_Collection
   protected $unbeatenScoresType = 'Google_Service_Games_PlayerScore';
   protected $unbeatenScoresDataType = 'array';
 
+  /** @var Google_Service_Games_PlayerScore[] */
+  protected $unbeatenScores;
 
   public function setBeatenScoreTimeSpans($beatenScoreTimeSpans)
   {
@@ -5203,6 +5310,8 @@ class Google_Service_Games_PlayerScoreSubmissionList extends Google_Collection
   protected $scoresType = 'Google_Service_Games_ScoreSubmission';
   protected $scoresDataType = 'array';
 
+  /** @var Google_Service_Games_ScoreSubmission[] */
+  protected $scores;
 
   public function setKind($kind)
   {
@@ -5232,6 +5341,8 @@ class Google_Service_Games_PushToken extends Google_Model
   public $kind;
   public $language;
 
+  /** @var Google_Service_Games_PushTokenId */
+  protected $id;
 
   public function setClientRevision($clientRevision)
   {
@@ -5275,6 +5386,8 @@ class Google_Service_Games_PushTokenId extends Google_Model
   protected $iosDataType = '';
   public $kind;
 
+  /** @var Google_Service_Games_PushTokenIdIos */
+  protected $ios;
 
   public function setIos(Google_Service_Games_PushTokenIdIos $ios)
   {
@@ -5345,6 +5458,8 @@ class Google_Service_Games_Quest extends Google_Collection
   public $startTimestampMillis;
   public $state;
 
+  /** @var Google_Service_Games_QuestMilestone[] */
+  protected $milestones;
 
   public function setAcceptedTimestampMillis($acceptedTimestampMillis)
   {
@@ -5524,6 +5639,14 @@ class Google_Service_Games_QuestCriterion extends Google_Model
   protected $initialPlayerProgressDataType = '';
   public $kind;
 
+  /** @var Google_Service_Games_QuestContribution */
+  protected $completionContribution;
+
+  /** @var Google_Service_Games_QuestContribution */
+  protected $currentContribution;
+
+  /** @var Google_Service_Games_QuestContribution */
+  protected $initialPlayerProgress;
 
   public function setCompletionContribution(Google_Service_Games_QuestContribution $completionContribution)
   {
@@ -5577,6 +5700,8 @@ class Google_Service_Games_QuestListResponse extends Google_Collection
   public $kind;
   public $nextPageToken;
 
+  /** @var Google_Service_Games_Quest[] */
+  protected $items;
 
   public function setItems($items)
   {
@@ -5616,6 +5741,8 @@ class Google_Service_Games_QuestMilestone extends Google_Collection
   public $kind;
   public $state;
 
+  /** @var Google_Service_Games_QuestCriterion[] */
+  protected $criteria;
 
   public function setCompletionRewardData($completionRewardData)
   {
@@ -5718,6 +5845,20 @@ class Google_Service_Games_Room extends Google_Collection
   public $status;
   public $variant;
 
+  /** @var Google_Service_Games_RoomAutoMatchingCriteria */
+  protected $autoMatchingCriteria;
+
+  /** @var Google_Service_Games_RoomAutoMatchStatus */
+  protected $autoMatchingStatus;
+
+  /** @var Google_Service_Games_RoomModification */
+  protected $creationDetails;
+
+  /** @var Google_Service_Games_RoomModification */
+  protected $lastUpdateDetails;
+
+  /** @var Google_Service_Games_RoomParticipant[] */
+  protected $participants;
 
   public function setApplicationId($applicationId)
   {
@@ -5938,6 +6079,14 @@ class Google_Service_Games_RoomCreateRequest extends Google_Collection
   public $requestId;
   public $variant;
 
+  /** @var Google_Service_Games_RoomAutoMatchingCriteria */
+  protected $autoMatchingCriteria;
+
+  /** @var Google_Service_Games_RoomClientAddress */
+  protected $clientAddress;
+
+  /** @var Google_Service_Games_NetworkDiagnostics */
+  protected $networkDiagnostics;
 
   public function setAutoMatchingCriteria(Google_Service_Games_RoomAutoMatchingCriteria $autoMatchingCriteria)
   {
@@ -6017,6 +6166,11 @@ class Google_Service_Games_RoomJoinRequest extends Google_Collection
   protected $networkDiagnosticsType = 'Google_Service_Games_NetworkDiagnostics';
   protected $networkDiagnosticsDataType = '';
 
+  /** @var Google_Service_Games_RoomClientAddress */
+  protected $clientAddress;
+
+  /** @var Google_Service_Games_NetworkDiagnostics */
+  protected $networkDiagnostics;
 
   public function setCapabilities($capabilities)
   {
@@ -6067,6 +6221,8 @@ class Google_Service_Games_RoomLeaveDiagnostics extends Google_Collection
   protected $peerSessionDataType = 'array';
   public $socketsUsed;
 
+  /** @var Google_Service_Games_PeerSessionDiagnostics[] */
+  protected $peerSession;
 
   public function setAndroidNetworkSubtype($androidNetworkSubtype)
   {
@@ -6143,6 +6299,8 @@ class Google_Service_Games_RoomLeaveRequest extends Google_Model
   protected $leaveDiagnosticsDataType = '';
   public $reason;
 
+  /** @var Google_Service_Games_RoomLeaveDiagnostics */
+  protected $leaveDiagnostics;
 
   public function setKind($kind)
   {
@@ -6180,6 +6338,8 @@ class Google_Service_Games_RoomList extends Google_Collection
   public $kind;
   public $nextPageToken;
 
+  /** @var Google_Service_Games_Room[] */
+  protected $items;
 
   public function setItems($items)
   {
@@ -6323,6 +6483,8 @@ class Google_Service_Games_RoomP2PStatuses extends Google_Collection
   protected $updatesType = 'Google_Service_Games_RoomP2PStatus';
   protected $updatesDataType = 'array';
 
+  /** @var Google_Service_Games_RoomP2PStatus[] */
+  protected $updates;
 
   public function setKind($kind)
   {
@@ -6361,6 +6523,14 @@ class Google_Service_Games_RoomParticipant extends Google_Collection
   protected $playerDataType = '';
   public $status;
 
+  /** @var Google_Service_Games_AnonymousPlayer */
+  protected $autoMatchedPlayer;
+
+  /** @var Google_Service_Games_RoomClientAddress */
+  protected $clientAddress;
+
+  /** @var Google_Service_Games_Player */
+  protected $player;
 
   public function setAutoMatched($autoMatched)
   {
@@ -6458,6 +6628,11 @@ class Google_Service_Games_RoomStatus extends Google_Collection
   public $status;
   public $statusVersion;
 
+  /** @var Google_Service_Games_RoomAutoMatchStatus */
+  protected $autoMatchingStatus;
+
+  /** @var Google_Service_Games_RoomParticipant[] */
+  protected $participants;
 
   public function setAutoMatchingStatus(Google_Service_Games_RoomAutoMatchStatus $autoMatchingStatus)
   {
@@ -6579,6 +6754,8 @@ class Google_Service_Games_Snapshot extends Google_Model
   public $type;
   public $uniqueName;
 
+  /** @var Google_Service_Games_SnapshotImage */
+  protected $coverImage;
 
   public function setCoverImage(Google_Service_Games_SnapshotImage $coverImage)
   {
@@ -6734,6 +6911,8 @@ class Google_Service_Games_SnapshotListResponse extends Google_Collection
   public $kind;
   public $nextPageToken;
 
+  /** @var Google_Service_Games_Snapshot[] */
+  protected $items;
 
   public function setItems($items)
   {
@@ -6838,6 +7017,26 @@ class Google_Service_Games_TurnBasedMatch extends Google_Collection
   public $variant;
   public $withParticipantId;
 
+  /** @var Google_Service_Games_TurnBasedAutoMatchingCriteria */
+  protected $autoMatchingCriteria;
+
+  /** @var Google_Service_Games_TurnBasedMatchModification */
+  protected $creationDetails;
+
+  /** @var Google_Service_Games_TurnBasedMatchData */
+  protected $data;
+
+  /** @var Google_Service_Games_TurnBasedMatchModification */
+  protected $lastUpdateDetails;
+
+  /** @var Google_Service_Games_TurnBasedMatchParticipant[] */
+  protected $participants;
+
+  /** @var Google_Service_Games_TurnBasedMatchData */
+  protected $previousMatchData;
+
+  /** @var Google_Service_Games_ParticipantResult[] */
+  protected $results;
 
   public function setApplicationId($applicationId)
   {
@@ -7013,6 +7212,8 @@ class Google_Service_Games_TurnBasedMatchCreateRequest extends Google_Collection
   public $requestId;
   public $variant;
 
+  /** @var Google_Service_Games_TurnBasedAutoMatchingCriteria */
+  protected $autoMatchingCriteria;
 
   public function setAutoMatchingCriteria(Google_Service_Games_TurnBasedAutoMatchingCriteria $autoMatchingCriteria)
   {
@@ -7127,6 +7328,8 @@ class Google_Service_Games_TurnBasedMatchList extends Google_Collection
   public $kind;
   public $nextPageToken;
 
+  /** @var Google_Service_Games_TurnBasedMatch[] */
+  protected $items;
 
   public function setItems($items)
   {
@@ -7203,6 +7406,12 @@ class Google_Service_Games_TurnBasedMatchParticipant extends Google_Model
   public $status;
 
 
+  /** @var Google_Service_Games_AnonymousPlayer */
+  protected $autoMatchedPlayer;
+
+  /** @var Google_Service_Games_Player */
+  protected $player;
+
   public function setAutoMatched($autoMatched)
   {
     $this->autoMatched = $autoMatched;
@@ -7263,6 +7472,11 @@ class Google_Service_Games_TurnBasedMatchRematch extends Google_Model
   protected $rematchType = 'Google_Service_Games_TurnBasedMatch';
   protected $rematchDataType = '';
 
+  /** @var Google_Service_Games_TurnBasedMatch */
+  protected $previousMatch;
+
+  /** @var Google_Service_Games_TurnBasedMatch */
+  protected $rematch;
 
   public function setKind($kind)
   {
@@ -7302,6 +7516,11 @@ class Google_Service_Games_TurnBasedMatchResults extends Google_Collection
   protected $resultsType = 'Google_Service_Games_ParticipantResult';
   protected $resultsDataType = 'array';
 
+  /** @var Google_Service_Games_TurnBasedMatchDataRequest */
+  protected $data;
+
+  /** @var Google_Service_Games_ParticipantResult[] */
+  protected $results;
 
   public function setData(Google_Service_Games_TurnBasedMatchDataRequest $data)
   {
@@ -7348,6 +7567,8 @@ class Google_Service_Games_TurnBasedMatchSync extends Google_Collection
   public $moreAvailable;
   public $nextPageToken;
 
+  /** @var Google_Service_Games_TurnBasedMatch[] */
+  protected $items;
 
   public function setItems($items)
   {
@@ -7396,6 +7617,11 @@ class Google_Service_Games_TurnBasedMatchTurn extends Google_Collection
   protected $resultsType = 'Google_Service_Games_ParticipantResult';
   protected $resultsDataType = 'array';
 
+  /** @var Google_Service_Games_TurnBasedMatchDataRequest */
+  protected $data;
+
+  /** @var Google_Service_Games_ParticipantResult[] */
+  protected $results;
 
   public function setData(Google_Service_Games_TurnBasedMatchDataRequest $data)
   {

@@ -657,6 +657,8 @@ class Google_Service_Reseller_ChangePlanRequest extends Google_Model
   protected $seatsType = 'Google_Service_Reseller_Seats';
   protected $seatsDataType = '';
 
+  /** @var Google_Service_Reseller_Seats */
+  protected $seats;
 
   public function setKind($kind)
   {
@@ -706,6 +708,8 @@ class Google_Service_Reseller_Customer extends Google_Model
   protected $postalAddressDataType = '';
   public $resourceUiUrl;
 
+  /** @var Google_Service_Reseller_Address */
+  protected $postalAddress;
 
   public function setAlternateEmail($alternateEmail)
   {
@@ -869,6 +873,20 @@ class Google_Service_Reseller_Subscription extends Google_Collection
   protected $trialSettingsType = 'Google_Service_Reseller_SubscriptionTrialSettings';
   protected $trialSettingsDataType = '';
 
+  /** @var Google_Service_Reseller_SubscriptionPlan */
+  protected $plan;
+
+  /** @var Google_Service_Reseller_RenewalSettings */
+  protected $renewalSettings;
+
+  /** @var Google_Service_Reseller_Seats */
+  protected $seats;
+
+  /** @var Google_Service_Reseller_SubscriptionTransferInfo */
+  protected $transferInfo;
+
+  /** @var Google_Service_Reseller_SubscriptionTrialSettings */
+  protected $trialSettings;
 
   public function setBillingMethod($billingMethod)
   {
@@ -1001,6 +1019,8 @@ class Google_Service_Reseller_SubscriptionPlan extends Google_Model
   public $isCommitmentPlan;
   public $planName;
 
+  /** @var Google_Service_Reseller_SubscriptionPlanCommitmentInterval */
+  protected $commitmentInterval;
 
   public function setCommitmentInterval(Google_Service_Reseller_SubscriptionPlanCommitmentInterval $commitmentInterval)
   {
@@ -1116,6 +1136,8 @@ class Google_Service_Reseller_Subscriptions extends Google_Collection
   protected $subscriptionsType = 'Google_Service_Reseller_Subscription';
   protected $subscriptionsDataType = 'array';
 
+  /** @var Google_Service_Reseller_Subscription[] */
+  protected $subscriptions;
 
   public function setKind($kind)
   {

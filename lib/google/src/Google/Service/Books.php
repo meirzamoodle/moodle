@@ -2685,6 +2685,14 @@ class Google_Service_Books_Annotation extends Google_Collection
   public $updated;
   public $volumeId;
 
+  /** @var Google_Service_Books_AnnotationClientVersionRanges */
+  protected $clientVersionRanges;
+
+  /** @var Google_Service_Books_AnnotationCurrentVersionRanges */
+  protected $currentVersionRanges;
+
+  /** @var Google_Service_Books_AnnotationLayerSummary */
+  protected $layerSummary;
 
   public function setAfterSelectedText($afterSelectedText)
   {
@@ -2838,6 +2846,17 @@ class Google_Service_Books_AnnotationClientVersionRanges extends Google_Model
   protected $imageCfiRangeType = 'Google_Service_Books_BooksAnnotationsRange';
   protected $imageCfiRangeDataType = '';
 
+  /** @var Google_Service_Books_BooksAnnotationsRange */
+  protected $cfiRange;
+
+  /** @var Google_Service_Books_BooksAnnotationsRange */
+  protected $gbImageRange;
+
+  /** @var Google_Service_Books_BooksAnnotationsRange */
+  protected $gbTextRange;
+
+  /** @var Google_Service_Books_BooksAnnotationsRange */
+  protected $imageCfiRange;
 
   public function setCfiRange(Google_Service_Books_BooksAnnotationsRange $cfiRange)
   {
@@ -2895,6 +2914,17 @@ class Google_Service_Books_AnnotationCurrentVersionRanges extends Google_Model
   protected $imageCfiRangeType = 'Google_Service_Books_BooksAnnotationsRange';
   protected $imageCfiRangeDataType = '';
 
+  /** @var Google_Service_Books_BooksAnnotationsRange */
+  protected $cfiRange;
+
+  /** @var Google_Service_Books_BooksAnnotationsRange */
+  protected $gbImageRange;
+
+  /** @var Google_Service_Books_BooksAnnotationsRange */
+  protected $gbTextRange;
+
+  /** @var Google_Service_Books_BooksAnnotationsRange */
+  protected $imageCfiRange;
 
   public function setCfiRange(Google_Service_Books_BooksAnnotationsRange $cfiRange)
   {
@@ -3074,6 +3104,8 @@ class Google_Service_Books_Annotations extends Google_Collection
   public $nextPageToken;
   public $totalItems;
 
+  /** @var Google_Service_Books_Annotation[] */
+  protected $items;
 
   public function setItems($items)
   {
@@ -3118,6 +3150,8 @@ class Google_Service_Books_AnnotationsSummary extends Google_Collection
   protected $layersType = 'Google_Service_Books_AnnotationsSummaryLayers';
   protected $layersDataType = 'array';
 
+  /** @var Google_Service_Books_AnnotationsSummaryLayers[] */
+  protected $layers;
 
   public function setKind($kind)
   {
@@ -3201,6 +3235,8 @@ class Google_Service_Books_Annotationsdata extends Google_Collection
   public $nextPageToken;
   public $totalItems;
 
+  /** @var Google_Service_Books_Annotationdata[] */
+  protected $items;
 
   public function setItems($items)
   {
@@ -3449,6 +3485,8 @@ class Google_Service_Books_Bookshelves extends Google_Collection
   protected $itemsDataType = 'array';
   public $kind;
 
+  /** @var Google_Service_Books_Bookshelf[] */
+  protected $items;
 
   public function setItems($items)
   {
@@ -3477,6 +3515,8 @@ class Google_Service_Books_Category extends Google_Collection
   protected $itemsDataType = 'array';
   public $kind;
 
+  /** @var Google_Service_Books_CategoryItems[] */
+  protected $items;
 
   public function setItems($items)
   {
@@ -3648,6 +3688,11 @@ class Google_Service_Books_Dictlayerdata extends Google_Model
   protected $dictDataType = '';
   public $kind;
 
+  /** @var Google_Service_Books_DictlayerdataCommon */
+  protected $common;
+
+  /** @var Google_Service_Books_DictlayerdataDict */
+  protected $dict;
 
   public function setCommon(Google_Service_Books_DictlayerdataCommon $common)
   {
@@ -3702,6 +3747,11 @@ class Google_Service_Books_DictlayerdataDict extends Google_Collection
   protected $wordsType = 'Google_Service_Books_DictlayerdataDictWords';
   protected $wordsDataType = 'array';
 
+  /** @var Google_Service_Books_DictlayerdataDictSource */
+  protected $source;
+
+  /** @var Google_Service_Books_DictlayerdataDictWords[] */
+  protected $words;
 
   public function setSource(Google_Service_Books_DictlayerdataDictSource $source)
   {
@@ -3761,6 +3811,17 @@ class Google_Service_Books_DictlayerdataDictWords extends Google_Collection
   protected $sourceType = 'Google_Service_Books_DictlayerdataDictWordsSource';
   protected $sourceDataType = '';
 
+  /** @var Google_Service_Books_DictlayerdataDictWordsDerivatives[] */
+  protected $derivatives;
+
+  /** @var Google_Service_Books_DictlayerdataDictWordsExamples[] */
+  protected $examples;
+
+  /** @var Google_Service_Books_DictlayerdataDictWordsSenses[] */
+  protected $senses;
+
+  /** @var Google_Service_Books_DictlayerdataDictWordsSource */
+  protected $source;
 
   public function setDerivatives($derivatives)
   {
@@ -3804,6 +3865,8 @@ class Google_Service_Books_DictlayerdataDictWordsDerivatives extends Google_Mode
   protected $sourceDataType = '';
   public $text;
 
+  /** @var Google_Service_Books_DictlayerdataDictWordsDerivativesSource */
+  protected $source;
 
   public function setSource(Google_Service_Books_DictlayerdataDictWordsDerivativesSource $source)
   {
@@ -3857,6 +3920,8 @@ class Google_Service_Books_DictlayerdataDictWordsExamples extends Google_Model
   protected $sourceDataType = '';
   public $text;
 
+  /** @var Google_Service_Books_DictlayerdataDictWordsExamplesSource */
+  protected $source;
 
   public function setSource(Google_Service_Books_DictlayerdataDictWordsExamplesSource $source)
   {
@@ -3920,6 +3985,17 @@ class Google_Service_Books_DictlayerdataDictWordsSenses extends Google_Collectio
   protected $synonymsType = 'Google_Service_Books_DictlayerdataDictWordsSensesSynonyms';
   protected $synonymsDataType = 'array';
 
+  /** @var Google_Service_Books_DictlayerdataDictWordsSensesConjugations[] */
+  protected $conjugations;
+
+  /** @var Google_Service_Books_DictlayerdataDictWordsSensesDefinitions[] */
+  protected $definitions;
+
+  /** @var Google_Service_Books_DictlayerdataDictWordsSensesSource */
+  protected $source;
+
+  /** @var Google_Service_Books_DictlayerdataDictWordsSensesSynonyms[] */
+  protected $synonyms;
 
   public function setConjugations($conjugations)
   {
@@ -4022,6 +4098,8 @@ class Google_Service_Books_DictlayerdataDictWordsSensesDefinitions extends Googl
   protected $examplesType = 'Google_Service_Books_DictlayerdataDictWordsSensesDefinitionsExamples';
   protected $examplesDataType = 'array';
 
+  /** @var Google_Service_Books_DictlayerdataDictWordsSensesDefinitionsExamples[] */
+  protected $examples;
 
   public function setDefinition($definition)
   {
@@ -4049,6 +4127,8 @@ class Google_Service_Books_DictlayerdataDictWordsSensesDefinitionsExamples exten
   protected $sourceDataType = '';
   public $text;
 
+  /** @var Google_Service_Books_DictlayerdataDictWordsSensesDefinitionsExamplesSource */
+  protected $source;
 
   public function setSource(Google_Service_Books_DictlayerdataDictWordsSensesDefinitionsExamplesSource $source)
   {
@@ -4128,6 +4208,8 @@ class Google_Service_Books_DictlayerdataDictWordsSensesSynonyms extends Google_M
   protected $sourceDataType = '';
   public $text;
 
+  /** @var Google_Service_Books_DictlayerdataDictWordsSensesSynonymsSource */
+  protected $source;
 
   public function setSource(Google_Service_Books_DictlayerdataDictWordsSensesSynonymsSource $source)
   {
@@ -4209,6 +4291,8 @@ class Google_Service_Books_Discoveryclusters extends Google_Collection
   public $kind;
   public $totalClusters;
 
+  /** @var Google_Service_Books_DiscoveryclustersClusters[] */
+  protected $clusters;
 
   public function setClusters($clusters)
   {
@@ -4251,6 +4335,11 @@ class Google_Service_Books_DiscoveryclustersClusters extends Google_Collection
   protected $volumesType = 'Google_Service_Books_Volume';
   protected $volumesDataType = 'array';
 
+  /** @var Google_Service_Books_DiscoveryclustersClustersBannerWithContentContainer */
+  protected $bannerWithContentContainer;
+
+  /** @var Google_Service_Books_Volume[] */
+  protected $volumes;
 
   public function setBannerWithContentContainer(Google_Service_Books_DiscoveryclustersClustersBannerWithContentContainer $bannerWithContentContainer)
   {
@@ -4489,6 +4578,8 @@ class Google_Service_Books_DownloadAccesses extends Google_Collection
   protected $downloadAccessListDataType = 'array';
   public $kind;
 
+  /** @var Google_Service_Books_DownloadAccessRestriction[] */
+  protected $downloadAccessList;
 
   public function setDownloadAccessList($downloadAccessList)
   {
@@ -4518,6 +4609,11 @@ class Google_Service_Books_Geolayerdata extends Google_Model
   protected $geoDataType = '';
   public $kind;
 
+  /** @var Google_Service_Books_GeolayerdataCommon */
+  protected $common;
+
+  /** @var Google_Service_Books_GeolayerdataGeo */
+  protected $geo;
 
   public function setCommon(Google_Service_Books_GeolayerdataCommon $common)
   {
@@ -4614,6 +4710,11 @@ class Google_Service_Books_GeolayerdataGeo extends Google_Collection
   protected $viewportDataType = '';
   public $zoom;
 
+  /** @var Google_Service_Books_GeolayerdataGeoBoundary[] */
+  protected $boundary;
+
+  /** @var Google_Service_Books_GeolayerdataGeoViewport */
+  protected $viewport;
 
   public function setBoundary($boundary)
   {
@@ -4716,6 +4817,11 @@ class Google_Service_Books_GeolayerdataGeoViewport extends Google_Model
   protected $loType = 'Google_Service_Books_GeolayerdataGeoViewportLo';
   protected $loDataType = '';
 
+  /** @var Google_Service_Books_GeolayerdataGeoViewportHi */
+  protected $hi;
+
+  /** @var Google_Service_Books_GeolayerdataGeoViewportLo */
+  protected $lo;
 
   public function setHi(Google_Service_Books_GeolayerdataGeoViewportHi $hi)
   {
@@ -4797,6 +4903,8 @@ class Google_Service_Books_Layersummaries extends Google_Collection
   public $kind;
   public $totalItems;
 
+  /** @var Google_Service_Books_Layersummary[] */
+  protected $items;
 
   public function setItems($items)
   {
@@ -4959,6 +5067,8 @@ class Google_Service_Books_Metadata extends Google_Collection
   protected $itemsDataType = 'array';
   public $kind;
 
+  /** @var Google_Service_Books_MetadataItems[] */
+  protected $items;
 
   public function setItems($items)
   {
@@ -5095,6 +5205,8 @@ class Google_Service_Books_Offers extends Google_Collection
   protected $itemsDataType = 'array';
   public $kind;
 
+  /** @var Google_Service_Books_OffersItems[] */
+  protected $items;
 
   public function setItems($items)
   {
@@ -5125,6 +5237,8 @@ class Google_Service_Books_OffersItems extends Google_Collection
   protected $itemsType = 'Google_Service_Books_OffersItemsItems';
   protected $itemsDataType = 'array';
 
+  /** @var Google_Service_Books_OffersItemsItems[] */
+  protected $items;
 
   public function setArtUrl($artUrl)
   {
@@ -5303,6 +5417,11 @@ class Google_Service_Books_RequestAccess extends Google_Model
   protected $downloadAccessDataType = '';
   public $kind;
 
+  /** @var Google_Service_Books_ConcurrentAccessRestriction */
+  protected $concurrentAccess;
+
+  /** @var Google_Service_Books_DownloadAccessRestriction */
+  protected $downloadAccess;
 
   public function setConcurrentAccess(Google_Service_Books_ConcurrentAccessRestriction $concurrentAccess)
   {
@@ -5347,6 +5466,11 @@ class Google_Service_Books_Review extends Google_Model
   public $type;
   public $volumeId;
 
+  /** @var Google_Service_Books_ReviewAuthor */
+  protected $author;
+
+  /** @var Google_Service_Books_ReviewSource */
+  protected $source;
 
   public function setAuthor(Google_Service_Books_ReviewAuthor $author)
   {
@@ -5492,6 +5616,11 @@ class Google_Service_Books_Usersettings extends Google_Model
   protected $notificationType = 'Google_Service_Books_UsersettingsNotification';
   protected $notificationDataType = '';
 
+  /** @var Google_Service_Books_UsersettingsNotesExport */
+  protected $notesExport;
+
+  /** @var Google_Service_Books_UsersettingsNotification */
+  protected $notification;
 
   public function setKind($kind)
   {
@@ -5552,6 +5681,8 @@ class Google_Service_Books_UsersettingsNotification extends Google_Model
   protected $moreFromAuthorsType = 'Google_Service_Books_UsersettingsNotificationMoreFromAuthors';
   protected $moreFromAuthorsDataType = '';
 
+  /** @var Google_Service_Books_UsersettingsNotificationMoreFromAuthors */
+  protected $moreFromAuthors;
 
   public function setMoreFromAuthors(Google_Service_Books_UsersettingsNotificationMoreFromAuthors $moreFromAuthors)
   {
@@ -5604,6 +5735,26 @@ class Google_Service_Books_Volume extends Google_Model
   protected $volumeInfoType = 'Google_Service_Books_VolumeVolumeInfo';
   protected $volumeInfoDataType = '';
 
+  /** @var Google_Service_Books_VolumeAccessInfo */
+  protected $accessInfo;
+
+  /** @var Google_Service_Books_VolumeLayerInfo */
+  protected $layerInfo;
+
+  /** @var Google_Service_Books_VolumeRecommendedInfo */
+  protected $recommendedInfo;
+
+  /** @var Google_Service_Books_VolumeSaleInfo */
+  protected $saleInfo;
+
+  /** @var Google_Service_Books_VolumeSearchInfo */
+  protected $searchInfo;
+
+  /** @var Google_Service_Books_VolumeUserInfo */
+  protected $userInfo;
+
+  /** @var Google_Service_Books_VolumeVolumeInfo */
+  protected $volumeInfo;
 
   public function setAccessInfo(Google_Service_Books_VolumeAccessInfo $accessInfo)
   {
@@ -5705,6 +5856,8 @@ class Google_Service_Books_Volume2 extends Google_Collection
   public $kind;
   public $nextPageToken;
 
+  /** @var Google_Service_Books_Volume[] */
+  protected $items;
 
   public function setItems($items)
   {
@@ -5754,6 +5907,14 @@ class Google_Service_Books_VolumeAccessInfo extends Google_Model
   public $viewability;
   public $webReaderLink;
 
+  /** @var Google_Service_Books_DownloadAccessRestriction */
+  protected $downloadAccess;
+
+  /** @var Google_Service_Books_VolumeAccessInfoEpub */
+  protected $epub;
+
+  /** @var Google_Service_Books_VolumeAccessInfoPdf */
+  protected $pdf;
 
   public function setAccessViewStatus($accessViewStatus)
   {
@@ -5947,6 +6108,8 @@ class Google_Service_Books_VolumeLayerInfo extends Google_Collection
   protected $layersType = 'Google_Service_Books_VolumeLayerInfoLayers';
   protected $layersDataType = 'array';
 
+  /** @var Google_Service_Books_VolumeLayerInfoLayers */
+  protected $layers;
 
   public function setLayers($layers)
   {
@@ -6018,6 +6181,14 @@ class Google_Service_Books_VolumeSaleInfo extends Google_Collection
   protected $retailPriceDataType = '';
   public $saleability;
 
+  /** @var Google_Service_Books_VolumeSaleInfoListPrice */
+  protected $listPrice;
+
+  /** @var Google_Service_Books_VolumeSaleInfoOffers[] */
+  protected $offers;
+
+  /** @var Google_Service_Books_VolumeSaleInfoRetailPrice */
+  protected $retailPrice;
 
   public function setBuyLink($buyLink)
   {
@@ -6123,6 +6294,14 @@ class Google_Service_Books_VolumeSaleInfoOffers extends Google_Model
   protected $retailPriceType = 'Google_Service_Books_VolumeSaleInfoOffersRetailPrice';
   protected $retailPriceDataType = '';
 
+  /** @var Google_Service_Books_VolumeSaleInfoOffersListPrice */
+  protected $listPrice;
+
+  /** @var Google_Service_Books_VolumeSaleInfoOffersRentalDuration */
+  protected $rentalDuration;
+
+  /** @var Google_Service_Books_VolumeSaleInfoOffersRetailPrice */
+  protected $retailPrice;
 
   public function setFinskyOfferType($finskyOfferType)
   {
@@ -6302,6 +6481,20 @@ class Google_Service_Books_VolumeUserInfo extends Google_Model
   protected $userUploadedVolumeInfoType = 'Google_Service_Books_VolumeUserInfoUserUploadedVolumeInfo';
   protected $userUploadedVolumeInfoDataType = '';
 
+  /** @var Google_Service_Books_VolumeUserInfoCopy */
+  protected $copy;
+
+  /** @var Google_Service_Books_ReadingPosition */
+  protected $readingPosition;
+
+  /** @var Google_Service_Books_VolumeUserInfoRentalPeriod */
+  protected $rentalPeriod;
+
+  /** @var Google_Service_Books_Review */
+  protected $review;
+
+  /** @var Google_Service_Books_VolumeUserInfoUserUploadedVolumeInfo */
+  protected $userUploadedVolumeInfo;
 
   public function setAcquisitionType($acquisitionType)
   {
@@ -6530,6 +6723,14 @@ class Google_Service_Books_VolumeVolumeInfo extends Google_Collection
   public $subtitle;
   public $title;
 
+  /** @var Google_Service_Books_VolumeVolumeInfoDimensions */
+  protected $dimensions;
+
+  /** @var Google_Service_Books_VolumeVolumeInfoImageLinks */
+  protected $imageLinks;
+
+  /** @var Google_Service_Books_VolumeVolumeInfoIndustryIdentifiers[] */
+  protected $industryIdentifiers;
 
   public function setAllowAnonLogging($allowAnonLogging)
   {
@@ -6877,6 +7078,8 @@ class Google_Service_Books_Volumeannotation extends Google_Collection
   public $updated;
   public $volumeId;
 
+  /** @var Google_Service_Books_VolumeannotationContentRanges */
+  protected $contentRanges;
 
   public function setAnnotationDataId($annotationDataId)
   {
@@ -7004,6 +7207,14 @@ class Google_Service_Books_VolumeannotationContentRanges extends Google_Model
   protected $gbTextRangeType = 'Google_Service_Books_BooksAnnotationsRange';
   protected $gbTextRangeDataType = '';
 
+  /** @var Google_Service_Books_BooksAnnotationsRange */
+  protected $cfiRange;
+
+  /** @var Google_Service_Books_BooksAnnotationsRange */
+  protected $gbImageRange;
+
+  /** @var Google_Service_Books_BooksAnnotationsRange */
+  protected $gbTextRange;
 
   public function setCfiRange(Google_Service_Books_BooksAnnotationsRange $cfiRange)
   {
@@ -7051,6 +7262,8 @@ class Google_Service_Books_Volumeannotations extends Google_Collection
   public $totalItems;
   public $version;
 
+  /** @var Google_Service_Books_Volumeannotation[] */
+  protected $items;
 
   public function setItems($items)
   {
@@ -7104,6 +7317,8 @@ class Google_Service_Books_Volumes extends Google_Collection
   public $kind;
   public $totalItems;
 
+  /** @var Google_Service_Books_Volume[] */
+  protected $items;
 
   public function setItems($items)
   {

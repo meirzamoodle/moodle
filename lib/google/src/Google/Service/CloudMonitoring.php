@@ -522,6 +522,8 @@ class Google_Service_CloudMonitoring_ListMetricDescriptorsResponse extends Googl
   protected $metricsDataType = 'array';
   public $nextPageToken;
 
+  /** @var Google_Service_CloudMonitoring_MetricDescriptor[] */
+  protected $metrics;
 
   public function setKind($kind)
   {
@@ -578,6 +580,8 @@ class Google_Service_CloudMonitoring_ListTimeseriesDescriptorsResponse extends G
   protected $timeseriesDataType = 'array';
   public $youngest;
 
+  /** @var Google_Service_CloudMonitoring_TimeseriesDescriptor[] */
+  protected $timeseries;
 
   public function setKind($kind)
   {
@@ -650,6 +654,8 @@ class Google_Service_CloudMonitoring_ListTimeseriesResponse extends Google_Colle
   protected $timeseriesDataType = 'array';
   public $youngest;
 
+  /** @var Google_Service_CloudMonitoring_Timeseries[] */
+  protected $timeseries;
 
   public function setKind($kind)
   {
@@ -706,6 +712,11 @@ class Google_Service_CloudMonitoring_MetricDescriptor extends Google_Collection
   protected $typeDescriptorType = 'Google_Service_CloudMonitoring_MetricDescriptorTypeDescriptor';
   protected $typeDescriptorDataType = '';
 
+  /** @var Google_Service_CloudMonitoring_MetricDescriptorLabelDescriptor[] */
+  protected $labels;
+
+  /** @var Google_Service_CloudMonitoring_MetricDescriptorTypeDescriptor */
+  protected $typeDescriptor;
 
   public function setDescription($description)
   {
@@ -814,6 +825,8 @@ class Google_Service_CloudMonitoring_Point extends Google_Model
   public $start;
   public $stringValue;
 
+  /** @var Google_Service_CloudMonitoring_PointDistribution */
+  protected $distributionValue;
 
   public function setBoolValue($boolValue)
   {
@@ -885,6 +898,14 @@ class Google_Service_CloudMonitoring_PointDistribution extends Google_Collection
   protected $underflowBucketType = 'Google_Service_CloudMonitoring_PointDistributionUnderflowBucket';
   protected $underflowBucketDataType = '';
 
+  /** @var Google_Service_CloudMonitoring_PointDistributionBucket[] */
+  protected $buckets;
+
+  /** @var Google_Service_CloudMonitoring_PointDistributionOverflowBucket */
+  protected $overflowBucket;
+
+  /** @var Google_Service_CloudMonitoring_PointDistributionUnderflowBucket */
+  protected $underflowBucket;
 
   public function setBuckets($buckets)
   {
@@ -1009,6 +1030,11 @@ class Google_Service_CloudMonitoring_Timeseries extends Google_Collection
   protected $timeseriesDescType = 'Google_Service_CloudMonitoring_TimeseriesDescriptor';
   protected $timeseriesDescDataType = '';
 
+  /** @var Google_Service_CloudMonitoring_Point[] */
+  protected $points;
+
+  /** @var Google_Service_CloudMonitoring_TimeseriesDescriptor */
+  protected $timeseriesDesc;
 
   public function setPoints($points)
   {
@@ -1102,6 +1128,11 @@ class Google_Service_CloudMonitoring_TimeseriesPoint extends Google_Model
   protected $timeseriesDescType = 'Google_Service_CloudMonitoring_TimeseriesDescriptor';
   protected $timeseriesDescDataType = '';
 
+  /** @var Google_Service_CloudMonitoring_Point */
+  protected $point;
+
+  /** @var Google_Service_CloudMonitoring_TimeseriesDescriptor */
+  protected $timeseriesDesc;
 
   public function setPoint(Google_Service_CloudMonitoring_Point $point)
   {
@@ -1130,6 +1161,8 @@ class Google_Service_CloudMonitoring_WriteTimeseriesRequest extends Google_Colle
   protected $timeseriesType = 'Google_Service_CloudMonitoring_TimeseriesPoint';
   protected $timeseriesDataType = 'array';
 
+  /** @var Google_Service_CloudMonitoring_TimeseriesPoint[] */
+  protected $timeseries;
 
   public function setCommonLabels($commonLabels)
   {

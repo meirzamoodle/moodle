@@ -382,6 +382,8 @@ class Google_Service_IdentityToolkit_DownloadAccountResponse extends Google_Coll
   protected $usersType = 'Google_Service_IdentityToolkit_UserInfo';
   protected $usersDataType = 'array';
 
+  /** @var Google_Service_IdentityToolkit_UserInfo[] */
+  protected $users;
 
   public function setKind($kind)
   {
@@ -418,6 +420,8 @@ class Google_Service_IdentityToolkit_GetAccountInfoResponse extends Google_Colle
   protected $usersType = 'Google_Service_IdentityToolkit_UserInfo';
   protected $usersDataType = 'array';
 
+  /** @var Google_Service_IdentityToolkit_UserInfo[] */
+  protected $users;
 
   public function setKind($kind)
   {
@@ -862,6 +866,8 @@ class Google_Service_IdentityToolkit_IdentitytoolkitRelyingpartyUploadAccountReq
   protected $usersType = 'Google_Service_IdentityToolkit_UserInfo';
   protected $usersDataType = 'array';
 
+  /** @var Google_Service_IdentityToolkit_UserInfo[] */
+  protected $users;
 
   public function setHashAlgorithm($hashAlgorithm)
   {
@@ -1129,6 +1135,8 @@ class Google_Service_IdentityToolkit_SetAccountInfoResponse extends Google_Colle
   protected $providerUserInfoType = 'Google_Service_IdentityToolkit_SetAccountInfoResponseProviderUserInfo';
   protected $providerUserInfoDataType = 'array';
 
+  /** @var Google_Service_IdentityToolkit_SetAccountInfoResponseProviderUserInfo[] */
+  protected $providerUserInfo;
 
   public function setDisplayName($displayName)
   {
@@ -1224,6 +1232,8 @@ class Google_Service_IdentityToolkit_UploadAccountResponse extends Google_Collec
   protected $errorDataType = 'array';
   public $kind;
 
+  /** @var Google_Service_IdentityToolkit_UploadAccountResponseError[] */
+  protected $error;
 
   public function setError($error)
   {
@@ -1288,6 +1298,8 @@ class Google_Service_IdentityToolkit_UserInfo extends Google_Collection
   public $validSince;
   public $version;
 
+  /** @var Google_Service_IdentityToolkit_UserInfoProviderUserInfo[] */
+  protected $providerUserInfo;
 
   public function setDisabled($disabled)
   {

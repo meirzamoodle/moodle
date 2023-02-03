@@ -245,6 +245,8 @@ class Google_Service_Datastore_AllocateIdsRequest extends Google_Collection
   protected $keysType = 'Google_Service_Datastore_Key';
   protected $keysDataType = 'array';
 
+  /** @var Google_Service_Datastore_Key[] */
+  protected $keys;
 
   public function setKeys($keys)
   {
@@ -266,6 +268,11 @@ class Google_Service_Datastore_AllocateIdsResponse extends Google_Collection
   protected $keysType = 'Google_Service_Datastore_Key';
   protected $keysDataType = 'array';
 
+  /** @var Google_Service_Datastore_ResponseHeader */
+  protected $header;
+
+  /** @var Google_Service_Datastore_Key */
+  protected $keys;
 
   public function setHeader(Google_Service_Datastore_ResponseHeader $header)
   {
@@ -310,6 +317,8 @@ class Google_Service_Datastore_BeginTransactionResponse extends Google_Model
   protected $headerDataType = '';
   public $transaction;
 
+  /** @var Google_Service_Datastore_ResponseHeader */
+  protected $header;
 
   public function setHeader(Google_Service_Datastore_ResponseHeader $header)
   {
@@ -339,6 +348,8 @@ class Google_Service_Datastore_CommitRequest extends Google_Model
   protected $mutationDataType = '';
   public $transaction;
 
+  /** @var Google_Service_Datastore_Mutation */
+  protected $mutation;
 
   public function setIgnoreReadOnly($ignoreReadOnly)
   {
@@ -383,6 +394,11 @@ class Google_Service_Datastore_CommitResponse extends Google_Model
   protected $mutationResultType = 'Google_Service_Datastore_MutationResult';
   protected $mutationResultDataType = '';
 
+  /** @var Google_Service_Datastore_ResponseHeader */
+  protected $header;
+
+  /** @var Google_Service_Datastore_MutationResult */
+  protected $mutationResult;
 
   public function setHeader(Google_Service_Datastore_ResponseHeader $header)
   {
@@ -411,6 +427,8 @@ class Google_Service_Datastore_CompositeFilter extends Google_Collection
   protected $filtersDataType = 'array';
   public $operator;
 
+  /** @var Google_Service_Datastore_Filter[] */
+  protected $filters;
 
   public function setFilters($filters)
   {
@@ -439,6 +457,11 @@ class Google_Service_Datastore_Entity extends Google_Model
   protected $propertiesType = 'Google_Service_Datastore_Property';
   protected $propertiesDataType = 'map';
 
+  /** @var Google_Service_Datastore_Key */
+  protected $key;
+
+  /** @var Google_Service_Datastore_Property[] */
+  protected $properties;
 
   public function setKey(Google_Service_Datastore_Key $key)
   {
@@ -469,6 +492,8 @@ class Google_Service_Datastore_EntityResult extends Google_Model
   protected $entityType = 'Google_Service_Datastore_Entity';
   protected $entityDataType = '';
 
+  /** @var Google_Service_Datastore_Entity */
+  protected $entity;
 
   public function setEntity(Google_Service_Datastore_Entity $entity)
   {
@@ -489,6 +514,11 @@ class Google_Service_Datastore_Filter extends Google_Model
   protected $propertyFilterType = 'Google_Service_Datastore_PropertyFilter';
   protected $propertyFilterDataType = '';
 
+  /** @var Google_Service_Datastore_CompositeFilter */
+  protected $compositeFilter;
+
+  /** @var Google_Service_Datastore_PropertyFilter */
+  protected $propertyFilter;
 
   public function setCompositeFilter(Google_Service_Datastore_CompositeFilter $compositeFilter)
   {
@@ -520,6 +550,11 @@ class Google_Service_Datastore_GqlQuery extends Google_Collection
   protected $numberArgsDataType = 'array';
   public $queryString;
 
+  /** @var Google_Service_Datastore_GqlQueryArg[] */
+  protected $nameArgs;
+
+  /** @var Google_Service_Datastore_GqlQueryArg[] */
+  protected $numberArgs;
 
   public function setAllowLiteral($allowLiteral)
   {
@@ -564,6 +599,8 @@ class Google_Service_Datastore_GqlQueryArg extends Google_Model
   protected $valueType = 'Google_Service_Datastore_Value';
   protected $valueDataType = '';
 
+  /** @var Google_Service_Datastore_Value */
+  protected $value;
 
   public function setCursor($cursor)
   {
@@ -601,6 +638,11 @@ class Google_Service_Datastore_Key extends Google_Collection
   protected $pathType = 'Google_Service_Datastore_KeyPathElement';
   protected $pathDataType = 'array';
 
+  /** @var Google_Service_Datastore_PartitionId */
+  protected $partitionId;
+
+  /** @var Google_Service_Datastore_KeyPathElement[] */
+  protected $path;
 
   public function setPartitionId(Google_Service_Datastore_PartitionId $partitionId)
   {
@@ -682,6 +724,11 @@ class Google_Service_Datastore_LookupRequest extends Google_Collection
   protected $readOptionsType = 'Google_Service_Datastore_ReadOptions';
   protected $readOptionsDataType = '';
 
+  /** @var Google_Service_Datastore_Key[] */
+  protected $keys;
+
+  /** @var Google_Service_Datastore_ReadOptions */
+  protected $readOptions;
 
   public function setKeys($keys)
   {
@@ -715,6 +762,17 @@ class Google_Service_Datastore_LookupResponse extends Google_Collection
   protected $missingType = 'Google_Service_Datastore_EntityResult';
   protected $missingDataType = 'array';
 
+  /** @var Google_Service_Datastore_Key[] */
+  protected $deferred;
+
+  /** @var Google_Service_Datastore_EntityResult[] */
+  protected $found;
+
+  /** @var Google_Service_Datastore_ResponseHeader */
+  protected $header;
+
+  /** @var Google_Service_Datastore_EntityResult[] */
+  protected $missing;
 
   public function setDeferred($deferred)
   {
@@ -767,6 +825,20 @@ class Google_Service_Datastore_Mutation extends Google_Collection
   protected $upsertType = 'Google_Service_Datastore_Entity';
   protected $upsertDataType = 'array';
 
+  /** @var Google_Service_Datastore_Key[] */
+  protected $delete;
+
+  /** @var Google_Service_Datastore_Entity[] */
+  protected $insert;
+
+  /** @var Google_Service_Datastore_Entity[] */
+  protected $insertAutoId;
+
+  /** @var Google_Service_Datastore_Entity[] */
+  protected $update;
+
+  /** @var Google_Service_Datastore_Entity */
+  protected $upsert;
 
   public function setDelete($delete)
   {
@@ -827,6 +899,8 @@ class Google_Service_Datastore_MutationResult extends Google_Collection
   protected $insertAutoIdKeysType = 'Google_Service_Datastore_Key';
   protected $insertAutoIdKeysDataType = 'array';
 
+  /** @var Google_Service_Datastore_Key[] */
+  protected $insertAutoIdKeys;
 
   public function setIndexUpdates($indexUpdates)
   {
@@ -893,6 +967,14 @@ class Google_Service_Datastore_Property extends Google_Collection
   public $meaning;
   public $stringValue;
 
+  /** @var Google_Service_Datastore_Entity */
+  protected $entityValue;
+
+  /** @var Google_Service_Datastore_Key */
+  protected $keyValue;
+
+  /** @var Google_Service_Datastore_Value[] */
+  protected $listValue;
 
   public function setBlobKeyValue($blobKeyValue)
   {
@@ -1000,6 +1082,8 @@ class Google_Service_Datastore_PropertyExpression extends Google_Model
   protected $propertyType = 'Google_Service_Datastore_PropertyReference';
   protected $propertyDataType = '';
 
+  /** @var Google_Service_Datastore_PropertyReference */
+  protected $property;
 
   public function setAggregationFunction($aggregationFunction)
   {
@@ -1029,6 +1113,11 @@ class Google_Service_Datastore_PropertyFilter extends Google_Model
   protected $valueType = 'Google_Service_Datastore_Value';
   protected $valueDataType = '';
 
+  /** @var Google_Service_Datastore_PropertyReference */
+  protected $property;
+
+  /** @var Google_Service_Datastore_Value */
+  protected $value;
 
   public function setOperator($operator)
   {
@@ -1064,6 +1153,8 @@ class Google_Service_Datastore_PropertyOrder extends Google_Model
   protected $propertyType = 'Google_Service_Datastore_PropertyReference';
   protected $propertyDataType = '';
 
+  /** @var Google_Service_Datastore_PropertyReference */
+  protected $property;
 
   public function setDirection($direction)
   {
@@ -1120,6 +1211,20 @@ class Google_Service_Datastore_Query extends Google_Collection
   protected $projectionDataType = 'array';
   public $startCursor;
 
+  /** @var Google_Service_Datastore_Filter */
+  protected $filter;
+
+  /** @var Google_Service_Datastore_PropertyReference[] */
+  protected $groupBy;
+
+  /** @var Google_Service_Datastore_KindExpression[] */
+  protected $kinds;
+
+  /** @var Google_Service_Datastore_PropertyOrder[] */
+  protected $order;
+
+  /** @var Google_Service_Datastore_PropertyExpression[] */
+  protected $projection;
 
   public function setEndCursor($endCursor)
   {
@@ -1207,6 +1312,8 @@ class Google_Service_Datastore_QueryResultBatch extends Google_Collection
   public $moreResults;
   public $skippedResults;
 
+  /** @var Google_Service_Datastore_EntityResult[] */
+  protected $entityResults;
 
   public function setEndCursor($endCursor)
   {
@@ -1317,6 +1424,8 @@ class Google_Service_Datastore_RollbackResponse extends Google_Model
   protected $headerType = 'Google_Service_Datastore_ResponseHeader';
   protected $headerDataType = '';
 
+  /** @var Google_Service_Datastore_ResponseHeader */
+  protected $header;
 
   public function setHeader(Google_Service_Datastore_ResponseHeader $header)
   {
@@ -1341,6 +1450,17 @@ class Google_Service_Datastore_RunQueryRequest extends Google_Model
   protected $readOptionsType = 'Google_Service_Datastore_ReadOptions';
   protected $readOptionsDataType = '';
 
+  /** @var Google_Service_Datastore_GqlQuery */
+  protected $gqlQuery;
+
+  /** @var Google_Service_Datastore_PartitionId */
+  protected $partitionId;
+
+  /** @var Google_Service_Datastore_Query */
+  protected $query;
+
+  /** @var Google_Service_Datastore_ReadOptions */
+  protected $readOptions;
 
   public function setGqlQuery(Google_Service_Datastore_GqlQuery $gqlQuery)
   {
@@ -1385,6 +1505,11 @@ class Google_Service_Datastore_RunQueryResponse extends Google_Model
   protected $headerType = 'Google_Service_Datastore_ResponseHeader';
   protected $headerDataType = '';
 
+  /** @var Google_Service_Datastore_QueryResultBatch */
+  protected $batch;
+
+  /** @var Google_Service_Datastore_ResponseHeader */
+  protected $header;
 
   public function setBatch(Google_Service_Datastore_QueryResultBatch $batch)
   {
@@ -1425,6 +1550,14 @@ class Google_Service_Datastore_Value extends Google_Collection
   public $meaning;
   public $stringValue;
 
+  /** @var Google_Service_Datastore_Entity */
+  protected $entityValue;
+
+  /** @var Google_Service_Datastore_Key */
+  protected $keyValue;
+
+  /** @var Google_Service_Datastore_Value[] */
+  protected $listValue;
 
   public function setBlobKeyValue($blobKeyValue)
   {

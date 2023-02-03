@@ -539,6 +539,8 @@ class Google_Service_Replicapoolupdater_InstanceUpdate extends Google_Model
   public $instance;
   public $status;
 
+  /** @var Google_Service_Replicapoolupdater_InstanceUpdateError */
+  protected $error;
 
   public function setError(Google_Service_Replicapoolupdater_InstanceUpdateError $error)
   {
@@ -574,6 +576,8 @@ class Google_Service_Replicapoolupdater_InstanceUpdateError extends Google_Colle
   protected $errorsType = 'Google_Service_Replicapoolupdater_InstanceUpdateErrorErrors';
   protected $errorsDataType = 'array';
 
+  /** @var Google_Service_Replicapoolupdater_InstanceUpdateErrorErrors[] */
+  protected $errors;
 
   public function setErrors($errors)
   {
@@ -631,6 +635,8 @@ class Google_Service_Replicapoolupdater_InstanceUpdateList extends Google_Collec
   public $nextPageToken;
   public $selfLink;
 
+  /** @var Google_Service_Replicapoolupdater_InstanceUpdate[] */
+  protected $items;
 
   public function setItems($items)
   {
@@ -696,6 +702,11 @@ class Google_Service_Replicapoolupdater_Operation extends Google_Collection
   protected $warningsDataType = 'array';
   public $zone;
 
+  /** @var Google_Service_Replicapoolupdater_OperationError */
+  protected $error;
+
+  /** @var Google_Service_Replicapoolupdater_OperationWarnings[] */
+  protected $warnings;
 
   public function setClientOperationId($clientOperationId)
   {
@@ -883,6 +894,8 @@ class Google_Service_Replicapoolupdater_OperationError extends Google_Collection
   protected $errorsType = 'Google_Service_Replicapoolupdater_OperationErrorErrors';
   protected $errorsDataType = 'array';
 
+  /** @var Google_Service_Replicapoolupdater_OperationErrorErrors[] */
+  protected $errors;
 
   public function setErrors($errors)
   {
@@ -941,6 +954,8 @@ class Google_Service_Replicapoolupdater_OperationList extends Google_Collection
   public $nextPageToken;
   public $selfLink;
 
+  /** @var Google_Service_Replicapoolupdater_Operation[] */
+  protected $items;
 
   public function setId($id)
   {
@@ -994,6 +1009,8 @@ class Google_Service_Replicapoolupdater_OperationWarnings extends Google_Collect
   protected $dataDataType = 'array';
   public $message;
 
+  /** @var Google_Service_Replicapoolupdater_OperationWarningsData[] */
+  protected $data;
 
   public function setCode($code)
   {
@@ -1070,6 +1087,11 @@ class Google_Service_Replicapoolupdater_RollingUpdate extends Google_Model
   public $statusMessage;
   public $user;
 
+  /** @var Google_Service_Replicapoolupdater_RollingUpdateError */
+  protected $error;
+
+  /** @var Google_Service_Replicapoolupdater_RollingUpdatePolicy */
+  protected $policy;
 
   public function setActionType($actionType)
   {
@@ -1209,6 +1231,8 @@ class Google_Service_Replicapoolupdater_RollingUpdateError extends Google_Collec
   protected $errorsType = 'Google_Service_Replicapoolupdater_RollingUpdateErrorErrors';
   protected $errorsDataType = 'array';
 
+  /** @var Google_Service_Replicapoolupdater_RollingUpdateErrorErrors[] */
+  protected $errors;
 
   public function setErrors($errors)
   {
@@ -1266,6 +1290,8 @@ class Google_Service_Replicapoolupdater_RollingUpdateList extends Google_Collect
   public $nextPageToken;
   public $selfLink;
 
+  /** @var Google_Service_Replicapoolupdater_RollingUpdate[] */
+  protected $items;
 
   public function setItems($items)
   {

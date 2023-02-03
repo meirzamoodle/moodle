@@ -2116,6 +2116,11 @@ class Google_Service_ShoppingContent_Account extends Google_Collection
   protected $usersDataType = 'array';
   public $websiteUrl;
 
+  /** @var Google_Service_ShoppingContent_AccountAdwordsLink[] */
+  protected $adwordsLinks;
+
+  /** @var Google_Service_ShoppingContent_AccountUser[] */
+  protected $users;
 
   public function setAdultContent($adultContent)
   {
@@ -2259,6 +2264,17 @@ class Google_Service_ShoppingContent_AccountShipping extends Google_Collection
   protected $servicesType = 'Google_Service_ShoppingContent_AccountShippingShippingService';
   protected $servicesDataType = 'array';
 
+  /** @var Google_Service_ShoppingContent_AccountShippingCarrierRate[] */
+  protected $carrierRates;
+
+  /** @var Google_Service_ShoppingContent_AccountShippingLocationGroup[] */
+  protected $locationGroups;
+
+  /** @var Google_Service_ShoppingContent_AccountShippingRateTable[] */
+  protected $rateTables;
+
+  /** @var Google_Service_ShoppingContent_AccountShippingShippingService[] */
+  protected $services;
 
   public function setAccountId($accountId)
   {
@@ -2323,6 +2339,8 @@ class Google_Service_ShoppingContent_AccountShippingCarrierRate extends Google_M
   public $saleCountry;
   public $shippingOrigin;
 
+  /** @var Google_Service_ShoppingContent_Price */
+  protected $modifierFlatRate;
 
   public function setCarrier($carrier)
   {
@@ -2397,6 +2415,14 @@ class Google_Service_ShoppingContent_AccountShippingCondition extends Google_Mod
   protected $weightMaxType = 'Google_Service_ShoppingContent_Weight';
   protected $weightMaxDataType = '';
 
+  /** @var Google_Service_ShoppingContent_AccountShippingPostalCodeRange */
+  protected $deliveryPostalCodeRange;
+
+  /** @var Google_Service_ShoppingContent_Price */
+  protected $priceMax;
+
+  /** @var Google_Service_ShoppingContent_Weight */
+  protected $weightMax;
 
   public function setDeliveryLocationGroup($deliveryLocationGroup)
   {
@@ -2468,6 +2494,8 @@ class Google_Service_ShoppingContent_AccountShippingLocationGroup extends Google
   protected $postalCodeRangesDataType = 'array';
   public $postalCodes;
 
+  /** @var Google_Service_ShoppingContent_AccountShippingPostalCodeRange[] */
+  protected $postalCodeRanges;
 
   public function setCountry($country)
   {
@@ -2547,6 +2575,8 @@ class Google_Service_ShoppingContent_AccountShippingRateTable extends Google_Col
   public $name;
   public $saleCountry;
 
+  /** @var Google_Service_ShoppingContent_AccountShippingRateTableCell[] */
+  protected $content;
 
   public function setContent($content)
   {
@@ -2583,6 +2613,11 @@ class Google_Service_ShoppingContent_AccountShippingRateTableCell extends Google
   protected $rateType = 'Google_Service_ShoppingContent_Price';
   protected $rateDataType = '';
 
+  /** @var Google_Service_ShoppingContent_AccountShippingCondition */
+  protected $condition;
+
+  /** @var Google_Service_ShoppingContent_Price */
+  protected $rate;
 
   public function setCondition(Google_Service_ShoppingContent_AccountShippingCondition $condition)
   {
@@ -2614,6 +2649,11 @@ class Google_Service_ShoppingContent_AccountShippingShippingService extends Goog
   public $name;
   public $saleCountry;
 
+  /** @var Google_Service_ShoppingContent_AccountShippingShippingServiceCalculationMethod */
+  protected $calculationMethod;
+
+  /** @var Google_Service_ShoppingContent_AccountShippingShippingServiceCostRule */
+  protected $costRuleTree;
 
   public function setActive($active)
   {
@@ -2668,6 +2708,8 @@ class Google_Service_ShoppingContent_AccountShippingShippingServiceCalculationMe
   public $percentageRate;
   public $rateTable;
 
+  /** @var Google_Service_ShoppingContent_Price */
+  protected $flatRate;
 
   public function setCarrierRate($carrierRate)
   {
@@ -2723,6 +2765,14 @@ class Google_Service_ShoppingContent_AccountShippingShippingServiceCostRule exte
   protected $conditionType = 'Google_Service_ShoppingContent_AccountShippingCondition';
   protected $conditionDataType = '';
 
+  /** @var Google_Service_ShoppingContent_AccountShippingShippingServiceCalculationMethod */
+  protected $calculationMethod;
+
+  /** @var Google_Service_ShoppingContent_AccountShippingShippingServiceCostRule[] */
+  protected $children;
+
+  /** @var Google_Service_ShoppingContent_AccountShippingShippingServiceCostRule */
+  protected $condition;
 
   public function setCalculationMethod(Google_Service_ShoppingContent_AccountShippingShippingServiceCalculationMethod $calculationMethod)
   {
@@ -2760,6 +2810,8 @@ class Google_Service_ShoppingContent_AccountStatus extends Google_Collection
   protected $dataQualityIssuesDataType = 'array';
   public $kind;
 
+  /** @var Google_Service_ShoppingContent_AccountStatusDataQualityIssue[] */
+  protected $dataQualityIssues;
 
   public function setAccountId($accountId)
   {
@@ -2802,6 +2854,8 @@ class Google_Service_ShoppingContent_AccountStatusDataQualityIssue extends Googl
   public $severity;
   public $submittedValue;
 
+  /** @var Google_Service_ShoppingContent_AccountStatusExampleItem[] */
+  protected $exampleItems;
 
   public function setCountry($country)
   {
@@ -2932,6 +2986,8 @@ class Google_Service_ShoppingContent_AccountTax extends Google_Collection
   protected $rulesType = 'Google_Service_ShoppingContent_AccountTaxTaxRule';
   protected $rulesDataType = 'array';
 
+  /** @var Google_Service_ShoppingContent_AccountTaxTaxRule[] */
+  protected $rules;
 
   public function setAccountId($accountId)
   {
@@ -3047,6 +3103,8 @@ class Google_Service_ShoppingContent_AccountsAuthInfoResponse extends Google_Col
   protected $accountIdentifiersDataType = 'array';
   public $kind;
 
+  /** @var Google_Service_ShoppingContent_AccountIdentifier[] */
+  protected $accountIdentifiers;
 
   public function setAccountIdentifiers($accountIdentifiers)
   {
@@ -3074,6 +3132,8 @@ class Google_Service_ShoppingContent_AccountsCustomBatchRequest extends Google_C
   protected $entriesType = 'Google_Service_ShoppingContent_AccountsCustomBatchRequestEntry';
   protected $entriesDataType = 'array';
 
+  /** @var Google_Service_ShoppingContent_AccountsCustomBatchRequestEntry[] */
+  protected $entries;
 
   public function setEntries($entries)
   {
@@ -3096,6 +3156,8 @@ class Google_Service_ShoppingContent_AccountsCustomBatchRequestEntry extends Goo
   public $merchantId;
   public $method;
 
+  /** @var Google_Service_ShoppingContent_Account */
+  protected $account;
 
   public function setAccount(Google_Service_ShoppingContent_Account $account)
   {
@@ -3148,6 +3210,8 @@ class Google_Service_ShoppingContent_AccountsCustomBatchResponse extends Google_
   protected $entriesDataType = 'array';
   public $kind;
 
+  /** @var Google_Service_ShoppingContent_AccountsCustomBatchResponseEntry[] */
+  protected $entries;
 
   public function setEntries($entries)
   {
@@ -3178,6 +3242,11 @@ class Google_Service_ShoppingContent_AccountsCustomBatchResponseEntry extends Go
   protected $errorsDataType = '';
   public $kind;
 
+  /** @var Google_Service_ShoppingContent_Account */
+  protected $account;
+
+  /** @var Google_Service_ShoppingContent_Errors */
+  protected $errors;
 
   public function setAccount(Google_Service_ShoppingContent_Account $account)
   {
@@ -3223,6 +3292,8 @@ class Google_Service_ShoppingContent_AccountsListResponse extends Google_Collect
   protected $resourcesType = 'Google_Service_ShoppingContent_Account';
   protected $resourcesDataType = 'array';
 
+  /** @var Google_Service_ShoppingContent_Account[] */
+  protected $resources;
 
   public function setKind($kind)
   {
@@ -3258,6 +3329,8 @@ class Google_Service_ShoppingContent_AccountshippingCustomBatchRequest extends G
   protected $entriesType = 'Google_Service_ShoppingContent_AccountshippingCustomBatchRequestEntry';
   protected $entriesDataType = 'array';
 
+  /** @var Google_Service_ShoppingContent_AccountshippingCustomBatchRequestEntry[] */
+  protected $entries;
 
   public function setEntries($entries)
   {
@@ -3280,6 +3353,8 @@ class Google_Service_ShoppingContent_AccountshippingCustomBatchRequestEntry exte
   public $merchantId;
   public $method;
 
+  /** @var Google_Service_ShoppingContent_AccountShipping */
+  protected $accountShipping;
 
   public function setAccountId($accountId)
   {
@@ -3332,6 +3407,8 @@ class Google_Service_ShoppingContent_AccountshippingCustomBatchResponse extends 
   protected $entriesDataType = 'array';
   public $kind;
 
+  /** @var Google_Service_ShoppingContent_AccountshippingCustomBatchResponseEntry[] */
+  protected $entries;
 
   public function setEntries($entries)
   {
@@ -3362,6 +3439,11 @@ class Google_Service_ShoppingContent_AccountshippingCustomBatchResponseEntry ext
   protected $errorsDataType = '';
   public $kind;
 
+  /** @var Google_Service_ShoppingContent_AccountShipping */
+  protected $accountShipping;
+
+  /** @var Google_Service_ShoppingContent_Errors */
+  protected $errors;
 
   public function setAccountShipping(Google_Service_ShoppingContent_AccountShipping $accountShipping)
   {
@@ -3407,6 +3489,8 @@ class Google_Service_ShoppingContent_AccountshippingListResponse extends Google_
   protected $resourcesType = 'Google_Service_ShoppingContent_AccountShipping';
   protected $resourcesDataType = 'array';
 
+  /** @var Google_Service_ShoppingContent_AccountShipping[] */
+  protected $resources;
 
   public function setKind($kind)
   {
@@ -3442,6 +3526,8 @@ class Google_Service_ShoppingContent_AccountstatusesCustomBatchRequest extends G
   protected $entriesType = 'Google_Service_ShoppingContent_AccountstatusesCustomBatchRequestEntry';
   protected $entriesDataType = 'array';
 
+  /** @var Google_Service_ShoppingContent_AccountstatusesCustomBatchRequestEntry[] */
+  protected $entries;
 
   public function setEntries($entries)
   {
@@ -3506,6 +3592,8 @@ class Google_Service_ShoppingContent_AccountstatusesCustomBatchResponse extends 
   protected $entriesDataType = 'array';
   public $kind;
 
+  /** @var Google_Service_ShoppingContent_AccountstatusesCustomBatchResponseEntry[] */
+  protected $entries;
 
   public function setEntries($entries)
   {
@@ -3535,6 +3623,11 @@ class Google_Service_ShoppingContent_AccountstatusesCustomBatchResponseEntry ext
   protected $errorsType = 'Google_Service_ShoppingContent_Errors';
   protected $errorsDataType = '';
 
+  /** @var Google_Service_ShoppingContent_AccountStatus */
+  protected $accountStatus;
+
+  /** @var Google_Service_ShoppingContent_Errors */
+  protected $errors;
 
   public function setAccountStatus(Google_Service_ShoppingContent_AccountStatus $accountStatus)
   {
@@ -3572,6 +3665,8 @@ class Google_Service_ShoppingContent_AccountstatusesListResponse extends Google_
   protected $resourcesType = 'Google_Service_ShoppingContent_AccountStatus';
   protected $resourcesDataType = 'array';
 
+  /** @var Google_Service_ShoppingContent_AccountStatus[] */
+  protected $resources;
 
   public function setKind($kind)
   {
@@ -3607,6 +3702,8 @@ class Google_Service_ShoppingContent_AccounttaxCustomBatchRequest extends Google
   protected $entriesType = 'Google_Service_ShoppingContent_AccounttaxCustomBatchRequestEntry';
   protected $entriesDataType = 'array';
 
+  /** @var Google_Service_ShoppingContent_AccounttaxCustomBatchRequestEntry[] */
+  protected $entries;
 
   public function setEntries($entries)
   {
@@ -3629,6 +3726,8 @@ class Google_Service_ShoppingContent_AccounttaxCustomBatchRequestEntry extends G
   public $merchantId;
   public $method;
 
+  /** @var Google_Service_ShoppingContent_AccountTax */
+  protected $accountTax;
 
   public function setAccountId($accountId)
   {
@@ -3681,6 +3780,8 @@ class Google_Service_ShoppingContent_AccounttaxCustomBatchResponse extends Googl
   protected $entriesDataType = 'array';
   public $kind;
 
+  /** @var Google_Service_ShoppingContent_AccounttaxCustomBatchResponseEntry[] */
+  protected $entries;
 
   public function setEntries($entries)
   {
@@ -3711,6 +3812,11 @@ class Google_Service_ShoppingContent_AccounttaxCustomBatchResponseEntry extends 
   protected $errorsDataType = '';
   public $kind;
 
+  /** @var Google_Service_ShoppingContent_AccountTax */
+  protected $accountTax;
+
+  /** @var Google_Service_ShoppingContent_Errors */
+  protected $errors;
 
   public function setAccountTax(Google_Service_ShoppingContent_AccountTax $accountTax)
   {
@@ -3756,6 +3862,8 @@ class Google_Service_ShoppingContent_AccounttaxListResponse extends Google_Colle
   protected $resourcesType = 'Google_Service_ShoppingContent_AccountTax';
   protected $resourcesDataType = 'array';
 
+  /** @var Google_Service_ShoppingContent_AccountTax[] */
+  protected $resources;
 
   public function setKind($kind)
   {
@@ -3802,6 +3910,11 @@ class Google_Service_ShoppingContent_Datafeed extends Google_Collection
   public $name;
   public $targetCountry;
 
+  /** @var Google_Service_ShoppingContent_DatafeedFetchSchedule */
+  protected $fetchSchedule;
+
+  /** @var Google_Service_ShoppingContent_DatafeedFormat */
+  protected $format;
 
   public function setAttributeLanguage($attributeLanguage)
   {
@@ -4015,6 +4128,11 @@ class Google_Service_ShoppingContent_DatafeedStatus extends Google_Collection
   protected $warningsType = 'Google_Service_ShoppingContent_DatafeedStatusError';
   protected $warningsDataType = 'array';
 
+  /** @var Google_Service_ShoppingContent_DatafeedStatusError[] */
+  protected $errors;
+
+  /** @var Google_Service_ShoppingContent_DatafeedStatusError[] */
+  protected $warnings;
 
   public function setDatafeedId($datafeedId)
   {
@@ -4093,6 +4211,8 @@ class Google_Service_ShoppingContent_DatafeedStatusError extends Google_Collecti
   protected $examplesDataType = 'array';
   public $message;
 
+  /** @var Google_Service_ShoppingContent_DatafeedStatusExample[] */
+  protected $examples;
 
   public function setCode($code)
   {
@@ -4171,6 +4291,8 @@ class Google_Service_ShoppingContent_DatafeedsCustomBatchRequest extends Google_
   protected $entriesType = 'Google_Service_ShoppingContent_DatafeedsCustomBatchRequestEntry';
   protected $entriesDataType = 'array';
 
+  /** @var Google_Service_ShoppingContent_DatafeedsCustomBatchRequestEntry[] */
+  protected $entries;
 
   public function setEntries($entries)
   {
@@ -4193,6 +4315,8 @@ class Google_Service_ShoppingContent_DatafeedsCustomBatchRequestEntry extends Go
   public $merchantId;
   public $method;
 
+  /** @var Google_Service_ShoppingContent_Datafeed */
+  protected $datafeed;
 
   public function setBatchId($batchId)
   {
@@ -4245,6 +4369,8 @@ class Google_Service_ShoppingContent_DatafeedsCustomBatchResponse extends Google
   protected $entriesDataType = 'array';
   public $kind;
 
+  /** @var Google_Service_ShoppingContent_DatafeedsCustomBatchResponseEntry[] */
+  protected $entries;
 
   public function setEntries($entries)
   {
@@ -4274,6 +4400,11 @@ class Google_Service_ShoppingContent_DatafeedsCustomBatchResponseEntry extends G
   protected $errorsType = 'Google_Service_ShoppingContent_Errors';
   protected $errorsDataType = '';
 
+  /** @var Google_Service_ShoppingContent_Datafeed */
+  protected $datafeed;
+
+  /** @var Google_Service_ShoppingContent_Errors */
+  protected $errors;
 
   public function setBatchId($batchId)
   {
@@ -4311,6 +4442,8 @@ class Google_Service_ShoppingContent_DatafeedsListResponse extends Google_Collec
   protected $resourcesType = 'Google_Service_ShoppingContent_Datafeed';
   protected $resourcesDataType = 'array';
 
+  /** @var Google_Service_ShoppingContent_Datafeed[] */
+  protected $resources;
 
   public function setKind($kind)
   {
@@ -4346,6 +4479,8 @@ class Google_Service_ShoppingContent_DatafeedstatusesCustomBatchRequest extends 
   protected $entriesType = 'Google_Service_ShoppingContent_DatafeedstatusesCustomBatchRequestEntry';
   protected $entriesDataType = 'array';
 
+  /** @var Google_Service_ShoppingContent_DatafeedstatusesCustomBatchRequestEntry[] */
+  protected $entries;
 
   public function setEntries($entries)
   {
@@ -4410,6 +4545,8 @@ class Google_Service_ShoppingContent_DatafeedstatusesCustomBatchResponse extends
   protected $entriesDataType = 'array';
   public $kind;
 
+  /** @var Google_Service_ShoppingContent_DatafeedstatusesCustomBatchResponseEntry[] */
+  protected $entries;
 
   public function setEntries($entries)
   {
@@ -4439,6 +4576,11 @@ class Google_Service_ShoppingContent_DatafeedstatusesCustomBatchResponseEntry ex
   protected $errorsType = 'Google_Service_ShoppingContent_Errors';
   protected $errorsDataType = '';
 
+  /** @var Google_Service_ShoppingContent_DatafeedStatus */
+  protected $datafeedStatus;
+
+  /** @var Google_Service_ShoppingContent_Errors */
+  protected $errors;
 
   public function setBatchId($batchId)
   {
@@ -4476,6 +4618,8 @@ class Google_Service_ShoppingContent_DatafeedstatusesListResponse extends Google
   protected $resourcesType = 'Google_Service_ShoppingContent_DatafeedStatus';
   protected $resourcesDataType = 'array';
 
+  /** @var Google_Service_ShoppingContent_DatafeedStatus[] */
+  protected $resources;
 
   public function setKind($kind)
   {
@@ -4548,6 +4692,8 @@ class Google_Service_ShoppingContent_Errors extends Google_Collection
   protected $errorsDataType = 'array';
   public $message;
 
+  /** @var Google_Service_ShoppingContent_Error[] */
+  protected $errors;
 
   public function setCode($code)
   {
@@ -4589,6 +4735,11 @@ class Google_Service_ShoppingContent_Inventory extends Google_Model
   public $salePriceEffectiveDate;
   public $sellOnGoogleQuantity;
 
+  /** @var Google_Service_ShoppingContent_Price */
+  protected $price;
+
+  /** @var Google_Service_ShoppingContent_Price */
+  protected $salePrice;
 
   public function setAvailability($availability)
   {
@@ -4656,6 +4807,8 @@ class Google_Service_ShoppingContent_InventoryCustomBatchRequest extends Google_
   protected $entriesType = 'Google_Service_ShoppingContent_InventoryCustomBatchRequestEntry';
   protected $entriesDataType = 'array';
 
+  /** @var Google_Service_ShoppingContent_InventoryCustomBatchRequestEntry[] */
+  protected $entries;
 
   public function setEntries($entries)
   {
@@ -4678,6 +4831,8 @@ class Google_Service_ShoppingContent_InventoryCustomBatchRequestEntry extends Go
   public $productId;
   public $storeCode;
 
+  /** @var Google_Service_ShoppingContent_Inventory */
+  protected $inventory;
 
   public function setBatchId($batchId)
   {
@@ -4730,6 +4885,8 @@ class Google_Service_ShoppingContent_InventoryCustomBatchResponse extends Google
   protected $entriesDataType = 'array';
   public $kind;
 
+  /** @var Google_Service_ShoppingContent_InventoryCustomBatchResponseEntry[] */
+  protected $entries;
 
   public function setEntries($entries)
   {
@@ -4758,6 +4915,8 @@ class Google_Service_ShoppingContent_InventoryCustomBatchResponseEntry extends G
   protected $errorsDataType = '';
   public $kind;
 
+  /** @var Google_Service_ShoppingContent_Errors */
+  protected $errors;
 
   public function setBatchId($batchId)
   {
@@ -4798,6 +4957,11 @@ class Google_Service_ShoppingContent_InventorySetRequest extends Google_Model
   public $salePriceEffectiveDate;
   public $sellOnGoogleQuantity;
 
+  /** @var Google_Service_ShoppingContent_Price */
+  protected $price;
+
+  /** @var Google_Service_ShoppingContent_Price */
+  protected $salePrice;
 
   public function setAvailability($availability)
   {
@@ -4934,6 +5098,32 @@ class Google_Service_ShoppingContent_Order extends Google_Collection
   public $shippingOption;
   public $status;
 
+  /** @var Google_Service_ShoppingContent_OrderCustomer */
+  protected $customer;
+
+  /** @var Google_Service_ShoppingContent_OrderDeliveryDetails */
+  protected $deliveryDetails;
+
+  /** @var Google_Service_ShoppingContent_OrderLineItem[] */
+  protected $lineItems;
+
+  /** @var Google_Service_ShoppingContent_Price */
+  protected $netAmount;
+
+  /** @var Google_Service_ShoppingContent_OrderPaymentMethod */
+  protected $paymentMethod;
+
+  /** @var Google_Service_ShoppingContent_OrderRefund[] */
+  protected $refunds;
+
+  /** @var Google_Service_ShoppingContent_OrderShipment[] */
+  protected $shipments;
+
+  /** @var Google_Service_ShoppingContent_Price */
+  protected $shippingCost;
+
+  /** @var Google_Service_ShoppingContent_Price */
+  protected $shippingCostTax;
 
   public function setAcknowledged($acknowledged)
   {
@@ -5258,6 +5448,8 @@ class Google_Service_ShoppingContent_OrderDeliveryDetails extends Google_Model
   protected $addressDataType = '';
   public $phoneNumber;
 
+  /** @var Google_Service_ShoppingContent_OrderAddress */
+  protected $address;
 
   public function setAddress(Google_Service_ShoppingContent_OrderAddress $address)
   {
@@ -5304,6 +5496,26 @@ class Google_Service_ShoppingContent_OrderLineItem extends Google_Collection
   protected $taxType = 'Google_Service_ShoppingContent_Price';
   protected $taxDataType = '';
 
+  /** @var Google_Service_ShoppingContent_OrderCancellation[] */
+  protected $cancellations;
+
+  /** @var Google_Service_ShoppingContent_Price */
+  protected $price;
+
+  /** @var Google_Service_ShoppingContent_OrderLineItemProduct */
+  protected $product;
+
+  /** @var Google_Service_ShoppingContent_OrderLineItemReturnInfo */
+  protected $returnInfo;
+
+  /** @var Google_Service_ShoppingContent_OrderReturn[] */
+  protected $returns;
+
+  /** @var Google_Service_ShoppingContent_OrderLineItemShippingDetails */
+  protected $shippingDetails;
+
+  /** @var Google_Service_ShoppingContent_Price */
+  protected $tax;
 
   public function setCancellations($cancellations)
   {
@@ -5442,6 +5654,11 @@ class Google_Service_ShoppingContent_OrderLineItemProduct extends Google_Collect
   protected $variantAttributesType = 'Google_Service_ShoppingContent_OrderLineItemProductVariantAttribute';
   protected $variantAttributesDataType = 'array';
 
+  /** @var Google_Service_ShoppingContent_Price */
+  protected $price;
+
+  /** @var Google_Service_ShoppingContent_OrderLineItemProductVariantAttribute[] */
+  protected $variantAttributes;
 
   public function setBrand($brand)
   {
@@ -5635,6 +5852,8 @@ class Google_Service_ShoppingContent_OrderLineItemShippingDetails extends Google
   protected $methodDataType = '';
   public $shipByDate;
 
+  /** @var Google_Service_ShoppingContent_OrderLineItemShippingDetailsMethod */
+  protected $method;
 
   public function setDeliverByDate($deliverByDate)
   {
@@ -5718,6 +5937,8 @@ class Google_Service_ShoppingContent_OrderPaymentMethod extends Google_Model
   public $phoneNumber;
   public $type;
 
+  /** @var Google_Service_ShoppingContent_OrderAddress */
+  protected $billingAddress;
 
   public function setBillingAddress(Google_Service_ShoppingContent_OrderAddress $billingAddress)
   {
@@ -5780,6 +6001,8 @@ class Google_Service_ShoppingContent_OrderRefund extends Google_Model
   public $reason;
   public $reasonText;
 
+  /** @var Google_Service_ShoppingContent_Price */
+  protected $amount;
 
   public function setActor($actor)
   {
@@ -5890,6 +6113,8 @@ class Google_Service_ShoppingContent_OrderShipment extends Google_Collection
   public $status;
   public $trackingId;
 
+  /** @var Google_Service_ShoppingContent_OrderShipmentLineItemShipment[] */
+  protected $lineItems;
 
   public function setCarrier($carrier)
   {
@@ -6183,6 +6408,8 @@ class Google_Service_ShoppingContent_OrdersCreateTestOrderRequest extends Google
   protected $testOrderType = 'Google_Service_ShoppingContent_TestOrder';
   protected $testOrderDataType = '';
 
+  /** @var Google_Service_ShoppingContent_TestOrder */
+  protected $testOrder;
 
   public function setTemplateName($templateName)
   {
@@ -6236,6 +6463,8 @@ class Google_Service_ShoppingContent_OrdersCustomBatchRequest extends Google_Col
   protected $entriesType = 'Google_Service_ShoppingContent_OrdersCustomBatchRequestEntry';
   protected $entriesDataType = 'array';
 
+  /** @var Google_Service_ShoppingContent_OrdersCustomBatchRequestEntry[] */
+  protected $entries;
 
   public function setEntries($entries)
   {
@@ -6270,6 +6499,23 @@ class Google_Service_ShoppingContent_OrdersCustomBatchRequestEntry extends Googl
   protected $updateShipmentType = 'Google_Service_ShoppingContent_OrdersCustomBatchRequestEntryUpdateShipment';
   protected $updateShipmentDataType = '';
 
+  /** @var Google_Service_ShoppingContent_OrdersCustomBatchRequestEntryCancel */
+  protected $cancel;
+
+  /** @var Google_Service_ShoppingContent_OrdersCustomBatchRequestEntryCancelLineItem */
+  protected $cancelLineItem;
+
+  /** @var Google_Service_ShoppingContent_OrdersCustomBatchRequestEntryRefund */
+  protected $refund;
+
+  /** @var Google_Service_ShoppingContent_OrdersCustomBatchRequestEntryReturnLineItem */
+  protected $returnLineItem;
+
+  /** @var Google_Service_ShoppingContent_OrdersCustomBatchRequestEntryShipLineItems */
+  protected $shipLineItems;
+
+  /** @var Google_Service_ShoppingContent_OrdersCustomBatchRequestEntryUpdateShipment */
+  protected $updateShipment;
 
   public function setBatchId($batchId)
   {
@@ -6448,6 +6694,8 @@ class Google_Service_ShoppingContent_OrdersCustomBatchRequestEntryRefund extends
   public $reason;
   public $reasonText;
 
+  /** @var Google_Service_ShoppingContent_Price */
+  protected $amount;
 
   public function setAmount(Google_Service_ShoppingContent_Price $amount)
   {
@@ -6530,6 +6778,8 @@ class Google_Service_ShoppingContent_OrdersCustomBatchRequestEntryShipLineItems 
   public $shipmentId;
   public $trackingId;
 
+  /** @var Google_Service_ShoppingContent_OrderShipmentLineItemShipment[] */
+  protected $lineItems;
 
   public function setCarrier($carrier)
   {
@@ -6618,6 +6868,8 @@ class Google_Service_ShoppingContent_OrdersCustomBatchResponse extends Google_Co
   protected $entriesDataType = 'array';
   public $kind;
 
+  /** @var Google_Service_ShoppingContent_OrdersCustomBatchResponseEntry[] */
+  protected $entries;
 
   public function setEntries($entries)
   {
@@ -6649,6 +6901,11 @@ class Google_Service_ShoppingContent_OrdersCustomBatchResponseEntry extends Goog
   protected $orderType = 'Google_Service_ShoppingContent_Order';
   protected $orderDataType = '';
 
+  /** @var Google_Service_ShoppingContent_Errors */
+  protected $errors;
+
+  /** @var Google_Service_ShoppingContent_Order */
+  protected $order;
 
   public function setBatchId($batchId)
   {
@@ -6700,6 +6957,8 @@ class Google_Service_ShoppingContent_OrdersGetByMerchantOrderIdResponse extends 
   protected $orderType = 'Google_Service_ShoppingContent_Order';
   protected $orderDataType = '';
 
+  /** @var Google_Service_ShoppingContent_Order */
+  protected $order;
 
   public function setKind($kind)
   {
@@ -6727,6 +6986,8 @@ class Google_Service_ShoppingContent_OrdersGetTestOrderTemplateResponse extends 
   protected $templateType = 'Google_Service_ShoppingContent_TestOrder';
   protected $templateDataType = '';
 
+  /** @var Google_Service_ShoppingContent_TestOrder */
+  protected $template;
 
   public function setKind($kind)
   {
@@ -6756,6 +7017,8 @@ class Google_Service_ShoppingContent_OrdersListResponse extends Google_Collectio
   protected $resourcesType = 'Google_Service_ShoppingContent_Order';
   protected $resourcesDataType = 'array';
 
+  /** @var Google_Service_ShoppingContent_Order */
+  protected $resources;
 
   public function setKind($kind)
   {
@@ -6793,6 +7056,8 @@ class Google_Service_ShoppingContent_OrdersRefundRequest extends Google_Model
   public $reason;
   public $reasonText;
 
+  /** @var Google_Service_ShoppingContent_Price */
+  protected $amount;
 
   public function setAmount(Google_Service_ShoppingContent_Price $amount)
   {
@@ -6945,6 +7210,8 @@ class Google_Service_ShoppingContent_OrdersShipLineItemsRequest extends Google_C
   public $shipmentId;
   public $trackingId;
 
+  /** @var Google_Service_ShoppingContent_OrderShipmentLineItemShipment[] */
+  protected $lineItems;
 
   public function setCarrier($carrier)
   {
@@ -7264,6 +7531,56 @@ class Google_Service_ShoppingContent_Product extends Google_Collection
   protected $warningsType = 'Google_Service_ShoppingContent_Error';
   protected $warningsDataType = 'array';
 
+  /** @var Google_Service_ShoppingContent_ProductAspect[] */
+  protected $aspects;
+
+  /** @var Google_Service_ShoppingContent_ProductCustomAttribute[] */
+  protected $customAttributes;
+
+  /** @var Google_Service_ShoppingContent_ProductCustomGroup[] */
+  protected $customGroups;
+
+  /** @var Google_Service_ShoppingContent_ProductDestination[] */
+  protected $destinations;
+
+  /** @var Google_Service_ShoppingContent_ProductInstallment */
+  protected $installment;
+
+  /** @var Google_Service_ShoppingContent_LoyaltyPoints */
+  protected $loyaltyPoints;
+
+  /** @var Google_Service_ShoppingContent_Price */
+  protected $price;
+
+  /** @var Google_Service_ShoppingContent_Price */
+  protected $salePrice;
+
+  /** @var Google_Service_ShoppingContent_ProductShipping[] */
+  protected $shipping;
+
+  /** @var Google_Service_ShoppingContent_ProductShippingDimension */
+  protected $shippingHeight;
+
+  /** @var Google_Service_ShoppingContent_ProductShippingDimension */
+  protected $shippingLength;
+
+  /** @var Google_Service_ShoppingContent_ProductShippingWeight */
+  protected $shippingWeight;
+
+  /** @var Google_Service_ShoppingContent_ProductShippingDimension */
+  protected $shippingWidth;
+
+  /** @var Google_Service_ShoppingContent_ProductTax */
+  protected $taxes;
+
+  /** @var Google_Service_ShoppingContent_ProductUnitPricingBaseMeasure */
+  protected $unitPricingBaseMeasure;
+
+  /** @var Google_Service_ShoppingContent_ProductUnitPricingMeasure */
+  protected $unitPricingMeasure;
+
+  /** @var Google_Service_ShoppingContent_Error */
+  protected $warnings;
 
   public function setAdditionalImageLinks($additionalImageLinks)
   {
@@ -7915,6 +8232,8 @@ class Google_Service_ShoppingContent_ProductCustomGroup extends Google_Collectio
   protected $attributesDataType = 'array';
   public $name;
 
+  /** @var Google_Service_ShoppingContent_ProductCustomAttribute[] */
+  protected $attributes;
 
   public function setAttributes($attributes)
   {
@@ -7965,9 +8284,11 @@ class Google_Service_ShoppingContent_ProductInstallment extends Google_Model
   protected $internal_gapi_mappings = array(
   );
   protected $amountType = 'Google_Service_ShoppingContent_Price';
-  protected $amountDataType = '';
+  protected $amountDataType = 'Google_Service_ShoppingContent_Price';
   public $months;
 
+  /** @var CLASSNAME */
+  protected $amount;
 
   public function setAmount(Google_Service_ShoppingContent_Price $amount)
   {
@@ -8000,6 +8321,8 @@ class Google_Service_ShoppingContent_ProductShipping extends Google_Model
   public $region;
   public $service;
 
+  /** @var Google_Service_ShoppingContent_Price */
+  protected $price;
 
   public function setCountry($country)
   {
@@ -8128,6 +8451,11 @@ class Google_Service_ShoppingContent_ProductStatus extends Google_Collection
   public $productId;
   public $title;
 
+  /** @var Google_Service_ShoppingContent_ProductStatusDataQualityIssue[] */
+  protected $dataQualityIssues;
+
+  /** @var Google_Service_ShoppingContent_ProductStatusDestinationStatus[] */
+  protected $destinationStatuses;
 
   public function setCreationDate($creationDate)
   {
@@ -8440,6 +8768,8 @@ class Google_Service_ShoppingContent_ProductsCustomBatchRequest extends Google_C
   protected $entriesType = 'Google_Service_ShoppingContent_ProductsCustomBatchRequestEntry';
   protected $entriesDataType = 'array';
 
+  /** @var Google_Service_ShoppingContent_ProductsCustomBatchRequestEntry[] */
+  protected $entries;
 
   public function setEntries($entries)
   {
@@ -8462,6 +8792,8 @@ class Google_Service_ShoppingContent_ProductsCustomBatchRequestEntry extends Goo
   protected $productDataType = '';
   public $productId;
 
+  /** @var Google_Service_ShoppingContent_Product */
+  protected $product;
 
   public function setBatchId($batchId)
   {
@@ -8514,6 +8846,8 @@ class Google_Service_ShoppingContent_ProductsCustomBatchResponse extends Google_
   protected $entriesDataType = 'array';
   public $kind;
 
+  /** @var Google_Service_ShoppingContent_ProductsCustomBatchResponseEntry[] */
+  protected $entries;
 
   public function setEntries($entries)
   {
@@ -8544,6 +8878,11 @@ class Google_Service_ShoppingContent_ProductsCustomBatchResponseEntry extends Go
   protected $productType = 'Google_Service_ShoppingContent_Product';
   protected $productDataType = '';
 
+  /** @var Google_Service_ShoppingContent_Errors */
+  protected $errors;
+
+  /** @var Google_Service_ShoppingContent_Product */
+  protected $product;
 
   public function setBatchId($batchId)
   {
@@ -8589,6 +8928,8 @@ class Google_Service_ShoppingContent_ProductsListResponse extends Google_Collect
   protected $resourcesType = 'Google_Service_ShoppingContent_Product';
   protected $resourcesDataType = 'array';
 
+  /** @var Google_Service_ShoppingContent_Product[] */
+  protected $resources;
 
   public function setKind($kind)
   {
@@ -8624,6 +8965,8 @@ class Google_Service_ShoppingContent_ProductstatusesCustomBatchRequest extends G
   protected $entriesType = 'Google_Service_ShoppingContent_ProductstatusesCustomBatchRequestEntry';
   protected $entriesDataType = 'array';
 
+  /** @var CLASSNGoogle_Service_ShoppingContent_ProductstatusesCustomBatchRequestEntryAME[] */
+  protected $entries;
 
   public function setEntries($entries)
   {
@@ -8688,6 +9031,8 @@ class Google_Service_ShoppingContent_ProductstatusesCustomBatchResponse extends 
   protected $entriesDataType = 'array';
   public $kind;
 
+  /** @var Google_Service_ShoppingContent_ProductstatusesCustomBatchResponseEntry[] */
+  protected $entries;
 
   public function setEntries($entries)
   {
@@ -8718,6 +9063,11 @@ class Google_Service_ShoppingContent_ProductstatusesCustomBatchResponseEntry ext
   protected $productStatusType = 'Google_Service_ShoppingContent_ProductStatus';
   protected $productStatusDataType = '';
 
+  /** @var Google_Service_ShoppingContent_Errors */
+  protected $errors;
+
+  /** @var Google_Service_ShoppingContent_ProductStatus */
+  protected $productStatus;
 
   public function setBatchId($batchId)
   {
@@ -8763,6 +9113,8 @@ class Google_Service_ShoppingContent_ProductstatusesListResponse extends Google_
   protected $resourcesType = 'Google_Service_ShoppingContent_ProductStatus';
   protected $resourcesDataType = 'array';
 
+  /** @var Google_Service_ShoppingContent_ProductStatus[] */
+  protected $resources;
 
   public function setKind($kind)
   {
@@ -8809,6 +9161,20 @@ class Google_Service_ShoppingContent_TestOrder extends Google_Collection
   protected $shippingCostTaxDataType = '';
   public $shippingOption;
 
+  /** @var Google_Service_ShoppingContent_TestOrderCustomer */
+  protected $customer;
+
+  /** @var Google_Service_ShoppingContent_TestOrderLineItem[] */
+  protected $lineItems;
+
+  /** @var Google_Service_ShoppingContent_TestOrderPaymentMethod */
+  protected $paymentMethod;
+
+  /** @var Google_Service_ShoppingContent_Price */
+  protected $shippingCost;
+
+  /** @var Google_Service_ShoppingContent_Price */
+  protected $shippingCostTax;
 
   public function setCustomer(Google_Service_ShoppingContent_TestOrderCustomer $customer)
   {
@@ -8925,6 +9291,17 @@ class Google_Service_ShoppingContent_TestOrderLineItem extends Google_Model
   protected $unitTaxType = 'Google_Service_ShoppingContent_Price';
   protected $unitTaxDataType = '';
 
+  /** @var Google_Service_ShoppingContent_TestOrderLineItemProduct */
+  protected $product;
+
+  /** @var Google_Service_ShoppingContent_OrderLineItemReturnInfo */
+  protected $returnInfo;
+
+  /** @var Google_Service_ShoppingContent_OrderLineItemShippingDetails */
+  protected $shippingDetails;
+
+  /** @var Google_Service_ShoppingContent_Price */
+  protected $unitTax;
 
   public function setProduct(Google_Service_ShoppingContent_TestOrderLineItemProduct $product)
   {
@@ -8989,6 +9366,11 @@ class Google_Service_ShoppingContent_TestOrderLineItemProduct extends Google_Col
   protected $variantAttributesType = 'Google_Service_ShoppingContent_OrderLineItemProductVariantAttribute';
   protected $variantAttributesDataType = 'array';
 
+  /** @var Google_Service_ShoppingContent_Price */
+  protected $price;
+
+  /** @var Google_Service_ShoppingContent_OrderLineItemProductVariantAttribute[] */
+  protected $variantAttributes;
 
   public function setBrand($brand)
   {

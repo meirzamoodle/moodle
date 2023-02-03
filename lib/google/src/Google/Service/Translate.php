@@ -232,6 +232,8 @@ class Google_Service_Translate_DetectionsListResponse extends Google_Collection
   protected $detectionsType = 'Google_Service_Translate_DetectionsResourceItems';
   protected $detectionsDataType = 'array';
 
+  /** @var Google_Service_Translate_DetectionsResourceItems[] */
+  protected $detections;
 
   public function setDetections($detections)
   {
@@ -286,6 +288,8 @@ class Google_Service_Translate_LanguagesListResponse extends Google_Collection
   protected $languagesType = 'Google_Service_Translate_LanguagesResource';
   protected $languagesDataType = 'array';
 
+  /** @var Google_Service_Translate_LanguagesResource[] */
+  protected $languages;
 
   public function setLanguages($languages)
   {
@@ -331,6 +335,8 @@ class Google_Service_Translate_TranslationsListResponse extends Google_Collectio
   protected $translationsType = 'Google_Service_Translate_TranslationsResource';
   protected $translationsDataType = 'array';
 
+  /** @var Google_Service_Translate_TranslationsResource[] */
+  protected $translations;
 
   public function setTranslations($translations)
   {

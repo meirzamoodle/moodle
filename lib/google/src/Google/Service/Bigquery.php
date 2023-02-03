@@ -1055,6 +1055,11 @@ class Google_Service_Bigquery_Dataset extends Google_Collection
   public $location;
   public $selfLink;
 
+  /** @var Google_Service_Bigquery_DatasetAccess[] */
+  protected $access;
+
+  /** @var Google_Service_Bigquery_DatasetReference */
+  protected $datasetReference;
 
   public function setAccess($access)
   {
@@ -1166,6 +1171,8 @@ class Google_Service_Bigquery_DatasetAccess extends Google_Model
   protected $viewType = 'Google_Service_Bigquery_TableReference';
   protected $viewDataType = '';
 
+  /** @var Google_Service_Bigquery_TableReference */
+  protected $view;
 
   public function setDomain($domain)
   {
@@ -1228,6 +1235,8 @@ class Google_Service_Bigquery_DatasetList extends Google_Collection
   public $kind;
   public $nextPageToken;
 
+  /** @var Google_Service_Bigquery_DatasetListDatasets[] */
+  protected $datasets;
 
   public function setDatasets($datasets)
   {
@@ -1273,6 +1282,8 @@ class Google_Service_Bigquery_DatasetListDatasets extends Google_Model
   public $id;
   public $kind;
 
+  /** @var Google_Service_Bigquery_DatasetReference */
+  protected $datasetReference;
 
   public function setDatasetReference(Google_Service_Bigquery_DatasetReference $datasetReference)
   {
@@ -1393,6 +1404,11 @@ class Google_Service_Bigquery_ExternalDataConfiguration extends Google_Collectio
   public $sourceFormat;
   public $sourceUris;
 
+  /** @var Google_Service_Bigquery_CsvOptions */
+  protected $csvOptions;
+
+  /** @var Google_Service_Bigquery_TableSchema */
+  protected $schema;
 
   public function setCompression($compression)
   {
@@ -1473,6 +1489,17 @@ class Google_Service_Bigquery_GetQueryResultsResponse extends Google_Collection
   public $totalBytesProcessed;
   public $totalRows;
 
+  /** @var Google_Service_Bigquery_ErrorProto[] */
+  protected $errors;
+
+  /** @var Google_Service_Bigquery_JobReference */
+  protected $jobReference;
+
+  /** @var Google_Service_Bigquery_TableRow[] */
+  protected $rows;
+
+  /** @var Google_Service_Bigquery_TableSchema */
+  protected $schema;
 
   public function setCacheHit($cacheHit)
   {
@@ -1583,6 +1610,17 @@ class Google_Service_Bigquery_Job extends Google_Model
   protected $statusDataType = '';
   public $userEmail;
 
+  /** @var Google_Service_Bigquery_JobConfiguration */
+  protected $configuration;
+
+  /** @var Google_Service_Bigquery_JobReference */
+  protected $jobReference;
+
+  /** @var Google_Service_Bigquery_JobStatistics */
+  protected $statistics;
+
+  /** @var Google_Service_Bigquery_JobStatus */
+  protected $status;
 
   public function setConfiguration(Google_Service_Bigquery_JobConfiguration $configuration)
   {
@@ -1666,6 +1704,8 @@ class Google_Service_Bigquery_JobCancelResponse extends Google_Model
   protected $jobDataType = '';
   public $kind;
 
+  /** @var Google_Service_Bigquery_Job */
+  protected $job;
 
   public function setJob(Google_Service_Bigquery_Job $job)
   {
@@ -1701,6 +1741,20 @@ class Google_Service_Bigquery_JobConfiguration extends Google_Model
   protected $queryType = 'Google_Service_Bigquery_JobConfigurationQuery';
   protected $queryDataType = '';
 
+  /** @var Google_Service_Bigquery_JobConfigurationTableCopy */
+  protected $copy;
+
+  /** @var Google_Service_Bigquery_JobConfigurationExtract */
+  protected $extract;
+
+  /** @var Google_Service_Bigquery_JobConfigurationLink */
+  protected $link;
+
+  /** @var Google_Service_Bigquery_JobConfigurationLoad */
+  protected $load;
+
+  /** @var Google_Service_Bigquery_JobConfigurationQuery */
+  protected $query;
 
   public function setCopy(Google_Service_Bigquery_JobConfigurationTableCopy $copy)
   {
@@ -1766,6 +1820,8 @@ class Google_Service_Bigquery_JobConfigurationExtract extends Google_Collection
   protected $sourceTableType = 'Google_Service_Bigquery_TableReference';
   protected $sourceTableDataType = '';
 
+  /** @var Google_Service_Bigquery_TableReference */
+  protected $sourceTable;
 
   public function setCompression($compression)
   {
@@ -1836,6 +1892,8 @@ class Google_Service_Bigquery_JobConfigurationLink extends Google_Collection
   public $sourceUri;
   public $writeDisposition;
 
+  /** @var Google_Service_Bigquery_TableReference */
+  protected $destinationTable;
 
   public function setCreateDisposition($createDisposition)
   {
@@ -1896,6 +1954,11 @@ class Google_Service_Bigquery_JobConfigurationLoad extends Google_Collection
   public $sourceUris;
   public $writeDisposition;
 
+  /** @var Google_Service_Bigquery_TableReference */
+  protected $destinationTable;
+
+  /** @var Google_Service_Bigquery_TableSchema */
+  protected $schema;
 
   public function setAllowJaggedRows($allowJaggedRows)
   {
@@ -2057,6 +2120,17 @@ class Google_Service_Bigquery_JobConfigurationQuery extends Google_Collection
   protected $userDefinedFunctionResourcesDataType = 'array';
   public $writeDisposition;
 
+  /** @var Google_Service_Bigquery_DatasetReference */
+  protected $defaultDataset;
+
+  /** @var Google_Service_Bigquery_TableReference */
+  protected $destinationTable;
+
+  /** @var Google_Service_Bigquery_ExternalDataConfiguration[] */
+  protected $tableDefinitions;
+
+  /** @var Google_Service_Bigquery_UserDefinedFunctionResource[] */
+  protected $userDefinedFunctionResources;
 
   public function setAllowLargeResults($allowLargeResults)
   {
@@ -2174,6 +2248,14 @@ class Google_Service_Bigquery_JobConfigurationTableCopy extends Google_Collectio
   protected $sourceTablesDataType = 'array';
   public $writeDisposition;
 
+  /** @var Google_Service_Bigquery_TableReference */
+  protected $destinationTable;
+
+  /** @var Google_Service_Bigquery_TableReference */
+  protected $sourceTable;
+
+  /** @var Google_Service_Bigquery_TableReference[] */
+  protected $sourceTables;
 
   public function setCreateDisposition($createDisposition)
   {
@@ -2228,6 +2310,8 @@ class Google_Service_Bigquery_JobList extends Google_Collection
   public $kind;
   public $nextPageToken;
 
+  /** @var Google_Service_Bigquery_JobListJobs[] */
+  protected $jobs;
 
   public function setEtag($etag)
   {
@@ -2283,6 +2367,20 @@ class Google_Service_Bigquery_JobListJobs extends Google_Model
   protected $statusDataType = '';
   public $userEmail;
 
+  /** @var Google_Service_Bigquery_JobConfiguration */
+  protected $configuration;
+
+  /** @var Google_Service_Bigquery_ErrorProto */
+  protected $errorResult;
+
+  /** @var Google_Service_Bigquery_JobReference */
+  protected $jobReference;
+
+  /** @var Google_Service_Bigquery_JobStatistics */
+  protected $statistics;
+
+  /** @var Google_Service_Bigquery_JobStatus */
+  protected $status;
 
   public function setConfiguration(Google_Service_Bigquery_JobConfiguration $configuration)
   {
@@ -2399,6 +2497,14 @@ class Google_Service_Bigquery_JobStatistics extends Google_Model
   public $startTime;
   public $totalBytesProcessed;
 
+  /** @var Google_Service_Bigquery_JobStatistics4 */
+  protected $extract;
+
+  /** @var Google_Service_Bigquery_JobStatistics3 */
+  protected $load;
+
+  /** @var Google_Service_Bigquery_JobStatistics2 */
+  protected $query;
 
   public function setCreationTime($creationTime)
   {
@@ -2575,6 +2681,11 @@ class Google_Service_Bigquery_JobStatus extends Google_Collection
   protected $errorsDataType = 'array';
   public $state;
 
+  /** @var Google_Service_Bigquery_ErrorProto */
+  protected $errorResult;
+
+  /** @var Google_Service_Bigquery_ErrorProto[] */
+  protected $errors;
 
   public function setErrorResult(Google_Service_Bigquery_ErrorProto $errorResult)
   {
@@ -2618,6 +2729,8 @@ class Google_Service_Bigquery_ProjectList extends Google_Collection
   protected $projectsDataType = 'array';
   public $totalItems;
 
+  /** @var Google_Service_Bigquery_ProjectListProjects[] */
+  protected $projects;
 
   public function setEtag($etag)
   {
@@ -2672,6 +2785,8 @@ class Google_Service_Bigquery_ProjectListProjects extends Google_Model
   protected $projectReferenceType = 'Google_Service_Bigquery_ProjectReference';
   protected $projectReferenceDataType = '';
 
+  /** @var Google_Service_Bigquery_ProjectReference */
+  protected $projectReference;
 
   public function setFriendlyName($friendlyName)
   {
@@ -2746,6 +2861,8 @@ class Google_Service_Bigquery_QueryRequest extends Google_Model
   public $timeoutMs;
   public $useQueryCache;
 
+  /** @var Google_Service_Bigquery_DatasetReference */
+  protected $defaultDataset;
 
   public function setDefaultDataset(Google_Service_Bigquery_DatasetReference $defaultDataset)
   {
@@ -2833,6 +2950,17 @@ class Google_Service_Bigquery_QueryResponse extends Google_Collection
   public $totalBytesProcessed;
   public $totalRows;
 
+  /** @var Google_Service_Bigquery_ErrorProto[] */
+  protected $errors;
+
+  /** @var Google_Service_Bigquery_JobReference */
+  protected $jobReference;
+
+  /** @var Google_Service_Bigquery_TableRow[] */
+  protected $rows;
+
+  /** @var Google_Service_Bigquery_TableSchema */
+  protected $schema;
 
   public function setCacheHit($cacheHit)
   {
@@ -2979,6 +3107,20 @@ class Google_Service_Bigquery_Table extends Google_Model
   protected $viewType = 'Google_Service_Bigquery_ViewDefinition';
   protected $viewDataType = '';
 
+  /** @var Google_Service_Bigquery_ExternalDataConfiguration */
+  protected $externalDataConfiguration;
+
+  /** @var Google_Service_Bigquery_TableSchema */
+  protected $schema;
+
+  /** @var Google_Service_Bigquery_Streamingbuffer */
+  protected $streamingBuffer;
+
+  /** @var Google_Service_Bigquery_TableReference */
+  protected $tableReference;
+
+  /** @var Google_Service_Bigquery_ViewDefinition */
+  protected $view;
 
   public function setCreationTime($creationTime)
   {
@@ -3154,6 +3296,8 @@ class Google_Service_Bigquery_TableDataInsertAllRequest extends Google_Collectio
   protected $rowsDataType = 'array';
   public $skipInvalidRows;
 
+  /** @var Google_Service_Bigquery_TableDataInsertAllRequestRows */
+  protected $rows;
 
   public function setIgnoreUnknownValues($ignoreUnknownValues)
   {
@@ -3224,6 +3368,8 @@ class Google_Service_Bigquery_TableDataInsertAllResponse extends Google_Collecti
   protected $insertErrorsDataType = 'array';
   public $kind;
 
+  /** @var Google_Service_Bigquery_TableDataInsertAllResponseInsertErrors[] */
+  protected $insertErrors;
 
   public function setInsertErrors($insertErrors)
   {
@@ -3252,6 +3398,8 @@ class Google_Service_Bigquery_TableDataInsertAllResponseInsertErrors extends Goo
   protected $errorsDataType = 'array';
   public $index;
 
+  /** @var Google_Service_Bigquery_ErrorProto[] */
+  protected $errors;
 
   public function setErrors($errors)
   {
@@ -3283,6 +3431,8 @@ class Google_Service_Bigquery_TableDataList extends Google_Collection
   protected $rowsDataType = 'array';
   public $totalRows;
 
+  /** @var Google_Service_Bigquery_TableRow[] */
+  protected $rows;
 
   public function setEtag($etag)
   {
@@ -3338,6 +3488,8 @@ class Google_Service_Bigquery_TableFieldSchema extends Google_Collection
   public $name;
   public $type;
 
+  /** @var Google_Service_Bigquery_TableFieldSchema[] */
+  protected $fields;
 
   public function setDescription($description)
   {
@@ -3393,6 +3545,8 @@ class Google_Service_Bigquery_TableList extends Google_Collection
   protected $tablesDataType = 'array';
   public $totalItems;
 
+  /** @var Google_Service_Bigquery_TableListTables[] */
+  protected $tables;
 
   public function setEtag($etag)
   {
@@ -3447,6 +3601,8 @@ class Google_Service_Bigquery_TableListTables extends Google_Model
   protected $tableReferenceDataType = '';
   public $type;
 
+  /** @var Google_Service_Bigquery_TableReference */
+  protected $tableReference;
 
   public function setFriendlyName($friendlyName)
   {
@@ -3533,6 +3689,8 @@ class Google_Service_Bigquery_TableRow extends Google_Collection
   protected $fType = 'Google_Service_Bigquery_TableCell';
   protected $fDataType = 'array';
 
+  /** @var Google_Service_Bigquery_TableCell[] */
+  protected $f;
 
   public function setF($f)
   {
@@ -3552,6 +3710,8 @@ class Google_Service_Bigquery_TableSchema extends Google_Collection
   protected $fieldsType = 'Google_Service_Bigquery_TableFieldSchema';
   protected $fieldsDataType = 'array';
 
+  /** @var Google_Service_Bigquery_TableFieldSchema[] */
+  protected $fields;
 
   public function setFields($fields)
   {

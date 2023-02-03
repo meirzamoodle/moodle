@@ -251,6 +251,8 @@ class Google_Service_SiteVerification_SiteVerificationWebResourceGettokenRequest
   protected $siteDataType = '';
   public $verificationMethod;
 
+  /** @var Google_Service_SiteVerification_SiteVerificationWebResourceGettokenRequestSite */
+  protected $site;
 
   public function setSite(Google_Service_SiteVerification_SiteVerificationWebResourceGettokenRequestSite $site)
   {
@@ -330,6 +332,8 @@ class Google_Service_SiteVerification_SiteVerificationWebResourceListResponse ex
   protected $itemsType = 'Google_Service_SiteVerification_SiteVerificationWebResourceResource';
   protected $itemsDataType = 'array';
 
+  /** @var Google_Service_SiteVerification_SiteVerificationWebResourceResource[] */
+  protected $items;
 
   public function setItems($items)
   {
@@ -351,6 +355,8 @@ class Google_Service_SiteVerification_SiteVerificationWebResourceResource extend
   protected $siteType = 'Google_Service_SiteVerification_SiteVerificationWebResourceResourceSite';
   protected $siteDataType = '';
 
+  /** @var Google_Service_SiteVerification_SiteVerificationWebResourceResourceSite */
+  protected $site;
 
   public function setId($id)
   {

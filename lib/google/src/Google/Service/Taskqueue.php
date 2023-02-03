@@ -510,6 +510,11 @@ class Google_Service_Taskqueue_TaskQueue extends Google_Model
   protected $statsType = 'Google_Service_Taskqueue_TaskQueueStats';
   protected $statsDataType = '';
 
+  /** @var Google_Service_Taskqueue_TaskQueueAcl */
+  protected $acl;
+
+  /** @var Google_Service_Taskqueue_TaskQueueStats */
+  protected $stats;
 
   public function setAcl(Google_Service_Taskqueue_TaskQueueAcl $acl)
   {
@@ -642,6 +647,8 @@ class Google_Service_Taskqueue_Tasks extends Google_Collection
   protected $itemsDataType = 'array';
   public $kind;
 
+  /** @var Google_Service_Taskqueue_Task[] */
+  protected $items;
 
   public function setItems($items)
   {
@@ -670,6 +677,8 @@ class Google_Service_Taskqueue_Tasks2 extends Google_Collection
   protected $itemsDataType = 'array';
   public $kind;
 
+  /** @var Google_Service_Taskqueue_Task[] */
+  protected $items;
 
   public function setItems($items)
   {
