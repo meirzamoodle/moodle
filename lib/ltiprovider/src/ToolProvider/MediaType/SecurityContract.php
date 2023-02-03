@@ -15,6 +15,11 @@ use IMSGlobal\LTI\ToolProvider\ToolProvider;
 class SecurityContract
 {
 
+    /** @var string */
+    public $shared_secret;
+
+    /** @var array */
+    public $tool_service;
 /**
  * Class constructor.
  *

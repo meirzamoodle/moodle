@@ -55,6 +55,15 @@ class ToolProxy
  */
     private $toolProxy = null;
 
+    /** @var mixed */
+    public $created;
+
+    /** @var mixed */
+    public $updated;
+
+    /** @var mixed */
+    public $enabled;
+
 /**
  * Class constructor.
  *

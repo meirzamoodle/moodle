@@ -17,6 +17,15 @@ class ToolProfile
 
     public $product_instance;
 
+    /** @var string */
+    public $lti_version;
+
+    /** @var array */
+    public $resource_handler;
+
+    /** @var array */
+    public $base_url_choice;
+
 /**
  * Class constructor.
  *
