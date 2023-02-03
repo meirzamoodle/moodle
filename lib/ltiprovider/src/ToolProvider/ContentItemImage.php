@@ -14,6 +14,14 @@ namespace IMSGlobal\LTI\ToolProvider;
 class ContentItemImage
 {
 
+    /** @var string image URL. */
+    public $id;
+
+    /** @var int image height. */
+    public $height;
+
+    /** @var int image width. */
+    public $width;
 /**
  * Class constructor.
  *
@@ -24,7 +32,7 @@ class ContentItemImage
     function __construct($id, $height = null, $width = null)
     {
 
-        $this->{'@id'} = $id;
+        $this->id = $id;
         if (!is_null($height)) {
             $this->height = $height;
         }

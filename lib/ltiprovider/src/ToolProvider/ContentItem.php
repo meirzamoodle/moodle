@@ -19,6 +19,27 @@ class ContentItem
  */
     const LTI_LINK_MEDIA_TYPE = 'application/vnd.ims.lti.v1.ltilink';
 
+    /** @var string content-item type. */
+    public $type;
+
+    /** @var ContentItemPlacement Placement object for item. */
+    public $placementAdvice;
+
+    /** @var string content-item ID. */
+    public $id;
+
+    /** @var string content-item URL. */
+    public $url;
+
+    /** @var string content-item media type. */
+    public $mediaType;
+
+    /** @var string content-item title. */
+    public $title;
+
+    /** @var string content-item text. */
+    public $text;
+
 /**
  * Class constructor.
  *
@@ -29,12 +50,12 @@ class ContentItem
     function __construct($type, $placementAdvice = null, $id = null)
     {
 
-        $this->{'@type'} = $type;
+        $this->type = $type;
         if (is_object($placementAdvice) && (count(get_object_vars($placementAdvice)) > 0)) {
             $this->placementAdvice = $placementAdvice;
         }
         if (!empty($id)) {
-            $this->{'@id'} = $id;
+            $this->id = $id;
         }
 
     }

@@ -64,3 +64,6 @@ In case of any changes we may need to update
 enrol/lti/classes/data_connector.php
 enrol/lti/db/install.xml
 enrol/lti/db/upgrade.php
+
+* MDL-76411 php 8.2 compliance. Added missing class properties that still need to be declared
+  to avoid dynamic properties deprecated error warning.

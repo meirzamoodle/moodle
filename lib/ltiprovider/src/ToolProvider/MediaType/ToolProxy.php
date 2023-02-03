@@ -17,6 +17,27 @@ use IMSGlobal\LTI\ToolProvider\ToolProvider;
 class ToolProxy
 {
 
+    /** @var array Context. */
+    public $context;
+
+    /** @var string Type. */
+    public $type;
+
+    /** @var string ID. */
+    public $id;
+
+    /** @var string LTI Version. */
+    public $lti_version;
+
+    /** @var ToolConsumer Tool consumer profile. */
+    public $tool_consumer_profile;
+
+    /** @var ToolProfile Tool profile. */
+    public $tool_profile;
+
+    /** @var SecurityContract Security contract. */
+    public $security_contract;
+
 /**
  * Class constructor.
  *
@@ -29,9 +50,9 @@ class ToolProxy
 
         $contexts = array();
 
-        $this->{'@context'} = array_merge(array('http://purl.imsglobal.org/ctx/lti/v2/ToolProxy'), $contexts);
-        $this->{'@type'} = 'ToolProxy';
-        $this->{'@id'} = "{$toolProxyService->endpoint}";
+        $this->context = array_merge(array('http://purl.imsglobal.org/ctx/lti/v2/ToolProxy'), $contexts);
+        $this->type = 'ToolProxy';
+        $this->id = "{$toolProxyService->endpoint}";
         $this->lti_version = 'LTI-2p0';
         $this->tool_consumer_profile = $toolProvider->consumer->profile->{'@id'};
         $this->tool_profile = new ToolProfile($toolProvider);

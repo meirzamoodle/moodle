@@ -154,6 +154,9 @@ class ToolConsumer
  */
     private $dataConnector = null;
 
+    /** @var ToolProxy */
+    public $toolProxy;
+
 /**
  * Class constructor.
  *

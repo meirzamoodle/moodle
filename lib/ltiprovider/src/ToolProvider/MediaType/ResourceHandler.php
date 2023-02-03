@@ -16,6 +16,21 @@ use IMSGlobal\LTI\Profile\ResourceHandler as ProfileResourceHandler;
 class ResourceHandler
 {
 
+    /** @var \stdClass */
+    public $resource_type;
+
+    /** @var \stdClass */
+    public $resource_name;
+
+    /** @var \stdClass */
+    public $description;
+
+    /** @var \stdClass */
+    public $icon_info;
+
+    /** @var array */
+    public $message;
+
 /**
  * Class constructor.
  *

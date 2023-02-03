@@ -14,6 +14,18 @@ namespace IMSGlobal\LTI\ToolProvider;
 class ContentItemPlacement
 {
 
+    /** @var int width of item location. */
+    public $displayWidth;
+
+    /** @var int height of item location. */
+    public $displayHeight;
+
+    /** @var string location to open content in. */
+    public $documentTarget;
+
+    /** @var string name of window target. */
+    public $windowTarget;
+
 /**
  * Class constructor.
  *

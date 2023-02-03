@@ -15,7 +15,17 @@ use IMSGlobal\LTI\ToolProvider\ToolProvider;
 class ToolProfile
 {
 
+    /** @var \stdClass Product instance object. */
     public $product_instance;
+
+    /** @var string LTI version. */
+    public $lti_version;
+
+    /** @var ResourceHandler[] Resource handler. */
+    public $resource_handler;
+
+    /** @var \stdClass[] Base URL. */
+    public $base_url_choice;
 
 /**
  * Class constructor.
