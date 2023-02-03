@@ -188,6 +188,15 @@ class grade_grade extends grade_object {
      */
     public $feedbackfiles = [];
 
+    /** @var string feedback content. */
+    public $feedback;
+
+    /** @var int */
+    public $historyid;
+
+    /** @var string */
+    public $label;
+
     /**
      * Returns array of grades for given grade_item+users
      *

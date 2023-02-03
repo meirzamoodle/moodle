@@ -94,6 +94,9 @@ class grade_outcome extends grade_object {
      */
     public $usermodified;
 
+    /** @var string Identifier of the text format to be used. */
+    public string $descriptionformat = FORMAT_MOODLE;
+
     /**
      * Deletes this outcome from the database.
      *

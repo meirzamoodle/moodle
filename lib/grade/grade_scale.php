@@ -86,6 +86,12 @@ class grade_scale extends grade_object {
      */
     public $description;
 
+    /** @var mixed */
+    public $standard;
+
+    /** @var string Identifier of the text format to be used. */
+    public string $descriptionformat = FORMAT_MOODLE;
+
     /**
      * Finds and returns a grade_scale instance based on params.
      *

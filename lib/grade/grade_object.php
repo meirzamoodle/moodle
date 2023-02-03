@@ -77,6 +77,39 @@ abstract class grade_object {
      */
     var $hidden = 0;
 
+    /** @var string */
+    public string $feedbackformat = FORMAT_PLAIN;
+
+    /** @var string */
+    public $information;
+
+    /** @var string */
+    public string $informationformat = FORMAT_PLAIN;
+
+    /**
+     * The grade_item object referenced by $this->itemid.
+     * @var grade_item $grade_item
+     */
+    public $grade_item;
+
+    /**
+     * Name of a element.
+     * @var string
+     */
+    public $name;
+
+    /**
+     * Name of a element without link, icon.
+     * @var string
+     */
+    public $stripped_name;
+
+    /**
+     * Type of an item.
+     * @var mixed
+     */
+    public $itemtype;
+
     /**
      * Constructor. Optionally (and by default) attempts to fetch corresponding row from the database
      *

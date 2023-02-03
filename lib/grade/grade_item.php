@@ -262,6 +262,12 @@ class grade_item extends grade_object {
      */
     public $markasoverriddenwhengraded = true;
 
+    /** @var int */
+    public $cmid = 0;
+
+    /** @var string average information. */
+    public $avg;
+
     /**
      * Constructor. Optionally (and by default) attempts to fetch corresponding row from the database
      *

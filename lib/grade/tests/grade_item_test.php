@@ -29,6 +29,10 @@ require_once(__DIR__.'/fixtures/lib.php');
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class grade_item_test extends \grade_base_testcase {
+
+    /** @var array user object collection. */
+    protected $user;
+
     public function test_grade_item() {
         $this->sub_test_grade_item_construct();
         $this->sub_test_grade_item_insert();
