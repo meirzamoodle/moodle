@@ -33,6 +33,13 @@ class HTMLPurifier_Printer_ConfigForm extends HTMLPurifier_Printer
     protected $compress = false;
 
     /**
+     * Configuration object of current form state, or an array where [0] has an HTML namespace and [1] is being rendered.
+     *
+     * @var HTMLPurifier_Config|array
+     */
+    protected $genConfig;
+
+    /**
      * @param string $name Form element name for directives to be stuffed into
      * @param string $doc_url String documentation URL, will have fragment tagged on
      * @param bool $compress Integer max length before compressing a directive name, set to false to turn off
