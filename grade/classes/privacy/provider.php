@@ -53,6 +53,9 @@ class provider implements
     \core_privacy\local\request\subsystem\provider,
     \core_privacy\local\request\core_userlist_provider {
 
+    /** @var int history identifier. */
+    private static $historyid;
+
     /**
      * Returns metadata.
      *
@@ -545,7 +548,7 @@ class provider implements
             foreach ($data as $key => $grades) {
                 $gg = $grades['gradeobject'];
                 writer::with_context($gg->get_context())->export_area_files($pathtofiles, GRADE_FILE_COMPONENT,
-                    GRADE_HISTORY_FEEDBACK_FILEAREA, $gg->historyid);
+                    GRADE_HISTORY_FEEDBACK_FILEAREA, self::$historyid);
                 unset($data[$key]['gradeobject']); // Do not want to export this later.
             }
 
@@ -678,7 +681,7 @@ class provider implements
             foreach ($data as $key => $grades) {
                 $gg = $grades['gradeobject'];
                 writer::with_context($gg->get_context())->export_area_files($pathtofiles, GRADE_FILE_COMPONENT,
-                    GRADE_HISTORY_FEEDBACK_FILEAREA, $gg->historyid);
+                    GRADE_HISTORY_FEEDBACK_FILEAREA, self::$historyid);
                 unset($data[$key]['gradeobject']); // Do not want to export this later.
             }
 
@@ -1057,7 +1060,7 @@ class provider implements
         }
 
         if ($ishistory) {
-            $gg->historyid = $historyid;
+            self::$historyid = $historyid;
         }
 
         return $gg;
@@ -1198,7 +1201,7 @@ class provider implements
         $timecreated = $gg->timecreated ? transform::datetime($gg->timecreated) : $timemodified; // When null we use timemodified.
 
         $filearea = $ishistory ? GRADE_HISTORY_FEEDBACK_FILEAREA : GRADE_FEEDBACK_FILEAREA;
-        $itemid = $ishistory ? $gg->historyid : $gg->id;
+        $itemid = $ishistory ? self::$historyid : $gg->id;
         $subpath = $ishistory ? get_string('feedbackhistoryfiles', 'core_grades') : get_string('feedbackfiles', 'core_grades');
 
         $pathtofiles = [
@@ -1272,7 +1275,7 @@ class provider implements
         $grades = $DB->get_recordset_sql($sql, $params);
         foreach ($grades as $grade) {
             $gg = static::extract_grade_grade_from_record($grade, $ishistory);
-            $fileitemid = ($ishistory) ? $gg->historyid : $gg->id;
+            $fileitemid = ($ishistory) ? self::$historyid : $gg->id;
             $fs->delete_area_files($gg->get_context()->id, GRADE_FILE_COMPONENT, $filearea, $fileitemid);
         }
         $grades->close();
