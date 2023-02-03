@@ -125,6 +125,9 @@ class address_manager {
      */
     private $user;
 
+    /** @var int status code. */
+    private $status;
+
     /**
      * Set the handler to use for the subsequent Inbound Message commands.
      *

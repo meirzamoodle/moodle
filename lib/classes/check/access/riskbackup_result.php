@@ -48,6 +48,9 @@ class riskbackup_result extends \core\check\result {
     /** @var string $sqluserinfo */
     private $sqluserinfo;
 
+    /** @var string result status. */
+    protected $status;
+
     /**
      * Constructor
      */

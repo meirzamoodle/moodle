@@ -54,6 +54,13 @@ class cache_item {
     private bool $ishit = false;
 
     /**
+     * The directory for cache.
+     *
+     * @var string $dir.
+     */
+    private $dir;
+
+    /**
      * Constructor for the cache_item to get the key and module to retrieve or set the cache item.
      *
      * @param string $key The key for the current cache item.
