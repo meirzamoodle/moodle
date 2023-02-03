@@ -56,6 +56,15 @@ class ToolProxy
  */
     private $toolProxy = null;
 
+    /** @var int Date/time when the object was created. */
+    public $created;
+
+    /** @var int Date/time when the object was last updated. */
+    public $updated;
+
+    /** @var bool true if the tool consumers is to be enabled automatically (optional, default is false) */
+    public $enabled;
+
 /**
  * Class constructor.
  *

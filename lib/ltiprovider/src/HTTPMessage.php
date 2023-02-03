@@ -82,6 +82,13 @@ class HTTPMessage
     private $method = null;
 
 /**
+ * Object response.
+ *
+ * @var object response
+ */
+    public $responseJson;
+
+/**
  * Class constructor.
  *
  * @param string $url     URL to send request to

@@ -15,6 +15,18 @@ namespace IMSGlobal\LTI\ToolProvider\MediaType;
 class Message
 {
 
+    /** @var mixed LTI message type. */
+    public $message_type;
+
+    /** @var mixed Path to send message request to. */
+    public $path;
+
+    /** @var array Capabilities required by message. */
+    public $enabled_capability;
+
+    /** @var array  Message parameters. */
+    public $parameter;
+
 /**
  * Class constructor.
  *

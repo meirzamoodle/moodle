@@ -26,6 +26,9 @@ use PDO;
 class DataConnector_pdo extends DataConnector
 {
 
+    /** @var string date format. */
+    public $date_format;
+
 /**
  * Class constructor
  *
