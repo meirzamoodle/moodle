@@ -21,3 +21,6 @@ Apply these commits on top of the upstream clone.
 Moodle's calling code may require updates if changes are breaking -  so check this and make any changes if needed.
 9. Run all unit tests in enrol/lti and auth/lti.
 10. Regression test Moodle-to-Moodle LTI using LTI Advantage (not legacy) using the relevant MDLQA tests as a guide.
+
+Notes:
+* Applied patch https://github.com/snake/lti-1-3-php-library/pull/1
