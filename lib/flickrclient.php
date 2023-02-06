@@ -49,6 +49,15 @@ class flickr_client extends oauth_helper {
      */
     const UPLOAD_ROOT = 'https://up.flickr.com/services/upload/';
 
+    /** @var string */
+    public $access_token_secret;
+
+    /** @var string */
+    public $sign_secret;
+
+    /** @var string */
+    public $access_token;
+
     /**
      * Set up OAuth and initialize the client.
      *

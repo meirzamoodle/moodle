@@ -316,6 +316,9 @@ class moodle_url {
      */
     protected $params = array();
 
+    /** @var string|null calling parse_url will return fragment key */
+    protected ?string $fragment;
+
     /**
      * Create new instance of moodle_url.
      *

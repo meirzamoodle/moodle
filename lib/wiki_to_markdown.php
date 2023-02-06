@@ -58,6 +58,9 @@ class WikiToMarkdown {
   var $output; // output buffer
   var $courseid;
 
+  /** @var bool */
+  public $spelling_on;
+
   function close_block( $state ) {
     // provide appropriate closure for block according to state
 

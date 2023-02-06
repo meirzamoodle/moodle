@@ -1856,6 +1856,15 @@ class YUI_config {
      */
     protected $jsconfigfunctions = array();
 
+    /** @var array */
+    public $logExclude;
+
+    /** @var array */
+    public $logInclude;
+
+    /** @var string */
+    public $logLevel;
+
     /**
      * Create a new group within the YUI_config system.
      *

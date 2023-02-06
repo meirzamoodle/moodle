@@ -57,6 +57,18 @@ class phpFlickr {
     var $token;
     var $php_version;
 
+    /** @var string service name. */
+    public $service;
+
+    /** @var curl */
+    public $curl;
+
+    /** @var string email address. */
+    public $email;
+
+    /** @var string password. */
+    public $password;
+
     /**
      * When your database cache table hits this many rows, a cleanup
      * will occur to get rid of all of the old rows and cleanup the

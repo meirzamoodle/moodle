@@ -88,6 +88,21 @@ class webdav_client {
      */
     private $oauthtoken;
 
+    /** @var string */
+    public $user;
+
+    /** @var string */
+    public $pass;
+
+    /** @var mixed */
+    public $_delete_cdata;
+
+    /** @var mixed */
+    public $_lock_ref_cdata;
+
+    /** @var mixed */
+    public $_lock_cdata;
+
     /**#@-*/
 
     /**

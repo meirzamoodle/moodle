@@ -146,6 +146,12 @@ abstract class moodleform {
     /** @var bool|null stores the validation result of this form or null if not yet validated */
     protected $_validated = null;
 
+    /** @var string */
+    protected $_reqHTML;
+
+     /** @var string */
+     protected $_advancedHTML;
+
     /**
      * The constructor function calls the abstract function definition() and it will then
      * process and clean and attempt to validate incoming data.
@@ -1661,6 +1667,12 @@ class MoodleQuickForm extends HTML_QuickForm_DHTMLRulesTableless {
      */
     const DEP_HIDE = 1;
 
+    /** @var string */
+    protected $_reqHTML;
+
+    /** @var string */
+    protected $_advancedHTML;
+
     /**
      * Class constructor - same parameters as HTML_QuickForm_DHTMLRulesTableless
      *
@@ -3061,6 +3073,12 @@ class MoodleQuickForm_Renderer extends HTML_QuickForm_Renderer_Tableless{
      * @var string Contains the collapsible buttons to add to the form.
      */
     var $_collapseButtons = '';
+
+    /** @var string */
+    protected $_reqHTML;
+
+    /** @var string */
+    protected $_advancedHTML;
 
     /**
      * Constructor

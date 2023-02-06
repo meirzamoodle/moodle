@@ -160,6 +160,9 @@ class popup_action extends component_action {
             'fullscreen' => false,
             'dependent' => true);
 
+    /** @var string The JS function to call for the popup (default 'popup') */
+    public $name;
+
     /**
      * Constructor
      *

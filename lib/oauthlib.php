@@ -62,6 +62,25 @@ class oauth_helper {
     /** @var array options to pass to the next curl request */
     protected $http_options;
 
+    /** @var  moodle_url */
+    protected $oauth_callback;
+
+     /** @var string */
+    protected $access_token;
+
+    /** @var  string */
+    protected $access_token_secret;
+
+    /** @var  string */
+    protected $sign_secret;
+
+    /** @var  string */
+    protected $nonce;
+
+    /** @var  int */
+    protected $timestamp;
+
+
     /**
      * Contructor for oauth_helper.
      * Subclass can override construct to build its own $this->http

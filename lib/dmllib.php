@@ -184,6 +184,9 @@ class dml_missing_record_exception extends dml_exception {
     /** @var array The SQL's parameters.*/
     public $params;
 
+    /** @var string A table's name.*/
+    public $tablename;
+
     /**
      * Constructor
      * @param string $tablename The table name if known, '' if unknown.

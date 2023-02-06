@@ -176,6 +176,9 @@ class flexible_table {
      */
     protected $filterset = null;
 
+    /** @var mixed course record. */
+    public $course;
+
     /**
      * Constructor
      * @param string $uniqueid all tables have to have a unique id, this is used

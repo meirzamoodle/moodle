@@ -496,6 +496,12 @@ class filterobject {
     /** @var null|string once initialised, holds the mangled HTML to replace the regexp with. */
     public $workreplacementphrase = null;
 
+    /** @var callback $replacementcallback */
+    public $replacementcallback;
+
+    /** @var array data to be passed to $replacementcallback. */
+    public $replacementcallbackdata;
+
     /**
      * Constructor.
      *

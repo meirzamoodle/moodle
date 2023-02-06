@@ -47,7 +47,7 @@ define('NAVIGATION_SITE_ADMIN_CACHE_NAME', 'navigationsiteadmin');
  * @copyright 2009 Sam Hemelryk
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class navigation_node implements renderable {
+class navigation_node extends \stdClass implements renderable {
     /** @var int Used to identify this node a leaf (default) 0 */
     const NODETYPE_LEAF =   0;
     /** @var int Used to identify this node a branch, happens with children  1 */

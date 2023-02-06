@@ -3023,6 +3023,12 @@ class section_info implements IteratorAggregate {
      */
     private $modinfo;
 
+    /** @var bool */
+    public $hasactivites;
+
+    /** @var \navigation_node */
+    public $sectionnode;
+
     /**
      * Constructs object from database information plus extra required data.
      * @param object $data Array entry from cached sectioncache

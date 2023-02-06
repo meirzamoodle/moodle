@@ -1733,6 +1733,8 @@ abstract class admin_setting {
     private $dependenton = [];
     /** @var bool Whether this setting uses a custom form control */
     protected $customcontrol = false;
+    /** @var string parameter type. */
+    public $paramtype;
 
     /**
      * Constructor

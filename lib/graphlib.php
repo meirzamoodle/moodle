@@ -154,6 +154,20 @@ class graph {
   var $y_tick_labels     =   null;         // array of text values for y-axis tick labels
   var $offset_relation   =   null;         // array of offsets for different sets of data
 
+  /** @var array */
+  public ?array $y_order = [];
+
+  /** @var array */
+  public ?array $y_format = [];
+
+  /** @var array */
+  public ?array $x_data = [];
+
+  /** @var array */
+  public ?array $colour = [];
+
+  /** @var array */
+  public ?array $y_data = [];
 
     // init all text - title, labels, and axis text.
     function init() {
