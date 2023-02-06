@@ -33,6 +33,24 @@ defined('MOODLE_INTERNAL') || die();
  */
 class testable_plugininfo_base extends \core\plugininfo\base {
 
+    /**
+     * Explicitly supported branches of Moodle core.
+     *
+     * Added for testing purposes only.
+     *
+     * @var array
+     */
+    public $supported;
+
+    /**
+     * First incompatible branch of Moodle core.
+     *
+     * Added for testing purposes only.
+     *
+     * @var int
+     */
+    public $incompatible;
+
     public static function fake_plugin_instance($type, $typerootdir, $name, $namerootdir, $typeclass, $pluginman) {
         return self::make_plugin_instance($type, $typerootdir, $name, $namerootdir, $typeclass, $pluginman);
     }
