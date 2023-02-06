@@ -27,6 +27,12 @@
  */
 class component_test extends advanced_testcase {
 
+    /** @var array associative array of PSR-0 namespaces and corresponding paths. */
+    protected $oldpsr0namespaces = [];
+
+    /** @var array associative array of PRS-4 namespaces and corresponding paths. */
+    protected $oldpsr4namespaces = [];
+
     /**
      * To be changed if number of subsystems increases/decreases,
      * this is defined here to annoy devs that try to add more without any thinking,
