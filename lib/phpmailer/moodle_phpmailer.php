@@ -41,6 +41,9 @@ defined('MOODLE_INTERNAL') || die();
  */
 class moodle_phpmailer extends \PHPMailer\PHPMailer\PHPMailer {
 
+    /** @var string mailer version */
+    public $Version;
+
     /**
      * Constructor - creates an instance of the PHPMailer class
      * with Moodle defaults.
