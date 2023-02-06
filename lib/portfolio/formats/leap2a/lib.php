@@ -68,8 +68,7 @@ class portfolio_format_leap2a_writer {
     public function __construct(stdclass $user) { // todo something else - exporter, format, etc
         global $CFG;
         $this->user = $user;
-        $this->exporttime = time();
-        $this->id = $CFG->wwwroot . '/portfolio/export/leap2a/' . $this->user->id . '/' . $this->exporttime;
+        $this->id = $CFG->wwwroot . '/portfolio/export/leap2a/' . $this->user->id . '/' . time();
 
         $this->dom = new DomDocument('1.0', 'utf-8');
 
