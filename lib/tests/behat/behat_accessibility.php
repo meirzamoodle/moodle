@@ -39,6 +39,9 @@ require_once(__DIR__ . '/../../behat/behat_base.php');
  */
 class behat_accessibility extends behat_base {
 
+    /** @var DriverInterface|Session driver instance */
+    public $session;
+
     /**
      * Run the axe-core accessibility tests.
      *

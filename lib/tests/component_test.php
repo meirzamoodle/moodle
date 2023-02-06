@@ -26,6 +26,12 @@
  */
 class component_test extends advanced_testcase {
 
+    /** @var mixed */
+    protected $oldpsr0namespaces;
+
+    /** @var mixed */
+    protected $oldpsr4namespaces;
+
     /**
      * To be changed if number of subsystems increases/decreases,
      * this is defined here to annoy devs that try to add more without any thinking,

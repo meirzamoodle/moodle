@@ -33,6 +33,12 @@ defined('MOODLE_INTERNAL') || die();
  */
 class testable_plugininfo_base extends \core\plugininfo\base {
 
+    /** @var array|null $supported Supported versions to inject. */
+    public $supported;
+
+    /** @var string|int|null $incompatible Incompatible version to inject. */
+    public $incompatible;
+
     public static function fake_plugin_instance($type, $typerootdir, $name, $namerootdir, $typeclass, $pluginman) {
         return self::make_plugin_instance($type, $typerootdir, $name, $namerootdir, $typeclass, $pluginman);
     }

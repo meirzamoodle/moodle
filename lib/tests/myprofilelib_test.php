@@ -45,6 +45,9 @@ class myprofilelib_test extends \advanced_testcase {
      */
     private $tree;
 
+    /** @var stdClass — user record */
+    protected $user2;
+
     public function setUp(): void {
         // Set the $PAGE->url value so core_myprofile_navigation() doesn't complain.
         global $PAGE;

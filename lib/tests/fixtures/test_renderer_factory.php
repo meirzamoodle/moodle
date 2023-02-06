@@ -38,6 +38,9 @@ require_once($CFG->libdir . '/outputfactories.php');
  */
 class test_output_factory extends renderer_factory_base {
 
+    /** @var array */
+    protected array $prefixes = [];
+
     /**
      * Constructor.
      *

@@ -763,6 +763,10 @@ class mock_initialise_global_navigation extends global_navigation {
  */
 class exposed_navbar extends navbar {
     protected $exposedkey = 'exposed_';
+
+    /** @var navigation_cache */
+    protected $cache;
+
     public function __construct(\moodle_page $page) {
         parent::__construct($page);
         $this->cache = new navigation_cache('unittest_nav');
