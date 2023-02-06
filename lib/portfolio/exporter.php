@@ -110,6 +110,9 @@ class portfolio_exporter {
      */
     private $deleted = false;
 
+    /** @var bool */
+    protected $dirty;
+
     /**
      * Construct a new exporter for use
      *

@@ -59,6 +59,9 @@ class portfolio_format_leap2a_writer {
     /** @var array the entries for the feed - keyed on id */
     private $entries = array();
 
+    /** @var int */
+    protected $exporttime;
+
     /**
      * Constructor - usually generated from portfolio_format_leap2a::leap2a_writer($USER);
      *

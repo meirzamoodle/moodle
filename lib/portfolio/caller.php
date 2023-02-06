@@ -64,6 +64,9 @@ abstract class portfolio_caller_base {
     /** @var string set this for generated-file exports */
     protected $intendedmimetype;
 
+    /** @var bool */
+    protected $dirty;
+
     /**
      * Create portfolio_caller object
      *
