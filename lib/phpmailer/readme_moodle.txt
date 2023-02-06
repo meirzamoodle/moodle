@@ -15,3 +15,7 @@ To upgrade this library:
    - SECURITY.md
    - src/POP3.php
 5. Update lib/thirdpartylibs.xml.
+
+Notes:
+MDL-76411 - PHP 8.2 compliance. Added missing class properties that still need to be declared
+            to avoid dynamic properties deprecated error warning.
