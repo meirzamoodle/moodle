@@ -71,6 +71,11 @@ class HTML_QuickForm_Renderer_Object extends HTML_QuickForm_Renderer
     */
     var $_collectHidden = false;
 
+    /**
+    * Element ID
+    * @var int $_elementIdx
+    */
+    protected int $_elementIdx = 1;
 
     /**
      * Constructor

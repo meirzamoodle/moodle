@@ -35,6 +35,8 @@ MDL-71126 - Quiz: Manual grading page size preference can get stuck at 0
 MDL-76102 / MDL-77081
             PHP 8.1 passing null to a non-nullable argument of a built-in function is deprecated
 MDL-77164 - PHPdocs corrections
+MDL-77133 - PHP 8.2 compliance. Added missing class properties that still need to be declared
+            to avoid dynamic properties deprecated error warning.
 
 Pear
 ====

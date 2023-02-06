@@ -138,7 +138,13 @@ class HTML_QuickForm_Renderer_Array extends HTML_QuickForm_Renderer
     * false: leave labels as defined
     * @var bool
     */
-    var $staticLabels = false;
+    var $_staticLabels = false;
+
+    /**
+    * Element ID
+    * @var int
+    */
+    protected int $_elementIdx = 1;
 
    /**
     * Constructor
