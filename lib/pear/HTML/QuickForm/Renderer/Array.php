@@ -140,6 +140,12 @@ class HTML_QuickForm_Renderer_Array extends HTML_QuickForm_Renderer
     */
     var $staticLabels = false;
 
+    /** @var bool */
+    protected bool $_staticLabels = false;
+
+    /** @var int */
+    protected int $_elementIdx = 1;
+
    /**
     * Constructor
     *

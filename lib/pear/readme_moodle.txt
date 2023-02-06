@@ -32,8 +32,9 @@ MDL-70457 - PHP 7.4 curly brackets string access fix.
 MDL-71126 - Quiz: Manual grading page size preference can get stuck at 0
             Including in this change:
              - New positiveint regex rule to check if the value is a positive integer
-MDL-76102 / MDL-77081
-            PHP 8.1 passing null to a non-nullable argument of a built-in function is deprecated
+MDL-76102 - PHP 8.1 passing null to a non-nullable argument of a built-in function is deprecated
+MDL-76411 - PHP 8.2 compliance. Added missing class properties that still need to be declared
+            to avoid dynamic properties deprecated error warning.
 
 Pear
 ====
