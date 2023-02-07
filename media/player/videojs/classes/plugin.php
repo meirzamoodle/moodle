@@ -49,6 +49,8 @@ class media_videojs_plugin extends core_media_player_native {
         '.oga',
         '.ogg'
     ];
+    /** @var string[] filled with the results of regular expression matches. */
+    protected $matches = [];
 
     /**
      * Generates code required to embed the player.
