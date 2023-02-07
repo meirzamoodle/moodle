@@ -37,6 +37,9 @@ require_once($CFG->dirroot . '/message/lib.php');
  */
 abstract class base_message extends \core_search\base {
 
+    /** @var string */
+    public $areaid;
+
     /**
      * The context levels the search area is working on.
      * @var array
