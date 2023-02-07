@@ -17,6 +17,27 @@ class mnet_environment {
     var $keypair            = array();
     var $deleted            = 0;
 
+    /** @var mixed */
+    public $name;
+
+    /** @var mixed */
+    public $transport;
+
+    /** @var mixed */
+    public $portno;
+
+    /** @var mixed */
+    public $force_theme;
+
+    /** @var mixed */
+    public $theme;
+
+    /** @var mixed */
+    public $applicationid;
+
+    /** @var mixed */
+    public $sslverification;
+
     function init() {
         global $CFG, $DB;
 

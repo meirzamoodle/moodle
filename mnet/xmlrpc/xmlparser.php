@@ -12,8 +12,49 @@
  * Custom XML parser class for signed and/or encrypted XML Docs
  */
 class mnet_encxml_parser {
+
+
+    /** @var resource|false|XMLParser — a resource handle for the new XML parser. */
+    public $parser;
+
+    /** @var int */
+    public $tag_number = 0;
+
+    /** @var string */
+    public string $digest = '';
+
+    /** @var string */
+    public string $remote_timestamp = '';
+
+    /** @var string */
+    public string $remote_wwwroot = '';
+
+    /** @var string*/
+    public string $signature;
+
+    /** @var string */
+    public string $data_object = '';
+
+    /** @var string */
+    public string $key_URI = '';
+
+    /** @var bool */
+    public bool $payload_encrypted = false;
+
+    /** @var array */
+    public array $cipher = [];
+
+    /** @var array */
+    public array $error = [];
+
+    /** @var string */
+    public ?string $remoteerror = null;
+
+    /** @var \StdClass */
+    public $errorstarted;
+
     /**
-     * Constructor creates and initialises parser resource and calls initialise
+    * Constructor creates and initialises parser resource and calls initialise
      *
      * @return bool True
      */

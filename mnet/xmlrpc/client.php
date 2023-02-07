@@ -22,6 +22,24 @@ class mnet_xmlrpc_client {
     var $response = '';
     var $mnet     = null;
 
+    /** @var string the xml representation of the message. */
+    public $requesttext;
+
+    /** @var string an XML-DSig document. */
+    public $signedrequest;
+
+    /** @var string an XML-ENC document. */
+    public $encryptedrequest;
+
+    /** @var Value|string|mixed value returned by the server. */
+    public $rawresponse;
+
+    /** @var string|false the original data or false on failure. */
+    public $xmlrpcresponse;
+
+    /** @var string either the PATH part of the xmlrpc server URL, or complete server URL. */
+    public $uri;
+
     /**
      * Constructor
      */

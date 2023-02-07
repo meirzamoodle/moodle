@@ -39,6 +39,30 @@ class mnet_peer {
     /** @var int $sslverification The level of SSL verification to apply. */
     public $sslverification = self::SSL_HOST_AND_PEER;
 
+    /** @var int */
+    public $deleted;
+
+    /** @var mixed */
+    public $application;
+
+    /** @var array */
+    public $errno;
+
+    /** @var array */
+    public $errmsg;
+
+    /** @var OpenSSLAsymmetricKey|resource|false */
+    public $public_key_ref;
+
+    /** @var string SSL Cert key. */
+    public $currentkey;
+
+    /** @var string public key. */
+    public $oldpublickey;
+
+    /** @var bool */
+    public $re_key;
+
     /*
      * Fetch information about a peer identified by wwwroot
      * If information does not preexist in db, collect it together based on
