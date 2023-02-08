@@ -52,6 +52,9 @@ class provider_test extends provider_testcase {
     /** @var context context_module of the H5P activity. */
     protected $context;
 
+    /** @var stdClass User with some attempt. */
+    protected $student3;
+
     /**
      * Test getting the context for the user ID related to this plugin.
      */

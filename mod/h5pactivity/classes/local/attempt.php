@@ -44,6 +44,9 @@ class attempt {
     /** @var boolean if the DB statement has been updated. */
     private $scoreupdated = false;
 
+    /** @var mixed. */
+    private $results = null;
+
     /**
      * Create a new attempt object.
      *
