@@ -1464,6 +1464,9 @@ class page_wiki_map extends page_wiki {
      */
     private $view;
 
+    /** @var mixed */
+    protected $output;
+
     function print_header() {
         parent::print_header();
         $this->print_pagetitle();
@@ -1978,6 +1981,12 @@ class page_wiki_restoreversion extends page_wiki {
  */
 class page_wiki_deletecomment extends page_wiki {
     private $commentid;
+
+    /** @var string */
+    private $action;
+
+    /** @var string */
+    private $content;
 
     function print_header() {
         parent::print_header();
