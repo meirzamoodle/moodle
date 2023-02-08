@@ -88,6 +88,8 @@ This files describes API changes in the quiz code.
   - The file mod/quiz/report/statistics/statistics_graph.php - deprecated since 3.2
   - quiz_print_overview - deprecated since 3.3
 
+* Added missing class properties to avoid the dynamic properties deprecation start from PHP 8.2.
+
 === 4.1 ===
 
 * quiz_has_question_use is now deprecated. Use mod_quiz\structure::has_use_capability istead.

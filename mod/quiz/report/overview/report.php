@@ -113,7 +113,6 @@ class quiz_overview_report extends attempts_report {
             $allowedjoins = new \core\dml\sql_join();
         }
 
-        $this->course = $course; // Hack to make this available in process_actions.
         $this->process_actions($quiz, $cm, $currentgroup, $groupstudentsjoins, $allowedjoins, $options->get_url());
 
         $hasquestions = quiz_has_questions($quiz->id);
@@ -301,7 +300,12 @@ class quiz_overview_report extends attempts_report {
      */
     protected function start_regrade($quiz, $cm) {
         require_capability('mod/quiz:regrade', $this->context);
-        $this->print_header_and_tabs($cm, $this->course, $quiz, $this->mode);
+        $this->print_header_and_tabs(
+            $cm,
+            get_course($cm->course),
+            $quiz,
+            $this->mode
+        );
     }
 
     /**

@@ -63,6 +63,9 @@ abstract class attempts_report extends report_base {
     /** @var boolean caches the results of {@see should_show_grades()}. */
     protected $showgrades = null;
 
+    /** @var boolean */
+    protected $hasgroupstudents;
+
     /**
      *  Initialise various aspects of this report.
      *
