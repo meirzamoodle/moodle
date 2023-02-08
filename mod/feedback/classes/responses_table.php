@@ -78,6 +78,9 @@ class mod_feedback_responses_table extends table_sql {
     /** @var array the data structure containing the table data for the external function */
     protected $dataforexternal = [];
 
+    /** @var bool */
+    protected $pageable;
+
     /**
      * Constructor
      *

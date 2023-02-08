@@ -48,6 +48,30 @@ require_once($CFG->dirroot . '/mod/feedback/lib.php');
  */
 class external_test extends externallib_advanced_testcase {
 
+    /** @var \stdClass course record */
+    public $course;
+
+    /** @var \stdClass activity record. */
+    public $feedback;
+
+    /** @var context_module context instance. */
+    public $context;
+
+    /** @var \stdClass course module. */
+    public $cm;
+
+    /** @var stdClass user record. */
+    public $student;
+
+    /** @var stdClass user record. */
+    public $teacher;
+
+    /** @var stdClass student role. */
+    public $studentrole;
+
+    /** @var stdClass student role. */
+    public $teacherrole;
+
     /**
      * Set up for every test
      */
