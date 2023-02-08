@@ -48,6 +48,9 @@ class data_portfolio_caller extends portfolio_module_caller_base {
     /** @var int how many records are 'mine' */
     private $minecount;
 
+    /** @var array list of fields to export. */
+    private $selectedfields;
+
     /**
      * the required callback arguments for a single-record export
      *
