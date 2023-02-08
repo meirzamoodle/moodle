@@ -45,6 +45,9 @@ class instance_updated_message implements renderable, templatable {
      */
     protected $instance;
 
+    /** @var int */
+    protected $type;
+
     /**
      * Instance updated constructor
      *
