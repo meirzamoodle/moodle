@@ -20,4 +20,10 @@ use setasign\Fpdi\FpdfTplTrait;
 class FpdfTpl extends \tFPDF
 {
     use FpdfTplTrait;
+
+    /** @var mixed */
+    public $n;
+
+    /** @var string */
+    public $buffer;
 }

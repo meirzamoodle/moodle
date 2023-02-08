@@ -193,6 +193,9 @@ class assign {
     /** @var mixed This var can vary between false for no overrides to a stdClass of the overrides for a group */
     private $overridedata;
 
+    /** @var number grade value. */
+    public $grade;
+
     /**
      * Constructor for the base assign class.
      *

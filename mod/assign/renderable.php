@@ -69,6 +69,8 @@ class assign_gradingmessage implements renderable {
     public $coursemoduleid = 0;
     /** @var int $gradingerror should be set true if there was a problem grading */
     public $gradingerror = null;
+    /** @var int the grading page. */
+    public $page;
 
     /**
      * Constructor
@@ -291,6 +293,8 @@ class assign_feedback_status implements renderable {
     public $returnparams = array();
     /** @var bool canviewfullnames */
     public $canviewfullnames = false;
+    /** @var array */
+    public $plugins = [];
 
     /**
      * Constructor
@@ -419,6 +423,8 @@ class assign_attempt_history_chooser implements renderable, templatable {
     public $coursemoduleid = 0;
     /** @var int userid - The current userid */
     public $userid = 0;
+    /** @var int */
+    public $submissioncount;
 
     /**
      * Constructor
@@ -678,6 +684,8 @@ class assign_files implements renderable {
     public $cm;
     /** @var stdClass $course */
     public $course;
+     /** @var \portfolio_add_button $portfoliobutton */
+    public $portfoliobutton;
 
     /**
      * The constructor

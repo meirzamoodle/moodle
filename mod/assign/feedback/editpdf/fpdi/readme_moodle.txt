@@ -19,6 +19,12 @@ Installation
 3) Update mod/assign/feedback/editpdf/fpdi/Tcpdf/Fpdi.php(or whichever file it has been replaced with) to extend 'pdf' instead of 'TCPDF'.
 4) Make a note below of any changes made.
 
+2023/02/19
+----------
+1/Added missing class properties to avoid the dynamic properties deprecation start from PHP 8.2.
+
+Updated by Meirza (MDL-76411)
+
 2021/05/26
 ----------
 1/ Updated to 2.3.6

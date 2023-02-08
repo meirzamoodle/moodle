@@ -29,7 +29,7 @@ namespace assignfeedback_editpdf;
  * @copyright 2012 Davo Smith
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class comment {
+class comment extends \stdClass {
 
     /** @var int unique id for this annotation */
     public $id = 0;
