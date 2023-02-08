@@ -107,6 +107,8 @@ class forum {
     private $duedate;
     /** @var int $cutoffdate Timestamp after which forum posts will no longer be accepted */
     private $cutoffdate;
+    /** @var bool $displaywordcounts Should display word counts in posts */
+    private $displaywordcount;
 
     /**
      * Constructor
