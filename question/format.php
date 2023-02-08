@@ -54,6 +54,8 @@ class qformat_default {
     protected $importcontext = null;
     /** @var bool $displayprogress Whether to display progress. */
     public $displayprogress = true;
+    /** @var array Moodle course variable. */
+    public $contexts;
 
     // functions to indicate import/export functionality
     // override to return true if implemented

@@ -640,6 +640,11 @@ class question_display_options {
     public $userinfoinhistory = self::HIDDEN;
 
     /**
+     * @var mixed
+     */
+    public $statewhichincorrect;
+
+    /**
      * Set all the feedback-related fields {@link $feedback}, {@link generalfeedback},
      * {@link rightanswer} and {@link manualcomment} to
      * {@link question_display_options::HIDDEN}.

@@ -354,6 +354,12 @@ class qtype_numerical_answer extends question_answer {
     public $tolerance;
     /** @var integer|string see {@link get_tolerance_interval()} for the meaning of this value. */
     public $tolerancetype = 2;
+    /** @var int */
+    public $correctanswerlength;
+    /** @var int */
+    public $correctanswerformat;
+    /** @var bool */
+    public $unitisright;
 
     public function __construct($id, $answer, $fraction, $feedback, $feedbackformat, $tolerance) {
         parent::__construct($id, $answer, $fraction, $feedback, $feedbackformat);

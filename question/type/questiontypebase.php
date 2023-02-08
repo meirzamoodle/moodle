@@ -53,6 +53,9 @@ class question_type {
         'maxbytes' => 0,
     );
 
+    /** @var string */
+    public $qtype;
+
     public function __construct() {
     }
 

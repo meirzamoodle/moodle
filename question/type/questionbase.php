@@ -135,6 +135,33 @@ abstract class question_definition {
      */
     public $customfields = array();
 
+    /** @var mixed */
+    public $rightanswer;
+
+    /** @var mixed */
+    public $truefeedback;
+
+    /** @var mixed */
+    public $falsefeedback;
+
+    /** @var mixed */
+    public $trueanswerid;
+
+    /** @var mixed */
+    public $falseanswerid;
+
+    /** @var mixed */
+    public $truefeedbackformat;
+
+    /** @var mixed */
+    public $falsefeedbackformat;
+
+    /** @var mixed */
+    public $showstandardinstruction;
+
+    /** @var mixed */
+    public $maxmark;
+
     /**
      * Constructor. Normally to get a question, you call
      * {@link question_bank::load_question()}, but questions can be created
@@ -924,7 +951,7 @@ abstract class question_graded_by_strategy extends question_graded_automatically
  * @copyright  2009 The Open University
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class question_answer {
+class question_answer extends \stdClass {
     /** @var integer the answer id. */
     public $id;
 

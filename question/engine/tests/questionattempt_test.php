@@ -54,7 +54,7 @@ class questionattempt_test extends \advanced_testcase {
 
     protected function tearDown(): void {
         $this->question = null;
-        $this->useageid = null;
+        $this->usageid = null;
         $this->qa = null;
     }
 

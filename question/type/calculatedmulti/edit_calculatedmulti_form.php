@@ -44,6 +44,9 @@ class qtype_calculatedmulti_edit_form extends question_edit_form {
     public $initialname = '';
     public $reload = false;
 
+    /** @var int */
+    protected $editasmultichoice;
+
     public function __construct($submiturl, $question, $category,
             $contexts, $formeditable = true) {
         $this->question = $question;

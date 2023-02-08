@@ -106,7 +106,7 @@ class qtype_ddimageortext_drag_item {
  * @copyright  2009 The Open University
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class qtype_ddimageortext_drop_zone {
+class qtype_ddimageortext_drop_zone extends \stdClass {
     /** @var int Number of the item */
     public $no;
 

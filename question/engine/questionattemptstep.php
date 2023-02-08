@@ -644,6 +644,8 @@ class question_attempt_step_subquestion_adapter extends question_attempt_step {
     protected $realstep;
     /** @var string the exta prefix on fields we work with. */
     protected $extraprefix;
+    /** @var question_attempt_step the step to wrap. */
+    protected $realqas;
 
     /**
      * Constructor.

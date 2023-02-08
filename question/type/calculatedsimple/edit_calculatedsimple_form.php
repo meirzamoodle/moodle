@@ -69,6 +69,9 @@ class qtype_calculatedsimple_edit_form extends qtype_calculated_edit_form {
 
     public $formdata = array();
 
+    /** @var mixed */
+    public $wizarddisplay;
+
     public function __construct($submiturl, $question, $category, $contexts, $formeditable = true) {
         $this->regenerate = true;
         $this->question = $question;

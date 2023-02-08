@@ -41,6 +41,9 @@ class tag_condition extends condition {
     /** @var array List of IDs for tags that have been selected in the form. */
     protected $selectedtagids;
 
+    /** @var array */
+    protected $params;
+
     /**
      * Constructor.
      *

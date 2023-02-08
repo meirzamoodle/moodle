@@ -67,6 +67,9 @@ class question_category_object {
      */
     public $catform;
 
+    /** @var mixed */
+    public $moveform;
+
     /**
      * Constructor.
      *

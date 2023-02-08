@@ -301,6 +301,9 @@ class qtype_calculated_variable_substituter {
      */
     protected $prettyvalue;
 
+    /** @var array */
+    protected $replace;
+
     /**
      * Constructor
      * @param array $values variable name => value.

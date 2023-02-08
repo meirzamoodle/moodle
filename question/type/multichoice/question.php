@@ -343,6 +343,10 @@ class qtype_multichoice_single_question extends qtype_multichoice_base {
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class qtype_multichoice_multi_question extends qtype_multichoice_base {
+
+    /** @var int */
+    public $single;
+
     public function get_renderer(moodle_page $page) {
         return $page->get_renderer('qtype_multichoice', 'multi');
     }
