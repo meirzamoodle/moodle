@@ -35,6 +35,13 @@ class chat_portfolio_caller extends portfolio_module_caller_base {
     protected $start;
     /** @var int Timestamp */
     protected $end;
+
+    /** @var array */
+    protected $messages;
+
+    /** @var mixed */
+    protected $participated;
+
     /**
      * @return array
      */

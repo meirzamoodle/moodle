@@ -97,6 +97,45 @@ class ChatDaemon {
     public $setsinfo = array(); // Keyed by sessionid exactly like conn_sets, one of these for each of those.
     public $chatrooms = array(); // Keyed by chatid, holding arrays of data.
 
+    /** @var int */
+    public $_trace_level;
+
+    /** @var bool true if function_name exists and is a function, false otherwise. */
+    public $_pcntl_exists;
+
+    /** @var int */
+    public $_time_rest_socket;
+
+    /** @var string beep file location. */
+    public $_beepsoundsrc;
+
+    /** @var int */
+    public $_freq_update_records;
+
+    /** @var mixed */
+    public $_freq_poll_idle_chat;
+
+    /** @var resource|false a file pointer resource on success, or false on error. */
+    public $_stdout;
+
+    /** @var array */
+    public $sets_info;
+
+    /** @var array */
+    public $conn_sets;
+
+    /** @var array */
+    public $conn_side;
+
+    /** @var array */
+    public $conn_half;
+
+    /** @var array */
+    public $conn_ufo;
+
+    /** @var resource|Socket */
+    public $listen_socket;
+
     // IMPORTANT: $connectionssets, $setsinfo and $chatrooms must remain synchronized!
     //            Pay extra attention when you write code that affects any of them!
 
