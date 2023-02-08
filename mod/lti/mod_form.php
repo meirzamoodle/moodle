@@ -53,6 +53,9 @@ require_once($CFG->dirroot.'/mod/lti/locallib.php');
 
 class mod_lti_mod_form extends moodleform_mod {
 
+    /** @var int */
+    public $typeid;
+
     public function definition() {
         global $PAGE, $OUTPUT, $COURSE;
 

@@ -39,6 +39,9 @@ defined('MOODLE_INTERNAL') || die();
  */
 class lineitem extends resource_base {
 
+    /** @var int course ID. */
+    public $courseid;
+
     /**
      * Class constructor.
      *

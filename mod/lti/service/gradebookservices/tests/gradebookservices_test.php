@@ -29,6 +29,9 @@ use ltiservice_gradebookservices\local\service\gradebookservices;
  */
 class gradebookservices_test extends \advanced_testcase {
 
+    /** @var mixed */
+    public $submissionReview;
+
     /**
      * @covers ::instance_added
      *

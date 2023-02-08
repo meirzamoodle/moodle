@@ -40,6 +40,12 @@ use stdClass;
  */
 class registration_upgrade_choice_page implements renderable, templatable {
 
+    /** @var array array of tools. */
+    protected $tools;
+
+    /** @var string tool URL. */
+    protected $startregurl;
+
     /**
      * Constructor
      *
