@@ -74,6 +74,15 @@ class core_tag_tag {
     /** @var int option to hide standard tags when editing item tags */
     const HIDE_STANDARD = 2;
 
+    /** @var int tag context ID. */
+    public $taginstancecontextid;
+
+    /** @var int time modification. */
+    public $timemodified;
+
+    /** @var int 0 if not flagged or positive integer if flagged. */
+    public $flag;
+
     /**
      * Constructor. Use functions get(), get_by_name(), etc.
      *
@@ -83,6 +92,8 @@ class core_tag_tag {
         if (empty($record->id)) {
             throw new coding_exception("Record must contain at least field 'id'");
         }
+        $this->taginstancecontextid = $record->taginstancecontextid ?? null;
+        $this->flag = $record->flag ?? null;
         $this->record = $record;
     }
 
