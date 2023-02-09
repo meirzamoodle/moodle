@@ -31,7 +31,7 @@ defined('MOODLE_INTERNAL') || die();
  * @copyright 2018 Jake Dallimore <jrhdallimore@gmail.com>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class favourite {
+class favourite extends \stdClass {
     /** @var int $id the id of the favourite.*/
     public $id;
 
