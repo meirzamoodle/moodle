@@ -41,6 +41,28 @@ class repository_flickr_public extends repository {
     private $flickr;
     public $photos;
 
+
+    /** @var string */
+    protected $api_key;
+
+    /** @var string email adress account. */
+    protected $flickr_account;
+
+    /** @var string watermarks usage status. */
+    protected $usewatermarks;
+
+    /** @var string */
+    protected $sess_account;
+
+    /** @var string */
+    protected $sess_tag;
+
+    /** @var string */
+    protected $sess_text;
+
+    /** @var string */
+    protected $nsid;
+
     /**
      * Stores sizes of images to prevent multiple API call
      */

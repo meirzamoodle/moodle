@@ -52,6 +52,9 @@ class repository_flickr extends repository {
 
     public $photos;
 
+    /** @var string token key */
+    public $token;
+
     /**
      * Stores sizes of images to prevent multiple API call
      */

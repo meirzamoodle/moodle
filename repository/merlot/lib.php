@@ -34,6 +34,18 @@ require_once($CFG->dirroot . '/repository/lib.php');
  */
 class repository_merlot extends repository {
 
+    /** @var string */
+    protected $keyword;
+
+    /** @var string */
+    protected $author;
+
+    /** @var string */
+    protected $licensekey;
+
+    /** @var string API URL. */
+    protected $api;
+
     public function __construct($repositoryid, $context = SYSCONTEXTID, $options = array()) {
         parent::__construct($repositoryid, $context, $options);
         $this->keyword = optional_param('merlot_keyword', '', PARAM_RAW);

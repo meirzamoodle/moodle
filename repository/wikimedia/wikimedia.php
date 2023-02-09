@@ -32,6 +32,18 @@ class wikimedia {
     private $_conn  = null;
     private $_param = array();
 
+    /** @var string */
+    protected $api;
+
+    /** @var string */
+    protected $userid;
+
+    /** @var string */
+    protected $username;
+
+    /** @var string */
+    protected $token;
+
     public function __construct($url = '') {
         if (empty($url)) {
             $this->api = 'https://commons.wikimedia.org/w/api.php';

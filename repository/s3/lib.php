@@ -41,6 +41,15 @@ if (!defined('CURL_SSLVERSION_TLSv1')) {
  */
 class repository_s3 extends repository {
 
+    /** @var string */
+    protected $access_key;
+    /** @var string */
+    protected $secret_key;
+    /** @var string */
+    protected $endpoint;
+    /** @var S3 S3 class. */
+    protected $s;
+
     /**
      * Constructor
      * @param int $repositoryid
