@@ -53,6 +53,9 @@ class token_table extends \table_sql {
     /** @var object */
     protected $filterdata;
 
+    /** @var array data table. */
+    public $data;
+
     /**
      * Sets up the table.
      *
