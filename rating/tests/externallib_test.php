@@ -46,6 +46,45 @@ require_once($CFG->dirroot . '/rating/lib.php');
  */
 class externallib_test extends externallib_advanced_testcase {
 
+    /** @var \stdClass course record. */
+    protected $course;
+
+    /** @var \StdClass user record. */
+    protected $student1;
+
+    /** @var \StdClass user record. */
+    protected $teacher1;
+
+    /** @var \StdClass user record. */
+    protected $student2;
+
+    /** @var \StdClass user record. */
+    protected $teacher2;
+
+    /** @var \StdClass user record. */
+    protected $student3;
+
+    /** @var \StdClass user record. */
+    protected $teacher3;
+
+    /** @var \stdClass activity record. */
+    protected $forum;
+
+    /** @var \stdClass activity record. */
+    protected $discussion;
+
+    /** @var \context_module context instance. */
+    protected $contextid;
+
+    /** @var \StdClass forum post. */
+    protected $post;
+
+    /** @var mixed a fieldset object, false or exception if error not found. */
+    protected $studentrole;
+
+    /** @var mixed a fieldset object, false or exception if error not found. */
+    protected $teacherrole;
+
     /*
      * Set up for every test
      */
