@@ -61,6 +61,11 @@ class lib_test extends \advanced_testcase {
      */
     private $roleid;
 
+    /**
+     * @var stdClass The user.
+     */
+    private $user2;
+
     public function setUp(): void {
         $this->user = $this->getDataGenerator()->create_user();
         $this->user2 = $this->getDataGenerator()->create_user();

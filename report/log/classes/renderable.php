@@ -93,6 +93,9 @@ class report_log_renderable implements renderable {
     /** @var table_log table log which will be used for rendering logs */
     public $tablelog;
 
+    /** @var int date. */
+    public $selecteddate;
+
     /**
      * Constructor.
      *
