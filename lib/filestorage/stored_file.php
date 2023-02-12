@@ -40,7 +40,7 @@ require_once($CFG->dirroot . '/lib/filestorage/file_system.php');
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  * @since     Moodle 2.0
  */
-class stored_file {
+class stored_file extends \stdCLass {
     /** @var file_storage file storage pool instance */
     private $fs;
     /** @var stdClass record from the files table left join files_reference table */
