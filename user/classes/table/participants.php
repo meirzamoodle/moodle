@@ -72,7 +72,7 @@ class participants extends \table_sql implements dynamic_table {
     /**
      * @var \stdClass $course The course details.
      */
-    protected $course;
+    public $course;
 
     /**
      * @var  context $context The course context.

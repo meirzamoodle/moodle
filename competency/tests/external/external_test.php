@@ -95,7 +95,10 @@ class external_test extends externallib_advanced_testcase {
     protected $scaleconfiguration3 = null;
 
     /** @var string catscaleconfiguration */
-    protected $catscaleconfiguration4 = null;
+    protected $scaleconfiguration4 = null;
+
+    /** @var \core_course_category|null */
+    protected ?\core_course_category $othercategory = null;
 
     /**
      * Setup function- we will create a course and add an assign instance to it.

@@ -25,6 +25,39 @@ namespace core_competency;
  */
 class competency_override_test extends \advanced_testcase {
 
+    /** @var competency Object before update. */
+    protected $beforeupdate = null;
+
+    /** @var \stdClass course record. */
+    protected $course;
+
+    /** @var \stdClass user record. */
+    protected $user;
+
+    /** @var \stdClass block instance record. */
+    protected $scale;
+
+    /** @var competency_framework */
+    protected $framework;
+
+    /** @var \core_competency\plan */
+    protected $plan;
+
+    /** @var competency */
+    protected $comp1;
+
+    /** @var competency */
+    protected $comp2;
+
+    /** @var \stdClass */
+    protected $cm;
+
+    /** @var \completion_info */
+    protected $completion;
+
+    /** @var \context_course */
+    protected $context;
+
     public function setUp(): void {
         $this->resetAfterTest(true);
         $this->setAdminUser();
