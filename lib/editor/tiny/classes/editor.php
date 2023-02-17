@@ -197,6 +197,25 @@ class editor extends \texteditor {
 
             // Nest menu inside parent DOM.
             'nestedmenu' => true,
+
+            /*
+             * Submenu items that need to be removed.
+             *  [
+             *      ['section name', 'submenu item']
+             *  ]
+             *
+             * Example:
+             * ```php
+             *  [
+             *      ['align', get_string('tiny:justify', 'editor_tiny')],
+             *      ['cell',  'tablecellprops'], // An example if the submenu item is in disable/inactive status.
+             *      ['lineheight', 2],
+             *  ]
+             * ```
+             */
+            'removedSubmenuitems' => [
+                ['align', get_string('tiny:justify', 'editor_tiny')], // Removed the justify text button to aid accessibility.
+            ],
         ];
 
         if (defined('BEHAT_SITE_RUNNING') && BEHAT_SITE_RUNNING) {
