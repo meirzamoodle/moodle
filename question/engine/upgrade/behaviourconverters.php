@@ -66,7 +66,7 @@ abstract class question_behaviour_attempt_updater {
     protected $qsession;
     /** @var array the question states for the session to be upgraded. */
     protected $qstates;
-    /** @var mixed */
+    /** @var stdClass */
     protected $startstate;
 
     /**
@@ -339,9 +339,6 @@ abstract class question_behaviour_attempt_updater {
 
 class qbehaviour_deferredfeedback_converter extends question_behaviour_attempt_updater {
 
-    /** @var mixed */
-    protected $startstate;
-
     protected function behaviour_name() {
         return 'deferredfeedback';
     }
@@ -404,9 +401,6 @@ class qbehaviour_manualgraded_converter extends question_behaviour_attempt_updat
 
 
 class qbehaviour_informationitem_converter extends question_behaviour_attempt_updater {
-
-    /** @var mixed */
-    protected $startstate;
 
     protected function behaviour_name() {
         return 'informationitem';
