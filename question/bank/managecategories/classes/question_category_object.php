@@ -67,9 +67,6 @@ class question_category_object {
      */
     public $catform;
 
-    /** @var mixed */
-    public $moveform;
-
     /**
      * Constructor.
      *
@@ -301,22 +298,6 @@ class question_category_object {
         helper::question_can_delete_cat($oldcat);
         $this->move_questions($oldcat, $newcat);
         $this->delete_category($oldcat);
-    }
-
-    /**
-     * Display the form to move a category.
-     *
-     * @param int $questionsincategory
-     * @param object $category
-     * @throws \coding_exception
-     */
-    public function display_move_form($questionsincategory, $category): void {
-        global $OUTPUT;
-        $vars = new stdClass();
-        $vars->name = $category->name;
-        $vars->count = $questionsincategory;
-        echo $OUTPUT->box(get_string('categorymove', 'question', $vars), 'generalbox boxaligncenter');
-        $this->moveform->display();
     }
 
     /**
