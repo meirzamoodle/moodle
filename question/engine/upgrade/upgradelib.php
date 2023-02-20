@@ -45,7 +45,7 @@ class question_engine_attempt_upgrader {
     protected $questionloader;
     /** @var question_engine_assumption_logger */
     protected $logger;
-    /** @var moodle_recordset */
+    /** @var stdClass */
     protected $qsession;
 
     public function save_usage($preferredbehaviour, $attempt, $qas, $quizlayout) {
@@ -282,7 +282,7 @@ class question_engine_upgrade_question_loader {
     protected $cache = array();
     protected $datasetcache = array();
 
-    /** @var mixed */
+    /** @var base_logger */
     protected $logger;
 
     public function __construct($logger) {
