@@ -58,13 +58,8 @@ class qtype_multianswer_edit_form extends question_edit_form {
     public $reload = false;
     /** @var qtype_numerical_answer_processor used when validating numerical answers. */
     protected $ap = null;
-    /** @var bool */
-    protected $regenerate;
-    /** @var array */
-    protected $editas;
 
     public function __construct($submiturl, $question, $category, $contexts, $formeditable = true) {
-        $this->regenerate = true;
         $this->reload = optional_param('reload', false, PARAM_BOOL);
 
         $this->usedinquiz = false;
@@ -143,13 +138,6 @@ class qtype_multianswer_edit_form extends question_edit_form {
         $mform->registerNoSubmitButton('analyzequestion');
         if ($this->reload) {
             for ($sub = 1; $sub <= $countsubquestions; $sub++) {
-
-                if (isset($this->questiondisplay->options->questions[$sub]->qtype)) {
-                    $this->editas[$sub] = $this->questiondisplay->options->questions[$sub]->qtype;
-                } else {
-                    $this->editas[$sub] = optional_param('sub_'.$sub.'_qtype', 'unknown type', PARAM_PLUGIN);
-                }
-
                 $storemess = '';
                 if (isset($this->savedquestiondisplay->options->questions[$sub]->qtype) &&
                         $this->savedquestiondisplay->options->questions[$sub]->qtype !=
