@@ -69,9 +69,6 @@ class qtype_calculatedsimple_edit_form extends qtype_calculated_edit_form {
 
     public $formdata = array();
 
-    /** @var mixed */
-    public $wizarddisplay;
-
     public function __construct($submiturl, $question, $category, $contexts, $formeditable = true) {
         $this->regenerate = true;
         $this->question = $question;
@@ -320,7 +317,6 @@ class qtype_calculatedsimple_edit_form extends qtype_calculated_edit_form {
                 get_string('findwildcards', 'qtype_calculatedsimple'));
         $mform->registerNoSubmitButton('analyzequestion');
         $mform->closeHeaderBefore('analyzequestion');
-        $this->wizarddisplay = optional_param('analyzequestion', false, PARAM_BOOL);
         if ($this->maxnumber != -1) {
             $this->noofitems = $this->maxnumber;
         } else {
