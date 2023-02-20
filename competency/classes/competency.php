@@ -56,9 +56,6 @@ class competency extends persistent {
     /** @var competency|null To store new parent. */
     protected ?competency $newparent = null;
 
-    /** @var mixed */
-    public $relatedcompetencies;
-
     /**
      * Return the definition of the properties of this model.
      *
