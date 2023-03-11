@@ -56,7 +56,9 @@ define(
             showmoreLink.addEventListener('click', () => {
                 showmoreLink.classList.add('d-none');
 
-                const hiddenItems = document.querySelector('[data-region="items-list"]').children;
+                const hiddenItems = Array.prototype.slice.call(
+                    document.querySelector('[data-region="items-list"]').children
+                );
                 hiddenItems.forEach(function(hiddenItem) {
                     hiddenItem.style = "display: block";
                 });
