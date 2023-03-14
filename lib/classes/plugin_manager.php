@@ -1873,7 +1873,7 @@ class core_plugin_manager {
             'filter' => array(
                 'activitynames', 'algebra', 'emailprotect',
                 'emoticon', 'displayh5p', 'mathjaxloader', 'mediaplugin', 'multilang', 'tex', 'tidy',
-                'urltolink', 'data', 'glossary'
+                'urltolink', 'data', 'glossary', 'codehighlighter'
             ),
 
             'format' => array(
