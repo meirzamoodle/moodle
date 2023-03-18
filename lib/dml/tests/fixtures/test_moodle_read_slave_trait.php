@@ -34,6 +34,10 @@ namespace core;
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 trait test_moodle_read_slave_trait {
+
+    /** @var bool read slave status. */
+    private $wantreadslave;
+
     /**
      * Constructs a mock db driver
      *

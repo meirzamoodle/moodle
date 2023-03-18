@@ -45,6 +45,9 @@ class dml_read_slave_test extends \base_testcase {
     /** @var float */
     static private $dbreadonlylatency = 0.8;
 
+    /** @var bool _called flag. */
+    private $_called;
+
     /**
      * Instantiates a test database interface object.
      *
@@ -408,7 +411,7 @@ class dml_read_slave_test extends \base_testcase {
                 [
                     'eventname'   => '\core_tests\event\unittest_executed',
                     'callback'    => function (\core_tests\event\unittest_executed $event) use ($DB, $now) {
-                        $this->_called = true;
+                        $this->_called  = true;
                         $this->assertFalse($DB->is_transaction_started());
 
                         // This condition should always evaluate true, however we need to
