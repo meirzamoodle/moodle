@@ -194,7 +194,6 @@ class dml_missing_record_exception extends dml_exception {
         if (empty($tablename)) {
             $tablename = null;
         }
-        $this->tablename = $tablename;
         $this->sql       = $sql;
         $this->params    = $params;
 

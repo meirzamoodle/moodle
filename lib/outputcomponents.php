@@ -1113,6 +1113,9 @@ class single_select implements renderable, templatable {
      */
     var $helpicon = null;
 
+    /** @var component_action[] component action. */
+    public $actions = [];
+
     /**
      * Constructor
      * @param moodle_url $url form action target, includes hidden fields
@@ -2860,6 +2863,12 @@ class html_table {
     /** @var bool Whether to make the table to be scrolled horizontally with ease. Make table responsive across all viewports. */
     public $responsive = true;
 
+    /** @var string table class name. */
+    public $class;
+
+    /** @var bool true if rotate headers, otherwise false. */
+    public $rotateheaders;
+
     /**
      * Constructor
      */
@@ -2898,6 +2907,13 @@ class html_table_row {
      * @var array Attributes of additional HTML attributes for the <tr> element
      */
     public $attributes = array();
+
+    /**
+     * Class name to add to HTML table row.
+     * Added for testing purposes.
+     * @var string
+     */
+    public $class;
 
     /**
      * Constructor
@@ -2971,6 +2987,18 @@ class html_table_cell {
      * @var array Attributes of additional HTML attributes for the <td> element
      */
     public $attributes = array();
+
+    /**
+     * Class name to add to HTML table cell.
+     * Added for testing purposes.
+     * @var string
+     */
+    public $class;
+
+    /**
+     * @var array table attributes.
+     */
+    public $atributtes;
 
     /**
      * Constructs a table cell
@@ -3966,6 +3994,8 @@ class tabobject implements renderable, templatable {
     var $subtree = array();
     /** @var int level of tab in the tree, 0 for root (instance of tabtree), 1 for the first row of tabs */
     var $level = 1;
+    /** @var string|null extra class. */
+    public $extraclass;
 
     /**
      * Constructor

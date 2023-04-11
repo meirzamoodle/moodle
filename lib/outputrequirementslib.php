@@ -1857,6 +1857,15 @@ class YUI_config {
      */
     protected $jsconfigfunctions = array();
 
+    /** @var array to store value from $CFG->yuilogexclude. */
+    public $logExclude;
+
+    /** @var array to store value from $CFG->yuiloginclude. */
+    public $logInclude;
+
+    /** @var string to store value from $CFG->yuiloglevel. */
+    public $logLevel;
+
     /**
      * Create a new group within the YUI_config system.
      *
