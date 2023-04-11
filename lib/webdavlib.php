@@ -88,6 +88,21 @@ class webdav_client {
      */
     private $oauthtoken;
 
+    /** @var string Username (for basic/digest auth, see $auth). */
+    private $user;
+
+    /** @var string Password (for basic/digest auth, see $auth). */
+    private $pass;
+
+    /** @var mixed to store unknown xml elements. */
+    private $_delete_cdata;
+
+    /** @var mixed to store xml data that need to be handled */
+    private $_lock_ref_cdata;
+
+    /** @var mixed */
+    private $_lock_cdata;
+
     /**#@-*/
 
     /**
