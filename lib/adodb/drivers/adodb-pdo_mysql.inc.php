@@ -38,6 +38,16 @@ class ADODB_pdo_mysql extends ADODB_pdo {
 	var $fmtTimeStamp = "'Y-m-d H:i:s'";
 	var $nameQuote = '`';
 
+	/**
+	 * Holds the current database name.
+	 *
+	 * Retained for compat with older adodb versions
+	 * @deprecated replaced by $database in ADOConnection as parent class
+	 * @see SelectDB()
+	 * @var string
+	 */
+	var $databaseName = '';
+
 	function _init($parentDriver)
 	{
 		$parentDriver->hasTransactions = false;

@@ -48,6 +48,24 @@ class ADODB_sybase extends ADOConnection {
 	var $port;
 
 	/**
+	 * Holds the current database name.
+	 *
+	 * Retained for compat with older adodb versions
+	 * @deprecated replaced by $database in ADOConnection as parent class
+	 * @see SelectDB()
+	 * @var string
+	 */
+	var $databaseName = '';
+
+	/**
+	 * Holds the current database name.
+	 *
+	 * Retained for compat with older adodb versions
+	 * @deprecated
+	 * @var string
+	 */
+
+	/**
 	 * might require begintrans -- committrans
 	 * @inheritDoc
 	 */

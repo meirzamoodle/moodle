@@ -313,6 +313,9 @@ if (!defined('_ADODB_LAYER')) {
 
 		var $createdir = true; // requires creation of temp dirs
 
+		/** @var string The value of the configuration option. */
+		var $notSafeMode;
+
 		function __construct() {
 			global $ADODB_INCLUDED_CSV;
 			if (empty($ADODB_INCLUDED_CSV)) {

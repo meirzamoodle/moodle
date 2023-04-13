@@ -83,7 +83,6 @@ class ADODB_db2 extends ADOConnection {
 	 */
 	private $storedProcedureParameters = false;
 
-
 	function __construct() {}
 
 	protected function _insertID($table = '', $column = '')
@@ -1831,6 +1830,15 @@ class ADORecordSet_db2 extends ADORecordSet {
 	var $databaseType = "db2";
 	var $dataProvider = "db2";
 	var $useFetchArray;
+
+	/** @var string */
+	var $_errorMsg;
+
+	/** @var mixed */
+	var $_queryId;
+
+	/** @var string */
+	var $_errorCode;
 
 	function __construct($id,$mode=false)
 	{
