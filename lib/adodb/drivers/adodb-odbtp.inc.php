@@ -46,6 +46,25 @@ class ADODB_odbtp extends ADOConnection{
 	var $_canPrepareSP = false;
 	var $_dontPoolDBC = true;
 
+	/** @var string DBMS name. */
+	var $odbc_name;
+
+	/** @var bool */
+	var $_canSelectDb = false;
+
+	/** @var mixed */
+	var $_lastAffectedRows;
+
+	/**
+	 * Holds the current database name.
+	 *
+	 * Retained for compat with older adodb versions
+	 * @deprecated replaced by $database in ADOConnection as parent class
+	 * @see SelectDB()
+	 * @var string
+	 */
+	var $databaseName = '';
+
 	function ServerInfo()
 	{
 		return array('description' => @odbtp_get_attr( ODB_ATTR_DBMSNAME, $this->_connectionID),

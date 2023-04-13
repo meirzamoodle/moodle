@@ -25,5 +25,7 @@ Added:
  * readme_moodle.txt - this file ;-)
 
 Notes:
- * 2023-02-10 Applied patch https://github.com/ADOdb/ADOdb/pull/928 to avoid PHP 8.2 deprecations.
-   See MDL-76413 for more details.
+ * 2023-04-13 Added properties to avoid PHP 8.2 dynamic properties deprecated warning.
+   I've proposed a PR to upstream https://github.com/ADOdb/ADOdb/pull/926,
+   althought the PR was rejected, they will use it to start working on the issue,
+   hopefully, those will be ready for the new version.

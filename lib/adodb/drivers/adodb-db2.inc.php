@@ -93,7 +93,6 @@ class ADODB_db2 extends ADOConnection {
 	 */
 	private $storedProcedureParameters = false;
 
-
 	function __construct() {}
 
 	protected function _insertID($table = '', $column = '')
@@ -1581,8 +1580,6 @@ See http://msdn.microsoft.com/library/default.asp?url=/library/en-us/db2/htm/db2
 	function _query(&$sql,$inputarr=false)
 	{
 
-		$this->_error = '';
-
 		$db2Options = array();
 		/*
 		 * Use DB2 Internal case handling for best speed
@@ -1844,6 +1841,15 @@ class ADORecordSet_db2 extends ADORecordSet {
 	var $databaseType = "db2";
 	var $dataProvider = "db2";
 	var $useFetchArray;
+
+	/** @var string */
+	var $_errorMsg;
+
+	/** @var mixed */
+	var $_queryId;
+
+	/** @var string */
+	var $_errorCode;
 
 	function __construct($id,$mode=false)
 	{

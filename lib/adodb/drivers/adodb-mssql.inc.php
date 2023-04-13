@@ -78,6 +78,16 @@ class ADODB_mssql extends ADOConnection {
 	var $_bindInputArray = true;
 	var $forceNewConnect = false;
 
+	/**
+	 * Holds the current database name.
+	 *
+	 * Retained for compat with older adodb versions
+	 * @deprecated replaced by $database in ADOConnection as parent class
+	 * @see SelectDB()
+	 * @var string
+	 */
+	var $databaseName = '';
+
 	function ServerInfo()
 	{
 	global $ADODB_FETCH_MODE;

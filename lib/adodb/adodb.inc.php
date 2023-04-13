@@ -309,6 +309,9 @@ if (!defined('_ADODB_LAYER')) {
 
 		var $createdir = true; // requires creation of temp dirs
 
+		/** @var string The value of the configuration option. */
+		var $notSafeMode;
+
 		function __construct() {
 			global $ADODB_INCLUDED_CSV;
 			if (empty($ADODB_INCLUDED_CSV)) {
@@ -584,6 +587,10 @@ if (!defined('_ADODB_LAYER')) {
 
 	var $null2null = 'null'; // in autoexecute/getinsertsql/getupdatesql, this value will be converted to a null
 	var $bulkBind = false; // enable 2D Execute array
+
+	/** @var string SQL statement executed by some drivers after successful connection. */
+	public $connectStmt = '';
+
 	//
 	// PRIVATE VARS
 	//
@@ -598,7 +605,15 @@ if (!defined('_ADODB_LAYER')) {
 
 	var $_isPersistentConnection = false;	/// A boolean variable to state whether its a persistent connection or normal connection.	*/
 	var $_bindInputArray = false; /// set to true if ADOConnection.Execute() permits binding of array parameters.
-	var $_evalAll = false;
+
+	/**
+	 * Eval string used to filter data.
+	 * Only used in the deprecated Text driver.
+	 * @see https://adodb.org/dokuwiki/doku.php?id=v5:database:text#workaround
+	 * @var string
+	 */
+	var $evalAll = false;
+
 	var $_affected = false;
 	var $_logsql = false;
 	var $_transmode = ''; // transaction mode
@@ -633,6 +648,31 @@ if (!defined('_ADODB_LAYER')) {
 	 */
 	public $customMetaTypes = array();
 
+	/**
+	 * SQL statement to get the last IDENTITY value inserted into an IDENTITY
+	 * column in the same scope.
+	 * @see https://learn.microsoft.com/en-us/sql/t-sql/functions/scope-identity-transact-sql
+	 * @var string
+	 */
+	var $identitySQL;
+
+	/** @var string SQL statement to create a Sequence . */
+	var $_genSeqSQL;
+
+	/** @var string SQL statement to drop a Sequence. */
+	var $_dropSeqSQL;
+
+	/** @var string SQL statement to generate a Sequence ID. */
+	var $_genIDSQL;
+
+	/** @var ADORecordSet Recordset used to retrieve MetaType information */
+	var $_metars;
+
+	/** @var string a specified locale. */
+	var $locale;
+
+	/** @var string SQL statement to get table columns. */
+	var $metaColumnsSQL;
 
 	/**
 	 * Default Constructor.
@@ -3931,6 +3971,12 @@ class ADORecordSet implements IteratorAggregate {
 	 * @see fieldTypesArray()
 	 */
 	protected $fieldObjectsCache;
+
+	/**
+	 * @var int Defines the Fetch Mode for a recordset
+	 * See the ADODB_FETCH_* constants
+	 */
+	public $adodbFetchMode;
 
 	/**
 	 * Constructor
