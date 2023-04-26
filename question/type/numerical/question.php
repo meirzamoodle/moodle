@@ -354,6 +354,8 @@ class qtype_numerical_answer extends question_answer {
     public $tolerance;
     /** @var integer|string see {@link get_tolerance_interval()} for the meaning of this value. */
     public $tolerancetype = 2;
+    /** @var bool True if unit is correct, otherwise false. */
+    public $unitisright;
 
     public function __construct($id, $answer, $fraction, $feedback, $feedbackformat, $tolerance) {
         parent::__construct($id, $answer, $fraction, $feedback, $feedbackformat);

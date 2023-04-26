@@ -943,6 +943,18 @@ class question_answer {
     /** @var integer one of the FORMAT_... constans. */
     public $feedbackformat;
 
+    /** @var stored_file[] array of files related with the answer. */
+    public $answerfiles;
+
+    /** @var stored_file[] array of files related with the feedbacks answer. */
+    public $feedbackfiles;
+
+    /** @var int The length of the correct answer. */
+    public $correctanswerlength;
+
+    /** @var int The format of the correct answer. */
+    public $correctanswerformat;
+
     /**
      * Constructor.
      * @param int $id the answer.
