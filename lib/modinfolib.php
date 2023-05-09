@@ -3071,7 +3071,7 @@ class section_info implements IteratorAggregate {
     private $modinfo;
 
     /**
-     * True if has actvities, otherwise false.
+     * True if has activities, otherwise false.
      * @var bool
      */
     public $hasactivites;

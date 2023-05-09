@@ -4263,7 +4263,7 @@ class curl_cache {
     /** @var string Path to cache directory */
     public $dir = '';
 
-    /** @var string the repositorycacheexpire config value. */
+    /** @var int the repositorycacheexpire config value. */
     private $ttl;
 
     /**

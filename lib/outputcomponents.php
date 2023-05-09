@@ -2872,9 +2872,6 @@ class html_table {
     /** @var string table class name. */
     public $class;
 
-    /** @var bool true if rotate headers, otherwise false. */
-    public $rotateheaders;
-
     /**
      * Constructor
      */

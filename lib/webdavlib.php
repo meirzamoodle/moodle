@@ -94,13 +94,13 @@ class webdav_client {
     /** @var string Password (for basic/digest auth, see $auth). */
     private $pass;
 
-    /** @var mixed to store unknown xml elements. */
-    private $_delete_cdata;
-
-    /** @var mixed to store xml data that need to be handled */
+    /** @var mixed to store xml data that need to be handled. */
     private $_lock_ref_cdata;
 
-    /** @var mixed */
+    /** @var mixed to store the deleted xml data. */
+    private $_delete_cdata;
+
+    /** @var string to store the locked xml data. */
     private $_lock_cdata;
 
     /**#@-*/
