@@ -51,6 +51,12 @@ class stored_file {
     private $repository;
     /** @var file_system filesystem instance */
     private $filesystem;
+    /** @var string the button link as html. */
+    public $portfoliobutton;
+    /** @var string the formatted date/time. */
+    public $timemodified;
+    /** @var string html link. */
+    public $fileurl;
 
     /**
      * @var int Indicates a file handle of the type returned by fopen.
