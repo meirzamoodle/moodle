@@ -334,11 +334,7 @@ class question_type_test extends \advanced_testcase {
                 $actualanswer = array_shift($actualsubq->options->answers);
                 foreach ($answer as $ansproperty => $ansvalue) {
                     // These questions do not use 'answerformat', will ignore it.
-                    $ignoreproperty = [
-                        'id', 'question', 'answerformat', 'answerfiles',
-                        'feedbackfiles', 'correctanswerlength', 'correctanswerformat'
-                    ];
-                    if (!in_array($ansproperty, $ignoreproperty)) {
+                    if (!in_array($ansproperty, array('id', 'question', 'answerformat'))) {
                         $this->assertEquals($ansvalue, $actualanswer->$ansproperty);
                     }
                 }

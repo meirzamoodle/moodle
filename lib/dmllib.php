@@ -177,8 +177,6 @@ class dml_multiple_records_exception extends dml_exception {
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class dml_missing_record_exception extends dml_exception {
-    /** @var string A table's name.*/
-    public $table;
     /** @var string An SQL query.*/
     public $sql;
     /** @var array The SQL's parameters.*/

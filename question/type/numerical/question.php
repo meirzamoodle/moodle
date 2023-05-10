@@ -356,6 +356,10 @@ class qtype_numerical_answer extends question_answer {
     public $tolerancetype = 2;
     /** @var bool True if unit is correct, otherwise false. */
     public $unitisright;
+    /** @var int The length of the correct answer. */
+    public $correctanswerlength;
+    /** @var int The format of the correct answer. */
+    public $correctanswerformat;
 
     public function __construct($id, $answer, $fraction, $feedback, $feedbackformat, $tolerance) {
         parent::__construct($id, $answer, $fraction, $feedback, $feedbackformat);

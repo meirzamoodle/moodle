@@ -110,11 +110,6 @@ class result implements \renderable {
     protected $details = '';
 
     /**
-     * @var int status code.
-     */
-    public $status;
-
-    /**
      * Get the check reference label
      *
      * @return string must be globally unique

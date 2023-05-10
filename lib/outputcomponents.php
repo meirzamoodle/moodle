@@ -4003,8 +4003,6 @@ class tabobject implements renderable, templatable {
     var $subtree = array();
     /** @var int level of tab in the tree, 0 for root (instance of tabtree), 1 for the first row of tabs */
     var $level = 1;
-    /** @var string|null extra class. */
-    public $extraclass;
 
     /**
      * Constructor
