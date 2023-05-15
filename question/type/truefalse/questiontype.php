@@ -144,10 +144,7 @@ class qtype_truefalse extends question_type {
         $answers = $questiondata->options->answers;
 
         /** @var qtype_truefalse_question $question */
-        $question->rightanswer = false;
-        if ($answers[$questiondata->options->trueanswer]->fraction > 0.99) {
-            $question->rightanswer = true;
-        }
+        $question->rightanswer = $answers[$questiondata->options->trueanswer]->fraction > 0.99;
         $question->truefeedback =  $answers[$questiondata->options->trueanswer]->feedback;
         $question->falsefeedback = $answers[$questiondata->options->falseanswer]->feedback;
         $question->truefeedbackformat =
