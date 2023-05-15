@@ -1201,14 +1201,13 @@ class qformat_xml extends qformat_default {
         // Get files used by the generalfeedback.
         $question->generalfeedbackfiles = $fs->get_area_files(
                 $contextid, 'question', 'generalfeedback', $question->id);
-
-        $qafiles = new stdClass();
-        $qafiles->answerfiles = $qafiles->feedbackfiles = [];
+        // Get files used by the answer and answerfeedback.
+        $answerfiles = $feedbackfiles = [];
         if (!empty($question->options->answers)) {
             foreach ($question->options->answers as $answer) {
-                $qafiles->answerfiles[$answer->id] = $fs->get_area_files(
+                $answerfiles[$answer->id] = $fs->get_area_files(
                         $contextid, 'question', 'answer', $answer->id);
-                $qafiles->feedbackfiles[$answer->id] = $fs->get_area_files(
+                $feedbackfiles[$answer->id] = $fs->get_area_files(
                         $contextid, 'question', 'answerfeedback', $answer->id);
             }
         }
@@ -1276,8 +1275,8 @@ class qformat_xml extends qformat_default {
                 $expout .= $this->write_answer(
                     $trueanswer,
                     '',
-                    $qafiles->answerfiles[$trueanswer->id],
-                    $qafiles->feedbackfiles[$trueanswer->id]
+                    $answerfiles[$trueanswer->id],
+                    $feedbackfiles[$trueanswer->id]
                 );
 
                 $falseanswer = $question->options->answers[$question->options->falseanswer];
@@ -1285,8 +1284,8 @@ class qformat_xml extends qformat_default {
                 $expout .= $this->write_answer(
                     $falseanswer,
                     '',
-                    $qafiles->answerfiles[$falseanswer->id],
-                    $qafiles->feedbackfiles[$falseanswer->id]
+                    $answerfiles[$falseanswer->id],
+                    $feedbackfiles[$falseanswer->id]
                 );
 
                 break;
@@ -1302,12 +1301,12 @@ class qformat_xml extends qformat_default {
                 $expout .= "    <showstandardinstruction>" . $question->options->showstandardinstruction .
                     "</showstandardinstruction>\n";
                 $expout .= $this->write_combined_feedback($question->options, $question->id, $question->contextid);
-                $expout .= $this->write_answers($question->options->answers, $qafiles);
+                $expout .= $this->write_answers($question->options->answers, $answerfiles, $feedbackfiles);
                 break;
 
             case 'shortanswer':
                 $expout .= "    <usecase>{$question->options->usecase}</usecase>\n";
-                $expout .= $this->write_answers($question->options->answers, $qafiles);
+                $expout .= $this->write_answers($question->options->answers, $answerfiles, $feedbackfiles);
                 break;
 
             case 'numerical':
@@ -1315,8 +1314,8 @@ class qformat_xml extends qformat_default {
                     $expout .= $this->write_answer(
                         $answer,
                         "      <tolerance>{$answer->tolerance}</tolerance>\n",
-                        $qafiles->answerfiles[$answer->id],
-                        $qafiles->feedbackfiles[$answer->id]
+                        $answerfiles[$answer->id],
+                        $feedbackfiles[$answer->id]
                     );
                 }
 
@@ -1462,7 +1461,7 @@ class qformat_xml extends qformat_default {
                     $files = $fs->get_area_files($contextid, $component,
                             'instruction', $question->id);
                     $expout .= $this->writetext($answer->feedback);
-                    $expout .= $this->write_files($qafiles->feedbackfiles[$answer->id]);
+                    $expout .= $this->write_files($feedbackfiles[$answer->id]);
                     $expout .= "    </feedback>\n";
                     $expout .= "</answer>\n";
                 }
@@ -1595,21 +1594,34 @@ class qformat_xml extends qformat_default {
         }
     }
 
-    public function write_answers($answers, $qafiles) {
+    /**
+     * Write answers.
+     *
+     * @param object $answers the answers owned by a question.
+     * @param array $answerfiles array of files related with the answer.
+     * @param array $feedbackfiles array of files related with the feedbacks answer.
+     * @return string XML to output.
+     */
+    public function write_answers($answers, $answerfiles = [], $feedbackfiles = []) {
         if (empty($answers)) {
             return;
         }
         $output = '';
         foreach ($answers as $answer) {
-            $output .= $this->write_answer(
-                $answer,
-                '',
-                $qafiles->answerfiles[$answer->id],
-                $qafiles->feedbackfiles[$answer->id]);
+            $output .= $this->write_answer($answer, '', $answerfiles[$answer->id], $feedbackfiles[$answer->id]);
         }
         return $output;
     }
 
+    /**
+     * Write answer.
+     *
+     * @param object $answer an answer owned by a question.
+     * @param string $extra extra XML to output.
+     * @param array $answerfiles array of files related with the answer.
+     * @param array $feedbackfiles array of files related with the feedbacks answer.
+     * @return string XML to output.
+     */
     public function write_answer($answer, $extra = '', $answerfiles = [], $feedbackfiles = []) {
         $percent = $answer->fraction * 100;
         $output = '';
