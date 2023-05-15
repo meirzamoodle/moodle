@@ -25,5 +25,6 @@ Added:
  * readme_moodle.txt - this file ;-)
 
 Notes:
- * 2023-02-10 Applied patch https://github.com/ADOdb/ADOdb/pull/928 to avoid PHP 8.2 deprecations.
-   See MDL-76413 for more details.
+ * 2023-05-15 To make Moodle 4.2 compatible with PHP 8.2 regarding the deprecation of dynamic properties,
+   we made several changes from version 5.22.5 (https://github.com/adodb/adodb/compare/v5.22.4...v5.22.5) and
+   then we applied it to Moodle 4.2.
