@@ -256,6 +256,7 @@ class qtype_numerical_question extends question_graded_automatically {
         list($value, $unit, $multiplier) = $this->ap->apply_units(
                 $response['answer'], $selectedunit);
 
+        /** @var qtype_numerical_answer $answer */
         $answer = $this->get_matching_answer($value, $multiplier);
         if (!$answer) {
             return array(0, question_state::$gradedwrong);
@@ -276,6 +277,7 @@ class qtype_numerical_question extends question_graded_automatically {
             $selectedunit = null;
         }
         list($value, $unit, $multiplier) = $this->ap->apply_units($response['answer'], $selectedunit);
+        /** @var qtype_numerical_answer $ans */
         $ans = $this->get_matching_answer($value, $multiplier);
 
         $resp = $response['answer'];
@@ -354,6 +356,12 @@ class qtype_numerical_answer extends question_answer {
     public $tolerance;
     /** @var integer|string see {@link get_tolerance_interval()} for the meaning of this value. */
     public $tolerancetype = 2;
+    /** @var bool True if unit is correct, otherwise false. */
+    public $unitisright;
+    /** @var int The length of the correct answer. */
+    public $correctanswerlength;
+    /** @var int The format of the correct answer. */
+    public $correctanswerformat;
 
     public function __construct($id, $answer, $fraction, $feedback, $feedbackformat, $tolerance) {
         parent::__construct($id, $answer, $fraction, $feedback, $feedbackformat);
