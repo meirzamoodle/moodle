@@ -178,6 +178,12 @@ class flexible_table {
     protected $filterset = null;
 
     /**
+     * @var bool Use top scroller
+     * When active, will add a horizontal scrollbar at the top of the table.
+     */
+    protected $usetopscroller = true;
+
+    /**
      * Constructor
      * @param string $uniqueid all tables have to have a unique id, this is used
      *      as a key when storing table properties like sort order in the session.
@@ -1614,6 +1620,15 @@ class flexible_table {
     }
 
     /**
+     * Set the top scroll option.
+     *
+     * @param bool $topscroll
+     */
+    public function set_topscroll(bool $topscroll = true): void {
+        $this->usetopscroller = $topscroll;
+    }
+
+    /**
      * Generate the HTML for the sort icon. This is a helper method used by {@link sort_link()}.
      * @param bool $isprimary whether an icon is needed (it is only needed for the primary sort column.)
      * @param int $order SORT_ASC or SORT_DESC
@@ -1776,6 +1791,9 @@ class flexible_table {
     protected function get_dynamic_table_html_end(): string {
         global $PAGE;
 
+        if ($this->usetopscroller) {
+            $PAGE->requires->js_call_amd('core_table/scroller', 'init');
+        }
         if (is_a($this, \core_table\dynamic::class)) {
             $output = '';
 
@@ -1838,6 +1856,13 @@ class flexible_table {
         $this->wrap_html_start();
         // Start of main data table
 
+        if ($this->usetopscroller) {
+            $scrollerid = random_int(1, 1000000);
+            $this->attributes['data-scroller'] = 'scr' . $scrollerid;
+            echo html_writer::tag('div',
+                html_writer::tag('div', '', ['class' => 'flexible_table_topscroller', 'id' => 'scr' . $scrollerid]),
+                ['class' => 'flexible_table_topscroller_container no-overflow', 'id' => 'scrcontainer' . $scrollerid]);
+        }
         echo html_writer::start_tag('div', array('class' => 'no-overflow'));
         echo html_writer::start_tag('table', $this->attributes);
 

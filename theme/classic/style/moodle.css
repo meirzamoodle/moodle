@@ -34417,6 +34417,12 @@ table caption {
   font-size: 3rem;
 }
 
+.flexible_table_topscroller_container {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
 .singlebutton {
   display: inline-block;
 }
