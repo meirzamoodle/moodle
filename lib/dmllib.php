@@ -177,6 +177,8 @@ class dml_multiple_records_exception extends dml_exception {
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class dml_missing_record_exception extends dml_exception {
+    /** @var string A table's name.*/
+    public $tablename;
     /** @var string An SQL query.*/
     public $sql;
     /** @var array The SQL's parameters.*/
@@ -192,6 +194,7 @@ class dml_missing_record_exception extends dml_exception {
         if (empty($tablename)) {
             $tablename = null;
         }
+        $this->tablename = $tablename;
         $this->sql       = $sql;
         $this->params    = $params;
 
