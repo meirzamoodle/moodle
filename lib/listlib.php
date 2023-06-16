@@ -80,7 +80,7 @@ abstract class moodle_list {
     public $pageparamname;
 
     /** @var int no of top level items. */
-    public $itemsperpage;
+    private $itemsperpage;
 
     /**
      * Constructor.
