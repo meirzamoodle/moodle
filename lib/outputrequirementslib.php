@@ -269,6 +269,17 @@ class page_requirements_manager {
             $this->YUI_config->debug = false;
         }
 
+        // Include the YUI config log filters.
+        if (!empty($CFG->yuilogexclude) && is_array($CFG->yuilogexclude)) {
+            $this->YUI_config->logExclude = $CFG->yuilogexclude;
+        }
+        if (!empty($CFG->yuiloginclude) && is_array($CFG->yuiloginclude)) {
+            $this->YUI_config->logInclude = $CFG->yuiloginclude;
+        }
+        if (!empty($CFG->yuiloglevel)) {
+            $this->YUI_config->logLevel = $CFG->yuiloglevel;
+        }
+
         // Add the moodle group's module data.
         $this->YUI_config->add_moodle_metadata();
 
@@ -1840,20 +1851,17 @@ class YUI_config {
     public $insertBefore = 'firstthemesheet';
     public $groups = array();
     public $modules = array();
+    /** @var array The log sources that should be not be logged. */
+    public $logInclude = [];
+    /** @var array Tog sources that should be logged. */
+    public $logExclude = [];
+    /** @var string The minimum log level for YUI logging statements. */
+    public $logLevel;
 
     /**
      * @var array List of functions used by the YUI Loader group pattern recognition.
      */
     protected $jsconfigfunctions = array();
-
-    /** @var array to store value from $CFG->yuilogexclude. */
-    public $logExclude;
-
-    /** @var array to store value from $CFG->yuiloginclude. */
-    public $logInclude;
-
-    /** @var string to store value from $CFG->yuiloglevel. */
-    public $logLevel;
 
     /**
      * Create a new group within the YUI_config system.
