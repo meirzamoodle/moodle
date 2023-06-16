@@ -2869,7 +2869,7 @@ class html_table {
     /** @var bool Whether to make the table to be scrolled horizontally with ease. Make table responsive across all viewports. */
     public $responsive = true;
 
-    /** @var string table class name. */
+    /* @var string class name to add to this html table. */
     public $class;
 
     /**
@@ -2910,13 +2910,6 @@ class html_table_row {
      * @var array Attributes of additional HTML attributes for the <tr> element
      */
     public $attributes = array();
-
-    /**
-     * Class name to add to HTML table row.
-     * Added for testing purposes.
-     * @var string
-     */
-    public $class;
 
     /**
      * Constructor
@@ -2990,18 +2983,6 @@ class html_table_cell {
      * @var array Attributes of additional HTML attributes for the <td> element
      */
     public $attributes = array();
-
-    /**
-     * Class name to add to HTML table cell.
-     * Added for testing purposes.
-     * @var string
-     */
-    public $class;
-
-    /**
-     * @var array table attributes.
-     */
-    public $atributtes;
 
     /**
      * Constructs a table cell
