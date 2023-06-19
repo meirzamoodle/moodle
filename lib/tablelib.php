@@ -1862,8 +1862,9 @@ class flexible_table {
             echo html_writer::tag('div',
                 html_writer::tag('div', '', ['class' => 'flexible_table_topscroller', 'id' => 'scr' . $scrollerid]),
                 ['class' => 'flexible_table_topscroller_container no-overflow', 'id' => 'scrcontainer' . $scrollerid]);
+            $topscrollerchildclass = ' hide_bottom_scrollbar'; // Hide the bottom scrollbar but keep functionality.
         }
-        echo html_writer::start_tag('div', array('class' => 'no-overflow'));
+        echo html_writer::start_tag('div', array('class' => 'no-overflow' . $topscrollerchildclass));
         echo html_writer::start_tag('table', $this->attributes);
 
     }

@@ -34421,6 +34421,18 @@ table caption {
   position: sticky;
   top: 0;
   z-index: 1;
+  height: 10px;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.hide_bottom_scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.hide_bottom_scrollbar::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
 }
 
 .singlebutton {
