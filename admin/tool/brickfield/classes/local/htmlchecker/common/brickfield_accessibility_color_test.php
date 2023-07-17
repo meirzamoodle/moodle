@@ -268,13 +268,21 @@ class brickfield_accessibility_color_test extends brickfield_accessibility_test 
      */
     public function convert_color(string $color): string {
         $color = trim($color);
-        if (strpos($color, ' ') !== false) {
-            $colors = explode(' ', $color);
-            foreach ($colors as $backgroundpart) {
-                if (substr(trim($backgroundpart), 0, 1) == '#' ||
-                    in_array(trim($backgroundpart), array_keys($this->colornames)) ||
-                    strtolower(substr(trim($backgroundpart), 0, 3)) == 'rgb') {
-                    $color = $backgroundpart;
+        // Search for color in rgb format first, as this can potentially contain a space.
+        if (strpos($color, 'rgb') !== false) {
+            $colors = explode('rgb', $color, 2); // Getting 2 only in array.
+            // Getting end point of rgb value, i.e. the end bracket.
+            $endpos = strpos($colors[1], ')');
+            $color = 'rgb' . substr($colors[1], 0, ($endpos + 1)); // Recompiling rgb value.
+        } else {
+            // Splitting multi-value css background value.
+            if (strpos($color, ' ') !== false) {
+                $colors = explode(' ', $color);
+                foreach ($colors as $backgroundpart) {
+                    if (substr(trim($backgroundpart), 0, 1) == '#' ||
+                        in_array(trim($backgroundpart), array_keys($this->colornames))) {
+                        $color = $backgroundpart;
+                    }
                 }
             }
         }
