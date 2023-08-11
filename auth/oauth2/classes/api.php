@@ -281,7 +281,7 @@ class api {
      * @param array $userinfo as returned from an oauth client.
      * @param \core\oauth2\issuer $issuer
      * @param int $userid (defaults to $USER->id)
-     * @return bool
+     * @return mixed False, or A {@link $USER} object.
      */
     public static function send_confirm_account_email($userinfo, $issuer) {
         global $CFG, $DB;
@@ -313,10 +313,45 @@ class api {
         $linkedlogin = new linked_login(0, $record);
         $linkedlogin->create();
 
+        return self::send_email_confirmation($user->id);
+    }
+
+    /**
+     * Send an email with a link to confirm creating this account.
+     *
+     * @param stdClass $userinfo as returned from an oauth client.
+     * @return mixed False, or A {@link $USER} object.
+     */
+    public static function send_confirm_existing_account_email(stdClass $userinfo) {
+
+        // Get the exact linked login user data.
+        $linkedlogin = linked_login::get_records_select(
+            "email = ? AND confirmtoken = ''",
+            array($userinfo->email),
+            'id ASC',
+            '*',
+            0,
+            1
+        );
+        $linkedlogin = reset($linkedlogin);
+        if (!$linkedlogin) {
+            throw new moodle_exception('alreadylinked', 'auth_oauth2');
+        }
+
+        return self::send_email_confirmation($userinfo->id);
+    }
+
+    /**
+     * Send an email.
+     *
+     * @param int $userid user ID.
+     * @return mixed False, or A {@link $USER} object.
+     */
+    private static function send_email_confirmation(int $userid) {
         // Construct the email.
         $site = get_site();
         $supportuser = \core_user::get_support_user();
-        $user = get_complete_user_data('id', $user->id);
+        $user = get_complete_user_data('id', $userid);
 
         $data = new stdClass();
         $data->fullname = fullname($user);
@@ -327,7 +362,7 @@ class api {
 
         $params = [
             'token' => $user->secret,
-            'username' => $userinfo['username']
+            'username' => $user->username
         ];
         $confirmationurl = new moodle_url('/auth/oauth2/confirm-account.php', $params);
 

@@ -76,7 +76,9 @@
 
         $returnmsg = get_string('emailconfirmsentsuccess');
         $messagetype = \core\output\notification::NOTIFY_SUCCESS;
-        if (!send_confirmation_email($user)) {
+
+        $userauth = get_auth_plugin($user->auth);
+        if (!$userauth->resend_user_confirmation_email($user)) {
             $returnmsg = get_string('emailconfirmsentfailure');
             $messagetype = \core\output\notification::NOTIFY_ERROR;
         }

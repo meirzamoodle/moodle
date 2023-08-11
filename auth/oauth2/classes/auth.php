@@ -649,4 +649,14 @@ class auth extends \auth_plugin_base {
             'message' => $message
         ];
     }
+
+    /**
+     * Returns true if the confirmation mail was sent OK, otherwise false.
+     *
+     * @param stdClass $user user object
+     * @return bool
+     */
+    public function resend_user_confirmation_email(stdClass $user): bool {
+        return \auth_oauth2\api::send_confirm_existing_account_email($user) ? true : false;
+    }
 }

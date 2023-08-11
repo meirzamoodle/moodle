@@ -256,4 +256,14 @@ class auth_plugin_email extends auth_plugin_base {
         return get_config("auth_{$this->authtype}", 'recaptcha');
     }
 
+    /**
+     * Returns true if the confirmation mail was sent OK, otherwise false.
+     *
+     * @param stdClass $user user object
+     * @return bool
+     */
+    public function resend_user_confirmation_email(stdClass $user): bool {
+        return send_confirmation_email($user);
+    }
+
 }

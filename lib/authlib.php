@@ -829,6 +829,17 @@ class auth_plugin_base {
     public function get_extrauserinfo(): array {
         return $this->extrauserinfo;
     }
+
+    /**
+     * Returns true if the confirmation mail was sent OK, otherwise false.
+     *
+     * @param stdClass $user user object
+     * @return bool
+     */
+    public function resend_user_confirmation_email(stdClass $user): bool {
+        // Override if needed.
+        return false;
+    }
 }
 
 /**
