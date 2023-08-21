@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Tiny noautolink plugin install code
+ * Tiny noautolink plugin install code.
  *
  * @package    tiny_noautolink
  * @copyright  2023 Meirza <meirza.arson@moodle.com>
