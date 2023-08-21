@@ -14,19 +14,12 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
-/**
- * Privacy Subsystem implementation for block_activity_modules.
- *
- * @package    tiny_noautolink
- * @copyright  2023 Meirza <meirza.arson@moodle.com>
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- */
-
 namespace tiny_noautolink\privacy;
 
 /**
  * Privacy Subsystem for tiny_noautolink implementing null_provider.
  *
+ * @package    tiny_noautolink
  * @copyright  2023 Meirza <meirza.arson@moodle.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */

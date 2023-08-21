@@ -23,7 +23,9 @@
  */
 
 $string['buttontitle'] = 'No auto-link';
-$string['emptyselection'] = 'Highlight the URL to avoid auto-linking.';
-$string['invalidurl'] = 'The highlighted content is not URL. Please try again.';
-$string['pluginname'] = 'Prevent auto-link';
+$string['errorinvalidurl'] = 'The selected content is not a URL. Please try again.';
+$string['infoaddsuccess'] = 'Added the auto-link prevention.';
+$string['infoemptyselection'] = 'Select a URL and try again.';
+$string['inforemovesuccess'] = 'Removed the auto-link prevention.';
+$string['pluginname'] = 'No auto-link';
 $string['privacy:metadata'] = 'The tiny_noautolink plugin does not store any personal data.';
