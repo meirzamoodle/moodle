@@ -27,5 +27,5 @@ $string['errorinvalidurl'] = 'The selected content is not a URL. Please try agai
 $string['infoaddsuccess'] = 'Added the auto-link prevention.';
 $string['infoemptyselection'] = 'Select a URL and try again.';
 $string['inforemovesuccess'] = 'Removed the auto-link prevention.';
-$string['pluginname'] = 'No auto-link';
+$string['pluginname'] = 'Tiny no auto-link';
 $string['privacy:metadata'] = 'The tiny_noautolink plugin does not store any personal data.';
