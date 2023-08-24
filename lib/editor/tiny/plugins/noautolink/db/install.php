@@ -23,7 +23,7 @@
  */
 
 /**
- * Enable the TinyMCE Editor on its install.
+ * Install the Tiny noautolink plugin in a disabled state.
  */
 function xmldb_tiny_noautolink_install() {
     $tinymanager = \core_plugin_manager::resolve_plugininfo_class('tiny');
