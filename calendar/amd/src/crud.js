@@ -35,6 +35,7 @@ define([
     'core_calendar/modal_delete',
     'core_calendar/selectors',
     'core/pending',
+    'core/config',
 ],
 function(
     $,
@@ -50,7 +51,8 @@ function(
     CalendarEvents,
     ModalDelete,
     CalendarSelectors,
-    Pending
+    Pending,
+    Config,
 ) {
 
     /**
@@ -180,8 +182,16 @@ function(
                     modal.setStartTime(firstDay.data('newEventTimestamp'));
                 }
 
+                // A course in the URL parameters. Often accessed via the calendar block in the course.
+                let courseId = Config.courseId;
+                // A course that has been chosen from the dropdown menu.
+                const selectedCourseId = wrapper.data('courseid');
+                // If the user is in the global calendar then use the selected course.
+                if (courseId === Config.siteId) {
+                    courseId = selectedCourseId;
+                }
                 modal.setContextId(wrapper.data('contextId'));
-                modal.setCourseId(wrapper.data('courseid'));
+                modal.setCourseId(courseId);
                 modal.show();
                 return;
             })

@@ -11,12 +11,15 @@ Feature: Perform basic calendar functionality
       | student2 | Student | 2 | student2@example.com |
       | student3 | Student | 3 | student3@example.com |
       | teacher1 | Teacher | 1 | teacher1@example.com |
+    And the following "categories" exist:
+      | name     | category | idnumber |
+      | Cat 1    | 0        | CAT1     |
     And the following "courses" exist:
-      | fullname | shortname | format |
-      | Course 1 | C1 | topics |
-      | Course 2 | C2 | topics |
-      | Course 3 | C3 | topics |
-      | Course 4 | C4 | topics |
+      | fullname | shortname | format | category |
+      | Course 1 | C1        | topics | CAT1     |
+      | Course 2 | C2        | topics | CAT1     |
+      | Course 3 | C3        | topics | CAT1     |
+      | Course 4 | C4        | topics | CAT1     |
     And the following "course enrolments" exist:
       | user | course | role |
       | student1 | C1 | student |
@@ -314,7 +317,7 @@ Feature: Perform basic calendar functionality
     And I click on "Group 1 event" "link"
     And I should see "Group event"
     And I should see "Group 1"
-    When I click on "Edit" "button"
+    When I click on "Edit" "button" in the "Group 1 event" "dialogue"
     And I set the following fields to these values:
       | Event title | My own user event |
       | Type of event | user |
@@ -342,6 +345,8 @@ Feature: Perform basic calendar functionality
     And I set the following fields to these values:
       | Event title | Category event |
       | Type of event | category |
+    And I expand the "Category" autocomplete
+    And I click on "Cat 1" item in the autocomplete list
     And I press "Save"
     And I click on "Category event" "link"
     And I should see "Category event"
@@ -353,13 +358,9 @@ Feature: Perform basic calendar functionality
     And the following "course enrolments" exist:
       | user     | course | role           |
       | teacher1 | C1     | editingteacher |
-    # We need this so we can make a category event.
-    And the following "categories" exist:
-      | name | category | idnumber |
-      | CatA | 0        | cata     |
     And the following "role assigns" exist:
       | user     | role    | contextlevel  | reference |
-      | teacher1 | manager | Category      | cata      |
+      | teacher1 | manager | Category      | CAT1      |
     And I am on "Course 1" course homepage
     And I follow "Full calendar"
     And I set the field "course" to "C1"

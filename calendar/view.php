@@ -143,8 +143,14 @@ $PAGE->set_pagelayout('standard');
 $PAGE->set_title("$course->shortname: $strcalendar: $pagetitle");
 
 $headingstr = get_string('calendar', 'core_calendar');
-$headingstr = ($iscoursecalendar) ? "{$headingstr}: {$COURSE->shortname}" : $headingstr;
-$PAGE->set_heading($headingstr);
+// If the user is on the course page,
+// then make the course name linkable to ease the user's navigation to the course page.
+if ($iscoursecalendar) {
+    $url = new \moodle_url('/course/view.php', ['id' => $courseid]);
+    $linkcourse = html_writer::link($url, $course->shortname);
+    $headingstr = "{$headingstr}: {$linkcourse}";
+}
+$PAGE->set_heading($headingstr, false);
 
 $renderer = $PAGE->get_renderer('core_calendar');
 $calendar->add_sidecalendar_blocks($renderer, true, $view);
