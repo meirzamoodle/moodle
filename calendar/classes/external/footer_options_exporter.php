@@ -145,11 +145,16 @@ class footer_options_exporter extends exporter {
      * @return string The calendar URL.
      */
     public function get_calendar_url() {
-        $url = new moodle_url('/calendar/view.php', [
+        $params = [
             'view' => 'month',
             'time' => $this->calendar->time,
-        ]);
+        ];
 
+        if ($this->calendar->courseid !== SITEID) {
+            $params['course'] = $this->calendar->courseid;
+        }
+
+        $url = new moodle_url('/calendar/view.php', $params);
         return $url->out(false);
     }
 }

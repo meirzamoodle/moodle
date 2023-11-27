@@ -33,7 +33,7 @@ define([
     'core_calendar/view_manager',
     'core_calendar/crud',
     'core_calendar/selectors',
-    'core/config',
+    'core/url',
 ],
 function(
     $,
@@ -44,7 +44,7 @@ function(
     CalendarViewManager,
     CalendarCrud,
     CalendarSelectors,
-    Config,
+    Url,
 ) {
 
     var SELECTORS = {
@@ -170,15 +170,23 @@ function(
                 day = dayLink.data('day'),
                 courseId = dayLink.data('courseid'),
                 categoryId = dayLink.data('categoryid');
-            const url = '?view=day&time=' + dayLink.data('timestamp');
+            const urlParams = {
+                view: 'day',
+                time: dayLink.data('timestamp'),
+                course: courseId,
+            };
             if (viewingFullCalendar) {
+                // Construct the URL parameter string from the urlParams object.
+                const urlParamString = Object.entries(urlParams)
+                    .map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(value)}`)
+                    .join('&');
                 CalendarViewManager.refreshDayContent(root, year, month, day, courseId, categoryId, root,
                     'core_calendar/calendar_day').then(function() {
                     e.preventDefault();
-                    return CalendarViewManager.updateUrl(url);
+                    return CalendarViewManager.updateUrl(urlParamString);
                 }).catch(Notification.exception);
             } else {
-                window.location.assign(Config.wwwroot + '/calendar/view.php' + url);
+                window.location.assign(Url.relativeUrl('calendar/view.php', urlParams));
             }
         });
 
@@ -205,8 +213,14 @@ function(
 
                 if (!viewingFullCalendar && displayingSmallBlockCalendar) {
                     const dateContainer = target.closest(SELECTORS.DAY);
-                    const url = '?view=day&time=' + dateContainer.data('day-timestamp');
-                    window.location.assign(Config.wwwroot + '/calendar/view.php' + url);
+                    const wrapper = target.closest(CalendarSelectors.wrapper);
+                    const courseId = wrapper.data('courseid');
+                    const params = {
+                        view: 'day',
+                        time: dateContainer.data('day-timestamp'),
+                        course: courseId,
+                    };
+                    window.location.assign(Url.relativeUrl('calendar/view.php', params));
                 } else {
                     const hasViewDayLink = target.closest(SELECTORS.VIEW_DAY_LINK).length;
                     const shouldShowNewEventModal = !hasViewDayLink;
