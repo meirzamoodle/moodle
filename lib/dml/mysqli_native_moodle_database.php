@@ -2273,4 +2273,13 @@ class mysqli_native_moodle_database extends moodle_database {
         // words, e.g. groups.
         return $this->get_manager()->generator->getEncQuoted($prefixedtablename);
     }
+
+    /**
+     * MySQL and all database engines derived from it support the COUNT() window function.
+     *
+     * @return bool
+     */
+    public function is_count_window_function_supported(): bool {
+        return true;
+    }
 }

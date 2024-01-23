@@ -1875,4 +1875,13 @@ class oci_native_moodle_database extends moodle_database {
         $this->commit_status = OCI_COMMIT_ON_SUCCESS;
         $this->query_end($result);
     }
+
+    /**
+     * Oracle supports the COUNT() window function.
+     *
+     * @return bool
+     */
+    public function is_count_window_function_supported(): bool {
+        return true;
+    }
 }

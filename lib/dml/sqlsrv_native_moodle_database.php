@@ -1664,4 +1664,13 @@ class sqlsrv_native_moodle_database extends moodle_database {
 
         return !empty($property);
     }
+
+    /**
+     * MSSQL supports the COUNT() window function.
+     *
+     * @return bool
+     */
+    public function is_count_window_function_supported(): bool {
+        return true;
+    }
 }

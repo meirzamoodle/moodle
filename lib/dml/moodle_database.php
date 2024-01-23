@@ -1347,12 +1347,14 @@ abstract class moodle_database {
      * @param string $fields a comma separated list of fields to return (optional, by default all fields are returned).
      * @param int $limitfrom return a subset of records, starting at this point (optional).
      * @param int $limitnum return a subset comprising this many records (optional, required if $limitfrom is set).
+     * @param string|null $fullcountcolumn An alias column name for the window function results.
      * @return moodle_recordset A moodle_recordset instance
      * @throws dml_exception A DML specific exception is thrown for any errors.
      */
-    public function get_recordset($table, array $conditions=null, $sort='', $fields='*', $limitfrom=0, $limitnum=0) {
+    public function get_recordset($table, array $conditions=null, $sort='', $fields='*', $limitfrom=0, $limitnum=0,
+            ?string $fullcountcolumn = null) {
         list($select, $params) = $this->where_clause($table, $conditions);
-        return $this->get_recordset_select($table, $select, $params, $sort, $fields, $limitfrom, $limitnum);
+        return $this->get_recordset_select($table, $select, $params, $sort, $fields, $limitfrom, $limitnum, $fullcountcolumn);
     }
 
     /**
@@ -1370,12 +1372,14 @@ abstract class moodle_database {
      * @param string $fields a comma separated list of fields to return (optional, by default all fields are returned).
      * @param int $limitfrom return a subset of records, starting at this point (optional).
      * @param int $limitnum return a subset comprising this many records (optional, required if $limitfrom is set).
+     * @param string|null $fullcountcolumn An alias column name for the window function results.
      * @return moodle_recordset A moodle_recordset instance.
      * @throws dml_exception A DML specific exception is thrown for any errors.
      */
-    public function get_recordset_list($table, $field, array $values, $sort='', $fields='*', $limitfrom=0, $limitnum=0) {
+    public function get_recordset_list($table, $field, array $values, $sort='', $fields='*', $limitfrom=0, $limitnum=0,
+            ?string $fullcountcolumn = null) {
         list($select, $params) = $this->where_clause_list($field, $values);
-        return $this->get_recordset_select($table, $select, $params, $sort, $fields, $limitfrom, $limitnum);
+        return $this->get_recordset_select($table, $select, $params, $sort, $fields, $limitfrom, $limitnum, $fullcountcolumn);
     }
 
     /**
@@ -1393,17 +1397,25 @@ abstract class moodle_database {
      * @param string $fields a comma separated list of fields to return (optional, by default all fields are returned).
      * @param int $limitfrom return a subset of records, starting at this point (optional).
      * @param int $limitnum return a subset comprising this many records (optional, required if $limitfrom is set).
+     * @param string|null $fullcountcolumn An alias column name for the window function results.
      * @return moodle_recordset A moodle_recordset instance.
      * @throws dml_exception A DML specific exception is thrown for any errors.
      */
-    public function get_recordset_select($table, $select, array $params=null, $sort='', $fields='*', $limitfrom=0, $limitnum=0) {
+    public function get_recordset_select($table, $select, array $params=null, $sort='', $fields='*', $limitfrom=0, $limitnum=0,
+            ?string $fullcountcolumn = null) {
         $sql = "SELECT $fields FROM {".$table."}";
         if ($select) {
             $sql .= " WHERE $select";
         }
+
+        $sql = $fullcountcolumn
+            ? $this->generate_fullcount_sql($sql, $table, $select, $params, $fullcountcolumn)
+            : $sql;
+
         if ($sort) {
             $sql .= " ORDER BY $sort";
         }
+
         return $this->get_recordset_sql($sql, $params, $limitfrom, $limitnum);
     }
 
@@ -1456,12 +1468,14 @@ abstract class moodle_database {
      *   array so must be a unique field such as 'id'.
      * @param int $limitfrom return a subset of records, starting at this point (optional).
      * @param int $limitnum return a subset comprising this many records in total (optional, required if $limitfrom is set).
+     * @param string|null $fullcountcolumn An alias column name for the window function results.
      * @return array An array of Objects indexed by first column.
      * @throws dml_exception A DML specific exception is thrown for any errors.
      */
-    public function get_records($table, array $conditions=null, $sort='', $fields='*', $limitfrom=0, $limitnum=0) {
+    public function get_records($table, array $conditions=null, $sort='', $fields='*', $limitfrom=0, $limitnum=0,
+            ?string $fullcountcolumn = null) {
         list($select, $params) = $this->where_clause($table, $conditions);
-        return $this->get_records_select($table, $select, $params, $sort, $fields, $limitfrom, $limitnum);
+        return $this->get_records_select($table, $select, $params, $sort, $fields, $limitfrom, $limitnum, $fullcountcolumn);
     }
 
     /**
@@ -1500,17 +1514,24 @@ abstract class moodle_database {
      *   array so must be a unique field such as 'id'.
      * @param int $limitfrom return a subset of records, starting at this point (optional).
      * @param int $limitnum return a subset comprising this many records in total (optional, required if $limitfrom is set).
+     * @param string|null $fullcountcolumn An alias column name for the window function results.
      * @return array of objects indexed by first column
      * @throws dml_exception A DML specific exception is thrown for any errors.
      */
-    public function get_records_select($table, $select, array $params=null, $sort='', $fields='*', $limitfrom=0, $limitnum=0) {
-        if ($select) {
-            $select = "WHERE $select";
-        }
-        if ($sort) {
-            $sort = " ORDER BY $sort";
-        }
-        return $this->get_records_sql("SELECT $fields FROM {" . $table . "} $select $sort", $params, $limitfrom, $limitnum);
+    public function get_records_select($table, $select, array $params=null, $sort='', $fields='*', $limitfrom=0, $limitnum=0,
+            ?string $fullcountcolumn = null) {
+
+        $sql = "SELECT $fields FROM {".$table."}";
+
+        $sql .= $select ? " WHERE $select" : "";
+
+        $sql = $fullcountcolumn
+            ? $this->generate_fullcount_sql($sql, $table, $select, $params, $fullcountcolumn)
+            : $sql;
+
+        $sql .= $sort ? " ORDER BY $sort" : "";
+
+        return $this->get_records_sql($sql, $params, $limitfrom, $limitnum);
     }
 
     /**
@@ -2921,5 +2942,36 @@ abstract class moodle_database {
     public function is_fulltext_search_supported() {
         // No support unless specified.
         return false;
+    }
+
+    /**
+     * Whether the database is able to support the COUNT() window function.
+     *
+     * @return bool
+     */
+    public function is_count_window_function_supported(): bool {
+        // No support unless specified.
+        return false;
+    }
+
+    /**
+     * Helper function to generate window COUNT() aggregate function to the SQL query.
+     *
+     * @param string $sql The SQL select query to execute.
+     * @param string $table the table to query.
+     * @param string $select A fragment of SQL to be used in a where clause in the SQL call.
+     * @param array|null $params array of sql parameters
+     * @param string $fullcountcolumn An alias column name for the window function results.
+     * @return string The generated query.
+     */
+    protected function generate_fullcount_sql(string $sql, string $table, string $select, ?array $params,
+            string $fullcountcolumn): string {
+        $fullcountvalue = "COUNT(*) OVER()";
+        if (!$this->is_count_window_function_supported()) {
+            $sqlcount = "SELECT COUNT(1) FROM {".$table."}";
+            $sqlcount .= $select ? " WHERE $select" : "";
+            $fullcountvalue = $this->count_records_sql($sqlcount, $params);
+        }
+        return "SELECT results.*, $fullcountvalue AS $fullcountcolumn FROM ($sql) results";
     }
 }

@@ -6399,6 +6399,62 @@ EOD;
             "Found invalid DB server version format when reading version from DB: '{$version}' ({$description}).");
         $db2->dispose();
     }
+
+    /**
+     * Test the COUNT() window function with the actual DB Server.
+     *
+     * @covers \moodle_database::generate_fullcount_sql()
+     * @covers \moodle_database::get_recordset_select()
+     * @covers \moodle_database::get_records_select()
+     * @return void
+     */
+    public function test_count_window_function(): void {
+        $DB = $this->tdb;
+        $dbman = $DB->get_manager();
+
+        $table = $this->get_test_table();
+        $tablename = $table->getName();
+
+        $table->add_field('id', XMLDB_TYPE_INTEGER, '1', null, XMLDB_NOTNULL, XMLDB_SEQUENCE, null);
+        $table->add_field('course', XMLDB_TYPE_INTEGER, '1', null, XMLDB_NOTNULL, null, '0');
+        $table->add_key('primary', XMLDB_KEY_PRIMARY, ['id']);
+        $dbman->create_table($table);
+
+        for ($i = 1; $i <= 5; $i++) {
+            $DB->insert_record($tablename, ['course' => $i], false);
+        }
+
+        // Set the full count column name.
+        $fullcountcolumn = 'fullcount';
+
+        // Test with the get_recordset_select().
+        $rs = $DB->get_recordset_select(
+            table: $tablename,
+            select: '',
+            sort: 'course DESC',
+            limitfrom: 1,
+            limitnum: 3,
+            fullcountcolumn: $fullcountcolumn,
+        );
+        // Check whether the fullcount column returns the correct number.
+        $this->assertEquals(5, $rs->current()->$fullcountcolumn);
+        // Check whether the limit works properly.
+        $this->assertEquals(4, $rs->current()->course);
+
+        // Test with the get_records_select().
+        $rs = $DB->get_records_select(
+            table: $tablename,
+            select: '',
+            sort: 'course DESC',
+            limitfrom: 3,
+            limitnum: 2,
+            fullcountcolumn: $fullcountcolumn,
+        );
+        // Check whether the fullcount column returns the correct number.
+        $this->assertEquals(5, reset($rs)->$fullcountcolumn);
+        // Check whether the limit works properly.
+        $this->assertEquals(2, reset($rs)->course);
+    }
 }
 
 /**
