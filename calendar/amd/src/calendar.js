@@ -185,10 +185,16 @@ function(
         root.on('change', CalendarSelectors.elements.courseSelector, function() {
             var selectElement = $(this);
             var courseId = selectElement.val();
+            var courseName = $("option:selected", selectElement).text();
             CalendarViewManager.reloadCurrentMonth(root, courseId, null)
                 .then(function() {
                     // We need to get the selector again because the content has changed.
                     return root.find(CalendarSelectors.elements.courseSelector).val(courseId);
+                })
+                .then(function() {
+                    CalendarViewManager.updateUrl('?view=month&course=' + courseId);
+                    CalendarViewManager.handleCourseChange(Number(courseId), courseName);
+                    return;
                 })
                 .catch(Notification.exception);
         });
