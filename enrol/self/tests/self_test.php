@@ -184,6 +184,7 @@ class self_test extends \advanced_testcase {
                 'expirythreshold' => DAYSECS * 3,
                 'customint2' => 0,
                 'numnotifications' => 2,
+                'progresstrace' => true,
             ],
             'Notifications disabled' => [
                 'expirynotify' => 0,
@@ -191,6 +192,7 @@ class self_test extends \advanced_testcase {
                 'expirythreshold' => DAYSECS * 3,
                 'customint2' => WEEKSECS,
                 'numnotifications' => 0,
+                'progresstrace' => true,
             ],
             'Notifications enabled' => [
                 'expirynotify' => 1,
@@ -198,6 +200,7 @@ class self_test extends \advanced_testcase {
                 'expirythreshold' => DAYSECS * 3,
                 'customint2' => WEEKSECS,
                 'numnotifications' => 4,
+                'progresstrace' => false,
             ],
         ];
     }
@@ -214,10 +217,17 @@ class self_test extends \advanced_testcase {
      * @param   int         $expirythreshold    How long before expiry are users notified (seconds)
      * @param   int         $customint2         Time of inactivity before unerolling a user (seconds)
      * @param   int         $numnotifications   Expected number of notifications sent
+     * @param   bool        $progresstrace      Progress tracing object
      * @return void
      */
-    public function test_longtimenosee_notifications (int $expirynotify, int $notifyall, int $expirythreshold,
-        int $customint2, int $numnotifications): void {
+    public function test_longtimenosee_notifications(
+        int $expirynotify,
+        int $notifyall,
+        int $expirythreshold,
+        int $customint2,
+        int $numnotifications,
+        bool $progresstrace,
+    ): void {
         global $DB;
         $this->resetAfterTest();
         $this->preventResetByRollback(); // Messaging does not like transactions...
@@ -269,13 +279,21 @@ class self_test extends \advanced_testcase {
         $selfplugin->enrol_user($instance1, $user4->id, $studentrole->id, $coursestartdate, 0);
 
         $sink = $this->redirectMessages();
-        $selfplugin->send_expiry_notifications($trace);
+        if ($progresstrace) {
+            $selfplugin->send_expiry_notifications($trace);
+        } else {
+            // If $trace is not an instance of the progress_trace, then set it to false to test whether debugging is triggered.
+            $selfplugin->send_expiry_notifications(false);
+            $this->assertDebuggingCalled(
+                'enrol_plugin::send_expiry_notifications() now expects progress_trace instance as parameter!'
+            );
+        }
         $messages = $sink->get_messages();
 
         $this->assertCount($numnotifications, $messages);
         if ($numnotifications && ($customint2 > 0)) {
             $this->assertEquals($user3->id, $messages[0]->useridto);
-            $this->assertStringContainsString('You have not visited', $messages[0]->fullmessagehtml);
+            $this->assertStringContainsString('you have not visited', $messages[0]->fullmessagehtml);
         }
 
         // Make sure that notifications are not repeated.
@@ -286,6 +304,16 @@ class self_test extends \advanced_testcase {
         $messages = $sink->get_messages();
 
         $this->assertCount(0, $messages);
+
+        // Test if an enrolment instance is disabled.
+        $selfplugin->update_status($instance1, ENROL_INSTANCE_DISABLED);
+        $this->assertNull($selfplugin->send_expiry_notifications($trace));
+        $selfplugin->update_status($instance1, ENROL_INSTANCE_ENABLED);
+
+        // Test if an expiry notify hour is null.
+        $selfplugin->set_config('expirynotifyhour', null);
+        $selfplugin->send_expiry_notifications($trace);
+        $this->assertDebuggingCalled('send_expiry_notifications() in self enrolment plugin needs expirynotifyhour setting');
     }
 
     public function test_expired() {
