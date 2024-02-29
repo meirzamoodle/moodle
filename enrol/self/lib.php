@@ -634,7 +634,7 @@ class enrol_self_plugin extends enrol_plugin {
     }
 
     protected function get_expiry_message_body(stdClass $user, stdClass $ue, string $name,
-            stdClass $enroller, context $context): array {
+            stdClass $enroller, context $context): string {
         $a = new stdClass();
         $a->course = format_string($ue->fullname, true, ['context' => $context]);
         $a->user = fullname($user, true);
@@ -650,11 +650,7 @@ class enrol_self_plugin extends enrol_plugin {
             $a->inactivetime = $ue->inactivetime;
         }
         $a->url = new moodle_url('/course/view.php', ['id' => $ue->courseid]);
-
-        $subject = get_string('expirymessageenrolledsubject', 'enrol_'.$name, $a);
-        $body = get_string($ue->message ?? 'expirymessageenrolledbody', 'enrol_' . $name, $a);
-
-        return [$subject, $body];
+        return get_string($ue->message ?? 'expirymessageenrolledbody', 'enrol_' . $name, $a);
     }
 
     /**

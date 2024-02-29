@@ -3314,7 +3314,8 @@ abstract class enrol_plugin {
         $enroller = $this->get_enroller($ue->enrolid);
         $context = context_course::instance($ue->courseid);
 
-        [$subject, $body] = $this->get_expiry_message_body($user, $ue, $name, $enroller, $context);
+        $subject = get_string('expirymessageenrolledsubject', 'enrol_'.$name);
+        $body = $this->get_expiry_message_body($user, $ue, $name, $enroller, $context);
 
         $coursename = format_string($ue->fullname, true, ['context' => $context]);
 
@@ -3349,23 +3350,19 @@ abstract class enrol_plugin {
      *
      * @param stdClass $user An object representing the user.
      * @param stdClass $ue An object containing enrolment data.
-     * @param string $name
-     * @param stdClass $enroller
-     * @param context $context
-     * @return array An array containing the subject and body messages.
+     * @param string $name Name of this enrol plugin.
+     * @param stdClass $enroller The user who is responsible for enrolments.
+     * @param context $context The context object.
+     * @return string Return the body message.
      */
     protected function get_expiry_message_body(stdClass $user, stdClass $ue, string $name,
-            stdClass $enroller, context $context): array {
+            stdClass $enroller, context $context): string {
         $a = new stdClass();
         $a->course   = format_string($ue->fullname, true, ['context' => $context]);
         $a->user     = fullname($user, true);
         $a->timeend  = userdate($ue->timeend, '', $user->timezone);
         $a->enroller = fullname($enroller, has_capability('moodle/site:viewfullnames', $context, $user));
-
-        $subject = get_string('expirymessageenrolledsubject', 'enrol_'.$name, $a);
-        $body = get_string('expirymessageenrolledbody', 'enrol_'.$name, $a);
-
-        return [$subject, $body];
+        return get_string('expirymessageenrolledbody', 'enrol_'.$name, $a);
     }
 
     /**
