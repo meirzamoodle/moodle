@@ -435,7 +435,7 @@ class moodle_page {
     /**
      * @var bool Indicates whether the course index drawer should be shown.
      */
-    protected $_showcourseindex = true;
+    protected bool $_showcourseindex = true;
 
     /**
      * Force the settings menu to be displayed on this page. This will only force the
