@@ -3202,7 +3202,7 @@ abstract class enrol_plugin {
         $trace->output('Processing '.$name.' enrolment expiration notifications...');
 
         // Notify users responsible for enrolment once every day.
-        $this->notify_enrolment($timenow, $name, $trace);
+        $this->fetch_users_and_notify_expiry($timenow, $name, $trace);
 
         $trace->output('...notification processing finished.');
         $trace->finished();
@@ -3221,7 +3221,7 @@ abstract class enrol_plugin {
      * @param progress_trace $trace (accepts bool for backwards compatibility only).
      * @return void
      */
-    protected function notify_enrolment(int $timenow, string $name, progress_trace $trace): void {
+    protected function fetch_users_and_notify_expiry(int $timenow, string $name, progress_trace $trace): void {
         global $DB, $CFG;
 
         $sql = "SELECT ue.*, e.expirynotify, e.notifyall, e.expirythreshold, e.courseid, c.fullname
@@ -3314,7 +3314,7 @@ abstract class enrol_plugin {
         $enroller = $this->get_enroller($ue->enrolid);
         $context = context_course::instance($ue->courseid);
 
-        [$subject, $body] = $this->get_subject_body_message($user, $ue, $name, $enroller, $context);
+        [$subject, $body] = $this->get_expiry_message_body($user, $ue, $name, $enroller, $context);
 
         $coursename = format_string($ue->fullname, true, ['context' => $context]);
 
@@ -3354,7 +3354,7 @@ abstract class enrol_plugin {
      * @param context $context
      * @return array An array containing the subject and body messages.
      */
-    protected function get_subject_body_message(stdClass $user, stdClass $ue, string $name,
+    protected function get_expiry_message_body(stdClass $user, stdClass $ue, string $name,
             stdClass $enroller, context $context): array {
         $a = new stdClass();
         $a->course   = format_string($ue->fullname, true, ['context' => $context]);

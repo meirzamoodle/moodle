@@ -518,7 +518,7 @@ class enrol_self_plugin extends enrol_plugin {
      * @param progress_trace $trace (accepts bool for backwards compatibility only)
      * @return void
      */
-    protected function notify_enrolment(int $timenow, string $name, progress_trace $trace): void {
+    protected function fetch_users_and_notify_expiry(int $timenow, string $name, progress_trace $trace): void {
         global $DB, $CFG;
 
         $sql = "SELECT ue.*, e.expirynotify, e.notifyall, e.expirythreshold, e.courseid, c.fullname, e.customint2,
@@ -569,7 +569,6 @@ class enrol_self_plugin extends enrol_plugin {
             }
             // Notifications to inactive users only if inactive time limit is set.
             if ($inactivitycond && $ue->notifyall) {
-                $ue->subject = 'expiryinactivemessageenrolledsubject';
                 $ue->message = 'expiryinactivemessageenrolledbody';
                 $lastaccess = $ue->timeaccess;
                 if (!$lastaccess) {
@@ -634,7 +633,7 @@ class enrol_self_plugin extends enrol_plugin {
         return $this->lasternoller;
     }
 
-    protected function get_subject_body_message(stdClass $user, stdClass $ue, string $name,
+    protected function get_expiry_message_body(stdClass $user, stdClass $ue, string $name,
             stdClass $enroller, context $context): array {
         $a = new stdClass();
         $a->course = format_string($ue->fullname, true, ['context' => $context]);
@@ -652,7 +651,7 @@ class enrol_self_plugin extends enrol_plugin {
         }
         $a->url = new moodle_url('/course/view.php', ['id' => $ue->courseid]);
 
-        $subject = get_string($ue->subject ?? 'expirymessageenrolledsubject', 'enrol_'.$name, $a);
+        $subject = get_string('expirymessageenrolledsubject', 'enrol_'.$name, $a);
         $body = get_string($ue->message ?? 'expirymessageenrolledbody', 'enrol_' . $name, $a);
 
         return [$subject, $body];
@@ -1229,6 +1228,16 @@ class enrol_self_plugin extends enrol_plugin {
         return $instance;
     }
 
+    /**
+     * Fill custom fields data for a given enrolment plugin.
+     *
+     * @param array $enrolmentdata enrolment data.
+     * @param int $courseid Course ID.
+     * @return array Updated enrolment data with custom fields info.
+     */
+    public function fill_enrol_custom_fields(array $enrolmentdata, int $courseid): array {
+        return $enrolmentdata + ['password' => ''];
+    }
 }
 
 /**
