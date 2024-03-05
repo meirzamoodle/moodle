@@ -327,4 +327,77 @@ class lib_test extends \advanced_testcase {
 
         return \calendar_event::create($event);
     }
+
+    /**
+     * Create a stored file from the given file path.
+     *
+     * @param string $filepath The path of the file from which to create the stored file.
+     * @return \stored_file A stored file object created from the provided file path.
+     */
+    protected function create_stored_file_from_path(string $filepath): \stored_file {
+        $syscontext = \context_system::instance();
+        $filerecord = [
+            'contextid' => $syscontext->id,
+            'component' => 'mod_imscp',
+            'filearea'  => 'unittest',
+            'itemid'    => 0,
+            'filepath'  => '/',
+            'filename'  => basename($filepath),
+        ];
+
+        $fs = get_file_storage();
+        return $fs->create_file_from_pathname($filerecord, $filepath);
+    }
+
+    /**
+     * Test case for validating extracted files for IMS Content Package module.
+     *
+     * @covers ::mod_imscp_validate_extracted_files
+     * @dataProvider validate_extracted_files_provider
+     *
+     * @param int $maxbytes Maximum bytes for the course.
+     * @param string $filename Name of the file to test.
+     * @param bool $debugging Call assertDebuggingCalled() if true.
+     * @param array $expected Expected result of the validation.
+     */
+    public function test_validate_extracted_files(int $maxbytes, string $filename, bool $debugging, array $expected): void {
+        global $COURSE, $CFG;
+
+        $this->resetAfterTest(true);
+
+        $course = $this->getDataGenerator()->create_course(['maxbytes' => $maxbytes]);
+        // Set the current course to the global because the get_area_maxbytes depends on it.
+        $COURSE = $course;
+        // phpcs:ignore moodle.Commenting.InlineComment.DocBlock
+        /** @var \stored_file */
+        $file = $this->create_stored_file_from_path($CFG->dirroot.'/mod/imscp/tests/packages/'.$filename);
+        $cmcontext = \context_course::instance($course->id);
+        $actual = mod_imscp_validate_extracted_files($file, $cmcontext->id);
+        if ($debugging) {
+            $this->assertDebuggingCalled();
+        }
+        $this->assertEquals($expected, $actual);
+    }
+
+    /**
+     * Data provider for test_validate_extracted_files().
+     *
+     * @return array
+     */
+    public static function validate_extracted_files_provider(): array {
+        return [
+            'Error' => [
+                'maxbytes' => 10,
+                'filename' => 'singlescobasic.zip',
+                'debugging' => true,
+                'expected' => ['package' => get_string('cannotextractquotaexceeded', 'repository')],
+            ],
+            'Success' => [
+                'maxbytes' => 550000,
+                'filename' => 'singlescobasic.zip',
+                'debugging' => false,
+                'expected' => [],
+            ],
+        ];
+    }
 }
