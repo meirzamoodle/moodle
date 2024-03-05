@@ -451,16 +451,9 @@ class zip_packer extends file_packer {
             $done = 0;
         }
 
-        // Get user remaining space.
-        $areamaxbytes = FILE_AREA_MAX_BYTES_UNLIMITED;
-        $context = context::instance_by_id($contextid);
-        if (!has_capability('moodle/user:ignoreuserquota', $context)) {
-            // Get current used space for this user (private files only).
-            $fileareainfo = file_get_file_area_info($contextid, 'user', 'private');
-            $usedspace = $fileareainfo['filesize_without_references'];
-            $areamaxbytes = (int) $CFG->userquota - $usedspace;
-        }
         $totalsizebytes = 0;
+        // Get the maximum bytes that can be used.
+        $areamaxbytes = $this->get_area_maxbytes($contextid, $component);
 
         foreach ($ziparch as $info) {
             // Notify progress.
@@ -501,17 +494,17 @@ class zip_packer extends file_packer {
                 }
                 $content = '';
                 while (!feof($fz)) {
-                    $content .= fread($fz, 262143);
+                    $contentchunk = fread($fz, 262143);
+                    $totalsizebytes += strlen($contentchunk);
+                    $content .= $contentchunk;
                     $realfilesize = strlen($content); // Current file size.
-                    $totalsizebytes = strlen($content);
                     if ($realfilesize > $size ||
                             ($areamaxbytes != FILE_AREA_MAX_BYTES_UNLIMITED && $totalsizebytes > $areamaxbytes)) {
-                        $processed[0] = 'cannotunzipquotaexceeded';
                         // Close and unset the stream and the content.
                         fclose($fz);
                         unset($content);
-                        // Cancel all processes.
-                        break(2);
+                        debugging("ERROR: Extraction failed. Maxbytes exceeded: $areamaxbytes", DEBUG_DEVELOPER);
+                        return [$name => 'error'];
                     }
                 }
                 fclose($fz);
@@ -564,13 +557,12 @@ class zip_packer extends file_packer {
                     $totalsizebytes += $numofbytes;
                     if ($realfilesize > $size ||
                             ($areamaxbytes != FILE_AREA_MAX_BYTES_UNLIMITED && $totalsizebytes > $areamaxbytes)) {
-                        $processed[0] = 'cannotunzipquotaexceeded';
                         // Close and remove the tmpfile.
                         fclose($fz);
                         fclose($fp);
                         unlink($tmpfile);
-                        // Cancel all processes.
-                        break(2);
+                        debugging("ERROR: Extraction failed. Maxbytes exceeded: $areamaxbytes", DEBUG_DEVELOPER);
+                        return [$name => 'error'];
                     }
                 }
                 fclose($fz);
@@ -628,6 +620,35 @@ class zip_packer extends file_packer {
         $list = $ziparch->list_files();
         $ziparch->close();
         return $list;
+    }
+
+    /**
+     * Get the maximum allowed bytes for a specific area based on context.
+     *
+     * @param int $contextid The ID of the context.
+     * @param string $component The component name.
+     * @return int The maximum allowed bytes.
+     */
+    private function get_area_maxbytes(int $contextid, string $component): int {
+        global $COURSE;
+        $context = context::instance_by_id($contextid);
+
+        if (has_capability('moodle/user:ignoreuserquota', $context)) {
+            return FILE_AREA_MAX_BYTES_UNLIMITED;
+        }
+
+        // If someone unzips a file in the File Manager, then use the user quota as the limit minus the used space.
+        if ($context->contextlevel === CONTEXT_USER) {
+            global $CFG;
+            // Get current used space for this user (private files only).
+            $fileareainfo = file_get_file_area_info($contextid, $component, 'private');
+            $usedspace = $fileareainfo['filesize_without_references'];
+            return (int) $CFG->userquota - $usedspace;
+        }
+
+        // If other than CONTEXT_USER return the $COURSE maxbytes.
+        $maxbytes = (int) $COURSE->maxbytes;
+        return $maxbytes !== 0 ? $maxbytes : get_user_max_upload_file_size($context);
     }
 
 }
