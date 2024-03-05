@@ -98,6 +98,9 @@ class mod_imscp_mod_form extends moodleform_mod {
                 $errors['package'] = get_string('invalidfiletype', 'error', '', $file);
                 // Better delete current file, it is not usable anyway.
                 $fs->delete_area_files($usercontext->id, 'user', 'draft', $data['package']);
+            } else {
+                // Validate IMS content package by extracting the files to deal with security treat.
+                $errors = mod_imscp_validate_extracted_files($file, $this->context->id);
             }
         }
 
