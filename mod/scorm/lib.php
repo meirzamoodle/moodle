@@ -1179,7 +1179,7 @@ function scorm_dndupload_handle($uploadinfo) {
     $file = reset($files);
 
     // Validate the file, make sure it's a valid SCORM package!
-    $errors = scorm_validate_package($file);
+    $errors = scorm_validate_package($file, $uploadinfo->course->id);
     if (!empty($errors)) {
         return false;
     }
@@ -1234,14 +1234,31 @@ function scorm_set_completion($scorm, $userid, $completionstate = COMPLETION_COM
  * Check that a Zip file contains a valid SCORM package
  *
  * @param $file stored_file a Zip file.
+ * @param int|null $contextid The ID of the context.
  * @return array empty if no issue is found. Array of error message otherwise
  */
-function scorm_validate_package($file) {
+function scorm_validate_package(stored_file $file, ?int $contextid = null): array {
     $packer = get_file_packer('application/zip');
     $errors = array();
     if ($file->is_external_file()) { // Get zip file so we can check it is correct.
         $file->import_external_file_contents();
     }
+
+    if ($contextid) {
+        // Validate the amount of file space after extracting does not exceed the maxbytes capacity.
+        $extract = $file->extract_to_storage(
+            packer: $packer,
+            contextid: $contextid,
+            component: 'mod_scorm',
+            filearea: 'content',
+            itemid: 0,
+            pathbase: '/',
+        );
+        if (count($extract) === 1 && reset($extract) === "error") {
+            return ['packagefile' => get_string('cannotextractquotaexceeded', 'repository')];
+        }
+    }
+
     $filelist = $file->list_files($packer);
 
     if (!is_array($filelist)) {
