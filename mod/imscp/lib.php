@@ -507,3 +507,27 @@ function mod_imscp_core_calendar_provide_event_action(calendar_event $event,
         true
     );
 }
+
+/**
+ * Validate and extract files from the stored file.
+ *
+ * @param stored_file $file The stored file object to validate and extract.
+ * @param int $contextid The ID of the context.
+ * @return array An array containing any errors encountered during validation and extraction.
+ */
+function mod_imscp_validate_extracted_files(stored_file $file, int $contextid): array {
+    $error = [];
+    $packer = get_file_packer('application/zip');
+    $extract = $file->extract_to_storage(
+        packer: $packer,
+        contextid: $contextid,
+        component: 'mod_imscp',
+        filearea: 'content',
+        itemid: 1,
+        pathbase: '/',
+    );
+    if (count($extract) === 1 && reset($extract) === "error") {
+        $error['package'] = get_string('cannotextractquotaexceeded', 'repository');
+    }
+    return $error;
+}
