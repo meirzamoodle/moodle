@@ -84,5 +84,57 @@ class validatepackage_test extends \advanced_testcase {
             $this->assertEquals(get_string('badimsmanifestlocation', 'scorm'), $errors['packagefile']);
         }
     }
+
+    /**
+     * Test case for validating extracted files for SCORM module.
+     *
+     * @covers ::scorm_validate_extracted_files
+     * @dataProvider validate_extracted_files_provider
+     *
+     * @param int $maxbytes Maximum bytes for the course.
+     * @param string $filename Name of the file to test.
+     * @param bool $debugging Call assertDebuggingCalled() if true.
+     * @param array $expected Expected result of the validation.
+     */
+    public function test_validate_extracted_files(int $maxbytes, string $filename, bool $debugging, array $expected): void {
+        global $COURSE, $CFG;
+
+        $this->resetAfterTest(true);
+
+        $course = $this->getDataGenerator()->create_course(['maxbytes' => $maxbytes]);
+        // Set the current course to the global because the get_area_maxbytes depends on it.
+        $COURSE = $course;
+        // phpcs:ignore moodle.Commenting.InlineComment.DocBlock
+        /** @var \stored_file */
+        $file = $this->create_stored_file_from_path($CFG->dirroot.'/mod/scorm/tests/packages/'.$filename);
+        $cmcontext = \context_course::instance($course->id);
+        $actual = scorm_validate_package($file, $cmcontext->id);
+        if ($debugging) {
+            $this->assertDebuggingCalled();
+        }
+        $this->assertEquals($expected, $actual);
+    }
+
+    /**
+     * Data provider for test_validate_extracted_files().
+     *
+     * @return array
+     */
+    public static function validate_extracted_files_provider(): array {
+        return [
+            'Error' => [
+                'maxbytes' => 10,
+                'filename' => 'validscorm.zip',
+                'debugging' => true,
+                'expected' => ['packagefile' => get_string('cannotextractquotaexceeded', 'repository')],
+            ],
+            'Success' => [
+                'maxbytes' => 100,
+                'filename' => 'validscorm.zip',
+                'debugging' => false,
+                'expected' => [],
+            ],
+        ];
+    }
 }
 
