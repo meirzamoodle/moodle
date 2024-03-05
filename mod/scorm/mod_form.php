@@ -396,7 +396,7 @@ class mod_scorm_mod_form extends moodleform_mod {
                     $errors['packagefile'] = get_string('invalidmanifestname', 'mod_scorm');
                 } else {
                     // Validate this SCORM package.
-                    $errors = array_merge($errors, scorm_validate_package($file));
+                    $errors = array_merge($errors, scorm_validate_package($file, $this->context->id));
                 }
             }
 
