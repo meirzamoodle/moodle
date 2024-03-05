@@ -56,6 +56,7 @@ $string['cannotaccessparentwin'] = 'When using HTTPS, the repository is not refr
 $string['cannotdelete'] = 'Cannot delete this file.';
 $string['cannotdownload'] = 'Cannot download this file';
 $string['cannotdownloaddir'] = 'Cannot download this folder';
+$string['cannotextractquotaexceeded'] = 'Cannot unzip this file because the maximum size allowed in this area will be exceeded.';
 $string['cannotinitplugin'] = 'Call plugin_init failed';
 $string['cannotunzipcontentunreadable'] = 'Cannot unzip this file because the contents of the file cannot be read.';
 $string['cannotunzipextractfileerror'] = 'Cannot unzip this file because one or more of its files cannot be read.';
