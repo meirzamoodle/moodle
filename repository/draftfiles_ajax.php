@@ -237,11 +237,7 @@ switch ($action) {
                 return $result !== true;
             });
             if (count($failed) > 0) {
-                if ($failed[0] == "cannotunzipquotaexceeded") {
-                    $return->error = get_string($failed[0],  'repository');
-                } else {
-                    $return->error = get_string('cannotunzipextractfileerror',  'repository');
-                }
+                $return->error = get_string('cannotunzipquotaexceeded',  'repository');
                 die(json_encode($return));
             }
 
@@ -267,7 +263,8 @@ switch ($action) {
             }
             $return->filepath = $filepath;
         } else {
-            $return = false;
+            $return->error = get_string('cannotunzipextractfileerror',  'repository');
+            die(json_encode($return));
         }
         // Remove remaining temporary directories.
         foreach (array_diff($doremovedirs, $donotremovedirs) as $filepath) {
