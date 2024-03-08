@@ -563,6 +563,7 @@ $string['displayingfirst'] = 'Only the first {$a->count} {$a->things} are displa
 $string['displayingrecords'] = 'Displaying {$a} records';
 $string['displayingusers'] = 'Displaying users {$a->start} to {$a->end}';
 $string['displayonpage'] = 'Display on page';
+$string['dndcannotextractquotaexceeded'] = 'Unable to create an instance of activity \'{$a}\' due to the failure of extracting the ZIP file exceeding the maximum size allowed.';
 $string['dndcourse'] = 'You can drag and drop this course to alter its sorting or to move it to another category.';
 $string['dndenabled_inbox'] = 'You can drag and drop files here to add them.';
 $string['dndnotsupported'] = 'Drag and drop upload not supported';
