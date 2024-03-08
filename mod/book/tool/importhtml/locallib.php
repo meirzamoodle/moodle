@@ -261,8 +261,16 @@ function toolbook_importhtml_parse_title($html, $default) {
  * @return array the html files found in the package
  */
 function toolbook_importhtml_get_chapter_files($package, $type) {
+    global $COURSE;
+
     $packer = get_file_packer('application/zip');
     $files = $package->list_files($packer);
+
+    $extract = $package->extract_to_storage($packer, $COURSE->id, 'mod_book', 'importhtmltemp', 0, '/');
+    if (count($extract) === 1 && reset($extract) === "error") {
+        return ['error' => get_string('cannotextractquotaexceeded', 'repository')];
+    }
+
     $tophtmlfiles = array();
     $subhtmlfiles = array();
     $topdirs = array();
