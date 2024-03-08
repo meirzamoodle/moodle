@@ -77,8 +77,11 @@ class booktool_importhtml_form extends moodleform {
                 // better delete current file, it is not usable anyway
                 $fs->delete_area_files($usercontext->id, 'user', 'draft', $data['importfile']);
             } else {
-                if (!$chpterfiles = toolbook_importhtml_get_chapter_files($file, $data['type'])) {
+                $chpterfiles = toolbook_importhtml_get_chapter_files($file, $data['type']);
+                if (!$chpterfiles) {
                     $errors['importfile'] = get_string('errornochapters', 'booktool_importhtml');
+                } else if (count($chpterfiles) === 1 && isset($chpterfiles['error'])) {
+                    $errors['importfile'] = $chpterfiles['error'];
                 }
             }
         }
