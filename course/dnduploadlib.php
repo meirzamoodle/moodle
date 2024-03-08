@@ -607,9 +607,17 @@ class dndupload_ajax_processor {
         global $DB, $USER;
 
         if (!$instanceid) {
-            // Something has gone wrong - undo everything we can.
-            course_delete_module($this->cm->id);
-            throw new moodle_exception('errorcreatingactivity', 'moodle', '', $this->module->name);
+            // There is a validation to check the zip file when it's extracted,
+            // When it's failed, the course module is not created yet in the database,
+            // using try..catch to ensure the process keeps running without any blockers, e.g. `invalidrecord`.
+            try {
+                // Something has gone wrong - undo everything we can.
+                course_delete_module($this->cm->id);
+            } catch (Exception $e) {
+                debugging($e->getMessage(), DEBUG_DEVELOPER);
+            }
+
+            throw new moodle_exception('dndcannotextractquotaexceeded', 'moodle', '', $this->module->name);
         }
 
         // Note the section visibility
