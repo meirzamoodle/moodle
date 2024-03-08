@@ -31,6 +31,7 @@ defined('MOODLE_INTERNAL') || die();
 global $CFG;
 require_once($CFG->dirroot . '/mod/assign/tests/generator.php');
 require_once($CFG->dirroot . '/mod/assign/feedback/file/importziplib.php');
+require_once($CFG->dirroot . '/mod/assign/feedback/file/lib.php');
 
 /**
  * Unit tests for importziplib.
@@ -149,5 +150,78 @@ class importziplib_test extends \advanced_testcase {
         $this->assertEquals($participants[$studentid], $user);
         $this->assertEquals('/some_path/My File.txt', $filename);
         $this->assertInstanceOf(\assign_submission_file::class, $plugin);
+    }
+
+    /**
+     * Create a stored file from the given file path.
+     *
+     * @param string $filepath The path of the file from which to create the stored file.
+     * @return \stored_file A stored file object created from the provided file path.
+     */
+    protected function create_stored_file_from_path(string $filepath): \stored_file {
+        $syscontext = \context_system::instance();
+        $filerecord = [
+            'contextid' => $syscontext->id,
+            'component' => 'assignfeedback_file',
+            'filearea'  => 'unittest',
+            'itemid'    => 0,
+            'filepath'  => '/',
+            'filename'  => basename($filepath),
+        ];
+
+        $fs = get_file_storage();
+        return $fs->create_file_from_pathname($filerecord, $filepath);
+    }
+
+    /**
+     * Test case for validating extracted files for IMS Content Package module.
+     *
+     * @covers ::mod_imscp_validate_extracted_files
+     * @dataProvider validate_extracted_files_provider
+     *
+     * @param int $maxbytes Maximum bytes for the course.
+     * @param string $filename Name of the file to test.
+     * @param bool $debugging Call assertDebuggingCalled() if true.
+     * @param array $expected Expected result of the validation.
+     */
+    public function test_validate_extracted_files(int $maxbytes, string $filename, bool $debugging, array $expected): void {
+        global $COURSE, $CFG;
+
+        $this->resetAfterTest(true);
+
+        $course = $this->getDataGenerator()->create_course(['maxbytes' => $maxbytes]);
+        // Set the current course to the global because the get_area_maxbytes depends on it.
+        $COURSE = $course;
+        // phpcs:ignore moodle.Commenting.InlineComment.DocBlock
+        /** @var \stored_file */
+        $file = $this->create_stored_file_from_path($CFG->dirroot.'/mod/assign/feedback/file/tests/fixtures/'.$filename);
+        $coursecontext = \context_course::instance($course->id);
+        $actual = assignfeedback_file_validate($file, $coursecontext->id);
+        if ($debugging) {
+            $this->assertDebuggingCalled();
+        }
+        $this->assertEquals($expected, $actual);
+    }
+
+    /**
+     * Data provider for test_validate_extracted_files().
+     *
+     * @return array
+     */
+    public static function validate_extracted_files_provider(): array {
+        return [
+            'Error' => [
+                'maxbytes' => 50,
+                'filename' => 'feedback.zip',
+                'debugging' => true,
+                'expected' => ['feedbackzip' => get_string('cannotextractquotaexceeded', 'repository')],
+            ],
+            'Success' => [
+                'maxbytes' => 500000,
+                'filename' => 'feedback.zip',
+                'debugging' => false,
+                'expected' => [],
+            ],
+        ];
     }
 }
