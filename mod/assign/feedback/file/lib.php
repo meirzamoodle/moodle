@@ -23,6 +23,8 @@
  */
 defined('MOODLE_INTERNAL') || die();
 
+require_once($CFG->dirroot . '/mod/assign/feedback/file/locallib.php');
+
 /**
  * Serves assignment feedback and other files.
  *
@@ -76,4 +78,30 @@ function assignfeedback_file_pluginfile($course,
     }
     // Download MUST be forced - security!
     send_stored_file($file, 0, 0, true, $options);
+}
+
+
+/**
+ * Check that a Zip file contains a valid SCORM package.
+ *
+ * @param stored_file $file stored_file a Zip file.
+ * @param int $contextid The ID of the context.
+ * @return array empty if no issue is found. Array of error message otherwise.
+ */
+function assignfeedback_file_validate(stored_file $file, int $contextid): array {
+    global $USER;
+    $errors = [];
+    $packer = get_file_packer('application/zip');
+    $extract = $file->extract_to_storage(
+        packer: $packer,
+        contextid: $contextid,
+        component: 'assignfeedback_file',
+        filearea: ASSIGNFEEDBACK_FILE_IMPORT_FILEAREA,
+        itemid: $USER->id,
+        pathbase: 'import',
+    );
+    if (count($extract) === 1 && reset($extract) === "error") {
+        $errors['feedbackzip'] = get_string('cannotextractquotaexceeded', 'repository');
+    }
+    return $errors;
 }
