@@ -380,6 +380,10 @@ function folder_dndupload_handle($uploadinfo) {
     $file = reset($files);
 
     $success = $file->extract_to_storage(new zip_packer(), $context->id, 'mod_folder', 'content', 0, '/', $USER->id);
+    if (count($success) === 1 && reset($success) === "error") {
+        return false;
+    }
+
     $fs->delete_area_files($context->id, 'mod_folder', 'temp', 0);
 
     if ($success) {
