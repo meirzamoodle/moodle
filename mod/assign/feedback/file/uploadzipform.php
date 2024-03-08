@@ -25,6 +25,7 @@
 defined('MOODLE_INTERNAL') || die('Direct access to this script is forbidden.');
 
 require_once($CFG->libdir.'/formslib.php');
+require_once($CFG->dirroot . '/mod/assign/feedback/file/lib.php');
 
 /**
  * Upload feedback zip
@@ -67,6 +68,33 @@ class assignfeedback_file_upload_zip_form extends moodleform {
         $mform->setType('pluginsubtype', PARAM_PLUGIN);
         $this->add_action_buttons(true, get_string('importfeedbackfiles', 'assignfeedback_file'));
 
+    }
+
+    /**
+     * Validate the data and files for a particular operation.
+     *
+     * @param array $data Containing data to be validated.
+     * @param array $files Containing files to be validated.
+     * @return array An associative array of errors, or null if validation passes.
+     */
+    public function validation($data, $files): array {
+        global $USER, $COURSE;
+
+        if ($errors = parent::validation($data, $files)) {
+            return $errors;
+        }
+
+        $usercontext = context_user::instance($USER->id);
+        $fs = get_file_storage();
+        if (!$files = $fs->get_area_files($usercontext->id, 'user', 'draft', $data['feedbackzip'], 'id', false)) {
+            $errors['feedbackzip'] = get_string('required');
+        } else {
+            // Ensure the extracted files from the ZIP file don't exceed the allowed maximum bytes.
+            $file = reset($files);
+            $errors = assignfeedback_file_validate($file, $COURSE->id);
+        }
+
+        return $errors;
     }
 
 }
