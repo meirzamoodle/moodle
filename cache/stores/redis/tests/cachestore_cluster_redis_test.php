@@ -51,8 +51,6 @@ class cachestore_cluster_redis_test extends \advanced_testcase {
      * @return cachestore_redis The created cache store instance.
      */
     public function create_store(?string $seed = null): cachestore_redis {
-        global $DB;
-
         $definition = cache_definition::load_adhoc(
             mode: cache_store::MODE_APPLICATION,
             component: 'cachestore_redis',
@@ -185,9 +183,10 @@ class cachestore_cluster_redis_test extends \advanced_testcase {
             'clustermode' => true,
         ];
         $store = new cachestore_redis('TestCluster', $config);
-
+        $debugging = $this->getDebuggingMessages();
         // Failed to connect should show a debugging message.
         $this->assertCount(1, \phpunit_util::get_debugging_messages() );
+        $this->assertStringContainsString('Couldn\'t map cluster keyspace using any provided seed', $debugging[0]->message);
         $this->resetDebugging();
         $this->assertFalse($store->is_ready());
     }

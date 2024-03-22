@@ -63,7 +63,6 @@ Some example values:
   172.23.0.13<br>
   Refer to the above examples to write a server.
 
-
 See <a href="https://redis.io/docs/reference/clients/#accepting-client-connections" target="_new">Accepting Client Connections</a> and <a href="https://redis.io/resources/clients/#php" target="_new">Redis PHP clients</a> for more information.';
 $string['task_ttl'] = 'Free up memory used by expired entries in Redis caches';
 $string['test_clustermode'] = 'Cluster Mode';

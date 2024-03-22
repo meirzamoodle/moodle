@@ -29,8 +29,8 @@ $settings->add(
         name: 'cachestore_redis/test_clustermode',
         visiblename: get_string('clustermode', 'cachestore_redis'),
         description: cache_helper::is_cluster_available() ?
-                        get_string('clustermode_help', 'cachestore_redis') :
-                        get_string('clustermodeunavailable', 'cachestore_redis'),
+            get_string('clustermode_help', 'cachestore_redis') :
+            get_string('clustermodeunavailable', 'cachestore_redis'),
         defaultsetting: 0,
     )
 );
