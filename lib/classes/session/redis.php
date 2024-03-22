@@ -85,7 +85,7 @@ class redis extends handler implements SessionHandlerInterface {
     protected $lockexpire;
 
     /** @var Redis|RedisCluster Connection */
-    public $connection = null;
+    protected $connection = null;
 
     /** @var array $locks List of currently held locks by this page. */
     protected $locks = array();
