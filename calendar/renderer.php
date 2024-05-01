@@ -235,7 +235,7 @@ class core_calendar_renderer extends plugin_renderer_base {
                 context_helper::preload_from_record($contextrecords[$course->id]);
             }
             $coursecontext = context_course::instance($course->id);
-            $courseoptions[$course->id] = format_string($course->shortname, true, array('context' => $coursecontext));
+            $courseoptions[$course->id] = format_string($course->fullname, true, array('context' => $coursecontext));
         }
 
         if ($courseid) {
@@ -260,7 +260,7 @@ class core_calendar_renderer extends plugin_renderer_base {
         }
         $select = html_writer::label($label, $filterid, false, $labelattributes);
         $select .= html_writer::select($courseoptions, 'course', $selected, false,
-                ['class' => 'cal_courses_flt ml-1 mr-auto', 'id' => $filterid]);
+                ['class' => 'cal_courses_flt mr-auto mr-2 mb-2', 'id' => $filterid]);
 
         return $select;
     }
