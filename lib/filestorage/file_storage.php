@@ -1862,6 +1862,9 @@ class file_storage {
                 $pluginfunction($newrecord, ['pathname' => $pathname, 'content' => $content]);
             }
         }
+        // Dispatch the new Hook implementation immediately after the legacy callback.
+        $hook = new \core\hook\filestorage\before_file_created($newrecord, ['pathname' => $pathname, 'content' => $content]);
+        \core\hook\manager::get_instance()->dispatch($hook);
     }
 
     /**
