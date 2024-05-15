@@ -34,6 +34,16 @@ final class document_services_test extends \advanced_testcase {
     use \mod_assign_test_generator;
 
     /**
+     * Sets up the test environment by calling the parent setUp method.
+     */
+    public function setUp(): void {
+        parent::setUp();
+        $this->resetAfterTest(true);
+        // Disabling the EXIF remover to avoid different hash between original and generated files.
+        set_config('exifremoverenabled', 0, 'core_fileredact');
+    }
+
+    /**
      * Test that the save file method saves the file.
      */
     public function test_save_file_saves_the_file(): void {

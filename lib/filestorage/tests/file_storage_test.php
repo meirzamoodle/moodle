@@ -50,6 +50,16 @@ require_once($CFG->libdir . '/filestorage/stored_file.php');
 class file_storage_test extends \advanced_testcase {
 
     /**
+     * Sets up the test environment by calling the parent setUp method.
+     */
+    public function setUp(): void {
+        parent::setUp();
+        $this->resetAfterTest(true);
+        // Disabling the EXIF remover to avoid different hash between original and generated files.
+        set_config('exifremoverenabled', 0, 'core_fileredact');
+    }
+
+    /**
      * Files can be created from strings.
      *
      * @covers ::create_file_from_string

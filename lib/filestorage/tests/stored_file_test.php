@@ -31,6 +31,16 @@ use context_system;
 class stored_file_test extends advanced_testcase {
 
     /**
+     * Sets up the test environment by calling the parent setUp method.
+     */
+    public function setUp(): void {
+        parent::setUp();
+        $this->resetAfterTest(true);
+        // Disabling the EXIF remover to avoid different hash between original and generated files.
+        set_config('exifremoverenabled', 0, 'core_fileredact');
+    }
+
+    /**
      * Test that the rotate_image() method does not rotate
      * an image that is not supposed to be rotated.
      * @covers ::rotate_image()
