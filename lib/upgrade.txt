@@ -8,6 +8,11 @@ information provided here is intended especially for developers.
 * The following previously deprecated methods have been removed and can no longer be used:
   - `renderer_base::should_display_main_logo`
 * Final deprecation of print_error(). Use moodle_exception instead.
+* Two new functions have been introduced:
+  - \moodle_database::get_counted_records_sql()
+  - \moodle_database::get_counted_recordset_sql().
+  These methods will check the current running database engine and apply the COUNT window function if it is compatible.
+  The supported databases are PostgreSQL, MariaDB, and Oracle.
 
 === 4.4 ===
 
@@ -159,6 +164,11 @@ information provided here is intended especially for developers.
 * groups_get_user_groups() in grouplib has a new $includehidden paramater, which will return groups for user even if they have
   GROUP_VISIBILITY_NONE. This is false by default, and should be used with care. The calling code must ensure that these groups
   are not exposed to the user as this may be a privacy issue.
+* Two new functions have been introduced:
+  - \moodle_database::get_counted_records_sql()
+  - \moodle_database::get_counted_recordset_sql().
+  These methods will check the current running database engine and apply the COUNT window function if it is compatible.
+  The supported databases are PostgreSQL, MariaDB, and Oracle.
 
 === 4.3 ===
 
