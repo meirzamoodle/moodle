@@ -1,5 +1,9 @@
 This files describes API changes for code that uses the user API.
 
+=== 4.5 ===
+
+* The `\participants_search::get_total_participants_count()` has been deprecated.
+
 === 4.4 ===
 
 * The `profile_field_base` class now contains a `show_field_content` method to determine whether the field and

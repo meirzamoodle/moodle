@@ -105,26 +105,37 @@ class participants_search {
             'params' => $params,
         ] = $this->get_participants_sql($additionalwhere, $additionalparams);
 
-        $sql = "{$outerselect}
-                          FROM ({$innerselect}
-                                          FROM {$innerjoins}
-                                 {$innerwhere}
-                               ) {$subqueryalias}
-                 {$outerjoins}
-                 {$outerwhere}
-                       {$sort}";
-
-        return $DB->get_recordset_sql($sql, $params, $limitfrom, $limitnum);
+        $select = "{$outerselect}
+                        FROM ({$innerselect}
+                                FROM {$innerjoins}
+                              {$innerwhere}
+                        ) {$subqueryalias}
+                   {$outerjoins}
+                   {$outerwhere}";
+        return $DB->get_counted_recordset_sql($select, $sort, $params, $limitfrom, $limitnum);
     }
 
     /**
      * Returns the total number of participants for a given course.
      *
+     * @deprecated Moodle 4.4 MDL-78030 - No longer used since the total count can be obtained from {@see ::get_participants()}.
+     * @todo Final deprecation on Moodle 4.8 MDL-XXXXX <=== I will create the issue once the integrator agrees with the patch.
+     *
      * @param string $additionalwhere Any additional SQL to add to where.
      * @param array $additionalparams The additional params used by $additionalwhere.
      * @return int
      */
+    #[\core\attribute\deprecated(
+        'participants_search::get_total_participants_count()',
+        since: '4.4',
+        mdl: 'MDL-78030',
+        replacement: 'get_participants()',
+        reason: 'No longer used since the total count can be obtained from {@see ::get_participants()}',
+    )]
     public function get_total_participants_count(string $additionalwhere = '', array $additionalparams = []): int {
+
+        \core\deprecation::emit_deprecation_if_present([$this, __FUNCTION__]);
+
         global $DB;
 
         [

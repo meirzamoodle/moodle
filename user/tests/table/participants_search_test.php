@@ -176,9 +176,11 @@ class participants_search_test extends advanced_testcase {
         $rs = $search->get_participants();
         $this->assertInstanceOf(moodle_recordset::class, $rs);
         $records = $this->convert_recordset_to_array($rs);
+        $resetrecords = reset($records);
+        $totalparticipants = $resetrecords->{$DB::COUNTED_COLUMN_NAME_DEFAULT} ?? 0;
 
         $this->assertCount($count, $records);
-        $this->assertEquals($count, $search->get_total_participants_count());
+        $this->assertEquals($count, $totalparticipants);
 
         foreach ($expectedusers as $expecteduser) {
             $this->assertArrayHasKey($users[$expecteduser]->id, $records);
@@ -768,6 +770,8 @@ class participants_search_test extends advanced_testcase {
      * @dataProvider country_provider
      */
     public function test_country_filter(array $usersdata, array $countries, int $jointype, array $expectedusers): void {
+        global $DB;
+
         $this->resetAfterTest();
 
         $course = $this->getDataGenerator()->create_course();
@@ -787,9 +791,10 @@ class participants_search_test extends advanced_testcase {
 
         // Run the search, assert count matches the number of expected users.
         $search = new participants_search($course, context_course::instance($course->id), $filterset);
-        $this->assertEquals(count($expectedusers), $search->get_total_participants_count());
-
         $rs = $search->get_participants();
+        $totalparticipants = $rs->current()->{$DB::COUNTED_COLUMN_NAME_DEFAULT} ?? 0;
+        $this->assertEquals(count($expectedusers), $totalparticipants);
+
         $this->assertInstanceOf(moodle_recordset::class, $rs);
 
         // Assert that each expected user is within the participant records.
@@ -985,9 +990,11 @@ class participants_search_test extends advanced_testcase {
         $rs = $search->get_participants();
         $this->assertInstanceOf(moodle_recordset::class, $rs);
         $records = $this->convert_recordset_to_array($rs);
+        $resetrecords = reset($records);
+        $totalparticipants = $resetrecords->{$DB::COUNTED_COLUMN_NAME_DEFAULT} ?? 0;
 
         $this->assertCount($count, $records);
-        $this->assertEquals($count, $search->get_total_participants_count());
+        $this->assertEquals($count, $totalparticipants);
 
         foreach ($expectedusers as $expecteduser) {
             $this->assertArrayHasKey($users[$expecteduser]->id, $records);
@@ -1483,6 +1490,8 @@ class participants_search_test extends advanced_testcase {
      * @dataProvider status_provider
      */
     public function test_status_filter(array $usersdata, array $statuses, int $jointype, int $count, array $expectedusers): void {
+        global $DB;
+
         $course = $this->getDataGenerator()->create_course();
         $coursecontext = context_course::instance($course->id);
         $users = [];
@@ -1531,9 +1540,11 @@ class participants_search_test extends advanced_testcase {
         $rs = $search->get_participants();
         $this->assertInstanceOf(moodle_recordset::class, $rs);
         $records = $this->convert_recordset_to_array($rs);
+        $resetrecords = reset($records);
+        $totalparticipants = $resetrecords->{$DB::COUNTED_COLUMN_NAME_DEFAULT} ?? 0;
 
         $this->assertCount($count, $records);
-        $this->assertEquals($count, $search->get_total_participants_count());
+        $this->assertEquals($count, $totalparticipants);
 
         foreach ($expectedusers as $expecteduser) {
             $this->assertArrayHasKey($users[$expecteduser]->id, $records);
@@ -1737,6 +1748,7 @@ class participants_search_test extends advanced_testcase {
      */
     public function test_enrolments_filter(array $usersdata, array $enrolmethods, int $jointype, int $count,
             array $expectedusers): void {
+        global $DB;
 
         $course = $this->getDataGenerator()->create_course();
         $coursecontext = context_course::instance($course->id);
@@ -1786,9 +1798,11 @@ class participants_search_test extends advanced_testcase {
         $rs = $search->get_participants();
         $this->assertInstanceOf(moodle_recordset::class, $rs);
         $records = $this->convert_recordset_to_array($rs);
+        $resetrecords = reset($records);
+        $totalparticipants = $resetrecords->{$DB::COUNTED_COLUMN_NAME_DEFAULT} ?? 0;
 
         $this->assertCount($count, $records);
-        $this->assertEquals($count, $search->get_total_participants_count());
+        $this->assertEquals($count, $totalparticipants);
 
         foreach ($expectedusers as $expecteduser) {
             $this->assertArrayHasKey($users[$expecteduser]->id, $records);
@@ -1950,7 +1964,7 @@ class participants_search_test extends advanced_testcase {
      */
     public function test_groups_filter(array $usersdata, array $groupsavailable, array $filtergroups, int $jointype, int $count,
             array $expectedusers): void {
-
+        global $DB;
         $course = $this->getDataGenerator()->create_course();
         $coursecontext = context_course::instance($course->id);
         $users = [];
@@ -2010,9 +2024,11 @@ class participants_search_test extends advanced_testcase {
         $rs = $search->get_participants();
         $this->assertInstanceOf(moodle_recordset::class, $rs);
         $records = $this->convert_recordset_to_array($rs);
+        $resetrecords = reset($records);
+        $totalparticipants = $resetrecords->{$DB::COUNTED_COLUMN_NAME_DEFAULT} ?? 0;
 
         $this->assertCount($count, $records);
-        $this->assertEquals($count, $search->get_total_participants_count());
+        $this->assertEquals($count, $totalparticipants);
 
         foreach ($expectedusers as $expecteduser) {
             $this->assertArrayHasKey($users[$expecteduser]->id, $records);
@@ -2269,6 +2285,7 @@ class participants_search_test extends advanced_testcase {
      */
     public function test_groups_filter_separate_groups(array $usersdata, array $groupsavailable, array $filtergroups, int $jointype,
             int $count, array $expectedusers, string $loginusername): void {
+        global $DB;
 
         $course = $this->getDataGenerator()->create_course();
         $coursecontext = context_course::instance($course->id);
@@ -2348,9 +2365,11 @@ class participants_search_test extends advanced_testcase {
             $rs = $search->get_participants();
             $this->assertInstanceOf(moodle_recordset::class, $rs);
             $records = $this->convert_recordset_to_array($rs);
+            $resetrecords = reset($records);
+            $totalparticipants = $resetrecords->{$DB::COUNTED_COLUMN_NAME_DEFAULT} ?? 0;
 
             $this->assertCount($count, $records);
-            $this->assertEquals($count, $search->get_total_participants_count());
+            $this->assertEquals($count, $totalparticipants);
 
             foreach ($expectedusers as $expecteduser) {
                 $this->assertArrayHasKey($users[$expecteduser]->id, $records);
@@ -2668,6 +2687,7 @@ class participants_search_test extends advanced_testcase {
      */
     public function test_accesssince_filter(array $usersdata, array $accesssince, int $jointype, int $count,
             array $expectedusers): void {
+        global $DB;
 
         $course = $this->getDataGenerator()->create_course();
         $coursecontext = context_course::instance($course->id);
@@ -2709,9 +2729,11 @@ class participants_search_test extends advanced_testcase {
         $rs = $search->get_participants();
         $this->assertInstanceOf(moodle_recordset::class, $rs);
         $records = $this->convert_recordset_to_array($rs);
+        $resetrecords = reset($records);
+        $totalparticipants = $resetrecords->{$DB::COUNTED_COLUMN_NAME_DEFAULT} ?? 0;
 
         $this->assertCount($count, $records);
-        $this->assertEquals($count, $search->get_total_participants_count());
+        $this->assertEquals($count, $totalparticipants);
 
         foreach ($expectedusers as $expecteduser) {
             $this->assertArrayHasKey($users[$expecteduser]->id, $records);
@@ -3114,9 +3136,11 @@ class participants_search_test extends advanced_testcase {
         $rs = $search->get_participants();
         $this->assertInstanceOf(moodle_recordset::class, $rs);
         $records = $this->convert_recordset_to_array($rs);
+        $resetrecords = reset($records);
+        $totalparticipants = $resetrecords->{$DB::COUNTED_COLUMN_NAME_DEFAULT} ?? 0;
 
         $this->assertCount($count, $records);
-        $this->assertEquals($count, $search->get_total_participants_count());
+        $this->assertEquals($count, $totalparticipants);
 
         foreach ($expectedusers as $expecteduser) {
             $this->assertArrayHasKey($users[$expecteduser]->id, $records);
