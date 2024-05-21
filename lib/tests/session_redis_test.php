@@ -345,9 +345,7 @@ class session_redis_test extends \advanced_testcase {
         }
 
         $host = TEST_SESSION_REDIS_HOST;
-        if ($this->encrypted) {
-            $host = "tls://$host";
-        }
+
         $expected = "Failed to connect (try 5 out of 5) to Redis at $host:111111";
         $this->assertDebuggingCalledCount(5);
         $this->assertStringContainsString($expected, $actual);
@@ -367,7 +365,8 @@ class session_redis_test extends \advanced_testcase {
 
         $sess = new \core\session\redis();
 
-        $prop = new \ReflectionProperty(\core\session\redis::class, 'host');
-        $this->assertEquals('tls://' . TEST_SESSION_REDIS_HOST, $prop->getValue($sess)[0]);
+        $prop = new \ReflectionProperty(\core\session\redis::class, 'sslopts');
+
+        $this->assertEquals($CFG->session_redis_encrypt, $prop->getValue($sess));
     }
 }

@@ -117,9 +117,6 @@ class redis extends handler implements SessionHandlerInterface {
         }
 
         if (isset($CFG->session_redis_encrypt) && $CFG->session_redis_encrypt) {
-            if (!$this->clustermode) {
-                $this->host[0] = 'tls://' . $this->host[0];
-            }
             $this->sslopts = $CFG->session_redis_encrypt;
         }
 
@@ -225,7 +222,7 @@ class redis extends handler implements SessionHandlerInterface {
             $server = strtolower(trim($host));
             if (!empty($server)) {
                 if ($server[0] === '/' || str_starts_with($server, 'unix://')) {
-                    $port = 0;
+                    $this->port = 0;
                     $trimmedservers[] = $server;
                 } else {
                     $port = 6379; // No Unix socket so set default port.
@@ -266,9 +263,14 @@ class redis extends handler implements SessionHandlerInterface {
                         $this->auth, !empty($opts) ? $opts : null);
                 } else {
                     $delay = rand(100, 500);
-                    list($server, $port) = explode(':', $trimmedservers[0]);
+                    // Handle the case when the server is not a Unix domain socket.
+                    if ($this->port !== 0) {
+                        list($server, ) = explode(':', $trimmedservers[0]);
+                    } else {
+                        $server = $trimmedservers[0];
+                    }
                     $this->connection = new \Redis();
-                    $this->connection->connect($server, $this->port ?? $port, 1, null, $delay, 1, $opts);
+                    $this->connection->connect($server, $this->port, 1, null, $delay, 1, $opts);
                     if ($this->auth !== '' && !$this->connection->auth($this->auth)) {
                         throw new $exceptionclass('Unable to authenticate.');
                     }
