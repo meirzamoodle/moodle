@@ -33,7 +33,6 @@ define([
     'core_calendar/view_manager',
     'core_calendar/crud',
     'core_calendar/selectors',
-    'core/config',
     'core/url',
     'core/str',
 ],
@@ -46,7 +45,6 @@ function(
     CalendarViewManager,
     CalendarCrud,
     CalendarSelectors,
-    Config,
     Url,
     Str,
 ) {
@@ -195,7 +193,13 @@ function(
                 CalendarViewManager.refreshDayContent(root, year, month, day, courseId, categoryId, root,
                     'core_calendar/calendar_day').then(function() {
                     e.preventDefault();
-                    return CalendarViewManager.updateUrl(urlParamString);
+                    // Determines whether the user clicked on a day of the calendar block.
+                    // If the clicked target is not coming from the calendar block, update the URL.
+                    const blockCalendarMonth = $(e.target).closest(CalendarSelectors.blockCalendarMonth);
+                    if (blockCalendarMonth.length === 0) {
+                        return CalendarViewManager.updateUrl('?' + urlParamString);
+                    }
+                    return null;
                 }).catch(Notification.exception);
             } else {
                 window.location.assign(Url.relativeUrl('calendar/view.php', urlParams));
