@@ -73,5 +73,6 @@ define([], function() {
         },
         mainCalendar: '.maincalendar .heightcontainer',
         fullCalendarView: 'page-calendar-view',
+        blockCalendarMonth: '.block_calendar_month',
     };
 });

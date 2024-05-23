@@ -185,7 +185,13 @@ function(
                 CalendarViewManager.refreshDayContent(root, year, month, day, courseId, categoryId, root,
                     'core_calendar/calendar_day').then(function() {
                     e.preventDefault();
-                    return CalendarViewManager.updateUrl(url);
+                    // Determines whether the user clicked on a day of the calendar block.
+                    // If the clicked target is not coming from the calendar block, update the URL.
+                    const blockCalendarMonth = $(e.target).closest(CalendarSelectors.blockCalendarMonth);
+                    if (blockCalendarMonth.length === 0) {
+                        return CalendarViewManager.updateUrl(url);
+                    }
+                    return null;
                 }).catch(Notification.exception);
             } else {
                 window.location.assign(Config.wwwroot + '/calendar/view.php' + url);

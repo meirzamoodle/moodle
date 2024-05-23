@@ -190,10 +190,10 @@ const registerEventListeners = (root) => {
         const link = e.currentTarget;
 
         if (view === 'month' || view === 'monthblock') {
-            changeMonth(root, link.href, link.dataset.year, link.dataset.month, courseId, categoryId, link.dataset.day);
+            changeMonth(root, link, courseId, categoryId);
             e.preventDefault();
         } else if (view === 'day') {
-            changeDay(root, link.href, link.dataset.year, link.dataset.month, link.dataset.day, courseId, categoryId);
+            changeDay(root, link, courseId, categoryId);
             e.preventDefault();
         }
     });
@@ -281,18 +281,20 @@ export const refreshMonthContent = (root, year, month, courseId, categoryId, tar
  * Handle changes to the current calendar view.
  *
  * @param {object} root The container element
- * @param {string} url The calendar url to be shown
- * @param {number} year Year
- * @param {number} month Month
+ * @param {object} link The link current target element
  * @param {number} courseId The id of the course whose events are shown
  * @param {number} categoryId The id of the category whose events are shown
- * @param {number} day Day (optional)
  * @return {promise}
  */
-export const changeMonth = (root, url, year, month, courseId, categoryId, day = 1) => {
+export const changeMonth = (root, link, courseId, categoryId) => {
+    const url = link.href;
+    const year = link.dataset.year;
+    const month = link.dataset.month;
+    const day = link.dataset.day ??= 1;
+    const blockCalendarMonth = link.closest(CalendarSelectors.blockCalendarMonth);
     return refreshMonthContent(root, year, month, courseId, categoryId, null, '', day)
         .then((...args) => {
-            if (url.length && url !== '#') {
+            if (url.length && url !== '#' && !blockCalendarMonth) {
                 updateUrl(url);
             }
             return args;
@@ -394,18 +396,20 @@ export const reloadCurrentDay = (root, courseId = 0, categoryId = 0) => {
  * Handle changes to the current calendar view.
  *
  * @param {object} root The root element.
- * @param {String} url The calendar url to be shown
- * @param {Number} year Year
- * @param {Number} month Month
- * @param {Number} day Day
+ * @param {object} link The link current target element
  * @param {Number} courseId The id of the course whose events are shown
  * @param {Number} categoryId The id of the category whose events are shown
  * @return {promise}
  */
-export const changeDay = (root, url, year, month, day, courseId, categoryId) => {
+export const changeDay = (root, link, courseId, categoryId) => {
+    const url = link.href;
+    const year = link.dataset.year;
+    const month = link.dataset.month;
+    const day = link.dataset.day;
+    const blockCalendarMonth = link.closest(CalendarSelectors.blockCalendarMonth);
     return refreshDayContent(root, year, month, day, courseId, categoryId)
         .then((...args) => {
-            if (url.length && url !== '#') {
+            if (url.length && url !== '#' && !blockCalendarMonth) {
                 updateUrl(url);
             }
             return args;
