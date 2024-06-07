@@ -74,5 +74,6 @@ define([], function() {
         mainCalendar: '.maincalendar .heightcontainer',
         fullCalendarView: 'page-calendar-view',
         pageHeaderHeadings: '.page-header-headings h1',
+        blockCalendarMonth: '.block_calendar_month',
     };
 });
