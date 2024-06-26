@@ -33,3 +33,11 @@ Feature: hideIf functionality in forms
     And I should see "My test editor"
     When I click on "Hide" "radio"
     Then I should not see "My test editor"
+
+  Scenario: The static element is hidden when 'eq' hideIf conditions are met
+    Given I am on fixture page "/lib/form/tests/behat/fixtures/static_hideif_form.php"
+    And I should see "My test static"
+    When I click on "Hide" "radio"
+    Then I should not see "My test static"
+    And I click on "Show" "radio"
+    And I should see "My test static"
