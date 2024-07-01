@@ -73,6 +73,11 @@ class pgsql_native_moodle_database extends moodle_database {
     const DEFAULT_FETCH_BUFFER_SIZE = 100000;
 
     /**
+     * @var bool A flag to indicate whether the transaction should be ignored when executing database operations.
+     */
+    private bool $ignoretransaction = false;
+
+    /**
      * Detects if all needed PHP stuff installed.
      * Note: can be used before connect()
      * @return mixed true if ok, string if something
@@ -820,7 +825,8 @@ class pgsql_native_moodle_database extends moodle_database {
         if (is_array($sql)) {
             $sql = implode("\n;\n", $sql);
         }
-        if (!$this->is_transaction_started()) {
+        // Creating indexes with concurrent option doesn't work with transactions.
+        if (!$this->is_transaction_started() && !$this->ignoretransaction) {
             // It is better to do all or nothing, this helps with recovery...
             $sql = "BEGIN ISOLATION LEVEL SERIALIZABLE;\n$sql\n; COMMIT";
         }
@@ -831,7 +837,7 @@ class pgsql_native_moodle_database extends moodle_database {
             $this->query_end($result);
             pg_free_result($result);
         } catch (ddl_change_structure_exception $e) {
-            if (!$this->is_transaction_started()) {
+            if (!$this->is_transaction_started() && !$this->ignoretransaction) {
                 $result = @pg_query($this->pgsql, "ROLLBACK");
                 @pg_free_result($result);
             }
@@ -1721,5 +1727,23 @@ class pgsql_native_moodle_database extends moodle_database {
      */
     public function is_fulltext_search_supported() {
         return true;
+    }
+
+    /**
+     * Set the flag to indicate whether the transaction should be ignored when executing database operations.
+     *
+     * @param bool $value If true, the transaction will be ignored; if false, it will not be ignored.
+     */
+    public function set_ignore_transaction(bool $value = true): void {
+        $this->ignoretransaction = $value;
+    }
+
+    /**
+     * Get the value indicating whether transactions should be ignored.
+     *
+     * @return bool True if transactions should be ignored, false otherwise.
+     */
+    public function get_ignore_transaction(): bool {
+        return $this->ignoretransaction;
     }
 }
