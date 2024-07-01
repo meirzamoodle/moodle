@@ -78,6 +78,13 @@ class oracle_sql_generator extends sql_generator {
     public $sequence_cache_size = 20;
 
     /**
+     * The query option to perform index creation without blocking concurrent DML operations.
+     *
+     * @var string
+     */
+    const CONCURRENT_OPTION = "ONLINE";
+
+    /**
      * Reset a sequence to the id field of a table.
      *
      * @param xmldb_table|string $table name of table or the table object.
@@ -752,5 +759,9 @@ class oracle_sql_generator extends sql_generator {
             'where', 'with'
         );
         return $reserved_words;
+    }
+
+    public function supports_concurrent_index_creation(): bool {
+        return true;
     }
 }

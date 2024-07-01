@@ -173,6 +173,16 @@ abstract class sql_generator {
     protected $temptables;
 
     /**
+     * The query option to perform index creation with online.
+     * It minimizes locking and allows concurrent data modifications during the index creation process.
+     *
+     * Child class should override this const.
+     *
+     * @var string
+     */
+    const CONCURRENT_OPTION = "";
+
+    /**
      * Creates a new sql_generator.
      * @param moodle_database $mdb The moodle_database object instance.
      * @param moodle_temptables $temptables The optional moodle_temptables instance, null by default.
@@ -1458,5 +1468,49 @@ abstract class sql_generator {
         }
 
         return $nullablefields;
+    }
+
+    /**
+     * Check if the database system supports concurrent index creation.
+     *
+     * @return bool True if concurrent index creation is supported, false otherwise.
+     */
+    public function supports_concurrent_index_creation(): bool {
+        return false;
+    }
+
+    /**
+     * Determine if concurrent not-unique index creation should be used based on configuration and context.
+     *
+     * @param xmldb_index $xmldbindex Only processing the non unique index.
+     * @return bool True if concurrent index creation should be used, false otherwise.
+     */
+    final public function should_use_concurrent_index_creation(xmldb_index $xmldbindex): bool {
+        global $CFG;
+        if ($this->supports_concurrent_index_creation()
+                && !empty($CFG->dboptions['concurrentnotuniqueindexing'])
+                && !empty($CFG->upgraderunning)
+                && !$xmldbindex->getUnique()) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Given a query, returns the query with concurrent creation statement.
+     *
+     * This only works if the concurrent option is at the end of the query.
+     * Otherwise, please override this function like postgres_sql_generator.
+     *
+     * @param array $sqlarr A SQL statement to create the index.
+     * @return array A SQL statement to create the index.
+     */
+    public function append_concurrent_option(array $sqlarr): array {
+        $newsqlarr = [];
+        foreach ($sqlarr as $sql) {
+            // Add the CONCURRENT_OPTION at the end of query.
+            $newsqlarr[] = preg_replace('/(CREATE.+?INDEX.+?)(.+)/i', '$1$2 ' . static::CONCURRENT_OPTION, $sql, 1);
+        }
+        return $newsqlarr;
     }
 }

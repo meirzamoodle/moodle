@@ -87,6 +87,14 @@ class mssql_sql_generator extends sql_generator {
     public $rename_key_sql = null;
 
     /**
+     * The query option to perform index creation with online.
+     * It minimizes locking and allows concurrent data modifications during the index creation process.
+     *
+     * @var string
+     */
+    const CONCURRENT_OPTION = "WITH (ONLINE = ON)";
+
+    /**
      * Reset a sequence to the id field of a table.
      *
      * @param xmldb_table|string $table name of table or the table object.
@@ -696,5 +704,9 @@ class mssql_sql_generator extends sql_generator {
             "work", "writetext"
         );
         return $reserved_words;
+    }
+
+    public function supports_concurrent_index_creation(): bool {
+        return true;
     }
 }

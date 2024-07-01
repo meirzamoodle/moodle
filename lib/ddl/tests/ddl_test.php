@@ -2503,4 +2503,51 @@ class ddl_test extends \database_driver_testcase {
         $this->assertContains("Unexpected index '{$CFG->prefix}testchecdbsche_ext_uix'.", $errors);
         $this->assertContains("column 'extracolumn' is not expected (I)", $errors);
     }
+
+    /**
+     * Test the behaviour of not-unique index creation concurrently.
+     *
+     * @covers \sql_generator::append_concurrent_option
+     * @covers \sql_generator::supports_concurrent_index_creation
+     * @covers \sql_generator::should_use_concurrent_index_creation
+     * @covers \core_task::concurrent_notunique_index_task
+     *
+     * @return void
+     */
+    public function test_add_concurrent_notunique_index(): void {
+        // Force to activate concurrentindexing creation.
+        global $CFG;
+        $CFG->dboptions['concurrentnotuniqueindexing'] = true;
+        $CFG->upgraderunning = true;
+
+        $DB = $this->tdb; // Do not use global $DB!
+        $dbman = $DB->get_manager();
+
+        $tablename = 'test_concurrent0';
+        $indexname = 'name';
+        $table = new xmldb_table($tablename);
+        $table->add_field('id', XMLDB_TYPE_INTEGER, '2', null, XMLDB_NOTNULL, XMLDB_SEQUENCE, null);
+        $table->add_field($indexname, XMLDB_TYPE_CHAR, '30', null, XMLDB_NOTNULL, null, 'Moodle');
+        $table->add_key('primary', XMLDB_KEY_PRIMARY, ['id']);
+        $dbman->create_table($table);
+
+        $index = new xmldb_index($indexname, XMLDB_INDEX_NOTUNIQUE, [$indexname]);
+        $dbman->add_index($table, $index);
+
+        // Verify whether the ad hoc task has been populated by the previous action.
+        $adhoctests = \core\task\manager::get_adhoc_tasks('\\core\\task\\concurrent_notunique_index_task');
+        $this->assertCount(1, $adhoctests);
+
+        // Execute the task.
+        $task = \core\task\manager::get_adhoc_task(array_key_first($adhoctests));
+        $task->execute();
+        \core\task\manager::adhoc_task_complete($task);
+
+        // Verify whether the new index has been created.
+        $indexes = $DB->get_indexes($tablename);
+        $courseindex = reset($indexes);
+        $this->assertEquals($indexname, $courseindex['columns'][0]);
+
+        $dbman->drop_table($table);
+    }
 }

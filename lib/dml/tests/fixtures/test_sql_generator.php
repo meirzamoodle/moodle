@@ -119,4 +119,13 @@ class test_sql_generator extends \sql_generator {
         return [];
     }
 
+    /**
+     * Check if the database system supports concurrent index creation.
+     *
+     * @return bool True if concurrent index creation is supported, false otherwise.
+     */
+    public function supports_concurrent_index_creation(): bool {
+        return false;
+    }
+
 }

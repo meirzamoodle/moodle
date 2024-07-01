@@ -825,6 +825,11 @@ class database_manager {
             throw new ddl_exception('ddlunknownerror', null, 'add_index sql not generated');
         }
 
+        if ($this->generator->should_use_concurrent_index_creation($xmldb_intex)) {
+            $this->add_notunique_index_concurrently($xmldb_table, $xmldb_intex, $sqlarr);
+            return;
+        }
+
         try {
             $this->execute_sql_arr($sqlarr, array($xmldb_table->getName()));
         } catch (ddl_change_structure_exception $e) {
@@ -839,6 +844,29 @@ class database_manager {
                 throw $e;
             }
         }
+    }
+
+    /**
+     * This function will add the not-unique index query with concurrent option to the adhoc task.
+     *
+     * @param xmldb_table $xmldbtable The database table object.
+     * @param xmldb_index $xmldbindex The index object to be added.
+     * @param array $sqlarr The SQL queries related to index creation.
+     */
+    private function add_notunique_index_concurrently(xmldb_table $xmldbtable, xmldb_index $xmldbindex, array $sqlarr): void {
+        // Add concurrent option to the query.
+        $sqlarr = $this->generator->append_concurrent_option($sqlarr);
+
+        // Add to the adhoc task.
+        $task = new \core\task\concurrent_notunique_index_task();
+        $data = [
+            "sqlarr" => $sqlarr,
+            "tablename" => $xmldbtable->getName(),
+            "indexname" => $xmldbindex->getName(),
+            "indexfields" => $xmldbindex->getFields(),
+        ];
+        $task->set_custom_data($data);
+        \core\task\manager::queue_adhoc_task($task, true);
     }
 
     /**

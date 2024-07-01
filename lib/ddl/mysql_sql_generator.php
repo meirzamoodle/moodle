@@ -94,6 +94,13 @@ class mysql_sql_generator extends sql_generator {
     const ANTELOPE_MAX_ROW_SIZE = 8126;
 
     /**
+     * The query option to perform index creation with minimal locking.
+     *
+     * @var string
+     */
+    const CONCURRENT_OPTION = "ALGORITHM=INPLACE";
+
+    /**
      * Reset a sequence to the id field of a table.
      *
      * @param xmldb_table|string $table name of table or the table object.
@@ -644,5 +651,11 @@ class mysql_sql_generator extends sql_generator {
             'accept', 'aws_bedrock_invoke_model', 'aws_sagemaker_invoke_endpoint', 'content_type', 'timeout_ms',
         );
         return $reserved_words;
+    }
+
+    public function supports_concurrent_index_creation(): bool {
+        // Concurrent option only works with InnoDB tables.
+        $engine = $this->mdb->get_dbengine();
+        return $engine === 'InnoDB' ?? false;
     }
 }

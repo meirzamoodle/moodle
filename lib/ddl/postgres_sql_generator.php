@@ -37,7 +37,6 @@ require_once($CFG->libdir.'/ddl/sql_generator.php');
  *             2001-3001 Eloy Lafuente (stronk7) http://contiento.com
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-
 class postgres_sql_generator extends sql_generator {
 
     // Only set values that are different from the defaults present in XMLDBgenerator
@@ -68,6 +67,13 @@ class postgres_sql_generator extends sql_generator {
 
     /** @var string type of string quoting used - '' or \' quotes*/
     protected $std_strings = null;
+
+    /**
+     * The query option to perform index creation without blocking concurrent write operations.
+     *
+     * @var string
+     */
+    const CONCURRENT_OPTION = "CONCURRENTLY";
 
     /**
      * Reset a sequence to the id field of a table.
@@ -516,5 +522,24 @@ class postgres_sql_generator extends sql_generator {
             'when', 'where', 'with'
         );
         return $reserved_words;
+    }
+
+    public function supports_concurrent_index_creation(): bool {
+        return true;
+    }
+
+    /**
+     * Given a query, returns the query with concurrent creation statement.
+     *
+     * @param array $sqlarr A SQL statement to create the index.
+     * @return array A SQL statement to create the index.
+     */
+    public function append_concurrent_option(array $sqlarr): array {
+        $newsqlarr = [];
+        foreach ($sqlarr as $sql) {
+            // Add the CONCURRENT_OPTION after the first "INDEX" keyword.
+            $newsqlarr[] = preg_replace('/(CREATE.+?INDEX)(.+)/i', '$1 '. self::CONCURRENT_OPTION .'$2', $sql, 1);
+        }
+        return $newsqlarr;
     }
 }
