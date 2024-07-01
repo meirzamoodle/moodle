@@ -108,6 +108,14 @@ $CFG->dboptions = array(
                                 // Decreases traffic from the database server.
                                 // Not needed if the databse is on the same host.
                                 // Currently supported only with mysqli, mariadb, and aurora drivers.
+    // 'concurrentnotuniqueindexing' => true // Set it to true will allows you to create database not-unique indexes
+                                // without locking the table for write operations during the index creation process.
+                                // The benefits of concurrent index creation include reduced downtime and improved performance.
+                                // MySQL (MariaDB) does not have a built-in feature to create indexes concurrently
+                                // in the same way some other database systems do, such as PostgreSQL.
+                                // However, MySQL does offer some option by using ALGORITHM=INPLACE for InnoDB tables
+                                // in MySQL 8.0 or later to create the index more efficiently.
+                                // Currently supported: pgsql, mariadb, mysql, mssql, oracle.
     /*
     'connecttimeout' => null, // Set connect timeout in seconds. Not all drivers support it.
     'readonly' => [          // Set to read-only slave details, to get safe reads
