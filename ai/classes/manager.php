@@ -97,9 +97,7 @@ class manager {
      * @return base
      */
     public static function get_action(string $actionname): base {
-        $classname = '\\core_ai\\aiactions\\' . $actionname;
-
-        return new $classname();
+        return new $actionname();
     }
 
     /**
@@ -129,9 +127,9 @@ class manager {
      */
     public function process_action(base $action): responses\response_base {
         // Get the action response_base name.
-        $actionname = $action->get_basename();
-        $methodname = 'process_action_' . $actionname;
-        $responseclassname = 'responses\response_' . $actionname;
+        $actionname = $action::class;
+        $methodname = 'process_action_' . $action->get_basename();
+        $responseclassname = 'responses\response_' . $action->get_basename();
 
         // Get the providers that support the action.
         $providers = self::get_providers_for_actions([$actionname], true);

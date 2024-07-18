@@ -229,8 +229,7 @@ class aiplacement_action_management_table extends flexible_table implements dyna
      * @return bool True if the action has a provider.
      */
     private function has_provider($action): bool{
-        $providers = \core_ai\manager::get_providers_for_actions([$action->get_basename()], true);
-        $actionname = $action->get_basename();
-        return !empty($providers[$actionname]);
+        $providers = \core_ai\manager::get_providers_for_actions([$action::class], true);
+        return !empty($providers[$action::class]);
     }
 }

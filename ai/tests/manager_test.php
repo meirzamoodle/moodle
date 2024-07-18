@@ -62,14 +62,14 @@ class manager_test extends \advanced_testcase {
 
         // Assert array keys match the expected actions.
         $this->assertEquals([
-                'generate_text',
-                'generate_image',
-                'summarise_text',
+                \core_ai\aiactions\generate_text::class,
+                \core_ai\aiactions\generate_image::class,
+                \core_ai\aiactions\summarise_text::class,
         ], array_keys($actions));
 
         // Assert array values are instances of the expected action classes.
-        $this->assertInstanceOf(\core_ai\aiactions\generate_text::class, $actions['generate_text']);
-        $this->assertInstanceOf(\core_ai\aiactions\summarise_text::class, $actions['summarise_text']);
+        $this->assertInstanceOf(\core_ai\aiactions\generate_text::class, $actions['core_ai\\aiactions\\generate_text']);
+        $this->assertInstanceOf(\core_ai\aiactions\summarise_text::class, $actions['core_ai\\aiactions\\summarise_text']);
     }
 
     /**
@@ -81,7 +81,10 @@ class manager_test extends \advanced_testcase {
         set_config('disabled', 1, 'aiprovider_azureai');
 
         $manager = new manager();
-        $actions = ['generate_text', 'summarise_text'];
+        $actions = [
+            \core_ai\aiactions\generate_text::class,
+            \core_ai\aiactions\summarise_text::class
+        ];
 
         // Get the providers for the actions.
         $providers = $manager->get_providers_for_actions($actions);
@@ -90,15 +93,15 @@ class manager_test extends \advanced_testcase {
         $this->assertEquals($actions, array_keys($providers));
 
         // Assert that there are two providers for each action.
-        $this->assertCount(2, $providers['generate_text']);
-        $this->assertCount(2, $providers['summarise_text']);
+        $this->assertCount(2, $providers['core_ai\\aiactions\\generate_text']);
+        $this->assertCount(2, $providers['core_ai\\aiactions\\summarise_text']);
 
         // Assert that the AzureAI provider is not included in the list of providers for the actions when only selecting active.
         $providers = $manager->get_providers_for_actions($actions, true);
 
         // Assert that there are two providers for each action.
-        $this->assertCount(1, $providers['generate_text']);
-        $this->assertCount(1, $providers['summarise_text']);
+        $this->assertCount(1, $providers['core_ai\\aiactions\\generate_text']);
+        $this->assertCount(1, $providers['core_ai\\aiactions\\summarise_text']);
 
     }
 
@@ -106,7 +109,7 @@ class manager_test extends \advanced_testcase {
      * Test get_action.
      */
     public function test_get_action(): void {
-        $action = \core_ai\manager::get_action('generate_text');
+        $action = \core_ai\manager::get_action('core_ai\\aiactions\\generate_text');
         // Assert class is an instance of response_base.
         $this->assertInstanceOf(base::class, $action);
     }
@@ -127,7 +130,7 @@ class manager_test extends \advanced_testcase {
                 ->method('call_action_provider')
                 ->willReturn($expectedResult);
 
-        $action = $managermock::get_action('generate_image');
+        $action = $managermock::get_action('core_ai\\aiactions\\generate_image');
         $action->configure(
                 contextid: 1,
                 userid: 1,
