@@ -16,7 +16,6 @@
 
 namespace core_ai\table;
 
-use core_admin\table\plugin_management_table_filterset;
 use core_ai\actions\base;
 use core_table\dynamic as dynamic_table;
 use flexible_table;
@@ -38,15 +37,26 @@ class aiplacement_action_management_table extends flexible_table implements dyna
     /** @var array The list of actions this manager covers */
     protected array $actions;
 
-    public function __construct(string $pluginname, array $actions) {
+    public function __construct(string $pluginname) {
         $this->pluginname = $pluginname;
-        $this->actions = $actions;
+
+        // Get the list of actions that this provider supports.
+        $this->actions = \core_ai\manager::get_supported_actions($this->pluginname);
 
         parent::__construct($this->get_table_id());
 
         $this->setup_column_configuration();
-        $this->set_filterset(new plugin_management_table_filterset());
+        $this->set_filterset(new aiplacement_action_management_table_filterset());
         $this->setup();
+    }
+
+    /**
+     * Get the context for this table.
+     *
+     * @return \context_system
+     */
+    public function get_context(): \context_system {
+        return \context_system::instance();
     }
 
     /**
@@ -64,7 +74,7 @@ class aiplacement_action_management_table extends flexible_table implements dyna
      * @return string
      */
     protected function get_table_id(): string {
-        return 'aiprovideraction_management_table-' . $this->pluginname;
+        return 'aiplacementaction_management_table-' . $this->pluginname;
     }
 
     /**
@@ -73,7 +83,7 @@ class aiplacement_action_management_table extends flexible_table implements dyna
      * @return null|string
      */
     protected function get_toggle_service(): ?string {
-        return 'core_admin_set_plugin_state';
+        return 'core_ai_set_action';
     }
 
     /**
@@ -84,7 +94,7 @@ class aiplacement_action_management_table extends flexible_table implements dyna
      * @return string
      */
     protected function get_table_js_module(): string {
-        return 'core_admin/plugin_management_table';
+        return 'core/ai/action';
     }
 
     /**
@@ -139,12 +149,9 @@ class aiplacement_action_management_table extends flexible_table implements dyna
     protected function col_enabled(stdClass $row): string {
         global $OUTPUT;
 
-        $enabled = true;
-        if ($enabled) {
-            $labelstr = get_string('disableplugin', 'core_admin', $row->action->get_name());
-        } else {
-            $labelstr = get_string('enableplugin', 'core_admin', $row->action->get_name());
-        }
+        $enabled = $row->enabled;
+        $identifier = $enabled ? 'disableplugin' : 'enableplugin';
+        $labelstr = get_string($identifier, 'core_admin', $row->action->get_name());
 
         $params = [
                 'id' => 'admin-toggle-' . $row->id,
@@ -154,7 +161,7 @@ class aiplacement_action_management_table extends flexible_table implements dyna
                         'value' => $row->id,
                         'toggle-method' => $this->get_toggle_service(),
                         'action' => 'togglestate',
-                        'plugin' => $row->id,
+                        'plugin' => $this->pluginname,
                         'state' => $enabled ? 1 : 0,
                 ],
                 'title' => $labelstr,
@@ -196,6 +203,7 @@ class aiplacement_action_management_table extends flexible_table implements dyna
             $rowdata = (object) [
                     'id' => $id,
                     'action' => $action,
+                    'enabled' => \core_ai\manager::is_action_enabled($this->pluginname, get_class($action)),
             ];
             $this->add_data_keyed(
                     $this->format_row($rowdata),
@@ -228,7 +236,7 @@ class aiplacement_action_management_table extends flexible_table implements dyna
      * @param base $action The action to check.
      * @return bool True if the action has a provider.
      */
-    private function has_provider($action): bool{
+    private function has_provider($action): bool {
         $providers = \core_ai\manager::get_providers_for_actions([$action::class], true);
         return !empty($providers[$action::class]);
     }

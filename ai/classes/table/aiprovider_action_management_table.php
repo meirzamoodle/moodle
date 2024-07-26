@@ -16,7 +16,6 @@
 
 namespace core_ai\table;
 
-use core_admin\table\plugin_management_table_filterset;
 use core_table\dynamic as dynamic_table;
 use flexible_table;
 use moodle_url;
@@ -37,15 +36,26 @@ class aiprovider_action_management_table extends flexible_table implements dynam
     /** @var array The list of actions this manager covers */
     protected array $actions;
 
-    public function __construct(string $pluginname, array $actions) {
+    public function __construct(string $pluginname) {
         $this->pluginname = $pluginname;
-        $this->actions = $actions;
+
+        // Get the list of actions that this provider supports.
+        $this->actions = \core_ai\manager::get_supported_actions($this->pluginname);
 
         parent::__construct($this->get_table_id());
 
         $this->setup_column_configuration();
-        $this->set_filterset(new plugin_management_table_filterset());
+        $this->set_filterset(new aiprovider_action_management_table_filterset());
         $this->setup();
+    }
+
+    /**
+     * Get the context for this table.
+     *
+     * @return \context_system
+     */
+    public function get_context(): \context_system {
+        return \context_system::instance();
     }
 
     /**
@@ -72,7 +82,7 @@ class aiprovider_action_management_table extends flexible_table implements dynam
      * @return null|string
      */
     protected function get_toggle_service(): ?string {
-        return 'core_admin_set_plugin_state';
+        return 'core_ai_set_action';
     }
 
     /**
@@ -83,7 +93,7 @@ class aiprovider_action_management_table extends flexible_table implements dynam
      * @return string
      */
     protected function get_table_js_module(): string {
-        return 'core_admin/plugin_management_table';
+        return 'core/ai/action';
     }
 
     /**
@@ -138,12 +148,9 @@ class aiprovider_action_management_table extends flexible_table implements dynam
     protected function col_enabled(stdClass $row): string {
         global $OUTPUT;
 
-        $enabled = true;
-        if ($enabled) {
-            $labelstr = get_string('disableplugin', 'core_admin', $row->action->get_name());
-        } else {
-            $labelstr = get_string('enableplugin', 'core_admin', $row->action->get_name());
-        }
+        $enabled = $row->enabled;
+        $identifier = $enabled ? 'disableplugin' : 'enableplugin';
+        $labelstr = get_string($identifier, 'core_admin', $row->action->get_name());
 
         $params = [
                 'id' => 'admin-toggle-' . $row->id,
@@ -153,7 +160,7 @@ class aiprovider_action_management_table extends flexible_table implements dynam
                         'value' => $row->id,
                         'toggle-method' => $this->get_toggle_service(),
                         'action' => 'togglestate',
-                        'plugin' => $row->id,
+                        'plugin' => $this->pluginname,
                         'state' => $enabled ? 1 : 0,
                 ],
                 'title' => $labelstr,
@@ -206,10 +213,11 @@ class aiprovider_action_management_table extends flexible_table implements dynam
             $rowdata = (object) [
                     'id' => $id,
                     'action' => $action,
+                    'enabled' => \core_ai\manager::is_action_enabled($this->pluginname, get_class($action)),
             ];
             $this->add_data_keyed(
                     $this->format_row($rowdata),
-                    $this->get_row_class($rowdata)
+                    $this->get_row_class($rowdata),
             );
         }
 

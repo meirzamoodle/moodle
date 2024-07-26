@@ -23,6 +23,8 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+defined('MOODLE_INTERNAL') || die();
+
 if ($hassiteconfig) {
 
     // Add settings page for site wide AI settings.
@@ -40,7 +42,7 @@ if ($hassiteconfig) {
             'manageaiproviders',
             new lang_string('manageaiproviders', 'core_ai'),
     ));
-    $ADMIN->add('ai',$providers);
+    $ADMIN->add('ai', $providers);
 
     // Load settings for all AI providers.
     $plugins = core_plugin_manager::instance()->get_plugins_of_type('aiprovider');
@@ -60,7 +62,7 @@ if ($hassiteconfig) {
             'manageaiplacements',
             new lang_string('manageaiplacements', 'core_ai'),
     ));
-    $ADMIN->add('ai',$placements);
+    $ADMIN->add('ai', $placements);
 
     // Load settings for all placements.
     $plugins = core_plugin_manager::instance()->get_plugins_of_type('aiplacement');
