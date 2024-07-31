@@ -348,7 +348,7 @@ EOD;
         $this->assertEmpty($results);
     }
 
-        /**
+    /**
      * Test for rgb colors with insufficient contrast.
      */
     public function test_bad_rgbcolor() {
@@ -449,10 +449,10 @@ EOD;
     }
 
     /**
-     * Test for background value with rgb with sufficient contrast.
+     * Test for background value with rgba with sufficient contrast.
      */
     public function test_good_backgroundcssrgba() {
-        $html = '<body><p style="color:rgba(255, 255, 255, 0.5); background:fixed rgba(0, 0, 0, 0.5) center;">
+        $html = '<body><p style="color:rgba(255, 255, 255, 0.75); background:fixed rgba(0, 0, 0, 0.75) center;">
             This is contrasty enough.</p></body>';
         $results = $this->get_checker_results($html);
         $this->assertEmpty($results);
