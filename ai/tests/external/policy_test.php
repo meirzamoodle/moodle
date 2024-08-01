@@ -116,4 +116,34 @@ final class policy_test extends \advanced_testcase {
         $this->assertTrue($result['data']['success']);
     }
 
+    /**
+     * Test load_many_for_cache.
+     */
+    public function test_user_policy_caching(): void {
+        global $DB;
+        $this->resetAfterTest();
+
+        $user1 = $this->getDataGenerator()->create_user();
+        $user2 = $this->getDataGenerator()->create_user();
+
+        // Manually add records to the database.
+        $record1 = new \stdClass();
+        $record1->userid = $user1->id;
+        $record1->contextid = 1;
+        $record1->timeaccepted = time();
+
+        $record2 = new \stdClass();
+        $record2->userid = $user2->id;
+        $record2->contextid = 1;
+        $record2->timeaccepted = time();
+
+        $DB->insert_records('ai_policy_register', [
+            $record1,
+            $record2,
+        ]);
+
+        $policycache = \cache::make('core', 'ai_policy');
+        $this->assertNotEmpty($policycache->get_many([$user1->id, $user2->id]));
+    }
+
 }
