@@ -63,26 +63,22 @@ class set_action extends external_api {
             'state' => $state,
         ]);
 
-        $parseplugin = explode('-', $plugin);
-        $plugin = reset($parseplugin);
-
-        $actionclassname = end($parseplugin);
-        $actionclass = str_replace("__", "\\", $actionclassname);
-        $action = new $actionclass;
+        [$plugin, $action] = explode('-', $plugin);
+        $actionname = get_string("action_$action", 'core_ai');
 
         if (!empty($state)) {
             \core\notification::add(
-                get_string('plugin_enabled', 'core_admin', $action::get_name()),
+                get_string('plugin_enabled', 'core_admin', $actionname),
                 \core\notification::SUCCESS
             );
         } else {
             \core\notification::add(
-                get_string('plugin_disabled', 'core_admin', $action::get_name()),
+                get_string('plugin_disabled', 'core_admin', $actionname),
                 \core\notification::SUCCESS
             );
         }
 
-        manager::enable_action($plugin, $actionclassname, $state);
+        manager::enable_action($plugin, $action, $state);
 
         return [];
     }

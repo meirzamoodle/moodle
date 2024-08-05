@@ -171,7 +171,7 @@ class aiplacement_action_management_table extends flexible_table implements dyna
                         'value' => $row->action,
                         'toggle-method' => $this->get_toggle_service(),
                         'action' => 'togglestate',
-                        'plugin' => $this->pluginname,
+                        'plugin' => $this->pluginname . "-" . $row->action::get_basename(),
                         'state' => $enabled ? 1 : 0,
                 ],
                 'title' => $labelstr,
@@ -214,7 +214,7 @@ class aiplacement_action_management_table extends flexible_table implements dyna
             // Construct the row data.
             $rowdata = (object) [
                     'action' => $action,
-                    'enabled' => \core_ai\manager::is_action_enabled($this->pluginname, $action),
+                    'enabled' => \core_ai\manager::is_action_enabled($this->pluginname, $action::get_basename()),
             ];
             $this->add_data_keyed(
                 $this->format_row($rowdata),
