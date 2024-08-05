@@ -228,6 +228,7 @@ EOD;
 
     /**
      * Test for the area assign intro
+     * @covers \tool_brickfield\local\htmlchecker\brickfield_accessibility\run_check()
      */
     public function test_check(): void {
         $results = $this->get_checker_results($this->htmlfail1);
@@ -254,6 +255,7 @@ EOD;
 
     /**
      * Test with valid colour names.
+     * @covers \tool_brickfield\local\htmlchecker\brickfield_accessibility\run_check()
      */
     public function test_check_for_namedcolours(): void {
         $results = $this->get_checker_results($this->namecolours);
@@ -262,6 +264,7 @@ EOD;
 
     /**
      * Test with invalid colour names.
+     * @covers \tool_brickfield\local\htmlchecker\brickfield_accessibility\run_check()
      */
     public function test_check_for_invalidcolours(): void {
         $results = $this->get_checker_results($this->invalidcolours);
@@ -270,6 +273,7 @@ EOD;
 
     /**
      * Test with invalid colour numeric values.
+     * @covers \tool_brickfield\local\htmlchecker\brickfield_accessibility\run_check()
      */
     public function test_check_for_invalidvalues(): void {
         $results = $this->get_checker_results($this->invalidvalue);
@@ -278,6 +282,7 @@ EOD;
 
     /**
      * Test with empty colour values.
+     * @covers \tool_brickfield\local\htmlchecker\brickfield_accessibility\run_check()
      */
     public function test_check_for_emptyvalues(): void {
         $results = $this->get_checker_results($this->emptyvalue);
@@ -286,6 +291,7 @@ EOD;
 
     /**
      * Test for text px18 with insufficient contrast of 4.49.
+     * @covers \tool_brickfield\local\htmlchecker\brickfield_accessibility\run_check()
      */
     public function test_check_for_px18_fail(): void {
         $results = $this->get_checker_results($this->px18);
@@ -294,6 +300,7 @@ EOD;
 
     /**
      * Test for text px19 bold with sufficient contrast of 4.49.
+     * @covers \tool_brickfield\local\htmlchecker\brickfield_accessibility\run_check()
      */
     public function test_check_for_px19bold_pass(): void {
         $results = $this->get_checker_results($this->px19bold);
@@ -302,6 +309,7 @@ EOD;
 
     /**
      * Test for text px18 with sufficient contrast of 4.81.
+     * @covers \tool_brickfield\local\htmlchecker\brickfield_accessibility\run_check()
      */
     public function test_check_for_px18_pass(): void {
         $results = $this->get_checker_results($this->px18pass);
@@ -310,6 +318,7 @@ EOD;
 
     /**
      * Test for medium (12pt) text with insufficient contrast of 4.49.
+     * @covers \tool_brickfield\local\htmlchecker\brickfield_accessibility\run_check()
      */
     public function test_check_for_medium_fail(): void {
         $results = $this->get_checker_results($this->mediumfail);
@@ -318,6 +327,7 @@ EOD;
 
     /**
      * Test for medium (12pt) text with sufficient contrast of 4.81.
+     * @covers \tool_brickfield\local\htmlchecker\brickfield_accessibility\run_check()
      */
     public function test_check_for_medium_pass(): void {
         $results = $this->get_checker_results($this->mediumpass);
@@ -326,6 +336,7 @@ EOD;
 
     /**
      * Test for larger (14pt) text with insufficient contrast of 2.94.
+     * @covers \tool_brickfield\local\htmlchecker\brickfield_accessibility\run_check()
      */
     public function test_check_for_larger_fail(): void {
         $results = $this->get_checker_results($this->largerfail);
@@ -334,6 +345,7 @@ EOD;
 
     /**
      * Test for larger (14pt) text with insufficient contrast of 3.02.
+     * @covers \tool_brickfield\local\htmlchecker\brickfield_accessibility\run_check()
      */
     public function test_check_for_larger_pass(): void {
         $results = $this->get_checker_results($this->largerpass);
@@ -342,6 +354,7 @@ EOD;
 
     /**
      * Test for larger (14pt) bold text with sufficient contrast of 3.02.
+     * @covers \tool_brickfield\local\htmlchecker\brickfield_accessibility\run_check()
      */
     public function test_check_for_largerbold_pass(): void {
         $results = $this->get_checker_results($this->largerboldpass);
@@ -350,8 +363,9 @@ EOD;
 
     /**
      * Test for rgb colors with insufficient contrast.
+     * @covers \tool_brickfield\local\htmlchecker\brickfield_accessibility\run_check()
      */
-    public function test_bad_rgbcolor() {
+    public function test_bad_rgbcolor(): void {
         $html = '<body><p style="color:rgb(255, 255, 255); background-color:rgb(204, 204, 204);">
             This is not contrasty enough.</p></body>';
         $results = $this->get_checker_results($html);
@@ -360,8 +374,9 @@ EOD;
 
     /**
      * Test for rgb colors with sufficient contrast.
+     * @covers \tool_brickfield\local\htmlchecker\brickfield_accessibility\run_check()
      */
-    public function test_good_rgbcolor() {
+    public function test_good_rgbcolor(): void {
         $html = '<body><p style="color:rgb(255, 255, 255); background-color:rgb(0, 0, 0);">
             This is contrasty enough.</p></body>';
         $results = $this->get_checker_results($html);
@@ -370,8 +385,9 @@ EOD;
 
     /**
      * Test for named colors with insufficient contrast.
+     * @covers \tool_brickfield\local\htmlchecker\brickfield_accessibility\run_check()
      */
-    public function test_bad_namedcolor2() {
+    public function test_bad_namedcolor2(): void {
         $html = '<body><p style="color:lightcyan; background-color:lavender;">
             This is not contrasty enough.</p></body>';
         $results = $this->get_checker_results($html);
@@ -380,8 +396,9 @@ EOD;
 
     /**
      * Test for named colors with sufficient contrast.
+     * @covers \tool_brickfield\local\htmlchecker\brickfield_accessibility\run_check()
      */
-    public function test_good_namedcolor2() {
+    public function test_good_namedcolor2(): void {
         $html = '<body><p style="color:linen; background-color:darkslategray;">
             This is contrasty enough.</p></body>';
         $results = $this->get_checker_results($html);
@@ -390,8 +407,9 @@ EOD;
 
     /**
      * Test for background value with insufficient contrast.
+     * @covers \tool_brickfield\local\htmlchecker\brickfield_accessibility\run_check()
      */
-    public function test_bad_backgroundcss() {
+    public function test_bad_backgroundcss(): void {
         $html = '<body><p style="color:lightcyan; background:fixed lavender center;">
             This is not contrasty enough.</p></body>';
         $results = $this->get_checker_results($html);
@@ -400,8 +418,9 @@ EOD;
 
     /**
      * Test for background value with sufficient contrast.
+     * @covers \tool_brickfield\local\htmlchecker\brickfield_accessibility\run_check()
      */
-    public function test_good_backgroundcss() {
+    public function test_good_backgroundcss(): void {
         $html = '<body><p style="color:linen; background:fixed darkslategray center;">
             This is contrasty enough.</p></body>';
         $results = $this->get_checker_results($html);
@@ -410,8 +429,9 @@ EOD;
 
     /**
      * Test for background value with rgb with insufficient contrast.
+     * @covers \tool_brickfield\local\htmlchecker\brickfield_accessibility\run_check()
      */
-    public function test_bad_backgroundcssrgb() {
+    public function test_bad_backgroundcssrgb(): void {
         $html = '<body><p style="color:rgb(255, 255, 255); background:fixed rgb(204, 204, 204) center;">
             This is not contrasty enough.</p></body>';
         $results = $this->get_checker_results($html);
@@ -420,8 +440,9 @@ EOD;
 
     /**
      * Test for background value with rgb with sufficient contrast.
+     * @covers \tool_brickfield\local\htmlchecker\brickfield_accessibility\run_check()
      */
-    public function test_good_backgroundcssrgb() {
+    public function test_good_backgroundcssrgb(): void {
         $html = '<body><p style="color:rgb(255, 255, 255); background:fixed rgb(0, 0, 0) center;">
             This is contrasty enough.</p></body>';
         $results = $this->get_checker_results($html);
@@ -430,8 +451,9 @@ EOD;
 
     /**
      * Test for text with insufficient contrast of 4.3.
+     * @covers \tool_brickfield\local\htmlchecker\brickfield_accessibility\run_check()
      */
-    public function test_bad_contrastrounding() {
+    public function test_bad_contrastrounding(): void {
         $html = '<body><p style="color:#F50000; background-color:white; font-size: 12px">
             This is not contrasty enough.</p></body>';
         $results = $this->get_checker_results($html);
@@ -440,8 +462,9 @@ EOD;
 
     /**
      * Test for background value with rgba with insufficient contrast.
+     * @covers \tool_brickfield\local\htmlchecker\brickfield_accessibility\run_check()
      */
-    public function test_bad_backgroundcssrgba() {
+    public function test_bad_backgroundcssrgba(): void {
         $html = '<body><p style="color:rgba(255, 255, 255, 0.5); background:fixed rgba(0, 204, 204, 0.5) center;">
             This is not contrasty enough.</p></body>';
         $results = $this->get_checker_results($html);
@@ -450,8 +473,9 @@ EOD;
 
     /**
      * Test for background value with rgba with sufficient contrast.
+     * @covers \tool_brickfield\local\htmlchecker\brickfield_accessibility\run_check()
      */
-    public function test_good_backgroundcssrgba() {
+    public function test_good_backgroundcssrgba(): void {
         $html = '<body><p style="color:rgba(255, 255, 255, 0.75); background:fixed rgba(0, 0, 0, 0.75) center;">
             This is contrasty enough.</p></body>';
         $results = $this->get_checker_results($html);
