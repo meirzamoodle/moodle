@@ -26,6 +26,7 @@ namespace core_ai;
 abstract class provider {
     /**
      * Get the actions that this provider supports.
+     *
      * Returns an array of action class names.
      *
      * @return array An array of action class names.

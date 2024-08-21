@@ -60,16 +60,15 @@ abstract class response_base {
      * Set the response data returned by the AI provider.
      *
      * @param array $response The response data returned by the AI provider.
-     * @return void
      */
-    abstract public function set_response(array $response): void;
+    abstract public function set_response_data(array $response): void;
 
     /**
      * Get the response data returned by the AI provider.
      *
      * @return array
      */
-    abstract public function get_response(): array;
+    abstract public function get_response_data(): array;
 
     /**
      * Get the success status of the action.

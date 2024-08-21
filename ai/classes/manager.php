@@ -35,10 +35,10 @@ class manager {
      * @throws \coding_exception If the plugin name does not start with 'aiprovider_' or 'aiplacement_'.
      * @return string The class name of the provider.
      */
-    private function get_ai_plugin_classname(string $plugin): string {
-        if (strpos($plugin, 'aiprovider_') === 0) {
+    private static function get_ai_plugin_classname(string $plugin): string {
+        if (str_starts_with($plugin, 'aiprovider_')) {
             return "{$plugin}\\provider";
-        } else if (strpos($plugin, 'aiplacement_') === 0) {
+        } else if (str_starts_with($plugin, 'aiplacement_')) {
             return "{$plugin}\\placement";
         } else {
             // Explode if neither.
@@ -55,14 +55,14 @@ class manager {
      * @return array An array of action class names.
      */
     public static function get_supported_actions(string $pluginname): array {
-        $instance = new self();
-        $pluginclassname = $instance->get_ai_plugin_classname($pluginname);
+        $pluginclassname = static::get_ai_plugin_classname($pluginname);
         $plugin = new $pluginclassname();
         return $plugin->get_action_list();
     }
 
     /**
      * Given a list of actions get the provider plugins that support them.
+     *
      * Will return an array of arrays, indexed by action name.
      *
      * @param array $actions An array of action class names.
@@ -71,7 +71,6 @@ class manager {
      * @return array An array of provider instances indexed by action name.
      */
     public static function get_providers_for_actions(array $actions, bool $enabledonly = false): array {
-        $instance = new self();
         $providers = [];
         $plugins = \core_plugin_manager::instance()->get_plugins_of_type('aiprovider');
         foreach ($actions as $action) {
@@ -80,7 +79,7 @@ class manager {
                 if ($enabledonly && (!$plugin->is_enabled() || !static::is_action_enabled($plugin->component, $action))) {
                     continue;
                 }
-                $pluginclassname = $instance->get_ai_plugin_classname($plugin->component);
+                $pluginclassname = static::get_ai_plugin_classname($plugin->component);
                 $plugin = new $pluginclassname();
                 if (in_array($action, $plugin->get_action_list())) {
                     $providers[$action][] = $plugin;
@@ -92,6 +91,7 @@ class manager {
 
     /**
      * Call the action provider.
+     *
      * The named provider will process the action and return the result.
      *
      * @param provider $provider The provider to call.
@@ -109,6 +109,7 @@ class manager {
 
     /**
      * Process an action.
+     *
      * This is the entry point for processing an action.
      *
      * @param base $action The action to process. Action must be configured.
@@ -165,26 +166,25 @@ class manager {
         responses\response_base $response
     ): int {
         global $DB;
+        // Store the action result.
+        $record = (object) [
+            'actionname' => $action->get_basename(),
+            'success' => $response->get_success(),
+            'userid' => $action->get_configuration('userid'),
+            'contextid' => $action->get_configuration('contextid'),
+            'provider' => $provider->get_name(),
+            'errorcode' => $response->get_errorcode(),
+            'errormessage' => $response->get_errormessage(),
+            'timecreated' => $action->get_configuration('timecreated'),
+            'timecompleted' => $response->get_timecreated(),
+        ];
+
         try {
             // Do everything in a transaction.
             $transaction = $DB->start_delegated_transaction();
 
             // Create the record for the action result.
-            $actionrecordid = $action->store($response);
-
-            // Store the action result.
-            $record = new \stdClass();
-            $record->actionname = $action->get_basename();
-            $record->actionid = $actionrecordid;
-            $record->success = $response->get_success();
-            $record->userid = $action->get_configuration('userid');
-            $record->contextid = $action->get_configuration('contextid');
-            $record->provider = $provider->get_name();
-            $record->errorcode = $response->get_errorcode();
-            $record->errormessage = $response->get_errormessage();
-            $record->timecreated = $action->get_configuration('timecreated');
-            $record->timecompleted = $response->get_timecreated();
-
+            $record->actionid = $action->store($response);
             $recordid = $DB->insert_record('ai_action_register', $record);
 
             // Commit the transaction.

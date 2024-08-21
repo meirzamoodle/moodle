@@ -60,11 +60,7 @@ class aiplacement_action_management_table extends flexible_table implements dyna
         $this->setup();
     }
 
-    /**
-     * Get the context for this table.
-     *
-     * @return \context_system
-     */
+    #[\Override]
     public function get_context(): \context_system {
         return \context_system::instance();
     }
@@ -107,11 +103,7 @@ class aiplacement_action_management_table extends flexible_table implements dyna
         return 'core_admin/plugin_management_table';
     }
 
-    /**
-     * Add JS specific to this implementation.
-     *
-     * @return string
-     */
+    #[\Override]
     protected function get_dynamic_table_html_end(): string {
         global $PAGE;
 
@@ -164,19 +156,19 @@ class aiplacement_action_management_table extends flexible_table implements dyna
         $labelstr = get_string($identifier, 'core_admin', $row->action::get_name());
 
         $params = [
-                'id' => 'admin-toggle-' . $row->action::get_basename(),
-                'checked' => $enabled,
-                'dataattributes' => [
-                        'name' => 'id',
-                        'value' => $row->action,
-                        'toggle-method' => $this->get_toggle_service(),
-                        'action' => 'togglestate',
-                        'plugin' => $this->pluginname . "-" . $row->action::get_basename(),
-                        'state' => $enabled ? 1 : 0,
-                ],
-                'title' => $labelstr,
-                'label' => $labelstr,
-                'labelclasses' => 'sr-only',
+            'id' => 'admin-toggle-' . $row->action::get_basename(),
+            'checked' => $enabled,
+            'dataattributes' => [
+                'name' => 'id',
+                'value' => $row->action,
+                'toggle-method' => $this->get_toggle_service(),
+                'action' => 'togglestate',
+                'plugin' => $this->pluginname . "-" . $row->action::get_basename(),
+                'state' => $enabled ? 1 : 0,
+            ],
+            'title' => $labelstr,
+            'label' => $labelstr,
+            'labelclasses' => 'sr-only',
         ];
 
         return $OUTPUT->render_from_template('core_admin/setting_configtoggle', $params);
@@ -213,8 +205,8 @@ class aiplacement_action_management_table extends flexible_table implements dyna
         foreach ($this->actions as $action) {
             // Construct the row data.
             $rowdata = (object) [
-                    'action' => $action,
-                    'enabled' => \core_ai\manager::is_action_enabled($this->pluginname, $action::get_basename()),
+                'action' => $action,
+                'enabled' => \core_ai\manager::is_action_enabled($this->pluginname, $action::get_basename()),
             ];
             $this->add_data_keyed(
                 $this->format_row($rowdata),
@@ -225,21 +217,12 @@ class aiplacement_action_management_table extends flexible_table implements dyna
         $this->finish_output(false);
     }
 
-    /**
-     * This table is not downloadable.
-     * @param bool $downloadable
-     * @return bool
-     */
-    // phpcs:disable VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable
+    #[\Override]
     public function is_downloadable($downloadable = null): bool {
         return false;
     }
 
-    /**
-     * Guess base URL.
-     *
-     * @return void
-     */
+    #[\Override]
     public function guess_base_url(): void {
         $url = new moodle_url('/');
         $this->define_baseurl($url);
@@ -247,6 +230,7 @@ class aiplacement_action_management_table extends flexible_table implements dyna
 
     /**
      * Check if the action has any enabled providers.
+     *
      * Returns True if the action has a provider.
      *
      * @param string $action The action to check.

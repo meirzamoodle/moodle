@@ -36,7 +36,7 @@ class generate_text extends external_api {
      * @since  Moodle 4.5
      * @return external_function_parameters
      */
-    public static function generate_text_parameters(): external_function_parameters {
+    public static function execute_parameters(): external_function_parameters {
         return new external_function_parameters(
             [
             'contextid' => new external_value(
@@ -59,7 +59,7 @@ class generate_text extends external_api {
      * @param string $prompttext The data encoded as a json array.
      * @return array The generated content.
      */
-    public static function generate_text(
+    public static function execute(
             int $contextid,
             string $prompttext
         ): array {
@@ -68,7 +68,7 @@ class generate_text extends external_api {
         [
             'contextid' => $contextid,
             'prompttext' => $prompttext
-        ] = self::validate_parameters(self::generate_text_parameters(), [
+        ] = self::validate_parameters(self::execute_parameters(), [
             'contextid' => $contextid,
             'prompttext' => $prompttext,
         ]);
@@ -90,12 +90,11 @@ class generate_text extends external_api {
         // Send the action to the AI manager.
         $manager = new \core_ai\manager();
         $response = $manager->process_action($action);
-
         // Return the response.
         return [
                 'success' => $response->get_success(),
-                'generatedcontent' => $response->get_response()['generatedcontent'] ?? '',
-                'finishreason' => $response->get_response()['finishreason'] ?? '',
+                'generatedcontent' => $response->get_response_data()['generatedcontent'] ?? '',
+                'finishreason' => $response->get_response_data()['finishreason'] ?? '',
                 'errorcode' => $response->get_errorcode(),
                 'error' => $response->get_errormessage(),
                 'timecreated' => $response->get_timecreated(),
@@ -109,7 +108,7 @@ class generate_text extends external_api {
      * @since  Moodle 4.5
      * @return external_function_parameters
      */
-    public static function generate_text_returns(): external_function_parameters {
+    public static function execute_returns(): external_function_parameters {
         return new external_function_parameters([
                 'success' => new external_value(
                         PARAM_BOOL,

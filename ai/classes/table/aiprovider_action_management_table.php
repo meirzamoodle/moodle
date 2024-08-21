@@ -58,11 +58,7 @@ class aiprovider_action_management_table extends flexible_table implements dynam
         $this->setup();
     }
 
-    /**
-     * Get the context for this table.
-     *
-     * @return \context_system
-     */
+    #[\Override]
     public function get_context(): \context_system {
         return \context_system::instance();
     }
@@ -105,11 +101,7 @@ class aiprovider_action_management_table extends flexible_table implements dynam
         return 'core_admin/plugin_management_table';
     }
 
-    /**
-     * Add JS specific to this implementation.
-     *
-     * @return string
-     */
+    #[\Override]
     protected function get_dynamic_table_html_end(): string {
         global $PAGE;
 
@@ -232,21 +224,12 @@ class aiprovider_action_management_table extends flexible_table implements dynam
         $this->finish_output(false);
     }
 
-    /**
-     * This table is not downloadable.
-     * @param bool $downloadable
-     * @return bool
-     */
-    // phpcs:disable VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable
+    #[\Override]
     public function is_downloadable($downloadable = null): bool {
         return false;
     }
 
-    /**
-     * Guess the base URL for this table.
-     *
-     * @return void
-     */
+    #[\Override]
     public function guess_base_url(): void {
         $url = new moodle_url('/');
         $this->define_baseurl($url);

@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
-namespace core_ai;
+namespace core_ai\aiactions\responses;
 
 use core_ai\aiactions\responses\response_summarise_text;
 
@@ -54,9 +54,9 @@ final class response_summarise_text_test extends \advanced_testcase {
     }
 
     /**
-     * Test set_response.
+     * Test set_response_data.
      */
-    public function test_set_response(): void {
+    public function test_set_response_data(): void {
         $this->resetAfterTest();
         $body = [
                 'id' => 'chatcmpl-123',
@@ -70,13 +70,13 @@ final class response_summarise_text_test extends \advanced_testcase {
                 success: true,
                 actionname: 'generate_text',
         );
-        $actionresponse->set_response($body);
+        $actionresponse->set_response_data($body);
 
-        $this->assertEquals($body['id'], $actionresponse->get_response()['id']);
-        $this->assertEquals($body['fingerprint'], $actionresponse->get_response()['fingerprint']);
-        $this->assertEquals($body['generatedcontent'], $actionresponse->get_response()['generatedcontent']);
-        $this->assertEquals($body['finishreason'], $actionresponse->get_response()['finishreason']);
-        $this->assertEquals($body['prompttokens'], $actionresponse->get_response()['prompttokens']);
-        $this->assertEquals($body['completiontokens'], $actionresponse->get_response()['completiontokens']);
+        $this->assertEquals($body['id'], $actionresponse->get_response_data()['id']);
+        $this->assertEquals($body['fingerprint'], $actionresponse->get_response_data()['fingerprint']);
+        $this->assertEquals($body['generatedcontent'], $actionresponse->get_response_data()['generatedcontent']);
+        $this->assertEquals($body['finishreason'], $actionresponse->get_response_data()['finishreason']);
+        $this->assertEquals($body['prompttokens'], $actionresponse->get_response_data()['prompttokens']);
+        $this->assertEquals($body['completiontokens'], $actionresponse->get_response_data()['completiontokens']);
     }
 }

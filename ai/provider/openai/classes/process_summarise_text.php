@@ -39,7 +39,7 @@ class process_summarise_text extends process_generate_text {
                 success: true,
                 actionname: 'summarise_text',
             );
-            $generatedtext->set_response($response);
+            $generatedtext->set_response_data($response);
             return $generatedtext;
         } else {
             return new response_summarise_text(

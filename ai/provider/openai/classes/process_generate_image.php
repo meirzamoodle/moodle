@@ -109,6 +109,7 @@ class process_generate_image extends process_generate_text {
 
     /**
      * Create the request object to send to the OpenAI API.
+     *
      * This object contains all the required parameters for the request.
      *
      * @param \core_ai\aiactions\base $action The action to process.
@@ -160,7 +161,7 @@ class process_generate_image extends process_generate_text {
                 success: true,
                 actionname: 'generate_image',
             );
-            $generatedimage->set_response($response);
+            $generatedimage->set_response_data($response);
             return $generatedimage;
         } else {
             return new response_generate_image(

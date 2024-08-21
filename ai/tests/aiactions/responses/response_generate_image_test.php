@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
-namespace core_ai;
+namespace core_ai\aiactions\responses;
 
 use core_ai\aiactions\responses\response_generate_image;
 
@@ -54,9 +54,9 @@ final class response_generate_image_test extends \advanced_testcase {
     }
 
     /**
-     * Test set_response.
+     * Test set_response_data.
      */
-    public function test_set_response(): void {
+    public function test_set_response_data(): void {
         $this->resetAfterTest();
 
         // Create a file to store.
@@ -78,10 +78,10 @@ final class response_generate_image_test extends \advanced_testcase {
                 success: true,
                 actionname: 'generate_image',
         );
-        $actionresponse->set_response($body);
+        $actionresponse->set_response_data($body);
 
-        $this->assertEquals($file, $actionresponse->get_response()['draftfile']);
-        $this->assertEquals('This is a revised prompt', $actionresponse->get_response()['revisedprompt']);
-        $this->assertEquals('https://example.com/image.png', $actionresponse->get_response()['sourceurl']);
+        $this->assertEquals($file, $actionresponse->get_response_data()['draftfile']);
+        $this->assertEquals('This is a revised prompt', $actionresponse->get_response_data()['revisedprompt']);
+        $this->assertEquals('https://example.com/image.png', $actionresponse->get_response_data()['sourceurl']);
     }
 }

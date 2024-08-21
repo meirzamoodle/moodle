@@ -36,7 +36,7 @@ class generate_image extends external_api {
      * @since  Moodle 4.5
      * @return external_function_parameters
      */
-    public static function generate_image_parameters(): external_function_parameters {
+    public static function execute_parameters(): external_function_parameters {
         return new external_function_parameters(
             [
             'contextid' => new external_value(
@@ -81,7 +81,7 @@ class generate_image extends external_api {
      * @param string $style The style of the image.
      * @return array The generated content.
      */
-    public static function generate_image(
+    public static function execute(
             int $contextid,
             string $prompttext,
             string $aspectratio,
@@ -98,7 +98,7 @@ class generate_image extends external_api {
             'quality' => $quality,
             'numimages' => $numimages,
             'style' => $style
-        ] = self::validate_parameters(self::generate_image_parameters(), [
+        ] = self::validate_parameters(self::execute_parameters(), [
             'contextid' => $contextid,
             'prompttext' => $prompttext,
             'aspectratio' => $aspectratio,
@@ -131,7 +131,7 @@ class generate_image extends external_api {
 
         // If we have a successful response, generate the URL for the draft file.
         if ($response->get_success()) {
-            $draftfile = $response->get_response()['draftfile'];
+            $draftfile = $response->get_response_data()['draftfile'];
             $drafturl = \moodle_url::make_draftfile_url(
                 $draftfile->get_itemid(),
                 $draftfile->get_filepath(),
@@ -146,7 +146,7 @@ class generate_image extends external_api {
         // Return the response.
         return [
             'success' => $response->get_success(),
-            'revisedprompt' => $response->get_response()['revisedprompt'] ?? '',
+            'revisedprompt' => $response->get_response_data()['revisedprompt'] ?? '',
             'drafturl' => $drafturl,
             'errorcode' => $response->get_errorcode(),
             'error' => $response->get_errormessage(),
@@ -159,7 +159,7 @@ class generate_image extends external_api {
      * @since  Moodle 4.5
      * @return external_function_parameters
      */
-    public static function generate_image_returns(): external_function_parameters {
+    public static function execute_returns(): external_function_parameters {
         return new external_function_parameters([
                 'success' => new external_value(
                         PARAM_BOOL,

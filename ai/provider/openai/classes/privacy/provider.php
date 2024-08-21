@@ -39,7 +39,7 @@ class provider implements
      * Returns meta data about this system.
      *
      * @param collection $collection The initialised collection to add items to.
-     * @return  collection A listing of user data stored through this system.
+     * @return collection A listing of user data stored through this system.
      */
     public static function get_metadata(collection $collection): collection {
         $collection->add_external_location_link('aiprovider_openai', [
@@ -55,7 +55,7 @@ class provider implements
      * Get the list of contexts that contain user information for the specified user.
      *
      * @param int $userid The user to search.
-     * @return  contextlist $contextlist The contextlist containing the list of contexts used in this plugin.
+     * @return contextlist $contextlist The contextlist containing the list of contexts used in this plugin.
      */
     public static function get_contexts_for_userid(int $userid): contextlist {
         return new contextlist();

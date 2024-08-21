@@ -91,7 +91,7 @@ final class generate_image_test extends \advanced_testcase {
                 success: true,
                 actionname: 'generate_image',
         );
-        $actionresponse->set_response($body);
+        $actionresponse->set_response_data($body);
 
         $storeid = $action->store($actionresponse);
 

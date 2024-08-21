@@ -18,7 +18,7 @@ namespace aiprovider_openai;
 
 use core\http_client;
 use core_ai\aiactions;
-use core_ai\ratelimiter;
+use core_ai\rate_limiter;
 
 /**
  * Class provider.
@@ -77,6 +77,7 @@ class provider extends \core_ai\provider {
 
     /**
      * Generate a user id.
+     *
      * This is a hash of the site id and user id,
      * this means we can determine who made the request
      * but don't pass any personal data to OpenAI.
@@ -114,7 +115,7 @@ class provider extends \core_ai\provider {
      * @return array|bool True on success, array of error details on failure.
      */
     public function is_request_allowed(aiactions\base $action): array|bool {
-        $ratelimiter = ratelimiter::get_instance();
+        $ratelimiter = \core\di::get(rate_limiter::class);
         $component = explode('\\', get_class($this))[0];
 
         // Check the user rate limit.
@@ -122,7 +123,7 @@ class provider extends \core_ai\provider {
             if (!$ratelimiter->check_user_rate_limit(
                     component: $component,
                     ratelimit: $this->userratelimit,
-                    userid: $action->get_configuration('userid')
+                    userid: $action->get_configuration('userid'),
             )) {
                 return [
                     'success' => false,

@@ -77,7 +77,6 @@ class admin_setting_plugin_manager extends admin_setting {
      *
      * @return string Always returns ''
      */
-    // phpcs:disable VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable
     public function write_setting($data): string {
         // Do not write any setting.
         return '';

@@ -263,7 +263,6 @@ abstract class plugin_management_table extends flexible_table implements dynamic
      * @param bool $downloadable
      * @return bool
      */
-    // phpcs:disable VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable
     public function is_downloadable($downloadable = null): bool {
         return false;
     }

@@ -27,11 +27,20 @@ use core_ai\aiactions\responses\response_base;
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 abstract class base {
-    /** @var int The context ID the action was created in */
-    protected int $contextid;
-
     /** @var int Timestamp the action object was created. */
-    protected int $timecreated;
+    protected readonly int $timecreated;
+
+    /**
+     * Constructor for the class.
+     *
+     * @param int $contextid The context ID where the action was created.
+     */
+    public function __construct(
+        /** @var int The context ID the action was created in */
+        protected int $contextid,
+    ) {
+        $this->timecreated = \core\di::get(\core\clock::class)->time();
+    }
 
     /**
      * Responsible for storing any action specific data in the database.
@@ -43,6 +52,7 @@ abstract class base {
 
     /**
      * Get the basename of the class.
+     *
      * This is used to generate the action name and description.
      *
      * @return string The basename of the class.
@@ -53,6 +63,7 @@ abstract class base {
 
     /**
      * Get the action name.
+     *
      * Defaults to the action name string.
      *
      * @return string
@@ -65,6 +76,7 @@ abstract class base {
 
     /**
      * Get the action description.
+     *
      * Defaults to the action description string.
      *
      * @return string
