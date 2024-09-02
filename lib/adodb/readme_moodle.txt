@@ -7,7 +7,6 @@ because it is now used only by enrol and auth db plugins.
 
 Removed:
  * Any invisible file (dot suffixed)
- * composer.json
  * contrib/ (if present)
  * cute_icons_for_site/ (if present)
  * docs/
@@ -23,3 +22,6 @@ Removed:
 Added:
  * index.html - prevent directory browsing on misconfigured servers
  * readme_moodle.txt - this file ;-)
+
+Notes:
+ * Ensure to include the composer.json file as described in MDL-82829.
