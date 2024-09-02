@@ -7,6 +7,7 @@ Only the source, LICENSE, README and autoloader files have been kept in this dir
 - Copy /LICENSE to LICENSE
 - Copy /README.md to README.md
 - Copy /autoload.php to autoload.php
+- Copy /composer.json to composer.json
 
 Here are the files that we have added.
 
