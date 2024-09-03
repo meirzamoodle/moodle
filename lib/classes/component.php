@@ -151,6 +151,7 @@ class component {
         \FastRoute::class => 'lib/nikic/fast-route/src',
         \Slim::class => 'lib/slim/slim/Slim',
         \SimplePie::class => 'lib/simplepie/src',
+        \Michelf::class => 'lib/markdown',
     ];
 
     /**

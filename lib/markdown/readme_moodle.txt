@@ -7,3 +7,5 @@ Procedure:
   note that we require the php files manually for performance reasons
 * run phpunit tests (all PHP versions)
 
+Notes:
+ * Ensure to include the composer.json file as described in MDL-82829.
