@@ -98,7 +98,6 @@ class component {
     /** @var array associative array of PSR-0 namespaces and corresponding paths. */
     protected static $psr0namespaces = [
         'Mustache' => 'lib/mustache/src/Mustache',
-        'CFPropertyList' => 'lib/plist/classes/CFPropertyList',
         'HTMLPurifier' => 'lib/htmlpurifier/HTMLPurifier',
         'SimplePie' => 'lib/simplepie/library',
     ];
@@ -152,6 +151,7 @@ class component {
         \Slim::class => 'lib/slim/slim/Slim',
         \SimplePie::class => 'lib/simplepie/src',
         \Michelf::class => 'lib/markdown',
+        \CFPropertyList::class => 'lib/plist/classes/CFPropertyList',
     ];
 
     /**

@@ -10,7 +10,6 @@ Import procedure:
 
 Removed:
  * .gitignore
- * composer.json
  * build.sh
  * examples
  * tests
@@ -18,3 +17,5 @@ Removed:
 Added:
  * readme_moodle.txt
 
+Notes:
+ * Ensure to include the composer.json file as described in MDL-82829.
