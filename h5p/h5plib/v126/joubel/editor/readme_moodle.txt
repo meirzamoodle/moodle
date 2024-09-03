@@ -6,9 +6,9 @@ Downloaded last release from: https://github.com/h5p/h5p-editor-php-library/rele
 Import procedure:
  * Remove the content in this folder (but the readme_moodle.txt)
  * Copy all the files from the folder repository in this directory.
+ * Ensure to include the composer.json file as described in MDL-82829.
 
 Removed:
- * composer.json
  * .gitignore
  * ckeditor/skins/bootstrapck/sample
 

@@ -181,6 +181,11 @@ class component {
         'h5p/h5plib/v126/joubel/core/h5p-default-storage.class.php',
         'h5p/h5plib/v126/joubel/core/h5p-event-base.class.php',
         'h5p/h5plib/v126/joubel/core/h5p-metadata.class.php',
+        'h5p/h5plib/v126/joubel/editor/h5peditor.class.php',
+        'h5p/h5plib/v126/joubel/editor/h5peditor-file.class.php',
+        'h5p/h5plib/v126/joubel/editor/h5peditor-ajax.class.php',
+        'h5p/h5plib/v126/joubel/editor/h5peditor-storage.interface.php',
+        'h5p/h5plib/v126/joubel/editor/h5peditor-ajax.interface.php',
     ];
 
     /**
