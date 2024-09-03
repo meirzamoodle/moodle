@@ -9,4 +9,6 @@
 5. Remove any unnecessary files, including:
  - Any tests
  - CHANGELOG.md
- - composer.json
+
+Notes:
+ * Ensure to include the composer.json file as described in MDL-82829.
