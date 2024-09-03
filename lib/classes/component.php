@@ -152,6 +152,7 @@ class component {
         \SimplePie::class => 'lib/simplepie/src',
         \Michelf::class => 'lib/markdown',
         \CFPropertyList::class => 'lib/plist/classes/CFPropertyList',
+        \lbuchs\WebAuthn::class => 'lib/webauthn/src',
     ];
 
     /**
