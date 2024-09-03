@@ -153,6 +153,8 @@ class component {
         \Michelf::class => 'lib/markdown',
         \CFPropertyList::class => 'lib/plist/classes/CFPropertyList',
         \lbuchs\WebAuthn::class => 'lib/webauthn/src',
+        \OTPHP::class => 'admin/tool/mfa/factor/totp/extlib/OTPHP',
+        \ParagonIE\ConstantTime::class => 'admin/tool/mfa/factor/totp/extlib/ParagonIE/ConstantTime',
     ];
 
     /**
