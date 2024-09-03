@@ -15,9 +15,11 @@ To upgrade this library:
 5. That should leave you with just the following. Do not move them. If there is any difference, check if they also need to be moved and update this doc:
     - idn (This is a third-party library that SimplePie can optionally use. We don't use this in Moodle)
     - CHANGELOG.md
-    - composer.json
     - db.sql
 
 Changes:
   * None. This import contains _NO_CHANGES_ to the simplepie.inc file, changes are
     controlled through OO extension of the classes instead.
+
+Notes:
+  * Ensure to include the composer.json file as described in MDL-82829.

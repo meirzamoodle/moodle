@@ -100,6 +100,7 @@ class component {
         'Mustache' => 'lib/mustache/src/Mustache',
         'CFPropertyList' => 'lib/plist/classes/CFPropertyList',
         'HTMLPurifier' => 'lib/htmlpurifier/HTMLPurifier',
+        'SimplePie' => 'lib/simplepie/library',
     ];
     /** @var array<string|array<string>> associative array of PRS-4 namespaces and corresponding paths. */
     protected static $psr4namespaces = [
@@ -149,6 +150,7 @@ class component {
         \Invoker::class => 'lib/php-di/invoker/src',
         \FastRoute::class => 'lib/nikic/fast-route/src',
         \Slim::class => 'lib/slim/slim/Slim',
+        \SimplePie::class => 'lib/simplepie/src',
     ];
 
     /**
