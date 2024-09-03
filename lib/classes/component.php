@@ -155,6 +155,7 @@ class component {
         \lbuchs\WebAuthn::class => 'lib/webauthn/src',
         \OTPHP::class => 'admin/tool/mfa/factor/totp/extlib/OTPHP',
         \ParagonIE\ConstantTime::class => 'admin/tool/mfa/factor/totp/extlib/ParagonIE/ConstantTime',
+        \setasign\Fpdi::class => 'mod/assign/feedback/editpdf/fpdi',
     ];
 
     /**

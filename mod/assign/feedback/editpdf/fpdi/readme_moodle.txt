@@ -16,4 +16,5 @@ Installation
 ------------
 1) Download the latest version of fpdi from the url above.
 2) Unzip the src directory files into this directory.
-3) Update mod/assign/feedback/editpdf/fpdi/Tcpdf/Fpdi.php(or whichever file it has been replaced with) to extend 'pdf' instead of 'TCPDF'.
+3) Ensure to include the composer.json file as described in MDL-82829.
+4) Update mod/assign/feedback/editpdf/fpdi/Tcpdf/Fpdi.php(or whichever file it has been replaced with) to extend 'pdf' instead of 'TCPDF'.
