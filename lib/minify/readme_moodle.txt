@@ -16,3 +16,6 @@ mv path-converter-A.B.C/src/ /path/to/moodle/lib/minify/matthiasmullie-pathconve
 3) Apply the following patches:
 
 N/A
+
+Notes:
+ * Ensure to include the composer.json file to each folders as described in MDL-82829.
