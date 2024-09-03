@@ -4,6 +4,7 @@ Current version is 0.10.0
 # Remove all files but:
    * src/
    * LICENSE
+   * composer.json
 # Copy content of src/ to /path/to/moodle/lib/mlbackend/php/phpml/src/Phpml
 # Copy LICENSE file to /path/to/moodle/lib/mlbackend/php/phpml
 # Applied patch https://github.com/jorgecasas/php-ml/pull/5
