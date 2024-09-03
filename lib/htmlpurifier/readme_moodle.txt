@@ -7,10 +7,12 @@ Description of HTML Purifier library import into Moodle
     HTMLPurifier.auto.php
     HTMLPurifier.autoload.php
     HTMLPurifier.autoload-legacy.php
-    HTMLPurifier.composer.php
     HTMLPurifier.func.php
     HTMLPurifier.includes.php
     HTMLPurifier.kses.php
     HTMLPurifier.path.php
 * add locallib.php with Moodle specific extensions to /lib/htmlpurifier/
 * add this readme_moodle.txt to /lib/htmlpurifier/
+
+Notes:
+ * Ensure to include the composer.json and HTMLPurifier.composer.php files as described in MDL-82829.

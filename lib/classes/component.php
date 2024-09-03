@@ -99,6 +99,7 @@ class component {
     protected static $psr0namespaces = [
         'Mustache' => 'lib/mustache/src/Mustache',
         'CFPropertyList' => 'lib/plist/classes/CFPropertyList',
+        'HTMLPurifier' => 'lib/htmlpurifier/HTMLPurifier',
     ];
     /** @var array<string|array<string>> associative array of PRS-4 namespaces and corresponding paths. */
     protected static $psr4namespaces = [
@@ -167,6 +168,7 @@ class component {
         'lib/ralouphi/getallheaders/src/getallheaders.php',
         'lib/symfony/deprecation-contracts/function.php',
         'lib/adodb/adodb.inc.php',
+        'lib/htmlpurifier/HTMLPurifier.composer.php',
     ];
 
     /**
