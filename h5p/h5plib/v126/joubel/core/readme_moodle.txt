@@ -9,9 +9,9 @@ will be <branch name>-<commit hash>. For instance, master-f3579c0.
 Import procedure:
  * Remove the content in this folder (but the readme_moodle.txt)
  * Copy all the files from the folder repository in this directory.
+ * Ensure to include the composer.json file as described in MDL-82829.
 
 Removed:
- * composer.json
  * .gitignore
  * .travis.yml
 

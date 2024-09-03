@@ -175,6 +175,12 @@ class component {
         'lib/symfony/deprecation-contracts/function.php',
         'lib/adodb/adodb.inc.php',
         'lib/htmlpurifier/HTMLPurifier.composer.php',
+        'h5p/h5plib/v126/joubel/core/h5p.classes.php',
+        'h5p/h5plib/v126/joubel/core/h5p-development.class.php',
+        'h5p/h5plib/v126/joubel/core/h5p-file-storage.interface.php',
+        'h5p/h5plib/v126/joubel/core/h5p-default-storage.class.php',
+        'h5p/h5plib/v126/joubel/core/h5p-event-base.class.php',
+        'h5p/h5plib/v126/joubel/core/h5p-metadata.class.php',
     ];
 
     /**
