@@ -76,3 +76,4 @@ enrol/lti/db/upgrade.php
   cd lib/ltiprovider/src
   for file in `find . -name '*.php' `; do sed -i '/^class /i #[\\AllowDynamicProperties]' $file; done
   ```
+* MDL-82829 Ensure to include the composer.json file.
