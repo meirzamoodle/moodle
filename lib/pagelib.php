@@ -1508,6 +1508,11 @@ class moodle_page {
             }
         }
 
+        if (!empty($CFG->sslproxy)) {
+            // Return only https links when using SSL proxy.
+            $url = preg_replace('/^http:/', 'https:', $url, 1);
+        }
+
         $this->_url = new moodle_url($url, $params);
 
         $fullurl = $this->_url->out_omit_querystring();
