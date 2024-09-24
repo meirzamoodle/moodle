@@ -320,10 +320,28 @@ function cache_image($image, $imagefile, $candidatelocation) {
     // Prevent serving of incomplete file from concurrent request,
     // the rename() should be more atomic than copy().
     ignore_user_abort(true);
-    if (@copy($imagefile, $cacheimage.'.tmp')) {
-        rename($cacheimage.'.tmp', $cacheimage);
-        @chmod($cacheimage, $CFG->filepermissions);
-        @unlink($cacheimage.'.tmp'); // just in case anything fails
+    $cacheimagetmp = $cacheimage . '.tmp';
+    if (@copy($imagefile, $cacheimagetmp)) {
+        // If the copy() function returns true, it indicates that the file has been successfully copied.
+        // However, based on the log reported on MDL-78862, this may not be completely accurate.
+        // It's possible that the entire copy process has not yet finished, but PHP has already returned the true value.
+        // In such a case, a limited loop will be implemented to verify if the copied file exists and
+        // is permitted to read so it can be renamed.
+        $maxattempts = 5;
+        $attempts = 0;
+        // Retry accessing the file until it's available or the max attempts are reached.
+        while (!is_readable($cacheimagetmp) && $attempts < $maxattempts) {
+            sleep(1);
+            $attempts++;
+        }
+
+        if (is_readable($cacheimagetmp)) {
+            rename($cacheimagetmp, $cacheimage);
+            @chmod($cacheimage, $CFG->filepermissions);
+            @unlink($cacheimagetmp);
+        } else {
+            debugging("Error: File was not readable after $maxattempts attempts.");
+        }
     }
     return $cacheimage;
 }
