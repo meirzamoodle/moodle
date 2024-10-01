@@ -1,0 +1,9 @@
+issueNumber: MDL-61232
+notes:
+  core:
+    - message: |
+        The process_email.php has been removed as it was not used in any code,
+        which also led to the deprecation of the moodle_process_email() function.
+        The deprecation also happens on two language strings,
+        noreplybouncemessage and noreplybouncesubject.
+      type: removed
