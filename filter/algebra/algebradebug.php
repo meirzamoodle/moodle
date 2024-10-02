@@ -78,12 +78,16 @@ if ($algebra && $action) {
     if ($action === 'TexStage2') {
         $output = algebra2tex($algebra);
         $output = refineTeX($output);
-    }
-    if ($action === 'ShowImage') {
+      }
+      if ($action == 'ShowImage'|| $action == 'SlashArguments') {
         $output = algebra2tex($algebra);
         $output = refineTeX($output);
-        tex2image($output, $md5);
-    } else {
+        if ($action == 'ShowImage') {
+          tex2image($output, $md5);
+        } else {
+          slasharguments($output, $md5);
+        }
+      } else {
         outputText($output);
     }
     exit;
@@ -295,39 +299,58 @@ function tex2image($texexp, $md5, $return=false) {
     }
 }
 
+function slasharguments($texexp, $md5) {
+  global $CFG;
+  $admin = $CFG->wwwroot.'/'.$CFG->admin.'/settings.php?section=http';
+  $image = tex2image($texexp,$md5,true);
+  echo "<p>If the following image displays correctly, set your ";
+  echo "<a href=\"$admin\" target=\"_blank\">Administration->Server->HTTP</a> ";
+  echo "setting for slasharguments to file.php/1/pic.jpg: ";
+  echo "<img src=\"pix.php/$image\" align=\"absmiddle\"></p>\n";
+  echo "<p>Otherwise set it to file.php?file=/1/pic.jpg ";
+  echo "It should display correctly as ";
+  echo "<img src=\"pix.php?file=$image\" align=\"absmiddle\"></p>\n";
+  echo "<p>If neither equation image displays correctly, please seek ";
+  echo "further help at moodle.org at the ";
+  echo "<a href=\"http://moodle.org/mod/forum/view.php?id=752&loginguest=true\" target=\"_blank\">";
+  echo "Mathematics Tools Forum</a></p>";
+}
+
 ?>
 
 <html>
 <head><title>Algebra Filter Debugger</title></head>
 <body>
-<p>Please enter an algebraic expression <b>without</b> any surrounding @@ into
-    the text box below. (Click <a href="#help">here for help.</a>)
-<form action="algebradebug.php" method="get"
-      target="inlineframe">
-    <center>
-        <label for="algebra" class="accesshide"><?php print_string('algebraicexpression', 'filter_algebra'); ?></label>
-        <input type="text" id="algebra" name="algebra" size="50"
-               value="sin(z)/(x^2+y^2)" />
-    </center>
-    <ol>
-        <li>First click on this button <button type="submit" name="action" value="ShowDB">Show DB Entry</button>
-            to see the cache_filters database entry for this expression.</li>
-        <li>If the database entry looks corrupt, click on this button to delete it:
-            <button type="submit" name="action" value="DeleteDB">Delete DB Entry</button></li>
-        <li>Now click on this button <button type="submit" name="action" value="TeXStage1">First Stage Tex Translation</button>.
-            A preliminary translation into TeX will appear in the box below.</li>
-        <li>Next click on this button <button type="submit" name="action" value="TexStage2">Second Stage Tex Translation</button>.
-            A more refined translation into TeX will appear in the box below.</li>
-        <li>Then click on this button <button type="submit" name="action" value="ShowImage">Show Image</button>
-            to show a graphic image of the algebraic expression.</li>
-    </ol>
-    <input type="hidden" name="sesskey" value="<?php echo sesskey(); ?>" />
-</form> <br /> <br />
-<center>
-    <iframe name="inlineframe" align="middle" width="80%" height="200">
-        &lt;p&gt;Something is wrong...&lt;/p&gt;
-    </iframe>
-</center> <br />
+    <p>Please enter an algebraic expression <b>without</b> any surrounding @@ into
+       the text box below. (Click <a href="#help">here for help.</a>)
+          <form action="algebradebug.php" method="get"
+           target="inlineframe">
+            <center>
+             <label for="algebra" class="accesshide"><?php print_string('algebraicexpression', 'filter_algebra'); ?></label>
+             <input type="text" id="algebra" name="algebra" size="50"
+                    value="sin(z)/(x^2+y^2)" />
+            </center>
+           <ol>
+           <li>First click on this button <button type="submit" name="action" value="ShowDB">Show DB Entry</button>
+               to see the cache_filters database entry for this expression.</li>
+           <li>If the database entry looks corrupt, click on this button to delete it:
+               <button type="submit" name="action" value="DeleteDB">Delete DB Entry</button></li>
+           <li>Now click on this button <button type="submit" name="action" value="TeXStage1">First Stage Tex Translation</button>.
+               A preliminary translation into TeX will appear in the box below.</li>
+           <li>Next click on this button <button type="submit" name="action" value="TexStage2">Second Stage Tex Translation</button>.
+               A more refined translation into TeX will appear in the box below.</li>
+           <li>Then click on this button <button type="submit" name="action" value="ShowImage">Show Image</button>
+               to show a graphic image of the algebraic expression.</li>
+           <li>Finally check your slash arguments setting
+               <button type="submit" name="action" value="SlashArguments">Check Slash Arguments</button></li>
+           </ol>
+           <input type="hidden" name="sesskey" value="<?php echo sesskey(); ?>" />
+          </form> <br /> <br />
+       <center>
+          <iframe name="inlineframe" align="middle" width="80%" height="200">
+          &lt;p&gt;Something is wrong...&lt;/p&gt;
+          </iframe>
+       </center> <br />
 <hr />
 <a name="help">
     <h2>Debugging Help</h2>
