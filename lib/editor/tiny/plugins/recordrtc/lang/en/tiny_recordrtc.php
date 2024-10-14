@@ -30,6 +30,7 @@ $string['audioandvideo'] = 'Audio and video';
 $string['audiobitrate'] = 'Audio bitrate';
 $string['audiobitrate_desc'] = 'Quality of audio recording (larger number means higher quality).';
 $string['audiobuttontitle'] = 'Record audio';
+$string['audiortcmp3'] = 'Record using MP3';
 $string['audiotimelimit'] = 'Audio time limit';
 $string['audiotimelimit_desc'] = 'Maximum recording length for audio clips.';
 $string['audiotitle'] = 'Record audio';
