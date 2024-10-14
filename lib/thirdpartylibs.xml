@@ -822,4 +822,11 @@ All rights reserved.</copyright>
       <license>Apache 2.0</license>
       <repository>https://github.com/giggsey/libphonenumber-for-php-lite</repository>
   </library>
+  <library>
+      <location>lamejs</location>
+      <name>lamejs</name>
+      <version>1.2.1</version>
+      <license>LGPL</license>
+      <repository>https://github.com/zhuker/lamejs</repository>
+  </library>
 </libraries>

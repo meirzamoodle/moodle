@@ -149,4 +149,13 @@ if ($ADMIN->fulltree) {
     $name = get_string('allowedpausing', 'tiny_recordrtc');
     $setting = new admin_setting_configselect('tiny_recordrtc/allowedpausing', $name, '', 0, $options);
     $settings->add($setting);
+
+    // Record audio in MP3 format.
+    $setting = new admin_setting_configcheckbox(
+        name: 'tiny_recordrtc/audiortcmp3',
+        visiblename: get_string('audiortcmp3', 'tiny_recordrtc'),
+        description: '',
+        defaultsetting: 0,
+    );
+    $settings->add($setting);
 }
