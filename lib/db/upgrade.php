@@ -1381,5 +1381,35 @@ function xmldb_main_upgrade($oldversion) {
         upgrade_main_savepoint(true, 2024121900.01);
     }
 
+    if ($oldversion < 2024120500.03) {
+        // Define table ai_providers to be created.
+        $table = new xmldb_table('ai_providers');
+
+        // Adding fields to table ai_providers.
+        $table->add_field('id', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, XMLDB_SEQUENCE, null);
+        $table->add_field('name', XMLDB_TYPE_CHAR, '255', null, XMLDB_NOTNULL, null, null);
+        $table->add_field('provider', XMLDB_TYPE_CHAR, '255', null, XMLDB_NOTNULL, null, null);
+        $table->add_field('enabled', XMLDB_TYPE_INTEGER, '1', null, XMLDB_NOTNULL, null, '1');
+        $table->add_field('config', XMLDB_TYPE_TEXT, null, null, XMLDB_NOTNULL, null, null);
+        $table->add_field('actionconfig', XMLDB_TYPE_TEXT, null, null, null, null, null);
+
+        // Adding keys to table ai_provider.
+        $table->add_key('primary', XMLDB_KEY_PRIMARY, ['id']);
+
+        // Adding indexes to table ai_provider.
+        $table->add_index('provider', XMLDB_INDEX_NOTUNIQUE, ['provider']);
+
+        // Conditionally launch create table for ai_provider.
+        if (!$dbman->table_exists($table)) {
+            $dbman->create_table($table);
+        }
+
+        // Now the instance table exists, migrate the existing providers.
+        upgrade_convert_ai_providers_to_instances();
+
+        // Main savepoint reached.
+        upgrade_main_savepoint(true, 2024120500.01);
+    }
+
     return true;
 }
