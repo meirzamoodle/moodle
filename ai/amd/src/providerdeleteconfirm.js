@@ -22,9 +22,14 @@
  */
 
 import {getString} from 'core/str';
+import {prefetchStrings} from 'core/prefetch';
 import DeleteCancelModal from 'core/modal_delete_cancel';
 import ModalEvents from 'core/modal_events';
 import Ajax from 'core/ajax';
+import {refreshTableContent} from 'core_table/dynamic';
+import {fetchNotifications} from 'core/notification';
+import * as Selectors from 'core_table/local/dynamic/selectors';
+import * as DynamicTable from 'core_table/dynamic';
 
 /**
  * Call the delete service.
@@ -48,8 +53,12 @@ const deleteProviderService = async(providerid) => Ajax.call([{
  */
 const handleDelete = async(providerid) => {
     await deleteProviderService(providerid);
-    // Refresh the page, so we get the updated list of providers, and any messages.
-    window.location.reload();
+    // Reload the table, so we get the updated list of providers, and any messages.
+    const tableRoot = document.querySelector(Selectors.main.region);
+    await Promise.all([
+        refreshTableContent(tableRoot),
+        fetchNotifications(),
+    ]);
 };
 
 /**
@@ -66,8 +75,8 @@ const showDeleteModal = async(e) => {
         name: name,
     };
     const modal = await DeleteCancelModal.create({
-        title: await getString('providerinstancedelete', 'core_ai'),
-        body: await getString('providerinstancedeleteconfirm', 'core_ai', bodyparams),
+        title: getString('providerinstancedelete', 'core_ai'),
+        body: getString('providerinstancedeleteconfirm', 'core_ai', bodyparams),
         show: true,
         removeOnClose: true,
     });
@@ -82,13 +91,21 @@ const showDeleteModal = async(e) => {
 
 /**
  * Initialise the delete listeners.
- *
  */
 export const init = () => {
+    prefetchStrings('core_ai', [
+        'providerinstancedelete',
+        'providerinstancedeleteconfirm',
+    ]);
+
     document.querySelectorAll('.ai-provider-delete').forEach((button) => {
         button.addEventListener('click', (e) => {
-                e.preventDefault();
-                showDeleteModal(e);
+            e.preventDefault();
+            showDeleteModal(e);
         });
     });
+
+    document.addEventListener(DynamicTable.Events.tableContentRefreshed, () => {
+        init();
+    }, {once: true});
 };
