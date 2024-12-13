@@ -101,10 +101,10 @@ class set_action extends external_api {
 
         $manager = \core\di::get(manager::class);
         $manager->set_action_state(
-                plugin: $plugin,
-                actionbasename: $action,
-                enabled: $state,
-                instanceid: $providerid
+            plugin: $plugin,
+            actionbasename: $action,
+            enabled: $state,
+            instanceid: $providerid
         );
 
         return [];

@@ -20,7 +20,7 @@ use admin_setting;
 use coding_exception;
 
 /**
- * Admin setting plugin manager.
+ * Admin setting provider manager.
  *
  * @package    core_ai
  * @copyright  2024 Matt Porritt <matt.porritt@moodle.com>

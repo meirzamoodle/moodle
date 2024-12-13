@@ -122,7 +122,11 @@ class aiprovider_management_table extends flexible_table implements dynamic_tabl
         $this->define_baseurl(new moodle_url('/admin/ai.php'));
     }
 
-    #[\Override]
+    /**
+     * Get the column list for the table.
+     *
+     * @return array
+     */
     protected function get_column_list(): array {
         return [
             'name' => get_string('name'),

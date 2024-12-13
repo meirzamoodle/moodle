@@ -251,10 +251,10 @@ class manager {
      * @return bool Returns true if the configuration was successfully set, false otherwise.
      */
     public function set_action_state(
-            string $plugin,
-            string $actionbasename,
-            int $enabled,
-            int $instanceid = 0
+        string $plugin,
+        string $actionbasename,
+        int $enabled,
+        int $instanceid = 0
     ): bool {
         $actionclass = 'core_ai\\aiactions\\' . $actionbasename;
         $oldvalue = $this->is_action_enabled($plugin, $actionclass, $instanceid);
@@ -270,8 +270,8 @@ class manager {
             $actionconfig[$actionclass]['enabled'] = (bool)$enabled;
 
             return $this->update_provider_instance(
-                    provider: $provider,
-                    actionconfig: $actionconfig)->actionconfig[$actionclass]['enabled'];
+                provider: $provider,
+                actionconfig: $actionconfig)->actionconfig[$actionclass]['enabled'];
 
         } else {
             // Handle placement actions.
@@ -365,6 +365,7 @@ class manager {
      *
      * @param string $classname Classname of the provider.
      * @param string $name The name of the provider config.
+     * @param bool $enabled The enabled state of the provider.
      * @param array|null $config The config json.
      * @return provider
      */
@@ -372,7 +373,7 @@ class manager {
         string $classname,
         string $name,
         bool $enabled = false,
-        ?array $config = [],
+        ?array $config = null,
     ): provider {
         if (!class_exists($classname) || !is_a($classname, provider::class, true)) {
             throw new \coding_exception("Provider class not valid: {$classname}");
@@ -397,8 +398,8 @@ class manager {
      */
     public function get_provider_records(?array $filter = null): array {
         return $this->db->get_records(
-                table: 'ai_providers',
-                conditions: $filter,
+            table: 'ai_providers',
+            conditions: $filter,
         );
     }
 
@@ -455,14 +456,14 @@ class manager {
      * @throws \dml_exception
      */
     public function update_provider_instance(
-            provider $provider,
-            ?array $config = null,
-            ?array $actionconfig = null
+        provider $provider,
+        ?array $config = null,
+        ?array $actionconfig = null
     ): provider {
         $provider = $provider->with(
-                name: $provider->name,
-                config: $config ?? $provider->config,
-                actionconfig: $actionconfig ?? $provider->actionconfig,
+            name: $provider->name,
+            config: $config ?? $provider->config,
+            actionconfig: $actionconfig ?? $provider->actionconfig,
         );
         $this->db->update_record('ai_providers', $provider->to_record());
         return $provider;
@@ -478,7 +479,7 @@ class manager {
         try {
             // Dispatch the hook before deleting the record.
             $hook = new \core_ai\hook\before_provider_deleted(
-                    provider: $provider,
+                provider: $provider,
             );
             $hookmanager = \core\di::get(\core\hook\manager::class)->dispatch($hook);
             if ($hookmanager->isPropagationStopped()) {
@@ -486,7 +487,7 @@ class manager {
             } else {
                 $deleted = $this->db->delete_records('ai_providers', ['id' => $provider->id]);
             }
-        } catch (\dml_exception $exception) {
+        } catch (\dml_exception) {
             $deleted = false;
         }
         return $deleted;
@@ -524,7 +525,7 @@ class manager {
                     $provider = $provider->with(enabled: false);
                     $this->db->update_record('ai_providers', $provider->to_record());
                 }
-            } catch (\dml_exception $e) {
+            } catch (\dml_exception) {
                 // Do nothing.
             }
         }

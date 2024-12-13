@@ -25,13 +25,14 @@ require_once($CFG->libdir . '/formslib.php');
 /**
  * Generate action settings form.
  *
- * @package    aiprovider_openai
+ * @package    core_ai
  * @copyright  2024 Matt Porritt <matt.porritt@moodle.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class action_settings_form extends moodleform {
     #[\Override]
-    protected function definition() {}
+    protected function definition() {
+    }
 
     /**
      * Get the default values for the form.

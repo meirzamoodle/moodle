@@ -41,10 +41,10 @@ class action_generate_image_form extends action_settings_form {
 
         // Add API deployment name.
         $mform->addElement(
-                'text',
-                'deployment',
-                get_string("action:{$actionname}:deployment", 'aiprovider_azureai'),
-                'maxlength="255" size="20"',
+            'text',
+            'deployment',
+            get_string("action:{$actionname}:deployment", 'aiprovider_azureai'),
+            'maxlength="255" size="20"',
         );
         $mform->setType('deployment', PARAM_ALPHANUMEXT);
         $mform->addRule('deployment', null, 'required', null, 'client');
@@ -53,10 +53,10 @@ class action_generate_image_form extends action_settings_form {
 
         // Add API version.
         $mform->addElement(
-                'text',
-                'apiversion',
-                get_string("action:{$actionname}:apiversion", 'aiprovider_azureai'),
-                'maxlength="255" size="30"',
+            'text',
+            'apiversion',
+            get_string("action:{$actionname}:apiversion", 'aiprovider_azureai'),
+            'maxlength="255" size="30"',
         );
         $mform->setType('apiversion', PARAM_ALPHANUMEXT);
         $mform->addRule('apiversion', null, 'required', null, 'client');

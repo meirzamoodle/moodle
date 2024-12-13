@@ -44,6 +44,7 @@ abstract class provider {
      * @param bool $enabled Whether the gateway is enabled
      * @param string $name The name of the provider config.
      * @param string $config The configuration for this instance.
+     * @param string $actionconfig The action specific settings for this instance.
      * @param int|null $id The id of the provider in the database.
      */
     public function __construct(

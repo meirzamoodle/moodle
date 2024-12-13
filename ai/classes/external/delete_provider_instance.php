@@ -80,18 +80,18 @@ class delete_provider_instance extends external_api {
         }
 
         $providerresult = $manager->delete_provider_instance(provider: $aiprovider);
-            if (!$providerresult) {
-                $result = [
-                    'result' => false,
-                    'message' => 'ai_provider_delete_failed',
-                    'messagetype' => 'error',
-                ];
-                $message = get_string('providerinstancedeletefailed', 'core_ai');
-                $messagetype = \core\notification::ERROR;
-            } else {
-                $message = get_string('providerinstancedeleted', 'core_ai', $aiprovider->name);
-                $messagetype = \core\notification::SUCCESS;
-            }
+        if (!$providerresult) {
+            $result = [
+                'result' => false,
+                'message' => 'ai_provider_delete_failed',
+                'messagetype' => 'error',
+            ];
+            $message = get_string('providerinstancedeletefailed', 'core_ai');
+            $messagetype = \core\notification::ERROR;
+        } else {
+            $message = get_string('providerinstancedeleted', 'core_ai', $aiprovider->name);
+            $messagetype = \core\notification::SUCCESS;
+        }
 
         \core\notification::add($message, $messagetype);
 

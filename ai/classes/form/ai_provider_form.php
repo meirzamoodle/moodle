@@ -144,11 +144,11 @@ class ai_provider_form extends moodleform {
         // If provider config is empty this is a new instance.
         if (empty($providerconfigs['id'])) {
             $buttonarray[] = $mform->createElement('submit', 'createandreturn',
-                    get_string('btninstancecreate', 'core_ai'));
+                get_string('btninstancecreate', 'core_ai'));
         } else {
             // We're updating an existing provider.
             $buttonarray[] = $mform->createElement('submit', 'updateandreturn',
-                    get_string('btninstanceupdate', 'core_ai'));
+                get_string('btninstanceupdate', 'core_ai'));
         }
 
         $buttonarray[] = $mform->createElement('cancel');

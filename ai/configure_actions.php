@@ -37,8 +37,8 @@ $data = ['providerid' => $id];
 // Handle return URL.
 if (empty($returnurl)) {
     $returnurl = new moodle_url(
-            url: '/ai/configure.php',
-            params: ['id' => $id]
+        url: '/ai/configure.php',
+        params: ['id' => $id]
     );
 } else {
     $returnurl = new moodle_url($returnurl);
@@ -55,9 +55,9 @@ $actionconfig = $actionconfig[$action];
 $data['actionconfig'] = $actionconfig;
 
 $urlparams = [
-        'provider' => $provider,
-        'action' => $action,
-        'id' => $id,
+    'provider' => $provider,
+    'action' => $action,
+    'id' => $id,
 ];
 
 // Page setup.

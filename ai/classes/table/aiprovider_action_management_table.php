@@ -46,8 +46,6 @@ class aiprovider_action_management_table extends flexible_table implements dynam
      * Constructor.
      *
      * @param string $uniqueid The table unique id.
-     * @param string $formid The form id.
-     * @param int|null $providerid The provider id. Null if we are creating a new provider.
      */
     public function __construct(string $uniqueid) {
         $parseuniqueid = explode('-', $uniqueid);
@@ -113,9 +111,9 @@ class aiprovider_action_management_table extends flexible_table implements dynam
         global $PAGE;
 
         $PAGE->requires->js_call_amd(
-                $this->get_table_js_module(),
-                'init',
-                [$this->providerid]
+            $this->get_table_js_module(),
+            'init',
+            [$this->providerid]
         );
         return parent::get_dynamic_table_html_end();
     }

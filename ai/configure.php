@@ -88,7 +88,7 @@ if ($data = $mform->get_data()) {
     $manager = \core\di::get(\core_ai\manager::class);
     $aiprovider = $data['aiprovider'];
     $providername = $data['name'];
-    unset($data->aiprovider, $data->name, $data->id);
+    unset($data->aiprovider, $data->name, $data->id, $data->returnurl, $data->updateandreturn);
     if ($id !== 0) {
         $providerinstance = $manager->get_provider_instances(['id' => $id]);
         $providerinstance = reset($providerinstance);

@@ -17,7 +17,7 @@
 namespace core_ai\table;
 
 /**
- * SMS gateway table filter set.
+ * AI Provider management table filter set.
  *
  * @package    core_ai
  * @copyright  2024 Matt Porritt <matt.porritt@moodle.com>

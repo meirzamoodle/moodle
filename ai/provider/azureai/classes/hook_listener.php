@@ -59,7 +59,5 @@ class hook_listener {
         $mform->setType('endpoint', PARAM_URL);
         $mform->addHelpButton('endpoint', 'endpoint', 'aiprovider_azureai');
         $mform->addRule('endpoint', get_string('required'), 'required', null, 'client');
-
     }
-
 }

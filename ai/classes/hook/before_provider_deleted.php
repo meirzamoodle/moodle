@@ -20,7 +20,7 @@ use core_ai\provider;
 use core\hook\stoppable_trait;
 
 /**
- * Hook before sms provider is deleted.
+ * Hook before AI provider is deleted.
  *
  * @package    core_ai
  * @copyright  2024 Matt Porritt <matt.porritt@moodle.com>

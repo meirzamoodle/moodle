@@ -12,20 +12,18 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
-/**
- * AI provider deletion confirmation.
- * Renders a confirmation modal when deleting an AI provider.
- *
- * @module     core_ai/providerdeleteconfirm
- * @copyright  2024 Matt Porritt <matt.porritt@moodle.com>
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- */
-
 import PluginManagementTable from 'core_admin/plugin_management_table';
 import {call as fetchMany} from 'core/ajax';
 
 let watching = false;
 
+/**
+ * Handles setting plugin state for the AI provider management table.
+ *
+ * @module     core_ai/action_management_table
+ * @copyright  2024 Matt Porritt <matt.porritt@moodle.com>
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 export default class extends PluginManagementTable {
 
     /**
