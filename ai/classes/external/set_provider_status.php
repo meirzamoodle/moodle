@@ -23,7 +23,7 @@ use core_external\external_single_structure;
 use core_external\external_value;
 
 /**
- * Webservice to enable or disable sms provider.
+ * Webservice to enable or disable AI provider.
  *
  * @package    core_ai
  * @copyright  2024 Matt Porritt <matt.porritt@moodle.com>
@@ -65,22 +65,16 @@ class set_provider_status extends external_api {
         self::validate_context($context);
         require_capability('moodle/site:config', $context);
 
-        $result = [
-            'result' => true,
-            'message' => '',
-            'messagetype' => '',
-        ];
         $manager = \core\di::get(\core_ai\manager::class);
         $aiproviders = $manager->get_provider_instances(['id' => $providerid]);
         $aiprovider = reset($aiproviders);
 
         if (!$aiprovider) {
-            $result = [
+            return [
                 'result' => false,
-                'message' => 'ai_provider_not_found',
-                'messagetype' => 'error',
+                'message' => get_string('notfound', 'error'),
+                'messagetype' => \core\notification::ERROR,
             ];
-            return $result;
         }
 
         if (!empty($state)) {
@@ -90,11 +84,6 @@ class set_provider_status extends external_api {
         } else {
             $providerresult = $manager->disable_provider_instance(provider: $aiprovider);
             if ($providerresult->enabled) {
-                $result = [
-                    'result' => false,
-                    'message' => 'ai_provider_disable_failed',
-                    'messagetype' => 'error',
-                ];
                 $message = get_string('providerinstancedisablefailed', 'core_ai');
                 $messagetype = \core\notification::ERROR;
             } else {
@@ -105,7 +94,11 @@ class set_provider_status extends external_api {
 
         \core\notification::add($message, $messagetype);
 
-        return $result;
+        return [
+            'result' => $messagetype === \core\notification::SUCCESS ? true : false,
+            'message' => $message,
+            'messagetype' => $messagetype,
+        ];
     }
 
     /**
