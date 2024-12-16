@@ -23,12 +23,14 @@
     * id - provider instance id.
     * name - provider instance name.
     * provider - provider name.
+    * delete-method - Webservice method name for delete.
 
     Example context (json):
     {
         "id": 1,
         "name": "Provider 1",
         "provider": "aiprovider_openai"
+        "delete-method": "core_ai_delete_provider_instance"
     }
 }}
 <a href="#"
@@ -38,6 +40,7 @@
     data-action="provider-delete-{{id}}"
     data-id="{{id}}"
     data-name="{{name}}"
-    data-provider="{{provider}}">
+    data-provider="{{provider}}"
+    data-delete-method="{{delete-method}}">
   <i class="fa fa-trash"></i>&nbsp;{{#str}}delete, core{{/str}}
 </a>

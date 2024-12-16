@@ -64,9 +64,6 @@ class admin_setting_provider_manager extends admin_setting {
 
     #[\Override]
     public function output_html($data, $query = ''): string {
-        global $PAGE;
-        $PAGE->requires->js_call_amd('core_ai/providerdeleteconfirm', 'init');
-
         $table = new $this->tableclass($this->pluginname);
         if (
             !($table instanceof \core_ai\table\aiprovider_management_table)

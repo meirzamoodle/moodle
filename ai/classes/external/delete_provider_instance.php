@@ -50,7 +50,6 @@ class delete_provider_instance extends external_api {
      * @return array The generated content.
      */
     public static function execute(int $providerid): array {
-        // Parameter validation.
         [
             'providerid' => $providerid,
         ] = self::validate_parameters(self::execute_parameters(), [
@@ -61,32 +60,22 @@ class delete_provider_instance extends external_api {
         self::validate_context($context);
         require_capability('moodle/site:config', $context);
 
-        $result = [
-            'result' => true,
-            'message' => '',
-            'messagetype' => '',
-        ];
+        // Get AI provider instance.
         $manager = \core\di::get(\core_ai\manager::class);
         $aiproviders = $manager->get_provider_instances(['id' => $providerid]);
         $aiprovider = reset($aiproviders);
 
         if (!$aiprovider) {
-            $result = [
+            return [
                 'result' => false,
-                'message' => 'ai_provider_not_found',
-                'messagetype' => 'error',
+                'message' => get_string('notfound', 'error'),
+                'messagetype' => \core\notification::ERROR,
             ];
-            return $result;
         }
 
         $providerresult = $manager->delete_provider_instance(provider: $aiprovider);
         if (!$providerresult) {
-            $result = [
-                'result' => false,
-                'message' => 'ai_provider_delete_failed',
-                'messagetype' => 'error',
-            ];
-            $message = get_string('providerinstancedeletefailed', 'core_ai');
+            $message = get_string('providerinstancedeletefailed', 'core_ai', $aiprovider->name);
             $messagetype = \core\notification::ERROR;
         } else {
             $message = get_string('providerinstancedeleted', 'core_ai', $aiprovider->name);
@@ -95,7 +84,12 @@ class delete_provider_instance extends external_api {
 
         \core\notification::add($message, $messagetype);
 
-        return $result;
+        // Update and return the result array in one place.
+        return [
+            'result' => $providerresult,
+            'message' => $message,
+            'messagetype' => $messagetype,
+        ];
     }
 
     /**

@@ -75,7 +75,7 @@ class aiprovider_management_table extends flexible_table implements dynamic_tabl
      * @return string
      */
     protected function get_table_js_module(): string {
-        return 'core_admin/plugin_management_table';
+        return 'core_ai/aiprovider_instance_management_table';
     }
 
     /**
@@ -85,6 +85,15 @@ class aiprovider_management_table extends flexible_table implements dynamic_tabl
      */
     protected function get_toggle_service(): string {
         return 'core_ai_set_provider_status';
+    }
+
+    /**
+     * Webservice for delete.
+     *
+     * @return string
+     */
+    protected function get_delete_service(): string {
+        return 'core_ai_delete_provider_instance';
     }
 
     #[\Override]
@@ -221,19 +230,19 @@ class aiprovider_management_table extends flexible_table implements dynamic_tabl
         }
 
         $params = [
-                'id' => 'ai-provider-toggle-' . $row->id,
-                'checked' => $enabled,
-                'dataattributes' => [
-                    'name' => 'id',
-                    'value' => $row->provider,
-                    'toggle-method' => $this->get_toggle_service(),
-                    'action' => 'togglestate',
-                    'plugin' => $row->id, // Set plugin attribute to provider ID.
-                    'state' => $enabled ? 1 : 0,
-                ],
-                'title' => $labelstr,
-                'label' => $labelstr,
-                'labelclasses' => 'sr-only',
+            'id' => 'ai-provider-toggle-' . $row->id,
+            'checked' => $enabled,
+            'dataattributes' => [
+                'name' => 'id',
+                'value' => $row->provider,
+                'toggle-method' => $this->get_toggle_service(),
+                'action' => 'togglestate',
+                'plugin' => $row->id, // Set plugin attribute to provider ID.
+                'state' => $enabled ? 1 : 0,
+            ],
+            'title' => $labelstr,
+            'label' => $labelstr,
+            'labelclasses' => 'sr-only',
         ];
 
         return $OUTPUT->render_from_template('core_admin/setting_configtoggle', $params);
@@ -267,6 +276,7 @@ class aiprovider_management_table extends flexible_table implements dynamic_tabl
             'id' => $row->id,
             'name' => $row->name,
             'provider' => $provider,
+            'delete-method' => $this->get_delete_service(),
         ];
         return $OUTPUT->render_from_template('core_ai/admin_delete_provider', $params);
     }

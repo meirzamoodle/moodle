@@ -78,8 +78,8 @@ Feature: An administrator can manage AI subsystem settings
     And I am logged in as "admin"
     And I navigate to "AI > AI providers" in site administration
     And I click on the "Delete" link in the table row containing "OpenAI API test"
-    And I should see "Delete AI Provider instance" in the ".modal-title" "css_element"
-    And I click on "Delete" "button" in the ".modal-dialog" "css_element"
+    And "Delete AI Provider instance" "dialogue" should be visible
+    And I click on "Delete" "button" in the "Delete AI Provider instance" "dialogue"
     Then I should see "OpenAI API test AI Provider instance deleted"
 
   @javascript
