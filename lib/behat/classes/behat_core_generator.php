@@ -324,7 +324,7 @@ class behat_core_generator extends behat_generator_base {
             'ai providers' => [
                     'singular' => 'ai provider',
                     'datagenerator' => 'ai_provider',
-                    'required' => ['name'],
+                    'required' => ['provider', 'name', 'enabled', 'apikey', 'orgid'],
             ],
         ];
 
@@ -1287,29 +1287,23 @@ class behat_core_generator extends behat_generator_base {
         }
     }
 
+    /**
+     * Creates AI provider instance.
+     *
+     * @param array $data
+     * @return void
+     */
     protected function process_ai_provider(array $data) {
-        if (!isset($data['provider'])) {
-            throw new Exception('\'AI Provider setup\' requires the field \'provider\' to be specified');
-        }
-
-        if (!isset($data['name'])) {
-            throw new Exception('\'AI Provider setup\' requires the field \'name\' to be specified');
-        }
-
-        if (!isset($data['enabled'])) {
-            throw new Exception('\'AI Provider setup\' requires the field \'enabled\' to be specified');
-        }
-
         $manager = \core\di::get(\core_ai\manager::class);
         $classname = $data['provider'] . '\\' . 'provider';
         $name = $data['name'];
         $enabled = $data['enabled'];
         unset($data['provider'], $data['name'], $data['enabled']);
         $manager->create_provider_instance(
-                classname: $classname,
-                name: $name,
-                enabled: $enabled,
-                config: $data,
+            classname: $classname,
+            name: $name,
+            enabled: $enabled,
+            config: $data,
         );
     }
 }
