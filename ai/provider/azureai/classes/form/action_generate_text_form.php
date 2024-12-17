@@ -18,10 +18,6 @@ namespace aiprovider_azureai\form;
 
 use core_ai\form\action_settings_form;
 
-defined('MOODLE_INTERNAL') || die();
-
-require_once($CFG->libdir . '/formslib.php');
-
 /**
  * Generate text action provider settings form.
  *
