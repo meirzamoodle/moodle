@@ -1381,7 +1381,7 @@ function xmldb_main_upgrade($oldversion) {
         upgrade_main_savepoint(true, 2024121900.01);
     }
 
-    if ($oldversion < 2024120500.03) {
+    if ($oldversion < 2025010300.01) {
         // Define table ai_providers to be created.
         $table = new xmldb_table('ai_providers');
 
@@ -1408,7 +1408,18 @@ function xmldb_main_upgrade($oldversion) {
         upgrade_convert_ai_providers_to_instances();
 
         // Main savepoint reached.
-        upgrade_main_savepoint(true, 2024120500.03);
+        upgrade_main_savepoint(true, 2025010300.01);
+    }
+
+    if ($oldversion < 2025010300.01) {
+        $providers = $DB->get_records('ai_providers', ['enabled' => 1]);
+        // Formatting the value.
+        $value = ','. implode(',', array_column($providers, 'id'));
+        // Create the order config setting.
+        set_config('provider_order', $value, 'core_ai');
+
+        // Main savepoint reached.
+        upgrade_main_savepoint(true, 2025010300.01);
     }
 
     return true;
