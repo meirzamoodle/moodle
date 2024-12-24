@@ -2746,21 +2746,22 @@ require([
         ' . $valFunc . '
     });
 ';
-                }
-            }
-            // This handles both randomised (MDL-65217) and non-randomised IDs.
-            $errorid = preg_replace('/^id_/', 'id_error_', $elem->_attributes['id'] ?? '');
-            $validateJS .= '
-      ret = validate_' . $this->_formName . '_' . $escapedElementName.'(frm.elements[\''.$elementName.'\'], \''.$escapedElementName.'\') && ret;
-      if (!ret && !first_focus) {
+
+                    // This handles both randomised (MDL-65217) and non-randomised IDs.
+                    $errorid = preg_replace('/^id_/', 'id_error_', $elem->_attributes['id']);
+                    $validateJS .= '
+    ret = validate_' . $this->_formName . '_' . $escapedElementName.'(frm.elements[\''.$elementName.'\'], \''.$escapedElementName.'\') && ret;
+    if (!ret && !first_focus) {
         first_focus = true;
         const element = document.getElementById("' . $errorid . '");
         if (element) {
-          FormEvents.notifyFormError(element);
-          element.focus();
+            FormEvents.notifyFormError(element);
+            element.focus();
         }
-      }
+    }
 ';
+                }
+            }
 
             // Fix for bug displaying errors for elements in a group
             //unset($element);
