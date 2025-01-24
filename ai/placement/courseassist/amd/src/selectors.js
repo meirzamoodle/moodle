@@ -29,7 +29,6 @@ export default {
     },
     ACTIONS: {
         SUMMARY: '[data-action="course-summarise"]',
-        RETRY: '[data-action="course-summarise-retry"]',
         DECLINE: '.ai-policy-block [data-action="decline"]',
         ACCEPT: '.ai-policy-block [data-action="accept"]',
         REGENERATE: '[data-action="course-summarise-regenerate"]',

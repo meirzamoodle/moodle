@@ -25,7 +25,6 @@
 $string['aisummary'] = 'AI summary';
 $string['courseassist:summarise_text'] = 'Summarise text';
 $string['copy'] = 'Copy';
-$string['generatefailtitle'] = 'Something went wrong';
 $string['generating'] = 'Generating your response';
 $string['nocourseassist'] = 'An AI-generated summary is not available for this context.';
 $string['pluginname'] = 'Course assistance placement';
@@ -33,4 +32,7 @@ $string['privacy:metadata'] = 'The Course assistance placement plugin does not s
 $string['regenerate'] = 'Regenerate';
 $string['summarise'] = 'Summarise';
 $string['summarise_tooltips'] = 'Create an AI-generated summary of the page content';
+
+// Deprecated since Moodle 5.0.
+$string['generatefailtitle'] = 'Something went wrong';
 $string['tryagain'] = 'Try again';

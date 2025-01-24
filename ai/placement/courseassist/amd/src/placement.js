@@ -31,6 +31,7 @@ import AIHelper from 'core_ai/helper';
 import DrawerEvents from 'core/drawer_events';
 import {subscribe} from 'core/pubsub';
 import * as MessageDrawerHelper from 'core_message/message_drawer_helper';
+import {getString} from 'core/str';
 
 const AICourseAssist = class {
 
@@ -107,20 +108,6 @@ const AICourseAssist = class {
             declineAction.addEventListener('click', (e) => {
                 e.preventDefault();
                 this.closeAIDrawer();
-            });
-        }
-    }
-
-    /**
-     * Register event listeners for the error.
-     */
-    registerErrorEventListeners() {
-        const retryAction = document.querySelector(Selectors.ACTIONS.RETRY);
-        if (retryAction) {
-            retryAction.addEventListener('click', (e) => {
-                e.preventDefault();
-                this.aiDrawerBodyElement.dataset.hasdata = '0';
-                this.displaySummary();
             });
         }
     }
@@ -310,8 +297,8 @@ const AICourseAssist = class {
             };
             try {
                 const responseObj = await Ajax.call([request])[0];
-                if (responseObj.error) {
-                    this.displayError();
+                if (responseObj.errorname) {
+                    this.displayError(responseObj.errorname, responseObj.errormessage);
                     return;
                 } else {
                     if (!this.isRequestCancelled()) {
@@ -345,11 +332,18 @@ const AICourseAssist = class {
 
     /**
      * Display the error.
+     *
+     * @param {String} errorName The error name to display.
+     * @param {String} errorMessage The error message to display.
      */
-    displayError() {
-        Templates.render('aiplacement_courseassist/error', {}).then((html) => {
+    async displayError(errorName = '', errorMessage = '') {
+        if (!errorName) {
+            // Get the default error message.
+            errorName = await getString('error:defaultname', 'core_ai');
+            errorMessage = await getString('error:defaultmessage', 'core_ai');
+        }
+        Templates.render('aiplacement_courseassist/error', {'errorName': errorName, 'errorMessage': errorMessage}).then((html) => {
             this.aiDrawerBodyElement.innerHTML = html;
-            this.registerErrorEventListeners();
             return;
         }).catch(Notification.exception);
     }
