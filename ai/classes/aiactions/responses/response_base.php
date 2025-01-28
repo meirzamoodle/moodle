@@ -36,7 +36,8 @@ abstract class response_base {
      * @param bool $success The success status of the action.
      * @param string $actionname The name of the action that was processed.
      * @param int $errorcode Error code. Must exist if success is false.
-     * @param string $errormessage Error message. Must exist if success is false
+     * @param string $errorname Error name. Must exist if success is false.
+     * @param string $errormessage Error message.
      * @param string $model The model used to generate the response.
      */
     public function __construct(
@@ -52,7 +53,6 @@ abstract class response_base {
         private string $errormessage = '',
         /** @var string The model used to generate the response (if available). */
         protected ?string $model = null,
-
     ) {
         $this->timecreated = \core\di::get(\core\clock::class)->time();
         if (!$success && ($errorcode == 0 || empty($errorname))) {
