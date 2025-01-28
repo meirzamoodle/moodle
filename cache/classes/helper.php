@@ -759,21 +759,24 @@ class helper {
                 // Get all of the last access keys.
                 $keys = $store->find_by_prefix(session_cache::LASTACCESS);
                 $todelete = [];
-                foreach ($store->get_many($keys) as $key => $value) {
-                    $expiresvalue = 0;
-                    if ($value instanceof ttl_wrapper) {
-                        $expiresvalue = $value->data;
-                    } else if ($value instanceof cached_object) {
-                        $expiresvalue = $value->restore_object();
-                    } else {
-                        $expiresvalue = $value;
-                    }
-                    $expires = (int) $expiresvalue;
+                $values = $store->get_many($keys);
+                if (self::result_found($values)) {
+                    foreach ($values as $key => $value) {
+                        $expiresvalue = 0;
+                        if ($value instanceof ttl_wrapper) {
+                            $expiresvalue = $value->data;
+                        } else if ($value instanceof cached_object) {
+                            $expiresvalue = $value->restore_object();
+                        } else {
+                            $expiresvalue = $value;
+                        }
+                        $expires = (int) $expiresvalue;
 
-                    if ($expires > 0 && $expires < $purgetime) {
-                        $prefix = substr($key, strlen(session_cache::LASTACCESS));
-                        $foundbyprefix = $store->find_by_prefix($prefix);
-                        $todelete = array_merge($todelete, [$key], $foundbyprefix);
+                        if ($expires > 0 && $expires < $purgetime) {
+                            $prefix = substr($key, strlen(session_cache::LASTACCESS));
+                            $foundbyprefix = $store->find_by_prefix($prefix);
+                            $todelete = array_merge($todelete, [$key], $foundbyprefix);
+                        }
                     }
                 }
                 if ($todelete) {
