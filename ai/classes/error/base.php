@@ -33,9 +33,6 @@ class base {
     /** @var string Error code for upstream errors. */
     protected const ERROR_SOURCE_UPSTREAM = "upstream";
 
-    /** @var string Error code for internal errors. */
-    protected const ERROR_SOURCE_INTERNAL = "internal";
-
     /** @var int The type of error message. */
     protected int $messagetype;
 
