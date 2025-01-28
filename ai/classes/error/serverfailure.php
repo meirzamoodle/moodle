@@ -29,7 +29,7 @@ namespace core_ai\error;
 final class serverfailure extends base {
     #[\Override]
     public function get_errormessage(): string {
-        if ($this->messagetype === static::ERROR_MESSAGE_TYPE_LESS) {
+        if ($this->messagetype === static::ERROR_TYPE_MINIMAL) {
             return get_string('error:defaultmessageshort', 'core_ai');
         }
 

@@ -52,7 +52,7 @@ final class notfound extends base {
 
     #[\Override]
     public function get_errormessage(): string {
-        if ($this->messagetype === static::ERROR_MESSAGE_TYPE_LESS && $this->errorsource === static::ERROR_SOURCE_UPSTREAM) {
+        if ($this->messagetype === static::ERROR_TYPE_MINIMAL && $this->errorsource === static::ERROR_SOURCE_UPSTREAM) {
             return get_string('error:404:upstreamless', 'core_ai');
         }
         return $this->errormessage;

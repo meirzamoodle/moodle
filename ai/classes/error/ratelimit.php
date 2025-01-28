@@ -53,7 +53,7 @@ final class ratelimit extends base {
 
     #[\Override]
     public function get_errormessage(): string {
-        if ($this->messagetype === static::ERROR_MESSAGE_TYPE_LESS && $this->errorsource === static::ERROR_SOURCE_UPSTREAM) {
+        if ($this->messagetype === static::ERROR_TYPE_MINIMAL && $this->errorsource === static::ERROR_SOURCE_UPSTREAM) {
             return get_string('error:429:upstreamless', 'core_ai');
         }
         return $this->errormessage;
@@ -61,7 +61,7 @@ final class ratelimit extends base {
 
     #[\Override]
     public function get_errorname(): string {
-        $prefix = $this->messagetype === static::ERROR_MESSAGE_TYPE_MORE
+        $prefix = $this->messagetype === static::ERROR_TYPE_DETAILED
                   ? $this->get_errorcode() . ': '
                   : '';
 

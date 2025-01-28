@@ -24,29 +24,19 @@ namespace core_ai\error;
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class base {
-    /**
-     * Error type for less. It means the LMS debug level is < "ALL".
-     */
-    const ERROR_MESSAGE_TYPE_LESS = 0;
+    /** @var int Error type for less. It means the LMS debug level is < "ALL" */
+    protected const ERROR_TYPE_MINIMAL = 0;
 
-    /**
-     * Error type for more. It means the LMS debug level is >= "ALL".
-     */
-    const ERROR_MESSAGE_TYPE_MORE = 1;
+    /** @var int Error type for more. It means the LMS debug level is >= "ALL". */
+    protected const ERROR_TYPE_DETAILED = 1;
 
-    /**
-     * Error code for upstream errors.
-     */
-    const ERROR_SOURCE_UPSTREAM = "upstream";
+    /** @var string Error code for upstream errors. */
+    protected const ERROR_SOURCE_UPSTREAM = "upstream";
 
-    /**
-     * Error code for internal errors.
-     */
-    const ERROR_SOURCE_INTERNAL = "internal";
+    /** @var string Error code for internal errors. */
+    protected const ERROR_SOURCE_INTERNAL = "internal";
 
-    /**
-     * @var int The type of error message.
-     */
+    /** @var int The type of error message. */
     protected int $messagetype;
 
     /**
@@ -88,7 +78,7 @@ class base {
      * @return string The error source.
      */
     public function get_errorname(): string {
-        if ($this->messagetype === static::ERROR_MESSAGE_TYPE_LESS) {
+        if ($this->messagetype === static::ERROR_TYPE_MINIMAL) {
             return get_string('error:defaultname', 'core_ai');
         }
 
@@ -101,7 +91,7 @@ class base {
      * @return string The error message.
      */
     public function get_errormessage(): string {
-        if ($this->messagetype === static::ERROR_MESSAGE_TYPE_LESS) {
+        if ($this->messagetype === static::ERROR_TYPE_MINIMAL) {
             return get_string('error:defaultmessage', 'core_ai');
         }
 
@@ -140,10 +130,10 @@ class base {
         global $CFG;
 
         if ($CFG->debug === DEBUG_ALL || $CFG->debug === DEBUG_DEVELOPER) {
-            return static::ERROR_MESSAGE_TYPE_MORE;
+            return static::ERROR_TYPE_DETAILED;
         }
 
-        return static::ERROR_MESSAGE_TYPE_LESS;
+        return static::ERROR_TYPE_MINIMAL;
     }
 
     /**
