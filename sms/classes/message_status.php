@@ -30,10 +30,6 @@ enum message_status: string {
     #[status()]
     case UNKNOWN = 'unknown';
 
-    #[description('status:message_over_size', 'core_sms')]
-    #[status(failed: true)]
-    case MESSAGE_OVER_SIZE = 'message_over_size';
-
     #[description('status:gateway_not_available', 'core_sms')]
     #[status(failed: true)]
     case GATEWAY_NOT_AVAILABLE = 'gateway_not_available';

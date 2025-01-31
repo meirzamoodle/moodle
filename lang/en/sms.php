@@ -48,10 +48,12 @@ $string['status:gateway_not_available'] = 'The gateway is not available to send 
 $string['status:gateway_queued'] = 'The message is queued to be sent by the gateway';
 $string['status:gateway_rejected'] = 'The gateway has rejected the message';
 $string['status:gateway_sent'] = 'The message has been sent by the gateway';
-$string['status:message_over_size'] = 'The message is too large to be sent by the gateway';
 $string['status:unknown'] = 'Unable to determine the status of the message';
 $string['sms_gateway_deleted'] = '{$a->gateway} SMS gateway deleted';
 $string['sms_gateway_delete_failed'] = 'Cannot delete the {$a->gateway} SMS gateway. The gateway is either in use or there\'s a database issue. Check if the gateway is active or contact your database administrator for help.';
 $string['sms_gateway_disable_failed'] = 'Cannot disable the SMS gateway. The gateway is either in use or there\'s a database issue. Check if the gateway is active or contact your database administrator for help.';
 $string['sms_gateways'] = 'SMS gateways';
 $string['sms_gateways_info'] = 'Create and manage SMS gateways to send SMS messages from your site.';
+
+// Deprecated since 5.0.
+$string['status:message_over_size'] = 'The message is too large to be sent by the gateway';

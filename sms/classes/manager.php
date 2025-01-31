@@ -27,9 +27,6 @@ use stdClass;
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class manager {
-    /** @var int The maximum length of a message */
-    const MESSAGE_LENGTH_LIMIT = 160 * 3;
-
     /**
      * Create a new SMS manager.
      *
@@ -83,13 +80,12 @@ class manager {
             throw new \coding_exception('Asynchronous sending is not yet implemented');
         }
 
-        if (\core_text::strlen($content) > self::MESSAGE_LENGTH_LIMIT) {
-            $message = $message->with(status: message_status::MESSAGE_OVER_SIZE);
-        } else if ($gateway = $this->get_gateway_for_message($message, $gatewayid)) {
-            $message = $message->with(gatewayid: $gateway->id);
-            $message = $gateway->send(
-                message: $message,
+        if ($gateway = $this->get_gateway_for_message($message, $gatewayid)) {
+            $modifiedmessage = $message->with(
+                gatewayid: $gateway->id,
+                content: $this->truncate($message->content, $gateway),
             );
+            $message = $gateway->send($modifiedmessage);
         } else {
             $message = $message->with(status: message_status::GATEWAY_NOT_AVAILABLE);
         }
@@ -421,5 +417,16 @@ class manager {
         }
 
         return $phonenumber;
+    }
+
+    /**
+     * Truncates the given message to fit the constraints of the specified gateway.
+     *
+     * @param string $message The message to be truncated.
+     * @param gateway $gateway The gateway object that defines the truncation constraints.
+     * @return string The truncated message.
+     */
+    private function truncate(string $message, gateway $gateway): string {
+        return \core_text::substr($message, 0, $gateway::MESSAGE_LENGTH_LIMIT);
     }
 }

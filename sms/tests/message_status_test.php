@@ -33,7 +33,6 @@ final class message_status_test extends \advanced_testcase {
             message_status::GATEWAY_SENT,
         ];
         $failed = [
-            message_status::MESSAGE_OVER_SIZE,
             message_status::GATEWAY_FAILED,
             message_status::GATEWAY_NOT_AVAILABLE,
             message_status::GATEWAY_REJECTED,

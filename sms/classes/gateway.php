@@ -34,6 +34,9 @@ use stdClass;
 abstract class gateway {
     use Cloneable;
 
+    /** @var int The maximum length of a message. */
+    public const MESSAGE_LENGTH_LIMIT = 160 * 3;
+
     /** @var stdClass The configuration for this instance */
     public readonly stdClass $config;
 
