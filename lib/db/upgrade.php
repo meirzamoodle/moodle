@@ -1412,5 +1412,23 @@ function xmldb_main_upgrade($oldversion) {
         upgrade_main_savepoint(true, 2025013100.01);
     }
 
+    if ($oldversion < 2025021400.01) {
+        $providers = core_plugin_manager::standard_plugins_list('aiprovider');
+        foreach ($providers as $provider) {
+            // Replace the provider's language string with the provider component's name.
+            $aiprovider = "aiprovider_{$provider}";
+            if (get_string_manager()->string_exists('pluginname', $aiprovider)) {
+                $providername = get_string('pluginname', $aiprovider);
+                $sql = 'UPDATE {ai_action_register}
+                        SET provider = :provider
+                        WHERE LOWER(provider) = :providername';
+                $DB->execute($sql, ['provider' => $aiprovider, 'providername' => strtolower($providername)]);
+            }
+        }
+
+        // Main savepoint reached.
+        upgrade_main_savepoint(true, 2025021400.01);
+    }
+
     return true;
 }
