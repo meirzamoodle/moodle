@@ -99,7 +99,7 @@ class behat_email extends behat_base {
     ): iterable {
         $address = $this->get_email_address_from_input($user);
         return new \CallbackFilterIterator(
-            iterator: $this->get_catcher()->get_messages(),
+            iterator: $this->get_catcher()->get_messages(showdetails: true),
             callback: function (message $message) use ($address, $subject): bool {
                 if (!$message->has_recipient($address)) {
                     return false;

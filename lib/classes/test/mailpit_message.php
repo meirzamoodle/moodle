@@ -23,26 +23,52 @@ use stdClass;
  *
  * @package    core
  * @category   test
+ * @copyright  Simey Lameze <simey@moodle.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class mailpit_message implements message {
 
-    /** @var bool Whether the message has been loaded. */
-    protected bool $messageloaded = false;
-
+    /**
+     * Constructs a new Mailpit message object.
+     *
+     * @param email_catcher $client The email catcher client used for message operations.
+     * @param string $id The unique identifier for the message.
+     * @param stdClass $sender The sender of the message, represented as an object with email details.
+     * @param string $subject The subject line of the message.
+     * @param array $recipients List of primary recipients for the message.
+     * @param array $cc List of carbon copy recipients (optional, defaults to an empty array).
+     * @param array $bcc List of blind carbon copy recipients (optional, defaults to an empty array).
+     * @param int $attachmentcount The number of attachments in the message (default is 0).
+     * @param ?string $text The plain text body of the message (nullable, might be loaded later).
+     * @param ?string $html The HTML body of the message (nullable, might be loaded later).
+     * @param array $attachments An array of attachment details (defaults to empty array).
+     * @param array $inline An array of inline elements like images or styles (defaults to empty array).
+     */
     protected function __construct(
-        protected email_catcher $client,
-        protected string $id,
-        protected stdClass $sender,
-        protected string $subject,
-        protected array $recipients,
-        protected array $cc = [],
-        protected array $bcc = [],
-        protected int $attachmentcount = 0,
-        protected ?string $text = null,
-        protected ?string $html = null,
-        protected array $attachments = [],
-        protected array $inline = [],
+        /** @var email_catcher $client The email catcher client used for message operations.*/
+        private readonly email_catcher $client,
+        /** @var string $id The unique identifier for the message. */
+        private readonly string $id,
+        /** @var stdClass $sender The sender of the message, represented as an object with email details. */
+        private readonly stdClass $sender,
+        /** @var string $subject The subject line of the message. */
+        private readonly string $subject,
+        /** @var array $recipients List of primary recipients for the message. */
+        private readonly array $recipients,
+        /** @var array $cc List of carbon copy recipients (optional, defaults to an empty array). */
+        private readonly array $cc = [],
+        /** @var array $bcc List of blind carbon copy recipients (optional, defaults to an empty array). */
+        private readonly array $bcc = [],
+        /** @var int $attachmentcount The number of attachments in the message (default is 0). */
+        private readonly int $attachmentcount = 0,
+        /** @var ?string $text The plain text body of the message (nullable, might be loaded later). */
+        private ?string $text = null,
+        /** @var ?string $html The HTML body of the message (nullable, might be loaded later). */
+        private ?string $html = null,
+        /** @var array $attachments An array of attachment details (defaults to empty array). */
+        private array $attachments = [],
+        /** @var array $inline An array of inline elements like images or styles (defaults to empty array). */
+        private array $inline = [],
     ) {
     }
 
@@ -51,28 +77,28 @@ class mailpit_message implements message {
      *
      * @return void
      */
-    protected function load_message_content(): void {
-        if (!$this->messageloaded) {
-            $message = $this->client->get_message_data($this->id);
-            $this->text = $message->Text;
-            $this->html = $message->HTML;
-            $this->attachments = $message->Attachments;
-            $this->inline = $message->Inline;
-            $this->messageloaded = true;
-        }
+    private function load_message_content(): void {
+        $message = $this->client->get_message_data($this->id);
+        $this->text = $message->Text;
+        $this->html = $message->HTML;
+        $this->attachments = $message->Attachments;
+        $this->inline = $message->Inline;
     }
 
     /**
      * Create a message from an api response.
      *
-     * @param \stdClass $message The api response.
+     * @param email_catcher $client The email catcher object.
+     * @param stdClass $message The api response.
+     * @param bool $showdetails Optional. Whether to include detailed information in the messages. Default is false.
      * @return mailpit_message
      */
     public static function create_from_api_response(
         email_catcher $client,
-        \stdClass $message,
+        stdClass $message,
+        bool $showdetails = false,
     ): self {
-        return new self(
+        $message = new self(
             client: $client,
             id: $message->ID,
             sender: $message->From,
@@ -81,6 +107,12 @@ class mailpit_message implements message {
             cc: $message->Cc,
             attachmentcount: $message->Attachments,
         );
+
+        if ($showdetails) {
+            $message->load_message_content();
+        }
+
+        return $message;
     }
 
     /**
@@ -89,7 +121,6 @@ class mailpit_message implements message {
      * @return null|string
      */
     public function get_body_text(): ?string {
-        $this->load_message_content();
         return $this->text;
     }
 
@@ -99,7 +130,6 @@ class mailpit_message implements message {
      * @return null|string
      */
     public function get_body_html(): ?string {
-        $this->load_message_content();
         return $this->html;
     }
 

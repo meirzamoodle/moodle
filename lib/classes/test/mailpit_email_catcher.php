@@ -67,9 +67,10 @@ class mailpit_email_catcher implements email_catcher {
     /**
      * Get a list of messages from the mailpit server.
      *
+     * @param bool $showdetails Optional. Whether to include detailed information in the messages. Default is false.
      * @return iterable<message>
      */
-    public function get_messages(): iterable {
+    public function get_messages(bool $showdetails = false): iterable {
         $uri = 'api/v1/messages';
         $options = [
             'query' => [
@@ -85,7 +86,7 @@ class mailpit_email_catcher implements email_catcher {
 
             $data = json_decode($response->getBody());
             foreach ($data->messages as $messagedata) {
-                yield mailpit_message::create_from_api_response($this, $messagedata);
+                yield mailpit_message::create_from_api_response($this, $messagedata, $showdetails);
             }
 
             $options['query']['start'] = $data->start + $data->count;
