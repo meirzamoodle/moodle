@@ -2755,6 +2755,13 @@ function send_stored_file($storedfile, $lifetime=null, $filter=0, $forcedownload
         header('Access-Control-Allow-Origin: *');
     }
 
+    // If the file is linked to the original, indicated by the presence of
+    // the 'filename' key in $options {@see \repository::send_file()},
+    // then we should not cache it.
+    if (isset($options['filename']) && $options['filename'] === $storedfile->get_filename()) {
+        $lifetime = 0;
+    }
+
     send_file($storedfile, $filename, $lifetime, $filter, false, $forcedownload, $mimetype, $dontdie, $options);
 }
 
@@ -5265,7 +5272,6 @@ function file_pluginfile($relativepath, $forcedownload, $preview = null, $offlin
             if (!$file = $fs->get_file($context->id, 'mod_'.$modname, 'intro', 0, $filepath, $filename) or $file->is_directory()) {
                 send_file_not_found();
             }
-
             // finally send the file
             send_stored_file($file, null, 0, false, $sendfileoptions);
         }
