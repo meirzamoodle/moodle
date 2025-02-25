@@ -49,17 +49,20 @@ class response_explain_text extends response_base {
      *
      * @param bool $success The success status of the action.
      * @param int $errorcode Error code. Must exist if success is false.
+     * @param string $errorname Error name. Must exist if success is false
      * @param string $errormessage Error message. Must exist if success is false
      */
     public function __construct(
         bool $success,
         int $errorcode = 0,
+        string $errorname = '',
         string $errormessage = '',
     ) {
         parent::__construct(
             success: $success,
             actionname: 'explain_text',
             errorcode: $errorcode,
+            errorname: $errorname,
             errormessage: $errormessage,
         );
     }
