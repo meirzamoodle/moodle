@@ -39,4 +39,18 @@ $functions = [
         'ajax' => true,
         'services' => [MOODLE_OFFICIAL_MOBILE_SERVICE],
     ],
+    'aiplacement_courseassist_process_summarise_text' => [
+        'classname' => 'aiplacement_courseassist\external\process_summarise_text',
+        'description' => 'Summarise text for the Course Assistance Placement',
+        'type' => 'write',
+        'ajax' => true,
+        'services' => [MOODLE_OFFICIAL_MOBILE_SERVICE],
+    ],
+    'aiplacement_courseassist_process_explain_text' => [
+        'classname' => 'aiplacement_courseassist\external\process_explain_text',
+        'description' => 'Explain text for the Course Assistance Placement',
+        'type' => 'write',
+        'ajax' => true,
+        'services' => [MOODLE_OFFICIAL_MOBILE_SERVICE],
+    ],
 ];

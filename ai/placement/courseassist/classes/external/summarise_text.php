@@ -27,6 +27,8 @@ use core_external\external_value;
  * @package    aiplacement_courseassist
  * @copyright  2024 Huong Nguyen <huongnv13@gmail.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @deprecated since 5.1. Use process_summarise_text instead.
+ * @todo       MDL-XXXXX This class will be deleted in Moodle 6.0.
  */
 class summarise_text extends external_api {
 
@@ -35,8 +37,10 @@ class summarise_text extends external_api {
      *
      * @return external_function_parameters
      * @since Moodle 4.5
+     * @deprecated since 5.1. Use process_summarise_text instead.
      */
     public static function execute_parameters(): external_function_parameters {
+        \core\deprecation::emit_deprecation_if_present([self::class, __FUNCTION__]);
         return new external_function_parameters([
             'contextid' => new external_value(
                 PARAM_INT,
@@ -58,11 +62,13 @@ class summarise_text extends external_api {
      * @param string $prompttext The data encoded as a json array.
      * @return array The generated content.
      * @since Moodle 4.5
+     * @deprecated since 5.1. Use process_summarise_text instead.
      */
     public static function execute(
         int $contextid,
         string $prompttext
     ): array {
+        \core\deprecation::emit_deprecation_if_present([self::class, __FUNCTION__]);
         global $USER;
         // Parameter validation.
         [
@@ -109,8 +115,10 @@ class summarise_text extends external_api {
      *
      * @return external_function_parameters
      * @since Moodle 4.5
+     * @deprecated since 5.1. Use process_summarise_text instead.
      */
     public static function execute_returns(): external_function_parameters {
+        \core\deprecation::emit_deprecation_if_present([self::class, __FUNCTION__]);
         return new external_function_parameters([
             'success' => new external_value(
                 PARAM_BOOL,
@@ -151,5 +159,13 @@ class summarise_text extends external_api {
                 '',
             ),
         ]);
+    }
+
+    /**
+     * Mark the function as deprecated.
+     * @return bool
+     */
+    public static function execute_is_deprecated() {
+        return true;
     }
 }

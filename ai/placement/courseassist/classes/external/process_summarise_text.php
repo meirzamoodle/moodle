@@ -22,26 +22,21 @@ use core_external\external_function_parameters;
 use core_external\external_value;
 
 /**
- * External API to call explain text action for this placement.
+ * External API to call summarise text action for this placement.
  *
  * @package    aiplacement_courseassist
- * @copyright  2024 David Woloszyn <david.woloszyn@moodle.com>
+ * @copyright  Meirza <meirza.arson@moodle.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- * @deprecated since 5.1. Use process_explain_text instead.
- * @todo       MDL-XXXXX This class will be deleted in Moodle 6.0.
  */
-class explain_text extends external_api {
+class process_summarise_text extends external_api {
 
     /**
-     * Explain text parameters.
+     * Summarise text parameters.
      *
      * @return external_function_parameters
-     * @since Moodle 5.0
-     * @deprecated since 5.1. Use process_explain_text instead.
+     * @since Moodle 4.5
      */
-    #[\core\attribute\deprecated('process_explain_text::execute_parameters', since: '5.1', mdl: 'MDL-83147')]
     public static function execute_parameters(): external_function_parameters {
-        \core\deprecation::emit_deprecation_if_present([self::class, __FUNCTION__]);
         return new external_function_parameters([
             'contextid' => new external_value(
                 PARAM_INT,
@@ -57,19 +52,17 @@ class explain_text extends external_api {
     }
 
     /**
-     * Explain text from the AI placement.
+     * Summarise text from the AI placement.
      *
      * @param int $contextid The context ID.
      * @param string $prompttext The data encoded as a json array.
      * @return array The generated content.
-     * @since Moodle 5.0
-     * @deprecated since 5.1. Use process_explain_text instead.
+     * @since Moodle 4.5
      */
     public static function execute(
         int $contextid,
-        string $prompttext,
+        string $prompttext
     ): array {
-        \core\deprecation::emit_deprecation_if_present([self::class, __FUNCTION__]);
         global $USER;
         // Parameter validation.
         [
@@ -90,7 +83,7 @@ class explain_text extends external_api {
         }
 
         // Prepare the action.
-        $action = new \core_ai\aiactions\explain_text(
+        $action = new \core_ai\aiactions\summarise_text(
             contextid: $contextid,
             userid: $USER->id,
             prompttext: $prompttext,
@@ -105,7 +98,8 @@ class explain_text extends external_api {
             'generatedcontent' => $response->get_response_data()['generatedcontent'] ?? '',
             'finishreason' => $response->get_response_data()['finishreason'] ?? '',
             'errorcode' => $response->get_errorcode(),
-            'error' => $response->get_errormessage(),
+            'errorname' => $response->get_errorname(),
+            'errormessage' => $response->get_errormessage(),
             'timecreated' => $response->get_timecreated(),
             'prompttext' => $prompttext,
         ];
@@ -115,11 +109,9 @@ class explain_text extends external_api {
      * Generate content return value.
      *
      * @return external_function_parameters
-     * @since Moodle 5.0
-     * @deprecated since 5.1. Use process_explain_text instead.
+     * @since Moodle 4.5
      */
     public static function execute_returns(): external_function_parameters {
-        \core\deprecation::emit_deprecation_if_present([self::class, __FUNCTION__]);
         return new external_function_parameters([
             'success' => new external_value(
                 PARAM_BOOL,
@@ -153,20 +145,18 @@ class explain_text extends external_api {
                 VALUE_DEFAULT,
                 0,
             ),
-            'error' => new external_value(
+            'errorname' => new external_value(
+                PARAM_TEXT,
+                'Error name if any',
+                VALUE_DEFAULT,
+                '',
+            ),
+            'errormessage' => new external_value(
                 PARAM_TEXT,
                 'Error message if any',
                 VALUE_DEFAULT,
                 '',
             ),
         ]);
-    }
-
-    /**
-     * Mark the function as deprecated.
-     * @return bool
-     */
-    public static function execute_is_deprecated() {
-        return true;
     }
 }

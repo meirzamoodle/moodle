@@ -39,4 +39,18 @@ $functions = [
         'ajax' => true,
         'services' => [MOODLE_OFFICIAL_MOBILE_SERVICE],
     ],
+    'aiplacement_editor_process_generate_image' => [
+        'classname' => \aiplacement_editor\external\process_generate_image::class,
+        'description' => 'Generate image for the HTML Text editor AI Placement',
+        'type' => 'write',
+        'ajax' => true,
+        'services' => [MOODLE_OFFICIAL_MOBILE_SERVICE],
+    ],
+    'aiplacement_editor_process_generate_text' => [
+        'classname' => \aiplacement_editor\external\process_generate_text::class,
+        'description' => 'Generate text for the HTML Text editor AI Placement',
+        'type' => 'write',
+        'ajax' => true,
+        'services' => [MOODLE_OFFICIAL_MOBILE_SERVICE],
+    ],
 ];

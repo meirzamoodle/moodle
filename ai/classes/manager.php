@@ -155,7 +155,8 @@ class manager {
         return new $responseclassname(
             success: false,
             errorcode: -1,
-            errormessage: 'No providers available to process the action.');
+            errorname: get_string('error:noproviders', 'core_ai'),
+            errormessage: get_string('error:defaultmessage', 'core_ai'));
     }
 
     /**
@@ -180,6 +181,7 @@ class manager {
             'contextid' => $action->get_configuration('contextid'),
             'provider' => $provider->get_name(),
             'errorcode' => $response->get_errorcode(),
+            'errorname' => $response->get_errorname(),
             'errormessage' => $response->get_errormessage(),
             'timecreated' => $action->get_configuration('timecreated'),
             'timecompleted' => $response->get_timecreated(),

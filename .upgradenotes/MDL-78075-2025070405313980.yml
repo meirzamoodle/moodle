@@ -1,0 +1,22 @@
+issueNumber: MDL-78075
+notes:
+  aiplacement_courseassist:
+    - message: >
+        Introducing new web services `aiplacement_courseassist_process_summarise_text` and
+        `aiplacement_courseassist_process_explain_text` as an improvement adding error handling and
+        better parameter validation.
+      type: improved
+    - message: >
+        Deprecate the old web services `aiplacement_courseassist_summarise_text` and
+        `aiplacement_courseassist_explain_text` and will be removed.
+      type: deprecated
+  aiplacement_editor:
+    - message: >
+        Introducing new web services `aiplacement_editor_process_generate_text` and
+        `aiplacement_editor_process_generate_image` as an improvement adding error handling and
+        better parameter validation.
+      type: improved
+    - message: >
+        Deprecate the old web services `aiplacement_editor_generate_text` and
+        `aiplacement_editor_generate_image` and will be removed.
+      type: deprecated
