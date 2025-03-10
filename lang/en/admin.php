@@ -382,7 +382,6 @@ $string['configsitedefaultlicensehelp'] = 'The default licence for publishing co
 $string['configsitemailcharset'] = 'This setting specifies the default charset for all emails sent from the site.';
 $string['configsitemaxcategorydepth'] = 'Maximum category depth';
 $string['configsitemaxcategorydepthhelp'] = 'This specifies the maximum depth of child categories expanded when displaying categories or combo list. Deeper level categories will appear as links and user can expand them with AJAX request.';
-$string['configslasharguments'] = '\'Slash arguments\' (using <em>PATH_INFO</em>) is required for SCORM packages and multiple-file resources to display correctly. If your web server doesn\'t support \'slash arguments\' and you are unable to configure it, this setting can be disabled, though it will result in things not working.<br />Note: The use of \'slash arguments\' will be required in future versions of Moodle.';
 $string['configsmtpauthtype'] = 'This sets the authentication type to use on SMTP server.';
 $string['configsmtpoauthservice'] = 'Select the OAuth 2 service that is configured to talk to the SMTP server. If the service doesn\'t exist yet, you will need to create it. Note that you need to set the SMTP Auth Type to XOAUTH2.';
 $string['configsmtphosts'] = 'Give the full name of one or more local SMTP servers that Moodle should use to send mail (eg \'mail.a.com\' or \'mail.a.com;mail.b.com\'). To specify a non-default port (i.e other than port 25), you can use the [server]:[port] syntax (eg \'mail.a.com:587\'). For secure connections, port 465 is usually used with SSL, port 587 is usually used with TLS, specify security protocol below if required. If you leave this field blank, Moodle will use the PHP default method of sending mail.';
@@ -1308,7 +1307,6 @@ $string['sitepolicyguest_help'] = 'The URL of the site policy that all guests mu
 $string['sitesectionhelp'] = 'Display a section at the top of the page where you can add custom content.';
 $string['sixtyfourbitsrequired'] = 'It has been detected that your site is not using a 64-bit PHP version. You are required to upgrade your system (operating system, PHP...) before installing this Moodle version.';
 $string['sixtyfourbitswarning'] = 'It has been detected that your site is not using a 64-bit PHP version. It is recommended that you upgrade your site to ensure future compatibility.';
-$string['slasharguments'] = 'Use slash arguments';
 $string['slashargumentswarning'] = 'It is recommended that the use of slash arguments is enabled. In future it will be required. For more details, see the documentation <a href="https://docs.moodle.org/en/admin/environment/slasharguments">Using slash arguments</a>.';
 $string['smallscreensonly'] = 'Small screens only';
 $string['smtp'] = 'SMTP';
@@ -1629,9 +1627,11 @@ $string['registration_help'] = 'By registering:
 * You are contributing to our Moodle statistics of the worldwide community';
 
 // Deprecated since Moodle 5.0.
+$string['configslasharguments'] = '\'Slash arguments\' (using <em>PATH_INFO</em>) is required for SCORM packages and multiple-file resources to display correctly. If your web server doesn\'t support \'slash arguments\' and you are unable to configure it, this setting can be disabled, though it will result in things not working.<br />Note: The use of \'slash arguments\' will be required in future versions of Moodle.';
 $string['importantupdates_content'] = '<p>In the next Moodle 5.0, planned for release in April 2025, the Chat and Survey activities will
 be removed from core Moodle. They will be available as plugins in the
 <a href="https://moodle.org/plugins/">Moodle plugins directory</a>.</p>
 <p>If you wish to continue using Chat or Survey in your site, you will be able to install them as plugins before upgrading to Moodle 5.0.</p>';
 $string['importantupdates_title'] = 'Important update about Chat and Survey activities';
 $string['igbinary322buggyversion'] = 'The php-igbinary extension installed on the site can lead to problems when running with PHP 7.2. You are recommended to either upgrade to php-igbinary 3.2.5 or later, or alternatively to upgrade to PHP 7.3 or later.';
+$string['slasharguments'] = 'Use slash arguments';

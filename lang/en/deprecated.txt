@@ -71,3 +71,5 @@ groupevent,core_calendar
 tt_deleteevent,core_calendar
 tt_editevent,core_calendar
 userevent,core_calendar
+configslasharguments,core_admin
+slasharguments,core_admin
