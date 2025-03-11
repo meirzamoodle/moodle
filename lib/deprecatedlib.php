@@ -852,3 +852,31 @@ function imagecopybicubic($dst_img, $src_img, $dst_x, $dst_y, $src_x, $src_y, $d
     \core\deprecation::emit_deprecation_if_present(__FUNCTION__);
     return imagecopyresampled($dst_img, $src_img, $dst_x, $dst_y, $src_x, $src_y, $dst_w, $dst_h, $src_w, $src_h);
 }
+
+/**
+ * Method used to check the usage of slasharguments config and display a warning message.
+ *
+ * @param environment_results $result object to update, if relevant.
+ * @return environment_results|null updated results or null if slasharguments is disabled.
+ *
+ * @deprecated Since Moodle 5.0
+ * @todo Final deprecation on Moodle 7.0. See MDL-82768.
+ */
+#[\core\attribute\deprecated(
+    replacement: null,
+    since: '5.0',
+    mdl: 'MDL-83378',
+    reason: 'Removed the option to disable slash arguments (slashargs)',
+)]
+function check_slasharguments(environment_results $result) {
+    \core\deprecation::emit_deprecation_if_present(__FUNCTION__);
+    global $CFG;
+
+    if (!during_initial_install() && empty($CFG->slasharguments)) {
+        $result->setInfo('slasharguments');
+        $result->setStatus(false);
+        return $result;
+    }
+
+    return null;
+}
