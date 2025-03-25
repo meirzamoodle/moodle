@@ -160,6 +160,8 @@ function(
 
         if (count > 0) {
             container.removeClass('hidden');
+        } else {
+            container.addClass('hidden');
         }
     };
 
@@ -446,11 +448,8 @@ function(
             var element = getTotalUnreadConversationCountElement(root);
             var count = parseInt(element.text());
             count = count - 1;
-            element.text(count);
-
-            if (count < 1) {
-                element.addClass('hidden');
-            }
+            // Re-render the unread count.
+            renderUnreadCount(root, count);
         }
     };
 
@@ -573,9 +572,12 @@ function(
      */
     var markConversationAsRead = function(root, conversationElement) {
         var unreadCount = conversationElement.find(SELECTORS.UNREAD_COUNT);
-        unreadCount.text('0');
-        unreadCount.addClass('hidden');
-        decrementTotalUnreadConversationCount(root);
+        // If the count element has the hidden class, it isn't an unread message.
+        if (!unreadCount.hasClass('hidden')) {
+            unreadCount.text('0');
+            unreadCount.addClass('hidden');
+            decrementTotalUnreadConversationCount(root);
+        }
     };
 
     /**
