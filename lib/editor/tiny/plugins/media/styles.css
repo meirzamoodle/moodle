@@ -77,3 +77,12 @@ iframe.mm_iframe {
         padding: 0;
     }
 }
+
+@media (max-width: 991.98px) {
+    .tiny_image_footer_template .row.insert-image-footer .col-md-6 {
+        position: relative;
+        width: 100%;
+        flex: none;
+        max-width: 100%;
+    }
+}
