@@ -133,3 +133,15 @@ iframe.mm_iframe {
 #media-filter-preview-container > video {
     width: 100%;
 }
+
+@media (max-width: 991.98px) {
+    .tiny_image_footer_template .row.insert-image-footer .col-md-6,
+    .tiny_media_footer_template .row.insert-media-footer .col-md-6 {
+        flex-shrink: 0;
+        width: 100%;
+        max-width: 100%;
+        padding-right: calc(var(--bs-gutter-x) * .5);
+        padding-left: calc(var(--bs-gutter-x) * .5);
+        margin-top: var(--bs-gutter-y);
+    }
+}

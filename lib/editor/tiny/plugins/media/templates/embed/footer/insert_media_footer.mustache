@@ -29,8 +29,8 @@
     }
 
 }}
-<div class="row">
-    <div class="col-md-6 d-flex align-items-center p-0">
+<div class="row insert-media-footer">
+    <div class="col-md-6 d-flex align-items-center p-0 mb-1">
         {{#showDropzone}}
             <label for="{{elementid}}_tiny_media_from_url_entry" class="me-1">{{#str}} enterurlor, tiny_media {{/str}}</label>
         {{/showDropzone}}
@@ -47,7 +47,7 @@
         >
         <button disabled class="tiny_media_add_url btn btn-secondary me-1" type="button">{{#str}} addurl, tiny_media {{/str}}</button>
     </div>
-    <div class="col-md-6 text-end mt-2 md-0 p-0">
+    <div class="col-md-6 text-end md-0 p-0">
         <button type="button" class="btn btn-secondary" data-action="cancel">{{#str}} cancel, moodle {{/str}}</button>
         {{#showFilePicker}}
             <button class="openmediabrowser btn btn-secondary" type="button">{{#str}} browseembedimagerepositories, tiny_media {{/str}}</button>
