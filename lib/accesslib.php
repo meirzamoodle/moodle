@@ -2599,6 +2599,8 @@ function is_inside_frontpage(context $context) {
  * @return ?stdClass object or null if capability not found
  */
 function get_capability_info($capabilityname) {
+    global $CFG;
+
     $caps = get_all_capabilities();
 
     // Check for deprecated capability.
@@ -2608,12 +2610,18 @@ function get_capability_info($capabilityname) {
             if (isset($caps[$deprecatedinfo['replacement']])) {
                 $capabilityname = $deprecatedinfo['replacement'];
             } else {
-                debugging("Capability '{$capabilityname}' was supposed to be replaced with ".
-                    "'{$deprecatedinfo['replacement']}', which does not exist !");
+                // If we are running the upgrade script, we do not want to show debugging messages.
+                if (!isset($CFG->upgraderunning)) {
+                    debugging("Capability '{$capabilityname}' was supposed to be replaced with ".
+                        "'{$deprecatedinfo['replacement']}', which does not exist !");
+                }
             }
         }
-        $fullmessage = $deprecatedinfo['fullmessage'];
-        debugging($fullmessage, DEBUG_DEVELOPER);
+        // If we are running the upgrade script, we do not want to show debugging messages.
+        if (!isset($CFG->upgraderunning)) {
+            $fullmessage = $deprecatedinfo['fullmessage'];
+            debugging($fullmessage, DEBUG_DEVELOPER);
+        }
     }
     if (!isset($caps[$capabilityname])) {
         return null;
