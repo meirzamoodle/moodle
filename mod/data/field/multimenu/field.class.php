@@ -79,7 +79,11 @@ class data_field_multimenu extends data_field_base {
         if ($this->field->required) {
             $str .= '&nbsp;' . get_string('requiredelement', 'form') . '</span></legend>';
             $str .= '<div class="inline-req">';
-            $str .= $OUTPUT->pix_icon('req', get_string('requiredelement', 'form'));
+            $str .= $OUTPUT->pix_icon(
+                pix: 'req',
+                alt: get_string('requiredelement', 'form'),
+                attributes: ['aria-hidden' => true],
+            );
             $str .= '</div>';
         } else {
             $str .= '</span></legend>';

@@ -82,7 +82,11 @@ class data_field_latlong extends data_field_base {
         $classes = 'mod-data-input form-control-static';
         $str .= '<label for="field_'.$this->field->id.'_0" class="' . $classes . '">' . get_string('latitude', 'data');
         if ($this->field->required) {
-            $str .= $OUTPUT->pix_icon('req', get_string('requiredelement', 'form'));
+            $str .= $OUTPUT->pix_icon(
+                pix: 'req',
+                alt: get_string('requiredelement', 'form'),
+                attributes: ['aria-hidden' => true],
+            );
         }
         $classes = 'form-control mx-1';
         $str .= '</label></td><td>';
@@ -93,7 +97,11 @@ class data_field_latlong extends data_field_base {
         $str .= '<tr><td align="right"><label for="field_'.$this->field->id.'_1" class="' . $classes . '">';
         $str .= get_string('longitude', 'data');
         if ($this->field->required) {
-            $str .= $OUTPUT->pix_icon('req', get_string('requiredelement', 'form'));
+            $str .= $OUTPUT->pix_icon(
+                pix: 'req',
+                alt: get_string('requiredelement', 'form'),
+                attributes: ['aria-hidden' => true],
+            );
         }
         $classes = 'form-control mx-1';
         $str .= '</label></td><td><input class="' . $classes . '" type="text" ';
