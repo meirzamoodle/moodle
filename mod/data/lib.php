@@ -382,7 +382,12 @@ class data_field_base {     // Base class for Database Field Types (see field/*/
         $str = '<div title="' . s($this->field->description) . '">';
         $str .= '<label for="field_'.$this->field->id.'"><span class="accesshide">'.s($this->field->name).'</span>';
         if ($this->field->required) {
-            $image = $OUTPUT->pix_icon('req', get_string('requiredelement', 'form'));
+            $image = $OUTPUT->pix_icon(
+                pix: 'req',
+                alt: get_string('requiredelement', 'form'),
+                attributes: ['aria-hidden' => true],
+            );
+
             $str .= html_writer::div($image, 'inline-req');
         }
         $str .= '</label><input class="basefieldinput form-control d-inline mod-data-input" ' .
