@@ -348,7 +348,11 @@ class mod_feedback_complete_form extends moodleform {
 
         // Add red asterisks on required fields.
         if ($item->required) {
-            $required = $OUTPUT->pix_icon('req', get_string('requiredelement', 'form'), 'moodle', ['class' => 'ms-2']);
+            $required = $OUTPUT->pix_icon(
+                pix: 'req',
+                alt: get_string('requiredelement', 'form'),
+                attributes: ['aria-hidden' => true, 'class' => 'ms-2'],
+            );
             $element->setLabel($element->getLabel() . $required);
             $this->hasrequired = true;
         }
