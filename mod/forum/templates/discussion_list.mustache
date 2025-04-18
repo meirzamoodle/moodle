@@ -207,7 +207,7 @@
                                 <div class="p-3 ps-0">
                                     <div class="d-flex">
                                         {{#discussion.pinned}}
-                                            {{#pix}}i/pinned, mod_forum, {{#str}}discussionpinned, mod_forum{{/str}}{{/pix}}
+                                            {{#pix}}i/pinned, mod_forum, {{#str}}discussionpinned, mod_forum{{/str}}, {"aria-hidden": true}{{/pix}}
                                         {{/discussion.pinned}}
                                         <a class="w-100 h-100 d-block" href="{{discussion.urls.view}}" title="{{discussion.name}}" aria-label="{{discussion.name}}">
                                             {{#shortentext}}100, {{{discussion.name}}}{{/shortentext}}
