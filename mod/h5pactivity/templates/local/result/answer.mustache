@@ -45,22 +45,22 @@
 
 }}
 {{#correct}}
-    {{#pix}}i/valid, moodle, {{#str}}answer_correct, mod_h5pactivity{{/str}}{{/pix}}{{answer}}
+    {{#pix}}i/valid, moodle, {{#str}}answer_correct, mod_h5pactivity{{/str}}, {"aria-hidden": true}{{/pix}}{{answer}}
 {{/correct}}
 {{#incorrect}}
-    {{#pix}}i/invalid, moodle, {{#str}}answer_incorrect, mod_h5pactivity{{/str}}{{/pix}}{{answer}}
+    {{#pix}}i/invalid, moodle, {{#str}}answer_incorrect, mod_h5pactivity{{/str}}, {"aria-hidden": true}{{/pix}}{{answer}}
 {{/incorrect}}
 {{#text}}
     {{answer}}
 {{/text}}
 {{#checked}}
-    {{#pix}}i/checkedcircle, moodle, {{#str}}answer_checked, mod_h5pactivity{{/str}}{{/pix}}
+    {{#pix}}i/checkedcircle, moodle, {{#str}}answer_checked, mod_h5pactivity{{/str}}, {"aria-hidden": true}{{/pix}}
 {{/checked}}
 {{#unchecked}}
 {{/unchecked}}
 {{#pass}}
-    {{#pix}}i/valid, moodle, {{#str}}answer_pass, mod_h5pactivity{{/str}}{{/pix}}
+    {{#pix}}i/valid, moodle, {{#str}}answer_pass, mod_h5pactivity{{/str}}, {"aria-hidden": true}{{/pix}}
 {{/pass}}
 {{#fail}}
-    {{#pix}}i/invalid, moodle, {{#str}}answer_fail, mod_h5pactivity{{/str}}{{/pix}}
+    {{#pix}}i/invalid, moodle, {{#str}}answer_fail, mod_h5pactivity{{/str}}, {"aria-hidden": true}{{/pix}}
 {{/fail}}
