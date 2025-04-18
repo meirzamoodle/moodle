@@ -19,7 +19,7 @@ namespace core_ai;
 use core\exception\coding_exception;
 use core_ai\aiactions\base;
 use core_ai\aiactions\responses;
-
+use core\plugininfo\aiprovider as aiproviderplugin;
 /**
  * AI subsystem manager.
  *
@@ -79,7 +79,7 @@ class manager {
      */
     public function get_providers_for_actions(array $actions, bool $enabledonly = false): array {
         $providers = [];
-        $instances = $this->get_provider_instances();
+        $instances = $this->get_sorted_providers();
         foreach ($actions as $action) {
             $providers[$action] = [];
             foreach ($instances as $instance) {
@@ -366,6 +366,7 @@ class manager {
      * @param string $name The name of the provider config.
      * @param bool $enabled The enabled state of the provider.
      * @param array|null $config The config json.
+     * @param array|null $actionconfig The action config json.
      * @return provider
      */
     public function create_provider_instance(
@@ -373,6 +374,7 @@ class manager {
         string $name,
         bool $enabled = false,
         ?array $config = null,
+        ?array $actionconfig = null,
     ): provider {
         if (!class_exists($classname) || !is_a($classname, provider::class, true)) {
             throw new \coding_exception("Provider class not valid: {$classname}");
@@ -381,11 +383,32 @@ class manager {
             enabled: $enabled,
             name: $name,
             config: json_encode($config ?? []),
+            actionconfig: $actionconfig ? json_encode($actionconfig) : '',
         );
 
         $id = $this->db->insert_record('ai_providers', $provider->to_record());
 
+        // Ensure the provider instance order config gets updated if the provider is enabled.
+        if ($enabled) {
+            $this->update_provider_order($id, \core\plugininfo\aiprovider::ENABLE);
+        }
+
         return $provider->with(id: $id);
+    }
+
+    /**
+     * Get single provider record according to the filter
+     *
+     * @param array $filter The filterable elements to get the record from
+     * @param int $strictness
+     * @return \stdClass|false
+     */
+    public function get_provider_record(array $filter = [], int $strictness = IGNORE_MISSING): \stdClass|false {
+        return $this->db->get_record(
+            table: 'ai_providers',
+            conditions: $filter,
+            strictness: $strictness,
+        );
     }
 
     /**
@@ -393,7 +416,6 @@ class manager {
      *
      * @param array|null $filter The filterable elements to get the records from.
      * @return array
-     * @throws \dml_exception
      */
     public function get_provider_records(?array $filter = null): array {
         return $this->db->get_records(
@@ -411,7 +433,6 @@ class manager {
      *
      * @param null|array $filter The database filter to apply when fetching provider records.
      * @return array An array of instantiated provider objects.
-     * @throws \dml_exception If there is a database error during record retrieval.
      */
     public function get_provider_instances(?array $filter = null): array {
         // Filter out any null values from the array (providers that couldn't be instantiated).
@@ -452,7 +473,6 @@ class manager {
      * @param array|null $config the configuration of the provider instance to be updated.
      * @param array|null $actionconfig the action configuration of the provider instance to be updated.
      * @return provider
-     * @throws \dml_exception
      */
     public function update_provider_instance(
         provider $provider,
@@ -498,6 +518,7 @@ class manager {
         if (!$provider->enabled) {
             $provider = $provider->with(enabled: true);
             $this->db->update_record('ai_providers', $provider->to_record());
+            $this->update_provider_order($provider->id, aiproviderplugin::ENABLE);
         }
 
         return $provider;
@@ -519,8 +540,146 @@ class manager {
                 $provider = $provider->with(enabled: false);
                 $this->db->update_record('ai_providers', $provider->to_record());
             }
+            $this->update_provider_order($provider->id, aiproviderplugin::DISABLE);
         }
 
         return $provider;
+    }
+
+    /**
+     * Sorts provider instances by configured order.
+     *
+     * @param array $unsorted of provider instance objects
+     * @return array of provider instance objects
+     */
+    public static function sort_providers_by_order(array $unsorted): array {
+        $sorted = [];
+        $orderarray = explode(',', get_config('core_ai', 'provider_order'));
+
+        foreach ($orderarray as $notused => $providerid) {
+            foreach ($unsorted as $key => $provider) {
+                if ($provider->id == $providerid) {
+                    $sorted[] = $provider;
+                    unset($unsorted[$key]);
+                }
+            }
+        }
+
+        return array_merge($sorted, $unsorted);
+    }
+
+    /**
+     * Get the configured ai providers from the manager.
+     *
+     * @return array
+     */
+    public function get_sorted_providers(): array {
+        $unsorted = $this->get_provider_instances();
+        $orders = $this->sort_providers_by_order($unsorted);
+        $sortedplugins = [];
+
+        foreach ($orders as $order) {
+            $sortedplugins[$order->id] = $unsorted[$order->id];
+        }
+
+        return $sortedplugins;
+    }
+
+    /**
+     * Change the order of the provider instance relative to other provider instances.
+     *
+     * When possible, the change will be stored into the config_log table, to let admins check when/who has modified it.
+     *
+     * @param int $providerid The provider ID.
+     * @param int $direction The direction to move the provider instance. Negative numbers mean up, Positive mean down.
+     * @return bool Whether the provider has been updated or not.
+     */
+    public function change_provider_order(int $providerid, int $direction): bool {
+        $activefactors = array_keys($this->get_sorted_providers());
+        $key = array_search($providerid, $activefactors);
+
+        if ($key === false) {
+            return false;
+        }
+
+        $movedown = ($direction === aiproviderplugin::MOVE_DOWN && $key < count($activefactors) - 1);
+        $moveup = ($direction === aiproviderplugin::MOVE_UP && $key >= 1);
+        if ($movedown || $moveup) {
+            $this->update_provider_order($providerid, $direction);
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * Update the provider instance order configuration.
+     *
+     * @param int $providerid The provider ID.
+     * @param string|int $action
+     *
+     * @throws dml_exception
+     */
+    public function update_provider_order(int $providerid, string|int $action): void {
+        $order = explode(',', get_config('core_ai', 'provider_order'));
+        $key = array_search($providerid, $order);
+
+        switch ($action) {
+            case aiproviderplugin::MOVE_UP:
+                if ($key >= 1) {
+                    $fsave = $order[$key];
+                    $order[$key] = $order[$key - 1];
+                    $order[$key - 1] = $fsave;
+                }
+                break;
+
+            case aiproviderplugin::MOVE_DOWN:
+                if ($key < (count($order) - 1)) {
+                    $fsave = $order[$key];
+                    $order[$key] = $order[$key + 1];
+                    $order[$key + 1] = $fsave;
+                }
+                break;
+
+            case aiproviderplugin::ENABLE:
+                if (!$key) {
+                    $order[] = $providerid;
+                }
+                break;
+
+            case aiproviderplugin::DISABLE:
+                if ($key) {
+                    unset($order[$key]);
+                }
+                break;
+        }
+
+        $this->set_provider_config(['provider_order' => implode(',', $order)], 'core_ai');
+
+        \core\session\manager::gc(); // Remove stale sessions.
+        \core_plugin_manager::reset_caches();
+    }
+
+    /**
+     * Sets config variable for given provider instance.
+     *
+     * @param array $data The data to set.
+     * @param string $plugin The plugin name.
+     *
+     * @return bool true or exception.
+     * @throws dml_exception
+     */
+    public function set_provider_config(array $data, string $plugin): bool|dml_exception {
+        $providerconf = get_config($plugin);
+        foreach ($data as $key => $newvalue) {
+            if (empty($providerconf->$key)) {
+                add_to_config_log($key, null, $newvalue, $plugin);
+                set_config($key, $newvalue, $plugin);
+            } else if ($providerconf->$key != $newvalue) {
+                add_to_config_log($key, $providerconf->$key, $newvalue, $plugin);
+                set_config($key, $newvalue, $plugin);
+            }
+        }
+        return true;
     }
 }

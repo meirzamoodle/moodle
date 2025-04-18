@@ -25,6 +25,8 @@
 require_once($CFG->dirroot . '/grade/report/lib.php');
 require_once($CFG->libdir.'/tablelib.php');
 
+use core_grades\penalty_manager;
+
 /**
  * Class providing an API for the grader report building and displaying.
  * @uses grade_report
@@ -626,23 +628,6 @@ class grade_report_grader extends grade_report {
     }
 
     /**
-     * Gets html toggle
-     * @deprecated since Moodle 2.4 as it appears not to be used any more.
-     */
-    public function get_toggles_html() {
-        throw new coding_exception('get_toggles_html() can not be used any more');
-    }
-
-    /**
-     * Prints html toggle
-     * @deprecated since 2.4 as it appears not to be used any more.
-     * @param unknown $type
-     */
-    public function print_toggle($type) {
-        throw new coding_exception('print_toggle() can not be used any more');
-    }
-
-    /**
      * Builds and returns the rows that will make up the left part of the grader report
      * This consists of student names and icons, links to user reports and id numbers, as well
      * as header cells for these columns. It also includes the fillers required for the
@@ -1200,6 +1185,7 @@ class grade_report_grader extends grade_report {
                         $context->extraclasses = 'gradevalue ' . $hidden . $gradepass;
                         $context->text = grade_format_gradevalue($gradeval, $item, true,
                             $gradedisplaytype, null);
+                        $context->text .= penalty_manager::show_penalty_indicator($grade);
                     }
                 }
 
@@ -1588,15 +1574,6 @@ class grade_report_grader extends grade_report {
         }
 
         return $OUTPUT->container($editicon.$editcalculationicon.$showhideicon.$lockunlockicon.$gradeanalysisicon, 'grade_icons');
-    }
-
-    /**
-     * Given a category element returns collapsing +/- icon if available
-     *
-     * @deprecated since Moodle 2.9 MDL-46662 - please do not use this function any more.
-     */
-    protected function get_collapsing_icon($element) {
-        throw new coding_exception('get_collapsing_icon() can not be used any more, please use get_course_header() instead.');
     }
 
     /**

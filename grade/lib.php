@@ -27,6 +27,7 @@ require_once($CFG->dirroot . '/grade/export/lib.php');
 
 use \core_grades\output\action_bar;
 use \core_grades\output\general_action_bar;
+use \core\output\single_select;
 
 /**
  * This class iterates over all users that are graded in a course.
@@ -412,12 +413,25 @@ class graded_users_iterator {
  * @param int    $includeall bool include all option
  * @param bool   $return If true, will return the HTML, otherwise, will print directly
  * @return null
+ * @todo Final deprecation on Moodle 6.0. See MDL-84680.
  */
+#[\core\attribute\deprecated('grade_get_graded_users_select()', since: '5.0', mdl: 'MDL-84673')]
 function print_graded_users_selector($course, $actionpage, $userid=0, $groupid=0, $includeall=true, $return=false) {
-    global $CFG, $USER, $OUTPUT;
+    \core\deprecation::emit_deprecation_if_present(__FUNCTION__);
+    global $OUTPUT;
     return $OUTPUT->render(grade_get_graded_users_select(substr($actionpage, 0, strpos($actionpage, '/')), $course, $userid, $groupid, $includeall));
 }
 
+/**
+ * Return a selection popup form of the graded users in a course.
+ *
+ * @param string $report name of the report
+ * @param int    $course id of the course
+ * @param int    $userid id of the currently selected user (or 'all' if they are all selected)
+ * @param int    $groupid id of requested group, 0 means all
+ * @param bool   $includeall bool include all option
+ * @return single_select
+ */
 function grade_get_graded_users_select($report, $course, $userid, $groupid, $includeall) {
     global $USER, $CFG;
 
@@ -990,6 +1004,20 @@ function print_grade_page_head(int $courseid, string $active_type, ?string $acti
         $output = $renderer->user_heading($user, $courseid, $showuserbuttons);
     } else if (!empty($heading)) {
         $output = $OUTPUT->heading($heading);
+    }
+
+    // If any grade penalty plugins are enabled, notify the user that grade penalties will not be applied to imported grades.
+    if ($active_type === 'import') {
+        foreach (core_plugin_manager::instance()->get_plugins_of_type('gradepenalty') as $plugin) {
+            if ($plugin->is_enabled()) {
+                $output .= $OUTPUT->notification(
+                    get_string('gradepenalties', 'gradeimport_csv'),
+                    \core\output\notification::NOTIFY_INFO,
+                    false,
+                );
+                break;
+            }
+        }
     }
 
     if ($return) {
@@ -1587,7 +1615,7 @@ class grade_structure {
         if ($menuitems) {
             $menu = new action_menu($menuitems);
             $icon = $OUTPUT->pix_icon('i/moremenu', get_string('actions'));
-            $extraclasses = 'btn btn-link btn-icon icon-size-3 d-flex align-items-center justify-content-center no-caret';
+            $extraclasses = 'btn btn-link btn-icon d-flex no-caret';
             $menu->set_menu_trigger($icon, $extraclasses);
             $menu->set_menu_left();
 
@@ -3384,29 +3412,11 @@ abstract class grade_helper {
     protected static $aggregationstrings = null;
 
     /**
-     * Cached grade tree plugin strings
-     * @var array
-     */
-    protected static $langstrings = [];
-
-    /**
-     * First checks the cached language strings, then returns match if found, or uses get_string()
-     * to get it from the DB, caches it then returns it.
-     *
      * @deprecated since 4.3
-     * @todo MDL-78780 This will be deleted in Moodle 4.7.
-     * @param string $strcode
-     * @param string|null $section Optional language section
-     * @return string
      */
-    public static function get_lang_string(string $strcode, ?string $section = null): string {
-        debugging('grade_helper::get_lang_string() is deprecated, please use' .
-            ' get_string() instead.', DEBUG_DEVELOPER);
-
-        if (empty(self::$langstrings[$strcode])) {
-            self::$langstrings[$strcode] = get_string($strcode, $section);
-        }
-        return self::$langstrings[$strcode];
+    #[\core\attribute\deprecated('get_string', since: '4.3', mdl: 'MDL-78561', final: true)]
+    public static function get_lang_string(): void {
+        \core\deprecation::emit_deprecation_if_present([self::class, __FUNCTION__]);
     }
 
     /**

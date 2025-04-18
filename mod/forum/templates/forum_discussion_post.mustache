@@ -48,7 +48,7 @@
         {{#isfirstunread}}<a id="unread" aria-hidden="true"></a>{{/isfirstunread}}
 
         <div class="d-flex flex-column w-100"  data-region-content="forum-post-core">
-            <header id="post-header-{{id}}-{{uniqid}}" class="mb-2 header row d-flex">
+            <header id="post-header-{{id}}-{{uniqid}}" class="mb-2 header d-flex">
                 {{^isdeleted}}
                     {{#author}}
                         <div class="me-2" style="width: 45px;">
@@ -190,7 +190,7 @@
                                 {{/html.rating}}
                                 {{$actions}}
                                     <div
-                                        class="post-actions d-flex align-self-end justify-content-end flex-wrap ms-auto"
+                                        class="post-actions d-flex align-self-end justify-content-end flex-wrap ms-auto p-1"
                                         data-region="post-actions-container"
                                         role="menubar"
                                         aria-label='{{#str}} postbyuser, mod_forum, {"post": "{{subject}}", "user": "{{author.fullname}}"} {{/str}}'

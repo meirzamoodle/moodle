@@ -64,9 +64,10 @@ Feature: An administrator can manage AI subsystem settings
     And I should see "Configure provider instance"
     And I click on the "Settings" link in the table row containing "Generate text"
     And I should see "Generate text action settings"
+    And I set the field "AI model" to "Custom"
     And I set the following fields to these values:
-        | AI model     | gpt-3                                               |
-        | API endpoint | https://api.openai.com/v1/engines/gpt-3/completions |
+      | Custom model name | gpt-3                                               |
+      | API endpoint      | https://api.openai.com/v1/engines/gpt-3/completions |
     And I click on "Save changes" "button"
     Then I should see "Generate text action settings updated"
 
@@ -129,3 +130,18 @@ Feature: An administrator can manage AI subsystem settings
     And I click on the "Settings" link in the table row containing "Text editor placement"
     And I should see "This action is unavailable." in the table row containing "Generate text"
     Then I should not see "This action is unavailable." in the table row containing "Generate image"
+
+  @javascript
+  Scenario: An administrator can control the enabled state of AI placement actions using JavaScript
+    Given the following "core_ai > ai providers" exist:
+      | provider          | name            | enabled | endpoint               |
+      | aiprovider_ollama | Ollama API test | 1       | http://localhost:11434 |
+    And I am logged in as "admin"
+    And I navigate to "AI > AI placements" in site administration
+    When I click on the "Settings" link in the table row containing "Text editor placement"
+    Then I should see "Generate text" in the "flexible" "table"
+    And I should see "Generate image" in the "flexible" "table"
+    And I should not see "This action is unavailable. No AI providers are configured for this action." in the "Generate text" "table_row"
+    And I should see "This action is unavailable. No AI providers are configured for this action." in the "Generate image" "table_row"
+    And I toggle the "Generate text" admin switch "off"
+    And I should see "Generate text disabled."

@@ -183,6 +183,14 @@ class behat_course extends behat_base {
     protected function resolve_page_instance_url(string $type, string $identifier): moodle_url {
         $type = strtolower($type);
 
+        // Some selectors can have a sub selector divided by >.
+        $subtype = null;
+        $parts = explode('>', $type);
+        if (count($parts) > 1) {
+            $type = trim($parts[0]);
+            $subtype = trim($parts[1]);
+        }
+
         $sectionpage = 'section.php';
         switch ($type) {
             case 'section settings':
@@ -206,8 +214,11 @@ class behat_course extends behat_base {
                 }
                 return new moodle_url('/course/' . $sectionpage, ['id' => $section->id]);
             case 'activities':
-                $courseid = $this->get_course_id($identifier);
-                return new moodle_url('/course/overview.php', ['id' => $courseid]);
+                $params = ['id' => $this->get_course_id($identifier)];
+                if ($subtype !== null) {
+                    $params['expand[]'] = $subtype;
+                }
+                return new moodle_url('/course/overview.php', $params);
         }
         throw new Exception('Unrecognised core page type "' . $type . '."');
     }
@@ -340,7 +351,7 @@ class behat_course extends behat_base {
 
         // If it is already opened we do nothing.
         $xpath = $this->section_exists($section);
-        $xpath .= "/descendant::div[contains(@class, 'section-actions')]/descendant::a[@data-toggle='dropdown']";
+        $xpath .= "/descendant::div[contains(@class, 'section-actions')]/descendant::a[@data-bs-toggle='dropdown']";
 
         $exception = new ExpectationException('Section "' . $section . '" was not found', $this->getSession());
         $menu = $this->find('xpath', $xpath, $exception);
@@ -654,7 +665,7 @@ class behat_course extends behat_base {
         if ($this->is_course_editor()) {
             $xpath = $sectionxpath .
                     "/descendant::div[contains(@class, 'section-actions')]" .
-                    "/descendant::a[contains(@data-toggle, 'dropdown')]";
+                    "/descendant::a[contains(@data-bs-toggle, 'dropdown')]";
             if (!$this->getSession()->getPage()->find('xpath', $xpath)) {
                 throw new ExpectationException('The section edit menu is not available', $this->getSession());
             }
@@ -963,7 +974,7 @@ class behat_course extends behat_base {
         $activitynode = $this->get_activity_node($activityname);
 
         // Find the menu.
-        $menunode = $activitynode->find('css', 'a[data-toggle=dropdown]');
+        $menunode = $activitynode->find('css', 'a[data-bs-toggle=dropdown]');
         if (!$menunode) {
             throw new ExpectationException(sprintf('Could not find actions menu for the activity "%s"', $activityname),
                     $this->getSession());
@@ -974,7 +985,7 @@ class behat_course extends behat_base {
         }
 
         $this->execute('behat_course::i_click_on_in_the_activity',
-                array("a[data-toggle='dropdown']", "css_element", $this->escape($activityname))
+                ["a[data-bs-toggle='dropdown']", "css_element", $this->escape($activityname)]
         );
 
         $this->actions_menu_should_be_open($activityname);
@@ -996,7 +1007,7 @@ class behat_course extends behat_base {
         // If it is already closed we do nothing.
         $activitynode = $this->get_activity_node($activityname);
         // Find the menu.
-        $menunode = $activitynode->find('css', 'a[data-toggle=dropdown]');
+        $menunode = $activitynode->find('css', 'a[data-bs-toggle=dropdown]');
         if (!$menunode) {
             throw new ExpectationException(sprintf('Could not find actions menu for the activity "%s"', $activityname),
                     $this->getSession());
@@ -1007,7 +1018,7 @@ class behat_course extends behat_base {
         }
 
         $this->execute('behat_course::i_click_on_in_the_activity',
-                array("a[data-toggle='dropdown']", "css_element", $this->escape($activityname))
+                ["a[data-bs-toggle='dropdown']", "css_element", $this->escape($activityname)]
         );
     }
 
@@ -1026,7 +1037,7 @@ class behat_course extends behat_base {
 
         $activitynode = $this->get_activity_node($activityname);
         // Find the menu.
-        $menunode = $activitynode->find('css', 'a[data-toggle=dropdown]');
+        $menunode = $activitynode->find('css', 'a[data-bs-toggle=dropdown]');
         if (!$menunode) {
             throw new ExpectationException(sprintf('Could not find actions menu for the activity "%s"', $activityname),
                     $this->getSession());
@@ -1209,7 +1220,7 @@ class behat_course extends behat_base {
         // Determine the future new activity xpath from the former one.
         $duplicatedxpath = "//li[contains(concat(' ', normalize-space(@class), ' '), ' activity ')]" .
                 "[contains(., $activityliteral)]/following-sibling::li";
-        $duplicatedactionsmenuxpath = $duplicatedxpath . "/descendant::a[@data-toggle='dropdown']";
+        $duplicatedactionsmenuxpath = $duplicatedxpath . "/descendant::a[@data-bs-toggle='dropdown']";
 
         if ($this->running_javascript()) {
             // We wait until the AJAX request finishes and the section is visible again.
@@ -2036,7 +2047,7 @@ class behat_course extends behat_base {
             throw new ExpectationException("Expected action was not available or not found ($action)", $this->getSession());
         }
         if ($this->running_javascript() && !$actionnode->isVisible()) {
-            $actionsnode->find('css', 'a[data-toggle=dropdown]')->click();
+            $actionsnode->find('css', 'a[data-bs-toggle=dropdown]')->click();
             $actionnode = $actionsnode->find('css', '.action-'.$action);
         }
         $actionnode->click();
@@ -2062,7 +2073,7 @@ class behat_course extends behat_base {
      */
     public function i_open_the_action_menu_for_item_in_management_category_listing($name) {
         $node = $this->get_management_category_listing_node_by_name($name);
-        $node->find('xpath', "//*[contains(@class, 'category-item-actions')]//a[@data-toggle='dropdown']")->click();
+        $node->find('xpath', "//*[contains(@class, 'category-item-actions')]//a[@data-bs-toggle='dropdown']")->click();
     }
 
     /**

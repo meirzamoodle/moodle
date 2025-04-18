@@ -412,17 +412,21 @@ function(
 
         // These are theme-specific to help us fix random behat fails.
         // These events target those events defined in BS3 and BS4 onwards.
-        root.on('hide.bs.collapse', '.collapse', function(e) {
-            var pendingPromise = new Pending();
-            $(e.target).one('hidden.bs.collapse', function() {
-                pendingPromise.resolve();
+        root[0].querySelectorAll('.collapse').forEach((collapse) => {
+            collapse.addEventListener('hide.bs.collapse', (e) => {
+                var pendingPromise = new Pending();
+                e.target.addEventListener('hidden.bs.collapse', function() {
+                    pendingPromise.resolve();
+                }, {once: true});
             });
         });
 
-        root.on('show.bs.collapse', '.collapse', function(e) {
-            var pendingPromise = new Pending();
-            $(e.target).one('shown.bs.collapse', function() {
-                pendingPromise.resolve();
+        root[0].querySelectorAll('.collapse').forEach((collapse) => {
+            collapse.addEventListener('show.bs.collapse', (e) => {
+                var pendingPromise = new Pending();
+                e.target.addEventListener('shown.bs.collapse', function() {
+                    pendingPromise.resolve();
+                }, {once: true});
             });
         });
 
@@ -452,11 +456,14 @@ function(
             });
 
             PubSub.subscribe(Events.TOGGLE_VISIBILITY, function(buttonid) {
+                const buttonElement = document.getElementById(buttonid);
                 if (isVisible(root)) {
                     hide(root);
+                    buttonElement?.setAttribute('aria-expanded', false);
                     $(SELECTORS.JUMPTO).attr('tabindex', -1);
                 } else {
                     show(namespace, root);
+                    buttonElement?.setAttribute('aria-expanded', true);
                     setJumpFrom(buttonid);
                     $(SELECTORS.JUMPTO).attr('tabindex', 0);
                 }
@@ -477,7 +484,7 @@ function(
             if (button) {
                 $('#' + button).focus();
             }
-            PubSub.publish(Events.TOGGLE_VISIBILITY);
+            PubSub.publish(Events.TOGGLE_VISIBILITY, button);
         });
 
         PubSub.subscribe(Events.CREATE_CONVERSATION_WITH_USER, function(args) {

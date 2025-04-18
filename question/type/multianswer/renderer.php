@@ -219,12 +219,12 @@ abstract class qtype_multianswer_subq_renderer_base extends qtype_renderer {
             'role' => 'button',
             'tabindex' => 0,
             'class' => 'feedbacktrigger btn btn-link p-0',
-            'data-toggle' => 'popover',
-            'data-container' => 'body',
-            'data-content' => $feedbackcontents,
-            'data-placement' => 'right',
-            'data-trigger' => 'hover focus',
-            'data-html' => 'true',
+            'data-bs-toggle' => 'popover',
+            'data-bs-container' => 'body',
+            'data-bs-content' => $feedbackcontents,
+            'data-bs-placement' => 'right',
+            'data-bs-trigger' => 'hover focus',
+            'data-bs-html' => 'true',
         ]);
     }
 
@@ -377,6 +377,7 @@ class qtype_multianswer_multichoice_inline_renderer
 
         $inputattributes = array(
             'id' => $qa->get_qt_field_name($fieldname),
+            'class' => 'form-select d-inline-block mb-1',
         );
         if ($options->readonly) {
             $inputattributes['disabled'] = 'disabled';

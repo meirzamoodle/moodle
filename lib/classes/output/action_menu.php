@@ -168,7 +168,7 @@ class action_menu implements renderable, templatable {
             'aria-labelledby' => 'action-menu-toggle-' . $this->instance,
             'role' => 'menu',
         ];
-        $this->dropdownalignment = 'dropdown-menu-right';
+        $this->dropdownalignment = 'dropdown-menu-end';
         foreach ($actions as $action) {
             $this->add($action);
         }
@@ -197,7 +197,7 @@ class action_menu implements renderable, templatable {
     /**
      * Classes for the trigger menu
      */
-    const DEFAULT_KEBAB_TRIGGER_CLASSES = 'btn btn-icon d-flex align-items-center justify-content-center no-caret';
+    const DEFAULT_KEBAB_TRIGGER_CLASSES = 'btn btn-icon d-flex no-caret';
 
     /**
      * Setup trigger as in the kebab menu.
@@ -419,7 +419,7 @@ class action_menu implements renderable, templatable {
      *
      */
     public function set_menu_left() {
-        $this->dropdownalignment = 'dropdown-menu-left';
+        $this->dropdownalignment = 'dropdown-menu-start';
     }
 
     /**

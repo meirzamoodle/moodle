@@ -83,10 +83,10 @@ class custom_view extends \core_question\local\bank\view {
         }
 
         $this->init_columns($this->wanted_columns(), $this->heading_column());
+        $this->pagesize = self::DEFAULT_PAGE_SIZE;
         parent::__construct($contexts, $pageurl, $course, $cm, $params, $extraparams);
         [$this->quiz, ] = get_module_from_cmid($extraparams['quizcmid']);
         $this->set_quiz_has_attempts(quiz_has_attempts($this->quiz->id));
-        $this->pagesize = self::DEFAULT_PAGE_SIZE;
         $this->requirebankswitch = $extraparams['requirebankswitch'] ?? true;
     }
 
@@ -247,9 +247,16 @@ class custom_view extends \core_question\local\bank\view {
                                           FROM {question_versions} v
                                           JOIN {question_bank_entries} be
                                             ON be.id = v.questionbankentryid
-                                         WHERE be.id = qbe.id)';
-        $onlyready = '((' . "qv.status = '" . question_version_status::QUESTION_STATUS_READY . "'" .'))';
-        $this->sqlparams = [];
+                                         WHERE be.id = qbe.id AND v.status <> :substatus)';
+
+        // An additional condition is required in the subquery to account for scenarios
+        // where the latest version is hidden. This ensures we retrieve the previous
+        // "Ready" version instead of the hidden latest version.
+        $onlyready = '((qv.status = :status))';
+        $this->sqlparams = [
+            'status' => question_version_status::QUESTION_STATUS_READY,
+            'substatus' => question_version_status::QUESTION_STATUS_HIDDEN,
+        ];
         $conditions = [];
         foreach ($this->searchconditions as $searchcondition) {
             if ($searchcondition->where()) {
@@ -309,12 +316,11 @@ class custom_view extends \core_question\local\bank\view {
      * @return void
      */
     public function display(): void {
-        $editcontexts = $this->contexts->having_one_edit_tab_cap('questions');
 
         echo \html_writer::start_div('questionbankwindow boxwidthwide boxaligncenter', [
             'data-component' => 'core_question',
             'data-callback' => 'display_question_bank',
-            'data-contextid' => $editcontexts[array_key_last($editcontexts)]->id,
+            'data-contextid' => $this->contexts->lowest()->id,
         ]);
 
         // Show the 'switch question bank' button.
