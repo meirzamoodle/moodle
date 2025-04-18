@@ -56,7 +56,7 @@
         {{/compliant}}
         {{^compliant}}
             <h4 class="d-inline ps-6 " id="{{raw_component}}">{{component}}</h4>
-            <span>{{#pix}}i/risk_xss, moodle, {{#str}}requiresattention, tool_dataprivacy{{/str}}{{/pix}}</span>
+            <span title={{#quote}}{{#str}}requiresattention, tool_dataprivacy{{/str}}{{/quote}}>{{#pix}}i/risk_xss, moodle{{/pix}}</span>
         {{/compliant}}
         {{#external}}
             <span class="badge rounded-pill bg-info text-white">{{#str}}external, tool_dataprivacy{{/str}}</span>
