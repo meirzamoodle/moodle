@@ -43,9 +43,10 @@
         }
     }
 }}
-<div class="block_accessreview block_accessreview_view {{classList}}">
+<div class="block_accessreview block_accessreview_view {{classList}}"
+    title={{#quote}}{{#resultPassed}}{{#str}}status:successalt, block_accessreview{{/str}}{{/resultPassed}}{{^resultPassed}}{{#str}}status:errorsalt, block_accessreview{{/str}}{{/resultPassed}}{{/quote}}>
     {{#resultPassed}}
-        {{#pix}}t/pass, block_accessreview, {{#str}}status:successalt, block_accessreview{{/str}}{{/pix}}
+        {{#pix}}t/pass, block_accessreview{{/pix}}
         {{#str}}status:success, block_accessreview, {
             "errorCount": {{passRate.errorCount}},
             "checkCount": {{passRate.checkCount}},
@@ -53,7 +54,7 @@
         }{{/str}}
     {{/resultPassed}}
     {{^resultPassed}}
-        {{#pix}}t/fail, block_accessreview, {{#str}}status:errorsalt, block_accessreview{{/str}}{{/pix}}
+        {{#pix}}t/fail, block_accessreview{{/pix}}
         {{#str}}status:errors, block_accessreview, {
             "errorCount": {{passRate.errorCount}},
             "checkCount": {{passRate.checkCount}},
