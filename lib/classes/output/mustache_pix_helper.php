@@ -60,24 +60,71 @@ class mustache_pix_helper {
      * @return string
      */
     public function pix($text, Mustache_LambdaHelper $helper) {
+
+        $parts = $this->explode_mustache($text);
+        $parts = array_pad($parts, 4, ''); // Fill missing values with empty strings.
+
+        [$key, $component, $alttext, $attributes] = array_map('trim', $parts);
+
         // Split the text into an array of variables.
-        $key = strtok($text, ",");
         $key = trim($helper->render($key));
-        $component = strtok(",");
         $component = trim($helper->render($component));
         if (!$component) {
             $component = '';
         }
-        $text = strtok("");
+
         // Allow mustache tags in the last argument.
-        $text = trim($helper->render($text));
+        $alttext = trim($helper->render($alttext));
         // The $text has come from a template, so HTML special
         // chars have been escaped. However, render_pix_icon
         // assumes the alt arrives with no escaping. So we need
         // ot un-escape here.
-        $text = htmlspecialchars_decode($text, ENT_COMPAT);
+        $alttext = htmlspecialchars_decode($alttext, ENT_COMPAT);
 
-        return trim($this->renderer->pix_icon($key, $text, $component));
+        // Decode additional options if present.
+        $attributes = trim($helper->render($attributes));
+        $options = [];
+        if (!empty($attributes)) {
+            $options = json_decode($attributes, true);
+            if (!is_array($options)) {
+                throw new \moodle_exception('Invalid JSON format for pix_icon options');
+            }
+        }
+
+        return trim($this->renderer->pix_icon($key, $alttext, $component, $options));
+    }
+
+    /**
+     * Splits a string by commas while respecting nested Mustache tags.
+     *
+     * @param string $input The input string to be split.
+     * @return array An array of strings split by commas, preserving nested Mustache tags.
+     */
+    private function explode_mustache(string $input): array {
+        $result = [];
+        $buffer = '';
+        $depth = 0;
+
+        foreach (explode(',', $input) as $part) {
+            // Count mustache open/close blocks.
+            $depth += substr_count($part, '{{#');
+            $depth -= substr_count($part, '{{/');
+
+            // Build token.
+            $buffer .= ($buffer ? ',' : '') . $part;
+
+            if ($depth === 0) {
+                $result[] = trim($buffer);
+                $buffer = '';
+            }
+        }
+
+        // Push remaining buffer if any.
+        if ($buffer !== '') {
+            $result[] = trim($buffer);
+        }
+
+        return $result;
     }
 }
 
