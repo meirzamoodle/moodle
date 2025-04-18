@@ -1,0 +1,9 @@
+issueNumber: MDL-85040
+notes:
+  core:
+    - message: >-
+        The mustache_pix_helper() `core\output\mustache_pix_helper::pix()` now supports the attributes parameter,
+        and the improvement also extends to the JS pixHelper() `lib/amd/src/local/templates/renderer.js`.
+        However, for the JS, the attributes coverage is limited to the aria-hidden attribute,
+        which can be improved later when needed.
+      type: improved
