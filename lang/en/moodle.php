@@ -552,6 +552,7 @@ $string['deletingolddata'] = 'Deleting old data';
 $string['department'] = 'Department';
 $string['desc'] = 'Descending';
 $string['description'] = 'Description';
+$string['deselect'] = 'Deselect {$a}';
 $string['deselectall'] = 'Deselect all';
 $string['deselectnos'] = 'Deselect all \'No\'';
 $string['details'] = 'Details';
