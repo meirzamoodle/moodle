@@ -122,4 +122,8 @@ $callbacks = [
         'hook' => \core_files\hook\before_file_created::class,
         'callback' => [\core_files\redactor\hook_listener::class, 'file_redaction_handler'],
     ],
+    [
+        'hook' => core\hook\output\before_footer_html_generation::class,
+        'callback' => [\core\accessibility\live_announcer::class, 'before_footer_html_generation'],
+    ],
 ];
