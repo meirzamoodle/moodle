@@ -1,0 +1,35 @@
+{{!
+    This file is part of Moodle - http://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{!
+    @template core/accessibility/live_announcer
+
+    Renders an ARIA live region for announcing dynamic updates to assistive technologies,such as screen readers, in a polite manner.
+    The region is visually hidden and announces changes (e.g., autocomplete suggestions or status messages) without interrupting user interaction.
+    The `aria-atomic="true"` attribute ensures the entire content is read when updated.
+    Use with a JavaScript announcer utility to populate the region's content.
+
+    Classes required for JS:
+    * core/accessibility/live_announcer
+
+    Context variables required for this template:
+    * none
+
+    Example context (json):
+    {
+    }
+}}
+<div id="liveannouncer0" aria-live="polite" aria-atomic="true" class="visually-hidden"></div>
