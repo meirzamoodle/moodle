@@ -59,7 +59,7 @@ const AICourseAssist = class {
         this.aiDrawerBodyElement = document.querySelector(Selectors.ELEMENTS.AIDRAWER_BODY);
         this.pageElement = document.querySelector(Selectors.ELEMENTS.PAGE);
         this.jumpToElement = document.querySelector(Selectors.ELEMENTS.JUMPTO);
-        this.dropdownToggleElement = document.querySelector(Selectors.ELEMENTS.DROPDOWN_TOGGLE);
+        this.actionElement = document.querySelector(Selectors.ELEMENTS.ACTION);
         this.aiDrawerCloseElement = this.aiDrawerElement.querySelector(Selectors.ELEMENTS.AIDRAWER_CLOSE);
         this.lastAction = '';
         this.responses = new Map();
@@ -78,7 +78,7 @@ const AICourseAssist = class {
                 e.preventDefault();
                 this.openAIDrawer();
                 this.lastAction = 'summarise';
-                this.dropdownToggleElement.focus();
+                this.actionElement.focus();
                 const isPolicyAccepted = await this.isPolicyAccepted();
                 if (!isPolicyAccepted) {
                     // Display policy.
@@ -93,7 +93,7 @@ const AICourseAssist = class {
                 e.preventDefault();
                 this.openAIDrawer();
                 this.lastAction = 'explain';
-                this.dropdownToggleElement.focus();
+                this.actionElement.focus();
                 const isPolicyAccepted = await this.isPolicyAccepted();
                 if (!isPolicyAccepted) {
                     // Display policy.
@@ -124,12 +124,12 @@ const AICourseAssist = class {
 
         // Focus on the dropdown toggle when the AI drawer container receives focus.
         this.aiDrawerElement.addEventListener('focus', () => {
-            this.dropdownToggleElement.focus();
+            this.actionElement.focus();
         });
 
         // Remove active from the dropdown toggle when it loses focus.
-        this.dropdownToggleElement.addEventListener('blur', () => {
-            this.dropdownToggleElement.classList.remove('active');
+        this.actionElement.addEventListener('blur', () => {
+            this.actionElement.classList.remove('active');
         });
     }
 
@@ -259,8 +259,8 @@ const AICourseAssist = class {
         // This action will make the dropdown toggle appear focused.
         // When the dropdown toggle element loses focus,
         // we will remove the active class at {@see registerEventListeners()}
-        this.dropdownToggleElement.classList.add('active');
-        this.dropdownToggleElement.focus();
+        this.actionElement.classList.add('active');
+        this.actionElement.focus();
     }
 
     /**
