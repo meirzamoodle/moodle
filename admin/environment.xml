@@ -4716,6 +4716,7 @@
       <VENDOR name="mysql" version="8.4" />
       <VENDOR name="postgres" version="14" />
       <VENDOR name="mssql" version="14.0" />
+      <VENDOR name="auroramysql" version="8.0" />
     </DATABASE>
     <PHP version="8.2.0" level="required">
     </PHP>
