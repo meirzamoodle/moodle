@@ -116,7 +116,7 @@
                 <td>{{formattedretentionperiod}}</td>
                 <td>
                     {{#protected}}
-                        {{#pix}}i/checked, core, {{#str}}yes{{/str}}{{/pix}}
+                        <span title={{#quote}}{{#str}}yes{{/str}}{{/quote}}>{{#pix}}i/checked, core{{/pix}}</span>
                     {{/protected}}
                     {{^protected}}
                         {{#str}}no{{/str}}

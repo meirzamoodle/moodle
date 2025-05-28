@@ -64,11 +64,11 @@ Feature: We don't show hidden grades for users without the 'moodle/grade:viewhid
     And the field "Grade for Manual grade" matches value "30"
     And the field "Grade for Course total" matches value "210"
 
-    And "Hidden" "icon" should exist in the "Test assignment name 1" "table_row"
-    And "Hidden" "icon" should exist in the "Test assignment name 2" "table_row"
-    And "Hidden" "icon" should exist in the "Test assignment name 3" "table_row"
-    And "Hidden" "icon" should exist in the "Manual grade" "table_row"
-    And "Hidden" "icon" should not exist in the "Course total" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should exist in the "Test assignment name 1" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should exist in the "Test assignment name 2" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should exist in the "Test assignment name 3" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should exist in the "Manual grade" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should not exist in the "Course total" "table_row"
 
     And the field "Feedback for Test assignment name 1" matches value ""
     And the field "Feedback for Test assignment name 2" matches value ""
@@ -95,11 +95,11 @@ Feature: We don't show hidden grades for users without the 'moodle/grade:viewhid
     And the field "Grade for Manual grade" matches value "40"
     And the field "Grade for Course total" matches value "220"
 
-    And "Hidden" "icon" should not exist in the "Test assignment name 1" "table_row"
-    And "Hidden" "icon" should exist in the "Test assignment name 2" "table_row"
-    And "Hidden" "icon" should exist in the "Test assignment name 3" "table_row"
-    And "Hidden" "icon" should exist in the "Manual grade" "table_row"
-    And "Hidden" "icon" should not exist in the "Course total" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should not exist in the "Test assignment name 1" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should exist in the "Test assignment name 2" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should exist in the "Test assignment name 3" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should exist in the "Manual grade" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should not exist in the "Course total" "table_row"
 
     And the field "Feedback for Test assignment name 1" matches value ""
     And the field "Feedback for Test assignment name 2" matches value ""
@@ -123,8 +123,8 @@ Feature: We don't show hidden grades for users without the 'moodle/grade:viewhid
     And I click on "Test assignment name 1" in the "Search items" search combo box
     And the field "Grade for Student1 1" matches value "80"
     And the field "Grade for Student2 2" matches value "70"
-    And "Hidden" "icon" should exist in the "Student1 1" "table_row"
-    And "Hidden" "icon" should not exist in the "Student2 2" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should exist in the "Student1 1" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should not exist in the "Student2 2" "table_row"
     And the field "Feedback for Student1 1" matches value ""
     And the field "Feedback for Student2 2" matches value ""
     And "Override for Student1 1" "checkbox" should exist in the "Student1 1" "table_row"
@@ -135,8 +135,8 @@ Feature: We don't show hidden grades for users without the 'moodle/grade:viewhid
     And I click on "Test assignment name 2" in the "Search items" search combo box
     And the field "Grade for Student1 1" matches value "90"
     And the field "Grade for Student2 2" matches value "60"
-    And "Hidden" "icon" should exist in the "Student1 1" "table_row"
-    And "Hidden" "icon" should exist in the "Student2 2" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should exist in the "Student1 1" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should exist in the "Student2 2" "table_row"
     And the field "Feedback for Student1 1" matches value ""
     And the field "Feedback for Student2 2" matches value ""
     And "Override for Student1 1" "checkbox" should exist in the "Student1 1" "table_row"
@@ -147,8 +147,8 @@ Feature: We don't show hidden grades for users without the 'moodle/grade:viewhid
     And I click on "Test assignment name 3" in the "Search items" search combo box
     And the field "Grade for Student1 1" matches value "10"
     And the field "Grade for Student2 2" matches value "50"
-    And "Hidden" "icon" should exist in the "Student1 1" "table_row"
-    And "Hidden" "icon" should exist in the "Student2 2" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should exist in the "Student1 1" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should exist in the "Student2 2" "table_row"
     And the field "Feedback for Student1 1" matches value ""
     And the field "Feedback for Student2 2" matches value ""
     And "Exclude for Student1 1" "checkbox" should exist in the "Student1 1" "table_row"
@@ -159,8 +159,8 @@ Feature: We don't show hidden grades for users without the 'moodle/grade:viewhid
     And I click on "Manual grade" in the "Search items" search combo box
     And the field "Grade for Student1 1" matches value "30"
     And the field "Grade for Student2 2" matches value "40"
-    And "Hidden" "icon" should exist in the "Student1 1" "table_row"
-    And "Hidden" "icon" should exist in the "Student2 2" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should exist in the "Student1 1" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should exist in the "Student2 2" "table_row"
     And the field "Feedback for Student1 1" matches value ""
     And the field "Feedback for Student2 2" matches value ""
     And "Override for Student1 1" "checkbox" should not exist in the "Student1 1" "table_row"
@@ -171,8 +171,8 @@ Feature: We don't show hidden grades for users without the 'moodle/grade:viewhid
     And I click on "Course total" in the "Search items" search combo box
     And the field "Grade for Student1 1" matches value "210"
     And the field "Grade for Student2 2" matches value "220"
-    And "Hidden" "icon" should not exist in the "Student1 1" "table_row"
-    And "Hidden" "icon" should not exist in the "Student2 2" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should not exist in the "Student1 1" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should not exist in the "Student2 2" "table_row"
     And the field "Feedback for Student1 1" matches value ""
     And the field "Feedback for Student2 2" matches value ""
     And "Override for Student1 1" "checkbox" should exist in the "Student1 1" "table_row"
@@ -191,40 +191,40 @@ Feature: We don't show hidden grades for users without the 'moodle/grade:viewhid
       | User full name | Grade     |
       | Student1 1     | 210       |
       | Student2 2     | 220       |
-    And "Hidden" "icon" should not exist in the "Student1 1" "table_row"
-    And "Hidden" "icon" should not exist in the "Student2 2" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should not exist in the "Student1 1" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should not exist in the "Student2 2" "table_row"
 
     When I click on "Manual grade" in the "Search items" search combo box
     And the following should exist in the "generaltable" table:
       | User full name | Grade     |
       | Student1 1     | 30        |
       | Student2 2     | 40        |
-    And "Hidden" "icon" should exist in the "Student1 1" "table_row"
-    And "Hidden" "icon" should exist in the "Student2 2" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should exist in the "Student1 1" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should exist in the "Student2 2" "table_row"
 
     And I click on "Test assignment name 3" in the "Search items" search combo box
     And the following should exist in the "generaltable" table:
       | User full name | Grade     |
       | Student1 1     | 10        |
       | Student2 2     | 50        |
-    And "Hidden" "icon" should exist in the "Student1 1" "table_row"
-    And "Hidden" "icon" should exist in the "Student2 2" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should exist in the "Student1 1" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should exist in the "Student2 2" "table_row"
 
     And I click on "Test assignment name 2" in the "Search items" search combo box
     And the following should exist in the "generaltable" table:
       | User full name | Grade     |
       | Student1 1     | 90        |
       | Student2 2     | 60        |
-    And "Hidden" "icon" should exist in the "Student1 1" "table_row"
-    And "Hidden" "icon" should exist in the "Student2 2" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should exist in the "Student1 1" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should exist in the "Student2 2" "table_row"
 
     And I click on "Test assignment name 1" in the "Search items" search combo box
     And the following should exist in the "generaltable" table:
       | User full name | Grade     |
       | Student1 1     | 80        |
       | Student2 2     | 70        |
-    And "Hidden" "icon" should exist in the "Student1 1" "table_row"
-    And "Hidden" "icon" should not exist in the "Student2 2" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should exist in the "Student1 1" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should not exist in the "Student2 2" "table_row"
 
     And I click on "Users" "link" in the ".page-toggler" "css_element"
     And I click on "Student1" in the "Search users" search combo box
@@ -235,11 +235,11 @@ Feature: We don't show hidden grades for users without the 'moodle/grade:viewhid
       | Test assignment name 3     | 10        |
       | Manual grade               | 30        |
       | Course total               | 210       |
-    And "Hidden" "icon" should exist in the "Test assignment name 1" "table_row"
-    And "Hidden" "icon" should exist in the "Test assignment name 2" "table_row"
-    And "Hidden" "icon" should exist in the "Test assignment name 3" "table_row"
-    And "Hidden" "icon" should exist in the "Manual grade" "table_row"
-    And "Hidden" "icon" should not exist in the "Course total" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should exist in the "Test assignment name 1" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should exist in the "Test assignment name 2" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should exist in the "Test assignment name 3" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should exist in the "Manual grade" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should not exist in the "Course total" "table_row"
 
     And I click on "Student2" in the "Search users" search combo box
     And the following should exist in the "generaltable" table:
@@ -249,11 +249,11 @@ Feature: We don't show hidden grades for users without the 'moodle/grade:viewhid
       | Test assignment name 3     | 50        |
       | Manual grade               | 40        |
       | Course total               | 220       |
-    And "Hidden" "icon" should not exist in the "Test assignment name 1" "table_row"
-    And "Hidden" "icon" should exist in the "Test assignment name 2" "table_row"
-    And "Hidden" "icon" should exist in the "Test assignment name 3" "table_row"
-    And "Hidden" "icon" should exist in the "Manual grade" "table_row"
-    Then "Hidden" "icon" should not exist in the "Course total" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should not exist in the "Test assignment name 1" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should exist in the "Test assignment name 2" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should exist in the "Test assignment name 3" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should exist in the "Manual grade" "table_row"
+    Then "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should not exist in the "Course total" "table_row"
 
   @javascript
   Scenario: View singleview report containing hidden activities or grade items or grades with editing off without required capabilities
@@ -273,11 +273,11 @@ Feature: We don't show hidden grades for users without the 'moodle/grade:viewhid
       | Test assignment name 3     |           |
       | Manual grade               |           |
       | Course total               | 220       |
-    And "Hidden" "icon" should not exist in the "Test assignment name 1" "table_row"
-    And "Hidden" "icon" should not exist in the "Test assignment name 2" "table_row"
-    And "Hidden" "icon" should not exist in the "Test assignment name 3" "table_row"
-    And "Hidden" "icon" should not exist in the "Manual grade" "table_row"
-    And "Hidden" "icon" should not exist in the "Course total" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should not exist in the "Test assignment name 1" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should not exist in the "Test assignment name 2" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should not exist in the "Test assignment name 3" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should not exist in the "Manual grade" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should not exist in the "Course total" "table_row"
 
     And I click on "Student1" in the "Search users" search combo box
     And the following should exist in the "generaltable" table:
@@ -287,11 +287,11 @@ Feature: We don't show hidden grades for users without the 'moodle/grade:viewhid
       | Test assignment name 3     |           |
       | Manual grade               |           |
       | Course total               | 210       |
-    And "Hidden" "icon" should not exist in the "Test assignment name 1" "table_row"
-    And "Hidden" "icon" should not exist in the "Test assignment name 2" "table_row"
-    And "Hidden" "icon" should not exist in the "Test assignment name 3" "table_row"
-    And "Hidden" "icon" should not exist in the "Manual grade" "table_row"
-    And "Hidden" "icon" should not exist in the "Course total" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should not exist in the "Test assignment name 1" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should not exist in the "Test assignment name 2" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should not exist in the "Test assignment name 3" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should not exist in the "Manual grade" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should not exist in the "Course total" "table_row"
 
     And I click on "Grade items" "link" in the ".page-toggler" "css_element"
     And I click on "Test assignment name 1" in the "Search items" search combo box
@@ -299,40 +299,40 @@ Feature: We don't show hidden grades for users without the 'moodle/grade:viewhid
       | User full name | Grade     |
       | Student1 1     |           |
       | Student2 2     | 70        |
-    And "Hidden" "icon" should not exist in the "Student1 1" "table_row"
-    And "Hidden" "icon" should not exist in the "Student2 2" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should not exist in the "Student1 1" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should not exist in the "Student2 2" "table_row"
 
     And I click on "Test assignment name 2" in the "Search items" search combo box
     And the following should exist in the "generaltable" table:
       | User full name | Grade     |
       | Student1 1     |           |
       | Student2 2     |           |
-    And "Hidden" "icon" should not exist in the "Student1 1" "table_row"
-    And "Hidden" "icon" should not exist in the "Student2 2" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should not exist in the "Student1 1" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should not exist in the "Student2 2" "table_row"
 
     And I click on "Test assignment name 3" in the "Search items" search combo box
     And the following should exist in the "generaltable" table:
       | User full name | Grade     |
       | Student1 1     |           |
       | Student2 2     |           |
-    And "Hidden" "icon" should not exist in the "Student1 1" "table_row"
-    And "Hidden" "icon" should not exist in the "Student2 2" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should not exist in the "Student1 1" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should not exist in the "Student2 2" "table_row"
 
     And I click on "Manual grade" in the "Search items" search combo box
     And the following should exist in the "generaltable" table:
       | User full name | Grade     |
       | Student1 1     |           |
       | Student2 2     |           |
-    And "Hidden" "icon" should not exist in the "Student1 1" "table_row"
-    And "Hidden" "icon" should not exist in the "Student2 2" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should not exist in the "Student1 1" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should not exist in the "Student2 2" "table_row"
 
     And I click on "Course total" in the "Search items" search combo box
     And the following should exist in the "generaltable" table:
       | User full name | Grade        |
       | Student1 1     | 210          |
       | Student2 2     | 220          |
-    And "Hidden" "icon" should not exist in the "Student1 1" "table_row"
-    Then "Hidden" "icon" should not exist in the "Student2 2" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should not exist in the "Student1 1" "table_row"
+    Then "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should not exist in the "Student2 2" "table_row"
 
   @javascript
   Scenario: View singleview report containing hidden activities or grade items or grades with editing on without required capabilities
@@ -346,8 +346,8 @@ Feature: We don't show hidden grades for users without the 'moodle/grade:viewhid
     And I click on "Course total" in the "Search items" search combo box
     And the field "Grade for Student1 1" matches value "210"
     And the field "Grade for Student2 2" matches value "220"
-    And "Hidden" "icon" should not exist in the "Student1 1" "table_row"
-    And "Hidden" "icon" should not exist in the "Student2 2" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should not exist in the "Student1 1" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should not exist in the "Student2 2" "table_row"
     And the field "Feedback for Student1 1" matches value ""
     And the field "Feedback for Student2 2" matches value ""
     And "Override for Student1 1" "checkbox" should exist in the "Student1 1" "table_row"
@@ -360,32 +360,32 @@ Feature: We don't show hidden grades for users without the 'moodle/grade:viewhid
       | User full name | Grade     |
       | Student1 1     |           |
       | Student2 2     |           |
-    And "Hidden" "icon" should not exist in the "Student1 1" "table_row"
-    And "Hidden" "icon" should not exist in the "Student2 2" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should not exist in the "Student1 1" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should not exist in the "Student2 2" "table_row"
 
     And I click on "Test assignment name 3" in the "Search items" search combo box
     And the following should exist in the "generaltable" table:
       | User full name | Grade     |
       | Student1 1     |           |
       | Student2 2     |           |
-    And "Hidden" "icon" should not exist in the "Student1 1" "table_row"
-    And "Hidden" "icon" should not exist in the "Student2 2" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should not exist in the "Student1 1" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should not exist in the "Student2 2" "table_row"
 
     And I click on "Test assignment name 2" in the "Search items" search combo box
     And the following should exist in the "generaltable" table:
       | User full name | Grade     |
       | Student1 1     |           |
       | Student2 2     |           |
-    And "Hidden" "icon" should not exist in the "Student1 1" "table_row"
-    And "Hidden" "icon" should not exist in the "Student2 2" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should not exist in the "Student1 1" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should not exist in the "Student2 2" "table_row"
 
     And I click on "Test assignment name 1" in the "Search items" search combo box
     And the following should exist in the "generaltable" table:
       | User full name | Grade     |
       | Student1 1     |           |
-    And "Hidden" "icon" should not exist in the "Student1 1" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should not exist in the "Student1 1" "table_row"
     And the field "Grade for Student2 2" matches value "70"
-    And "Hidden" "icon" should not exist in the "Student2 2" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should not exist in the "Student2 2" "table_row"
     And the field "Feedback for Student2 2" matches value ""
     And "Override for Student2 2" "checkbox" should exist in the "Student2 2" "table_row"
     And "Exclude for Student2 2" "checkbox" should exist in the "Student2 2" "table_row"
@@ -398,11 +398,11 @@ Feature: We don't show hidden grades for users without the 'moodle/grade:viewhid
       | Test assignment name 2     |           |          |
       | Test assignment name 3     |           |          |
       | Manual grade               |           |          |
-    And "Hidden" "icon" should not exist in the "Test assignment name 1" "table_row"
-    And "Hidden" "icon" should not exist in the "Test assignment name 2" "table_row"
-    And "Hidden" "icon" should not exist in the "Test assignment name 3" "table_row"
-    And "Hidden" "icon" should not exist in the "Manual grade" "table_row"
-    And "Hidden" "icon" should not exist in the "Course total" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should not exist in the "Test assignment name 1" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should not exist in the "Test assignment name 2" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should not exist in the "Test assignment name 3" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should not exist in the "Manual grade" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should not exist in the "Course total" "table_row"
     And "Override for Test assignment name 1" "checkbox" should not exist in the "Test assignment name 1" "table_row"
     And "Exclude for Test assignment name 1" "checkbox" should not exist in the "Test assignment name 1" "table_row"
     And "Override for Test assignment name 2" "checkbox" should not exist in the "Test assignment name 2" "table_row"
@@ -422,11 +422,11 @@ Feature: We don't show hidden grades for users without the 'moodle/grade:viewhid
       | Test assignment name 2     |           |          |
       | Test assignment name 3     |           |          |
       | Manual grade               |           |          |
-    And "Hidden" "icon" should not exist in the "Test assignment name 1" "table_row"
-    And "Hidden" "icon" should not exist in the "Test assignment name 2" "table_row"
-    And "Hidden" "icon" should not exist in the "Test assignment name 3" "table_row"
-    And "Hidden" "icon" should not exist in the "Manual grade" "table_row"
-    And "Hidden" "icon" should not exist in the "Course total" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should not exist in the "Test assignment name 1" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should not exist in the "Test assignment name 2" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should not exist in the "Test assignment name 3" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should not exist in the "Manual grade" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should not exist in the "Course total" "table_row"
     And the field "Grade for Test assignment name 1" matches value "70"
     And the field "Feedback for Test assignment name 1" matches value ""
     And "Override for Test assignment name 1" "checkbox" should exist in the "Test assignment name 1" "table_row"

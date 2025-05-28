@@ -71,10 +71,10 @@ Feature: We don't show hidden grades for users without the 'moodle/grade:viewhid
     And the following should not exist in the "user-grade" table:
       | Grade item                 |
       | Test assignment name 2     |
-    And "Hidden" "icon" should not exist in the "Test assignment name 1" "table_row"
-    And "Hidden" "icon" should not exist in the "Test assignment name 3" "table_row"
-    And "Hidden" "icon" should not exist in the "Manual grade" "table_row"
-    And "Hidden" "icon" should not exist in the "Course total" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should not exist in the "Test assignment name 1" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should not exist in the "Test assignment name 3" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should not exist in the "Manual grade" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should not exist in the "Course total" "table_row"
 
     And I set the field "Search users" to "Student2"
     And I click on "Student2 2" "list_item"
@@ -88,10 +88,10 @@ Feature: We don't show hidden grades for users without the 'moodle/grade:viewhid
     And the following should not exist in the "user-grade" table:
       | Grade item                 |
       | Test assignment name 2     |
-    And "Hidden" "icon" should not exist in the "Test assignment name 1" "table_row"
-    And "Hidden" "icon" should not exist in the "Test assignment name 3" "table_row"
-    And "Hidden" "icon" should not exist in the "Manual grade" "table_row"
-    Then "Hidden" "icon" should not exist in the "Course total" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should not exist in the "Test assignment name 1" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should not exist in the "Test assignment name 3" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should not exist in the "Manual grade" "table_row"
+    Then "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should not exist in the "Course total" "table_row"
 
   @javascript
   Scenario: View user report containing hidden activities or grade items or grades with capabilities with teacher view
@@ -107,11 +107,11 @@ Feature: We don't show hidden grades for users without the 'moodle/grade:viewhid
       | Test assignment name 3     | 50     |
       | Manual grade               | 40     |
       | Course total               | 220    |
-    And "Hidden" "icon" should not exist in the "Test assignment name 1" "table_row"
-    And "Hidden" "icon" should exist in the "Test assignment name 2" "table_row"
-    And "Hidden" "icon" should exist in the "Test assignment name 3" "table_row"
-    And "Hidden" "icon" should exist in the "Manual grade" "table_row"
-    And "Hidden" "icon" should not exist in the "Course total" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should not exist in the "Test assignment name 1" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should exist in the "Test assignment name 2" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should exist in the "Test assignment name 3" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should exist in the "Manual grade" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should not exist in the "Course total" "table_row"
 
     And I set the field "Search users" to "Student1"
     And I click on "Student1 1" "list_item"
@@ -123,11 +123,11 @@ Feature: We don't show hidden grades for users without the 'moodle/grade:viewhid
       | Test assignment name 3     | 10     |
       | Manual grade               | 30     |
       | Course total               | 210    |
-    And "Hidden" "icon" should exist in the "Test assignment name 1" "table_row"
-    And "Hidden" "icon" should exist in the "Test assignment name 2" "table_row"
-    And "Hidden" "icon" should exist in the "Test assignment name 3" "table_row"
-    And "Hidden" "icon" should exist in the "Manual grade" "table_row"
-    Then "Hidden" "icon" should not exist in the "Course total" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should exist in the "Test assignment name 1" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should exist in the "Test assignment name 2" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should exist in the "Test assignment name 3" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should exist in the "Manual grade" "table_row"
+    Then "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should not exist in the "Course total" "table_row"
 
   @javascript
   Scenario: View user report containing hidden activities or grade items or grades without capabilities with teacher view
@@ -146,11 +146,11 @@ Feature: We don't show hidden grades for users without the 'moodle/grade:viewhid
       | Test assignment name 3     | -      |
       | Manual grade               | -      |
       | Course total               | 210    |
-    And "Hidden" "icon" should not exist in the "Test assignment name 1" "table_row"
-    And "Hidden" "icon" should not exist in the "Test assignment name 2" "table_row"
-    And "Hidden" "icon" should not exist in the "Test assignment name 3" "table_row"
-    And "Hidden" "icon" should not exist in the "Manual grade" "table_row"
-    And "Hidden" "icon" should not exist in the "Course total" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should not exist in the "Test assignment name 1" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should not exist in the "Test assignment name 2" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should not exist in the "Test assignment name 3" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should not exist in the "Manual grade" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should not exist in the "Course total" "table_row"
 
     And I set the field "Search users" to "Student2"
     And I click on "Student2 2" "list_item"
@@ -162,11 +162,11 @@ Feature: We don't show hidden grades for users without the 'moodle/grade:viewhid
       | Test assignment name 3     | -      |
       | Manual grade               | -      |
       | Course total               | 220    |
-    And "Hidden" "icon" should not exist in the "Test assignment name 1" "table_row"
-    And "Hidden" "icon" should not exist in the "Test assignment name 2" "table_row"
-    And "Hidden" "icon" should not exist in the "Test assignment name 3" "table_row"
-    And "Hidden" "icon" should not exist in the "Manual grade" "table_row"
-    Then "Hidden" "icon" should not exist in the "Course total" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should not exist in the "Test assignment name 1" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should not exist in the "Test assignment name 2" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should not exist in the "Test assignment name 3" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should not exist in the "Manual grade" "table_row"
+    Then "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should not exist in the "Course total" "table_row"
 
   @javascript
   Scenario: View user report containing hidden activities or grade items or grades without capabilities with student view
@@ -186,10 +186,10 @@ Feature: We don't show hidden grades for users without the 'moodle/grade:viewhid
     And the following should not exist in the "user-grade" table:
       | Grade item                 |
       | Test assignment name 2     |
-    And "Hidden" "icon" should not exist in the "Test assignment name 1" "table_row"
-    And "Hidden" "icon" should not exist in the "Test assignment name 3" "table_row"
-    And "Hidden" "icon" should not exist in the "Manual grade" "table_row"
-    And "Hidden" "icon" should not exist in the "Course total" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should not exist in the "Test assignment name 1" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should not exist in the "Test assignment name 3" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should not exist in the "Manual grade" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should not exist in the "Course total" "table_row"
 
     And I set the field "Search users" to "Student1"
     And I click on "Student1 1" "list_item"
@@ -203,7 +203,7 @@ Feature: We don't show hidden grades for users without the 'moodle/grade:viewhid
     And the following should not exist in the "user-grade" table:
       | Grade item                 |
       | Test assignment name 2     |
-    And "Hidden" "icon" should not exist in the "Test assignment name 1" "table_row"
-    And "Hidden" "icon" should not exist in the "Test assignment name 3" "table_row"
-    And "Hidden" "icon" should not exist in the "Manual grade" "table_row"
-    Then "Hidden" "icon" should not exist in the "Course total" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should not exist in the "Test assignment name 1" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should not exist in the "Test assignment name 3" "table_row"
+    And "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should not exist in the "Manual grade" "table_row"
+    Then "//div[contains(@class, 'gradestatus')]//span[@title='Hidden']" "xpath_element" should not exist in the "Course total" "table_row"
