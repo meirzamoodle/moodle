@@ -43,8 +43,8 @@ Feature: Display feedback on the Grader report
     When I am on the "Course 1" "grades > Grader report > View" page
     Then I should see "Test assignment name 1" in the "user-grades" "table"
     And I should see "Test assignment name 2" in the "user-grades" "table"
-    And "Feedback provided" "icon" should exist in the "Student 1" "table_row"
-    And "Feedback provided" "icon" should not exist in the "Student 2" "table_row"
+    And "//div[contains(@class, 'grade_icons')]//span[@title='Feedback provided']" "xpath_element" should exist in the "Student 1" "table_row"
+    And "//div[contains(@class, 'grade_icons')]//span[@title='Feedback provided']" "xpath_element" should not exist in the "Student 2" "table_row"
 
   Scenario: View the feedback modal from the action menu
     When I am on the "Course 1" "grades > Grader report > View" page

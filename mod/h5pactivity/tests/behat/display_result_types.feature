@@ -52,7 +52,7 @@ Feature: Report different types of interactions.
     And I navigate to "Attempts report" in current page administration
     And I follow "View report"
     Then I should see "Select the correct answers"
-    And "Correct answer" "icon" should exist in the "This is also a correct answer" "table_row"
+    And "//span[@title='Correct answer']" "xpath_element" should exist in the "This is also a correct answer" "table_row"
     And I should see "Score: 2 out of 2"
 
   Scenario: View a failed choice statement
@@ -64,7 +64,7 @@ Feature: Report different types of interactions.
     And I navigate to "Attempts report" in current page administration
     And I follow "View report"
     Then I should see "Select the correct answers"
-    And "Incorrect answer" "icon" should exist in the "Another wrong answer" "table_row"
+    And "//span[@title='Incorrect answer']" "xpath_element" should exist in the "Another wrong answer" "table_row"
     And I should see "Score: 0 out of 2"
 
   Scenario: View a success matching statement
@@ -76,7 +76,7 @@ Feature: Report different types of interactions.
     And I navigate to "Attempts report" in current page administration
     And I follow "View report"
     Then I should see "Drag and Drop example 1"
-    And "Your answer is correct" "icon" should exist in the "Drop item A" "table_row"
+    And "//span[@title='Your answer is correct']" "xpath_element" should exist in the "Drop item A" "table_row"
     And I should see "Score: 2 out of 2"
 
   Scenario: View a failed matching statement
@@ -88,7 +88,7 @@ Feature: Report different types of interactions.
     And I navigate to "Attempts report" in current page administration
     And I follow "View report"
     Then I should see "Drag and Drop example 1"
-    And "Your answer is incorrect" "icon" should exist in the "Drop item A" "table_row"
+    And "//span[@title='Your answer is incorrect']" "xpath_element" should exist in the "Drop item A" "table_row"
     And I should see "Score: 0 out of 2"
 
   Scenario: View a success true-false statement
@@ -100,7 +100,7 @@ Feature: Report different types of interactions.
     And I navigate to "Attempts report" in current page administration
     And I follow "View report"
     Then I should see "The correct answer is true"
-    And "Correct answer" "icon" should exist in the "True" "table_row"
+    And "//span[@title='Correct answer']" "xpath_element" should exist in the "True" "table_row"
     And I should see "Score: 2 out of 2"
 
   Scenario: View a failed true-false statement
@@ -112,7 +112,7 @@ Feature: Report different types of interactions.
     And I navigate to "Attempts report" in current page administration
     And I follow "View report"
     Then I should see "The correct answer is true"
-    And "Incorrect answer" "icon" should exist in the "False" "table_row"
+    And "//span[@title='Incorrect answer']" "xpath_element" should exist in the "False" "table_row"
     And I should see "Score: 0 out of 2"
 
   Scenario: View a success fill-in statement
@@ -124,9 +124,9 @@ Feature: Report different types of interactions.
     And I navigate to "Attempts report" in current page administration
     And I follow "View report"
     Then I should see "This an example of missing word text"
-    And "Your answer is correct" "icon" should exist in the "Gap #1" "table_row"
+    And "//span[@title='Your answer is correct']" "xpath_element" should exist in the "Gap #1" "table_row"
     And I should see "first" in the "Gap #1" "table_row"
-    And "Your answer is correct" "icon" should exist in the "Gap #2" "table_row"
+    And "//span[@title='Your answer is correct']" "xpath_element" should exist in the "Gap #2" "table_row"
     And I should see "second" in the "Gap #2" "table_row"
     And I should see "Score: 2 out of 2"
 
@@ -139,10 +139,10 @@ Feature: Report different types of interactions.
     And I navigate to "Attempts report" in current page administration
     And I follow "View report"
     Then I should see "This an example of missing word text"
-    And "Your answer is incorrect" "icon" should exist in the "Gap #1" "table_row"
+    And "//span[@title='Your answer is incorrect']" "xpath_element" should exist in the "Gap #1" "table_row"
     And I should see "first" in the "Gap #1" "table_row"
     And I should see "something" in the "Gap #1" "table_row"
-    And "Your answer is incorrect" "icon" should exist in the "Gap #2" "table_row"
+    And "//span[@title='Your answer is incorrect']" "xpath_element" should exist in the "Gap #2" "table_row"
     And I should see "second" in the "Gap #2" "table_row"
     And I should see "else" in the "Gap #2" "table_row"
     And I should see "Score: 0 out of 2"

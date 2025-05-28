@@ -27,9 +27,9 @@
     }
 }}
 <div class="text-muted {{classes}}">
-    {{#hidden}}{{#pix}}i/show, moodle, {{#str}} hidden, grades {{/str}}{{/pix}}{{/hidden}}
-    {{#locked}}{{#pix}}i/lock, moodle, {{#str}} locked, grades {{/str}}{{/pix}}{{/locked}}
-    {{#overridden}}{{#pix}}i/overriden_grade, moodle, {{#str}} overridden, grades {{/str}}{{/pix}}{{/overridden}}
-    {{#excluded}}{{#pix}}i/excluded, moodle, {{#str}} excluded, grades {{/str}}{{/pix}}{{/excluded}}
-    {{#feedback}}{{#pix}}i/asterisk, moodle, {{#str}} feedbackprovided, grades {{/str}}{{/pix}}{{/feedback}}
+    {{#hidden}}<span title={{#quote}}{{#str}}hidden, grades{{/str}}{{/quote}}>{{#pix}}i/show, moodle{{/pix}}</span>{{/hidden}}
+    {{#locked}}<span title={{#quote}}{{#str}}locked, grades{{/str}}{{/quote}}>{{#pix}}i/lock, moodle{{/pix}}</span>{{/locked}}
+    {{#overridden}}<span title={{#quote}}{{#str}}overridden, grades{{/str}}{{/quote}}>{{#pix}}i/overriden_grade, moodle{{/pix}}</span>{{/overridden}}
+    {{#excluded}}<span title={{#quote}}{{#str}}excluded, grades{{/str}}{{/quote}}>{{#pix}}i/excluded, moodle{{/pix}}</span>{{/excluded}}
+    {{#feedback}}<span title={{#quote}}{{#str}}feedbackprovided, grades{{/str}}{{/quote}}>{{#pix}}i/asterisk, moodle{{/pix}}</span>{{/feedback}}
 </div>

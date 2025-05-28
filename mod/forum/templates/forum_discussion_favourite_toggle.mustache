@@ -34,10 +34,10 @@
     {{$role}}button{{/role}}
     {{$favouritecontent}}
         {{#userstate.favourited}}
-            {{#pix}}t/star, mod_forum, {{#str}}removefromfavourites, mod_forum{{/str}}{{/pix}}
+            <span title={{#quote}}{{#str}}removefromfavourites, mod_forum{{/str}}{{/quote}}>{{#pix}}t/star, mod_forum{{/pix}}</span>
         {{/userstate.favourited}}
         {{^userstate.favourited}}
-            {{#pix}}t/emptystar, core, {{#str}}addtofavourites, mod_forum{{/str}}{{/pix}}
+            <span title={{#quote}}{{#str}}addtofavourites, mod_forum{{/str}}{{/quote}}>{{#pix}}t/emptystar, core{{/pix}}</span>
         {{/userstate.favourited}}
     {{/favouritecontent}}
 {{/ mod_forum/discussion_favourite_toggle }}
