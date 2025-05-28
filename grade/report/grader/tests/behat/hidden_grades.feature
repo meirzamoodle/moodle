@@ -66,14 +66,14 @@ Feature: We don't show hidden grades for users without the 'moodle/grade:viewhid
     And the field "Student 1 Test assignment name 3 grade" matches value "10"
     And the field "Student 1 Manual grade" matches value "30"
     And the field "Student 1 Course total grade" matches value "210"
-    And "Hidden" "icon" should exist in the "Student 1" "table_row"
+    And "//div[contains(@class, 'grade_icons')]//span[@title='Hidden']" "xpath_element" should exist in the "Student 1" "table_row"
 
     And the field "Student 2 Test assignment name 1 grade" matches value "70"
     And the field "Student 2 Test assignment name 2 grade" matches value "60"
     And the field "Student 2 Test assignment name 3 grade" matches value "50"
     And the field "Student 2 Manual grade" matches value "40"
     And the field "Student 2 Course total grade" matches value "220"
-    And "Hidden" "icon" should exist in the "Student 2" "table_row"
+    And "//div[contains(@class, 'grade_icons')]//span[@title='Hidden']" "xpath_element" should exist in the "Student 2" "table_row"
 
     # Remove the capability to see hidden grades.
     When the following "role capability" exists:
@@ -85,8 +85,8 @@ Feature: We don't show hidden grades for users without the 'moodle/grade:viewhid
       | -1-                | -2-                  | -3-       | -4-       | -5-       | -6-       | -7-       |
       | Student 1          | student1@example.com | -         | -         | -         | -         | -         |
       | Student 2          | student2@example.com | 70        | -         | -         | -         | 70        |
-    And "Hidden" "icon" should not exist in the "Student 1" "table_row"
-    And "Hidden" "icon" should not exist in the "Student 2" "table_row"
+    And "//div[contains(@class, 'grade_icons')]//span[@title='Hidden']" "xpath_element" should not exist in the "Student 1" "table_row"
+    And "//div[contains(@class, 'grade_icons')]//span[@title='Hidden']" "xpath_element" should not exist in the "Student 2" "table_row"
     And I turn editing mode on
     And the following should exist in the "user-grades" table:
       | -1-                | -2-                  | -3-       | -4-       | -5-       | -6-       |
@@ -98,5 +98,5 @@ Feature: We don't show hidden grades for users without the 'moodle/grade:viewhid
     And the field "Student 1 Course total grade" matches value ""
     And the field "Student 2 Test assignment name 1 grade" matches value "70"
     And the field "Student 2 Course total grade" matches value "70"
-    And "Hidden" "icon" should not exist in the "Student 1" "table_row"
-    Then "Hidden" "icon" should not exist in the "Student 2" "table_row"
+    And "//div[contains(@class, 'grade_icons')]//span[@title='Hidden']" "xpath_element" should not exist in the "Student 1" "table_row"
+    Then "//div[contains(@class, 'grade_icons')]//span[@title='Hidden']" "xpath_element" should not exist in the "Student 2" "table_row"

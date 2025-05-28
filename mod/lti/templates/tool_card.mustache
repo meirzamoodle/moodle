@@ -89,8 +89,8 @@
     <div class="overlay-container">
         <div class="img-container">
             {{> mod_lti/loader }}
-            <div class="success-icon-container">{{#pix}} i/valid, core, {{#str}} success {{/str}}{{/pix}}</div>
-            <div class="fail-icon-container">{{#pix}} i/invalid, core, {{#str}} error {{/str}}{{/pix}}</div>
+            <div class="success-icon-container" title={{#quote}}{{#str}} success {{/str}}{{/quote}}>{{#pix}} i/valid, core{{/pix}}</div>
+            <div class="fail-icon-container" title={{#quote}}{{#str}} error {{/str}}{{/quote}}>{{#pix}} i/invalid, core{{/pix}}</div>
         </div>
         {{#hascapabilitygroups}}
             {{> mod_lti/tool_type_capabilities_agree }}

@@ -39,8 +39,8 @@ Feature: Locking Grade Items and Categories in Gradebook
     And I choose "Lock" in the open action menu
     And I click on grade item menu "Manual grade 1" of type "gradeitem" on "grader" page
     And I choose "Unlock" in the open action menu
-    Then "Locked" "icon" should exist in the "Student 1" "table_row"
-    And "Locked" "icon" should not exist in the "Student 2" "table_row"
+    Then "//div[contains(@class, 'grade_icons')]//span[@title='Locked']" "xpath_element" should exist in the "Student 1" "table_row"
+    And "//div[contains(@class, 'grade_icons')]//span[@title='Locked']" "xpath_element" should not exist in the "Student 2" "table_row"
 
   @javascript
   Scenario: Locking and unlocking a grade item through editing form preserves individual student locks
@@ -59,5 +59,5 @@ Feature: Locking Grade Items and Categories in Gradebook
     And I choose "Edit grade item" in the open action menu
     And I set the field "Locked" to "0"
     And I click on "Save" "button" in the "Edit grade item" "dialogue"
-    Then "Locked" "icon" should exist in the "Student 1" "table_row"
-    And "Locked" "icon" should not exist in the "Student 2" "table_row"
+    Then "//div[contains(@class, 'grade_icons')]//span[@title='Locked']" "xpath_element" should exist in the "Student 1" "table_row"
+    And "//div[contains(@class, 'grade_icons')]//span[@title='Locked']" "xpath_element" should not exist in the "Student 2" "table_row"
