@@ -57,14 +57,15 @@ class googledocs_drive_content extends googledocs_content {
         ];
 
         // Check whether there are any shared drives.
-        $response = helper::request($this->service, 'shared_drives_list', []);
-        if (!empty($response->drives)) {
+        // $response = helper::request($this->service, 'shared_drives_list', []);
+        // if (!empty($response->drives)) {
             // To be able to include content from shared drives, we need to enable 'supportsAllDrives' and
             // 'includeItemsFromAllDrives'. The Google Drive API requires explicit request for inclusion of content from
             // shared drives and also a confirmation that the application is designed to handle files on shared drives.
             $params['supportsAllDrives'] = 'true';
             $params['includeItemsFromAllDrives'] = 'true';
-        }
+            $params['corpora'] = 'allDrives';
+        // }
 
         // Request the content through the API call.
         $response = helper::request($this->service, 'list', $params);

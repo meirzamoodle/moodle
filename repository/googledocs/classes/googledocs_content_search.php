@@ -52,12 +52,12 @@ class googledocs_content_search extends googledocs_content {
 
         // If shared drives exist, include the additional required parameters in order to extend the content search
         // into the shared drives area as well.
-        $response = helper::request($this->service, 'shared_drives_list', []);
-        if (!empty($response->drives)) {
+        // $response = helper::request($this->service, 'shared_drives_list', []);
+        // if (!empty($response->drives)) {
             $params['supportsAllDrives'] = 'true';
             $params['includeItemsFromAllDrives'] = 'true';
             $params['corpora'] = 'allDrives';
-        }
+        // }
 
         // Request the content through the API call.
         $response = helper::request($this->service, 'list', $params);

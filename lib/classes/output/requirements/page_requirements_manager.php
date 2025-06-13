@@ -819,6 +819,7 @@ class page_requirements_manager {
                             ['nofilesattached', 'repository'],
                             ['filepicker', 'repository'],
                             ['logout', 'repository'],
+                            ['manageurl', 'repository'],
                             ['nofilesavailable', 'repository'],
                             ['norepositoriesavailable', 'repository'],
                             ['fileexistsdialogheader', 'repository'],

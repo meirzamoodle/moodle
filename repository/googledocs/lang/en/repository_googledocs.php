@@ -39,6 +39,9 @@ $string['oauth2serviceslink'] = '<a href="{$a}" title="Link to OAuth 2 services 
 $string['searchfor'] = 'Search results for:';
 $string['internal'] = 'Internal (files stored in Moodle)';
 $string['external'] = 'External (only links stored in Moodle)';
+$string['apikey'] = 'API key';
+$string['apikeyhelp'] = 'This API key identifies your app to Google. Required to load the file picker securely to upload files.
+Need help? See <a href="{$a}">Moodle\'s Google OAuth setup guide</a> for key instructions.';
 $string['both'] = 'Internal and external';
 $string['supportedreturntypes'] = 'Supported files';
 $string['defaultreturntype'] = 'Default return type';
