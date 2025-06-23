@@ -1,0 +1,4 @@
+/* force to hide the filepicker button. */
+.fp-btn-choose {
+    display: none
+}

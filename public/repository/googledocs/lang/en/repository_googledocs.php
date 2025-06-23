@@ -22,6 +22,9 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+$string['apikey'] = 'API key';
+$string['apikeyhelp'] = 'This API key identifies your app to Google. Required to load the file picker securely to upload files.
+Need help? See <a href="{$a}">Moodle\'s Google OAuth setup guide</a> for key instructions.';
 $string['configplugin'] = 'Configure Google Drive plugin';
 $string['docsformat'] = 'Default document import format';
 $string['drawingformat'] = 'Default drawing import format';

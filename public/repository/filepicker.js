@@ -1632,6 +1632,8 @@ M.core_filepicker.init = function(Y, options) {
             this.active_repo.message = (data.message || '');
             this.active_repo.help = data.help?data.help:null;
             this.active_repo.manage = data.manage?data.manage:null;
+            this.active_repo.managetext = data.managetext?data.managetext:M.util.get_string('manageurl', 'repository');
+            this.active_repo.manageicon = data.manageicon?data.manageicon:null;
             // Warning message related to the file reference option, if applicable to the given repository.
             this.active_repo.filereferencewarning = data.filereferencewarning ? data.filereferencewarning : null;
             this.print_header();
@@ -2000,7 +2002,21 @@ M.core_filepicker.init = function(Y, options) {
             toolbar.one('.fp-tb-manage').one('a,button').
                 on('click', function(e) {
                     e.preventDefault();
-                    managelnk.simulate('click')
+                    const url = Y.one('#fp-tb-manage-'+client_id+'-link').get('href');
+                    const hasPopup = url.endsWith('#popup');
+                    if(!hasPopup) {
+                        managelnk.simulate('click');
+                    } else {
+                        const width = 500;
+                        const height = 320;
+                        const left = (screen.width - width) / 2;
+                        const top = (screen.height - height) / 2;
+                        window.open(
+                            url,
+                            'repo_manage_popup',
+                            `left=${left},top=${top},width=${width},height=${height},titlebar=no,toolbar=no,location=no,status=no,menubar=no,scrollbars=no`
+                        );
+                    }
                 });
 
             // same with .fp-tb-help
@@ -2078,6 +2094,19 @@ M.core_filepicker.init = function(Y, options) {
             // manage url
             enable_tb_control(toolbar.one('.fp-tb-manage'), r.manage);
             Y.one('#fp-tb-manage-'+client_id+'-link').set('href', r.manage);
+
+            // Manage text.
+            toolbar.one('.fp-tb-manage a').setAttribute('title', r.managetext);
+
+            // Manage icon.
+            if(r.manageicon) {
+                toolbar.one('.fp-tb-manage a i').removeClass('fa-gear');
+                toolbar.one('.fp-tb-manage a i').addClass(r.manageicon);
+                this.previousmanageicon = r.manageicon;
+            } else {
+                toolbar.one('.fp-tb-manage a i').removeClass(this.previousmanageicon);
+                toolbar.one('.fp-tb-manage a i').addClass('fa-gear');
+            }
 
             // help url
             enable_tb_control(toolbar.one('.fp-tb-help'), r.help);
