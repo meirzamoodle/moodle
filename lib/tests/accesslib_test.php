@@ -2248,7 +2248,7 @@ final class accesslib_test extends advanced_testcase {
 
         $this->expectException('coding_exception');
         $this->expectExceptionMessage("Capability '{$capability}' was not found! This has to be fixed in code.");
-        unassign_capability($capability, CAP_ALLOW, $teacherrole->id, $coursecontext);
+        unassign_capability($capability, $teacherrole->id, $coursecontext);
     }
 
     /**
@@ -3597,10 +3597,10 @@ final class accesslib_test extends advanced_testcase {
         $rc = $DB->get_record('role_capabilities', array('contextid'=>$frontpagecontext->id, 'roleid'=>$allroles['teacher'], 'capability'=>'moodle/site:accessallgroups'));
         $this->assertFalse($rc);
         assign_capability('moodle/site:accessallgroups', CAP_ALLOW, $allroles['teacher'], $frontpagecontext);
-        unassign_capability('moodle/site:accessallgroups', $allroles['teacher'], $frontpagecontext, true);
+        unassign_capability('moodle/site:accessallgroups', $allroles['teacher'], $frontpagecontext);
         $rc = $DB->get_record('role_capabilities', array('contextid'=>$frontpagecontext->id, 'roleid'=>$allroles['teacher'], 'capability'=>'moodle/site:accessallgroups'));
         $this->assertFalse($rc);
-        unassign_capability('moodle/site:accessallgroups', $allroles['teacher'], $frontpagecontext->id, true);
+        unassign_capability('moodle/site:accessallgroups', $allroles['teacher'], $frontpagecontext->id);
         unset($rc);
 
         accesslib_clear_all_caches_for_unit_testing(); // Must be done after assign_capability().
