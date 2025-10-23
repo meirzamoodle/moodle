@@ -829,6 +829,7 @@ class page_requirements_manager {
                             ['renameto', 'repository'],
                             ['referencesexist', 'repository'],
                             ['select', 'repository'],
+                            ['invalidfiletypetitle', 'repository'],
                         ],
                     ];
                     break;
@@ -888,6 +889,7 @@ class page_requirements_manager {
                             ['sizegb', 'moodle'], ['sizemb', 'moodle'], ['sizekb', 'moodle'], ['sizeb', 'moodle'],
                             ['maxareabytesreached', 'moodle'], ['serverconnection', 'error'],
                             ['changesmadereallygoaway', 'moodle'], ['complete', 'moodle'],
+                            ['invalidfiletypetitle', 'repository'],
                         ],
                     ];
                     break;
