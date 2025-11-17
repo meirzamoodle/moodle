@@ -178,6 +178,10 @@ class core_renderer extends renderer_base {
     public function standard_head_html() {
         global $CFG, $SESSION, $SITE;
 
+        if (!during_initial_install()) {
+            $this->page->requires->js_react_components_init(null, '/lib/react/build/core.iife.js');
+        }
+
         // Before we output any content, we need to ensure that certain
         // page components are set up.
 

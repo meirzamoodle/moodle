@@ -36,6 +36,72 @@
 }}
 
 <footer id="page-footer" class="footer-popover bg-white">
+    <div class="container my-4">
+        <form class="d-flex flex-column gap-3">
+            <div class="d-flex flex-column flex-md-row gap-3 align-items-md-center">
+                <div class="flex-fill">
+                    {{#react}}
+                    {
+                    "component": "@core/input",
+                    "props": {
+                        "name": "username",
+                        "placeholder": "Enter your username",
+                        "className": "form-control"
+                    }
+                    }
+                    {{/react}}
+                </div>
+                <div class="flex-fill">
+                    {{#react}}
+                    {
+                    "component": "@core/input",
+                    "props": {
+                        "name": "email",
+                        "placeholder": "Enter your email",
+                        "className": "form-control",
+                        "label": "Input with label",
+                    }
+                    }
+                    {{/react}}
+                </div>
+            </div>
+            <div class="d-flex gap-3">
+                <div class="flex-shrink-0">
+                    {{#react}}
+                    {
+                    "component": "@core/button",
+                    "props": {
+                        "label": "Click me (onClick inline JS)",
+                        "className": "btn btn-primary",
+                        "onClick": "require(['core/notification'], n => n.alert('Clicked!'))"
+                    },
+                    "id": "mybutton"
+                    }
+                    <p>Loading...</p>
+                    {{/react}}
+                </div>
+                <div class="flex-shrink-0">
+                    {{#react}}
+                    {
+                    "component": "@core/button",
+                    "props": {
+                        "label": "Click me (onClick AMD method)",
+                        "variant": "success",
+                        "className": "btn btn-secondary",
+                        "onClick": {
+                            "amd": "core/notification",
+                            "method": "alert",
+                            "args": ["message", "cancelText"]
+                        }
+                    },
+                    "id": "mybutton"
+                    }
+                    <p>Loading...</p>
+                    {{/react}}
+                </div>
+            </div>
+        </form>
+    </div>
     <div data-region="footer-container-popover">
         {{#output.has_communication_links}}
             <button onclick="window.open('{{output.communication_url}}', '_blank', 'noreferrer')" class="btn btn-icon rounded-circle bg-primary text-white btn-footer-communication" aria-label="{{#str}}communicationroomlink, course{{/str}}">
