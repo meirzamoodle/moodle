@@ -1045,6 +1045,26 @@ class page_requirements_manager {
         $this->skiplinks[$target] = $linktext;
     }
 
+    /** Initialise React components rendered via the Mustache React helper.
+     *
+     * This will:
+     *   - Load the shared React bundle (public/react/build/app.iife.js)
+     *   - Call core/react_autoinit to scan for [data-react-component]
+     *
+     * @param string|null $selector Optional CSS selector to limit the scan scope.
+     * @param string|null $bundleurl Optional bundle URL. Defaults to /react/build/app.iife.js.
+     */
+    public function js_react_components_init(?string $selector = null, ?string $bundleurl = null): void {
+        if ($bundleurl === null) {
+            $bundleurl = '/lib/react/build/core.iife.js';
+        }
+
+        $this->js(new \core\url($bundleurl));
+
+        $args = [$selector];
+        $this->js_call_amd('core/react_autoinit', 'init', $args);
+    }
+
     /**
      * !!!DEPRECATED!!! please use js_init_call() if possible
      * Ensure that the specified JavaScript function is called from an inline script
