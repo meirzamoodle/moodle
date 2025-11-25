@@ -244,7 +244,8 @@
         "local": [],
         "logstore": [
             "database",
-            "standard"
+            "standard",
+            "psr3"
         ],
         "ltiservice": [
             "basicoutcomes",

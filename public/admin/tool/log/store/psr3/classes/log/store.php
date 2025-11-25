@@ -1,0 +1,65 @@
+<?php
+// This file is part of Moodle - http://moodle.org/.
+//
+// Moodle is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Moodle is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+
+namespace logstore_psr3\log;
+
+/**
+ * PSR-3 logstore writer.
+ *
+ * @package    logstore_psr3
+ * @copyright  Meirza <meirza.arson@moodle.com>
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+class store implements \tool_log\log\writer {
+    /**
+     * Create a new instance of the OTel Logger.
+     *
+     * @param \tool_log\log\manager The log manager
+     */
+    public function __construct(
+        /** @var \tool_log\log\manager The log manager */
+        private readonly \tool_log\log\manager $manager,
+    ) {
+        // Nothing to do here.
+    }
+
+    #[\Override]
+    public function write(\core\event\base $event): void {
+        // Get the event data.
+        $eventdata = $event->get_data();
+
+        // Build additional context information.
+        $additionalcontext = [
+            'description' => $event->get_description(),
+            'contextid' => $event->get_context()->id,
+        ];
+
+        // Merge context data and log the event.
+        $logcontext = [...$eventdata, ...$additionalcontext];
+        $channelname = get_config('logstore_psr3', 'channel');
+
+        \core\di::get(\core\logger::class)->info(
+            $event->get_name(),
+            context: $logcontext,
+            channel: $channelname
+        );
+    }
+
+    #[\Override]
+    public function dispose() {
+        // Nothing to dispose.
+    }
+}

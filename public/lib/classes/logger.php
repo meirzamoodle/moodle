@@ -1,5 +1,5 @@
 <?php
-// This file is part of Moodle - http://moodle.org/
+// This file is part of Moodle - http://moodle.org/.
 //
 // Moodle is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -16,12 +16,21 @@
 
 namespace core;
 
+use Monolog\Logger as MonoLogger;
+use Monolog\Handler\ErrorLogHandler;
+use Monolog\Processor\PsrLogMessageProcessor;
 use Monolog\Level;
 use Monolog\LogRecord;
+use Psr\Log\LoggerInterface;
+use Psr\Log\LogLevel;
 use Stringable;
 
 /**
  * PSR-3 Logger wrapper.
+ *
+ * This is the core PSR-3 logging API used by Moodle logstores
+ * (for example logstore_psr3) to emit logs into Monolog and,
+ * via OTEL PSR-3 auto-instrumentation, to a collector such as SigNoz.
  *
  * @package    core
  * @copyright  Andrew Lyons <andrew@nicols.co.uk>
@@ -34,32 +43,69 @@ class logger {
     /** @var string The debug channel name */
     public const CHANNEL_DEBUG = 'debug';
 
-    /** @var \Monolog\Logger[] A collection of Loggers indexed by channel name */
+    /** @var MonoLogger[] A collection of Loggers indexed by channel name */
     protected array $channels = [];
 
     /**
-     * Get the log level that corresponds to a Moodle debug level.
+     * Get the PSR-3 log level that corresponds to a Moodle debug level.
+     *
+     * This returns a PSR-3 level string, not a Monolog\Level enum, so that
+     * the public API remains agnostic of Monolog.
      *
      * @param int $level The Moodle debug level
-     * @return Level The corresponding PSR-3 log level
+     * @return string The corresponding PSR-3 log level string
      */
-    public static function get_log_level_from_moodle_debug_level(int $level): Level {
+    public static function get_log_level_from_moodle_debug_level(int $level): string {
         return match ($level) {
-            DEBUG_NONE => Level::Emergency,
-            DEBUG_MINIMAL => Level::Error,
-            DEBUG_NORMAL => Level::Info,
-            DEBUG_ALL => Level::Debug,
-            default => Level::Debug,
+            DEBUG_NONE      => LogLevel::EMERGENCY,
+            DEBUG_MINIMAL   => LogLevel::ERROR,
+            DEBUG_NORMAL    => LogLevel::INFO,
+            DEBUG_ALL       => LogLevel::DEBUG,
+            DEBUG_DEVELOPER => LogLevel::DEBUG,
+            default         => LogLevel::DEBUG,
         };
+    }
+
+    /**
+     * Ensure Composer autoload is loaded if present.
+     *
+     * This is intentionally lazy and optional:
+     *  - If vendor/autoload.php exists in dirroot, or one level above it,
+     *    we require it.
+     *  - If not, we silently skip it.
+     *
+     * This allows Monolog and OTEL PSR-3 auto-instrumentation to register.
+     */
+    protected static function ensure_composer_autoload(): void {
+        global $CFG;
+
+        // If Monolog is already known, no need to do anything.
+        if (class_exists(MonoLogger::class, false)) {
+            return;
+        }
+
+        if (!empty($CFG->dirroot)) {
+            $paths = [
+                $CFG->dirroot . '/vendor/autoload.php',
+                $CFG->dirroot . '/../vendor/autoload.php',
+            ];
+
+            foreach ($paths as $autoload) {
+                if (is_readable($autoload)) {
+                    require_once($autoload);
+                    break;
+                }
+            }
+        }
     }
 
     /**
      * Get the logger for a specific channel.
      *
      * @param string $channel The channel to get the logger for
-     * @return \Monolog\Logger
+     * @return MonoLogger
      */
-    public function get_channel(string $channel): \Monolog\Logger {
+    public function get_channel(string $channel): MonoLogger {
         if (!array_key_exists($channel, $this->channels)) {
             $this->channels[$channel] = $this->create_logger_for_channel($channel);
         }
@@ -67,9 +113,45 @@ class logger {
     }
 
     /**
-     * Log a message to the specified channel.
+     * Normalise an incoming level to a PSR-3 string.
+     *
+     * Accepted:
+     *  - Moodle DEBUG_* int
+     *  - Monolog\Level enum
+     *  - PSR-3 string
+     *
+     * Always returns a lowercase PSR-3 level string.
      *
      * @param mixed $level
+     * @return string
+     */
+    protected static function normalise_level(mixed $level): string {
+        // 1. Moodle DEBUG_* integer.
+        if (is_int($level)) {
+            return self::get_log_level_from_moodle_debug_level($level);
+        }
+
+        // 2. Monolog Level enum (e.g. Level::Debug).
+        if ($level instanceof Level) {
+            return strtolower($level->name);
+        }
+
+        // 3. PSR-3 string ("debug", "info", etc.).
+        if (is_string($level)) {
+            return strtolower($level);
+        }
+
+        // Fallback if we got something unexpected.
+        return LogLevel::DEBUG;
+    }
+
+    /**
+     * Log a message to the specified channel.
+     *
+     * NOTE: Always normalises to a PSR-3 string level before calling Monolog,
+     * so that OTEL PSR-3 instrumentation (Severity::fromPsr3) receives a string.
+     *
+     * @param mixed $level  Moodle debug int, Monolog Level enum, or PSR-3 string
      * @param string|Stringable $message
      * @param array $context
      * @param string $channel
@@ -80,9 +162,15 @@ class logger {
         array $context = [],
         string $channel = self::CHANNEL_DEFAULT,
     ): void {
+        $psrlevel = self::normalise_level($level);
+
+        // Enrich context with global Moodle request data so OTEL/SigNoz can see it.
+        $context = self::add_moodle_context($context);
+
         \core\di::get(self::class)
-            ->get_channel($channel)->log(
-                level: $level,
+            ->get_channel($channel)
+            ->log(
+                level: $psrlevel,
                 message: $message,
                 context: $context,
             );
@@ -137,6 +225,57 @@ class logger {
     }
 
     /**
+     * Add global Moodle request data into the PSR-3 context.
+     *
+     * This data will be visible to OTEL PSR-3 instrumentation and therefore
+     * exported to collectors such as SigNoz as log attributes.
+     *
+     * Explicit context keys always win over the auto-injected ones.
+     *
+     * @param array $context
+     * @return array
+     */
+    protected static function add_moodle_context(array $context): array {
+        global $CFG, $USER;
+
+        $auto = [];
+
+        $auto['requestid'] = defined('PAGE_ID') ? PAGE_ID : 'unknown';
+        $auto['userid']    = isset($USER->id) ? $USER->id : null;
+
+        if (isset($_SERVER['REQUEST_URI'])) {
+            $auto['uri'] = $_SERVER['REQUEST_URI'];
+        }
+        if (isset($_SERVER['SCRIPT_FILENAME'])) {
+            $auto['script'] = $_SERVER['SCRIPT_FILENAME'];
+        }
+        if (isset($_SERVER['argv'])) {
+            $auto['cliargs'] = $_SERVER['argv'];
+        }
+
+        if (defined('CLI_SCRIPT') && CLI_SCRIPT) {
+            $auto['type'] = 'CLI';
+        } else if (defined('AJAX_SCRIPT') && AJAX_SCRIPT) {
+            $auto['type'] = 'AJAX';
+        } else if (isset($_SERVER) && isset($_SERVER['SERVER_ADDR'])) {
+            $auto['type'] = 'HTTP';
+        } else {
+            $auto['type'] = 'Unknown';
+        }
+
+        if (function_exists('getremoteaddr')) {
+            $auto['ipaddress'] = getremoteaddr();
+        }
+
+        $auto['wwwroot'] = $CFG->wwwroot ?? null;
+
+        // Ensure explicit context passed by callers wins over auto data.
+        // So if they set 'userid' themselves, we don't overwrite it.
+        return $auto + $context;
+    }
+
+
+    /**
      * Log at Emergency level.
      *
      * @param string|Stringable $message
@@ -148,7 +287,7 @@ class logger {
         array $context = [],
         string $channel = self::CHANNEL_DEFAULT,
     ): void {
-        self::log(\Psr\Log\LogLevel::EMERGENCY, $message, $context, $channel);
+        self::log(LogLevel::EMERGENCY, $message, $context, $channel);
     }
 
     /**
@@ -163,7 +302,7 @@ class logger {
         array $context = [],
         string $channel = self::CHANNEL_DEFAULT,
     ): void {
-        self::log(\Psr\Log\LogLevel::ALERT, $message, $context, $channel);
+        self::log(LogLevel::ALERT, $message, $context, $channel);
     }
 
     /**
@@ -178,7 +317,7 @@ class logger {
         array $context = [],
         string $channel = self::CHANNEL_DEFAULT,
     ): void {
-        self::log(\Psr\Log\LogLevel::CRITICAL, $message, $context, $channel);
+        self::log(LogLevel::CRITICAL, $message, $context, $channel);
     }
 
     /**
@@ -193,7 +332,7 @@ class logger {
         array $context = [],
         string $channel = self::CHANNEL_DEFAULT,
     ): void {
-        self::log(\Psr\Log\LogLevel::ERROR, $message, $context, $channel);
+        self::log(LogLevel::ERROR, $message, $context, $channel);
     }
 
     /**
@@ -208,7 +347,7 @@ class logger {
         array $context = [],
         string $channel = self::CHANNEL_DEFAULT,
     ): void {
-        self::log(\Psr\Log\LogLevel::WARNING, $message, $context, $channel);
+        self::log(LogLevel::WARNING, $message, $context, $channel);
     }
 
     /**
@@ -223,7 +362,7 @@ class logger {
         array $context = [],
         string $channel = self::CHANNEL_DEFAULT,
     ): void {
-        self::log(\Psr\Log\LogLevel::NOTICE, $message, $context, $channel);
+        self::log(LogLevel::NOTICE, $message, $context, $channel);
     }
 
     /**
@@ -238,9 +377,23 @@ class logger {
         array $context = [],
         string $channel = self::CHANNEL_DEFAULT,
     ): void {
-        self::log(\Psr\Log\LogLevel::INFO, $message, $context, $channel);
+        self::log(LogLevel::INFO, $message, $context, $channel);
     }
 
+    /**
+     * Log at debug level.
+     *
+     * @param string|Stringable $message
+     * @param array $context
+     * @param string $channel
+     */
+    public static function debug(
+        string|Stringable $message,
+        array $context = [],
+        string $channel = self::CHANNEL_DEBUG
+    ): void {
+        self::log(LogLevel::DEBUG, $message, $context, $channel);
+    }
 
     /**
      * Create a logger for a specific channel.
@@ -257,9 +410,14 @@ class logger {
      *     ->pushHandler($customhandler);
      *
      * @param string $channel The channel name
-     * @return \Monolog\Logger
+     * @return MonoLogger
      */
-    protected function create_logger_for_channel(string $channel): \Monolog\Logger {
+    protected function create_logger_for_channel(?string $channel = null): MonoLogger {
+        global $CFG;
+
+        // 0. Load Composer autoload (Monolog + OTEL PSR-3 instrumentation).
+        self::ensure_composer_autoload();
+
         $logger = match ($channel) {
             // Get the debug channel.
             self::CHANNEL_DEBUG => $this->get_debug_channel(),
@@ -281,9 +439,9 @@ class logger {
      * Create a standard logger for a specific channel.
      *
      * @param string $channel
-     * @return \Monolog\Logger
+     * @return MonoLogger
      */
-    protected function get_default_logger(string $channel): \Monolog\Logger {
+    protected function get_default_logger(string $channel): MonoLogger {
         $errorhandler = new \Monolog\Handler\ErrorLogHandler(
             level: $this->get_channel_loglevel($channel),
         );
@@ -294,7 +452,7 @@ class logger {
             includeStacktraces: true,
         ));
 
-        return new \Monolog\Logger(
+        return new MonoLogger(
             name: $channel,
             handlers: [$errorhandler],
             processors: [self::moodle_data_processor(...)],
@@ -305,9 +463,9 @@ class logger {
      * Get a custom logger for a specific channel from config, if available.
      *
      * @param string $channel
-     * @return \Monolog\Logger|null
+     * @return MonoLogger|null
      */
-    protected function create_channel_logger_from_config(string $channel): ?\Monolog\Logger {
+    protected function create_channel_logger_from_config(string $channel): ?MonoLogger {
         global $CFG;
 
         $channel = null;
@@ -316,7 +474,7 @@ class logger {
             if (is_callable($callable)) {
                 $channel = $callable($channel);
 
-                if ($channel instanceof \Monolog\Logger) {
+                if ($channel instanceof MonoLogger) {
                     return $channel;
                 }
             }
@@ -329,9 +487,9 @@ class logger {
      * Get a custom logger for a specific channel from a hook, if available.
      *
      * @param string $channel
-     * @return \Monolog\Logger|null
+     * @return MonoLogger|null
      */
-    protected function create_channel_logger_from_hook(string $channel): ?\Monolog\Logger {
+    protected function create_channel_logger_from_hook(string $channel): ?MonoLogger {
         $hook = new \core\hook\log_channel_request_hook($channel);
         \core\di::get(hook\manager::class)->dispatch($hook);
 
@@ -368,11 +526,11 @@ class logger {
     /**
      * Get the channel for the debug channel.
      *
-     * @return \Monolog\Logger
+     * @return MonoLogger
      */
-    protected function get_debug_channel(): \Monolog\Logger {
+    protected function get_debug_channel(): MonoLogger {
         $errorhandler = new \Monolog\Handler\ErrorLogHandler(
-            level: $this->get_channel_loglevel(self::CHANNEL_DEBUG),
+            level: self::get_channel_loglevel(self::CHANNEL_DEBUG),
         );
         $errorhandler->setFormatter(new \Monolog\Formatter\LineFormatter(
             format: '[%datetime%] %extra.requestid% %channel%.%level_name%: %message% %context% %extra%',
@@ -380,7 +538,7 @@ class logger {
             includeStacktraces: true,
         ));
 
-        return new \Monolog\Logger(
+        return new MonoLogger(
             name: self::CHANNEL_DEBUG,
             handlers: [$errorhandler],
             processors: [self::moodle_data_processor(...)],

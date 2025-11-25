@@ -1219,3 +1219,6 @@ initialise_local_config_cache();
 $afterconfighook = new \core\hook\after_config();
 $afterconfighook->process_legacy_callbacks();
 \core\di::get(\core\hook\manager::class)->dispatch($afterconfighook);
+
+// Start an OpenTelemetry span for this Moodle request, if OTEL is available.
+\core\opentelemetry_trace::bootstrap_request_span();
