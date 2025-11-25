@@ -89,6 +89,8 @@ if (!$currentpage = my_get_page($userid, MY_PAGE_PRIVATE)) {
     throw new \moodle_exception('mymoodlesetup');
 }
 
+debugging("In my/index.php: pageid={$currentpage->id}, userid=" . ($userid ?? 'null') . ", edit=$edit", DEBUG_DEVELOPER);
+
 // Start setting up the page
 $params = array();
 $PAGE->set_context($context);
