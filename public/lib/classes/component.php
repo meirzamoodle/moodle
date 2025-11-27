@@ -169,6 +169,21 @@ class component {
         \Spatie\Cloneable::class => 'public/lib/spatie/php-cloneable/src',
         \ZipStream::class => 'public/lib/zipstream/src',
         \Monolog::class => 'public/lib/monolog/src/Monolog',
+        \OpenTelemetry\API::class => 'public/lib/opentelemetry/api',
+        \OpenTelemetry\Contrib\Instrumentation\Psr3::class => 'public/lib/opentelemetry/auto-psr3/src',
+        \OpenTelemetry\Contrib\Otlp::class => 'public/lib/opentelemetry/exporter-otlp',
+        \OpenTelemetry\Contrib\Logs\Monolog::class => 'public/lib/opentelemetry/logger-monolog/src',
+        \OpenTelemetry\SDK::class => 'public/lib/opentelemetry/sdk',
+        \OpenTelemetry\Context::class => 'public/lib/opentelemetry/context',
+        \OpenTelemetry\SemConv::class => 'public/lib/opentelemetry/sem-conv',
+        \OpenTelemetry\Contrib\Grpc::class => 'public/lib/opentelemetry/transport-grpc',
+        \Opentelemetry\Proto::class => 'public/lib/opentelemetry/gen-otlp-protobuf/Opentelemetry/Proto',
+        \GPBMetadata\Opentelemetry::class => 'public/lib/opentelemetry/gen-otlp-protobuf/GPBMetadata/Opentelemetry',
+        \OpenTelemetry\Extension\Propagator\B3::class => 'public/lib/opentelemetry/extension-propagator-b3',
+        \Nevay\SPI::class => 'public/lib/tbachert-spi/src',
+        \Http\Discovery::class => 'public/lib/php-http-discovery/src',
+        \Google\Protobuf::class => "public/lib/google-protobuf/src/Google/Protobuf",
+        \GPBMetadata\Google\Protobuf::class => "public/lib/google-protobuf/src/GPBMetadata/Google/Protobuf",
     ];
 
     /**
@@ -188,6 +203,19 @@ class component {
         'public/lib/php-di/php-di/src/functions.php',
         'public/lib/ralouphie/getallheaders/src/getallheaders.php',
         'public/lib/symfony/deprecation-contracts/function.php',
+        'public/lib/opentelemetry/api/Trace/functions.php',
+        'public/lib/opentelemetry/auto-psr3/_register.php',
+        'public/lib/opentelemetry/exporter-otlp/_register.php',
+        'public/lib/opentelemetry/sdk/Common/Util/functions.php',
+        'public/lib/opentelemetry/sdk/Logs/Exporter/_register.php',
+        'public/lib/opentelemetry/sdk/Metrics/MetricExporter/_register.php',
+        'public/lib/opentelemetry/sdk/Propagation/_register.php',
+        'public/lib/opentelemetry/sdk/Trace/SpanExporter/_register.php',
+        'public/lib/opentelemetry/sdk/Common/Dev/Compatibility/_load.php',
+        'public/lib/opentelemetry/sdk/_autoload.php',
+        'public/lib/opentelemetry/context/fiber/initialize_fiber_handler.php',
+        'public/lib/opentelemetry/transport-grpc/_register.php',
+        'public/lib/opentelemetry/extension-propagator-b3/_register.php',
     ];
 
     /**
