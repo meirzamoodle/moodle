@@ -1,0 +1,1 @@
+import{useState as e}from"react";import r from"react-uuid";import{jsx as n}from"react/jsx-runtime";var a=({label:t})=>{let[o,c]=e(r());return n("button",{onClick:()=>{alert(`Button clicked! ID: ${o}`)},style:{padding:"8px 12px",borderRadius:4},children:t})};export{a as Button};

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Button Import - Fixed</title>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="importmap">
+    {
+        "imports": {
+            "react": "https://esm.sh/react@18.2.0",
+            "react/": "https://esm.sh/react@18.2.0/",
+            "react-dom/client": "https://esm.sh/react-dom@18.2.0/client",
+            "react-uuid": "https://esm.sh/react-uuid@2.0.0"
+        }
+    }
+    </script>
+
+    <script type="module">
+        import React from 'react';
+        import { createRoot } from 'react-dom/client';
+        import { HomePage } from './lib/react/build/HomePage.js';
+
+        const app = React.createElement('div', null,
+            React.createElement('h1', null, 'Button Component Working!'),
+            React.createElement(HomePage, { title: 'Welcome 1', label: 'Click Me!' }),
+            React.createElement('br'),
+            React.createElement(HomePage, { title: 'Welcome 2', label: 'Second Button' })
+        );
+
+        const root = createRoot(document.getElementById('root'));
+        root.render(app);
+    </script>
+</body>
+</html>

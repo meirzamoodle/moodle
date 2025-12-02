@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "paths": {
+      "@moodle/core/*": ["public/lib/react/src/*"],
+      "@moodle/core_calendar/*": ["public/calendar/react/src/*"]
+    }
+  }
+}
