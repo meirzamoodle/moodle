@@ -1,9 +1,4 @@
-const INTERNAL_ALIASES = [
-    "@calendar/",
-    "@core/",
-    "@mod/",
-    "@block/",
-];
+const INTERNAL_ALIASES = ["@moodle/"];
 
 export const externalsPlugin = {
     name: "externals",

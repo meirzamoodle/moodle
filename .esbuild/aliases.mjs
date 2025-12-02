@@ -22,13 +22,37 @@
 
 
 import path from "path";
+import fs from "fs";
 
 const rootDir = process.cwd();
+const tsconfigPath = path.join(rootDir, "tsconfig.aliases.json");
 
-const aliasMap = {
-    "@core/": path.join(rootDir, "public/lib/react/src"),
-    "@calendar/": path.join(rootDir, "public/calendar/react/src"),
-};
+// Load and normalise paths from tsconfig.aliases.json
+function loadAliasMapFromTsconfig() {
+    if (!fs.existsSync(tsconfigPath)) {
+        return {};
+    }
+
+    const tsconfig = JSON.parse(fs.readFileSync(tsconfigPath, "utf8"));
+    const paths = tsconfig.compilerOptions?.paths ?? {};
+
+    const aliasMap = {};
+
+    for (const [pattern, targets] of Object.entries(paths)) {
+        if (!Array.isArray(targets) || targets.length === 0) {
+            continue;
+        }
+
+        const rawAlias = pattern.replace(/\/\*$/, ""); // "@moodle/core"
+        const firstTarget = targets[0];               // "public/lib/react/src/*"
+        const targetDirPattern = firstTarget.replace(/\/\*$/, ""); // "public/lib/react/src"
+
+        const absTargetDir = path.join(rootDir, targetDirPattern);
+        aliasMap[rawAlias] = absTargetDir;
+    }
+
+    return aliasMap;
+}
 
 function escapeRegExp(value) {
     return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -38,16 +62,31 @@ export function createAliasPlugin() {
     return {
         name: "moodle-aliases",
         setup(build) {
-            Object.entries(aliasMap).forEach(([alias, targetDir]) => {
-                const filter = new RegExp(`^${escapeRegExp(alias)}(.*)$`);
-                build.onResolve({ filter }, async args => {
-                    const relPath = args.path.slice(alias.length);
-                    return await build.resolve(`./${relPath}`, {
+            const aliasMap = loadAliasMapFromTsconfig();
+
+            // Sort by length DESC so more specific aliases win
+            const entries = Object.entries(aliasMap).sort(
+                ([a], [b]) => b.length - a.length
+            );
+
+            entries.forEach(([alias, targetDir]) => {
+                // Alias must be followed by "/" or end-of-string
+                // e.g. "@moodle/core_calendar/Button.js" matches
+                // but "@moodle/core_calendar" will not match "@moodle/core"
+                const filter = new RegExp(
+                    `^${escapeRegExp(alias)}(?:$|/).*`
+                );
+
+                build.onResolve({ filter }, async (args) => {
+                    const relPath = args.path.slice(alias.length); // "/Button.js" or ""
+                    const importPath = relPath ? `.${relPath}` : ".";
+
+                    return await build.resolve(importPath, {
                         resolveDir: targetDir,
                         kind: args.kind,
                     });
                 });
             });
-        }
-    }
+        },
+    };
 }
