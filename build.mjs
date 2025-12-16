@@ -4,6 +4,12 @@ import path from "path";
 import fs from "fs";
 import {createAliasPlugin} from "./.esbuild/aliases.mjs";
 import {externalsPlugin} from "./.esbuild/externals.mjs";
+import { generateAliases } from "./.esbuild/generate-aliases.mjs";
+
+// Generate alias files.
+// The alias files are used by the alias plugin to resolve module paths in esbuild.
+// They are also used in IDEs for better code navigation and IntelliSense.
+await generateAliases();
 
 // Build the shared React runtime files.
 const sharedReactEntries = [

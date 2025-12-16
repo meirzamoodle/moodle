@@ -1,5 +1,7 @@
 import {React, ReactDOM} from '@moodle/core/react'
 
+import * as mustacheTest from '@moodle/mod_book/mustache_test';
+
 function requireAmd(mod) {
     return new Promise((resolve, reject) => {
         require([mod], resolve, reject);

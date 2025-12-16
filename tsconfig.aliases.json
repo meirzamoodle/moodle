@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "paths": {
+      "@moodle/mod_book/*": ["public/mod/book/react/src/*"],
+      "@moodle/core/*": ["public/lib/react/src/*"]
+    }
+  }
+}
