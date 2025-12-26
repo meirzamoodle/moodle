@@ -3849,6 +3849,10 @@ class curl {
                 'Reported number of redirects: ' . $this->info['redirect_count']);
         }
 
+        if ($this->info['http_code'] === 429) {
+            return "HTTP 429 received from URL: $url. Too many requests at the moment.";
+        }
+
         if ($this->options['CURLOPT_FOLLOWLOCATION'] && $this->info['http_code'] != 200) {
             $redirects = 0;
 
