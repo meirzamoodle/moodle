@@ -11,6 +11,8 @@ Feature: Wikimedia repository
     # Upload a new user picture using Wikimedia repository.
     And I follow "Wikimedia"
     And I set the field "Search for:" to "cat"
+    And I set the field "Max image width (px):" to "640"
+    And I set the field "Max image height (px):" to "640"
     And I click on "Submit" "button"
     # Click on the link of the first search result.
     And I click on "a.fp-file" "css_element"
