@@ -51,12 +51,6 @@ class question_attempt {
     const USE_RAW_DATA = 'use raw data';
 
     /**
-     * @var string Should not longer be used.
-     * @deprecated since Moodle 3.0
-     */
-    const PARAM_MARK = PARAM_RAW_TRIMMED;
-
-    /**
      * @var string special value to indicate a response variable that is uploaded
      * files.
      */

@@ -39,29 +39,6 @@ require_once($CFG->libdir . '/form/autocomplete.php');
  */
 class MoodleQuickForm_tags extends MoodleQuickForm_autocomplete {
     /**
-     * Inidcates that the user should be the usual interface, with the official
-     * tags listed seprately, and a text box where they can type anything.
-     * @deprecated since 3.1
-     * @var int
-     */
-    const DEFAULTUI = 'defaultui';
-
-    /**
-     * Indicates that the user should only be allowed to select official tags.
-     * @deprecated since 3.1
-     * @var int
-     */
-    const ONLYOFFICIAL = 'onlyofficial';
-
-    /**
-     * Indicates that the user should just be given a text box to type in (they
-     * can still type official tags though.
-     * @deprecated since 3.1
-     * @var int
-     */
-    const NOOFFICIAL = 'noofficial';
-
-    /**
      * @var boolean $showstandard Standard tags suggested? (if not, then don't show link to manage standard tags).
      */
     protected $showstandard = false;
@@ -89,15 +66,6 @@ class MoodleQuickForm_tags extends MoodleQuickForm_autocomplete {
             $showstandard = core_tag_tag::BOTH_STANDARD_AND_NOT;
             if (isset($options['showstandard'])) {
                 $showstandard = $options['showstandard'];
-            } else if (isset($options['display'])) {
-                debugging('Option "display" is deprecated, each tag area can be configured to show standard tags or not ' .
-                    'by admin or manager. If it is necessary for the developer to override it, please use "showstandard" option',
-                    DEBUG_DEVELOPER);
-                if ($options['display'] === self::NOOFFICIAL) {
-                    $showstandard = core_tag_tag::HIDE_STANDARD;
-                } else if ($options['display'] === self::ONLYOFFICIAL) {
-                    $showstandard = core_tag_tag::STANDARD_ONLY;
-                }
             } else if (!empty($options['component']) && !empty($options['itemtype'])) {
                 $showstandard = core_tag_area::get_showstandard($options['component'], $options['itemtype']);
             }
