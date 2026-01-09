@@ -14,16 +14,24 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
+namespace local_multiplereact\privacy;
+
 /**
- * English language strings for local_multiplereact.
+ * Privacy provider implementation for local_multiplereact.
  *
  * @package    local_multiplereact
  * @copyright  Meirza <meirza.arson@moodle.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+class provider implements \core_privacy\local\metadata\null_provider {
 
-defined('MOODLE_INTERNAL') || die();
-
-$string['multiplereact'] = 'Multiple React test';
-$string['pluginname'] = 'Multiple React test (local)';
-$string['privacy:metadata'] = 'The Multiple React test (local) plugin does not store any personal data.';
+    /**
+     * Get the language string identifier with the component's language
+     * file to explain why this plugin stores no data.
+     *
+     * @return  string
+     */
+    public static function get_reason(): string {
+        return 'privacy:metadata';
+    }
+}
