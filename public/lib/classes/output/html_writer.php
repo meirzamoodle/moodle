@@ -572,7 +572,6 @@ class html_writer {
         $attributes = array_merge($table->attributes, [
             'id'            => $table->id,
             'width'         => $table->width,
-            'summary'       => $table->summary,
             'cellpadding'   => $table->cellpadding,
             'cellspacing'   => $table->cellspacing,
         ]);

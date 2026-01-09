@@ -1,0 +1,5 @@
+issueNumber: MDL-87426
+notes:
+  core_table:
+    - message: The `\core_table\output\html_table::summary` property has been removed from `public/lib/table/classes/output/html_table.php`.
+      type: removed

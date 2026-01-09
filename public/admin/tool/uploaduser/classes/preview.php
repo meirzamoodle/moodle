@@ -66,7 +66,6 @@ class preview extends \html_table {
         $this->id = "uupreview";
         $this->attributes['class'] = 'table generaltable table-hover';
         $this->tablealign = 'center';
-        $this->summary = get_string('uploaduserspreview', 'tool_uploaduser');
         $this->head = array();
         $this->data = $this->read_data();
 
