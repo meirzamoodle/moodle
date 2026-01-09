@@ -24,7 +24,7 @@
  * ```
  *   <div
  *     data-react-component="@core/button"
- *     data-react-props='{"label":"Save","onClick":"console.log(\"hi\")"}'
+ *     data-react-props='{"label":"Save","onClick":{"amd":"core/notification","method":"alert","args":["hi"]}}'
  *   ></div>
  * ```
  *
@@ -40,6 +40,9 @@
 import { React, ReactDOM } from "@moodle/core/react";
 
 import { onRenderCallback, isProfilerEnabled } from "@moodle/core/profiler";
+
+// Generated at build time from tsconfig.aliases.json (via generateRuntimeAliases()).
+import { REACT_ALIAS_MAP } from "./aliases";
 
 const SELECTOR = "[data-react-component]";
 const MOUNTED_FLAG = "reactMounted";
@@ -60,13 +63,19 @@ const domReady = () =>
         : Promise.resolve();
 
 /**
+ * Decode the most common HTML entities.
+ */
+const decodeHtmlEntities = (raw: string): string =>
+    raw.replace(/&quot;/g, '"').replace(/&#039;|&apos;/g, "'").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&amp;/g, "&");
+
+/**
  * Safe JSON parsing from data-react-props.
  */
 const parseProps = (el: Element): Record<string, any> => {
     const raw = el.getAttribute("data-react-props") || "";
     if (!raw) return {};
     try {
-        return JSON.parse(raw);
+        return JSON.parse(decodeHtmlEntities(raw));
     } catch (e) {
         console.error("[react_autoinit] invalid JSON", raw, e);
         return {};
@@ -83,12 +92,6 @@ const normalizeHandlers = (props: Record<string, any>): Record<string, any> => {
         if (!key.startsWith("on")) continue;
 
         const value = out[key];
-
-        // Inline string handler: onClick="console.log('hi')"
-        if (typeof value === "string") {
-            out[key] = new Function("event", value);
-            continue;
-        }
 
         // AMD handler: { amd: "core/notification", method: "alert", args: [...] }
         if (value && typeof value === "object" && value.amd) {
@@ -114,6 +117,29 @@ const normalizeHandlers = (props: Record<string, any>): Record<string, any> => {
 };
 
 /**
+ * Resolve a component name into a URL.
+ *
+ * The base is looked up from REACT_ALIAS_MAP generated at build time:
+ *   {
+ *     "core": "../react/build/components/",
+ *     "mod_book": "../../../mod/book/react/build/",
+ *     ...
+ *   }
+ */
+const resolveComponentUrl = (componentName: string): string | null => {
+    const match = componentName.match(/^@([^/]+)\/(.+)$/);
+    if (!match) return null;
+
+    const namespace = match[1]; // "core", "mod_book", "local_multiplereact"
+    const componentPath = match[2];
+
+    const base = REACT_ALIAS_MAP[namespace];
+    if (!base) return null;
+
+    return new URL(`${base}${componentPath}.js`, import.meta.url).href;
+};
+
+/**
  * Dynamic import of a component using real ESM.
  *
  * Supports two module shapes:
@@ -128,45 +154,11 @@ const resolveComponent = async (componentName: string): Promise<any> => {
     if (!componentName) return null;
 
     try {
-        // Parse @namespace/path format.
-        const match = componentName.match(/^@([^/]+)\/(.+)$/);
-        if (!match) {
-            console.error(
-                "[react_autoinit] Invalid component format:",
-                componentName
-            );
+        const url = resolveComponentUrl(componentName);
+        if (!url) {
+            console.error("[react_autoinit] Unknown component namespace:", componentName);
             return null;
         }
-
-        const [, namespace, componentPath] = match;
-
-        // Build relative path from current location (/lib/react_autoinit/build/index.js)
-        // to the component location.
-        let relativePath: string;
-
-        // TODO: Not sure how to handle plugins correctly here.
-        if (namespace === "core") {
-            // @core/button to ../react/build/button.js.
-            relativePath = `../react/build/${componentPath}.js`;
-        } else if (namespace.startsWith("mod_")) {
-            // @mod_book/page to ../../../mod/book/react/build/page.js.
-            const modName = namespace.replace("mod_", "");
-            relativePath = `../../../mod/${modName}/react/build/${componentPath}.js`;
-        } else if (namespace.startsWith("block_")) {
-            // @block_html/settings to ../../../blocks/html/react/build/settings.js.
-            const blockName = namespace.replace("block_", "");
-            relativePath = `../../../blocks/${blockName}/react/build/${componentPath}.js`;
-        } else if (namespace.startsWith("local_")) {
-            // @local_multiplereact/foo to ../../../local/multiplereact/react/build/foo.js.
-            const localName = namespace.replace("local_", "");
-            relativePath = `../../../local/${localName}/react/build/${componentPath}.js`;
-        } else {
-            // Generic: @calendar/event to ../../../calendar/react/build/event.js.
-            relativePath = `../../../${namespace}/react/build/${componentPath}.js`;
-        }
-
-        // Resolve to absolute URL.
-        const url = new URL(relativePath, import.meta.url).href;
 
         if (isDev) {
             console.log(`[react_autoinit] Loading: ${componentName} → ${url}`);

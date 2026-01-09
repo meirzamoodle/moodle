@@ -7,6 +7,8 @@ import chalk from 'chalk';
 import { createAliasPlugin } from "./.esbuild/aliases.mjs";
 import { externalsPlugin } from "./.esbuild/externals.mjs";
 import { generateAliases } from "./.esbuild/generate-aliases.mjs";
+
+// Generate TS config aliases.
 await generateAliases();
 
 const args = process.argv.slice(2);
