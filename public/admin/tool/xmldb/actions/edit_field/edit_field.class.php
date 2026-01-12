@@ -83,15 +83,15 @@ class edit_field extends XMLDBAction {
         }
 
         // Fetch request data
-        $tableparam = required_param('table', PARAM_CLEAN);
+        $tableparam = required_param('table', PARAM_PATH);
         if (!$table = $structure->getTable($tableparam)) {
             $this->errormsg = 'Wrong table specified: ' . $tableparam;
             return false;
         }
-        $fieldparam = required_param('field', PARAM_CLEAN);
+        $fieldparam = required_param('field', PARAM_PATH);
         if (!$field = $table->getField($fieldparam)) {
             // Arriving here from a name change, looking for the new field name
-            $fieldparam = required_param('name', PARAM_CLEAN);
+            $fieldparam = required_param('name', PARAM_PATH);
             $field = $table->getField($fieldparam);
         }
 

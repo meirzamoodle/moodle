@@ -628,15 +628,15 @@ function profiling_import_runs($file, $commentprefix = '') {
             $rdom->load($rfile);
             $runarr = array();
             $runarr['runid'] = clean_param($rdom->getElementsByTagName('runid')->item(0)->nodeValue, PARAM_ALPHANUMEXT);
-            $runarr['url'] = clean_param($rdom->getElementsByTagName('url')->item(0)->nodeValue, PARAM_CLEAN);
+            $runarr['url'] = clean_param($rdom->getElementsByTagName('url')->item(0)->nodeValue, PARAM_URL);
             $runarr['runreference'] = clean_param($rdom->getElementsByTagName('runreference')->item(0)->nodeValue, PARAM_INT);
-            $runarr['runcomment'] = $commentprefix . clean_param($rdom->getElementsByTagName('runcomment')->item(0)->nodeValue, PARAM_CLEAN);
+            $runarr['runcomment'] = $commentprefix . clean_param($rdom->getElementsByTagName('runcomment')->item(0)->nodeValue, PARAM_TEXT);
             $runarr['timecreated'] = time(); // Now.
             $runarr['totalexecutiontime'] = clean_param($rdom->getElementsByTagName('totalexecutiontime')->item(0)->nodeValue, PARAM_INT);
             $runarr['totalcputime'] = clean_param($rdom->getElementsByTagName('totalcputime')->item(0)->nodeValue, PARAM_INT);
             $runarr['totalcalls'] = clean_param($rdom->getElementsByTagName('totalcalls')->item(0)->nodeValue, PARAM_INT);
             $runarr['totalmemory'] = clean_param($rdom->getElementsByTagName('totalmemory')->item(0)->nodeValue, PARAM_INT);
-            $runarr['data'] = clean_param($rdom->getElementsByTagName('data')->item(0)->nodeValue, PARAM_CLEAN);
+            $runarr['data'] = clean_param($rdom->getElementsByTagName('data')->item(0)->nodeValue, PARAM_TEXT);
             // If the runid does not exist, insert it.
             if (!$DB->record_exists('profiling', array('runid' => $runarr['runid']))) {
                 if (@gzuncompress(base64_decode($runarr['data'])) === false) {

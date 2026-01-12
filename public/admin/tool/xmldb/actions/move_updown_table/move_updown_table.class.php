@@ -78,7 +78,7 @@ class move_updown_table extends XMLDBAction {
 
         $prev = NULL;
         $next = NULL;
-        $tableparam = required_param('table', PARAM_CLEAN);
+        $tableparam = required_param('table', PARAM_PATH);
         $direction  = required_param('direction', PARAM_ALPHA);
         $tables = $structure->getTables();
         if ($direction == 'down') {

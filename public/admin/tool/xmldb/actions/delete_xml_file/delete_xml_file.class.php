@@ -64,7 +64,7 @@ class delete_xml_file extends XMLDBAction {
         // Do the job, setting result as needed
 
         // Get the dir containing the file
-        $dirpath = required_param('dir', PARAM_CLEAN);
+        $dirpath = required_param('dir', PARAM_PATH);
         $dirpath = $CFG->dirroot . $dirpath;
 
         $confirmed = optional_param('confirmed', false, PARAM_BOOL);

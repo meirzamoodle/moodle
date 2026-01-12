@@ -27,7 +27,7 @@ require('../config.php');
 require_login();
 
 $contextid    = optional_param('contextid', \context_system::instance()->id, PARAM_INT);
-$search = optional_param('search', '', PARAM_CLEAN);
+$search = optional_param('search', '', PARAM_RAW);
 $context = context::instance_by_id($contextid, MUST_EXIST);
 
 $cb = new \core_contentbank\contentbank();

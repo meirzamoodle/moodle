@@ -78,8 +78,8 @@ class move_updown_field extends XMLDBAction {
 
         $prev = NULL;
         $next = NULL;
-        $tableparam = required_param('table', PARAM_CLEAN);
-        $fieldparam = required_param('field', PARAM_CLEAN);
+        $tableparam = required_param('table', PARAM_PATH);
+        $fieldparam = required_param('field', PARAM_PATH);
         $direction  = required_param('direction', PARAM_ALPHA);
         $tables = $structure->getTables();
         $table = $structure->getTable($tableparam);

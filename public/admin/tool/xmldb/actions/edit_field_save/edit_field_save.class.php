@@ -87,7 +87,7 @@ class edit_field_save extends XMLDBAction {
         $fieldparam = strtolower(required_param('field', PARAM_PATH));
         $name = substr(trim(strtolower(optional_param('name', $fieldparam, PARAM_PATH))),0,xmldb_field::NAME_MAX_LENGTH);
 
-        $comment = required_param('comment', PARAM_CLEAN);
+        $comment = required_param('comment', PARAM_PATH);
         $comment = trim($comment);
 
         $type       = required_param('type', PARAM_INT);

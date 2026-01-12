@@ -265,13 +265,6 @@ define('PARAM_STRINGID', \core\param::STRINGID->value);
 
 // DEPRECATED PARAM TYPES OR ALIASES - DO NOT USE FOR NEW CODE.
 /**
- * PARAM_CLEAN - obsoleted, please use a more specific type of parameter.
- * It was one of the first types, that is why it is abused so much ;-)
- * @deprecated since 2.0
- */
-define('PARAM_CLEAN', \core\param::CLEAN->value);
-
-/**
  * PARAM_TIMEZONE - expected timezone. Timezone can be int +-(0-13) or float +-(0.5-12.5) or
  * string separated by '/' and can have '-' &/ '_' (eg. America/North_Dakota/New_Salem
  * America/Port-au-Prince)

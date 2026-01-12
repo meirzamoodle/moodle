@@ -82,7 +82,7 @@ class new_table_from_mysql extends XMLDBAction {
             $structure = $editeddir->xml_file->getStructure();
         }
 
-        $tableparam = optional_param('table', NULL, PARAM_CLEAN);
+        $tableparam = optional_param('table', NULL, PARAM_PATH);
 
         // If no table, show form
         if (!$tableparam) {

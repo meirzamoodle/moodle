@@ -1862,7 +1862,7 @@ class core_message_external extends external_api {
     public static function search_contacts_parameters() {
         return new external_function_parameters(
             array(
-                'searchtext' => new external_value(PARAM_CLEAN, 'String the user\'s fullname has to match to be found'),
+                'searchtext' => new external_value(PARAM_TEXT, 'String the user\'s fullname has to match to be found'),
                 'onlymycourses' => new external_value(PARAM_BOOL, 'Limit search to the user\'s courses',
                     VALUE_DEFAULT, false)
             )

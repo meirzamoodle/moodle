@@ -70,7 +70,7 @@ class edit_xml_file_save extends XMLDBAction {
         $dirpath = required_param('dir', PARAM_PATH);
         $dirpath = $CFG->dirroot . $dirpath;
 
-        $comment = required_param('comment', PARAM_CLEAN);
+        $comment = required_param('comment', PARAM_PATH);
         $comment = $comment;
 
         // Set comment and recalculate hash

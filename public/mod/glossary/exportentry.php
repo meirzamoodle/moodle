@@ -6,7 +6,7 @@ require_once('lib.php');
 $id       = required_param('id', PARAM_INT);          // Entry ID
 $confirm  = optional_param('confirm', 0, PARAM_BOOL); // export confirmation
 $prevmode = required_param('prevmode', PARAM_ALPHA);
-$hook     = optional_param('hook', '', PARAM_CLEAN);
+$hook     = optional_param('hook', '', PARAM_ALPHANUMEXT);
 
 $url = new moodle_url('/mod/glossary/exportentry.php', array('id'=>$id,'prevmode'=>$prevmode));
 if ($confirm !== 0) {

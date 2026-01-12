@@ -226,19 +226,6 @@ enum param: string {
     case STRINGID = 'stringid';
 
     /**
-     * PARAM_CLEAN - obsoleted, please use a more specific type of parameter.
-     * It was one of the first types, that is why it is abused so much ;-)
-     * @deprecated since 2.0
-     */
-    #[deprecated(
-        replacement: 'a more specific type of parameter',
-        since: '2.0',
-        reason: 'The CLEAN param type is too generic to perform satisfactory validation',
-        emit: false,
-    )]
-    case CLEAN = 'clean';
-
-    /**
      * PARAM_TIMEZONE - expected timezone. Timezone can be int +-(0-13) or float +-(0.5-12.5) or
      * string separated by '/' and can have '-' &/ '_' (eg. America/North_Dakota/New_Salem
      * America/Port-au-Prince)
@@ -577,23 +564,6 @@ enum param: string {
     protected function clean_param_value_raw_trimmed(mixed $param): string {
         // No cleaning, but strip leading and trailing whitespace.
         return trim((string) $this->clean_param_value_raw($param));
-    }
-
-    /**
-     * Validation for PARAM_CLEAN.
-     *
-     * @param mixed $param
-     * @return string
-     */
-    protected function clean_param_value_clean(mixed $param): string {
-        // General HTML cleaning, try to use more specific type if possible this is deprecated!
-        // Please use more specific type instead.
-        if (is_numeric($param)) {
-            return $param;
-        }
-        $param = fix_utf8($param);
-        // Sweep for scripts, etc.
-        return clean_text($param);
     }
 
     /**

@@ -66,7 +66,7 @@ class delete_table extends XMLDBAction {
         // Get the dir containing the file
         $dirpath = required_param('dir', PARAM_PATH);
         $dirpath = $CFG->dirroot . $dirpath;
-        $tableparam = required_param('table', PARAM_CLEAN);
+        $tableparam = required_param('table', PARAM_PATH);
 
         $confirmed = optional_param('confirmed', false, PARAM_BOOL);
 

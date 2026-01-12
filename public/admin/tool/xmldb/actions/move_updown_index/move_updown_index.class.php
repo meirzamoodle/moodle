@@ -78,8 +78,8 @@ class move_updown_index extends XMLDBAction {
 
         $prev = NULL;
         $next = NULL;
-        $tableparam = required_param('table', PARAM_CLEAN);
-        $indexparam = required_param('index', PARAM_CLEAN);
+        $tableparam = required_param('table', PARAM_PATH);
+        $indexparam = required_param('index', PARAM_PATH);
         $direction  = required_param('direction', PARAM_ALPHA);
         $tables = $structure->getTables();
         $table = $structure->getTable($tableparam);

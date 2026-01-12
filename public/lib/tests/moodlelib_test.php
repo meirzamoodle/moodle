@@ -386,18 +386,6 @@ final class moodlelib_test extends \advanced_testcase {
      * @covers \core\param
      * @covers \clean_param
      */
-    public function test_clean_param_clean(): void {
-        // PARAM_CLEAN is an ugly hack, do not use in new code (skodak),
-        // instead use more specific type, or submit sothing that can be verified properly.
-        $this->assertSame('xx', clean_param('xx<script>', PARAM_CLEAN));
-        $this->assertSame('', clean_param(null, PARAM_CLEAN));
-        $this->assertSame('', clean_param(null, PARAM_CLEANHTML));
-    }
-
-    /**
-     * @covers \core\param
-     * @covers \clean_param
-     */
     public function test_clean_param_alpha(): void {
         $this->assertSame('DSFMOSDJ', clean_param('#()*#,9789\'".,<42897></?$(*DSFMO#$*)(SDJ)($*)', PARAM_ALPHA));
         $this->assertSame('', clean_param(null, PARAM_ALPHA));

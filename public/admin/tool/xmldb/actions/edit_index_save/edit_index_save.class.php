@@ -84,13 +84,13 @@ class edit_index_save extends XMLDBAction {
         $indexparam = strtolower(required_param('index', PARAM_PATH));
         $name = trim(strtolower(optional_param('name', $indexparam, PARAM_PATH)));
 
-        $comment = required_param('comment', PARAM_CLEAN);
+        $comment = required_param('comment', PARAM_PATH);
         $comment = trim($comment);
 
         $unique = required_param('unique', PARAM_INT);
-        $fields = required_param('fields', PARAM_CLEAN);
+        $fields = required_param('fields', PARAM_PATH);
         $fields = str_replace(' ', '', trim(strtolower($fields)));
-        $hints = required_param('hints', PARAM_CLEAN);
+        $hints = required_param('hints', PARAM_PATH);
         $hints = str_replace(' ', '', trim(strtolower($hints)));
 
         $editeddir = $XMLDB->editeddirs[$dirpath];

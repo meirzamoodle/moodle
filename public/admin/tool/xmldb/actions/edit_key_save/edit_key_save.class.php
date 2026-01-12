@@ -90,17 +90,17 @@ class edit_key_save extends XMLDBAction {
         $keyparam = strtolower(required_param('key', PARAM_PATH));
         $name = trim(strtolower(optional_param('name', $keyparam, PARAM_PATH)));
 
-        $comment = required_param('comment', PARAM_CLEAN);
+        $comment = required_param('comment', PARAM_PATH);
         $comment = trim($comment);
 
         $type = required_param('type', PARAM_INT);
-        $fields = required_param('fields', PARAM_CLEAN);
+        $fields = required_param('fields', PARAM_PATH);
         $fields = str_replace(' ', '', trim(strtolower($fields)));
 
         if ($type == XMLDB_KEY_FOREIGN ||
             $type == XMLDB_KEY_FOREIGN_UNIQUE) {
             $reftable = trim(strtolower(required_param('reftable', PARAM_PATH)));
-            $reffields= required_param('reffields', PARAM_CLEAN);
+            $reffields= required_param('reffields', PARAM_PATH);
             $reffields = str_replace(' ', '', trim(strtolower($reffields)));
         }
 

@@ -89,9 +89,6 @@ final class param_test extends \advanced_testcase {
             [param::RAW, false],
             [param::RAW_TRIMMED, false],
             [param::INT, false],
-
-            // Some deprecated parameters.
-            [param::CLEAN, true],
         ];
     }
 }

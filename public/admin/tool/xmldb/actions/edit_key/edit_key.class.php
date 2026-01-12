@@ -82,15 +82,15 @@ class edit_key extends XMLDBAction {
         }
 
         // Fetch request data
-        $tableparam = required_param('table', PARAM_CLEAN);
+        $tableparam = required_param('table', PARAM_PATH);
         if (!$table = $structure->getTable($tableparam)) {
             $this->errormsg = 'Wrong table specified: ' . $tableparam;
             return false;
         }
-        $keyparam = required_param('key', PARAM_CLEAN);
+        $keyparam = required_param('key', PARAM_PATH);
         if (!$key = $table->getKey($keyparam)) {
             // Arriving here from a name change, looking for the new key name
-            $keyparam = required_param('name', PARAM_CLEAN);
+            $keyparam = required_param('name', PARAM_PATH);
             $key = $table->getKey($keyparam);
         }
 

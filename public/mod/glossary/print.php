@@ -12,7 +12,7 @@ $pagelimit     = optional_param('pagelimit', 0, PARAM_INT);           // Number 
 $displayformat = optional_param('displayformat',-1, PARAM_INT);
 
 $mode    = required_param('mode', PARAM_ALPHA);             // mode to show the entries
-$hook    = optional_param('hook','ALL', PARAM_CLEAN);       // what to show
+$hook    = optional_param('hook','ALL', PARAM_ALPHANUMEXT);       // what to show
 $sortkey = optional_param('sortkey','UPDATE', PARAM_ALPHA); // Sorting key
 
 $url = new moodle_url('/mod/glossary/print.php', array('id'=>$id));

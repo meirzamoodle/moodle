@@ -3178,7 +3178,7 @@ function glossary_extend_settings_navigation(settings_navigation $settings, navi
     global $DB, $CFG, $USER;
 
     $mode = optional_param('mode', '', PARAM_ALPHA);
-    $hook = optional_param('hook', 'ALL', PARAM_CLEAN);
+    $hook = optional_param('hook', 'ALL', PARAM_ALPHANUMEXT);
 
     if (has_capability('mod/glossary:import', $settings->get_page()->cm->context)) {
         $node = $glossarynode->add(get_string('importentries', 'glossary'),

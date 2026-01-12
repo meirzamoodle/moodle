@@ -29,7 +29,7 @@ require_once($CFG->libdir . '/badgeslib.php');
 require_once($CFG->libdir . '/filelib.php');
 
 $page        = optional_param('page', 0, PARAM_INT);
-$search      = optional_param('search', '', PARAM_CLEAN);
+$search      = optional_param('search', '', PARAM_RAW);
 $clearsearch = optional_param('clearsearch', '', PARAM_TEXT);
 $download    = optional_param('download', 0, PARAM_INT);
 $hash        = optional_param('hash', '', PARAM_ALPHANUM);

@@ -7,7 +7,7 @@ $id       = required_param('id', PARAM_INT);          // course module ID
 $confirm  = optional_param('confirm', 0, PARAM_INT);  // commit the operation?
 $entry    = optional_param('entry', 0, PARAM_INT);    // entry id
 $prevmode = required_param('prevmode', PARAM_ALPHA);
-$hook     = optional_param('hook', '', PARAM_CLEAN);
+$hook     = optional_param('hook', '', PARAM_ALPHANUMEXT);
 
 $url = new moodle_url('/mod/glossary/deleteentry.php', array('id'=>$id,'prevmode'=>$prevmode));
 if ($confirm !== 0) {

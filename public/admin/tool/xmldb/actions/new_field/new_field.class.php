@@ -76,7 +76,7 @@ class new_field extends XMLDBAction {
             $structure = $editeddir->xml_file->getStructure();
         }
 
-        $tableparam = required_param('table', PARAM_CLEAN);
+        $tableparam = required_param('table', PARAM_PATH);
 
         $table = $structure->getTable($tableparam);
 

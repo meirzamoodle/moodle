@@ -63,7 +63,7 @@ class view_table_xml extends XMLDBAction {
         // Do the job, setting result as needed
 
         // Get the file parameter
-        $table =  required_param('table', PARAM_CLEAN);
+        $table =  required_param('table', PARAM_PATH);
         $select = required_param('select', PARAM_ALPHA); //original/edited
         // Get the dir containing the file
         $dirpath = required_param('dir', PARAM_PATH);

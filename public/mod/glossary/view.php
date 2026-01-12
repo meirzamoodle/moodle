@@ -13,7 +13,7 @@ $tab  = optional_param('tab', GLOSSARY_NO_VIEW, PARAM_ALPHA);    // browsing ent
 $displayformat = optional_param('displayformat',-1, PARAM_INT);  // override of the glossary display format
 
 $mode       = optional_param('mode', '', PARAM_ALPHA);           // term entry cat date letter search author approval
-$hook       = optional_param('hook', '', PARAM_CLEAN);           // the term, entry, cat, etc... to look for based on mode
+$hook       = optional_param('hook', '', PARAM_ALPHANUMEXT);           // the term, entry, cat, etc... to look for based on mode
 $fullsearch = optional_param('fullsearch', 0,PARAM_INT);         // full search (concept and definition) when searching?
 $sortkey    = optional_param('sortkey', '', PARAM_ALPHA);// Sorted view: CREATION | UPDATE | FIRSTNAME | LASTNAME...
 $sortorder  = optional_param('sortorder', 'ASC', PARAM_ALPHA);   // it defines the order of the sorting (ASC or DESC)
