@@ -72,8 +72,6 @@ define ('XMLDB_KEY_CHECK',         4);
 define ('XMLDB_KEY_FOREIGN_UNIQUE',5);
 
 // ==== Some other useful Constants ====
-/** If the field is going to be unsigned @deprecated since 2.3 */
-define ('XMLDB_UNSIGNED',        true);
 /** If the field is going to be not null */
 define ('XMLDB_NOTNULL',         true);
 /** If the field is going to be a sequence */

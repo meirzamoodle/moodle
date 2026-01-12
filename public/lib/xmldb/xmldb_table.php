@@ -773,7 +773,7 @@ class xmldb_table extends xmldb_object {
      * @param string $name name of the field
      * @param int $type XMLDB_TYPE_INTEGER, XMLDB_TYPE_NUMBER, XMLDB_TYPE_CHAR, XMLDB_TYPE_TEXT, XMLDB_TYPE_BINARY
      * @param string $precision length for integers and chars, two-comma separated numbers for numbers
-     * @param bool $unsigned XMLDB_UNSIGNED or null (or false)
+     * @param bool $unsigned null (or false)
      * @param bool $notnull XMLDB_NOTNULL or null (or false)
      * @param bool $sequence XMLDB_SEQUENCE or null (or false)
      * @param mixed $default meaningful default o null (or false)

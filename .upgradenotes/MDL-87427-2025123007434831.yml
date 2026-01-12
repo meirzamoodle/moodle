@@ -1,0 +1,7 @@
+issueNumber: MDL-87427
+notes:
+  core:
+    - message: >-
+        Remove the `XMLDB_UNSIGNED` constant from
+        `public/lib/xmldb/xmldb_constants.php`
+      type: removed
