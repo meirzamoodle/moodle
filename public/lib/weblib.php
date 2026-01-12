@@ -52,14 +52,6 @@ define('FORMAT_HTML',     '1');
 define('FORMAT_PLAIN',    '2');
 
 /**
- * Wiki-formatted text.
- * Deprecated: left here just to note that '3' is not used (at the moment)
- * and to catch any latent wiki-like text (which generates an error)
- * @deprecated since 2005!
- */
-define('FORMAT_WIKI',     '3');
-
-/**
  * Markdown-formatted text http://daringfireball.net/projects/markdown/
  */
 define('FORMAT_MARKDOWN', '4');
@@ -502,13 +494,6 @@ function format_text($text, $format = FORMAT_MOODLE, $options = null, $courseidd
     // Manually include the formatting class for now until after the release after 4.5 LTS.
     require_once("{$CFG->libdir}/classes/formatting.php");
 
-    if ($format === FORMAT_WIKI) {
-        // This format was deprecated in Moodle 1.5.
-        throw new \coding_exception(
-            'Wiki-like formatting is not supported.'
-        );
-    }
-
     if ($options instanceof \core\context) {
         // A common mistake has been to call this function with a context object.
         // This has never been expected, or nor supported.
@@ -826,7 +811,7 @@ function wikify_links($string) {
  *
  * @param string $text The text to be formatted. This is raw text originally from user input.
  * @param int $format Identifier of the text format to be used
- *            [FORMAT_MOODLE, FORMAT_HTML, FORMAT_PLAIN, FORMAT_WIKI, FORMAT_MARKDOWN]
+ *            [FORMAT_MOODLE, FORMAT_HTML, FORMAT_PLAIN, FORMAT_MARKDOWN]
  * @return string
  */
 function format_text_email($text, $format) {
@@ -835,12 +820,6 @@ function format_text_email($text, $format) {
 
         case FORMAT_PLAIN:
             return $text;
-            break;
-
-        case FORMAT_WIKI:
-            // There should not be any of these any more!
-            $text = wikify_links($text);
-            return core_text::entities_to_utf8(strip_tags($text), true);
             break;
 
         case FORMAT_HTML:

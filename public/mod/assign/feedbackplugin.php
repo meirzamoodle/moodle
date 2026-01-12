@@ -52,7 +52,6 @@ abstract class assign_feedback_plugin extends assign_plugin {
      * define('FORMAT_MOODLE',   '0');   // Does all sorts of transformations and filtering
      * define('FORMAT_HTML',     '1');   // Plain HTML (with some tags stripped)
      * define('FORMAT_PLAIN',    '2');   // Plain text (even tags are printed in full)
-     * define('FORMAT_WIKI',     '3');   // Wiki-formatted text
      * define('FORMAT_MARKDOWN', '4');   // Markdown-formatted
      *
      * Only one feedback plugin can push comments to the gradebook and that is chosen by the assignment

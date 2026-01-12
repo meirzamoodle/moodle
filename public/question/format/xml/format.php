@@ -94,8 +94,6 @@ class qformat_xml extends qformat_default {
             return FORMAT_HTML;
         } else if ($name == 'plain_text') {
             return FORMAT_PLAIN;
-        } else if ($name == 'wiki_like') {
-            return FORMAT_WIKI;
         } else if ($name == 'markdown') {
             return FORMAT_MARKDOWN;
         } else {
@@ -1115,8 +1113,6 @@ class qformat_xml extends qformat_default {
                 return 'html';
             case FORMAT_PLAIN:
                 return 'plain_text';
-            case FORMAT_WIKI:
-                return 'wiki_like';
             case FORMAT_MARKDOWN:
                 return 'markdown';
             default:
