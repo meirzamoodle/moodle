@@ -1079,7 +1079,6 @@ class modinfo {
 
                         $mods[$cmid]->module = $rawmods[$cmid]->module;
                         $mods[$cmid]->added = $rawmods[$cmid]->added;
-                        $mods[$cmid]->score = $rawmods[$cmid]->score;
                         $mods[$cmid]->idnumber = $rawmods[$cmid]->idnumber;
                         $mods[$cmid]->visible = $rawmods[$cmid]->visible;
                         $mods[$cmid]->visibleoncoursepage = $rawmods[$cmid]->visibleoncoursepage;
@@ -1191,7 +1190,7 @@ class modinfo {
                             ['idnumber', 'groupmode', 'groupingid',
                             'indent', 'completion', 'extra', 'extraclasses', 'iconurl', 'onclick', 'content',
                             'icon', 'iconcomponent', 'customdata', 'availability', 'completionview',
-                            'completionexpected', 'score', 'showdescription', 'deletioninprogress'] as $property
+                            'completionexpected', 'showdescription', 'deletioninprogress'] as $property
                         ) {
                             if (
                                 property_exists($mods[$cmid], $property)

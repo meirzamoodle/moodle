@@ -1,0 +1,7 @@
+issueNumber: MDL-87427
+notes:
+  core:
+    - message: >-
+        The `score` and `extra` properties have been removed from
+        `public/course/classes/cm_info.php`.
+      type: removed

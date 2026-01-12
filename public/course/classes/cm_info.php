@@ -136,8 +136,6 @@ use core\output\html_writer;
  * @property-read int $showdescription Controls whether the description of the activity displays on the course main page (in
  *    addition to anywhere it might display within the activity itself). 0 = do not show
  *    on main page, 1 = show on main page.
- * @property-read string $extra (deprecated) Extra HTML that is put in an unhelpful part of the HTML when displaying this module in
- *    course page - from cached data in modinfo field. Deprecated, replaced by ->extraclasses and ->onclick
  * @property-read string $icon Name of icon to use - from cached data in modinfo field
  * @property-read string $iconcomponent Component that contains icon - from cached data in modinfo field
  * @property-read string $modname Name of module e.g. 'forum' (this is the same name as the module's main database
@@ -241,20 +239,6 @@ class cm_info implements IteratorAggregate {
     private $added;
 
     /**
-     * @var int
-     *
-     * This variable is not used and is included here only so it can be documented.
-     * Once the database entry is removed from course_modules, it should be deleted
-     * here too.
-     * @deprecated Do not use this variable
-     */
-    #[\core\attribute\deprecated(
-        since: '2.0',
-        mdl: 'MDL-26781',
-    )]
-    private $score;
-
-    /**
      * Visible setting (0 or 1; if this is 0, students cannot see/access the activity) - from
      * course_modules table
      * @var int
@@ -334,21 +318,6 @@ class cm_info implements IteratorAggregate {
      * 0 = do not show on main page, 1 = show on main page.
      */
     private $showdescription;
-
-    /**
-     * @var string Extra HTML
-     *
-     * Extra HTML that is put in an unhelpful part of the HTML when displaying this module in
-     * course page - from cached data in modinfo field
-     * @deprecated This is crazy, don't use it. Replaced by ->extraclasses and ->onclick
-     */
-    #[\core\attribute\deprecated(
-        replacement: '->extraclasses and ->onclick',
-        since: '2.0',
-        mdl: 'MDL-25981',
-        reason: 'This is crazy, don\'t use it.'
-    )]
-    private $extra;
 
     /**
      * Name of icon to use - from cached data in modinfo field
@@ -561,7 +530,6 @@ class cm_info implements IteratorAggregate {
         'coursegroupmodeforce' => 'get_course_groupmodeforce',
         'customcmlistitem' => 'has_custom_cmlist_item',
         'effectivegroupmode' => 'get_effective_groupmode',
-        'extra' => false,
         'groupingid' => false,
         'groupmembersonly' => 'get_deprecated_group_members_only',
         'groupmode' => false,
@@ -573,7 +541,6 @@ class cm_info implements IteratorAggregate {
         'modname' => false,
         'module' => false,
         'name' => 'get_name',
-        'score' => false,
         'section' => 'get_section_id',
         'sectionid' => false,
         'sectionnum' => false,
@@ -1103,7 +1070,7 @@ class cm_info implements IteratorAggregate {
 
         // Standard fields from table course_modules.
         static $cmfields = ['id', 'course', 'module', 'instance', 'section', 'idnumber', 'added',
-            'score', 'indent', 'visible', 'visibleoncoursepage', 'visibleold', 'groupmode', 'groupingid',
+            'indent', 'visible', 'visibleoncoursepage', 'visibleold', 'groupmode', 'groupingid',
             'completion', 'completiongradeitemnumber', 'completionview', 'completionexpected', 'completionpassgrade',
             'showdescription', 'availability', 'deletioninprogress', 'downloadcontent', 'lang',
             'enableaitools', 'enabledaiactions',
@@ -1346,7 +1313,6 @@ class cm_info implements IteratorAggregate {
         $this->groupmode        = isset($mod->groupmode) ? $mod->groupmode : 0;
         $this->groupingid       = isset($mod->groupingid) ? $mod->groupingid : 0;
         $this->indent           = isset($mod->indent) ? $mod->indent : 0;
-        $this->extra            = isset($mod->extra) ? $mod->extra : '';
         $this->extraclasses     = isset($mod->extraclasses) ? $mod->extraclasses : '';
         // The iconurl may be stored as either string or instance of url.
         $this->iconurl          = isset($mod->iconurl) ? new url($mod->iconurl) : '';
@@ -1361,7 +1327,6 @@ class cm_info implements IteratorAggregate {
         $this->sectionid = isset($mod->sectionid) ? $mod->sectionid : 0;
         $this->module = isset($mod->module) ? $mod->module : 0;
         $this->added = isset($mod->added) ? $mod->added : 0;
-        $this->score = isset($mod->score) ? $mod->score : 0;
         $this->visibleold = isset($mod->visibleold) ? $mod->visibleold : 0;
         $this->deletioninprogress = isset($mod->deletioninprogress) ? $mod->deletioninprogress : 0;
         $this->downloadcontent = $mod->downloadcontent ?? null;
