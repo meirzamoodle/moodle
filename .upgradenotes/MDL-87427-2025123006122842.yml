@@ -1,0 +1,12 @@
+issueNumber: MDL-87427
+notes:
+  core:
+    - message: >-
+        The following constants have been removed from
+        `public/lib/moodlelib.php`:
+        - `PARAM_INTEGER`
+        - `PARAM_NUMBER`
+        - `PARAM_ACTION`
+        - `PARAM_FORMAT`
+        - `PARAM_MULTILANG`
+      type: removed

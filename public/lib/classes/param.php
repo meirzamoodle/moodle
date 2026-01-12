@@ -239,84 +239,11 @@ enum param: string {
     case CLEAN = 'clean';
 
     /**
-     * PARAM_INTEGER - deprecated alias for PARAM_INT
-     * @deprecated since 2.0
-     */
-    #[deprecated(
-        replacement: 'param::INT',
-        since: '2.0',
-        reason: 'Alias for INT',
-        final: true,
-    )]
-    case INTEGER = 'integer';
-
-    /**
-     * PARAM_NUMBER - deprecated alias of PARAM_FLOAT
-     * @deprecated since 2.0
-     */
-    #[deprecated(
-        replacement: 'param::FLOAT',
-        since: '2.0',
-        reason: 'Alias for FLOAT',
-        final: true,
-    )]
-    case NUMBER = 'number';
-
-    /**
-     * PARAM_ACTION - deprecated alias for PARAM_ALPHANUMEXT, use for various actions in forms and urls
-     * NOTE: originally alias for PARAM_ALPHANUMEXT
-     * @deprecated since 2.0
-     */
-    #[deprecated(
-        replacement: 'param::ALPHANUMEXT',
-        since: '2.0',
-        reason: 'Alias for PARAM_ALPHANUMEXT',
-        final: true,
-    )]
-    case ACTION = 'action';
-
-    /**
-     * PARAM_FORMAT - deprecated alias for PARAM_ALPHANUMEXT, use for names of plugins, formats, etc.
-     * NOTE: originally alias for PARAM_APLHA
-     * @deprecated since 2.0
-     */
-    #[deprecated(
-        replacement: 'param::ALPHANUMEXT',
-        since: '2.0',
-        reason: 'Alias for PARAM_ALPHANUMEXT',
-        final: true,
-    )]
-    case FORMAT = 'format';
-
-    /**
-     * PARAM_MULTILANG - deprecated alias of PARAM_TEXT.
-     * @deprecated since 2.0
-     */
-    #[deprecated(
-        replacement: 'param::TEXT',
-        since: '2.0',
-        reason: 'Alias for PARAM_TEXT',
-        final: true,
-    )]
-    case MULTILANG = 'multilang';
-
-    /**
      * PARAM_TIMEZONE - expected timezone. Timezone can be int +-(0-13) or float +-(0.5-12.5) or
      * string separated by '/' and can have '-' &/ '_' (eg. America/North_Dakota/New_Salem
      * America/Port-au-Prince)
      */
     case TIMEZONE = 'timezone';
-
-    /**
-     * PARAM_CLEANFILE - deprecated alias of PARAM_FILE; originally was removing regional chars too
-     * @deprecated since 2.0
-     */
-    #[deprecated(
-        replacement: 'param::FILE',
-        since: '2.0',
-        reason: 'Alias for PARAM_FILE',
-    )]
-    case CLEANFILE = 'cleanfile';
 
     /**
      * PARAM_COMPONENT is used for full component names (aka frankenstyle) such as 'mod_forum = 'core_rating', 'auth_ldap'.
@@ -351,32 +278,12 @@ enum param: string {
      * @throws coding_exception If the parameter is unknown.
      */
     public static function from_type(string $paramname): self {
-        $from = self::tryFrom($paramname)?->canonical();
+        $from = self::tryFrom($paramname);
         if ($from) {
             return $from;
         }
 
         throw new \coding_exception("Unknown parameter type '{$paramname}'");
-    }
-
-    /**
-     * Canonicalise the parameter.
-     *
-     * This method is used to support aliasing of deprecated parameters.
-     *
-     * @return param
-     */
-    private function canonical(): self {
-        return match ($this) {
-            self::ACTION => self::ALPHANUMEXT,
-            self::CLEANFILE => self::FILE,
-            self::FORMAT => self::ALPHANUMEXT,
-            self::INTEGER => self::INT,
-            self::MULTILANG => self::TEXT,
-            self::NUMBER => self::FLOAT,
-
-            default => $this,
-        };
     }
 
     /**
@@ -405,11 +312,6 @@ enum param: string {
             } else {
                 throw new coding_exception('clean() can not process objects, please use clean_array() instead.');
             }
-        }
-
-        $canonical = $this->canonical();
-        if ($this !== $canonical) {
-            return $canonical->clean($value);
         }
 
         $methodname = "clean_param_value_{$this->value}";
@@ -608,7 +510,7 @@ enum param: string {
 
         $cleaned = $this->clean($param);
 
-        if ($this->canonical() === self::FLOAT) {
+        if ($this === self::FLOAT) {
             // Do not detect precision loss here.
             if (is_float($param) || is_int($param)) {
                 // These always fit.

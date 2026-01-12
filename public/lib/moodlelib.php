@@ -272,49 +272,11 @@ define('PARAM_STRINGID', \core\param::STRINGID->value);
 define('PARAM_CLEAN', \core\param::CLEAN->value);
 
 /**
- * PARAM_INTEGER - deprecated alias for PARAM_INT
- * @deprecated since 2.0
- */
-define('PARAM_INTEGER', \core\param::INT->value);
-
-/**
- * PARAM_NUMBER - deprecated alias of PARAM_FLOAT
- * @deprecated since 2.0
- */
-define('PARAM_NUMBER', \core\param::FLOAT->value);
-
-/**
- * PARAM_ACTION - deprecated alias for PARAM_ALPHANUMEXT, use for various actions in forms and urls
- * NOTE: originally alias for PARAM_APLHA
- * @deprecated since 2.0
- */
-define('PARAM_ACTION', \core\param::ALPHANUMEXT->value);
-
-/**
- * PARAM_FORMAT - deprecated alias for PARAM_ALPHANUMEXT, use for names of plugins, formats, etc.
- * NOTE: originally alias for PARAM_APLHA
- * @deprecated since 2.0
- */
-define('PARAM_FORMAT', \core\param::ALPHANUMEXT->value);
-
-/**
- * PARAM_MULTILANG - deprecated alias of PARAM_TEXT.
- * @deprecated since 2.0
- */
-define('PARAM_MULTILANG', \core\param::TEXT->value);
-
-/**
  * PARAM_TIMEZONE - expected timezone. Timezone can be int +-(0-13) or float +-(0.5-12.5) or
  * string separated by '/' and can have '-' &/ '_' (eg. America/North_Dakota/New_Salem
  * America/Port-au-Prince)
  */
 define('PARAM_TIMEZONE', \core\param::TIMEZONE->value);
-
-/**
- * PARAM_CLEANFILE - deprecated alias of PARAM_FILE; originally was removing regional chars too
- * @deprecated since 2.0
- */
-define('PARAM_CLEANFILE', \core\param::CLEANFILE->value);
 
 /**
  * PARAM_COMPONENT is used for full component names (aka frankenstyle) such as 'mod_forum', 'core_rating', 'auth_ldap'.
