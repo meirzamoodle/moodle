@@ -149,10 +149,7 @@ class mod_choice_renderer extends plugin_renderer_base {
         }
 
         $table = new html_table();
-        $table->cellpadding = 0;
-        $table->cellspacing = 0;
         $table->attributes['class'] = 'results names table table-bordered';
-        $table->tablealign = 'center';
         $table->summary = get_string('responsesto', 'choice', format_string($choices->name));
         $table->data = array();
 

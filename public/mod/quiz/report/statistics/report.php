@@ -302,7 +302,6 @@ class quiz_statistics_report extends report_base {
         // Set up the question info table.
         $questioninfotable = new html_table();
         $questioninfotable->align = ['center', 'center'];
-        $questioninfotable->width = '60%';
         $questioninfotable->attributes['class'] = 'table generaltable titlesleft table-hover';
 
         $questioninfotable->data = [];
@@ -324,7 +323,6 @@ class quiz_statistics_report extends report_base {
         // Set up the question statistics table.
         $questionstatstable = new html_table();
         $questionstatstable->align = ['center', 'center'];
-        $questionstatstable->width = '60%';
         $questionstatstable->attributes['class'] = 'table generaltable titlesleft table-hover';
 
         unset($datumfromtable['number']);
@@ -497,7 +495,6 @@ class quiz_statistics_report extends report_base {
 
         $quizinfotable = new html_table();
         $quizinfotable->align = ['center', 'center'];
-        $quizinfotable->width = '60%';
         $quizinfotable->attributes['class'] = 'table generaltable titlesleft table-hover';
         $quizinfotable->data = [];
 

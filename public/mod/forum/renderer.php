@@ -141,9 +141,6 @@ class mod_forum_renderer extends plugin_renderer_base {
             if ($canviewemail) {
                 $table->head[] = get_string('email');
             }
-            $table->cellpadding = 5;
-            $table->cellspacing = 5;
-            $table->tablealign = 'center';
             $table->data = array();
             foreach ($users as $user) {
                 $info = array($this->output->user_picture($user, array('courseid'=>$course->id)), fullname($user));

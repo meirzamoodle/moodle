@@ -276,10 +276,6 @@ class mod_lesson_renderer extends plugin_renderer_base {
 
             $pagetable = new html_table();
             $pagetable->align = array('right','left');
-            $pagetable->width = '100%';
-            $pagetable->tablealign = 'center';
-            $pagetable->cellspacing = 0;
-            $pagetable->cellpadding = '5px';
             $pagetable->data = array();
 
             $pageheading = new html_table_cell();

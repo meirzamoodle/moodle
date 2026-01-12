@@ -121,30 +121,6 @@ class html_table {
     public $data = [];
 
     /**
-     * @var string Width of the table, percentage of the page preferred.
-     * @deprecated since Moodle 2.0. Styling should be in the CSS.
-     */
-    public $width = null;
-
-    /**
-     * @var string Alignment for the whole table. Can be 'right', 'left' or 'center' (default).
-     * @deprecated since Moodle 2.0. Styling should be in the CSS.
-     */
-    public $tablealign = null;
-
-    /**
-     * @var int Padding on each cell, in pixels
-     * @deprecated since Moodle 2.0. Styling should be in the CSS.
-     */
-    public $cellpadding = null;
-
-    /**
-     * @var int Spacing between cells, in pixels
-     * @deprecated since Moodle 2.0. Styling should be in the CSS.
-     */
-    public $cellspacing = null;
-
-    /**
      * @var array Array of classes to add to particular rows, space-separated string.
      * Class 'lastrow' is added automatically for the last row in the table.
      *

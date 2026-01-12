@@ -105,8 +105,6 @@ if (!$ratings) {
     $sorturl->remove_params('sort');
 
     $table = new html_table;
-    $table->cellpadding = 3;
-    $table->cellspacing = 3;
     $table->attributes['class'] = 'generalbox ratingtable table-reboot';
     $table->head = array(
         '',

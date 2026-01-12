@@ -171,7 +171,6 @@ if (!$acl) {
     $table = new html_table();
     $table->head = $headings;
     $table->align = array('left', 'left', 'center');
-    $table->width = "95%";
     foreach ($acl as $aclrecord) {
         if ($aclrecord->accessctrl == 'allow') {
             $accesscolumn = get_string('allow', 'mnet')

@@ -286,7 +286,6 @@ if ($action === 'delete') {
     /// actually start printing something
     $table = new html_table();
     $table->wrap = array();
-    $table->width = "60%";
     if (!empty($userid)) {
         // if looking at a students try, print out some basic stats at the top
 

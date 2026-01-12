@@ -318,7 +318,6 @@ foreach ($members as $gpgid=>$groupdata) {
     $table->head  = array(get_string('groupscount', 'group', count($groupdata)), get_string('groupmembers', 'group'), get_string('usercount', 'group'));
     $table->size  = array('20%', '70%', '10%');
     $table->align = array('left', 'left', 'center');
-    $table->width = '90%';
     $table->data  = array();
     foreach ($groupdata as $gpid=>$users) {
         if ($groupid and $groupid != $gpid) {

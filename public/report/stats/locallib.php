@@ -124,7 +124,6 @@ function report_stats_report($course, $report, $mode, $user, $roleid, $time) {
 
     $users = array();
     $table = new html_table();
-    $table->width = 'auto';
 
     if ($mode == STATS_MODE_DETAILED) {
         $param = stats_get_parameters($time, null, $course->id, $mode, $roleid); // We only care about the table and the time string (if we have time).

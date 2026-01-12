@@ -75,7 +75,6 @@ echo html_writer::start_tag('form', ['action' => 'index.php', 'method' => 'post'
 echo html_writer::start_tag('div');
 
 $table = new html_table();
-$table->width = '*';
 $table->align = array('left','left','left','left','left','left');
 
 $reporttypemenu = html_writer::label(get_string('statsreporttype'), 'menureport', false, array('class' => 'accesshide'));

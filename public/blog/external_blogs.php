@@ -92,7 +92,6 @@ echo $OUTPUT->box_start('generalbox boxaligncenter');
 
 if (!empty($blogs)) {
     $table = new html_table();
-    $table->cellpadding = 4;
     $table->attributes['class'] = 'table generaltable table-hover';
     $table->head = array(get_string('name'),
                          get_string('url', 'blog'),

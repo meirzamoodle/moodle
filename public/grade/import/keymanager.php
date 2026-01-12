@@ -77,7 +77,6 @@ $table = new html_table();
 $table->head  = array(get_string('keyvalue', 'userkey'), get_string('keyiprestriction', 'userkey'), get_string('keyvaliduntil', 'userkey'), $stredit);
 $table->size  = array('50%', '30%', '10%', '10%');
 $table->align = array('left', 'left', 'left', 'center');
-$table->width = '90%';
 $table->data  = $data;
 echo html_writer::table($table);
 echo $OUTPUT->footer();

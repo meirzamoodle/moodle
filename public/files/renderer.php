@@ -58,7 +58,6 @@ class core_files_renderer extends plugin_renderer_base {
         $table = new html_table();
         $table->head = array(get_string('name'), get_string('lastmodified'), get_string('size', 'repository'), get_string('type', 'repository'));
         $table->align = array('left', 'left', 'left', 'left');
-        $table->width = '100%';
         $table->data = array();
 
         foreach ($tree->tree as $file) {

@@ -491,11 +491,8 @@ function lesson_user_complete($course, $user, $mod, $lesson) {
             get_string("numberofpagesviewedheader", "lesson"),
             get_string("numberofcorrectanswersheader", "lesson"),
             get_string("time"));
-        $table->width = "100%";
         $table->align = array ("center", "center", "center", "center", "center");
         $table->size = array ("*", "*", "*", "*", "*");
-        $table->cellpadding = 2;
-        $table->cellspacing = 0;
 
         $retry = 0;
         $nquestions = 0;

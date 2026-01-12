@@ -204,7 +204,6 @@ $strmanage  = get_string('manageinstance', 'enrol');
 $table = new html_table();
 $table->head  = array(get_string('name'), get_string('users'), $strup.'/'.$strdown, get_string('edit'));
 $table->align = array('left', 'center', 'center', 'center');
-$table->width = '100%';
 $table->data  = array();
 
 // iterate through enrol plugins and add to the display table

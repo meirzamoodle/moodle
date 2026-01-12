@@ -1,0 +1,10 @@
+issueNumber: MDL-87427
+notes:
+  core_table:
+    - message: >-
+        The following properties have been removed from `core_table\output\html_table`:
+        - `width`
+        - `tablealign`
+        - `cellpadding`
+        - `cellspacing`
+      type: removed

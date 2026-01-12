@@ -692,7 +692,6 @@ class core_backup_renderer extends plugin_renderer_base {
             $table = new html_table();
             $table->attributes['class'] = 'backup-files-table table generaltable table-hover';
             $table->head = $tablehead;
-            $table->width = '100%';
             $table->data = [];
 
             // First add in progress asynchronous backups.

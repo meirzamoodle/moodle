@@ -63,7 +63,6 @@ class core_rss_renderer extends plugin_renderer_base {
         $table = new html_table();
         $table->head  = array($strtoken, $stroperation);
         $table->align = array('left', 'center');
-        $table->width = '100%';
         $table->data  = array();
 
         if (!empty($token)) {

@@ -563,18 +563,12 @@ class html_writer {
         if (empty($table->attributes['class'])) {
             $table->attributes['class'] = 'generaltable table table-hover';
         }
-        if (!empty($table->tablealign)) {
-            $table->attributes['class'] .= ' boxalign' . $table->tablealign;
-        }
 
         // Explicitly assigned properties override those defined via $table->attributes.
         $table->attributes['class'] = trim($table->attributes['class']);
         $attributes = array_merge($table->attributes, [
             'id'            => $table->id,
-            'width'         => $table->width,
             'summary'       => $table->summary,
-            'cellpadding'   => $table->cellpadding,
-            'cellspacing'   => $table->cellspacing,
         ]);
         $output = self::start_tag('table', $attributes) . "\n";
 

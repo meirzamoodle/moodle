@@ -165,12 +165,10 @@ if ($editform->is_cancelled()) {
             $table->head  = array(get_string('groupscount', 'group', $numgrps));
             $table->size  = array('100%');
             $table->align = array('left');
-            $table->width = '40%';
         } else {
             $table->head  = array(get_string('groupscount', 'group', $numgrps), get_string('groupmembers', 'group'), get_string('usercounttotal', 'group', $usercnt));
             $table->size  = array('20%', '70%', '10%');
             $table->align = array('left', 'left', 'center');
-            $table->width = '90%';
         }
         $table->data  = array();
         $viewfullnames = has_capability('moodle/site:viewfullnames', $context);

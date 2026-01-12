@@ -109,7 +109,6 @@ function sort_compare($a, $b) {
 usort($users, 'sort_compare');
 
 $table = new html_table();
-$table->width = "95%";
 $columns = array('fullname', 'email', 'city', 'country', 'lastaccess');
 foreach ($columns as $column) {
     $strtitle = get_string($column);

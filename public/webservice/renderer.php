@@ -43,8 +43,6 @@ class core_webservice_renderer extends plugin_renderer_base {
         $table->size = array('45%', '10%', '45%');
         $table->attributes['class'] = 'roleassigntable table generaltable table-hover';
         $table->summary = '';
-        $table->cellspacing = 0;
-        $table->cellpadding = 0;
 
         // LTR/RTL support, for drawing button arrows in the right direction
         if (right_to_left()) {
@@ -203,7 +201,6 @@ class core_webservice_renderer extends plugin_renderer_base {
                 get_string('description'), get_string('requiredcaps', 'webservice'));
             $table->align = array('left', 'left', 'left');
             $table->size = array('15%', '40%', '40%');
-            $table->width = '100%';
             $table->align[] = 'left';
 
             //display remove function operation (except for build-in service)
@@ -304,7 +301,6 @@ class core_webservice_renderer extends plugin_renderer_base {
         $table = new html_table();
         $table->head = array($strtoken, $strservice, $strvaliduntil, $strlastaccess, $strcreator, $stroperation);
         $table->align = array('left', 'left', 'left', 'center', 'center', 'left', 'center');
-        $table->width = '100%';
         $table->data = array();
 
         if ($documentation) {

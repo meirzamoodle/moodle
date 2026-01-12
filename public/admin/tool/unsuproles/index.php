@@ -109,7 +109,6 @@ if (!$problems) {
     $table->head  = array(get_string('contextlevel', 'tool_unsuproles'), get_string('role'), get_string('count', 'tool_unsuproles'), get_string('edit'));
     $table->size  = array('40%', '40%', '10%', '10%');
     $table->align = array('left', 'left', 'center', 'center');
-    $table->width = '90%';
     $table->data  = $data;
     echo html_writer::table($table);
 }
