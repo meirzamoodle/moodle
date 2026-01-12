@@ -51,9 +51,6 @@ define('ENROL_EXT_REMOVED_UNENROL', 0);
 /** When user disappears from external source, the enrolment is kept as is - one way sync */
 define('ENROL_EXT_REMOVED_KEEP', 1);
 
-/** @deprecated since 2.4 not used any more, migrate plugin to new restore methods */
-define('ENROL_RESTORE_TYPE', 'enrolrestore');
-
 /**
  * When user disappears from external source, user enrolment is suspended, roles are kept as is.
  * In some cases user needs a role with some capability to be visible in UI - suc has in gradebook,

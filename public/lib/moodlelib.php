@@ -434,11 +434,6 @@ define('FEATURE_IDNUMBER', 'idnumber');
 define('FEATURE_GROUPS', 'groups');
 /** True if module supports groupings */
 define('FEATURE_GROUPINGS', 'groupings');
-/**
- * True if module supports groupmembersonly (which no longer exists)
- * @deprecated Since Moodle 2.8
- */
-define('FEATURE_GROUPMEMBERSONLY', 'groupmembersonly');
 
 /** Type of module */
 define('FEATURE_MOD_ARCHETYPE', 'mod_archetype');

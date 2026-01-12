@@ -39,13 +39,6 @@ require_once($CFG->dirroot.'/course/format/lib.php');
 define('COURSE_MAX_LOGS_PER_PAGE', 1000);       // Records.
 define('COURSE_MAX_RECENT_PERIOD', 172800);     // Two days, in seconds.
 
-/**
- * Number of courses to display when summaries are included.
- * @var int
- * @deprecated since 2.4, use $CFG->courseswithsummarieslimit instead.
- */
-define('COURSE_MAX_SUMMARIES_PER_PAGE', 10);
-
 // Max courses in log dropdown before switching to optional.
 define('COURSE_MAX_COURSES_PER_DROPDOWN', 1000);
 // Max users in log dropdown before switching to optional.

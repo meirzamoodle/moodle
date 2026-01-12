@@ -495,24 +495,6 @@ class repository_type implements cacheable_object {
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 abstract class repository implements cacheable_object {
-    /**
-     * Timeout in seconds for downloading the external file into moodle
-     * @deprecated since Moodle 2.7, please use $CFG->repositorygetfiletimeout instead
-     */
-    const GETFILE_TIMEOUT = 30;
-
-    /**
-     * Timeout in seconds for syncronising the external file size
-     * @deprecated since Moodle 2.7, please use $CFG->repositorysyncfiletimeout instead
-     */
-    const SYNCFILE_TIMEOUT = 1;
-
-    /**
-     * Timeout in seconds for downloading an image file from external repository during syncronisation
-     * @deprecated since Moodle 2.7, please use $CFG->repositorysyncimagetimeout instead
-     */
-    const SYNCIMAGE_TIMEOUT = 3;
-
     // $disabled can be set to true to disable a plugin by force
     // example: self::$disabled = true
     /** @var bool force disable repository instance */
