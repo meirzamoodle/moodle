@@ -41,7 +41,7 @@ abstract class activity_base extends \core_analytics\local\indicator\community_o
      * @return string[]
      */
     protected function feedback_viewed_events() {
-        return array('\mod_choice\event\course_module_viewed', '\mod_choice\event\answer_updated');
+        return array('\mod_choice\event\course_module_viewed');
     }
 
     /**
