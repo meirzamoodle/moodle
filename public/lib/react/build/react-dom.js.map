@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../src/react-dom.ts"],
+  "sourcesContent": ["import * as ReactDOM from 'react-dom';\nexport {ReactDOM};\n"],
+  "mappings": ";AAAA,YAAY,cAAc;",
+  "names": []
+}

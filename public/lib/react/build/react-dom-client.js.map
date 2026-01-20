@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../src/react-dom-client.ts"],
+  "sourcesContent": ["import * as ReactDOMClient from 'react-dom/client';\n\nexport { ReactDOMClient };\n"],
+  "mappings": ";AAAA,YAAY,oBAAoB;",
+  "names": []
+}

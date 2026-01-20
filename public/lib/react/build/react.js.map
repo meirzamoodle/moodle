@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../src/react.ts"],
+  "sourcesContent": ["import * as React from \"react\";\nimport * as ReactDOMClient from \"react-dom/client\";\nimport * as ReactDOMLegacy from \"react-dom\"\n\nconst ReactDOM = ReactDOMClient;\n\nexport { React, ReactDOM, ReactDOMLegacy };\n"],
+  "mappings": ";AAAA,YAAY,WAAW;AACvB,YAAY,oBAAoB;AAChC,YAAY,oBAAoB;AAEhC,IAAM,WAAW;",
+  "names": []
+}

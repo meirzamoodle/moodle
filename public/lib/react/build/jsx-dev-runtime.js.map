@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../src/jsx-dev-runtime.ts"],
+  "sourcesContent": ["import {jsxDEV, Fragment} from \"react/jsx-dev-runtime\";\n\nexport {jsxDEV, Fragment};\n"],
+  "mappings": ";AAAA,SAAQ,QAAQ,gBAAe;",
+  "names": []
+}
