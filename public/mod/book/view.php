@@ -122,6 +122,7 @@ if (!$chapterid) {
 
     echo $OUTPUT->render_from_template('mod_book/book-test', []);
     $PAGE->requires->js_type_module('mod_book/travel');
+    $PAGE->requires->react_type_module('core_ai/travelai');
     echo $OUTPUT->render_from_template('mod_book/jshelper-test', []);
 
     $renderer = $PAGE->get_renderer('mod_book');

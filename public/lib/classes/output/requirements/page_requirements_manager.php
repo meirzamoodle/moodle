@@ -1065,6 +1065,21 @@ class page_requirements_manager {
     }
 
     /**
+     * Queue a React component module to be output at the end of the page.
+     *
+     * @param string $alias for example `mod_book/travel`.
+     */
+    public function react_type_module(string $alias): void {
+        // Ensure it cannot break the URL.
+        $alias = ltrim($alias, '/');
+        $alias = trim($alias);
+        $jsrev = $this->get_jsrev();
+        $serverfile = new \core\url('/lib/reactscript.php');
+        $serverfile->set_slashargument('/' . $jsrev . '/' . $alias);
+        $this->jsmodulefiles[] = $serverfile->out(false);
+    }
+
+    /**
      * Queue an ES module script to be output at the end of the page.
      *
      * The provided path is resolved through {@see moodle_url} so both relative Moodle

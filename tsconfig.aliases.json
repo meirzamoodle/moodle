@@ -2,6 +2,7 @@
   "compilerOptions": {
     "paths": {
       "@moodle/core/*": ["public/lib/react/src/*"],
+      "@moodle/core_ai/*": ["public/ai/react/src/*"],
       "@moodle/mod_book/*": ["public/mod/book/react/src/*"],
       "@moodle/local_multiplereact/*": ["public/local/multiplereact/react/src/*"]
     }
