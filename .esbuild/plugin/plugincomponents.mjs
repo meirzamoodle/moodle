@@ -106,14 +106,24 @@ function resolveComponentPaths(entry) {
 export async function buildPluginComponents(isDev, sharedDefine, isWatch) {
     console.log('\n' + chalk.green('> Building components...'));
 
+    const ignoreTestFiles = [
+        '**/__tests__/**',
+        '**/*.spec.ts',
+        '**/*.spec.tsx',
+        '**/*.test.ts',
+        '**/*.test.tsx',
+    ];
+
     // Component patterns - FIXED: Separate to avoid duplicates
     const pluginComponents = glob.sync("public/!(lib)/**/react/src/**/*.tsx", {
         cwd: projectroot,
         absolute: true,
+        ignore: ignoreTestFiles,
     });
     const coreComponents = glob.sync("public/lib/react/src/components/**/*.tsx", {
         cwd: projectroot,
         absolute: true,
+        ignore: ignoreTestFiles,
     });
 
     // Combine and deduplicate using Set
