@@ -40,7 +40,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 
-import { onRenderCallback, isProfilerEnabled } from "@moodle/core/profiler";
+import { onRenderCallback, isProfilerEnabled } from "@moodle/lms/core/profiler";
 
 const SELECTOR = "[data-react-component]";
 const MOUNTED_FLAG = "reactMounted";
@@ -141,39 +141,27 @@ const resolveComponent = async (componentName: string): Promise<any> => {
 
         const [, namespace, componentPath] = match;
 
-        // Build relative path from current location (/lib/react_autoinit/build/index.js)
-        // to the component location.
-        let relativePath: string;
+        // Convert our @namespace/path convention into a Moodle component identifier.
+        // - plugin components already include an underscore (e.g. mod_book, local_foo)
+        // - core subsystems are resolved as core_<subsystem> (e.g. calendar -> core_calendar)
+        const component =
+            namespace === "core" || namespace.startsWith("core_")
+                ? namespace
+                : namespace.includes("_")
+                  ? namespace
+                  : `core_${namespace}`;
 
-        // TODO: Not sure how to handle plugins correctly here.
-        if (namespace === "core") {
-            // @core/button to ../react/build/button.js.
-            relativePath = `../react/build/${componentPath}.js`;
-        } else if (namespace.startsWith("mod_")) {
-            // @mod_book/page to ../../../mod/book/react/build/page.js.
-            const modName = namespace.replace("mod_", "");
-            relativePath = `../../../mod/${modName}/react/build/${componentPath}.js`;
-        } else if (namespace.startsWith("block_")) {
-            // @block_html/settings to ../../../blocks/html/react/build/settings.js.
-            const blockName = namespace.replace("block_", "");
-            relativePath = `../../../blocks/${blockName}/react/build/${componentPath}.js`;
-        } else if (namespace.startsWith("local_")) {
-            // @local_multiplereact/foo to ../../../local/multiplereact/react/build/foo.js.
-            const localName = namespace.replace("local_", "");
-            relativePath = `../../../local/${localName}/react/build/${componentPath}.js`;
-        } else {
-            // Generic: @calendar/event to ../../../calendar/react/build/event.js.
-            relativePath = `../../../${namespace}/react/build/${componentPath}.js`;
-        }
-
-        // Resolve to absolute URL.
-        const url = new URL(relativePath, import.meta.url).href;
+        // Use import map indirection so Moodle can serve the resolved JS via reactscript.php.
+        // The browser will resolve this through the import map.
+        const specifier = `@moodle/lms/${component}/${componentPath}`;
 
         if (isDev) {
-            console.log(`[react_autoinit] Loading: ${componentName} → ${url}`);
+            console.log(
+                `[react_autoinit] Loading: ${componentName} → ${specifier}`
+            );
         }
 
-        const module = await import(url);
+        const module = await import(specifier);
         return module;
     } catch (e) {
         console.error(`[react_autoinit] Failed to import: ${componentName}`, e);
