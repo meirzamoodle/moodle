@@ -28,6 +28,15 @@ use core\tests\environment as environment_tester;
  */
 #[\PHPUnit\Framework\Attributes\CoversClass(environment::class)]
 final class environment_test extends \advanced_testcase {
+
+    #[\Override]
+    protected function setUp(): void {
+        parent::setUp();
+        // Ensure tests start with default vendor path resolution.
+        environment_tester::set_vendor_path('');
+        environment_tester::set_developer_mode(false);
+    }
+
     #[\PHPUnit\Framework\Attributes\DataProvider('composer_error_states_provider')]
     public function test_composer_not_installed_cases(
         array $fs = [],
@@ -87,6 +96,190 @@ final class environment_test extends \advanced_testcase {
         $result = new \environment_results('custom_check');
         $result = environment_tester::check_composer_dependencies_installed($result);
         $this->assertNull($result);
+    }
+
+    public function test_composer_installed_in_parent_directory(): void {
+        global $CFG;
+
+        \org\bovigo\vfs\vfsStream::setup('root', null, [
+            'moodle' => [
+                'public' => [
+                    // No vendor directory inside the Moodle dirroot.
+                ],
+            ],
+            'vendor' => [
+                'autoload.php' => '',
+                'composer' => [
+                    'installed.php' => '',
+                ],
+            ],
+        ]);
+
+        $originaldirroot = $CFG->dirroot;
+        $originalroot = $CFG->root ?? null;
+        $CFG->dirroot = \org\bovigo\vfs\vfsStream::url('root/moodle/public');
+        $CFG->root = \org\bovigo\vfs\vfsStream::url('root/moodle');
+
+        try {
+            $result = new \environment_results('custom_check');
+            $result = environment_tester::check_composer_dependencies_installed($result);
+            $this->assertNull($result);
+        } finally {
+            $CFG->dirroot = $originaldirroot;
+            if ($originalroot === null) {
+                unset($CFG->root);
+            } else {
+                $CFG->root = $originalroot;
+            }
+        }
+    }
+
+    public function test_composer_installed_in_parent_directory_with_parent_composer_json(): void {
+        global $CFG;
+
+        \org\bovigo\vfs\vfsStream::setup('root', null, [
+            'composer.json' => '{}',
+            'moodle' => [
+                'public' => [
+                    // No vendor directory inside the Moodle dirroot.
+                ],
+            ],
+            'vendor' => [
+                'autoload.php' => '',
+                'composer' => [
+                    'installed.php' => '',
+                ],
+            ],
+        ]);
+
+        $originaldirroot = $CFG->dirroot;
+        $originalroot = $CFG->root ?? null;
+        $CFG->dirroot = \org\bovigo\vfs\vfsStream::url('root/moodle/public');
+        $CFG->root = \org\bovigo\vfs\vfsStream::url('root/moodle');
+
+        try {
+            $result = new \environment_results('custom_check');
+            $result = environment_tester::check_composer_dependencies_installed($result);
+            $this->assertNull($result);
+        } finally {
+            $CFG->dirroot = $originaldirroot;
+            if ($originalroot === null) {
+                unset($CFG->root);
+            } else {
+                $CFG->root = $originalroot;
+            }
+        }
+    }
+
+    public function test_composer_installed_in_moodle_directory(): void {
+        global $CFG;
+
+        \org\bovigo\vfs\vfsStream::setup('root', null, [
+            'moodle' => [
+                'public' => [],
+                'vendor' => [
+                    'autoload.php' => '',
+                    'composer' => [
+                        'installed.php' => '',
+                    ],
+                ],
+            ],
+        ]);
+
+        $originaldirroot = $CFG->dirroot;
+        $originalroot = $CFG->root ?? null;
+        $CFG->dirroot = \org\bovigo\vfs\vfsStream::url('root/moodle/public');
+        $CFG->root = \org\bovigo\vfs\vfsStream::url('root/moodle');
+
+        try {
+            $result = new \environment_results('custom_check');
+            $result = environment_tester::check_composer_dependencies_installed($result);
+            $this->assertNull($result);
+        } finally {
+            $CFG->dirroot = $originaldirroot;
+            if ($originalroot === null) {
+                unset($CFG->root);
+            } else {
+                $CFG->root = $originalroot;
+            }
+        }
+    }
+
+    public function test_composer_installed_in_moodle_directory_requires_parent_vendor_when_parent_composer_present(): void {
+        global $CFG;
+
+        \org\bovigo\vfs\vfsStream::setup('root', null, [
+            'composer.json' => '{}',
+            'moodle' => [
+                'public' => [],
+                'vendor' => [
+                    'autoload.php' => '',
+                    'composer' => [
+                        'installed.php' => '',
+                    ],
+                ],
+            ],
+        ]);
+
+        $originaldirroot = $CFG->dirroot;
+        $originalroot = $CFG->root ?? null;
+        $CFG->dirroot = \org\bovigo\vfs\vfsStream::url('root/moodle/public');
+        $CFG->root = \org\bovigo\vfs\vfsStream::url('root/moodle');
+
+        try {
+            $result = new \environment_results('custom_check');
+            $result = environment_tester::check_composer_dependencies_installed($result);
+            $this->assertEquals('composernotfound', $result->getFeedbackStr());
+            $this->assertEquals('Parent Composer vendor directory not found', $result->info);
+        } finally {
+            $CFG->dirroot = $originaldirroot;
+            if ($originalroot === null) {
+                unset($CFG->root);
+            } else {
+                $CFG->root = $originalroot;
+            }
+        }
+    }
+
+    public function test_composer_installed_in_moodle_directory_with_parent_vendor(): void {
+        global $CFG;
+
+        \org\bovigo\vfs\vfsStream::setup('root', null, [
+            'composer.json' => '{}',
+            'vendor' => [
+                'autoload.php' => '',
+                'composer' => [
+                    'installed.php' => '',
+                ],
+            ],
+            'moodle' => [
+                'public' => [],
+                'vendor' => [
+                    'autoload.php' => '',
+                    'composer' => [
+                        'installed.php' => '',
+                    ],
+                ],
+            ],
+        ]);
+
+        $originaldirroot = $CFG->dirroot;
+        $originalroot = $CFG->root ?? null;
+        $CFG->dirroot = \org\bovigo\vfs\vfsStream::url('root/moodle/public');
+        $CFG->root = \org\bovigo\vfs\vfsStream::url('root/moodle');
+
+        try {
+            $result = new \environment_results('custom_check');
+            $result = environment_tester::check_composer_dependencies_installed($result);
+            $this->assertNull($result);
+        } finally {
+            $CFG->dirroot = $originaldirroot;
+            if ($originalroot === null) {
+                unset($CFG->root);
+            } else {
+                $CFG->root = $originalroot;
+            }
+        }
     }
 
     public function test_composer_dev_installed(): void {

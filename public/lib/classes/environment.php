@@ -31,26 +31,64 @@ class environment {
      * @return \environment_results|null
      */
     public static function check_composer_dependencies_installed(\environment_results $result): ?\environment_results {
-        // Check if the composer vendor directory exists.
+        global $CFG;
+
         $vendorpath = static::get_vendor_path();
+        $composercheck = static::check_vendor_path($result, $vendorpath);
+        if ($composercheck !== null) {
+            return $composercheck;
+        }
+
+        // In a composed setup (e.g. seed-style layout) Moodle may live in a sub-directory of a larger
+        // Composer project. In that case we also expect Composer dependencies to be installed in the
+        // parent project.
+        if (!empty($CFG->root)) {
+            $moodlevendorpath = "{$CFG->root}/vendor";
+            $parentroot = dirname($CFG->root);
+            $parentcomposerjson = "{$parentroot}/composer.json";
+            $parentvendorpath = "{$parentroot}/vendor";
+
+            // Only require a parent vendor when Moodle is using its own vendor directory.
+            if ($vendorpath === $moodlevendorpath && is_file($parentcomposerjson) && $parentvendorpath !== $moodlevendorpath) {
+                $parentcheck = static::check_vendor_path($result, $parentvendorpath, 'Parent Composer');
+                if ($parentcheck !== null) {
+                    return $parentcheck;
+                }
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * Validate that a Composer vendor path has the expected structure.
+     *
+     * @param \environment_results $result
+     * @param string $vendorpath
+     * @param string $label
+     * @return \environment_results|null
+     */
+    protected static function check_vendor_path(
+        \environment_results $result,
+        string $vendorpath,
+        string $label = 'Composer'
+    ): ?\environment_results {
         if (!is_dir($vendorpath)) {
-            $result->setInfo('Composer vendor directory not found');
+            $result->setInfo("{$label} vendor directory not found");
             $result->setFeedbackStr('composernotfound');
             return $result;
         }
 
-        // Check if the composer autoload file exists.
         $autoloadpath = "{$vendorpath}/autoload.php";
         if (!is_file($autoloadpath)) {
-            $result->setInfo('Composer autoload file not found');
+            $result->setInfo("{$label} autoload file not found");
             $result->setFeedbackStr('composernotfound');
             return $result;
         }
 
-        // Check if the installed.php file exists in the composer directory.
         $installedpath = "{$vendorpath}/composer/installed.php";
         if (!is_file($installedpath)) {
-            $result->setInfo('Composer installed data not found');
+            $result->setInfo("{$label} installed data not found");
             $result->setFeedbackStr('composernotfound');
             return $result;
         }
@@ -146,7 +184,33 @@ class environment {
     protected static function get_vendor_path(): string {
         global $CFG;
 
-        // Return the path to the vendor directory.
+        // Composer vendor dependencies may live in different places depending on how Moodle is installed.
+        // Prefer a local vendor directory in the Moodle dirroot, but allow for a parent directory vendor.
+        $candidates = [];
+        if (!empty($CFG->dirroot)) {
+            $candidates[] = "{$CFG->dirroot}/vendor";
+            $candidates[] = dirname($CFG->dirroot) . '/vendor';
+        }
+        if (!empty($CFG->root)) {
+            $candidates[] = "{$CFG->root}/vendor";
+
+            // In some installation layouts the vendor directory may live in the parent directory.
+            // For example, a composed Moodle project may have a top-level vendor directory.
+            $parentroot = dirname($CFG->root);
+            $candidates[] = "{$parentroot}/vendor";
+        }
+
+        foreach (array_unique($candidates) as $path) {
+            if (is_dir($path)) {
+                return $path;
+            }
+        }
+
+        // Fall back to the most likely location.
+        if (!empty($CFG->dirroot)) {
+            return "{$CFG->dirroot}/vendor";
+        }
+
         return "{$CFG->root}/vendor";
     }
 
