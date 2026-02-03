@@ -390,13 +390,16 @@ const getThirdPartyLibsUpgradable = async() => {
  *
  * @returns {Array}
  */
-const getReactTsSrcGlobList = () => {
+const getReactTsSrcGlobList = (relativeTo = '') => {
     const globList = [];
     fetchComponentData().pathList.forEach(componentPath => {
-        globList.push(`${componentPath}/react/src/**/*.{ts,tsx}`);
+        const relativeComponentPath = componentPath.replace(relativeTo, '');
+        globList.push(`${relativeComponentPath}/react/src/**/*.ts`);
+        globList.push(`${relativeComponentPath}/react/src/**/*.tsx`);
     });
 
-    return globList;
+    return globList
+        .map(componentPath => componentPath.replace(/\\/g, '/'));
 };
 
 /**

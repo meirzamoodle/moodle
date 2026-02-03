@@ -4,6 +4,8 @@ const fs = require('fs');
 
 module.exports = grunt => {
 
+    grunt.registerTask('reactsrc', ['eslint:react', 'reactbuild']);
+
     /**
      * Build a single React component using esbuild needed by the reactbuild task for watch mode.
      * Watch mode only builds single files that have changed in development mode.
@@ -135,11 +137,8 @@ module.exports = grunt => {
     grunt.config.merge({
         watch: {
             react: {
-                files: [
-                    'public/**/react/src/**/*.ts',
-                    'public/**/react/src/**/*.tsx',
-                ],
-                tasks: ['reactbuild'],
+                files: grunt.moodleEnv.reactSrc,
+                tasks: ['reactsrc'],
                 options: {
                     spawn: false,
                 }
@@ -153,7 +152,12 @@ module.exports = grunt => {
     let changedFiles = Object.create(null);
     const onChange = grunt.util._.debounce(function() {
         const files = Object.keys(changedFiles);
+
+        // Ensure other tasks can see the changed file list in non-Watchman mode.
+        grunt.moodleEnv.files = files;
         grunt.config('moodleEnv.files', files);
+        grunt.config('eslint.react.src', files);
+
         changedFiles = Object.create(null);
     }, 200);
 

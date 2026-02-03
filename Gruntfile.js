@@ -144,15 +144,12 @@ const setupMoodleEnvironment = grunt => {
         // Globbing pattern for matching all react source files.
         let reactSrc = [];
         if (inComponent) {
-            reactSrc = [componentDirectory + "/react/src/**/*.{ts,tsx}"];
-            // reactSrc.push(
-            //     componentDirectory + "/react/src/*.ts",
-            //     componentDirectory + "/react/src/**/*.ts",
-            //     componentDirectory + "/react/src/*.tsx",
-            //     componentDirectory + "/react/src/**/*.tsx"
-            // );
+            reactSrc = [
+                componentDirectory + "/react/src/**/*.ts",
+                componentDirectory + "/react/src/**/*.tsx",
+            ];
         } else {
-            reactSrc = ComponentList.getReactTsSrcGlobList();
+            reactSrc = ComponentList.getReactTsSrcGlobList(gruntFilePath + '/');
         }
 
         return {

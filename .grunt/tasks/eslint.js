@@ -42,19 +42,10 @@ module.exports = grunt => {
             // Check YUI module source files.
             yui: {src: files ? files : grunt.moodleEnv.yuiSrc},
 
-            // Check react src files.
-            'react-ts': {
+            // Check React source files.
+            react: {
                 src: files ? files : grunt.moodleEnv.reactSrc,
             },
-        },
-        watch: {
-            'react-ts': {
-                files: files ? files : grunt.moodleEnv.reactSrc,
-                tasks: ['eslint:react-ts'],
-                options: {
-                    spawn: false,
-                }
-            }
         },
     });
 
