@@ -1049,10 +1049,21 @@ class page_requirements_manager {
          * to avoid CommonJS/RequireJS conflicts in Moodle.
          */
         $output = html_writer::start_tag('script', ['type' => 'importmap']);
+
+        // In profiling mode, load development React artifacts.
+        // These are still dependency-closed in Moodle terms because they are served locally via import maps.
+        $reactbase = '/lib/js/platform_bundles/react/19.1.1';
+        if (!empty($this->M_cfg['reactprofiling'])) {
+            $reactbase .= '/dev';
+        }
+
         $importmap = (object) [
             'imports' => (object) [
-                'react' => (new \core\url('/lib/js/platform_bundles/react/19.1.1/react.js'))->out(false),
-                'react-dom/client' => (new \core\url('/lib/js/platform_bundles/react/19.1.1/react-dom-client.js'))->out(false),
+                'react' => (new \core\url($reactbase . '/react.js'))->out(false),
+                'react-dom' => (new \core\url($reactbase . '/react-dom.js'))->out(false),
+                'react-dom/client' => (new \core\url($reactbase . '/react-dom-client.js'))->out(false),
+                'scheduler' => (new \core\url($reactbase . '/scheduler.js'))->out(false),
+                'node_process' => (new \core\url($reactbase . '/node_process.js'))->out(false),
                 'react/jsx-runtime' => (new \core\url('/lib/js/platform_bundles/react/19.1.1/jsx-runtime.js'))->out(false),
                 'react/jsx-dev-runtime' => (new \core\url('/lib/js/platform_bundles/react/19.1.1/jsx-dev-runtime.js'))->out(false),
                 '/stable/react@19.1.1/es2022/react.mjs' => (new \core\url('/lib/js/platform_bundles/react/19.1.1/react.js'))->out(false),
@@ -1820,8 +1831,8 @@ EOF;
         $output .= $this->get_jquery_headcode();
 
         // Design system css.
-        $designsystemcss = new \core\url('/esm-test/moodle-design-system/0.1.0/index.css');
-        $output .= html_writer::tag('link', '', ['rel' => 'stylesheet', 'href' => $designsystemcss->out(false)]);
+        $designsystemcss = new \core\url('/lib/js/platform_bundles/moodle-design-system/0.1.0/index.css');
+        $output .= html_writer::empty_tag('link', ['rel' => 'stylesheet', 'href' => $designsystemcss->out(false)]);
 
         // Link our main JS file, all core stuff should be there.
         $output .= html_writer::script('', $this->js_fix_url('/lib/javascript-static.js'));
