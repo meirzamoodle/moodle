@@ -21,6 +21,8 @@
  */
 
 // @ts-nocheck
+import fs from 'node:fs';
+import path from 'node:path';
 import { generateAliases } from "./generate-aliases.mjs";
 await generateAliases();
 
@@ -44,5 +46,14 @@ const sharedDefine = {
 };
 
 await buildReactAutoInit();
-await buildMoodleDesignSystem();
+
+// The design system source may not be present (e.g. submodule not initialised).
+// If it's missing, skip rebuilding and rely on the shipped platform bundle artefacts.
+const designsystementry = path.resolve(process.cwd(), 'design-system/dist/index.es.js');
+if (fs.existsSync(designsystementry)) {
+    await buildMoodleDesignSystem();
+} else {
+    console.warn(`[esbuild] Skipping moodle-design-system build (missing: ${designsystementry})`);
+}
+
 await buildPluginComponents(isDev, sharedDefine, isWatch);
