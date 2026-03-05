@@ -4,7 +4,7 @@
       <location>js/bundles/react</location>
       <name>react</name>
       <description>Core library for building user interfaces with components</description>
-      <version>19.1.1</version>
+      <version>19.2.4</version>
       <license>MIT</license>
       <licenseversion/>
       <repository>https://github.com/facebook/react</repository>
@@ -13,7 +13,7 @@
       <location>js/bundles/react-dom</location>
       <name>react-dom</name>
       <description>React renderer for web browsers</description>
-      <version>19.1.1</version>
+      <version>19.2.4</version>
       <license>MIT</license>
       <licenseversion/>
       <repository>https://github.com/facebook/react</repository>
