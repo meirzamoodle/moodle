@@ -31,11 +31,13 @@ import path from "path";
  *
  * @param {string} url The URL to download the file from.
  * @param {string} filePath The path to save the downloaded file to.
+ * @param {function} [modifier] Optional function to modify the file after download. Receives the file path as an argument.
  * @returns {Promise}
  */
 export const download = (
     url,
     filePath,
+    modifier,
 ) => {
     return new Promise((resolve, reject) => {
         https.get(url, (response) => {
@@ -62,7 +64,14 @@ export const download = (
             const file = fs.createWriteStream(filePath);
             response.pipe(file);
 
-            file.on("finish", () => file.close(resolve));
+            file.on("finish", () => {
+                file.close(() => {
+                    if (modifier) {
+                        modifier(filePath);
+                    }
+                    resolve();
+                });
+            });
             file.on("error", reject);
         }).on("error", reject);
     });
