@@ -47,6 +47,7 @@ const bundles = [
   { packageName: "react", version: REACT_VERSION, fileName: "jsx-runtime" },
   { packageName: "react", version: REACT_VERSION, fileName: "jsx-dev-runtime" },
   { packageName: "react-dom", version: REACT_DOM_VERSION, fileName: "react-dom" },
+  { packageName: "react-dom", version: REACT_DOM_VERSION, fileName: "client" },
 ].map((bundle) => ({
   ...bundle,
   url: `https://esm.sh/${bundle.packageName}@${bundle.version}/${TARGET}/${bundle.fileName}.bundle.mjs`
