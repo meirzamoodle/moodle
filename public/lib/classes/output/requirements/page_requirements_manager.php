@@ -1111,7 +1111,6 @@ class page_requirements_manager {
             tagname: 'script',
             contents: '',
             attributes: [
-                'async' => 'async',
                 'src' => $path->out(),
             ],
         ) . "\n";
@@ -1824,11 +1823,11 @@ EOF;
             }
         }
 
+        // Load es-module-shims before any module scripts so it can polyfill import map support.
+        $output .= $this->esm_shims();
+
         // Add the react auto initialisation script to mount react code from mustache templates.
         $output .= $this->react_mustache_autoinit();
-
-        // Load es-module-shims before the rest of page scripts execute.
-        $output .= $this->esm_shims();
 
         // Then the clever trick for hiding of things not needed when JS works.
         $output .= html_writer::script("document.body.className += ' jsenabled';") . "\n";
