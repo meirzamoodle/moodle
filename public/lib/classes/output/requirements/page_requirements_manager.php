@@ -1096,6 +1096,24 @@ class page_requirements_manager {
     }
 
     /**
+     * Returns the `<script>` tag used to load the es-module-shims polyfill.
+     *
+     * @return string Returns the script html for es-module-shims
+     */
+    public function esm_shims(): string {
+        // <script async src="https://ga.jspm.io/npm:es-module-shims@2.7.0/dist/es-module-shims.js"></script>
+        $scripthtml = html_writer::tag(
+            tagname: 'script',
+            contents: '',
+            attributes: [
+                'async' => 'async',
+                'src' => 'https://ga.jspm.io/npm:es-module-shims@2.7.0/dist/es-module-shims.js',
+            ],
+        ) . "\n";
+        return $scripthtml;
+    }
+
+    /**
      * !!!DEPRECATED!!! please use js_init_call() if possible
      * Ensure that the specified JavaScript function is called from an inline script
      * somewhere on this page.
@@ -1803,6 +1821,9 @@ EOF;
 
         // Add the react auto initialisation script to mount react code from mustache templates.
         $output .= $this->react_mustache_autoinit();
+
+        // Load es-module-shims before the rest of page scripts execute.
+        $output .= $this->esm_shims();
 
         // Then the clever trick for hiding of things not needed when JS works.
         $output .= html_writer::script("document.body.className += ' jsenabled';") . "\n";
