@@ -60,10 +60,7 @@ class esm_controller {
     ): ResponseInterface {
         global $CFG;
 
-        // Normalise the revision: an outdated or invalid value disables long-term caching.
-        if (!min_is_revision_valid_and_current($revision)) {
-            $revision = -1;
-        }
+        $revision = $this->normalise_revision($revision);
 
         $fullpath = "{$CFG->root}/lib/js/bundles/esm-shims/es-module-shims.js";
         if (file_exists($fullpath)) {
@@ -104,11 +101,7 @@ class esm_controller {
         int $revision,
         string $scriptpath,
     ): ResponseInterface {
-        // Normalise the revision: an outdated or invalid value disables long-term caching
-        // so browsers always re-fetch rather than serving a stale file.
-        if (!min_is_revision_valid_and_current($revision)) {
-            $revision = -1;
-        }
+        $revision = $this->normalise_revision($revision);
 
         $importmap = \core\di::get(\core\output\requirements\import_map::class);
         $fullpath = $importmap->get_path_for_script($scriptpath);
@@ -116,6 +109,20 @@ class esm_controller {
             return $this->serve_script($request, $response, $revision, $fullpath, basename($fullpath));
         }
         throw new \core\exception\not_found_exception('script', $scriptpath);
+    }
+
+    /**
+     * Normalise the revision number: an outdated or invalid value is replaced with -1
+     * to disable long-term caching so browsers always re-fetch rather than serving a stale file.
+     *
+     * @param int $revision
+     * @return int
+     */
+    private function normalise_revision(int $revision): int {
+        if (!min_is_revision_valid_and_current($revision)) {
+            return -1;
+        }
+        return $revision;
     }
 
     /**
