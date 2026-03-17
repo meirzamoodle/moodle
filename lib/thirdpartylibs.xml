@@ -18,4 +18,13 @@
       <licenseversion/>
       <repository>https://github.com/facebook/react</repository>
   </library>
+  <library>
+      <location>js/bundles/esm-shims</location>
+      <name>esm-shims</name>
+      <description>Polyfills import maps and other ES Modules features on top of the baseline native ESM support in browsers.</description>
+      <version>2.7.0</version>
+      <license>MIT</license>
+      <licenseversion/>
+      <repository>https://github.com/guybedford/es-module-shims</repository>
+  </library>
 </libraries>
