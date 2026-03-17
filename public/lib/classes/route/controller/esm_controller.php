@@ -34,6 +34,45 @@ class esm_controller {
     use \core\router\route_controller;
 
     #[\core\router\route(
+        title: 'Serve ES Module Shims',
+        path: '/esm/shims/{revision:[0-9-]+}',
+        pathtypes: [
+            new path_parameter(
+                name: 'revision',
+                description: 'The revision number of the script to serve.',
+                type: \core\param::INT,
+            ),
+        ],
+        method: ['GET'],
+        abortafterconfig: true,
+    )]
+    /**
+     * Serve the es-module-shims polyfill.
+     *
+     * @param ServerRequestInterface $request
+     * @param ResponseInterface $response
+     * @param int $revision
+     */
+    public function serve_shims(
+        ServerRequestInterface $request,
+        ResponseInterface $response,
+        int $revision,
+    ): ResponseInterface {
+        global $CFG;
+
+        // Normalise the revision: an outdated or invalid value disables long-term caching.
+        if (!min_is_revision_valid_and_current($revision)) {
+            $revision = -1;
+        }
+
+        $fullpath = "{$CFG->root}/lib/js/bundles/esm-shims/es-module-shims.js";
+        if (file_exists($fullpath)) {
+            return $this->serve_script($request, $response, $revision, $fullpath, basename($fullpath));
+        }
+        throw new \core\exception\not_found_exception('script', 'es-module-shims');
+    }
+
+    #[\core\router\route(
         title: 'Serve ESM Content',
         path: '/esm/{revision:[0-9-]+}/{scriptpath:.*}',
         pathtypes: [

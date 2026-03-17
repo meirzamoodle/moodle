@@ -1101,13 +1101,18 @@ class page_requirements_manager {
      * @return string Returns the script html for es-module-shims
      */
     public function esm_shims(): string {
-        // <script async src="https://ga.jspm.io/npm:es-module-shims@2.7.0/dist/es-module-shims.js"></script>
+        $path = \core\router\util::get_path_for_callable(
+            [\core\route\controller\esm_controller::class, 'serve_shims'],
+            [
+                'revision' => $this->get_jsrev(),
+            ],
+        );
         $scripthtml = html_writer::tag(
             tagname: 'script',
             contents: '',
             attributes: [
                 'async' => 'async',
-                'src' => 'https://ga.jspm.io/npm:es-module-shims@2.7.0/dist/es-module-shims.js',
+                'src' => $path->out(),
             ],
         ) . "\n";
         return $scripthtml;
