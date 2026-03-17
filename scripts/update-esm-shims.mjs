@@ -1,3 +1,25 @@
+// This file is part of Moodle - http://moodle.org/
+//
+// Moodle is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Moodle is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
+
+/**
+ * Script to update the es-module-shims bundle.
+ *
+ * @copyright  Meirza <meirza.arson@moodle.com>
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+
 import chalk from 'chalk';
 import fs from "fs-extra";
 import path from "path";
@@ -17,27 +39,16 @@ const ESM_SHIMS_VERSION = getPackageVersion('es-module-shims');
 // File to download.
 const url = `https://ga.jspm.io/npm:es-module-shims@${ESM_SHIMS_VERSION}/dist/es-module-shims.js`;
 
-
 async function init() {
   console.log(chalk.blue.bold.underline('Updating es-module-shims bundles to version %s'), ESM_SHIMS_VERSION);
 
   fs.removeSync(esmshimsOutputDir);
   console.log(chalk.green('Removing old file ✓'));
 
-  const fileDir = path.join(outputdir, 'esm-shims');
-  const filePath = path.join(fileDir, 'es-module-shims.js');
+  const filePath = path.join(esmshimsOutputDir, 'es-module-shims.js');
 
-  /**
-   * @param {string} downloadedFilePath
-   */
-  const normalizeDownloadedFile = (downloadedFilePath) => {
-    let content = fs.readFileSync(downloadedFilePath, 'utf-8');
-    fs.writeFileSync(downloadedFilePath, content);
-  };
-
-  console.log(chalk.green(`Download ✓`));
-  await download(url, filePath, normalizeDownloadedFile);
-
+  console.log(chalk.green(`Downloading es-module-shims...`));
+  await download(url, filePath);
 
   // Create readme files in the package folders.
   console.log(chalk.green(`Creating readme_moodle.txt ✓`));
