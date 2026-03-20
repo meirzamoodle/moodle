@@ -120,6 +120,11 @@ if (!$chapterid) {
 
     echo $OUTPUT->header();
 
+    // Consuming a non-React ESM TypeScript utility from an AMD module with Import.
+    $PAGE->requires->js_call_amd('core/greeting_demo', 'init', ['World!!!']);
+    // Mount a React component into a target element from AMD code with react_autoinit's MutationObserver.
+    $PAGE->requires->js_call_amd('core/react_demo', 'init', ['#page-footer', 'World']);
+
     $renderer = $PAGE->get_renderer('mod_book');
     $actionmenu = new \mod_book\output\main_action_menu($cm->id, $chapters, $chapter, $book);
     $renderedmenu = $renderer->render($actionmenu);
