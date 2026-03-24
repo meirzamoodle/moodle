@@ -1,0 +1,26 @@
+import{useEffect as x,useState as f}from"react";import{createRoot as M}from"react-dom/client";import{getStrings as T,fetchRoute as g,openModal as V,openModalForm as C}from"@moodle/lms/core/amd";import{jsx as d,jsxs as h}from"react/jsx-runtime";function k({item:n,strings:r,onView:y,onEdit:m,onDelete:s}){return h("tr",{children:[d("td",{children:n.title}),d("td",{children:n.timecreated}),h("td",{children:[d("button",{type:"button",className:"btn btn-sm btn-outline-primary me-2",onClick:()=>y(n.id),children:r.actionView}),d("button",{type:"button",className:"btn btn-sm btn-outline-secondary me-2",onClick:p=>m(p,n.id),children:r.actionEdit}),d("button",{type:"button",className:"btn btn-sm btn-outline-danger",onClick:()=>s(n.id),children:r.actionDelete})]})]})}import{jsx as u,jsxs as b}from"react/jsx-runtime";function E({item:n,strings:r}){return b("div",{children:[n.description?u("div",{dangerouslySetInnerHTML:{__html:n.description}}):u("p",{className:"text-muted fst-italic",children:r.noDescription}),n.files.length>0&&b("div",{className:"mt-3 pt-3 border-top",children:[u("strong",{children:r.previewAttachment})," ",u("a",{href:n.files[0].fileurl,target:"_blank",rel:"noopener noreferrer",children:n.files[0].filename})]}),b("div",{className:"text-muted small mt-3",children:[r.previewCreated," ",n.timecreated," \xB7 ",r.previewModified," ",n.timemodified]})]})}import{jsx as i,jsxs as w}from"react/jsx-runtime";var t="local_reactpoc",I=[{key:"action_delete",component:t},{key:"action_edit",component:t},{key:"action_view",component:t},{key:"addnew",component:t},{key:"confirm_delete",component:t},{key:"error_delete",component:t},{key:"error_loaditem",component:t},{key:"error_loaditems",component:t},{key:"error_openform",component:t},{key:"field_actions",component:t},{key:"field_timecreated",component:t},{key:"field_title",component:t},{key:"itemsheading",component:t},{key:"loading",component:"core"},{key:"modal_header",component:t},{key:"nodescription",component:t},{key:"noitems",component:t},{key:"preview_attachment",component:t},{key:"preview_created",component:t},{key:"preview_modified",component:t}];function A({contextid:n=1}){let[r,y]=f([]),[m,s]=f(!1),[p,l]=f(null),[e,D]=f(null);x(()=>{T([...I]).then(o=>D(Object.fromEntries(I.map(({key:a},c)=>[a,o[c]])))).catch(o=>{window.console.error("[local_reactpoc] Failed to load strings",o)}),_()},[]);let _=()=>{s(!0),l(null),g("local_reactpoc","items").then(o=>y(o.items)).catch(o=>{window.console.error("[local_reactpoc] get_items failed",o),l(e?.error_loaditems??"")}).finally(()=>s(!1))},v=(o,a)=>{C("local_reactpoc\\item_form",{contextid:n,itemid:a},e?.modal_header??"",o.currentTarget,_).catch(c=>{window.console.error("[local_reactpoc] Failed to open form",c)})},S=async o=>{l(null);try{let c=(await g("local_reactpoc",`items/${o}`)).item,R=(await V(c.title,"<div></div>")).getBody()[0].querySelector("div");M(R).render(i(E,{item:c,strings:{noDescription:e.nodescription,previewAttachment:e.preview_attachment,previewCreated:e.preview_created,previewModified:e.preview_modified}}))}catch(a){window.console.error("[local_reactpoc] get_item failed",a),l(e?.error_loaditem??"")}},N=o=>{window.confirm(e?.confirm_delete??"")&&g("local_reactpoc",`items/${o}`,{method:"DELETE"}).then(()=>_()).catch(a=>{window.console.error("[local_reactpoc] delete_item failed",a),l(e?.error_delete??"")})};return w("div",{children:[w("div",{className:"d-flex justify-content-between align-items-center mb-3",children:[i("h4",{className:"mb-0",children:e?.itemsheading}),i("button",{type:"button",className:"btn btn-primary",onClick:o=>v(o,0),children:e?.addnew})]}),p&&i("div",{className:"alert alert-danger",role:"alert",children:p}),m&&i("p",{className:"text-muted",children:e?.loading}),!m&&r.length===0&&i("p",{className:"text-muted",children:e?.noitems}),r.length>0&&w("table",{className:"table table-hover",children:[i("thead",{children:w("tr",{children:[i("th",{scope:"col",children:e?.field_title}),i("th",{scope:"col",children:e?.field_timecreated}),i("th",{scope:"col",children:e?.field_actions})]})}),i("tbody",{children:r.map(o=>i(k,{item:o,strings:{actionView:e?.action_view??"",actionEdit:e?.action_edit??"",actionDelete:e?.action_delete??""},onView:S,onEdit:v,onDelete:N},o.id))})]})]})}function F(n={}){return i(A,{...n})}export{F as default};
+/**
+ * ItemRow — single row in the React demo item list table.
+ *
+ * @module     local_reactpoc/local_reactpoc_item_row
+ * @copyright  Meirza <meirza.arson@moodle.com>
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+/**
+ * ItemDetailView — body content for the item detail Moodle modal.
+ *
+ * Renders description HTML, attachment link, and timestamps.
+ * The modal chrome (title, close button) is provided by core/modal.
+ *
+ * @module     local_reactpoc/local_reactpoc_item_detail
+ * @copyright  Meirza <meirza.arson@moodle.com>
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+/**
+ * AE-85 investigation: React list component for local_reactpoc items.
+ * Uses Moodle web services via core/ajax for all data operations.
+ *
+ * @module     local_reactpoc/local_reactpoc_list
+ * @copyright  Meirza <meirza.arson@moodle.com>
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
