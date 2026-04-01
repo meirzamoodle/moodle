@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../src/local_reactdemo_test.tsx"],
+  "sourcesContent": ["import React from \"react\";\n\n/**\n * New type Props.\n */\ntype Props = { who: string };\n\n/**\n * Render html elements.\n *\n * @param {Props} Props passed from template.\n * @returns A JSX.Element representing the component UI\n */\nexport default function LocalreactdemoTest({ who }: Props) {\n    return (\n        <div>\n            <strong>Hello from local_reactdemo \uD83D\uDC4B</strong>\n            <div>User: {who}</div>\n        </div>\n    );\n}\n"],
+  "mappings": ";;;;AAAA,OAAO,WAAW;AAaH,SAAR,mBAAoC,EAAE,IAAI,GAAU;AACvD,SACI,oCAAC,aACG,oCAAC,gBAAO,sCAA6B,GACrC,oCAAC,aAAI,UAAO,GAAI,CACpB;AAER;AAPwB;",
+  "names": []
+}

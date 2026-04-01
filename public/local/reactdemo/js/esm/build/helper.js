@@ -1,0 +1,1 @@
+var i=(e=>typeof require<"u"?require:typeof Proxy<"u"?new Proxy(e,{get:(r,n)=>(typeof require<"u"?require:r)[n]}):e)(function(e){if(typeof require<"u")return require.apply(this,arguments);throw Error('Dynamic require of "'+e+'" is not supported')});function t(e){return new Promise((r,n)=>{i([e],r,n)})}export{t as default};

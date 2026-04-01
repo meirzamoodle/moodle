@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../src/local_reactdemo_counter.tsx"],
+  "sourcesContent": ["import React from \"react\";\n\n/**\n * New type Props.\n */\ntype Props = {\n    initial: number;\n};\n\n/**\n * Render html elements.\n *\n * @param {Props} Props passed from template.\n * @returns A JSX.Element representing the component UI\n */\nexport default function Counter({ initial }: Props) {\n    const [count, setCount] = React.useState(initial);\n\n    return (\n        <div>\n            <strong>Counter</strong>\n            <div>Count: {count}</div>\n            <button type=\"button\" onClick={() => setCount((c) => c + 1)}>\n                +\n            </button>\n        </div>\n    );\n}\n"],
+  "mappings": ";;;;AAAA,OAAO,WAAW;AAeH,SAAR,QAAyB,EAAE,QAAQ,GAAU;AAChD,QAAM,CAAC,OAAO,QAAQ,IAAI,MAAM,SAAS,OAAO;AAEhD,SACI,oCAAC,aACG,oCAAC,gBAAO,SAAO,GACf,oCAAC,aAAI,WAAQ,KAAM,GACnB,oCAAC,YAAO,MAAK,UAAS,SAAS,MAAM,SAAS,CAAC,MAAM,IAAI,CAAC,KAAG,GAE7D,CACJ;AAER;AAZwB;",
+  "names": []
+}
