@@ -8,5 +8,7 @@
     "strict": true,
     "skipLibCheck": true
   },
-  "include": ["public/**/esm/src/**/*"]
+  "include": ["public/**/esm/src/**/*"],
+  "exclude": ["public/**/esm/tests/**/*"],
+  "references": [{"path": "./tsconfig.jest.json"}]
 }

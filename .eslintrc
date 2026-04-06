@@ -261,6 +261,16 @@
         'promise/no-native': 'off',
         'promise/avoid-new': 'off',
       }
+    },
+    {
+      files: ["**/__tests__/**/*.{ts,tsx}"],
+      env: {
+        jest: true,
+      },
+      rules: {
+        // Empty mock implementations (e.g. jest.fn(), () => {}) are expected in tests.
+        'no-empty-function': 'off',
+      }
     }
   ]
 }

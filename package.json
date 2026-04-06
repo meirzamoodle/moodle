@@ -7,7 +7,8 @@
     "update-packages": "npm run update-design-system && npm run update-react",
     "update-react": "node scripts/update-react-bundle.mjs",
     "update-design-system": "node scripts/update-design-system.mjs",
-    "upgradenote": "node .grunt/upgradenotes.mjs create"
+    "upgradenote": "node .grunt/upgradenotes.mjs create",
+    "test": "jest"
   },
   "dependencies": {
     "@moodlehq/design-system": "^2.1",
@@ -19,8 +20,14 @@
     "@babel/eslint-parser": "^7.21.3",
     "@babel/eslint-plugin": "7.19.1",
     "@babel/preset-env": "7.16.11",
+    "@testing-library/jest-dom": "^6.6.0",
+    "@testing-library/react": "^16.0.0",
+    "@types/jest": "^29.5.0",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "ts-jest": "^29.2.0",
     "@typescript-eslint/parser": "^8.53.1",
     "@xmldom/xmldom": "^0.8.7",
     "ajv": "^8.12.0",
