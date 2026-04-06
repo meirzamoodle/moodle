@@ -53,6 +53,32 @@
 <p>Loading component D...</p>
 {{/react}}
 
+<h4>Greeting component</h4>
+{{#react}}
+{
+  "component": "@moodle/lms/local_reactdemo/local_reactdemo_greeting",
+  "props": {
+    "userid": {{userid}}
+  },
+  "id": "local-reactdemo-greeting",
+  "class": "p-3 border rounded mb-3"
+}
+<p>Loading greeting...</p>
+{{/react}}
+
+<h4>User component (Router API)</h4>
+{{#react}}
+{
+  "component": "@moodle/lms/local_reactdemo/local_reactdemo_user",
+  "props": {
+    "userid": {{userid}}
+  },
+  "id": "local-reactdemo-user",
+  "class": "p-3 border rounded mb-3"
+}
+<p>Loading user...</p>
+{{/react}}
+
 <h4>Modal component</h4>
 {{#react}}
 {

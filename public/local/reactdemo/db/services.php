@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * English language strings for local_reactdemo.
+ * Web service definitions for local_reactdemo.
  *
  * @package    local_reactdemo
  * @copyright  Meirza <meirza.arson@moodle.com>
@@ -24,10 +24,12 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$string['pluginname'] = 'React demo';
-$string['modal'] = 'Modal';
-$string['text'] = 'Fetched text using string manger!';
-$string['modal_header'] = 'Modal open in react!';
-$string['greeting_title'] = 'Greeting';
-$string['greeting_loading'] = 'Loading...';
-$string['greeting_error'] = 'Failed to load greeting.';
+$functions = [
+    'local_reactdemo_get_greeting' => [
+        'classname'     => 'local_reactdemo\external\get_greeting',
+        'description'   => 'Returns the full name of a user as a greeting.',
+        'type'          => 'read',
+        'ajax'          => true,
+        'loginrequired' => true,
+    ],
+];

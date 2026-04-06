@@ -39,6 +39,7 @@ echo $OUTPUT->render_from_template(
     [
         'who' => fullname($USER),
         'contextid' => $context->id,
+        'userid' => $USER->id,
     ]
 );
 
