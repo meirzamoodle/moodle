@@ -1,6 +1,6 @@
 import React from "react";
 import {Button} from "@moodlehq/design-system";
-import requireAmd from './helper';
+import {requireAmd} from '@moodle/lms/core/amd';
 
 /**
  *

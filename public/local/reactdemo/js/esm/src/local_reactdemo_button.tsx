@@ -1,4 +1,4 @@
-import requireAmd from './helper';
+import {requireAmd} from '@moodle/lms/core/amd';
 
 /**
  * New type Props.
