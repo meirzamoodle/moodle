@@ -48,6 +48,20 @@ import fs from "fs";
 const projectRoot = process.cwd();
 
 /**
+ * Glob options for finding all React component source files.
+ * Excludes test files, node_modules, and vendor directories.
+ */
+const componentGlobOptions = {
+    cwd: projectRoot,
+    absolute: true,
+    ignore: [
+        `${projectRoot}/node_modules/**`,
+        `${projectRoot}/vendor/**`,
+        `**/__tests__/**`,
+    ],
+};
+
+/**
  * Resolve a path from the current project root.
  *
  * @param {...string} segments Path segments to resolve.
@@ -208,14 +222,7 @@ export function createBuildConfig(isDev) {
 export async function buildPluginComponents(isDev) {
     console.log(chalk.green('> Building components...'));
 
-    const entryPoints = glob.sync("**/js/esm/src/**/*.{ts,tsx}", {
-        cwd: projectRoot,
-        absolute: true,
-        ignore: [
-            `${process.cwd()}/node_modules/**`,
-            `${process.cwd()}/vendor/**`,
-        ],
-    });
+    const entryPoints = glob.sync("**/js/esm/src/**/*.{ts,tsx}", componentGlobOptions);
 
     const buildConfig = createBuildConfig(isDev);
 
@@ -240,14 +247,7 @@ export async function buildPluginComponents(isDev) {
  * @returns {Promise<import('esbuild').BuildContext|null>} The active context, or null if no source files exist.
  */
 export async function watchComponents(isDev, onRebuild) {
-    const entryPoints = glob.sync("**/js/esm/src/**/*.{ts,tsx}", {
-        cwd: projectRoot,
-        absolute: true,
-        ignore: [
-            `${process.cwd()}/node_modules/**`,
-            `${process.cwd()}/vendor/**`,
-        ],
-    });
+    const entryPoints = glob.sync("**/js/esm/src/**/*.{ts,tsx}", componentGlobOptions);
 
     if (entryPoints.length === 0) {
         return null;
