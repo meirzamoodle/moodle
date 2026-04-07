@@ -1,0 +1,63 @@
+<h3>Swizzle demo</h3>
+
+<p>
+  Each component below uses its <code>@moodle/lms/</code> specifier.
+  When the active theme provides an override in its
+  <code>js/esm/build/</code> directory, the import map automatically
+  redirects to the theme's version — no PHP registration required.
+</p>
+
+<h4>Button <code>@moodle/lms/local_reactdemo/local_reactdemo_button</code></h4>
+{{#react}}
+{
+  "component": "@moodle/lms/local_reactdemo/local_reactdemo_button",
+  "props": {
+    "label": "Click me",
+    "message": "Hello from local_reactdemo!"
+  },
+  "id": "swizzle-demo-button",
+  "class": "p-3 border rounded mb-4"
+}
+<p>Loading button…</p>
+{{/react}}
+
+<h4>Counter <code>@moodle/lms/local_reactdemo/local_reactdemo_counter</code></h4>
+{{#react}}
+{
+  "component": "@moodle/lms/local_reactdemo/local_reactdemo_counter",
+  "props": {
+    "initial": 0
+  },
+  "id": "swizzle-demo-counter",
+  "class": "p-3 border rounded mb-4"
+}
+<p>Loading counter…</p>
+{{/react}}
+
+<h4>Card <code>@moodle/lms/local_reactdemo/local_reactdemo_card</code></h4>
+{{#react}}
+{
+  "component": "@moodle/lms/local_reactdemo/local_reactdemo_card",
+  "props": {
+    "title": "Example card",
+    "body": "This component is directory-based: index.tsx imports CardContent.tsx. Ejecting copies both files.",
+    "footer": "local_reactdemo_card/index.tsx + CardContent.tsx"
+  },
+  "id": "swizzle-demo-card",
+  "class": "p-3 border rounded mb-4"
+}
+<p>Loading card…</p>
+{{/react}}
+
+<h4>Greeting <code>@moodle/lms/local_reactdemo/local_reactdemo_greeting</code></h4>
+{{#react}}
+{
+  "component": "@moodle/lms/local_reactdemo/local_reactdemo_greeting",
+  "props": {
+    "userid": {{userid}}
+  },
+  "id": "swizzle-demo-greeting",
+  "class": "p-3 border rounded mb-4"
+}
+<p>Loading greeting…</p>
+{{/react}}

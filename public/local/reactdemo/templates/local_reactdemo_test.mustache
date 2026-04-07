@@ -1,0 +1,93 @@
+<h3>React components test</h3>
+<br>
+<h4>Component A</h4>
+{{#react}}
+{
+  "component": "@moodle/lms/local_reactdemo/local_reactdemo_test",
+  "props": {
+    "who": "{{who}}"
+  },
+  "id": "local-reactdemo-a",
+  "class": "p-3 border rounded mb-3"
+}
+<p>Loading component A...</p>
+{{/react}}
+
+<h4>Component B</h4>
+{{#react}}
+{
+  "component": "@moodle/lms/local_reactdemo/local_reactdemo_counter",
+  "props": {
+    "initial": 5
+  },
+  "id": "local-reactdemo-b",
+  "class": "p-3 border rounded mb-3"
+}
+<p>Loading component B...</p>
+{{/react}}
+
+<h4>Component C</h4>
+{{#react}}
+{
+  "component": "@moodle/lms/local_reactdemo/local_reactdemo_message",
+  "props": {
+    "message": "Hello from Mustache"
+  },
+  "id": "local-reactdemo-c",
+  "class": "p-3 border rounded mb-3"
+}
+<p>Loading component C...</p>
+{{/react}}
+
+<h4>Component D</h4>
+{{#react}}
+{
+  "component": "@moodle/lms/local_reactdemo/local_reactdemo_button",
+  "props": {
+    "label": "Click me",
+    "message": "This popup was triggered from React + AMD core/notification"
+  },
+  "id": "local-reactdemo-d",
+  "class": "p-3 border rounded mb-3"
+}
+<p>Loading component D...</p>
+{{/react}}
+
+<h4>Greeting component</h4>
+{{#react}}
+{
+  "component": "@moodle/lms/local_reactdemo/local_reactdemo_greeting",
+  "props": {
+    "userid": {{userid}}
+  },
+  "id": "local-reactdemo-greeting",
+  "class": "p-3 border rounded mb-3"
+}
+<p>Loading greeting...</p>
+{{/react}}
+
+<h4>User component (Router API)</h4>
+{{#react}}
+{
+  "component": "@moodle/lms/local_reactdemo/local_reactdemo_user",
+  "props": {
+    "userid": {{userid}}
+  },
+  "id": "local-reactdemo-user",
+  "class": "p-3 border rounded mb-3"
+}
+<p>Loading user...</p>
+{{/react}}
+
+<h4>Modal component</h4>
+{{#react}}
+{
+  "component": "@moodle/lms/local_reactdemo/local_reactdemo_modal_test",
+  "props": {
+    "contextid": "{{contextid}}"
+  },
+  "id": "local-reactdemo-a",
+  "class": "p-3 border rounded mb-3"
+}
+<p>Loading component A...</p>
+{{/react}}

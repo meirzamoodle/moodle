@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../src/local_reactdemo_message.tsx"],
+  "sourcesContent": ["import React from \"react\";\n\n/**\n * New type Props.\n */\ntype Props = {\n    message: string;\n};\n\n/**\n * Render html elements.\n *\n * @param {Props} Props passed from template.\n * @returns A JSX.Element representing the component UI\n */\nexport default function Message({ message }: Props) {\n    return (\n        <div>\n            <strong>Message</strong>\n            <div>{message}</div>\n        </div>\n    );\n}\n"],
+  "mappings": ";;;;AAAA,OAAO,WAAW;AAeH,SAAR,QAAyB,EAAE,QAAQ,GAAU;AAChD,SACI,oCAAC,aACG,oCAAC,gBAAO,SAAO,GACf,oCAAC,aAAK,OAAQ,CAClB;AAER;AAPwB;",
+  "names": []
+}

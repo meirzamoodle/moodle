@@ -1,0 +1,1 @@
+import{requireAmd as i}from"@moodle/lms/core/amd";import{jsx as l}from"react/jsx-runtime";async function e(o){(await i("core/notification")).alert(o)}function r({label:o,message:t="Hello from local_reactdemo!"}){return l("button",{type:"button",onClick:()=>{e(t).catch(n=>{window.console.error("Failed to show Moodle popup",n),window.alert(t)})},children:o})}export{r as default};

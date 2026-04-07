@@ -8,5 +8,5 @@
     "strict": true,
     "skipLibCheck": true
   },
-  "include": ["public/**/esm/src/**/*"]
+  "include": ["public/**/esm/*.d.ts", "public/**/esm/src/**/*", "public/**/esm/swizzle.config.ts"]
 }

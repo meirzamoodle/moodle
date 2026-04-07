@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../src/helper.ts"],
+  "sourcesContent": ["/**\n * Loads a requested module.\n *\n * @param {string} mod is module name.\n * @returns {Promise}\n */\nexport default function requireAmd(mod: string) {\n    /* eslint-disable @typescript-eslint/no-explicit-any */\n    return new Promise<any>((resolve, reject) => {\n        // Use any to avoid TypeScript errors with require.\n        (require as any)([mod], resolve, reject);\n    });\n}"],
+  "mappings": ";;;;;;;;;;AAMe,SAAR,WAA4B,KAAa;AAE5C,SAAO,IAAI,QAAa,CAAC,SAAS,WAAW;AAEzC,IAAC,UAAgB,CAAC,GAAG,GAAG,SAAS,MAAM;AAAA,EAC3C,CAAC;AACL;AANwB;",
+  "names": []
+}

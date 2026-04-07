@@ -1,0 +1,1 @@
+import i from"react";import{jsx as t,jsxs as o}from"react/jsx-runtime";function p({initial:n}){let[u,e]=i.useState(n);return o("div",{children:[t("strong",{children:"Counter"}),o("div",{children:["Count: ",u]}),t("button",{type:"button",onClick:()=>e(r=>r+1),children:"+"})]})}export{p as default};
