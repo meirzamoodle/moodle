@@ -1108,6 +1108,44 @@ class page_requirements_manager {
     }
 
     /**
+     * Mount a React app entry module into a container element.
+     *
+     * Outputs a <div> mount point and a <script type="module"> that loads the
+     * given @moodle/lms/ specifier through the ESM controller. The import map
+     * is honoured, so theme overrides via swizzle apply automatically.
+     *
+     * User context and other page data are available to the React module via
+     * @moodle/lms/core/config (M.cfg), which Moodle sets before any module
+     * scripts run — no PHP data island is needed for common values.
+     *
+     * Usage:
+     *   echo $PAGE->requires->react_mount(
+     *       'local_reactdemo/local_reactdemo_app',
+     *       'local-reactdemo-app',
+     *   );
+     *
+     * @param string $specifier The component/module path (e.g. "local_reactdemo/local_reactdemo_app").
+     *                          Will be prefixed with "@moodle/lms/".
+     * @param string $containerid The id attribute for the mount div.
+     * @return string HTML: a <div> mount point followed by a <script type="module">.
+     */
+    public function react_mount(string $specifier, string $containerid): string {
+        $path = \core\router\util::get_path_for_callable(
+            [\core\route\controller\esm_controller::class, 'serve'],
+            [
+                'revision'   => $this->get_jsrev(),
+                'scriptpath' => '@moodle/lms/' . $specifier,
+            ]
+        );
+
+        return html_writer::div('', '', ['id' => $containerid])
+            . html_writer::tag('script', '', [
+                'type' => 'module',
+                'src'  => $path->out(),
+            ]) . "\n";
+    }
+
+    /**
      * !!!DEPRECATED!!! please use js_init_call() if possible
      * Ensure that the specified JavaScript function is called from an inline script
      * somewhere on this page.
