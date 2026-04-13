@@ -1,0 +1,26 @@
+/* Card component CSS Module — class names are scoped by esbuild-css-modules-plugin. */
+
+.card {
+    border-radius: 0.5rem;
+    padding: 1rem;
+    background: #6a0c72;
+    border: 1px solid #dee2e6;
+}
+
+.title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.body {
+    color: #495057;
+}
+
+.footer {
+    margin-top: 0.75rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid #dee2e6;
+    font-size: 0.8125rem;
+    color: #6c757d;
+}
