@@ -1,0 +1,30 @@
+{
+  "@moodle/lms/local_reactdemo/local_reactdemo_button": {
+    "actions": {
+      "eject": "safe",
+      "wrap": "safe"
+    },
+    "description": "Demo action button that triggers a Moodle notification popup."
+  },
+  "@moodle/lms/local_reactdemo/local_reactdemo_card": {
+    "actions": {
+      "eject": "safe",
+      "wrap": "safe"
+    },
+    "description": "Card component with title, body and optional footer. Directory-based: ejecting copies index.tsx and CardContent.tsx."
+  },
+  "@moodle/lms/local_reactdemo/local_reactdemo_counter": {
+    "actions": {
+      "eject": "safe",
+      "wrap": "safe"
+    },
+    "description": "Stateful click counter with increment button."
+  },
+  "@moodle/lms/local_reactdemo/local_reactdemo_greeting": {
+    "actions": {
+      "eject": "unsafe",
+      "wrap": "safe"
+    },
+    "description": "Fetches and displays a personalised greeting via the local_reactdemo_get_greeting web service."
+  }
+}

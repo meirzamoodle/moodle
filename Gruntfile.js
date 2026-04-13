@@ -277,6 +277,10 @@ module.exports = function(grunt) {
 
     addTask('upgradablelibs', grunt);
 
+    addTask('jsconfig', grunt);
+    addTask('react', grunt);
+    addTask('swizzle', grunt);
+
     // Register the default task.
     grunt.registerTask('default', ['startup']);
 };

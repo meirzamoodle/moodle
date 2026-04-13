@@ -1046,16 +1046,28 @@ class page_requirements_manager {
      * @return string
      */
     public function get_import_map(): string {
+        global $PAGE;
+
         $importmap = \core\di::get(import_map::class);
-        $importmap->set_default_loader(
-            \core\router\util::get_path_for_callable(
-                [\core\route\controller\esm_controller::class, 'serve'],
-                [
-                    'revision' => $this->get_jsrev(),
-                    'scriptpath' => '',
-                ]
-            ),
+        $loaderbase = \core\router\util::get_path_for_callable(
+            [\core\route\controller\esm_controller::class, 'serve'],
+            [
+                'revision' => $this->get_jsrev(),
+                'scriptpath' => '',
+            ]
         );
+        $importmap->set_default_loader($loaderbase);
+
+        // Register theme override entries now, while $PAGE->theme is available.
+        // The ESM controller runs with abortafterconfig:true and has no theme
+        // context, so overrides must be baked into the import map as explicit
+        // URL entries before the page is rendered.
+        // $PAGE->theme uses a magic __get() so isset() always returns false.
+        // Access it directly to trigger initialisation, then check for null.
+        $theme = $PAGE->theme;
+        if ($theme !== null) {
+            $importmap->apply_theme_overrides($theme, $loaderbase);
+        }
 
         return html_writer::tag(
             'script',

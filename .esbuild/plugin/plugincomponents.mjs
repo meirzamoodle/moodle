@@ -44,6 +44,7 @@ import { glob } from "glob";
 import chalk from "chalk";
 import path from "path";
 import fs from "fs";
+import cssModulesPlugin from "esbuild-css-modules-plugin";
 
 const projectRoot = process.cwd();
 
@@ -107,9 +108,17 @@ async function buildComponent(entry, buildConfig) {
     try {
         await esbuild.build({
             ...buildConfig,
-            entryPoints: [entry],
+            entryPoints: [path.relative(projectRoot, entry)],
             outfile: output,
         });
+
+        // Delete CSS side-effect files produced by esbuild's CSS pipeline.
+        // With inject:true the styles are already embedded in the JS bundle,
+        // so the separate .css file is redundant.
+        const cssOutput = output.replace(/\.js$/, '.css');
+        if (fs.existsSync(cssOutput)) {
+            fs.unlinkSync(cssOutput);
+        }
 
         return { file, output, error: null };
     } catch (error) {
@@ -131,10 +140,14 @@ export function resolveComponentPaths(entry) {
         const [part, rawFile] = rel.split(path.join('esm', 'src'));
         const file = rawFile.replace(/^[\/\\]/, '');
 
-        return {
-            file,
-            output: fromRoot(part, 'esm', 'build', file.replace(/\.(ts|tsx)$/, '.js')),
-        };
+        // Directory-based components: src/local_reactdemo_card/index.tsx
+        // compiles to build/local_reactdemo_card.js (not build/local_reactdemo_card/index.js).
+        const normalized = file.replace(/\.(ts|tsx)$/, '.js');
+        const output = normalized.endsWith(`${path.sep}index.js`) || normalized.endsWith('/index.js')
+            ? fromRoot(part, 'esm', 'build', normalized.replace(/[/\\]index\.js$/, '.js'))
+            : fromRoot(part, 'esm', 'build', normalized);
+
+        return {file, output};
     }
     return null;
 }
@@ -179,6 +192,34 @@ async function runParallelBuilds(entryPoints, buildConfig) {
 }
 
 /**
+ * esbuild plugin that marks any @moodle-<themename>/lms/* import as external.
+ *
+ * esbuild's `external` option does not support patterns with more than one
+ * wildcard, so `@moodle-* /lms/*` cannot be expressed there directly.  This
+ * plugin intercepts all bare specifiers that match the pattern at resolve time
+ * and marks them external so they are left as-is in the output bundle, relying
+ * on the browser's import map to resolve them at runtime.
+ *
+ * @returns {import('esbuild').Plugin}
+ */
+function moodleThemeExternalPlugin() {
+    return {
+        name: 'moodle-theme-external',
+        setup(build) {
+            // Match any @moodle-<themename>/lms/ specifier. The filter uses a broad
+            // RE2-compatible pattern; @moodle-original/lms/ is excluded in the
+            // callback because esbuild/Go regex does not support negative lookahead.
+            build.onResolve({filter: /^@moodle-[^/]+\/lms\//}, args => {
+                if (args.path.startsWith('@moodle-original/lms/')) {
+                    return null; // already handled by the static external list
+                }
+                return {path: args.path, external: true};
+            });
+        },
+    };
+}
+
+/**
  * Create the shared esbuild build configuration.
  *
  * @param {boolean} isDev Whether development mode is enabled.
@@ -187,8 +228,16 @@ async function runParallelBuilds(entryPoints, buildConfig) {
 export function createBuildConfig(isDev) {
     return {
         bundle: true,
+        metafile: true,
         format: "esm",
-        external: ["react", "react/*", "react-dom", "react-dom/*", "@moodlehq/design-system", "@moodlehq/design-system/*", "@moodle/lms", "@moodle/lms/*"],
+        // absWorkingDir anchors relative entry points so the esbuild-css-modules-plugin
+        // derives a stable buildId regardless of the machine's absolute path. Without
+        // this, getBuildId() hashes the absolute entryPoints paths, producing a
+        // different __css-content-HASH__ variable name on each machine and making
+        // committed build files non-reproducible across environments.
+        absWorkingDir: projectRoot,
+        external: ["react", "react/*", "react-dom", "react-dom/*", "@moodlehq/design-system", "@moodlehq/design-system/*", "@moodle/lms", "@moodle/lms/*", "@moodle-original/lms", "@moodle-original/lms/*"],
+        plugins: [cssModulesPlugin({ inject: true, localsConvention: 'camelCaseOnly' }), moodleThemeExternalPlugin()],
         jsx: "automatic",
         minify: !isDev,
         sourcemap: isDev ? 'inline' : false,
@@ -208,13 +257,25 @@ export function createBuildConfig(isDev) {
 export async function buildPluginComponents(isDev) {
     console.log(chalk.green('> Building components...'));
 
-    const entryPoints = glob.sync("**/js/esm/src/**/*.{ts,tsx}", {
+    const allFiles = glob.sync("**/js/esm/src/**/*.{ts,tsx}", {
         cwd: projectRoot,
         absolute: true,
         ignore: [
             `${process.cwd()}/node_modules/**`,
             `${process.cwd()}/vendor/**`,
         ],
+    });
+
+    // Exclude internal files from directory-based components.
+    // A file is internal when it is not index.tsx but lives in a directory
+    // that contains an index.tsx — that directory is the entry point, not the file.
+    const entryPoints = allFiles.filter(f => {
+        const base = path.basename(f);
+        if (base === 'index.tsx' || base === 'index.ts') {
+            return true;
+        }
+        const dir = path.dirname(f);
+        return !fs.existsSync(path.join(dir, 'index.tsx')) && !fs.existsSync(path.join(dir, 'index.ts'));
     });
 
     const buildConfig = createBuildConfig(isDev);
@@ -240,13 +301,23 @@ export async function buildPluginComponents(isDev) {
  * @returns {Promise<import('esbuild').BuildContext|null>} The active context, or null if no source files exist.
  */
 export async function watchComponents(isDev, onRebuild) {
-    const entryPoints = glob.sync("**/js/esm/src/**/*.{ts,tsx}", {
+    const allFiles = glob.sync("**/js/esm/src/**/*.{ts,tsx}", {
         cwd: projectRoot,
         absolute: true,
         ignore: [
             `${process.cwd()}/node_modules/**`,
             `${process.cwd()}/vendor/**`,
         ],
+    });
+
+    // Exclude internal files from directory-based components (same rule as buildPluginComponents).
+    const entryPoints = allFiles.filter(f => {
+        const base = path.basename(f);
+        if (base === 'index.tsx' || base === 'index.ts') {
+            return true;
+        }
+        const dir = path.dirname(f);
+        return !fs.existsSync(path.join(dir, 'index.tsx')) && !fs.existsSync(path.join(dir, 'index.ts'));
     });
 
     if (entryPoints.length === 0) {
@@ -266,7 +337,7 @@ export async function watchComponents(isDev, onRebuild) {
             return [];
         }
         fs.mkdirSync(path.dirname(resolved.output), { recursive: true });
-        return [{ in: entry, out: path.relative(projectRoot, resolved.output).replace(/\.js$/, '') }];
+        return [{ in: path.relative(projectRoot, entry), out: path.relative(projectRoot, resolved.output).replace(/\.js$/, '') }];
     });
 
     // Report build results to the terminal after every build (initial and on each change).
@@ -294,7 +365,16 @@ export async function watchComponents(isDev, onRebuild) {
 
                 const outputs = Object.keys(result.metafile?.outputs ?? {});
 
-                console.log(chalk.green(`[${now}] ✓ ${outputs.length} component(s) built`) + chalk.dim(` · ${elapsed}s`));
+                // Delete CSS side-effect files — with inject:true the styles are
+                // already embedded in the JS bundle, so the CSS file is redundant.
+                for (const outputPath of outputs) {
+                    if (outputPath.endsWith('.css')) {
+                        try { fs.unlinkSync(path.resolve(projectRoot, outputPath)); } catch { /* already gone */ }
+                    }
+                }
+
+                const jsOutputs = outputs.filter(o => !o.endsWith('.css'));
+                console.log(chalk.green(`[${now}] ✓ ${jsOutputs.length} component(s) built`) + chalk.dim(` · ${elapsed}s`));
 
                 if (isInitial) {
                     isInitial = false;
@@ -316,7 +396,7 @@ export async function watchComponents(isDev, onRebuild) {
         entryPoints: entryPairs,
         outdir: projectRoot,
         metafile: true,
-        plugins: [watchReporter],
+        plugins: [...(buildConfig.plugins ?? []), watchReporter],
     });
 
     await ctx.watch();
