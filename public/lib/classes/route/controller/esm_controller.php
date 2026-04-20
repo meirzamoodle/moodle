@@ -82,6 +82,13 @@ class esm_controller {
             $revision = -1;
         }
 
+        // Source map files are only served in development mode (revision = -1). Reject .map
+        // requests with a valid production revision to avoid exposing source in production.
+        $ismap = str_ends_with($scriptpath, '.map');
+        if ($ismap && $revision !== -1) {
+            throw new \core\exception\not_found_exception('script', $scriptpath);
+        }
+
         $importmap = \core\di::get(\core\output\requirements\import_map::class);
         $fullpath = $importmap->get_path_for_script($revision, $scriptpath);
         if ($fullpath !== null && file_exists($fullpath)) {
@@ -132,9 +139,13 @@ class esm_controller {
                 ->withHeader('Cache-Control', "public, max-age={$maxage}, immutable");
         }
 
+        $contenttype = str_ends_with($file, '.map')
+            ? 'application/json'
+            : 'application/javascript; charset=utf-8';
+
         $response = $response
             ->withHeader('Content-Disposition', "inline; filename=\"{$headerfilename}\"")
-            ->withHeader('Content-Type', 'application/javascript; charset=utf-8')
+            ->withHeader('Content-Type', $contenttype)
             ->withHeader('Pragma', '')
             ->withHeader('Accept-Ranges', 'none')
             ->withHeader(

@@ -111,6 +111,14 @@ async function buildComponent(entry, buildConfig) {
             outfile: output,
         });
 
+        // Remove any stale source map left over from a previous dev build.
+        if (!buildConfig.sourcemap) {
+            const mapfile = output + '.map';
+            if (fs.existsSync(mapfile)) {
+                fs.unlinkSync(mapfile);
+            }
+        }
+
         return { file, output, error: null };
     } catch (error) {
         return { file, error: error instanceof Error ? error : new Error(String(error)) };
@@ -191,7 +199,7 @@ export function createBuildConfig(isDev) {
         external: ["react", "react/*", "react-dom", "react-dom/*", "@moodlehq/design-system", "@moodlehq/design-system/*", "@moodle/lms", "@moodle/lms/*"],
         jsx: "automatic",
         minify: !isDev,
-        sourcemap: isDev ? 'inline' : false,
+        sourcemap: isDev ? 'linked' : false,
         jsxDev: isDev,
         keepNames: isDev,
         treeShaking: !isDev,

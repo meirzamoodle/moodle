@@ -38,6 +38,12 @@ namespace core\output\requirements;
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class import_map implements \JsonSerializable {
+    /**
+     * Extra file suffixes that may be appended to a resolved ESM path and served by the ESM controller.
+     * Only used in development mode (revision = -1); production requests with these suffixes are rejected.
+     */
+    const ALLOWED_EXTRA_SUFFIXES = ['.map'];
+
     /** @var array The list of imports */
     protected array $imports = [];
 
@@ -176,6 +182,24 @@ class import_map implements \JsonSerializable {
     ): ?string {
         global $CFG;
 
+        // Strip any whitelisted extra suffix (e.g. '.map') before resolving, then reapply it to
+        // the resolved path. esbuild's sourceMappingURL includes the full output filename
+        // (e.g. 'mount.js.map'), so we also strip the preceding '.js' so that the resolver's
+        // normal suffix append produces the correct base path ('mount' → 'mount.js').
+        $extrasuffix = '';
+        foreach (self::ALLOWED_EXTRA_SUFFIXES as $candidate) {
+            if (str_ends_with($requestedpath, $candidate)) {
+                $extrasuffix = $candidate;
+                $requestedpath = substr($requestedpath, 0, -strlen($candidate));
+                // Strip the JS extension that esbuild includes in the sourceMappingURL filename
+                // so the resolver can re-append the correct suffix (e.g. mount.js → mount).
+                if (str_ends_with($requestedpath, '.js')) {
+                    $requestedpath = substr($requestedpath, 0, -3);
+                }
+                break;
+            }
+        }
+
         // Sort longest-key-first once so a more-specific prefix always wins over a shorter one.
         if (!$this->importssorted) {
             uksort($this->imports, fn ($a, $b) => strlen($b) <=> strlen($a));
@@ -199,7 +223,7 @@ class import_map implements \JsonSerializable {
                 if ($importdata->modifier !== null) {
                     $resolved = ($importdata->modifier)($revision, $requestedpath, $resolved);
                 }
-                return $resolved;
+                return $resolved . $extrasuffix;
             }
 
             $pathremainder = substr($requestedpath, strlen($specifier));
@@ -216,7 +240,7 @@ class import_map implements \JsonSerializable {
             if ($importdata->modifier !== null) {
                 $resolved = ($importdata->modifier)($revision, $requestedpath, $resolved);
             }
-            return $resolved;
+            return $resolved . $extrasuffix;
         }
 
         return null;
