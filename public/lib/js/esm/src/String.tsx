@@ -13,7 +13,7 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
-import {Suspense, type ReactNode} from 'react';
+import {Suspense, use, type ReactNode} from 'react';
 import {requireAsync} from "@moodle/lms/core/amd";
 
 type stringParams = Record<string, string|number> | string | number | null;
@@ -32,29 +32,39 @@ interface stringModule {
 
 const str = await requireAsync<stringModule>("core/str");
 
+// Ensures the same Promise instance is returned for the same string key across
+// renders. use() requires a stable reference — without this, a new Promise is
+// created on every render and the component suspends indefinitely.
+const stringPromiseCache = new Map<string, Promise<string>>();
+
 export interface StringProps {
-    identifier: string,
-    component?: string,
-    params?: string | number | Record<string, string|number>,
+    identifier: string;
+    component?: string;
+    params?: string | number | Record<string, string|number>;
 }
 
 export const getString = (
     identifier: string,
-    component: string = "moodle",
-    a?: string|number|Record<string, string|number>
-) => str.get_string(identifier, component, a);
+    component: string = "core",
+    params?: string | number | Record<string, string|number>,
+): Promise<string> => {
+    const key = `${component}::${identifier}::${JSON.stringify(params)}`;
+    if (!stringPromiseCache.has(key)) {
+        stringPromiseCache.set(key, str.get_string(identifier, component, params));
+    }
+    return stringPromiseCache.get(key)!;
+};
 
 export const cacheStrings = (strings: stringRequest[]) => str.cache_strings(strings);
 
-function String({children, ...context}: StringProps) {
-    const {identifier, component = "moodle", params} = context;
-    const stringValue = getString(identifier, component, params);
+function StringInner({identifier, component, params}: StringProps) {
+    return <>{use(getString(identifier, component, params))}</>;
+}
 
-    const fallback = children || `${identifier}, ${component}`;
-
+function String({children, identifier, component = "core", params}: StringProps & {children?: ReactNode}) {
     return (
-        <Suspense fallback={fallback}>
-            {stringValue}
+        <Suspense fallback={children ?? `${identifier}, ${component}`}>
+            <StringInner identifier={identifier} component={component} params={params} />
         </Suspense>
     );
 }

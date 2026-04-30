@@ -21,29 +21,51 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-import Fetch from '@moodle/lms/core/fetch';
-import String from '@moodle/lms/core/String';
+import {Suspense, use, useEffect} from 'react';
+import String, {getString} from '@moodle/lms/core/String';
 
-export const getUserPreferences = (name: string|null = null, userid: number = 0) => {
-    const endpoint = ['current', 'preferences'];
+// UseEffect receives the resolved string because use() suspends
+// the component before the body runs — by the time useEffect fires,
+// label is already a string, not a Promise.
+function TitleSetter() {
+    const label = use(getString('activityclipboard'));
 
-    if (name) {
-        endpoint.push(name);
-    }
+    useEffect(() => {
+        document.title = label;
+    }, [label]);
 
-    return Fetch.performGet('core_user', endpoint.join('/')).then((response) => response.json());
-};
+    return <p>document.title was set to: <strong>{label}</strong></p>;
+}
+
+// Aria-label requires a string — TypeScript accepts this because
+// use() unwraps Promise<string> to string.
+function AccessibleButton() {
+    const label = use(getString('activityclipboard'));
+
+    return <button aria-label={label}>{label}</button>;
+}
 
 export default function Example() {
     return (
-        <>
-            <div id="example">
-                <String identifier={"activityclipboard"}></String>
-                <String identifier={"activityclipboard"} params={"Here!!!"}></String>
-                <String identifier={"allowstealthmodules_help"}>
-                    Some help content would go here.
-                </String>
-            </div>
-        </>
+        <div id="example">
+
+            <h3>Basic rendering via &lt;String /&gt;</h3>
+            <String identifier="activityclipboard" />
+            <String identifier="activityclipboard" params="Here!!!" />
+            <String identifier="allowstealthmodules_help">
+                Some help content would go here.
+            </String>
+
+            <h3>useEffect receives the resolved string</h3>
+            <Suspense fallback="Loading...">
+                <TitleSetter />
+            </Suspense>
+
+            <h3>aria-label from a resolved string</h3>
+            <Suspense fallback="Loading...">
+                <AccessibleButton />
+            </Suspense>
+
+        </div>
     );
 }

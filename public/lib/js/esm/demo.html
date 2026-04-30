@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Example component demo</title>
+
+    <script type="importmap">
+    {
+        "imports": {
+            "react":                        "https://esm.sh/react@19",
+            "react/jsx-runtime":            "https://esm.sh/react@19/jsx-runtime",
+            "react/jsx-dev-runtime":        "https://esm.sh/react@19/jsx-dev-runtime",
+            "react-dom/client":             "https://esm.sh/react-dom@19/client",
+            "@moodle/lms/core/amd":         "./build/amd.js",
+            "@moodle/lms/core/String":      "./build/String.js",
+            "@moodle/lms/core/fetch":       "./build/fetch.js",
+            "@moodle/lms/core/profiler":    "./build/profiler.js",
+            "@moodle/lms/core/mount":       "./build/mount.js",
+            "@moodle/lms/core/example":     "./build/example.js"
+        }
+    }
+    </script>
+
+    <script>
+    // In production Moodle, RequireJS is always loaded on the page and
+    // window.require is provided by it. This demo runs standalone without
+    // Moodle or RequireJS, so we define a fake window.require here that
+    // returns mock implementations of core/str and core/fetch instead.
+    const strings = {
+        activityclipboard: 'Activity clipboard',
+        allowstealthmodules_help: 'When enabled, activities can be hidden from students without showing a hidden icon. This is useful when you want to make an activity available to specific groups only.',
+    };
+
+    const fakeStr = {
+        get_string: (id, component = 'core', params) => new Promise(r => setTimeout(() => {
+            let str = strings[id] ?? `[[${component}/${id}]]`;
+            if (params != null) str = str.replace('{$a}', String(params));
+            r(str);
+        }, 800)),
+        get_strings: (requests) => requests.map(r => fakeStr.get_string(r.key, r.component, r.param)),
+        cache_strings: () => {},
+    };
+
+    const fakeFetch = {
+        performGet: () => Promise.resolve({ json: () => Promise.resolve({}) }),
+    };
+
+    const mocks = {
+        'core/str':   fakeStr,
+        'core/fetch': fakeFetch,
+    };
+
+    window.require = (modules, callback, errback) => {
+        Promise.all(modules.map(m => Promise.resolve(mocks[m])))
+            .then(resolved => callback(...resolved))
+            .catch(errback);
+    };
+    </script>
+
+    <style>
+        *, *::before, *::after { box-sizing: border-box; }
+        body { font-family: system-ui, sans-serif; margin: 2rem auto; max-width: 800px; background: #f1f5f9; color: #1e293b; }
+        h1 { margin-top: 0; }
+        .card { background: white; border-radius: 10px; padding: 1.5rem; border: 1px solid #e2e8f0; }
+        .note { font-size: 0.85rem; color: #64748b; margin-top: 1rem; }
+    </style>
+</head>
+<body>
+    <h1>Example component</h1>
+    <p>Strings load via the mocked <code>core/str</code> AMD module (800ms delay to simulate network).</p>
+
+    <div class="card">
+        <div
+            data-react-component="@moodle/lms/core/example"
+            data-react-props='{}'
+        ></div>
+    </div>
+
+    <p class="note">
+        Auto-mounted by <code>react_autoinit</code> scanning for <code>data-react-component</code> attributes.
+    </p>
+
+    <script type="module">
+        import './build/react_autoinit.js';
+    </script>
+</body>
+</html>
