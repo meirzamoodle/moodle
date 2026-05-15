@@ -17,48 +17,17 @@
 {{!
     @template block_coursemembers/main
 
-    Renders users enrolled in the current user's courses, grouped by role.
+    Mount point for the Course Members React component.
+    Data is fetched client-side via the block_coursemembers_get_members web service.
 
     Example context (json):
-    {
-        "nousers": false,
-        "groups": [
-            {
-                "label": "Teachers",
-                "users": [
-                    {
-                        "userpicture": "<img src='http://example.com/image.png' class='userpicture align-middle'>",
-                        "fullname": "Jane Smith",
-                        "profileurl": "http://example.com/user/view.php?id=2"
-                    }
-                ]
-            },
-            {
-                "label": "Students",
-                "users": [
-                    {
-                        "userpicture": "<img src='http://example.com/image.png' class='userpicture align-middle'>",
-                        "fullname": "John Doe",
-                        "profileurl": "http://example.com/user/view.php?id=3"
-                    }
-                ]
-            }
-        ]
-    }
+    {}
 }}
-{{#nousers}}
-<p class="text-muted">{{#str}} nousers, block_coursemembers {{/str}}</p>
-{{/nousers}}
-{{^nousers}}
-{{#groups}}
-<h6 class="mb-1 mt-2">{{label}}</h6>
-<ul class="list-unstyled mb-2">
-    {{#users}}
-    <li class="d-flex align-items-center py-1">
-        {{{userpicture}}}
-        <a href="{{profileurl}}" class="ms-2">{{fullname}}</a>
-    </li>
-    {{/users}}
-</ul>
-{{/groups}}
-{{/nousers}}
+{{#react}}
+{
+  "component": "@moodle/lms/block_coursemembers/block_coursemembers_main",
+  "props": {},
+  "id": "block-coursemembers-main"
+}
+<p>{{#str}} loading, core {{/str}}</p>
+{{/react}}

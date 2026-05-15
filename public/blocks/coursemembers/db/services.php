@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Version details for the Course Members block.
+ * Web service definitions for block_coursemembers.
  *
  * @package    block_coursemembers
  * @copyright  2026 Meirza Arson <meirza.arson@moodle.com>
@@ -24,6 +24,12 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version   = 2026051501;
-$plugin->requires  = 2026042000;
-$plugin->component = 'block_coursemembers';
+$functions = [
+    'block_coursemembers_get_members' => [
+        'classname'     => 'block_coursemembers\external\get_members',
+        'description'   => 'Returns users enrolled in the current user\'s courses, grouped by role archetype.',
+        'type'          => 'read',
+        'ajax'          => true,
+        'loginrequired' => true,
+    ],
+];
