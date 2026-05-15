@@ -54,6 +54,8 @@ class get_members extends external_api {
     public static function execute(): array {
         global $CFG, $PAGE;
 
+        require_once($CFG->dirroot . '/user/lib.php');
+
         self::validate_parameters(self::execute_parameters(), []);
 
         $context = \context_system::instance();
