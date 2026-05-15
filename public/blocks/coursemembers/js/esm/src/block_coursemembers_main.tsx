@@ -25,8 +25,8 @@
  */
 
 import {useEffect, useState} from 'react';
-import {callAjax} from '@moodle/lms/core/amd';
-import {getStrings} from '@moodle/lms/core/string';
+import {fetchOne} from '@moodle/lms/core/ajax';
+import {requireAsync} from '@moodle/lms/core/amd';
 
 type User = {
     fullname: string;
@@ -44,7 +44,11 @@ type Strings = {
     nousers: string;
 };
 
-const STRING_KEYS = [
+type CoreStr = {
+    get_strings(requests: Array<{key: string; component: string}>): PromiseLike<string[]>;
+};
+
+const STRING_REQUESTS = [
     {key: 'loading', component: 'core'},
     {key: 'nousers', component: 'block_coursemembers'},
 ];
@@ -60,13 +64,14 @@ export default function BlockCoursemembersMain() {
     const [strings, setStrings] = useState<Strings | null>(null);
 
     useEffect(() => {
-        getStrings(STRING_KEYS)
+        requireAsync<CoreStr>('core/str')
+            .then(str => str.get_strings(STRING_REQUESTS))
             .then(([loading, nousers]) => setStrings({loading, nousers}))
             .catch((e) => window.console.error('block_coursemembers: failed to load strings', e));
     }, []);
 
     useEffect(() => {
-        callAjax<{groups: Group[]}>('block_coursemembers_get_members', {})
+        fetchOne<{groups: Group[]}>({methodname: 'block_coursemembers_get_members', args: {}})
             .then(({groups: g}) => setGroups(g))
             .catch((e) => {
                 window.console.error('block_coursemembers: failed to load members', e);
