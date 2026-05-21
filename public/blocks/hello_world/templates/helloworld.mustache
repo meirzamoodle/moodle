@@ -1,0 +1,21 @@
+{{!
+    @template block_hello_world/helloworld
+
+    Hello World block body content.
+
+    Context variables required for this template:
+    * greeting (string) - The greeting text to display.
+
+    Example context (json):
+    {
+        "greeting": "Hello, World!"
+    }
+}}
+{{#react}}
+{
+  "component": "@moodle/lms/block_hello_world/block_hello_world_helloworld",
+  "props": {
+    "greeting": "{{greeting}}"
+  }
+}
+{{/react}}
