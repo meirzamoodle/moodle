@@ -290,6 +290,8 @@ $string['comparelanguage'] = 'Compare and edit current language';
 $string['complete'] = 'Complete';
 $string['completed'] = 'Completed';
 $string['completereport'] = 'Complete report';
+$string['composerpackagenotinstalled'] = 'The Composer package \'{$a}\' is not installed. Please run \'composer install\' in the Moodle root directory.';
+$string['composerpackagenotinstalledwithurl'] = 'The Composer package \'{$a->package}\' is not installed. Please run \'composer install\' in the Moodle root directory. See <a href="{$a->url}">{$a->url}</a> for more information.';
 $string['configuration'] = 'Configuration';
 $string['confirm'] = 'Confirm';
 $string['confirmaccount'] = 'Confirm account';

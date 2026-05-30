@@ -1,0 +1,12 @@
+issueNumber: MDL-88576
+notes:
+  core:
+    - message: >-
+        New class `\core\composer` provides a public API for checking whether
+        optional Composer packages (Packagist packages not bundled in Moodle
+        core) are installed at runtime. Use
+        `\core\composer::is_package_installed('vendor/package')` before loading
+        classes from such packages. Helper methods
+        `get_package_version()`, `get_package_install_path()`, and
+        `get_missing_package_warning()` are also available.
+      type: improved
