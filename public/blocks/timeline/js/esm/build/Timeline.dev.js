@@ -107,6 +107,7 @@ function Timeline({ midnight, filter, order, limit, nocoursesurl, noeventsurl, h
           nocoursesurl,
           noeventsurl,
           hasenrolledcourses,
+          limit,
           searchPending
         },
         void 0,
@@ -137,13 +138,13 @@ function Timeline({ midnight, filter, order, limit, nocoursesurl, noeventsurl, h
         false,
         {
           fileName: "public/blocks/timeline/js/esm/src/Timeline.tsx",
-          lineNumber: 143,
+          lineNumber: 144,
           columnNumber: 25
         },
         this
       ) }, void 0, false, {
         fileName: "public/blocks/timeline/js/esm/src/Timeline.tsx",
-        lineNumber: 141,
+        lineNumber: 142,
         columnNumber: 17
       }, this)
     ] }, void 0, true, {
