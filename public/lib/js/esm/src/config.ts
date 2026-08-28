@@ -34,7 +34,7 @@ declare const M: {
 };
 
 /** The shape of the Moodle page configuration object (`M.cfg`). */
-export interface MoodleConfig {
+export type MoodleConfig = {
     /** The root URL of the Moodle site (e.g. `https://example.com/moodle`). */
     wwwroot: string;
     /** The base URL for the REST API. */
@@ -70,7 +70,7 @@ export interface MoodleConfig {
     /** The context ID of the current course (0 when outside a course). */
     courseContextId: number;
     /** The context ID of the current page. */
-    contextid: number | null;
+    contextid: number | undefined;
     /** The instance ID for the current context. */
     contextInstanceId: number;
     /** Cache-buster revision for language strings. */
@@ -82,7 +82,7 @@ export interface MoodleConfig {
     /** The current user's ID. */
     userId: number;
     /** Timestamp of the user's current login session. Null for guests. */
-    currentlogin: number | null;
+    currentlogin: number | undefined;
     /** List of JS deprecation warnings to suppress. */
     deprecationignorelist: string[];
     /** OpenTelemetry trace parent ID. */
@@ -91,7 +91,7 @@ export interface MoodleConfig {
     developerdebug?: boolean;
     /** Whether a Behat test is running. Present only when true. */
     behatsiterunning?: boolean;
-}
+};
 
 /**
  * The live Moodle page configuration object.
@@ -110,4 +110,4 @@ export default config;
  * @returns `true` if JavaScript caching is enabled, or `false` if it is disabled.
  * @see M.cfg.jsrev
  */
-export const isJSCachingEnabled = config.jsrev !== -1;
+export const isJsCachingEnabled = config.jsrev !== -1;

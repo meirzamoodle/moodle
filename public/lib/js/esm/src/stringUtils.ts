@@ -13,27 +13,25 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
+import config from './config';
+import {localStore} from './Storage';
 import {
     fetchMany,
 } from '@moodle/lms/core/ajax';
-import config from './config';
-import {localStore} from './Storage';
-
-/* eslint-disable no-restricted-properties */
 
 // --- Global type declarations ---
 
 declare const M: {
     str: Record<string, Record<string, string>>;
     util: {
-        get_string: (key: string, component: string, param?: StringParams) => string;
+        get_string: (key: string, component: string, parameter?: StringParams) => string;
     };
 };
 
 // --- Public types ---
 
 /** Parameter types accepted for variable expansion in language strings. */
-export type StringParams = Record<string, string | number> | string | number | null;
+export type StringParams = Record<string, string | number> | string | number | undefined;
 
 /** A request for a single language string. */
 export type StringRequest = {
@@ -83,47 +81,44 @@ const getCacheKey = (key: string, component: string, lang: string): string =>
  * @param requests List of string requests.
  * @returns An array of Promises, one per request, each resolving to the formatted string.
  */
-export const getRequestedStrings = (requests: StringRequest[]): Promise<string>[] => {
+export const getRequestedStrings = (requests: StringRequest[]): Array<Promise<string>> => {
     type PendingFetch = {
-        request: { methodname: string; args: Record<string, unknown> };
+        request: {methodname: string; args: Record<string, unknown>};
         resolve: (value: string) => void;
         reject: (reason: unknown) => void;
     };
 
-    const stringPromises: Promise<string>[] = new Array(requests.length);
+    const stringPromises: Array<Promise<string>> = Array.from({length: requests.length});
     const pendingFetches: PendingFetch[] = [];
 
-    for (let i = 0; i < requests.length; i++) {
-        const {key, component: rawComponent = 'core', param = null, lang = config.language} = requests[i];
-        const component = rawComponent || 'core';
+    for (const [index, request] of requests.entries()) {
+        const {key, param: parameter = null, lang = config.language} = request;
+        const component = request.component === undefined || request.component === '' ? 'core' : request.component;
         const cacheKey = getCacheKey(key, component, lang);
 
         // 1. Check M.str in-memory cache.
         if (M.str[component]?.[key] !== undefined) {
-            const promise = Promise.resolve(M.util.get_string(key, component, param));
+            const promise = Promise.resolve(M.util.get_string(key, component, parameter));
             promiseCache.set(cacheKey, promise);
-            stringPromises[i] = promise;
+            stringPromises[index] = promise;
             continue;
         }
 
         // 2. Check browser localStore.
         const cached = localStore.get(cacheKey);
         if (cached !== null) {
-            if (!M.str[component]) {
-                M.str[component] = {};
-            }
+            M.str[component] ??= {};
+
             M.str[component][key] = cached;
-            const promise = Promise.resolve(M.util.get_string(key, component, param));
+            const promise = Promise.resolve(M.util.get_string(key, component, parameter));
             promiseCache.set(cacheKey, promise);
-            stringPromises[i] = promise;
+            stringPromises[index] = promise;
             continue;
         }
 
         // 3. Check promise cache (another request already triggered a fetch for this string).
         if (promiseCache.has(cacheKey)) {
-            stringPromises[i] = promiseCache.get(cacheKey)!.then(
-                () => M.util.get_string(key, component, param),
-            );
+            stringPromises[index] = promiseCache.get(cacheKey)!.then(() => M.util.get_string(key, component, parameter));
             continue;
         }
 
@@ -132,7 +127,9 @@ export const getRequestedStrings = (requests: StringRequest[]): Promise<string>[
             pendingFetches.push({
                 request: {
                     methodname: 'core_get_string',
-                    args: {stringid: key, stringparams: [], component, lang},
+                    args: {
+                        stringid: key, stringparams: [], component, lang,
+                    },
                 },
                 resolve,
                 reject,
@@ -142,18 +139,17 @@ export const getRequestedStrings = (requests: StringRequest[]): Promise<string>[
         // Store immediately so duplicate keys in the same batch reuse this promise.
         promiseCache.set(cacheKey, fetchPromise);
 
-        stringPromises[i] = fetchPromise.then((str) => {
-            if (!M.str[component]) {
-                M.str[component] = {};
-            }
-            M.str[component][key] = str;
-            localStore.set(cacheKey, str);
-            return M.util.get_string(key, component, param);
+        stringPromises[index] = fetchPromise.then(string_ => {
+            M.str[component] ??= {};
+
+            M.str[component][key] = string_;
+            localStore.set(cacheKey, string_);
+            return M.util.get_string(key, component, parameter);
         });
     }
 
     if (pendingFetches.length > 0) {
-        const ajaxRequests = pendingFetches.map((pf) => pf.request);
+        const ajaxRequests = pendingFetches.map(pf => pf.request);
 
         fetchMany<string>(ajaxRequests, {
             loginrequired: true,
@@ -161,16 +157,18 @@ export const getRequestedStrings = (requests: StringRequest[]): Promise<string>[
             timeout: 0,
             cachekey: config.langrev,
         })
-        .then((results) => {
-            results.forEach((result, index) => {
-                pendingFetches[index].resolve(result);
-            });
+            .then(results => {
+                for (const [index, result] of results.entries()) {
+                    pendingFetches[index].resolve(result);
+                }
 
-            return results;
-        })
-        .catch((err) => {
-            pendingFetches.forEach((pf) => pf.reject(err));
-        });
+                return results;
+            })
+            .catch((error: unknown) => {
+                for (const pf of pendingFetches) {
+                    pf.reject(error);
+                }
+            });
     }
 
     return stringPromises;
@@ -182,7 +180,7 @@ export const getRequestedStrings = (requests: StringRequest[]): Promise<string>[
  * @param requests List of string requests.
  * @returns A Promise resolving to an array of formatted strings, in request order.
  */
-export const getStrings = (requests: StringRequest[]): Promise<string[]> =>
+export const getStrings = async (requests: StringRequest[]): Promise<string[]> =>
     Promise.all(getRequestedStrings(requests));
 
 /**
@@ -197,12 +195,9 @@ export const cacheStrings = (strings: CacheStringEntry[]): void => {
     for (const {key, component = 'core', value, lang = config.language} of strings) {
         const cacheKey = getCacheKey(key, component, lang);
 
-        if (!M.str[component]) {
-            M.str[component] = {};
-        }
-        if (!(key in M.str[component])) {
-            M.str[component][key] = value;
-        }
+        M.str[component] ??= {};
+
+        M.str[component][key] ??= value;
 
         localStore.set(cacheKey, value);
 
@@ -218,20 +213,23 @@ export const cacheStrings = (strings: CacheStringEntry[]): void => {
  * Returns a stable Promise reference for the same (identifier, component, params) tuple,
  * making it safe to use with React's `use()` hook.
  */
+/* eslint-disable @typescript-eslint/promise-function-async -- Returns the cached promise; use() needs it stable. */
 export const getString = (
     identifier: string,
-    component: string = 'core',
-    params?: StringParams,
+    component = 'core',
+    parameters?: StringParams,
 ): Promise<string> => {
-    const key = `${component}::${identifier}::${JSON.stringify(params)}`;
+    const key = `${component}::${identifier}::${JSON.stringify(parameters)}`;
     if (!stringPromiseCache.has(key)) {
         stringPromiseCache.set(
             key,
-            getRequestedStrings([{key: identifier, component, param: params}])[0],
+            getRequestedStrings([{key: identifier, component, param: parameters}])[0],
         );
     }
+
     return stringPromiseCache.get(key)!;
 };
+/* eslint-enable @typescript-eslint/promise-function-async */
 
 /**
  * Clear all internal caches. Intended for use in tests.
