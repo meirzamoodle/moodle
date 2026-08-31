@@ -2323,7 +2323,21 @@ function xmldb_main_upgrade($oldversion) {
             $dbman->add_index($table, $index);
         }
 
-        upgrade_main_savepoint(true, 2026081800.06);
+        upgrade_main_savepoint(true, 2026090400.00);
+    }
+
+    if ($oldversion < 2026090100.00) {
+        // Rename field ispkceenabled on table oauth2_server_clients to ispkcerequired.
+        $table = new xmldb_table('oauth2_server_clients');
+        $field = new xmldb_field('ispkceenabled', XMLDB_TYPE_INTEGER, '1', null, XMLDB_NOTNULL, null, '1', 'granttypes');
+
+        // Conditionally launch rename field ispkceenabled.
+        if ($dbman->field_exists($table, $field)) {
+            $dbman->rename_field($table, $field, 'ispkcerequired');
+        }
+
+        // Main savepoint reached.
+        upgrade_main_savepoint(true, 2026090400.00);
     }
 
     return true;
