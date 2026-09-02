@@ -60,6 +60,41 @@ const lintTypescript = (grunt, targets, {fix = false} = {}) => new Promise((reso
         });
 });
 
+/**
+ * Create a linter that keeps XO loaded between runs.
+ *
+ * The CLI reloads XO's plugin graph on every invocation, which costs over a second
+ * before it reads a line of source. A watch process is long-lived, so it loads XO
+ * once and reuses it: the first run pays for building the TypeScript program, and
+ * each one after it costs only the linting.
+ *
+ * One-shot tasks keep using {@link lintTypescript}, whose process exits immediately
+ * and so gains nothing from this while losing the CLI's warm cache.
+ *
+ * @param {Grunt} grunt
+ * @returns {() => Promise<{text: string}[]>} Resolves to the problems found, empty when clean.
+ */
+const createResidentLinter = grunt => {
+    let xo;
+
+    return async() => {
+        const {Xo} = await import('xo');
+        const formatter = await import('eslint-formatter-pretty');
+
+        xo ??= new Xo({cwd: grunt.moodleEnv.gruntFilePath});
+
+        const {results} = await xo.lintFiles(grunt.moodleEnv.reactSrc);
+        const errorCount = results.reduce((total, result) => total + result.errorCount, 0);
+        const warningCount = results.reduce((total, result) => total + result.warningCount, 0);
+
+        if (errorCount > 0 || warningCount > 0) {
+            grunt.log.writeln(formatter.default(results, {cwd: grunt.moodleEnv.gruntFilePath, results}));
+        }
+
+        return errorCount > 0 ? [{text: 'XO reported problems in the TypeScript sources.'}] : [];
+    };
+};
+
 module.exports = grunt => {
     /**
      * Lint the TypeScript sources.
@@ -89,3 +124,4 @@ module.exports = grunt => {
 };
 
 module.exports.lintTypescript = lintTypescript;
+module.exports.createResidentLinter = createResidentLinter;
