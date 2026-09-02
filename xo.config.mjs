@@ -27,12 +27,21 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+import reactHooks from 'eslint-plugin-react-hooks';
+
 /** @type {import('xo').FlatXoConfig} */
 const xoConfig = [
     {
         files: ['**/js/esm/src/**/*.ts', '**/js/esm/src/**/*.tsx'],
         space: 4,
+        plugins: {'react-hooks': reactHooks},
         rules: {
+            // The hooks rules only. eslint-plugin-react, which XO's own React config also
+            // pulls in, calls context.getFilename() and so crashes on the ESLint 10 that XO
+            // bundles. Most of what it checks — prop types, display names — TypeScript
+            // already covers. Revisit when it supports ESLint 10.
+            ...reactHooks.configs['recommended-latest'].rules,
+
             // Moodle docblocks prefix continuation lines with an asterisk; XO defaults to 'never'.
             'jsdoc/require-asterisk-prefix': ['error', 'always'],
 
