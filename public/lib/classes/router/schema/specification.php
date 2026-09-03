@@ -17,6 +17,7 @@
 namespace core\router\schema;
 
 use coding_exception;
+use core\oauth2\server\repository\scope_repository;
 use core\router\response\invalid_parameter_response;
 use core\router\response\not_found_response;
 use core\router\route;
@@ -92,14 +93,13 @@ class specification implements
                         'name' => 'MoodleSession',
                         'in' => parameter::IN_COOKIE,
                     ],
-                    // TODO MDL-82242: Add support for OAuth2.
                 ],
             ],
-            // TODO MDL-82242: Add support for OAuth2.
             'security' => [
                 (object) [
                     'api_key' => [],
                     'cookie' => [],
+                    'oauth2' => [],
                 ],
             ],
             'externalDocs' => (object) [
@@ -466,6 +466,7 @@ class specification implements
             'tags' => [$component, ...$route->tags],
             'parameters' => [],
             'responses' => [],
+            'security' => [],
         ];
 
         if ($route->get_request_body()) {
@@ -504,6 +505,13 @@ class specification implements
             ),
             fn($param) => $param !== null,
         ));
+
+        // Add all sets of oauth2 scopes.
+        if ($scopesets = $route->get_scopes()) {
+            foreach ($scopesets as $scopes) {
+                $data->security[] = ['oauth2' => $scopes];
+            }
+        }
 
         foreach ($this->get_common_request_responses() as $callable) {
             $data = $callable($route, $data);

@@ -143,6 +143,117 @@ final class moodle_api_authentication_middleware_test extends route_testcase {
     }
 
     /**
+     * A route which requires more than one scope set accepts a token satisfying any single set.
+     */
+    public function test_api_key_auth_satisfies_any_one_of_several_scope_sets(): void {
+        $this->resetAfterTest();
+
+        $user = $this->getDataGenerator()->create_user();
+        $repository = di::get(api_token_repository::class);
+        $token = $repository->create_token(
+            'Test',
+            'correctsecret',
+            $user->id,
+            ['core_user:user:read', 'core_user:user:write'],
+        );
+        $bearer = $this->build_bearer_token($token->get_id(), 'correctsecret');
+
+        // The token only satisfies the second of these two scope sets.
+        $route = new route(
+            scopes: [
+                [new \core_user\route\scope\user\read(), new \core_user\route\scope\user\delete()],
+                [new \core_user\route\scope\user\read(), new \core_user\route\scope\user\write()],
+            ],
+        );
+        $request = (new ServerRequest('GET', '/test'))
+            ->withHeader('Authorization', "Bearer {$bearer}")
+            ->withAttribute(route::class, $route);
+
+        $response = $this->get_middleware()->process($request, $this->get_recording_handler());
+
+        $this->assertEquals(200, $response->getStatusCode());
+    }
+
+    /**
+     * A route which declares no scopes at all imposes no scope requirement, so any validly authenticated
+     * token is accepted regardless of the scopes it carries.
+     */
+    public function test_api_key_auth_with_no_declared_scopes_accepts_any_scope(): void {
+        $this->resetAfterTest();
+
+        $user = $this->getDataGenerator()->create_user();
+        $repository = di::get(api_token_repository::class);
+        // The token carries a scope which is entirely unrelated to the route being accessed.
+        $token = $repository->create_token('Test', 'correctsecret', $user->id, ['core_course:course:read']);
+        $bearer = $this->build_bearer_token($token->get_id(), 'correctsecret');
+
+        // No `scopes` argument supplied at all.
+        $route = new route();
+        $request = (new ServerRequest('GET', '/test'))
+            ->withHeader('Authorization', "Bearer {$bearer}")
+            ->withAttribute(route::class, $route);
+
+        $handler = $this->get_recording_handler();
+        $response = $this->get_middleware()->process($request, $handler);
+
+        $this->assertEquals(200, $response->getStatusCode());
+        $this->assertEquals($user->id, $handler->capturedrequest->getAttribute('user')->id);
+    }
+
+    /**
+     * A route which declares no scopes at all also accepts an OAuth2 grant with no scopes at all.
+     */
+    public function test_oauth2_login_with_no_declared_scopes_accepts_any_scope(): void {
+        global $USER;
+
+        $this->resetAfterTest();
+
+        $user = $this->getDataGenerator()->create_user();
+        $server = $this->createMock(ResourceServer::class);
+        $server->method('validateAuthenticatedRequest')
+            ->willReturnCallback(fn (ServerRequestInterface $request) => $request
+                ->withAttribute('oauth_user_id', (string) $user->id)
+                ->withAttribute('oauth_scopes', []));
+
+        // No `scopes` argument supplied at all.
+        $route = new route();
+        $request = (new ServerRequest('GET', '/test'))
+            ->withHeader('Authorization', 'Bearer sometoken')
+            ->withAttribute(route::class, $route);
+
+        $response = $this->get_middleware($server)->process($request, $this->get_recording_handler());
+
+        $this->assertEquals(200, $response->getStatusCode());
+        $this->assertEquals($user->id, $USER->id);
+    }
+
+    /**
+     * A token which does not carry a scope required by the route is rejected.
+     */
+    public function test_api_key_auth_with_insufficient_scope_returns_access_denied_response(): void {
+        $this->resetAfterTest();
+
+        $user = $this->getDataGenerator()->create_user();
+        $repository = di::get(api_token_repository::class);
+        $token = $repository->create_token('Test', 'correctsecret', $user->id, ['core_user:user:write']);
+        $bearer = $this->build_bearer_token($token->get_id(), 'correctsecret');
+
+        $route = new route(
+            scopes: [[new \core_user\route\scope\user\read()]],
+        );
+        $request = (new ServerRequest('GET', '/test'))
+            ->withHeader('Authorization', "Bearer {$bearer}")
+            ->withAttribute(route::class, $route);
+
+        $response = $this->get_middleware()->process($request, $this->get_recording_handler());
+
+        $this->assertEquals(401, $response->getStatusCode());
+        $payload = json_decode((string) $response->getBody());
+        $this->assertEquals('access_denied', $payload->error);
+        $this->assertStringContainsString('core_user:user:read', $payload->hint);
+    }
+
+    /**
      * A syntactically valid, but unknown or incorrect, API key token is rejected.
      */
     public function test_api_key_auth_with_invalid_token_throws(): void {
@@ -189,6 +300,67 @@ final class moodle_api_authentication_middleware_test extends route_testcase {
         // Note: Unlike API key auth, a successful OAuth2 login does not set a `user` request attribute - the
         // user is only made available via the global session (`$USER`) and Moodle session state.
         $this->assertEquals($user->id, $USER->id);
+    }
+
+    /**
+     * An OAuth2 bearer token whose scopes do not satisfy the route is converted into a 401 response.
+     */
+    public function test_oauth2_login_with_insufficient_scope_returns_access_denied_response(): void {
+        $this->resetAfterTest();
+
+        $user = $this->getDataGenerator()->create_user();
+        $server = $this->createMock(ResourceServer::class);
+        $server->method('validateAuthenticatedRequest')
+            ->willReturnCallback(fn (ServerRequestInterface $request) => $request
+                ->withAttribute('oauth_user_id', (string) $user->id)
+                ->withAttribute('oauth_scopes', ['core_user:user:write']));
+
+        $route = new route(
+            scopes: [[new \core_user\route\scope\user\read()]],
+        );
+        $request = (new ServerRequest('GET', '/test'))
+            ->withHeader('Authorization', 'Bearer sometoken')
+            ->withAttribute(route::class, $route);
+
+        $response = $this->get_middleware($server)->process($request, $this->get_recording_handler());
+
+        $this->assertEquals(401, $response->getStatusCode());
+        $payload = json_decode((string) $response->getBody());
+        $this->assertEquals('access_denied', $payload->error);
+        $this->assertStringContainsString('core_user:user:read', $payload->hint);
+    }
+
+    /**
+     * A route which requires more than one scope set describes every acceptable combination in the hint,
+     * when none of them are satisfied.
+     */
+    public function test_oauth2_login_scope_hint_lists_all_combinations_when_multiple_are_accepted(): void {
+        $this->resetAfterTest();
+
+        $user = $this->getDataGenerator()->create_user();
+        $server = $this->createMock(ResourceServer::class);
+        $server->method('validateAuthenticatedRequest')
+            ->willReturnCallback(fn (ServerRequestInterface $request) => $request
+                ->withAttribute('oauth_user_id', (string) $user->id)
+                ->withAttribute('oauth_scopes', []));
+
+        $route = new route(
+            scopes: [
+                [new \core_user\route\scope\user\read()],
+                [new \core_user\route\scope\user\write(), new \core_user\route\scope\user\delete()],
+            ],
+        );
+        $request = (new ServerRequest('GET', '/test'))
+            ->withHeader('Authorization', 'Bearer sometoken')
+            ->withAttribute(route::class, $route);
+
+        $response = $this->get_middleware($server)->process($request, $this->get_recording_handler());
+
+        $this->assertEquals(401, $response->getStatusCode());
+        $payload = json_decode((string) $response->getBody());
+        $this->assertStringContainsString('core_user:user:read', $payload->hint);
+        $this->assertStringContainsString('core_user:user:write, core_user:user:delete', $payload->hint);
+        $this->assertStringContainsString(' OR ', $payload->hint);
     }
 
     /**

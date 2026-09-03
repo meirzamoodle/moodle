@@ -17,6 +17,7 @@
 namespace core\router\middleware;
 
 use core\api\token_manager;
+use core\exception\access_denied_exception;
 use core\router\exception\oauth_server_exception;
 use core\router\route;
 use League\OAuth2\Server\Exception\OAuthServerException;
@@ -128,6 +129,8 @@ class moodle_api_authentication_middleware extends moodle_authentication_middlew
             $token = substr($auth, 7);
 
             $apikey = $this->apitokenmanager->get_from_token($token);
+            $this->validate_scope($moodleroute, $apikey->get_scopes());
+
             $request = $request->withAttribute('api_token_id', $apikey->get_id())
                 ->withAttribute('oauth_scopes', $apikey->get_scopes());
 
@@ -164,6 +167,9 @@ class moodle_api_authentication_middleware extends moodle_authentication_middlew
         $oauth2userid = $request->getAttribute('oauth_user_id');
 
         if ($oauth2userid !== null) {
+            $providedscopes = $request->getAttribute('oauth_scopes', []);
+            $this->validate_scope($moodleroute, $providedscopes);
+
             if ((int) $oauth2userid === 0) {
                 // System user login.
                 $this->complete_system_login();
@@ -213,5 +219,94 @@ class moodle_api_authentication_middleware extends moodle_authentication_middlew
         \core\session\manager::init_empty_session();
         \core\session\manager::set_user(\core\user::get_system_user());
         $GLOBALS['SESSION'] = new \stdClass();
+    }
+
+    /**
+     * Validate the scopes against the route.
+     *
+     * @param route $moodleroute
+     * @param array $grantedscopes
+     * @return bool
+     */
+    protected function validate_scope(
+        route $moodleroute,
+        array $grantedscopes,
+    ): bool {
+        $requiredscopesets = $moodleroute->get_scopes();
+        if (count($requiredscopesets) === 0) {
+            return true;
+        }
+
+        foreach ($requiredscopesets as $requiredscopeset) {
+            if ($this->is_scope_set_satisfied($grantedscopes, $requiredscopeset)) {
+                return true;
+            }
+        }
+
+        throw OAuthServerException::accessDenied(
+            $this->get_missing_scope_hint($moodleroute, $grantedscopes),
+        );
+    }
+
+    /**
+     * Build a human-readable hint describing which scope(s) are missing for this route.
+     *
+     * @param route $moodleroute
+     * @param array $grantedscopes
+     * @return string
+     */
+    protected function get_missing_scope_hint(
+        route $moodleroute,
+        array $grantedscopes,
+    ): string {
+        $describeset = fn (array $scopeset): string => implode(', ', array_map(
+            fn ($scope) => $scope->get_identifier(),
+            $scopeset,
+        ));
+
+        $requiredscopesets = $moodleroute->get_scopes() ?? [];
+
+        // If exactly one scope set is required, tell the caller precisely what is missing.
+        if (count($requiredscopesets) === 1) {
+            $missing = array_filter(
+                $requiredscopesets[0],
+                fn ($scope) => !$scope->is_satisfied_by($grantedscopes),
+            );
+
+            return sprintf(
+                'The access token is missing the following required scope(s): %s.',
+                $describeset($missing),
+            );
+        }
+
+        // Otherwise list all acceptable combinations of scopes.
+        $options = implode(' OR ', array_map(
+            fn (array $scopeset) => '[' . $describeset($scopeset) . ']',
+            $requiredscopesets,
+        ));
+
+        return "The access token does not have the required scope(s). This endpoint requires one of the "
+            . "following scope combinations: {$options}.";
+    }
+
+
+    /**
+     * Check whether the granted scopes satisfy a set of scopes.
+     *
+     * @param array $grantedscopes
+     * @param array $requiredscopeset
+     * @return bool
+     */
+    protected function is_scope_set_satisfied(
+        array $grantedscopes,
+        array $requiredscopeset,
+    ): bool {
+        foreach ($requiredscopeset as $requiredscope) {
+            if (!$requiredscope->is_satisfied_by($grantedscopes)) {
+                return false;
+            }
+        }
+
+        return true;
     }
 }

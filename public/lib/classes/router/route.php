@@ -21,6 +21,7 @@ use core\router\schema\parameter;
 use core\router\schema\response\response;
 use core\router\schema\request_body;
 use Attribute;
+use core\router\scope\abstract_scope;
 
 /**
  * Routing attribute.
@@ -120,8 +121,8 @@ class route {
         /** @var null|array Whether to require login or not */
         public readonly ?require_login $requirelogin = null,
 
-        /** @var string[] The list of scopes required to access this page */
-        public readonly ?array $scopes = null,
+        /** @var abstract_scope[]|abstract_scope[][] The list of scopes required to access this page */
+        public readonly ?array $scopes = [],
 
         // Note. We do not make use of these extras.
         // These allow us to add additional arguments in future versions, whilst allowing plugins to use this version.
@@ -267,6 +268,40 @@ class route {
         }
 
         return $parameters;
+    }
+
+    /**
+     * Get the list of scopes required for this route.
+     *
+     * @return abstract_scope[][]
+     */
+    public function get_scopes(): array {
+        // Scopes are stored as arrays of arrays of scopes.
+        // A single endpoint can declare that it needs scopes A, B, and C; or it can declare it needs A, B, and D.
+        // As a convenience we do also support a single scopeset in a 2-dimensional array.
+        $scopes = $this->scopes;
+
+        if ($scopes && isset($scopes[0]) && $scopes[0] instanceof abstract_scope) {
+            // First ensure that all scopes are instances of abstract_scope.
+            foreach ($scopes as $scope) {
+                if (!$scope instanceof abstract_scope) {
+                    throw new \InvalidArgumentException('All scopes must be instances of abstract_scope.');
+                }
+            }
+
+            $scopes = [$scopes];
+        }
+
+        if (isset($this->parentroute)) {
+            $parentscopes = $this->parentroute->get_scopes();
+            if ($scopes) {
+                $scopes = array_merge($parentscopes ?? [], $scopes);
+            } else {
+                $scopes = $parentscopes;
+            }
+        }
+
+        return $scopes;
     }
 
     /**
