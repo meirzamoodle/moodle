@@ -98,8 +98,16 @@ export function detectComponentExport(filePath, moduleName) {
  * @returns {string}
  */
 export function toIdentifier(moduleName) {
+    const segments = moduleName.split('/');
+
+    // An index file takes its name from the directory holding it, so that
+    // nav/Menu/index names its wrapper Menu rather than Index.
+    if (segments.length > 1 && segments.at(-1) === 'index') {
+        segments.pop();
+    }
+
     // Only the final segment: views/ActivityIcon names its wrapper ActivityIcon.
-    const identifier = moduleName.split('/').pop()
+    const identifier = segments.pop()
         .replace(/(?:^|[_-]+)([a-z0-9])/g, (_, character) => character.toUpperCase())
         .replace(/[^A-Za-z0-9_$]/g, '');
 
