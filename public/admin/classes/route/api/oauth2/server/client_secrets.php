@@ -42,6 +42,12 @@ class client_secrets {
     #[route(
         path: '/oauth2/server/clients/{client}/secrets/create',
         method: ['POST'],
+        scopes: [
+            [
+                new \core_admin\route\scope\config\read(),
+                new \core_admin\route\scope\config\write(),
+            ],
+        ],
         pathtypes: [
             new \core_admin\route\parameters\oauth2\server\path_client(),
         ],
@@ -80,6 +86,11 @@ class client_secrets {
     #[route(
         path: '/oauth2/server/clients/{client}/secrets',
         method: ['GET'],
+        scopes: [
+            [
+                new \core_admin\route\scope\config\read(),
+            ],
+        ],
         pathtypes: [
             new \core_admin\route\parameters\oauth2\server\path_client(),
         ],
@@ -125,6 +136,12 @@ class client_secrets {
     #[route(
         path: '/oauth2/server/secrets/revoke',
         method: ['POST'],
+        scopes: [
+            [
+                new \core_admin\route\scope\config\read(),
+                new \core_admin\route\scope\config\write(),
+            ],
+        ],
         requestbody: new \core\router\schema\request_body(
             content: [
                 new \core\router\schema\response\content\json_media_type(

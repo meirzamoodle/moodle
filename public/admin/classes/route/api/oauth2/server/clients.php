@@ -41,6 +41,12 @@ class clients {
     #[route(
         path: '/oauth2/server/clients/{client}/revoke',
         method: ['POST'],
+        scopes: [
+            [
+                new \core_admin\route\scope\config\read(),
+                new \core_admin\route\scope\config\write(),
+            ],
+        ],
         pathtypes: [
             new \core_admin\route\parameters\oauth2\server\path_client(),
         ],
@@ -79,6 +85,12 @@ class clients {
     #[route(
         path: '/oauth2/server/clients/{client}/reactivate',
         method: ['POST'],
+        scopes: [
+            [
+                new \core_admin\route\scope\config\read(),
+                new \core_admin\route\scope\config\write(),
+            ],
+        ],
         pathtypes: [
             new \core_admin\route\parameters\oauth2\server\path_client(),
         ],
@@ -117,6 +129,12 @@ class clients {
     #[route(
         path: '/oauth2/server/clients/{client}/delete',
         method: ['POST'],
+        scopes: [
+            [
+                new \core_admin\route\scope\config\read(),
+                new \core_admin\route\scope\config\write(),
+            ],
+        ],
         pathtypes: [
             new \core_admin\route\parameters\oauth2\server\path_client(),
         ],

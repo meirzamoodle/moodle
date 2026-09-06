@@ -57,6 +57,11 @@ class preferences {
         path: '[/{preference}]',
         title: 'Fetch user preferences',
         description: 'Fetch one user preference, or all user preferences',
+        scopes: [
+            [
+                new \core_user\route\scope\user\read(),
+            ],
+        ],
         pathtypes: [
             new \core\router\schema\parameters\path_parameter(
                 name: 'preference',
@@ -98,6 +103,12 @@ class preferences {
     #[route(
         method: ['POST'],
         title: 'Set or update multiple user preferences',
+        scopes: [
+            [
+                new \core_user\route\scope\user\read(),
+                new \core_user\route\scope\user\write(),
+            ],
+        ],
         requestbody: new \core\router\schema\request_body(
             content: new payload_response_type(
                 schema: new \core\router\schema\objects\schema_object(
@@ -153,6 +164,12 @@ class preferences {
         method: ['POST'],
         title: 'Set a single user preference',
         description: 'Set a single user preference',
+        scopes: [
+            [
+                new \core_user\route\scope\user\read(),
+                new \core_user\route\scope\user\write(),
+            ],
+        ],
         pathtypes: [
             new \core\router\schema\parameters\path_parameter(
                 name: 'preference',

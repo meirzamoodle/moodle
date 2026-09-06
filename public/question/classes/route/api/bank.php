@@ -64,6 +64,9 @@ class bank {
     #[route(
         path: '/counts', // Resolves to /api/rest/v2/question/counts.
         method: ['GET'],
+        scopes: [
+            new \core_course\route\scope\course\content\read(),
+        ],
         queryparams: [
             new query_course(required: true),
         ],
@@ -137,6 +140,9 @@ class bank {
      */
     #[route(
         path: '/banks', // Resolves to /api/rest/v2/question/banks.
+        scopes: [
+            new \core_course\route\scope\course\content\read(),
+        ],
         queryparams: [
             new query_course(required: true),
             new query_coursemodule('currentmodule'),
@@ -185,6 +191,9 @@ class bank {
 
     #[route(
         path: '/categories', // Resolves to /api/rest/v2/question/categories.
+        scopes: [
+            new \core_course\route\scope\course\content\read(),
+        ],
         queryparams: [
             new query_coursemodule(),
         ],
