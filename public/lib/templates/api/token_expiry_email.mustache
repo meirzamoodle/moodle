@@ -1,0 +1,59 @@
+{{!
+    This file is part of Moodle - http://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{!
+    @template core/api/token_expiry_email
+
+    Tells the owner of a personal access token that it is about to expire, or has.
+
+    Context variables required for this template:
+    * logo - The site's compact logo URL, if it has one.
+    * sitename - The site name, for the logo's alt text.
+    * greeting - The greeting line.
+    * message - The sentence naming the token, leading into the date.
+    * expiry - The token's expiry date and time.
+    * action - What to do about it, with a link to the token page.
+    * footer - Why the owner is receiving this, with a link to turn it off.
+
+    Example context (json):
+    {
+        "logo": "https://example.com/logo.png",
+        "sitename": "Mount Orange School",
+        "greeting": "Hello Sam,",
+        "message": "Your personal access token \"Attendance export\" for Mount Orange School expires on",
+        "expiry": "13 August 2026, 3:06 PM",
+        "action": "After that, anything using it can no longer connect. To keep access, create a replacement before then: <a href=\"#\">Personal access tokens</a>",
+        "footer": "You are receiving this because you own this token. To stop these notices, change your <a href=\"#\">Notification preferences</a>."
+    }
+}}
+{{! Styled inline, as the email factor's message is, because email clients drop stylesheets and
+    cannot be relied on to honour a media query. So the text is capped at a readable width and
+    the logo centred over it, which holds on any screen. }}
+<div style="max-width: 600px; font-family: Arial, sans-serif; font-size: 18px">
+    {{#logo}}
+        <div style="margin-bottom: 10px; text-align: center;">
+            <img src="{{{logo}}}" alt="{{sitename}}" style="max-width: 100%; height: auto;" />
+        </div>
+    {{/logo}}
+    <p>{{greeting}}</p>
+    <p>{{{message}}}</p>
+    <h2 style="letter-spacing: 5px;">{{expiry}}</h2>
+    <p>{{{action}}}</p>
+    <br/>
+    <div style="font-family: Arial, sans-serif; font-size: 12px">
+        <p>{{{footer}}}</p>
+    </div>
+</div>

@@ -230,8 +230,6 @@ class api_token_repository {
      * @return api_token_entity[]
      */
     public function get_user_tokens(int $userid, bool $includeinactive = false): array {
-        global $DB;
-
         $select = "userid = :userid";
         $params = ['userid' => $userid];
 
@@ -243,14 +241,80 @@ class api_token_repository {
             ];
         }
 
-        $records = $DB->get_records_select('rest_api_tokens', $select, $params, 'timecreated DESC');
+        return $this->get_tokens_select($select, $params, 'timecreated DESC');
+    }
 
-        if (empty($records)) {
-            return [];
-        }
+    /**
+     * Get the tokens now expiring soon whose owners have not been warned yet.
+     *
+     * @return api_token_entity[]
+     */
+    public function get_tokens_to_warn(): array {
+        // The same window the token list flags, so the warning and the list cannot disagree.
+        $select = "revoked = :revoked AND expirytime > :now AND expirytime <= :threshold
+                   AND timeexpirywarned IS NULL AND timeexpirednotified IS NULL";
+        $params = [
+            'revoked' => api_token_entity::REVOKED_NO,
+            'now' => di::get(clock::class)->time(),
+            'threshold' => token_manager::get_expiring_soon_threshold(),
+        ];
 
-        return array_map(function ($record) {
-            return api_token_entity::create_from_record($record);
-        }, $records);
+        return $this->get_tokens_select($select, $params);
+    }
+
+    /**
+     * Get the tokens which have expired without their owners being told.
+     *
+     * @return api_token_entity[]
+     */
+    public function get_expired_tokens_to_notify(): array {
+        $select = "revoked = :revoked AND expirytime <= :now AND timeexpirednotified IS NULL";
+        $params = [
+            'revoked' => api_token_entity::REVOKED_NO,
+            'now' => di::get(clock::class)->time(),
+        ];
+
+        return $this->get_tokens_select($select, $params);
+    }
+
+    /**
+     * Record that a token's owner has been warned it is about to expire.
+     *
+     * @param int $tokenid The token ID.
+     * @return void
+     */
+    public function mark_expiry_warned(int $tokenid): void {
+        global $DB;
+
+        $DB->set_field('rest_api_tokens', 'timeexpirywarned', di::get(clock::class)->time(), ['id' => $tokenid]);
+    }
+
+    /**
+     * Record that a token's owner has been told it has expired.
+     *
+     * @param int $tokenid The token ID.
+     * @return void
+     */
+    public function mark_expired_notified(int $tokenid): void {
+        global $DB;
+
+        $DB->set_field('rest_api_tokens', 'timeexpirednotified', di::get(clock::class)->time(), ['id' => $tokenid]);
+    }
+
+    /**
+     * Get the tokens matching a WHERE clause.
+     *
+     * @param string $select The WHERE clause.
+     * @param array $params The clause's parameters.
+     * @param string $sort The ORDER BY clause.
+     * @return api_token_entity[]
+     */
+    protected function get_tokens_select(string $select, array $params, string $sort = 'id'): array {
+        global $DB;
+
+        return array_map(
+            fn($record) => api_token_entity::create_from_record($record),
+            $DB->get_records_select('rest_api_tokens', $select, $params, $sort),
+        );
     }
 }

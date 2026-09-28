@@ -153,10 +153,17 @@ class token_manager {
             return false;
         }
 
-        $now = self::now();
-
         // A token which has already lapsed is not "expiring soon": its status says so already.
-        return $expirytime > $now && $expirytime <= $now + (self::EXPIRY_IMMINENT_DAYS * DAYSECS);
+        return $expirytime > self::now() && $expirytime <= self::get_expiring_soon_threshold();
+    }
+
+    /**
+     * The latest expiry which counts as expiring soon right now.
+     *
+     * @return int
+     */
+    public static function get_expiring_soon_threshold(): int {
+        return self::now() + (self::EXPIRY_IMMINENT_DAYS * DAYSECS);
     }
 
     /**
