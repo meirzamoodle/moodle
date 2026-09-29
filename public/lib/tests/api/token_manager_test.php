@@ -86,6 +86,39 @@ final class token_manager_test extends \advanced_testcase {
     }
 
     /**
+     * Minting a token is logged against its owner, without the secret.
+     */
+    public function test_issue_token_triggers_event(): void {
+        $this->resetAfterTest();
+        $user = $this->getDataGenerator()->create_user();
+        $this->setUser($user);
+        $sink = $this->redirectEvents();
+
+        $token = $this->get_manager()->issue_token(
+            'Attendance export',
+            $user->id,
+            ['core_admin:config:read'],
+            null,
+            self::NOW + WEEKSECS,
+        );
+
+        $events = array_values(array_filter(
+            $sink->get_events(),
+            fn($event) => $event instanceof \core\event\personal_access_token_created,
+        ));
+        $this->assertCount(1, $events);
+        $event = $events[0];
+
+        [, $encoded] = explode('_', $token, 2);
+        [$id, $secret] = explode('/', base64_decode($encoded), 2);
+        $this->assertEquals($id, $event->objectid);
+        $this->assertEquals($user->id, $event->relateduserid);
+        $this->assertEquals(\core\context\user::instance($user->id), $event->get_context());
+        $this->assertStringNotContainsString($secret, json_encode($event->get_data()));
+        $this->assertEventContextNotUsed($event);
+    }
+
+    /**
      * Every generated secret differs, even for identical input.
      */
     public function test_issue_token_secrets_are_unique(): void {

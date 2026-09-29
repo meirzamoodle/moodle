@@ -42,6 +42,14 @@ $handlers = [
 
 $observers = [
     [
+        'eventname' => '\core\event\personal_access_token_created',
+        'callback' => '\core\task\personal_access_token_created_task::observe',
+    ],
+    [
+        'eventname' => '\core\event\oauth2_server_client_secret_created',
+        'callback' => '\core\task\oauth2_secret_created_task::observe',
+    ],
+    [
         'eventname'   => '\core\event\course_module_completion_updated',
         'callback'    => '\core_badges\event\observer::course_module_criteria_review',
     ],

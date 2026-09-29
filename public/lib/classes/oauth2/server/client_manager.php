@@ -353,13 +353,18 @@ class client_manager {
         $now = $this->clock->time();
         $secret = bin2hex(random_bytes(32));
 
-        $this->db->insert_record('oauth2_server_client_secrets', (object) [
+        $secretid = $this->db->insert_record('oauth2_server_client_secrets', (object) [
             'clientidentifier' => $client->clientidentifier,
             'secret' => password_hash($secret, PASSWORD_DEFAULT),
             'expirytime' => $expirytime ?? $now + self::SECRET_LIFETIME,
             'revoked' => client_entity::SECRET_REVOKED_NO,
             'timecreated' => $now,
         ]);
+
+        \core\event\oauth2_server_client_secret_created::create([
+            'objectid' => $secretid,
+            'other' => ['clientid' => $clientid],
+        ])->trigger();
 
         return $secret;
     }
