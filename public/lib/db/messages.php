@@ -43,6 +43,25 @@ $messageproviders = array (
         ],
     ),
 
+    // A personal access token was created on the user's account. Forced, like newlogin, so
+    // whoever has taken over an account cannot switch off the notice before creating one.
+    'personalaccesstokencreated' => [
+        'defaults' => [
+            'popup' => MESSAGE_FORCED + MESSAGE_DEFAULT_ENABLED,
+            'email' => MESSAGE_FORCED + MESSAGE_DEFAULT_ENABLED,
+        ],
+        'capability' => 'moodle/api:createtoken',
+    ],
+
+    // A secret was created for an OAuth 2 client. Forced for the same reason.
+    'oauth2clientsecretcreated' => [
+        'defaults' => [
+            'popup' => MESSAGE_FORCED + MESSAGE_DEFAULT_ENABLED,
+            'email' => MESSAGE_FORCED + MESSAGE_DEFAULT_ENABLED,
+        ],
+        'capability' => 'moodle/site:manageoauth2clients',
+    ],
+
     // Notices that an admin might be interested in.
     'notices' => array (
         'defaults' => [

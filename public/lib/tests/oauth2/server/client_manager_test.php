@@ -641,6 +641,43 @@ final class client_manager_test extends \advanced_testcase {
     }
 
     /**
+     * Test that generating a secret is logged against its client, without the secret.
+     *
+     * @return void
+     */
+    public function test_create_secret_triggers_event(): void {
+        global $DB;
+
+        $this->resetAfterTest();
+        $this->setAdminUser();
+
+        $manager = $this->get_manager();
+        $record = $this->create_fixture_client($manager);
+        $sink = $this->redirectEvents();
+
+        $secret = $manager->create_secret((int) $record->id);
+
+        $events = array_values(array_filter(
+            $sink->get_events(),
+            fn($event) => $event instanceof \core\event\oauth2_server_client_secret_created,
+        ));
+        $this->assertCount(1, $events);
+        $event = $events[0];
+
+        $secretid = $DB->get_field(
+            'oauth2_server_client_secrets',
+            'id',
+            ['clientidentifier' => $record->clientidentifier],
+            MUST_EXIST,
+        );
+        $this->assertEquals($secretid, $event->objectid);
+        $this->assertEquals($record->id, $event->other['clientid']);
+        $this->assertEquals(\core\context\system::instance(), $event->get_context());
+        $this->assertStringNotContainsString($secret, json_encode($event->get_data()));
+        $this->assertEventContextNotUsed($event);
+    }
+
+    /**
      * Test that a caller-supplied expiry time is honoured.
      *
      * @return void
