@@ -120,6 +120,12 @@ class token_manager {
             $expirytime,
         );
 
+        \core\event\personal_access_token_created::create([
+            'context' => \core\context\user::instance($userid),
+            'objectid' => $token->get_id(),
+            'relateduserid' => $userid,
+        ])->trigger();
+
         // The id is what makes the secret findable again: the stored hash is salted per row, so it
         // cannot be searched for, and validation needs the row before it can verify the secret.
         // This is also the only time the secret exists readable, so the caller must not keep it.
