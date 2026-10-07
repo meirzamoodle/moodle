@@ -34,7 +34,7 @@ declare const M: {
 };
 
 /** The shape of the Moodle page configuration object (`M.cfg`). */
-export interface MoodleConfig {
+export type MoodleConfig = {
     /** The root URL of the Moodle site (e.g. `https://example.com/moodle`). */
     wwwroot: string;
     /** The base URL for the REST API. */
@@ -91,7 +91,7 @@ export interface MoodleConfig {
     developerdebug?: boolean;
     /** Whether a Behat test is running. Present only when true. */
     behatsiterunning?: boolean;
-}
+};
 
 /**
  * The live Moodle page configuration object.
@@ -110,4 +110,4 @@ export default config;
  * @returns `true` if JavaScript caching is enabled, or `false` if it is disabled.
  * @see M.cfg.jsrev
  */
-export const isJSCachingEnabled = config.jsrev !== -1;
+export const isJsCachingEnabled = config.jsrev !== -1;
