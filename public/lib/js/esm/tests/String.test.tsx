@@ -223,6 +223,80 @@ describe('@moodle/lms/core/String', () => {
 
             expect(screen.getByText('Save')).toBeInTheDocument();
         });
+
+        it('renders the fallback and keeps the rest of the tree when the fetch fails', async() => {
+            (getRequestedStrings as jest.Mock).mockRestore();
+            (Ajax.fetchMany as jest.Mock).mockRestore();
+            // Response captured from service-nologin.php for core_get_string with stringid 'Bad Key!'.
+            globalThis.fetch = jest.fn().mockResolvedValue({
+                ok: true,
+                status: 200,
+                statusText: 'OK',
+                json: () => Promise.resolve([{
+                    error: true,
+                    exception: {
+                        message: 'Invalid parameter value detected',
+                        errorcode: 'invalidparameter',
+                        link: 'http://localhost/MDL-90057/',
+                        moreinfourl: 'https://docs.moodle.org/600/en/error/debug/invalidparameter',
+                    },
+                }]),
+            } as Response);
+            // React reports errors caught by a boundary to console.error.
+            const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation();
+
+            await act(async() => {
+                render(
+                    <>
+                        <String identifier="Bad Key!" component="core" />
+                        <span>Sibling</span>
+                    </>,
+                );
+            });
+
+            expect(screen.getByText('Bad Key!, core')).toBeInTheDocument();
+            expect(screen.getByText('Sibling')).toBeInTheDocument();
+            expect(globalThis.fetch).toHaveBeenCalledTimes(1);
+            consoleErrorSpy.mockRestore();
+            delete (globalThis as any).fetch;
+        });
+
+        it('fetches the string again when remounted after a failed fetch', async() => {
+            (getRequestedStrings as jest.Mock).mockRestore();
+            (Ajax.fetchMany as jest.Mock).mockRestore();
+            const mockFetchResponse = (body: unknown): Response => ({
+                ok: true,
+                status: 200,
+                statusText: 'OK',
+                json: () => Promise.resolve(body),
+            } as Response);
+            // Responses captured from service-nologin.php for core_get_string with stringid 'Bad Key!' and 'yes'.
+            globalThis.fetch = jest.fn()
+                .mockResolvedValueOnce(mockFetchResponse([{
+                    error: true,
+                    exception: {
+                        message: 'Invalid parameter value detected',
+                        errorcode: 'invalidparameter',
+                        link: 'http://localhost/MDL-90057/',
+                        moreinfourl: 'https://docs.moodle.org/600/en/error/debug/invalidparameter',
+                    },
+                }]))
+                .mockResolvedValueOnce(mockFetchResponse([{error: false, data: 'Yes'}]));
+            const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation();
+
+            const {unmount} = await act(async() => render(<String identifier="yes" component="core" />));
+            expect(screen.getByText('yes, core')).toBeInTheDocument();
+            unmount();
+
+            await act(async() => {
+                render(<String identifier="yes" component="core" />);
+            });
+
+            expect(screen.getByText('Yes')).toBeInTheDocument();
+            expect(globalThis.fetch).toHaveBeenCalledTimes(2);
+            consoleErrorSpy.mockRestore();
+            delete (globalThis as any).fetch;
+        });
     });
 
     describe('params', () => {

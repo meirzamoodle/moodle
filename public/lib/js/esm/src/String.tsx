@@ -13,8 +13,8 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
-import {Suspense, use, type ReactNode} from 'react';
-import {getString, type StringParams} from './stringUtils';
+import {Component, Suspense, use, type ReactNode} from 'react';
+import {forgetString, getString, type StringParams} from './stringUtils';
 
 export interface StringProps {
     identifier: string;
@@ -26,11 +26,32 @@ function StringInner({identifier, component, params}: StringProps) {
     return <>{use(getString(identifier, component, params))}</>;
 }
 
+/** Shows the fallback instead of the string when fetching it failed, rather than unmounting the whole root. */
+class StringErrorBoundary extends Component<{fallback: ReactNode; onError: () => void; children: ReactNode}, {failed: boolean}> {
+    state = {failed: false};
+
+    static getDerivedStateFromError() {
+        return {failed: true};
+    }
+
+    componentDidCatch() {
+        this.props.onError();
+    }
+
+    render() {
+        return this.state.failed ? this.props.fallback : this.props.children;
+    }
+}
+
 function String({children, identifier, component = 'core', params}: StringProps & {children?: ReactNode}) {
+    const fallback = children ?? `${identifier}, ${component}`;
+
     return (
-        <Suspense fallback={children ?? `${identifier}, ${component}`}>
-            <StringInner identifier={identifier} component={component} params={params} />
-        </Suspense>
+        <StringErrorBoundary fallback={fallback} onError={() => forgetString(identifier, component, params)}>
+            <Suspense fallback={fallback}>
+                <StringInner identifier={identifier} component={component} params={params} />
+            </Suspense>
+        </StringErrorBoundary>
     );
 }
 

@@ -72,6 +72,9 @@ const stringPromiseCache = new Map<string, Promise<string>>();
 const getCacheKey = (key: string, component: string, lang: string): string =>
     `core_str/${key}/${component}/${lang}`;
 
+const getStringCacheKey = (identifier: string, component: string, params?: StringParams): string =>
+    `${component}::${identifier}::${JSON.stringify(params)}`;
+
 // --- Core string API ---
 
 /**
@@ -141,6 +144,13 @@ export const getRequestedStrings = (requests: StringRequest[]): Promise<string>[
 
         // Store immediately so duplicate keys in the same batch reuse this promise.
         promiseCache.set(cacheKey, fetchPromise);
+
+        // Forget a failed fetch so the next request for this string tries again.
+        fetchPromise.catch(() => {
+            if (promiseCache.get(cacheKey) === fetchPromise) {
+                promiseCache.delete(cacheKey);
+            }
+        });
 
         stringPromises[i] = fetchPromise.then((str) => {
             if (!M.str[component]) {
@@ -223,14 +233,28 @@ export const getString = (
     component: string = 'core',
     params?: StringParams,
 ): Promise<string> => {
-    const key = `${component}::${identifier}::${JSON.stringify(params)}`;
+    const key = getStringCacheKey(identifier, component, params);
     if (!stringPromiseCache.has(key)) {
+        // A rejected promise stays cached: use() re-renders on settle, and a fresh promise each time would refetch forever.
+        // The String error boundary calls forgetString() once it has stopped rendering the string.
         stringPromiseCache.set(
             key,
             getRequestedStrings([{key: identifier, component, param: params}])[0],
         );
     }
     return stringPromiseCache.get(key)!;
+};
+
+/**
+ * Forget the cached getString() promise, so the next call fetches the string again.
+ *
+ * @internal Used by the String component once its error boundary has caught a failed fetch.
+ * @param identifier The string identifier.
+ * @param component The component name.
+ * @param params Parameters for variable expansion.
+ */
+export const forgetString = (identifier: string, component: string = 'core', params?: StringParams): void => {
+    stringPromiseCache.delete(getStringCacheKey(identifier, component, params));
 };
 
 /**
