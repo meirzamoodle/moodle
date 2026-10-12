@@ -104,4 +104,71 @@ describe('@moodle/lms/core/stringUtils', () => {
             await expect(getString('perishable', 'core', 'Second')).resolves.toBe('Hi Second');
         });
     });
+
+    describe('failed fetches', () => {
+        // Responses captured from service-nologin.php for core_get_string with stringid 'yes' and 'Bad Key!'.
+        const yesResponse = {error: false, data: 'Yes'};
+        const invalidParameterResponse = {
+            error: true,
+            exception: {
+                message: 'Invalid parameter value detected',
+                errorcode: 'invalidparameter',
+                link: 'http://localhost/MDL-90057/',
+                moreinfourl: 'https://docs.moodle.org/600/en/error/debug/invalidparameter',
+            },
+        };
+
+        let fetchMock: jest.Mock;
+
+        beforeEach(() => {
+            (Ajax.fetchMany as jest.Mock).mockRestore();
+            fetchMock = jest.fn();
+            globalThis.fetch = fetchMock;
+        });
+
+        afterEach(() => {
+            delete (globalThis as any).fetch;
+        });
+
+        const mockFetchResponse = (body: unknown): Response => ({
+            ok: true,
+            status: 200,
+            statusText: 'OK',
+            json: () => Promise.resolve(body),
+        } as Response);
+
+        it('fetches the strings of a failed batch again on the next request', async() => {
+            fetchMock
+                .mockResolvedValueOnce(mockFetchResponse([yesResponse, invalidParameterResponse]))
+                .mockResolvedValueOnce(mockFetchResponse([yesResponse]));
+
+            await expect(getStrings([
+                {key: 'yes', component: 'core'},
+                {key: 'Bad Key!', component: 'core'},
+            ])).rejects.toMatchObject({errorcode: 'invalidparameter'});
+
+            await expect(getRequestedStrings([{key: 'yes'}])[0]).resolves.toBe('Yes');
+            expect(fetchMock).toHaveBeenCalledTimes(2);
+        });
+
+        it('fetches a string again after its fetch failed', async() => {
+            fetchMock
+                .mockResolvedValueOnce(mockFetchResponse([invalidParameterResponse]))
+                .mockResolvedValueOnce(mockFetchResponse([yesResponse]));
+
+            await expect(getRequestedStrings([{key: 'yes'}])[0]).rejects.toMatchObject({errorcode: 'invalidparameter'});
+            await expect(getRequestedStrings([{key: 'yes'}])[0]).resolves.toBe('Yes');
+            expect(fetchMock).toHaveBeenCalledTimes(2);
+        });
+
+        it('returns the same rejected promise from getString so use() does not refetch', async() => {
+            fetchMock.mockResolvedValue(mockFetchResponse([invalidParameterResponse]));
+
+            const first = getString('yes', 'core');
+            await expect(first).rejects.toMatchObject({errorcode: 'invalidparameter'});
+
+            expect(getString('yes', 'core')).toBe(first);
+            expect(fetchMock).toHaveBeenCalledTimes(1);
+        });
+    });
 });

@@ -8,6 +8,7 @@ import { localStore } from "./Storage";
 const promiseCache = /* @__PURE__ */ new Map();
 const stringPromiseCache = /* @__PURE__ */ new Map();
 const getCacheKey = /* @__PURE__ */ __name((key, component, lang) => `core_str/${key}/${component}/${lang}`, "getCacheKey");
+const getStringCacheKey = /* @__PURE__ */ __name((identifier, component, params) => `${component}::${identifier}::${JSON.stringify(params)}`, "getStringCacheKey");
 const getRequestedStrings = /* @__PURE__ */ __name((requests) => {
   const stringPromises = new Array(requests.length);
   const pendingFetches = [];
@@ -49,6 +50,11 @@ const getRequestedStrings = /* @__PURE__ */ __name((requests) => {
       });
     });
     promiseCache.set(cacheKey, fetchPromise);
+    fetchPromise.catch(() => {
+      if (promiseCache.get(cacheKey) === fetchPromise) {
+        promiseCache.delete(cacheKey);
+      }
+    });
     stringPromises[i] = fetchPromise.then((str) => {
       if (!M.str[component]) {
         M.str[component] = {};
@@ -93,7 +99,7 @@ const cacheStrings = /* @__PURE__ */ __name((strings) => {
   }
 }, "cacheStrings");
 const getString = /* @__PURE__ */ __name((identifier, component = "core", params) => {
-  const key = `${component}::${identifier}::${JSON.stringify(params)}`;
+  const key = getStringCacheKey(identifier, component, params);
   if (!stringPromiseCache.has(key)) {
     stringPromiseCache.set(
       key,
@@ -102,12 +108,16 @@ const getString = /* @__PURE__ */ __name((identifier, component = "core", params
   }
   return stringPromiseCache.get(key);
 }, "getString");
+const forgetString = /* @__PURE__ */ __name((identifier, component = "core", params) => {
+  stringPromiseCache.delete(getStringCacheKey(identifier, component, params));
+}, "forgetString");
 const resetStringCache = /* @__PURE__ */ __name(() => {
   stringPromiseCache.clear();
   promiseCache.clear();
 }, "resetStringCache");
 export {
   cacheStrings,
+  forgetString,
   getRequestedStrings,
   getString,
   getStrings,
