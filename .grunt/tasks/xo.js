@@ -83,15 +83,14 @@ const createResidentLinter = grunt => {
 
         xo ??= new Xo({cwd: grunt.moodleEnv.gruntFilePath});
 
-        const {results} = await xo.lintFiles(grunt.moodleEnv.reactSrc);
-        const errorCount = results.reduce((total, result) => total + result.errorCount, 0);
-        const warningCount = results.reduce((total, result) => total + result.warningCount, 0);
+        const report = await xo.lintFiles(grunt.moodleEnv.reactSrc);
 
-        if (errorCount > 0 || warningCount > 0) {
-            grunt.log.writeln(formatter.default(results, {cwd: grunt.moodleEnv.gruntFilePath, results}));
+        if (report.errorCount > 0 || report.warningCount > 0) {
+            // The report carries rulesMeta, which the formatter reads to link each rule to its docs.
+            grunt.log.writeln(formatter.default(report.results, report));
         }
 
-        return errorCount > 0 ? [{text: 'XO reported problems in the TypeScript sources.'}] : [];
+        return report.errorCount > 0 ? [{text: 'XO reported problems in the TypeScript sources.'}] : [];
     };
 };
 
