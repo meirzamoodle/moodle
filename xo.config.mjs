@@ -76,6 +76,12 @@ const xoConfig = [
             // React components are PascalCase and utility modules camelCase.
             'unicorn/filename-case': ['error', {cases: {camelCase: true, pascalCase: true, snakeCase: true}}],
 
+            // The import-x fixer merges "import type {Bar}" into "import Foo" from the same module
+            // as "import Foo, type {Bar}", which does not parse; prefer-inline does not cover a
+            // default import. ESLint's own rule reports duplicates without fixing them.
+            'import-x/no-duplicates': 'off',
+            'no-duplicate-imports': ['error', {allowSeparateTypeImports: true}],
+
             // These rules recommend Array#toSorted (ES2023) and Promise.withResolvers
             // (ES2024). Both are newer than the browsers listed under "browserslist" in
             // package.json, and esbuild sets no target, so neither is downlevelled or
