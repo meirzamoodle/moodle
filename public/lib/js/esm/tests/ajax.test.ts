@@ -236,6 +236,16 @@ describe('core/ajax', () => {
             await expect(p2).rejects.toEqual({message: 'bad', errorcode: 'invalidparam'});
         });
 
+        it('rejects a response that has no error flag', async() => {
+            fetchMock.mockResolvedValue(mockFetchResponse([
+                {data: 'ok'},
+            ]));
+
+            const [promise] = performFetch([{methodname: 'ws_noflag', args: {}}]);
+
+            await expect(promise).rejects.toThrow('Unknown error');
+        });
+
         it('sends an empty pageparent header when telemetry is not set up', async() => {
             const {traceId} = (globalThis as any).M.cfg;
             (globalThis as any).M.cfg.traceId = null;

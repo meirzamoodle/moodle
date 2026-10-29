@@ -96,7 +96,7 @@ function processResponse(responses, resolvers, nosessionupdate) {
       exception = new Error("missing response");
       break;
     }
-    if (response.error) {
+    if (response.error !== false) {
       exception = response.exception ?? new Error("Unknown error");
       break;
     }

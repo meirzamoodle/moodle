@@ -94,7 +94,8 @@ export type ServiceRequest = {
 
 /** Shape of a single response item from service.php. */
 export type ServiceResponse = {
-    error: boolean;
+    // Optional because it comes off the network; only an explicit false is a success.
+    error?: boolean;
     data?: unknown;
     exception?: MoodleAjaxError;
 };
@@ -216,7 +217,7 @@ function processResponse(
             break;
         }
 
-        if (response.error) {
+        if (response.error !== false) {
             exception = response.exception ?? new Error('Unknown error');
             break;
         }
