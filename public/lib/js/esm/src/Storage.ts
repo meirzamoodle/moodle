@@ -51,7 +51,8 @@ class Storage {
         for (let index = 0; index < source.length; index++) {
             /* eslint-disable-next-line unicorn/prefer-code-point -- Index loop; codePointAt rereads surrogate pairs. */
             hash = ((hash << 5) - hash) + source.charCodeAt(index);
-            hash = Math.trunc(hash);
+            // eslint-disable-next-line unicorn/prefer-math-trunc -- | 0 wraps to 32 bits, Math.trunc does not.
+            hash |= 0;
         }
         /* eslint-enable no-bitwise */
 

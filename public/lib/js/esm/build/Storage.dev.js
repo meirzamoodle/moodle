@@ -23,7 +23,7 @@ class Storage {
     let hash = 0;
     for (let index = 0; index < source.length; index++) {
       hash = (hash << 5) - hash + source.charCodeAt(index);
-      hash = Math.trunc(hash);
+      hash |= 0;
     }
     return hash;
   }
