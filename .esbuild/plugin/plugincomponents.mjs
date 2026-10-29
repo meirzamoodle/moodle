@@ -522,7 +522,15 @@ export async function watchComponents(beforeBuild) {
 
             announce(files);
 
-            const errors = await beforeBuild();
+            let errors;
+            try {
+                errors = await beforeBuild();
+            } catch (error) {
+                // The check itself failed, as when XO crashes. The catch below is for build failures only.
+                console.error(error);
+                errors = [{text: error.message}];
+            }
+
             if (errors.length === 0) {
                 await Promise.all([
                     productionContext.rebuild(),
