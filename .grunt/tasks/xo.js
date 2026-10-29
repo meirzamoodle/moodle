@@ -39,7 +39,10 @@ const {spawn} = require('child_process');
  * @returns {Promise<void>} Rejects when XO reports a problem.
  */
 const lintTypescript = (grunt, targets, {fix = false} = {}) => new Promise((resolve, reject) => {
-    targets ??= grunt.moodleEnv.files ? grunt.moodleEnv.files : grunt.moodleEnv.reactSrc;
+    // --files can name any file, and XO would lint AMD JavaScript with its own rules.
+    targets ??= grunt.moodleEnv.files
+        ? grunt.moodleEnv.files.filter(file => /\.tsx?$/.test(file))
+        : grunt.moodleEnv.reactSrc;
 
     if (targets.length === 0) {
         resolve();
