@@ -190,7 +190,7 @@ class Fetch {
         ...headers,
         Accept: "application/json",
         "Content-Type": "application/json",
-        pageparent: config.traceId
+        pageparent: config.traceId ?? ""
       },
       signal: getGlobalAbortSignal()
     };

@@ -55,7 +55,7 @@ function buildRequest(requestData, options) {
   const headers = {
     "Content-Type": "application/json",
     Accept: "application/json",
-    pageparent: config.traceId
+    pageparent: config.traceId ?? ""
   };
   let body;
   if (method === "POST") {

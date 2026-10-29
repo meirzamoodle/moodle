@@ -157,7 +157,7 @@ function buildRequest(
     const headers: Record<string, string> = {
         'Content-Type': 'application/json',
         Accept: 'application/json',
-        pageparent: config.traceId,
+        pageparent: config.traceId ?? '',
     };
 
     let body: string | undefined;

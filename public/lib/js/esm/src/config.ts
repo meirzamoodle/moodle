@@ -86,7 +86,7 @@ export type MoodleConfig = {
     /** List of JS deprecation warnings to suppress. */
     deprecationignorelist: string[];
     /** OpenTelemetry trace parent ID. */
-    traceId: string;
+    traceId: string | null;
     /** Whether developer debug mode is enabled. Present only when true. */
     developerdebug?: boolean;
     /** Whether a Behat test is running. Present only when true. */
