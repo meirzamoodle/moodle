@@ -18,7 +18,7 @@
 /**
  * Grunt task for linting TypeScript sources with XO.
  *
- * @copyright  Meirza Arson <meirza.arson@moodle.com>
+ * @copyright  2026 Meirza Arson <meirza.arson@moodle.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 

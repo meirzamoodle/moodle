@@ -23,7 +23,7 @@
  * Every override below defers to a Moodle convention that XO's defaults contradict.
  * Do not add overrides for rules that are merely inconvenient — see MDLSITE-8249.
  *
- * @copyright  Meirza Arson <meirza.arson@moodle.com>
+ * @copyright  2026 Meirza Arson <meirza.arson@moodle.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
