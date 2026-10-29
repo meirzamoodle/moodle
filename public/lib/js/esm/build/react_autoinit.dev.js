@@ -183,5 +183,5 @@ const init = /* @__PURE__ */ __name(async () => {
   }
   scanAndMount(document);
 }, "init");
-await init();
+void init();
 //# sourceMappingURL=react_autoinit.dev.js.map

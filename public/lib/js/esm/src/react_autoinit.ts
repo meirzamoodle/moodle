@@ -314,4 +314,4 @@ const init = async (): Promise<void> => {
     scanAndMount(document);
 };
 
-await init();
+void init();
