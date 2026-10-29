@@ -62,8 +62,10 @@ class Pending {
    *     }, 'mod_myexample/setup:init');
    * };
    */
-  /* eslint-disable-next-line @typescript-eslint/naming-convention -- Released API name from core/pending. */
-  static async Promise(executor, pendingKey = "pendingPromise") {
+  /* eslint-disable-next-line @typescript-eslint/naming-convention, @typescript-eslint/promise-function-async --
+     Released API name from core/pending. Not async: that would return a new promise without the catch below,
+     so a rejection the caller does not catch would be reported as unhandled. */
+  static Promise(executor, pendingKey = "pendingPromise") {
     const resolver = new Promise((resolve, reject) => {
       this.pending(pendingKey);
       executor(resolve, reject);

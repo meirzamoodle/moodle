@@ -103,8 +103,10 @@ export default class Pending {
      *     }, 'mod_myexample/setup:init');
      * };
      */
-    /* eslint-disable-next-line @typescript-eslint/naming-convention -- Released API name from core/pending. */
-    static async Promise<T>(
+    /* eslint-disable-next-line @typescript-eslint/naming-convention, @typescript-eslint/promise-function-async --
+       Released API name from core/pending. Not async: that would return a new promise without the catch below,
+       so a rejection the caller does not catch would be reported as unhandled. */
+    static Promise<T>(
         executor: (resolve: (value: T) => void, reject: (reason?: unknown) => void) => void,
         pendingKey = 'pendingPromise',
     ): Promise<T> {
