@@ -150,8 +150,9 @@ export const debounce = <T extends unknown[]>(
  * @param component The component name to normalise.
  * @returns The normalised component name.
  */
-export const getNormalisedComponent = (component: string): string => {
-    if (component !== '' && component !== 'moodle' && component !== 'core') {
+export const getNormalisedComponent = (component: string | null | undefined): string => {
+    // AMD callers are untyped and pass null or nothing for core.
+    if (component !== undefined && component !== null && !['', 'moodle', 'core'].includes(component)) {
         return component;
     }
 

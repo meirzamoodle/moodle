@@ -67,7 +67,7 @@ const debounce = /* @__PURE__ */ __name((func, wait, {
   return returnedFunction;
 }, "debounce");
 const getNormalisedComponent = /* @__PURE__ */ __name((component) => {
-  if (component !== "" && component !== "moodle" && component !== "core") {
+  if (component !== void 0 && component !== null && !["", "moodle", "core"].includes(component)) {
     return component;
   }
   return "core";

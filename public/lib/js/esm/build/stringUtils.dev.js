@@ -13,7 +13,8 @@ const getRequestedStrings = /* @__PURE__ */ __name((requests) => {
   const pendingFetches = [];
   for (const [index, request] of requests.entries()) {
     const { key, param: parameter = null, lang = config.language } = request;
-    const component = request.component === void 0 || request.component === "" ? "core" : request.component;
+    const requestedComponent = request.component ?? "";
+    const component = requestedComponent === "" ? "core" : requestedComponent;
     const cacheKey = getCacheKey(key, component, lang);
     if (M.str[component]?.[key] !== void 0) {
       const promise = Promise.resolve(M.util.get_string(key, component, parameter));

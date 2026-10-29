@@ -38,7 +38,7 @@ export type StringRequest = {
     /** The string identifier. */
     key: string;
     /** The component name (defaults to 'core'). */
-    component?: string;
+    component?: string | null;
     /** Parameters for variable expansion. */
     param?: StringParams;
     /** The language code (defaults to current page language). */
@@ -93,7 +93,9 @@ export const getRequestedStrings = (requests: StringRequest[]): Array<Promise<st
 
     for (const [index, request] of requests.entries()) {
         const {key, param: parameter = null, lang = config.language} = request;
-        const component = request.component === undefined || request.component === '' ? 'core' : request.component;
+        // AMD callers are untyped and pass null or nothing for core.
+        const requestedComponent = request.component ?? '';
+        const component = requestedComponent === '' ? 'core' : requestedComponent;
         const cacheKey = getCacheKey(key, component, lang);
 
         // 1. Check M.str in-memory cache.
