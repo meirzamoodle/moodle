@@ -27,10 +27,18 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+import {createRequire} from 'node:module';
 import reactHooks from 'eslint-plugin-react-hooks';
+
+const require = createRequire(import.meta.url);
+const ComponentList = require('./.grunt/components.js');
 
 /** @type {import('xo').FlatXoConfig} */
 const xoConfig = [
+    {
+        // The third-party libraries and component .eslintignore entries that ESLint skips.
+        ignores: [...ComponentList.getThirdPartyPaths(), ...ComponentList.getLocalIgnorePaths('.eslintignore')],
+    },
     {
         files: ['**/js/esm/src/**/*.ts', '**/js/esm/src/**/*.tsx'],
         space: 4,
