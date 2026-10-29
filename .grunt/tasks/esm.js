@@ -34,6 +34,8 @@ module.exports = grunt => {
      *   grunt esm:dev      — deprecated (behaves like grunt esm)
      *   grunt esm:watch    — lint, then rebuild on save (incremental context)
      *
+     * Pass --skip-lint to build without running XO first.
+     *
      * Note: esm:watch drives its own loop — a change is reported, the sources are
      * linted, and only then is the esbuild context rebuilt. It stays separate from
      * grunt-contrib-watch so esbuild's incremental build graph is reused between
@@ -43,13 +45,19 @@ module.exports = grunt => {
         const done = this.async();
         const isWatch = mode === 'watch';
 
+        const skipLint = !!grunt.option('skip-lint');
+
         if (mode === 'dev') {
             grunt.log.warn('esm:dev is deprecated. Output is always production-mode. Use "grunt esm" instead.');
         }
 
+        if (skipLint) {
+            grunt.log.warn('Linting skipped (--skip-lint). Run "grunt xo" before committing.');
+        }
+
         if (isWatch) {
             // Lint before each rebuild.
-            const beforeBuild = createResidentLinter(grunt);
+            const beforeBuild = skipLint ? async() => [] : createResidentLinter(grunt);
 
             (async() => {
                 try {
@@ -94,7 +102,9 @@ module.exports = grunt => {
                 generateAliases();
 
                 // Lint before building.
-                await lintTypescript(grunt);
+                if (!skipLint) {
+                    await lintTypescript(grunt);
+                }
 
                 await buildPluginComponents();
 
