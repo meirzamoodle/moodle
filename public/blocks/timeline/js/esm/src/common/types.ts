@@ -42,7 +42,8 @@ export type CalendarEvent = {
     overdue: boolean;
     eventtype: string;
     url: string;
-    modulename: string;
+    // Null for an event without a course module.
+    modulename: string | null;
     activityname?: string;
     activitystr?: string;
     purpose?: string;

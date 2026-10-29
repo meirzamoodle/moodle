@@ -61,7 +61,7 @@ function resolveResourceIcon(iconurl) {
 }
 __name(resolveResourceIcon, "resolveResourceIcon");
 function resolveIcon(modulename, iconurl) {
-  if (modulename === void 0 || ["", "undefined"].includes(modulename)) {
+  if (modulename === void 0 || modulename === null || ["", "undefined"].includes(modulename)) {
     return "file-unknown";
   }
   if (modulename === "resource") {

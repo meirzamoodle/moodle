@@ -80,7 +80,7 @@ const FILE_TYPE_MAP: Record<string, string> = {
 };
 
 type ActivityIconProps = {
-    modulename: string;
+    modulename: string | null;
     iconurl: string;
     alt?: string;
 };
@@ -103,8 +103,8 @@ function resolveResourceIcon(iconurl: string): string {
  * @param modulename Moodle module name, e.g. "assign", "resource"; may be missing.
  * @param iconurl the activity's icon URL, only inspected when modulename is "resource".
  */
-function resolveIcon(modulename: string | undefined, iconurl: string): string {
-    if (modulename === undefined || ['', 'undefined'].includes(modulename)) {
+function resolveIcon(modulename: string | null | undefined, iconurl: string): string {
+    if (modulename === undefined || modulename === null || ['', 'undefined'].includes(modulename)) {
         return 'file-unknown';
     }
 
