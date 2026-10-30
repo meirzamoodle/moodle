@@ -1,0 +1,6 @@
+issueNumber: MDL-89230
+notes:
+  core:
+    - type: deprecated
+      message: >-
+        The `core/react_autoinit` ESM module has been renamed to `core/reactAutoinit` to follow the ESM naming conventions. Importing the old path still works but emits a deprecation warning.
