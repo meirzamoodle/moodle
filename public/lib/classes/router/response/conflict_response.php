@@ -24,6 +24,8 @@ namespace core\router\response;
  * @license    https://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class conflict_response extends exception_response {
+    use field_errors_response_trait;
+
     #[\Override]
     public static function get_exception_status_code(): int {
         return 409;
