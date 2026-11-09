@@ -17,8 +17,12 @@
 namespace core_user\route\api;
 
 use core\current_user;
+use core\exception\access_denied_exception;
 use core\exception\not_found_exception;
 use core\router\conditional_request;
+use core\router\response\access_denied_response;
+use core\router\response\conflict_response;
+use core\router\response\unprocessable_entity_response;
 use core\router\parameters\path_user;
 use core\router\pagination_request;
 use core\router\schema\response\payload_response;
@@ -29,10 +33,14 @@ use core\router\schema\parameters\query_parameter;
 use core\router\schema\response\collection_response;
 use core\router\schema\etag;
 use core\router\scope\scopeset;
+use core\router\util;
+use core_user\local\user_creator;
 use core_user\local\user_representation;
 use core_user\local\user_scope_check_trait;
 use core_user\local\visible_user_finder;
+use core_user\route\requests\user_creation_request;
 use core_user\route\responses\user_collection_response;
+use core_user\route\responses\user_creation_receipt_response;
 use core_user\route\responses\user_response;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -57,6 +65,7 @@ class users {
      * @param visible_user_finder $finder
      * @param user_representation $representation
      * @param current_user $currentuser
+     * @param user_creator $creator
      */
     public function __construct(
         /** @var visible_user_finder Finds the users which the current user can see */
@@ -65,6 +74,8 @@ class users {
         protected user_representation $representation,
         /** @var current_user The user making the request */
         protected current_user $currentuser,
+        /** @var user_creator Creates new users */
+        protected user_creator $creator,
     ) {
     }
 
@@ -169,5 +180,52 @@ class users {
         }
 
         return conditional_request::respond($request, $response, $item);
+    }
+
+    /**
+     * Create a user.
+     *
+     * @param ResponseInterface $response
+     * @param ServerRequestInterface $request
+     * @return payload_response
+     */
+    #[route(
+        title: 'Create a user',
+        description: 'Create a Moodle account, with any initial standard profile values. This provisions the Moodle account'
+            . ' only, and does not create an account with any external identity provider. Retrying a request which may'
+            . ' have succeeded can create a second account, or fail with a conflict.',
+        method: ['POST'],
+        requestbody: new user_creation_request(),
+        responses: [
+            new user_creation_receipt_response(),
+            new access_denied_response(),
+            new conflict_response(),
+            new unprocessable_entity_response(),
+        ],
+    )]
+    #[scopeset(
+        new \core_user\route\scope\user\create(),
+    )]
+    public function create_user(
+        ResponseInterface $response,
+        ServerRequestInterface $request,
+    ): payload_response {
+        global $PAGE;
+
+        $PAGE->set_context(\core\context\system::instance());
+
+        // The router answers a required_capability_exception with a 500, so deny access with a 403 instead.
+        if (!$this->currentuser->has_capability('moodle/user:create', \core\context\system::instance())) {
+            throw new access_denied_exception('nopermissions', 'error', '', get_capability_string('moodle/user:create'));
+        }
+
+        $receipt = $this->creator->create($request->getParsedBody());
+        $location = util::get_path_for_callable([self::class, 'get_user'], ['userId' => $receipt['id']]);
+
+        return new payload_response(
+            $receipt,
+            $request,
+            $response->withStatus(201)->withHeader('Location', $location->out(false)),
+        );
     }
 }

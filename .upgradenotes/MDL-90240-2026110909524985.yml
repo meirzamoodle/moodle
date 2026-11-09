@@ -1,0 +1,16 @@
+issueNumber: MDL-90240
+notes:
+  core:
+    - type: improved
+      message: >-
+        REST API 422 and 409 problem responses can now report field-level
+        errors. Throw `\core\exception\unprocessable_entity_exception` or
+        `\core\exception\conflict_exception` with entries built by
+        `\core\exception\field_errors_exception::error()`, and each entry is
+        returned in the `errors` member with a JSON Pointer to the field.
+        Other exception responses can add their own members by overriding
+        `exception_response::get_response_schema_content()`.
+  core_user:
+    - type: improved
+      message: >-
+        A new `POST /user/users` REST endpoint creates a user.

@@ -525,4 +525,142 @@ final class users_test extends route_testcase {
         $response = $this->process_api_request('GET', '/users/99999999');
         $this->assertEquals(404, $response->getStatusCode());
     }
+
+    public function test_create_required_scopes(): void {
+        $this->assert_route_required_scopes([['core_user:user:create']], [users::class, 'create_user']);
+    }
+
+    /**
+     * Send a request to create a user.
+     *
+     * @param array|string $body The request, or a raw body
+     * @return \Psr\Http\Message\ResponseInterface
+     */
+    private function post_user(array|string $body): \Psr\Http\Message\ResponseInterface {
+        $this->add_class_routes_to_route_loader(users::class);
+
+        return $this->process_api_request(
+            'POST',
+            '/users',
+            body: \GuzzleHttp\Psr7\Utils::streamFor(is_string($body) ? $body : json_encode($body)),
+        );
+    }
+
+    public function test_create_user(): void {
+        global $DB;
+
+        $this->resetAfterTest();
+        $this->setAdminUser();
+
+        $response = $this->post_user([
+            'username' => 'alice',
+            'firstName' => 'Alice',
+            'lastName' => 'Anderson',
+            'email' => 'alice@example.com',
+            'password' => 'Secret-Pass-1',
+            'profile' => ['city' => 'Perth'],
+        ]);
+
+        $this->assert_valid_response($response, 201);
+        $user = $DB->get_record('user', ['username' => 'alice'], '*', MUST_EXIST);
+        $this->assertSame(['id' => (int) $user->id, 'username' => 'alice'], $this->decode_response($response, true));
+        $this->assertSame(
+            \core\router\util::get_path_for_callable([users::class, 'get_user'], ['userId' => $user->id])->out(false),
+            $response->getHeaderLine('Location'),
+        );
+        $this->assertStringEndsWith("/users/{$user->id}", $response->getHeaderLine('Location'));
+        $this->assertFalse($response->hasHeader('ETag'));
+        $this->assertSame('Perth', $user->city);
+    }
+
+    public function test_create_requires_capability(): void {
+        global $DB;
+
+        $this->resetAfterTest();
+        $this->setUser($this->getDataGenerator()->create_user());
+
+        $response = $this->post_user([
+            'username' => 'alice',
+            'firstName' => 'Alice',
+            'lastName' => 'Anderson',
+            'email' => 'alice@example.com',
+            'password' => 'Secret-Pass-1',
+        ]);
+
+        $this->assert_access_denied_response($response);
+        $this->assertFalse($DB->record_exists('user', ['username' => 'alice']));
+    }
+
+    public function test_create_invalid_fields(): void {
+        $this->resetAfterTest();
+        $this->setAdminUser();
+
+        $response = $this->post_user(['username' => 'alice', 'timeZone' => 'Australia/Perth']);
+
+        $this->assert_exception_response($response, 422);
+        $this->assertSame(
+            ['#/firstName', '#/lastName', '#/email', '#/timeZone'],
+            array_column($this->decode_response($response, true)['errors'], 'pointer'),
+        );
+    }
+
+    public function test_create_does_not_return_the_password(): void {
+        $this->resetAfterTest();
+        $this->setAdminUser();
+        set_debugging(DEBUG_DEVELOPER);
+
+        $response = $this->post_user([
+            'username' => 'alice',
+            'firstName' => 'Alice',
+            'lastName' => 'Anderson',
+            'email' => 'alice@example.com',
+            'password' => 'weakpassword',
+        ]);
+
+        $this->assert_exception_response($response, 422);
+        $this->assertStringNotContainsString('weakpassword', (string) $response->getBody());
+        $this->assertNotEmpty($this->decode_response($response, true)['stacktrace']);
+    }
+
+    public function test_create_conflict(): void {
+        $this->resetAfterTest();
+        $this->setAdminUser();
+        $this->getDataGenerator()->create_user(['username' => 'alice']);
+
+        $response = $this->post_user([
+            'username' => 'alice',
+            'firstName' => 'Alice',
+            'lastName' => 'Anderson',
+            'email' => 'alice@example.com',
+            'password' => 'Secret-Pass-1',
+        ]);
+
+        $this->assert_exception_response($response, 409);
+        $this->assertSame('usernameexists', $this->decode_response($response, true)['errors'][0]['code']);
+    }
+
+    public function test_create_without_body(): void {
+        $this->resetAfterTest();
+        $this->setAdminUser();
+
+        $this->assert_invalid_parameter_response($this->post_user(''));
+    }
+
+    public function test_create_is_documented(): void {
+        $spec = new \core\router\schema\specification();
+        $route = \core\router\route::from_reflection(
+            new \ReflectionClass(users::class),
+            new \ReflectionMethod(users::class, 'create_user'),
+        );
+
+        $operation = $spec->get_openapi_schema_for_route($route, 'core_user', '/users')->post;
+
+        $this->assertEqualsCanonicalizing([201, 403, 409, 422, 400, 404], array_keys($operation->responses));
+        $this->assertTrue($operation->requestBody->required);
+        $this->assertCount(6, (array) $operation->requestBody->content->{'application/json'}->examples);
+        $this->assertSame(
+            (new \core\router\schema\parameters\location())->get_reference(),
+            $operation->responses[201]->headers['Location']->{'$ref'},
+        );
+    }
 }
