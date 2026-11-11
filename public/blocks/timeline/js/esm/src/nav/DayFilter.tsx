@@ -90,7 +90,7 @@ export default function DayFilter({activeFilter, onChange}: DayFilterProps) {
                 onChange(option.name);
             }}
         >
-            <String identifier={option.labelKey} component={option.labelComponent}>{''}</String>
+            <String identifier={option.labelKey} component={option.labelComponent} />
         </a>
     );
 
@@ -113,7 +113,7 @@ export default function DayFilter({activeFilter, onChange}: DayFilterProps) {
                     <String
                         identifier={activeOption.labelKey}
                         component={activeOption.labelComponent}
-                    >{''}</String>
+                    />
                 </span>
             </button>
 
@@ -131,7 +131,7 @@ export default function DayFilter({activeFilter, onChange}: DayFilterProps) {
 
                 <div role="group" aria-labelledby={GROUP_ID}>
                     <div className="h6 dropdown-header" role="presentation" id={GROUP_ID}>
-                        <String identifier="duedate" component="block_timeline">{''}</String>
+                        <String identifier="duedate" component="block_timeline" />
                     </div>
                     {GROUP_OPTIONS.map(renderItem)}
                 </div>

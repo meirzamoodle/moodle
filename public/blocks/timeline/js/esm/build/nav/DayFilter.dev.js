@@ -48,7 +48,7 @@ function DayFilter({ activeFilter, onChange }) {
         e.preventDefault();
         onChange(option.name);
       },
-      children: /* @__PURE__ */ jsxDEV(String, { identifier: option.labelKey, component: option.labelComponent, children: "" }, void 0, false, {
+      children: /* @__PURE__ */ jsxDEV(String, { identifier: option.labelKey, component: option.labelComponent }, void 0, false, {
         fileName: "public/blocks/timeline/js/esm/src/nav/DayFilter.tsx",
         lineNumber: 93,
         columnNumber: 13
@@ -79,8 +79,7 @@ function DayFilter({ activeFilter, onChange }) {
           String,
           {
             identifier: activeOption.labelKey,
-            component: activeOption.labelComponent,
-            children: ""
+            component: activeOption.labelComponent
           },
           void 0,
           false,
@@ -122,7 +121,7 @@ function DayFilter({ activeFilter, onChange }) {
             columnNumber: 17
           }, this),
           /* @__PURE__ */ jsxDEV("div", { role: "group", "aria-labelledby": GROUP_ID, children: [
-            /* @__PURE__ */ jsxDEV("div", { className: "h6 dropdown-header", role: "presentation", id: GROUP_ID, children: /* @__PURE__ */ jsxDEV(String, { identifier: "duedate", component: "block_timeline", children: "" }, void 0, false, {
+            /* @__PURE__ */ jsxDEV("div", { className: "h6 dropdown-header", role: "presentation", id: GROUP_ID, children: /* @__PURE__ */ jsxDEV(String, { identifier: "duedate", component: "block_timeline" }, void 0, false, {
               fileName: "public/blocks/timeline/js/esm/src/nav/DayFilter.tsx",
               lineNumber: 134,
               columnNumber: 25

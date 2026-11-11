@@ -208,7 +208,7 @@ function CoursesView({
           lineNumber: 306,
           columnNumber: 21
         }, this),
-        /* @__PURE__ */ jsxDEV("p", { className: "text-muted mt-1", children: /* @__PURE__ */ jsxDEV(String, { identifier: "noevents", component: "block_timeline", children: "" }, void 0, false, {
+        /* @__PURE__ */ jsxDEV("p", { className: "text-muted mt-1", children: /* @__PURE__ */ jsxDEV(String, { identifier: "noevents", component: "block_timeline" }, void 0, false, {
           fileName: "public/blocks/timeline/js/esm/src/views/CoursesView.tsx",
           lineNumber: 308,
           columnNumber: 25
@@ -229,7 +229,7 @@ function CoursesView({
         lineNumber: 315,
         columnNumber: 17
       }, this),
-      /* @__PURE__ */ jsxDEV("p", { className: "text-muted mt-1", children: /* @__PURE__ */ jsxDEV(String, { identifier: "nocoursesinprogress", component: "block_timeline", children: "" }, void 0, false, {
+      /* @__PURE__ */ jsxDEV("p", { className: "text-muted mt-1", children: /* @__PURE__ */ jsxDEV(String, { identifier: "nocoursesinprogress", component: "block_timeline" }, void 0, false, {
         fileName: "public/blocks/timeline/js/esm/src/views/CoursesView.tsx",
         lineNumber: 317,
         columnNumber: 21
@@ -266,8 +266,7 @@ function CoursesView({
               String,
               {
                 identifier: "noevents",
-                component: "block_timeline",
-                children: ""
+                component: "block_timeline"
               },
               void 0,
               false,
