@@ -23,6 +23,12 @@
  */
 // phpcs:disable moodle.Files.MoodleInternal.MoodleInternalGlobalState
 
+// API responses must stay valid JSON, so send debugging and PHP errors to the error log instead.
+// Must run before config.php; keep the path in sync with \core\router\route_loader_interface::ROUTE_GROUP_API.
+if (str_contains($_SERVER['REQUEST_URI'] ?? '', '/api/rest/v2/')) {
+    define('NO_DEBUG_DISPLAY', true);
+}
+
 // Load the bootstrap and perform the bare early setup.
 // This just sets up the autoloaders, basic configuration, and so on.
 define('ABORT_AFTER_CONFIG', true);
