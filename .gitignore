@@ -50,6 +50,7 @@ composer.phar
 /public/lib/yuilib/*/*/*-coverage.js
 atlassian-ide-plugin.xml
 /node_modules/
+/coverage/
 /.vscode/
 moodle-plugin-ci.phar
 /.eslintignore

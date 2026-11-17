@@ -7,7 +7,7 @@
     "update-packages": "node scripts/update-packages.mjs",
     "upgradenote": "node .grunt/upgradenotes.mjs create",
     "pretest": "grunt jsconfig",
-    "test": "jest",
+    "test": "jest --coverage",
     "swizzle": "node scripts/swizzle.mjs"
   },
   "dependencies": {

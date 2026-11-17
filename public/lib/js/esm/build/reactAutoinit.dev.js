@@ -23,6 +23,7 @@ var __name = (target, value) => __defProp(target, "name", { value, configurable:
 import { isProfilerEnabled } from "@moodle/lms/core/profiler";
 import { mountReactApp, unmountReactApp } from "@moodle/lms/core/mount";
 import Pending from "@moodle/lms/core/pending";
+import importModule from "@moodle/lms/core/importModule";
 const SELECTOR = "[data-react-component]";
 const reactUnmountMap = /* @__PURE__ */ new WeakMap();
 const isProfilingEnabled = isProfilerEnabled();
@@ -64,7 +65,7 @@ const resolveComponent = /* @__PURE__ */ __name(async (componentName) => {
     if (isProfilingEnabled) {
       console.log(`[reactAutoinit] Loading: ${componentName}`);
     }
-    return await import(componentName);
+    return await importModule(componentName);
   } catch (error) {
     console.error(`[reactAutoinit] Failed to import: ${componentName}`, error);
     return void 0;

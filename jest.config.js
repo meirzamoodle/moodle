@@ -35,4 +35,13 @@ module.exports = {
         '**/esm/src/**/*.{ts,tsx}',
         '!**/*.d.ts',
     ],
+    // Enforced whenever coverage is collected, which `npm test` always does.
+    coverageThreshold: {
+        global: {
+            statements: 96,
+            branches: 86,
+            functions: 95,
+            lines: 96,
+        },
+    },
 };

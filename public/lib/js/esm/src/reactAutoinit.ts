@@ -38,6 +38,7 @@ import {type ComponentType} from 'react';
 import {isProfilerEnabled} from '@moodle/lms/core/profiler';
 import {mountReactApp, unmountReactApp} from '@moodle/lms/core/mount';
 import Pending from '@moodle/lms/core/pending';
+import importModule from '@moodle/lms/core/importModule';
 
 /** Props decoded from the data-react-props attribute. */
 type ReactProps = Record<string, unknown>;
@@ -118,7 +119,7 @@ const resolveComponent = async (componentName: string): Promise<ComponentModule 
             console.log(`[reactAutoinit] Loading: ${componentName}`);
         }
 
-        return await (import(componentName) as Promise<ComponentModule>);
+        return await (importModule(componentName) as Promise<ComponentModule>);
     } catch (error) {
         console.error(`[reactAutoinit] Failed to import: ${componentName}`, error);
         return undefined;
