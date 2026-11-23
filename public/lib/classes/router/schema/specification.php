@@ -107,6 +107,7 @@ class specification implements
                 'description' => 'Moodle Developer Docs',
                 'url' => 'https://moodledev.io',
             ],
+            'tags' => [],
         ];
 
         $this->generate_common_responses();
@@ -352,6 +353,45 @@ class specification implements
                 $addpath($path);
             }
         }
+
+        $this->add_tag(
+            $component,
+            "Operations related to the {$component} component"
+        );
+
+        foreach ($route->tags as $tag) {
+            $this->add_tag($tag);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Add a tag to the OpenAPI description.
+     *
+     * @param string $tag
+     * @param string|null $description
+     * @return specification
+     */
+    protected function add_tag(
+        string $tag,
+        ?string $description = null,
+    ): self {
+        foreach ($this->data->tags as $existing) {
+            if ($existing->name === $tag) {
+                // Another route may have used this tag first, without a description.
+                if ($description !== null && !property_exists($existing, 'description')) {
+                    $existing->description = $description;
+                }
+                return $this;
+            }
+        }
+
+        $tagdata = (object) ['name' => $tag];
+        if ($description !== null) {
+            $tagdata->description = $description;
+        }
+        $this->data->tags[] = $tagdata;
 
         return $this;
     }

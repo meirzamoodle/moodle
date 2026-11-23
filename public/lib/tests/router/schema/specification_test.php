@@ -216,6 +216,38 @@ final class specification_test extends route_testcase {
         ];
     }
 
+    /**
+     * Test that add_path registers each component tag, and any custom route tags, once.
+     */
+    public function test_add_path_registers_tags_once(): void {
+        $spec = new specification();
+        $spec->add_path('core', new route(path: '/one'));
+        $spec->add_path('core', new route(path: '/two'));
+        $spec->add_path('mod_assign', new route(path: '/one', tags: ['grading', 'submissions']));
+        $spec->add_path('mod_quiz', new route(path: '/one', tags: ['grading']));
+
+        $tags = $spec->get_schema()->tags;
+        $this->assertEquals(
+            ['core', 'mod_assign', 'grading', 'submissions', 'mod_quiz'],
+            array_column($tags, 'name'),
+        );
+        $this->assertEquals('Operations related to the mod_quiz component', $tags[4]->description);
+        $this->assertObjectNotHasProperty('description', $tags[2]);
+    }
+
+    /**
+     * Test that a component tag keeps its description when another route used it first.
+     */
+    public function test_add_path_describes_component_tag_used_earlier(): void {
+        $spec = new specification();
+        $spec->add_path('mod_assign', new route(path: '/one', tags: ['mod_quiz']));
+        $spec->add_path('mod_quiz', new route(path: '/one'));
+
+        $tags = $spec->get_schema()->tags;
+        $this->assertEquals(['mod_assign', 'mod_quiz'], array_column($tags, 'name'));
+        $this->assertEquals('Operations related to the mod_quiz component', $tags[1]->description);
+    }
+
     public function test_add_path_with_option(): void {
         $spec = new specification();
 
